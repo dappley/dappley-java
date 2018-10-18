@@ -1,8 +1,11 @@
 package com.dappley.android.sdk.chain;
 
 import com.dappley.android.sdk.crypto.ShaDigest;
-import com.dappley.android.sdk.protobuf.BlockProto;
-import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.protobuf.BlockProto.Block;
+import com.dappley.android.sdk.protobuf.BlockProto.BlockHeader;
+import com.dappley.android.sdk.protobuf.TransactionProto.TXInput;
+import com.dappley.android.sdk.protobuf.TransactionProto.TXOutput;
+import com.dappley.android.sdk.protobuf.TransactionProto.Transaction;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
 import com.google.protobuf.ByteString;
@@ -22,23 +25,23 @@ public class BlockManager {
 
     /**
      * Generate genesis block
-     * @return BlockProto.Block genesis block
+     * @return Block genesis block
      * @throws UnsupportedEncodingException
      */
-    public static BlockProto.Block newGenesisBlock() throws UnsupportedEncodingException {
-        TransactionProto.TXInput txInput = TransactionProto.TXInput.newBuilder()
+    public static Block newGenesisBlock() throws UnsupportedEncodingException {
+        TXInput txInput = TXInput.newBuilder()
                 .setTxid(ByteUtil.EMPTY_BYTE_STRING)
                 .setVout(-1)
                 .setSignature(ByteUtil.EMPTY_BYTE_STRING)
                 .setPubKey(ByteString.copyFrom(GENESIS_COIN_BASE_DATA, "UTF-8"))
                 .build();
 
-        TransactionProto.TXOutput txOutput = TransactionProto.TXOutput.newBuilder()
+        TXOutput txOutput = TXOutput.newBuilder()
                 .setValue(ByteString.copyFrom(new BigInteger(SUBSIDY).toByteArray()))
                 .setPubKeyHash(ByteString.copyFrom(HashUtil.getPubKeyHash(GENESIS_ADDRESS)))
                 .build();
 
-        TransactionProto.Transaction.Builder txBuilder = TransactionProto.Transaction.newBuilder()
+        Transaction.Builder txBuilder = Transaction.newBuilder()
                 .setID(ByteUtil.EMPTY_BYTE_STRING)
                 .addVin(txInput)
                 .addVout(txOutput)
@@ -46,11 +49,11 @@ public class BlockManager {
         // calculate ID of transaction
         txBuilder.setID(TransactionManager.newId(txBuilder));
 
-        TransactionProto.Transaction transaction = txBuilder.build();
-        List<TransactionProto.Transaction> transactions = new ArrayList<>(1);
+        Transaction transaction = txBuilder.build();
+        List<Transaction> transactions = new ArrayList<>(1);
         transactions.add(transaction);
 
-        BlockProto.BlockHeader.Builder blockHeaderBuilder = BlockProto.BlockHeader.newBuilder()
+        BlockHeader.Builder blockHeaderBuilder = BlockHeader.newBuilder()
                 .setHash(ByteString.copyFrom(new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}))
                 .setPrevhash(ByteUtil.EMPTY_BYTE_STRING)
                 .setNonce(0)
@@ -60,19 +63,19 @@ public class BlockManager {
         blockHeaderBuilder.setHash(ByteString.copyFrom(calculateHash(blockHeaderBuilder, transactions)));
 
         // build block
-        BlockProto.Block.Builder blockBuilder = BlockProto.Block.newBuilder()
+        Block.Builder blockBuilder = Block.newBuilder()
                 .setHeader(blockHeaderBuilder.build())
                 .addTransactions(transaction);
 
-        BlockProto.Block block = blockBuilder.build();
+        Block block = blockBuilder.build();
         return block;
     }
 
-    public static byte[] calculateHash(BlockProto.BlockHeader.Builder blockHeaderBuilder, List<TransactionProto.Transaction> transactions) {
+    public static byte[] calculateHash(BlockHeader.Builder blockHeaderBuilder, List<Transaction> transactions) {
         return calculateHashWithoutNonce(blockHeaderBuilder, transactions);
     }
 
-    public static byte[] calculateHashWithoutNonce(BlockProto.BlockHeader.Builder blockHeaderBuilder, List<TransactionProto.Transaction> transactions) {
+    public static byte[] calculateHashWithoutNonce(BlockHeader.Builder blockHeaderBuilder, List<Transaction> transactions) {
         byte[] prevHash = blockHeaderBuilder.getPrevhash().toByteArray();
         byte[] txHash = TransactionManager.hashTransactions(transactions);
         // TODO confirm IntToHex method is right

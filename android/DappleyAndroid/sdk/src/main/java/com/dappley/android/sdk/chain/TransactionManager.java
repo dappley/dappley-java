@@ -1,8 +1,10 @@
 package com.dappley.android.sdk.chain;
 
 import com.dappley.android.sdk.crypto.ShaDigest;
-import com.dappley.android.sdk.protobuf.RpcProto;
-import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.protobuf.RpcProto.UTXO;
+import com.dappley.android.sdk.protobuf.TransactionProto.TXInput;
+import com.dappley.android.sdk.protobuf.TransactionProto.TXOutput;
+import com.dappley.android.sdk.protobuf.TransactionProto.Transaction;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
 import com.dappley.android.sdk.util.HexUtil;
@@ -24,13 +26,13 @@ public class TransactionManager {
     // default tip of each transaction
     private static final long TIP_DEFAULT = 0;
 
-    public static TransactionProto.Transaction newTransaction(String fromAddress, String toAddress, int amount, ECKeyPair ecKeyPair) {
-        List<RpcProto.UTXO> spendableList = UtxoManager.getSpendableUtxos(fromAddress, amount);
+    public static Transaction newTransaction(String fromAddress, String toAddress, int amount, ECKeyPair ecKeyPair) {
+        List<UTXO> spendableList = UtxoManager.getSpendableUtxos(fromAddress, amount);
         return newTransaction(spendableList, toAddress, amount, ecKeyPair);
     }
 
-    public static TransactionProto.Transaction newTransaction(List<RpcProto.UTXO> utxos, String toAddress, int amount, ECKeyPair ecKeyPair) {
-        TransactionProto.Transaction.Builder builder = TransactionProto.Transaction.newBuilder();
+    public static Transaction newTransaction(List<UTXO> utxos, String toAddress, int amount, ECKeyPair ecKeyPair) {
+        Transaction.Builder builder = Transaction.newBuilder();
         // add vin list and return the total amount of vin values
         int totalAmount = buildVin(builder, utxos, ecKeyPair);
 
@@ -49,15 +51,15 @@ public class TransactionManager {
         return builder.build();
     }
 
-    private static int buildVin(TransactionProto.Transaction.Builder builder, List<RpcProto.UTXO> utxos, ECKeyPair ecKeyPair) {
-        TransactionProto.TXInput.Builder txInputBuilder = null;
+    private static int buildVin(Transaction.Builder builder, List<UTXO> utxos, ECKeyPair ecKeyPair) {
+        TXInput.Builder txInputBuilder = null;
         // save total amount value of all txInput value
         int totalAmount = 0;
-        for (RpcProto.UTXO utxo : utxos) {
+        for (UTXO utxo : utxos) {
             if (utxo == null) {
                 continue;
             }
-            txInputBuilder = TransactionProto.TXInput.newBuilder();
+            txInputBuilder = TXInput.newBuilder();
             txInputBuilder.setTxid(utxo.getTxid());
             txInputBuilder.setVout(utxo.getTxIndex());
             // add from publicKey value
@@ -69,11 +71,11 @@ public class TransactionManager {
         return totalAmount;
     }
 
-    private static void buildVout(TransactionProto.Transaction.Builder builder, String toAddress, int amount, int totalAmount, ECKeyPair ecKeyPair) {
+    private static void buildVout(Transaction.Builder builder, String toAddress, int amount, int totalAmount, ECKeyPair ecKeyPair) {
         if (totalAmount < amount) {
             return;
         }
-        TransactionProto.TXOutput.Builder txOutputBuilder = TransactionProto.TXOutput.newBuilder();
+        TXOutput.Builder txOutputBuilder = TXOutput.newBuilder();
         // set to address's pubKeyHash
         txOutputBuilder.setPubKeyHash(ByteString.copyFrom(HashUtil.getPubKeyHash(toAddress)));
         // TODO confirm intTo byte[] is right
@@ -82,7 +84,7 @@ public class TransactionManager {
 
         // if totalAmout is greater than amount, we need to add change value after.
         if (totalAmount > amount) {
-            txOutputBuilder = TransactionProto.TXOutput.newBuilder();
+            txOutputBuilder = TXOutput.newBuilder();
             // set from address's pubKeyHash
             byte[] myPubKeyHash = HashUtil.getPubKeyHash(ecKeyPair.getPublicKey());
             txOutputBuilder.setPubKeyHash(ByteString.copyFrom(myPubKeyHash));
@@ -98,9 +100,9 @@ public class TransactionManager {
      * @param transactionBuilder builder
      * @return ByteString ID bytes
      */
-    public static ByteString newId(TransactionProto.Transaction.Builder transactionBuilder) {
+    public static ByteString newId(Transaction.Builder transactionBuilder) {
         transactionBuilder.setID(ByteString.copyFrom(new byte[]{}));
-        TransactionProto.Transaction transaction = transactionBuilder.build();
+        Transaction transaction = transactionBuilder.build();
         // serialize transaction object
         byte[] txBytes = serialize(transaction);
         byte[] sha256 = ShaDigest.sha256(txBytes);
@@ -112,8 +114,8 @@ public class TransactionManager {
      * @param transaction a transaction in transaction list
      * @return byte[] hash value
      */
-    public static byte[] hash(TransactionProto.Transaction transaction) {
-        TransactionProto.Transaction.Builder txBuilder = transaction.toBuilder();
+    public static byte[] hash(Transaction transaction) {
+        Transaction.Builder txBuilder = transaction.toBuilder();
         // clear id property
         txBuilder.setID(ByteUtil.EMPTY_BYTE_STRING);
 
@@ -130,22 +132,22 @@ public class TransactionManager {
      * @param transactions transaction list of block
      * @return byte[] hash value
      */
-    public static byte[] hashTransactions(List<TransactionProto.Transaction> transactions) {
+    public static byte[] hashTransactions(List<Transaction> transactions) {
         byte[] txHash = new byte[0];
-        for (TransactionProto.Transaction transaction : transactions) {
+        for (Transaction transaction : transactions) {
             txHash = ByteUtil.concat(txHash, hash(transaction));
         }
         txHash = ShaDigest.sha256(txHash);
         return txHash;
     }
 
-    public static byte[] serialize(TransactionProto.Transaction transaction) {
+    public static byte[] serialize(Transaction transaction) {
         // TODO serialize transaction
 
         return new byte[]{};
     }
 
-    public static TransactionProto.Transaction getTransactionById(ByteString id) {
+    public static Transaction getTransactionById(ByteString id) {
         // TODO implement find transaction
 
         return null;
@@ -156,12 +158,12 @@ public class TransactionManager {
      * <p>Each input related to a previous transaction's output.
      *    Make sure each txId reference in input is refer to a legal transaction's id.</p>
      * @param txInputs current transaction inputs
-     * @return Map<String ,   TransactionProto.Transaction> related previous transaction data
+     * @return Map<String       ,               Transaction> related previous transaction data
      */
-    public static Map<String, TransactionProto.Transaction> getPrevTransactions(List<TransactionProto.TXInput> txInputs) {
-        Map<String, TransactionProto.Transaction> transactionMap = new HashMap<>(txInputs.size());
-        for (TransactionProto.TXInput txInput : txInputs) {
-            TransactionProto.Transaction transaction = getTransactionById(txInput.getTxid());
+    public static Map<String, Transaction> getPrevTransactions(List<TXInput> txInputs) {
+        Map<String, Transaction> transactionMap = new HashMap<>(txInputs.size());
+        for (TXInput txInput : txInputs) {
+            Transaction transaction = getTransactionById(txInput.getTxid());
             if (transaction == null) {
                 continue;
             }
@@ -170,19 +172,19 @@ public class TransactionManager {
         return transactionMap;
     }
 
-    public static void sign(TransactionProto.Transaction.Builder txBuilder, BigInteger privateKey) {
-        List<TransactionProto.TXInput> txInputs = txBuilder.getVinList();
+    public static void sign(Transaction.Builder txBuilder, BigInteger privateKey) {
+        List<TXInput> txInputs = txBuilder.getVinList();
         if (CollectionUtils.isEmpty(txInputs)) {
             return;
         }
         // format previous transaction data
-        Map<String, TransactionProto.Transaction> transactionMap = getPrevTransactions(txInputs);
+        Map<String, Transaction> transactionMap = getPrevTransactions(txInputs);
 
         // validate all inputs is legal
         validateTransactionInputs(txInputs, transactionMap);
 
         // get a copy of old transaction builder
-        TransactionProto.Transaction.Builder txCopyBuilder = trimedCopy(txBuilder);
+        Transaction.Builder txCopyBuilder = trimedCopy(txBuilder);
 
         byte[] privKeyHash = HashUtil.fromECDSAPrivateKey(privateKey);
 
@@ -190,14 +192,14 @@ public class TransactionManager {
         buildSignValue(txBuilder, transactionMap, txCopyBuilder, privKeyHash);
     }
 
-    private static void buildSignValue(TransactionProto.Transaction.Builder txBuilder, Map<String, TransactionProto.Transaction> transactionMap, TransactionProto.Transaction.Builder txCopyBuilder, byte[] privKeyHash) {
-        List<TransactionProto.TXInput> txCopyInputs = txCopyBuilder.getVinList();
-        TransactionProto.TXInput.Builder tmpTxBuilder = null;
-        TransactionProto.TXInput txCopyInput = null;
+    private static void buildSignValue(Transaction.Builder txBuilder, Map<String, Transaction> transactionMap, Transaction.Builder txCopyBuilder, byte[] privKeyHash) {
+        List<TXInput> txCopyInputs = txCopyBuilder.getVinList();
+        TXInput.Builder tmpTxBuilder = null;
+        TXInput txCopyInput = null;
         for (int i = 0; i < txCopyInputs.size(); i++) {
             txCopyInput = txCopyInputs.get(i);
             tmpTxBuilder = txCopyInput.toBuilder();
-            TransactionProto.Transaction prev = transactionMap.get(HexUtil.toHex(txCopyInput.getTxid()));
+            Transaction prev = transactionMap.get(HexUtil.toHex(txCopyInput.getTxid()));
             tmpTxBuilder.setSignature(null);
             // temporarily add pubKeyHash to pubKey property
             tmpTxBuilder.setPubKey(prev.getVout(txCopyInput.getVout()).getPubKeyHash());
@@ -212,23 +214,23 @@ public class TransactionManager {
         }
     }
 
-    private static void updateInputSignature(TransactionProto.Transaction.Builder txBuilder, int index, byte[] signature) {
-        TransactionProto.TXInput.Builder txInputBuilder = txBuilder.getVin(index).toBuilder()
+    private static void updateInputSignature(Transaction.Builder txBuilder, int index, byte[] signature) {
+        TXInput.Builder txInputBuilder = txBuilder.getVin(index).toBuilder()
                 .setSignature(ByteString.copyFrom(signature));
         txBuilder.setVin(index, txInputBuilder);
     }
 
-    private static void validateTransactionInputs(List<TransactionProto.TXInput> txInputs, Map<String, TransactionProto.Transaction> transactionMap) {
-        for (TransactionProto.TXInput txInput : txInputs) {
+    private static void validateTransactionInputs(List<TXInput> txInputs, Map<String, Transaction> transactionMap) {
+        for (TXInput txInput : txInputs) {
             if (txInput == null) {
                 continue;
             }
-            TransactionProto.Transaction prev = transactionMap.get(HexUtil.toHex(txInput.getTxid()));
+            Transaction prev = transactionMap.get(HexUtil.toHex(txInput.getTxid()));
             // previous transaction not found
             if (prev == null) {
                 throw new IllegalArgumentException("Previous transaction is invalid");
             }
-            List<TransactionProto.TXOutput> prevVoutList = prev.getVoutList();
+            List<TXOutput> prevVoutList = prev.getVoutList();
             if (CollectionUtils.isEmpty(prevVoutList)) {
                 throw new IllegalArgumentException("Previous transaction is invalid");
             }
@@ -244,15 +246,15 @@ public class TransactionManager {
      * @param txBuilder old builder
      * @return Transaction.Builder new builder
      */
-    private static TransactionProto.Transaction.Builder trimedCopy(TransactionProto.Transaction.Builder txBuilder) {
-        TransactionProto.Transaction.Builder newBuilder = txBuilder.clone();
-        List<TransactionProto.TXInput> txInputs = newBuilder.getVinList();
+    private static Transaction.Builder trimedCopy(Transaction.Builder txBuilder) {
+        Transaction.Builder newBuilder = txBuilder.clone();
+        List<TXInput> txInputs = newBuilder.getVinList();
         if (CollectionUtils.isEmpty(txInputs)) {
             return null;
         }
-        List<TransactionProto.TXInput> txNewInputs = new ArrayList<>(txInputs.size());
-        TransactionProto.TXInput.Builder tmpTxBuilder = null;
-        for (TransactionProto.TXInput txInput : txInputs) {
+        List<TXInput> txNewInputs = new ArrayList<>(txInputs.size());
+        TXInput.Builder tmpTxBuilder = null;
+        for (TXInput txInput : txInputs) {
             tmpTxBuilder = txInput.toBuilder();
             // clear pubKey and signature
             tmpTxBuilder.setPubKey(null);

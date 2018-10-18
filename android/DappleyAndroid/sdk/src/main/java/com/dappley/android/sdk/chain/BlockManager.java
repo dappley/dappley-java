@@ -78,8 +78,7 @@ public class BlockManager {
     public static byte[] calculateHashWithoutNonce(BlockHeader.Builder blockHeaderBuilder, List<Transaction> transactions) {
         byte[] prevHash = blockHeaderBuilder.getPrevhash().toByteArray();
         byte[] txHash = TransactionManager.hashTransactions(transactions);
-        // TODO confirm IntToHex method is right
-        byte[] timeHash = ByteUtil.fromLong(blockHeaderBuilder.getTimestamp());
+        byte[] timeHash = ByteUtil.long2Bytes(blockHeaderBuilder.getTimestamp());
         // concat prevHash/txHash/timeHash
         byte[] data = ByteUtil.concat(prevHash, txHash);
         data = ByteUtil.concat(data, timeHash);

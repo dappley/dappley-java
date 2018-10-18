@@ -1,6 +1,7 @@
 package com.dappley.android.sdk.util;
 
 import com.dappley.android.sdk.crypto.RipemdDigest;
+import com.dappley.android.sdk.crypto.Secp256k1;
 import com.dappley.android.sdk.crypto.Sha3Digest;
 import com.dappley.android.sdk.crypto.ShaDigest;
 
@@ -59,13 +60,12 @@ public class HashUtil {
     }
 
     public static byte[] fromECDSAPrivateKey(BigInteger privateKey){
-        // TODO privKeyHash = secp256k1.FromECDSAPrivateKey(&privKey);
-        return new byte[]{};
+        return privateKey.toByteArray();
     }
 
-    public static byte[] secp256k1Sign(byte[] data, byte[] privKeyHash){
-        // TODO secp256k1.Sign(txCopy.ID, privData)
-        return new byte[]{};
+    public static byte[] secp256k1Sign(byte[] data, byte[] privKeyBytes){
+        byte[] sign = Secp256k1.Sign(data, privKeyBytes);
+        return sign;
     }
 
     /**

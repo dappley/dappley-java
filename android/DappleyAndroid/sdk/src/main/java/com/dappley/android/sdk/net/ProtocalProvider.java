@@ -40,7 +40,7 @@ public interface ProtocalProvider {
 
     void getBlockByHeight(long height) throws IllegalAccessException;
 
-    void sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException;
+    int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException;
 
     /**
      * Define types of network protocal supported.

@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.util.HexUtil;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,6 +18,7 @@ import java.math.BigInteger;
 
 @RunWith(AndroidJUnit4.class)
 public class TransactionTest {
+    private static final String TAG = "TransactionTest";
 
     @Test
     public void testTransaction() {
@@ -24,13 +26,20 @@ public class TransactionTest {
         DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
 
         BigInteger privateKey = new BigInteger("bb23d2ff19f5b16955e8a24dca34dd520980fe3bddca2b3e1b56663f0ec1aa7e", 16);
+//        BigInteger privateKey = new BigInteger("66616b6566627565e87b8b998dea9ef6041ecda0d4db0f20d09f42025a73ed26", 16);
         ECKeyPair ecKeyPair = ECKeyPair.create(privateKey);
         String fromAddress = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
-        String toAddress = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
-        int amount = 2;
+        String toAddress = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
+        BigInteger amount = BigInteger.valueOf(2);
         TransactionProto.Transaction transaction = TransactionManager.newTransaction(fromAddress, toAddress, amount, ecKeyPair);
-        System.out.println(transaction.toByteArray());
+        System.out.printf("transaction seri %s\n", HexUtil.toHex(TransactionManager.serialize(transaction)));
 
-        Assert.assertEquals(transaction.toString(), "");
+        // send transaction
+        try {
+            int errorCode = DappleyClient.sendTransaction(transaction);
+            Assert.assertEquals(errorCode, 0);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

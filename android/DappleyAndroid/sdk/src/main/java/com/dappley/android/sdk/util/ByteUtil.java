@@ -132,7 +132,22 @@ public class ByteUtil {
      * @return byte[] new array
      */
     public static byte[] joinBytes(byte[]... list) {
-        return joinBytes(list);
+        int length = 0;
+        for (byte[] bytes : list) {
+            if (bytes != null && bytes.length > 0) {
+                length += bytes.length;
+            }
+        }
+
+        byte[] result = new byte[length];
+        int startPos = 0;
+        for (byte[] bytes : list) {
+            if (bytes != null && bytes.length > 0) {
+                System.arraycopy(bytes, 0, result, startPos, bytes.length);
+                startPos += bytes.length;
+            }
+        }
+        return result;
     }
 
     /**
@@ -141,21 +156,7 @@ public class ByteUtil {
      * @return byte[] new array
      */
     public static byte[] joinBytes(Collection<byte[]> list) {
-        int length = 0;
-        for (byte[] bytes : list) {
-            if (bytes != null) {
-                length += bytes.length;
-            }
-        }
-
-        byte[] result = new byte[length];
-        int startPos = 0;
-        for (byte[] bytes : list) {
-            if (bytes != null) {
-                System.arraycopy(bytes, 0, result, startPos, bytes.length);
-                startPos += bytes.length;
-            }
-        }
-        return result;
+        byte[][] bytes = list.toArray(new byte[list.size()][]);
+        return joinBytes(bytes);
     }
 }

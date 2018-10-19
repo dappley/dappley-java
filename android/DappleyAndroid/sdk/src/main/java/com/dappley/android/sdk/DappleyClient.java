@@ -77,8 +77,8 @@ public class DappleyClient {
         protocalProvider.getBlocks();
     }
 
-    public static void sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException {
-        protocalProvider.sendTransaction(transaction);
+    public static int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException {
+        return protocalProvider.sendTransaction(transaction);
     }
 
 }

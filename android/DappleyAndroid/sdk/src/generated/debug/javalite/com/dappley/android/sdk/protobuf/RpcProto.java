@@ -6553,6 +6553,25 @@ public final class RpcProto {
      */
     com.google.protobuf.ByteString
         getAddressBytes(int index);
+
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    java.util.List<String>
+        getPrivateKeyList();
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    int getPrivateKeyCount();
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    java.lang.String getPrivateKey(int index);
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPrivateKeyBytes(int index);
   }
   /**
    * Protobuf type {@code rpcpb.GetWalletAddressResponse}
@@ -6565,6 +6584,7 @@ public final class RpcProto {
     private GetWalletAddressResponse() {
       message_ = "";
       address_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      privateKey_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     private int bitField0_;
     public static final int MESSAGE_FIELD_NUMBER = 1;
@@ -6697,6 +6717,90 @@ public final class RpcProto {
       address_.add(value.toStringUtf8());
     }
 
+    public static final int PRIVATEKEY_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<String> privateKey_;
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    public java.util.List<String> getPrivateKeyList() {
+      return privateKey_;
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    public int getPrivateKeyCount() {
+      return privateKey_.size();
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    public java.lang.String getPrivateKey(int index) {
+      return privateKey_.get(index);
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPrivateKeyBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          privateKey_.get(index));
+    }
+    private void ensurePrivateKeyIsMutable() {
+      if (!privateKey_.isModifiable()) {
+        privateKey_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(privateKey_);
+       }
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    private void setPrivateKey(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePrivateKeyIsMutable();
+      privateKey_.set(index, value);
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    private void addPrivateKey(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensurePrivateKeyIsMutable();
+      privateKey_.add(value);
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    private void addAllPrivateKey(
+        java.lang.Iterable<java.lang.String> values) {
+      ensurePrivateKeyIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, privateKey_);
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    private void clearPrivateKey() {
+      privateKey_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string privateKey = 3;</code>
+     */
+    private void addPrivateKeyBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensurePrivateKeyIsMutable();
+      privateKey_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!message_.isEmpty()) {
@@ -6704,6 +6808,9 @@ public final class RpcProto {
       }
       for (int i = 0; i < address_.size(); i++) {
         output.writeString(2, address_.get(i));
+      }
+      for (int i = 0; i < privateKey_.size(); i++) {
+        output.writeString(3, privateKey_.get(i));
       }
     }
 
@@ -6724,6 +6831,15 @@ public final class RpcProto {
         }
         size += dataSize;
         size += 1 * getAddressList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < privateKey_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(privateKey_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getPrivateKeyList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -6923,6 +7039,78 @@ public final class RpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public java.util.List<String>
+          getPrivateKeyList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPrivateKeyList());
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public int getPrivateKeyCount() {
+        return instance.getPrivateKeyCount();
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public java.lang.String getPrivateKey(int index) {
+        return instance.getPrivateKey(index);
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPrivateKeyBytes(int index) {
+        return instance.getPrivateKeyBytes(index);
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public Builder setPrivateKey(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setPrivateKey(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public Builder addPrivateKey(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addPrivateKey(value);
+        return this;
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public Builder addAllPrivateKey(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllPrivateKey(values);
+        return this;
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public Builder clearPrivateKey() {
+        copyOnWrite();
+        instance.clearPrivateKey();
+        return this;
+      }
+      /**
+       * <code>repeated string privateKey = 3;</code>
+       */
+      public Builder addPrivateKeyBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addPrivateKeyBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:rpcpb.GetWalletAddressResponse)
     }
     protected final Object dynamicMethod(
@@ -6937,6 +7125,7 @@ public final class RpcProto {
         }
         case MAKE_IMMUTABLE: {
           address_.makeImmutable();
+          privateKey_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -6948,6 +7137,7 @@ public final class RpcProto {
           message_ = visitor.visitString(!message_.isEmpty(), message_,
               !other.message_.isEmpty(), other.message_);
           address_= visitor.visitList(address_, other.address_);
+          privateKey_= visitor.visitList(privateKey_, other.privateKey_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6986,6 +7176,15 @@ public final class RpcProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(address_);
                   }
                   address_.add(s);
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+                  if (!privateKey_.isModifiable()) {
+                    privateKey_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(privateKey_);
+                  }
+                  privateKey_.add(s);
                   break;
                 }
               }

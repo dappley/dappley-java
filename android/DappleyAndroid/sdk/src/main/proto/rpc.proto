@@ -112,6 +112,7 @@ message AddPeerResponse {
 message GetWalletAddressResponse {
     string message = 1;
     repeated string address = 2;
+    repeated string privateKey = 3;
 }
 
 message GetVersionRequest {

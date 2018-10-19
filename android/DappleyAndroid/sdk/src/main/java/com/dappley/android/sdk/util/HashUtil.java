@@ -6,7 +6,6 @@ import com.dappley.android.sdk.crypto.Sha3Digest;
 import com.dappley.android.sdk.crypto.ShaDigest;
 
 import java.math.BigInteger;
-import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**

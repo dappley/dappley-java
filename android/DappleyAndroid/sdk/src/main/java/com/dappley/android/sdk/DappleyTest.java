@@ -2,19 +2,24 @@ package com.dappley.android.sdk;
 
 import android.content.Context;
 
+import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.crypto.AesCipher;
 import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.db.BlockDBMk;
+import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
+import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Base64;
 import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
+import org.junit.Assert;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.web3j.crypto.ECKeyPair;
@@ -58,8 +63,10 @@ public class DappleyTest {
 
 //        BigInteger privateKey = new BigInteger("bb23d2ff19f5b16955e8a24dca34dd520980fe3bddca2b3e1b56663f0ec1aa7e", 16);
 //        ECKeyPair ecKeyPair = ECKeyPair.create(privateKey);
-//        String address = AddressUtil.createAddress(ecKeyPair);
-//        System.out.println(address);
+        ECKeyPair ecKeyPair = KeyPairTool.castToEcKeyPair(keyPair);
+        System.out.println(ecKeyPair.getPrivateKey().toString(16));
+        String address = AddressUtil.createAddress(ecKeyPair);
+        System.out.println(address);
 
 //        testRpcConnect(null);
 //        DappleyClient.createWalletAddress();
@@ -92,6 +99,25 @@ public class DappleyTest {
 //        System.out.println(bytes.toStringUtf8());
 
 
+    }
+
+    public static void testTransaction(Context context){
+        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                BigInteger privateKey = new BigInteger("bb23d2ff19f5b16955e8a24dca34dd520980fe3bddca2b3e1b56663f0ec1aa7e", 16);
+                ECKeyPair ecKeyPair = ECKeyPair.create(privateKey);
+                String fromAddress = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
+                String toAddress = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
+                BigInteger amount = BigInteger.valueOf(2);
+                TransactionProto.Transaction transaction = TransactionManager.newTransaction(fromAddress, toAddress, amount, ecKeyPair);
+                System.out.println("transaction string: " + transaction.toString());
+
+//                Assert.assertEquals(transaction.toString(), "");
+            }
+        }).start();
     }
 
     public static void testAes(){

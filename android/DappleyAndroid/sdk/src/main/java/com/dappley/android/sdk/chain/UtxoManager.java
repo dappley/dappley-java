@@ -7,6 +7,7 @@ import com.dappley.android.sdk.protobuf.RpcProto.UTXO;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,13 @@ import java.util.List;
 public class UtxoManager {
     private static final String TAG = "UtxoManager";
 
-    public static List<UTXO> getSpendableUtxos(String address, int amount) {
+    /**
+     * Returns suitable utxo list of the address
+     * @param address user's account address
+     * @param amount target vout amount
+     * @return List<UTXO> unspend vouts meet the need for target amount
+     */
+    public static List<UTXO> getSpendableUtxos(String address, BigInteger amount) {
         try {
             List<UTXO> all = DappleyClient.getUtxo(address);
             return getSpendableUtxos(all, amount);
@@ -26,21 +33,30 @@ public class UtxoManager {
         return null;
     }
 
-    public static List<UTXO> getSpendableUtxos(List<UTXO> utxos, int amount) {
+    /**
+     * Reform utxo list of target amount
+     * @param utxos all user's utxo
+     * @param amount target amount
+     * @return List<UTXO> suitable utxo list
+     */
+    public static List<UTXO> getSpendableUtxos(List<UTXO> utxos, BigInteger amount) {
         if (CollectionUtils.isEmpty(utxos)) {
             return null;
         }
         List<UTXO> spendables = new ArrayList<>();
-        int accumulated = 0;
+        BigInteger accumulated = BigInteger.ZERO;
         for (UTXO utxo : utxos) {
             if (utxo == null) {
                 continue;
             }
-            accumulated += utxo.getAmount();
+            accumulated = accumulated.add(BigInteger.valueOf(utxo.getAmount()));
             spendables.add(utxo);
-            if (accumulated >= amount) {
+            if (accumulated.compareTo(amount) >= 0) {
                 break;
             }
+        }
+        if (accumulated.compareTo(amount) < 0) {
+            throw new IllegalArgumentException("there is no enough vout");
         }
         return spendables;
     }

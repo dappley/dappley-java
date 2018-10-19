@@ -147,7 +147,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public void sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException {
+    public int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.SendTransactionRequest request = RpcProto.SendTransactionRequest.newBuilder()
@@ -156,5 +156,6 @@ public class RpcProvider implements ProtocalProvider {
         RpcProto.SendTransactionResponse response = getRpcServiceBlockingStub().rpcSendTransaction(request);
         int errorCode = response.getErrorCode();
         System.out.println("sendTransaction errorCode: " + errorCode);
+        return errorCode;
     }
 }

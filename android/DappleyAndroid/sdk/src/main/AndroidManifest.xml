@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dappley.android.sdk" />
+    package="com.dappley.android.sdk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

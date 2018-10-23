@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_send_transaction)
     void sendTransaction() {
-        try {
-            TransactionProto.Transaction transaction = TransactionProto.Transaction.newBuilder().build();
-            DappleyClient.sendTransaction(transaction);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TransactionProto.Transaction transaction = TransactionProto.Transaction.newBuilder().build();
+//            DappleyClient.sendTransaction(transaction);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void test() {

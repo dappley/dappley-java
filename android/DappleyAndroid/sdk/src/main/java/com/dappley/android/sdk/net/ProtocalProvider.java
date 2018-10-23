@@ -2,6 +2,8 @@ package com.dappley.android.sdk.net;
 
 import android.content.Context;
 
+import com.dappley.android.sdk.po.Block;
+import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.google.protobuf.ByteString;
@@ -38,7 +40,7 @@ public interface ProtocalProvider {
 
     void getBlockByHash(ByteString byteHash) throws IllegalAccessException;
 
-    void getBlockByHeight(long height) throws IllegalAccessException;
+    BlockProto.Block getBlockByHeight(long height) throws IllegalAccessException;
 
     int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException;
 

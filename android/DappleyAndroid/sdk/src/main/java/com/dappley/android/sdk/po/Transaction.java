@@ -174,6 +174,7 @@ public class Transaction {
      * @return
      */
     public byte[] hash() {
+        byte[] oldId = this.getId();
         // clear id property
         this.setId(ByteUtil.EMPTY_BYTE);
 
@@ -181,6 +182,7 @@ public class Transaction {
         byte[] serialized = serialize();
         // get sha256 hash
         byte[] hash = ShaDigest.sha256(serialized);
+        this.setId(oldId);
         return hash;
     }
 

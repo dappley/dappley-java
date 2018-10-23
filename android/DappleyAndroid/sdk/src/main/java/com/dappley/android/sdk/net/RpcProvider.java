@@ -135,7 +135,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public void getBlockByHeight(long height) throws IllegalAccessException {
+    public BlockProto.Block getBlockByHeight(long height) throws IllegalAccessException {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetBlockByHeightRequest request = RpcProto.GetBlockByHeightRequest.newBuilder()
@@ -144,6 +144,7 @@ public class RpcProvider implements ProtocalProvider {
         RpcProto.GetBlockByHeightResponse response = getRpcServiceBlockingStub().rpcGetBlockByHeight(request);
         BlockProto.Block block = response.getBlock();
         System.out.println("getBlockByHeight block: " + block);
+        return block;
     }
 
     @Override

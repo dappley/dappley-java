@@ -54,15 +54,15 @@ public class HashUtil {
         // decode address in Base58 format
         byte[] addrs = Base58.decode(address);
         // pubKeyHash[1 : len(pubKeyHash)-4]
-        byte[] pubKeyHash = ByteUtil.slice(addrs, 1, addrs.length - 4);
+        byte[] pubKeyHash = ByteUtil.slice(addrs, 1, addrs.length - 5);
         return pubKeyHash;
     }
 
-    public static byte[] fromECDSAPrivateKey(BigInteger privateKey){
+    public static byte[] fromECDSAPrivateKey(BigInteger privateKey) {
         return privateKey.toByteArray();
     }
 
-    public static byte[] secp256k1Sign(byte[] data, byte[] privKeyBytes){
+    public static byte[] secp256k1Sign(byte[] data, byte[] privKeyBytes) {
         byte[] sign = Secp256k1.Sign(data, privKeyBytes);
         return sign;
     }

@@ -45,7 +45,9 @@ public class Block {
      * @param block protobuf obj
      */
     public void parseProto(BlockProto.Block block) {
-        this.setHeader(new BlockHeader(block.getHeader()));
+        if (block.getHeader() != null) {
+            this.setHeader(new BlockHeader(block.getHeader()));
+        }
 
         List<TransactionProto.Transaction> transactionsList = block.getTransactionsList();
         if (transactionsList != null) {
@@ -53,9 +55,11 @@ public class Block {
             for (TransactionProto.Transaction ts : transactionsList) {
                 transactions.add(new Transaction(ts));
             }
+            this.setTransactions(transactions);
         }
 
-        this.setParentHash(block.getParentHash().toByteArray());
+        this.setParentHash(block.getParentHash() == null ? null : block.getParentHash().toByteArray())
+        ;
     }
 
     /**

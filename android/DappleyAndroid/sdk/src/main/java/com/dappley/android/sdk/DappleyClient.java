@@ -5,8 +5,10 @@ import android.content.Context;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.net.RpcProvider;
+import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.Utxo;
+import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.dappley.android.sdk.util.AddressUtil;
@@ -90,4 +92,8 @@ public class DappleyClient {
         return protocalProvider.sendTransaction(transactionProto);
     }
 
+    public static Block getBlockByHeight(long height) throws IllegalAccessException {
+        BlockProto.Block block = protocalProvider.getBlockByHeight(height);
+        return new Block(block);
+    }
 }

@@ -10,6 +10,7 @@ import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.db.BlockDBMk;
 import com.dappley.android.sdk.net.ProtocalProvider;
+import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
@@ -112,7 +113,7 @@ public class DappleyTest {
                 String fromAddress = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
                 String toAddress = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
                 BigInteger amount = BigInteger.valueOf(2);
-                TransactionProto.Transaction transaction = TransactionManager.newTransaction(fromAddress, toAddress, amount, ecKeyPair);
+                Transaction transaction = TransactionManager.newTransaction(fromAddress, toAddress, amount, ecKeyPair);
                 System.out.println("transaction string: " + transaction.toString());
 
 //                Assert.assertEquals(transaction.toString(), "");

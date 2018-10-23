@@ -1,14 +1,14 @@
 package com.dappley.android.sdk.chain;
 
 import com.dappley.android.sdk.crypto.ShaDigest;
-import com.dappley.android.sdk.protobuf.BlockProto.Block;
-import com.dappley.android.sdk.protobuf.BlockProto.BlockHeader;
-import com.dappley.android.sdk.protobuf.TransactionProto.TXInput;
-import com.dappley.android.sdk.protobuf.TransactionProto.TXOutput;
-import com.dappley.android.sdk.protobuf.TransactionProto.Transaction;
+import com.dappley.android.sdk.po.Block;
+import com.dappley.android.sdk.po.BlockHeader;
+import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.TxInput;
+import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.util.ByteUtil;
+import com.dappley.android.sdk.util.Constant;
 import com.dappley.android.sdk.util.HashUtil;
-import com.google.protobuf.ByteString;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -29,56 +29,51 @@ public class BlockManager {
      * @throws UnsupportedEncodingException
      */
     public static Block newGenesisBlock() throws UnsupportedEncodingException {
-        TXInput txInput = TXInput.newBuilder()
-                .setTxid(ByteUtil.EMPTY_BYTE_STRING)
-                .setVout(-1)
-                .setSignature(ByteUtil.EMPTY_BYTE_STRING)
-                .setPubKey(ByteString.copyFrom(GENESIS_COIN_BASE_DATA, "UTF-8"))
-                .build();
 
-        TXOutput txOutput = TXOutput.newBuilder()
-                .setValue(ByteString.copyFrom(new BigInteger(SUBSIDY).toByteArray()))
-                .setPubKeyHash(ByteString.copyFrom(HashUtil.getPubKeyHash(GENESIS_ADDRESS)))
-                .build();
+        TxInput txInput = new TxInput();
+        txInput.setTxId(ByteUtil.EMPTY_BYTE);
+        txInput.setVout(-1);
+        txInput.setSignature(ByteUtil.EMPTY_BYTE);
+        txInput.setPubKey(GENESIS_COIN_BASE_DATA.getBytes(Constant.CHARSET_UTF_8));
 
-        Transaction.Builder txBuilder = Transaction.newBuilder()
-                .setID(ByteUtil.EMPTY_BYTE_STRING)
-                .addVin(txInput)
-                .addVout(txOutput)
-                .setTip(0);
+
+        TxOutput txOutput = new TxOutput();
+        txOutput.setValue(new BigInteger(SUBSIDY).toByteArray());
+        txOutput.setPubKeyHash(HashUtil.getPubKeyHash(GENESIS_ADDRESS));
+
+        Transaction transaction = new Transaction();
+        transaction.setId(ByteUtil.EMPTY_BYTE);
+        transaction.addTxInput(txInput);
+        transaction.addTxOutput(txOutput);
+        transaction.setTip(0);
         // calculate ID of transaction
-        txBuilder.setID(TransactionManager.newId(txBuilder));
+        transaction.createId();
 
-        Transaction transaction = txBuilder.build();
         List<Transaction> transactions = new ArrayList<>(1);
         transactions.add(transaction);
 
-        BlockHeader.Builder blockHeaderBuilder = BlockHeader.newBuilder()
-                .setHash(ByteString.copyFrom(new byte[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}))
-                .setPrevhash(ByteUtil.EMPTY_BYTE_STRING)
-                .setNonce(0)
-                //July 23,2018 17:42 PST
-                .setTimestamp(1532392928)
-                .setHeight(0);
-        blockHeaderBuilder.setHash(ByteString.copyFrom(calculateHash(blockHeaderBuilder, transactions)));
-
-        // build block
-        Block.Builder blockBuilder = Block.newBuilder()
-                .setHeader(blockHeaderBuilder.build())
-                .addTransactions(transaction);
-
-        Block block = blockBuilder.build();
+        BlockHeader blockHeader = new BlockHeader();
+        blockHeader.setHash(new byte[32]);
+        blockHeader.setPrevHash(ByteUtil.EMPTY_BYTE);
+        blockHeader.setNonce(0);
+        //July 23,2018 17:42 PST
+        blockHeader.setTimestamp(1532392928);
+        blockHeader.setHeight(0);
+        blockHeader.setHash(calculateHash(blockHeader, transactions));
+        Block block = new Block();
+        block.setHeader(blockHeader);
+        block.setTransactions(transactions);
         return block;
     }
 
-    public static byte[] calculateHash(BlockHeader.Builder blockHeaderBuilder, List<Transaction> transactions) {
-        return calculateHashWithoutNonce(blockHeaderBuilder, transactions);
+    public static byte[] calculateHash(BlockHeader blockHeader, List<Transaction> transactions) {
+        return calculateHashWithoutNonce(blockHeader, transactions);
     }
 
-    public static byte[] calculateHashWithoutNonce(BlockHeader.Builder blockHeaderBuilder, List<Transaction> transactions) {
-        byte[] prevHash = blockHeaderBuilder.getPrevhash().toByteArray();
+    public static byte[] calculateHashWithoutNonce(BlockHeader blockHeader, List<Transaction> transactions) {
+        byte[] prevHash = blockHeader.getPrevHash();
         byte[] txHash = TransactionManager.hashTransactions(transactions);
-        byte[] timeHash = ByteUtil.long2Bytes(blockHeaderBuilder.getTimestamp());
+        byte[] timeHash = ByteUtil.long2Bytes(blockHeader.getTimestamp());
         // concat prevHash/txHash/timeHash
         byte[] data = ByteUtil.concat(prevHash, txHash);
         data = ByteUtil.concat(data, timeHash);

@@ -11,6 +11,7 @@ import java.util.Collection;
  */
 public class ByteUtil {
     public static final ByteString EMPTY_BYTE_STRING = ByteString.copyFrom(new byte[]{});
+    public static final byte[] EMPTY_BYTE = new byte[]{};
 
     /**
      * Combine two byte arrays into one.

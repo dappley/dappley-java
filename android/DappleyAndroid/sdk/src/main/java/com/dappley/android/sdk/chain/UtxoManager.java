@@ -3,7 +3,7 @@ package com.dappley.android.sdk.chain;
 import android.util.Log;
 
 import com.dappley.android.sdk.DappleyClient;
-import com.dappley.android.sdk.protobuf.RpcProto.UTXO;
+import com.dappley.android.sdk.po.Utxo;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -21,11 +21,11 @@ public class UtxoManager {
      * Returns suitable utxo list of the address
      * @param address user's account address
      * @param amount target vout amount
-     * @return List<UTXO> unspend vouts meet the need for target amount
+     * @return List<Utxo> unspend vouts meet the need for target amount
      */
-    public static List<UTXO> getSpendableUtxos(String address, BigInteger amount) {
+    public static List<Utxo> getSpendableUtxos(String address, BigInteger amount) {
         try {
-            List<UTXO> all = DappleyClient.getUtxo(address);
+            List<Utxo> all = DappleyClient.getUtxo(address);
             return getSpendableUtxos(all, amount);
         } catch (IllegalAccessException e) {
             Log.e(TAG, "getSpendableUtxos: ", e);
@@ -37,15 +37,15 @@ public class UtxoManager {
      * Reform utxo list of target amount
      * @param utxos all user's utxo
      * @param amount target amount
-     * @return List<UTXO> suitable utxo list
+     * @return List<Utxo> suitable utxo list
      */
-    public static List<UTXO> getSpendableUtxos(List<UTXO> utxos, BigInteger amount) {
+    public static List<Utxo> getSpendableUtxos(List<Utxo> utxos, BigInteger amount) {
         if (CollectionUtils.isEmpty(utxos)) {
             return null;
         }
-        List<UTXO> spendables = new ArrayList<>();
+        List<Utxo> spendables = new ArrayList<>();
         BigInteger accumulated = BigInteger.ZERO;
-        for (UTXO utxo : utxos) {
+        for (Utxo utxo : utxos) {
             if (utxo == null) {
                 continue;
             }

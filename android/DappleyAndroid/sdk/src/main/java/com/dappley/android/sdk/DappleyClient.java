@@ -5,6 +5,8 @@ import android.content.Context;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.net.RpcProvider;
+import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.dappley.android.sdk.util.AddressUtil;
@@ -16,6 +18,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,16 +72,22 @@ public class DappleyClient {
         protocalProvider.getBlockchainInfo();
     }
 
-    public static List<RpcProto.UTXO> getUtxo(String address) throws IllegalAccessException {
-        return protocalProvider.getUtxo(address);
+    public static List<Utxo> getUtxo(String address) throws IllegalAccessException {
+        List<RpcProto.UTXO> utxoList = protocalProvider.getUtxo(address);
+        List<Utxo> utxos = new ArrayList<>();
+        for (RpcProto.UTXO utxo : utxoList) {
+            utxos.add(new Utxo(utxo));
+        }
+        return utxos;
     }
 
     public static void getBlocks() throws IllegalAccessException {
         protocalProvider.getBlocks();
     }
 
-    public static int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException {
-        return protocalProvider.sendTransaction(transaction);
+    public static int sendTransaction(Transaction transaction) throws IllegalAccessException {
+        TransactionProto.Transaction transactionProto = transaction.toProto();
+        return protocalProvider.sendTransaction(transactionProto);
     }
 
 }

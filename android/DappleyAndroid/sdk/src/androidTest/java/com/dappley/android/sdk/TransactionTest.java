@@ -6,7 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.net.ProtocalProvider;
-import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.util.HexUtil;
 
 import org.junit.Assert;
@@ -31,8 +31,8 @@ public class TransactionTest {
         String fromAddress = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
         String toAddress = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
         BigInteger amount = BigInteger.valueOf(2);
-        TransactionProto.Transaction transaction = TransactionManager.newTransaction(fromAddress, toAddress, amount, ecKeyPair);
-        System.out.printf("transaction seri %s\n", HexUtil.toHex(TransactionManager.serialize(transaction)));
+        Transaction transaction = TransactionManager.newTransaction(fromAddress, toAddress, amount, ecKeyPair);
+        System.out.printf("transaction seri %s\n", HexUtil.toHex(transaction.serialize()));
 
         // send transaction
         try {

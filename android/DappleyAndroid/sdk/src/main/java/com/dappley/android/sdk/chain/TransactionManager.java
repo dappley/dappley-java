@@ -1,22 +1,19 @@
 package com.dappley.android.sdk.chain;
 
 import com.dappley.android.sdk.crypto.ShaDigest;
-import com.dappley.android.sdk.protobuf.RpcProto.UTXO;
-import com.dappley.android.sdk.protobuf.TransactionProto.TXInput;
-import com.dappley.android.sdk.protobuf.TransactionProto.TXOutput;
-import com.dappley.android.sdk.protobuf.TransactionProto.Transaction;
+import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.TxInput;
+import com.dappley.android.sdk.po.TxOutput;
+import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
 import com.dappley.android.sdk.util.HexUtil;
-import com.google.protobuf.ByteString;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +35,7 @@ public class TransactionManager {
      * @return Transaction a new transaction object
      */
     public static Transaction newTransaction(String fromAddress, String toAddress, BigInteger amount, ECKeyPair ecKeyPair) {
-        List<UTXO> spendableList = UtxoManager.getSpendableUtxos(fromAddress, amount);
+        List<Utxo> spendableList = UtxoManager.getSpendableUtxos(fromAddress, amount);
         return newTransaction(spendableList, toAddress, amount, ecKeyPair);
     }
 
@@ -50,89 +47,88 @@ public class TransactionManager {
      * @param ecKeyPair user's keypair
      * @return Transaction a new transaction object
      */
-    public static Transaction newTransaction(List<UTXO> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair) {
-        Transaction.Builder builder = Transaction.newBuilder();
+    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair) {
+        Transaction transaction = new Transaction();
         // add vin list and return the total amount of vin values
-        BigInteger totalAmount = buildVin(builder, utxos, ecKeyPair);
+        BigInteger totalAmount = buildVin(transaction, utxos, ecKeyPair);
 
         // add vout list. If there is change is this transaction, vout list wound have two elements, or have just one to coin receiver.
-        buildVout(builder, toAddress, amount, totalAmount, ecKeyPair);
+        buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair);
 
         // add default tip value
-        builder.setTip(TIP_DEFAULT);
+        transaction.setTip(TIP_DEFAULT);
 
         // generate Id
-        builder.setID(newId(builder));
+        transaction.createId();
 
         // sign transaction input list
-        sign(builder, ecKeyPair.getPrivateKey(), utxos);
+        sign(transaction, ecKeyPair.getPrivateKey(), utxos);
 
-        return builder.build();
+        return transaction;
     }
 
     /**
      * Build Transaction Vin list
-     * @param builder transaction builder
+     * @param transaction
      * @param utxos unspend vouts
      * @param ecKeyPair user's keypair
      * @return BigInteger total amount can be used
      */
-    private static BigInteger buildVin(Transaction.Builder builder, List<UTXO> utxos, ECKeyPair ecKeyPair) {
-        TXInput.Builder txInputBuilder;
+    private static BigInteger buildVin(Transaction transaction, List<Utxo> utxos, ECKeyPair ecKeyPair) {
+        TxInput txInput;
         byte[] pubKey = ecKeyPair.getPublicKey().toByteArray();
         // save total amount value of all txInput value
         BigInteger totalAmount = BigInteger.ZERO;
-        for (UTXO utxo : utxos) {
+        for (Utxo utxo : utxos) {
             if (utxo == null) {
                 continue;
             }
-            txInputBuilder = TXInput.newBuilder();
-            txInputBuilder.setTxid(utxo.getTxid());
-            txInputBuilder.setVout(utxo.getTxIndex());
+            txInput = new TxInput();
+            txInput.setTxId(utxo.getTxId());
+            txInput.setVout(utxo.getTxIndex());
             // add from publicKey value
-            txInputBuilder.setPubKey(ByteString.copyFrom(pubKey));
+            txInput.setPubKey(pubKey);
             totalAmount = totalAmount.add(BigInteger.valueOf(utxo.getAmount()));
-            builder.addVin(txInputBuilder.build());
+            transaction.addTxInput(txInput);
         }
         return totalAmount;
     }
 
     /**
      * Build Transaction Vout list
-     * @param builder transaction builder
+     * @param transaction
      * @param toAddress To User address
      * @param amount transfer account
      * @param totalAmount utxo's all vout values
      * @param ecKeyPair user's keypair
      */
-    private static void buildVout(Transaction.Builder builder, String toAddress, BigInteger amount, BigInteger totalAmount, ECKeyPair ecKeyPair) {
+    private static void buildVout(Transaction transaction, String toAddress, BigInteger amount, BigInteger totalAmount, ECKeyPair ecKeyPair) {
         if (totalAmount.compareTo(amount) < 0) {
             return;
         }
-        TXOutput.Builder txOutputBuilder = TXOutput.newBuilder();
+        TxOutput txOutput = new TxOutput();
         // set to address's pubKeyHash
-        txOutputBuilder.setPubKeyHash(ByteString.copyFrom(HashUtil.getPubKeyHash(toAddress)));
-        txOutputBuilder.setValue(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(new BigInteger(String.valueOf(amount)))));
-        builder.addVout(txOutputBuilder.build());
+        txOutput.setPubKeyHash(HashUtil.getPubKeyHash(toAddress));
+        txOutput.setValue(ByteUtil.bigInteger2Bytes(new BigInteger(String.valueOf(amount))));
+        transaction.addTxOutput(txOutput);
 
         // if totalAmout is greater than amount, we need to add change value after.
         if (totalAmount.compareTo(amount) > 0) {
-            txOutputBuilder = TXOutput.newBuilder();
+            txOutput = new TxOutput();
             // set from address's pubKeyHash
             byte[] myPubKeyHash = HashUtil.getPubKeyHash(ecKeyPair.getPublicKey());
-            txOutputBuilder.setPubKeyHash(ByteString.copyFrom(myPubKeyHash));
-            txOutputBuilder.setValue(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(new BigInteger(String.valueOf(amount)))));
-            builder.addVout(txOutputBuilder.build());
+            txOutput.setPubKeyHash(myPubKeyHash);
+            txOutput.setValue(ByteUtil.bigInteger2Bytes(new BigInteger(String.valueOf(amount))));
+            transaction.addTxOutput(txOutput);
         }
     }
-
 
     /**
      * Prepared to query transaction data by txId. Not implement yet.
      * @param id transaction id
      * @return Transaction
      */
-    public static Transaction getTransactionById(ByteString id) {
+    public static Transaction getTransactionById(byte[] id) {
         // implement find transaction
         return null;
     }
@@ -144,14 +140,14 @@ public class TransactionManager {
      * @param txInputs current transaction inputs
      * @return Map related previous transaction data
      */
-    public static Map<String, Transaction> getPrevTransactions(List<TXInput> txInputs) {
+    public static Map<String, Transaction> getPrevTransactions(List<TxInput> txInputs) {
         Map<String, Transaction> transactionMap = new HashMap<>(txInputs.size());
-        for (TXInput txInput : txInputs) {
-            Transaction transaction = getTransactionById(txInput.getTxid());
+        for (TxInput txInput : txInputs) {
+            Transaction transaction = getTransactionById(txInput.getTxId());
             if (transaction == null) {
                 continue;
             }
-            transactionMap.put(HexUtil.toHex(txInput.getTxid()), transaction);
+            transactionMap.put(HexUtil.toHex(txInput.getTxId()), transaction);
         }
         return transactionMap;
     }
@@ -161,84 +157,68 @@ public class TransactionManager {
      * @param utxos previous transaction vouts
      * @return Map <txId-txIndex,utxo>
      */
-    public static Map<String, UTXO> getPrevUtxos(List<UTXO> utxos) {
-        Map<String, UTXO> utxoMap = new HashMap<>(utxos.size());
-        for (UTXO utxo : utxos) {
-            utxoMap.put(HexUtil.toHex(utxo.getTxid()) + "-" + utxo.getTxIndex(), utxo);
+    public static Map<String, Utxo> getPrevUtxos(List<Utxo> utxos) {
+        Map<String, Utxo> utxoMap = new HashMap<>(utxos.size());
+        for (Utxo utxo : utxos) {
+            utxoMap.put(HexUtil.toHex(utxo.getTxId()) + "-" + utxo.getTxIndex(), utxo);
         }
         return utxoMap;
     }
 
     /**
      * Sign for transaction's inputs
-     * @param txBuilder transaction builder
+     * @param transaction
      * @param privateKey user's private key
      * @param utxos user's unspend vouts
      */
-    public static void sign(Transaction.Builder txBuilder, BigInteger privateKey, List<UTXO> utxos) {
-        List<TXInput> txInputs = txBuilder.getVinList();
+    public static void sign(Transaction transaction, BigInteger privateKey, List<Utxo> utxos) {
+        List<TxInput> txInputs = transaction.getTxInputs();
         if (CollectionUtils.isEmpty(txInputs)) {
             return;
         }
         // format previous transaction data
-        Map<String, UTXO> utxoMap = getPrevUtxos(utxos);
+        Map<String, Utxo> utxoMap = getPrevUtxos(utxos);
 
         // no need to validate inputs
 
-        // get a copy of old transaction builder
-        Transaction.Builder txCopyBuilder = trimedCopy(txBuilder);
+        // get a trimedCopy of old transaction
+        Transaction transactionCopy = transaction.trimedCopy();
 
         byte[] privKeyBytes = HashUtil.fromECDSAPrivateKey(privateKey);
 
         // calculate sign value
-        buildSignValue(txBuilder, utxoMap, txCopyBuilder, privKeyBytes);
+        buildSignValue(transaction, utxoMap, transactionCopy, privKeyBytes);
     }
 
     /**
      * calculate transaction input list's sign value
-     * @param txBuilder transaction builder
+     * @param transaction origin transaction
      * @param utxoMap previous utxos
-     * @param txCopyBuilder copied transaction builder(for assemble sign value)
+     * @param transactionCopy copied transaction (for assemble sign value)
      * @param privKeyBytes user's private key bytes
      */
-    private static void buildSignValue(Transaction.Builder txBuilder, Map<String, UTXO> utxoMap, Transaction.Builder txCopyBuilder, byte[] privKeyBytes) {
-        List<TXInput> txCopyInputs = txCopyBuilder.getVinList();
-        TXInput.Builder tmpTxBuilder = null;
-        TXInput txCopyInput = null;
-        ByteString oldPubKey = null;
+    private static void buildSignValue(Transaction transaction, Map<String, Utxo> utxoMap, Transaction transactionCopy, byte[] privKeyBytes) {
+        List<TxInput> txCopyInputs = transactionCopy.getTxInputs();
+        TxInput txCopyInput = null;
+        byte[] oldPubKey = null;
         for (int i = 0; i < txCopyInputs.size(); i++) {
             txCopyInput = txCopyInputs.get(i);
-            tmpTxBuilder = txCopyInput.toBuilder();
-            oldPubKey = tmpTxBuilder.getPubKey();
-            UTXO utxo = utxoMap.get(HexUtil.toHex(txCopyInput.getTxid()) + "-" + txCopyInput.getVout());
+            oldPubKey = txCopyInput.getPubKey();
+            Utxo utxo = utxoMap.get(HexUtil.toHex(txCopyInput.getTxId()) + "-" + txCopyInput.getVout());
             // temporarily add pubKeyHash to pubKey property
-            tmpTxBuilder.setPubKey(utxo.getPublicKeyHash());
-            txCopyBuilder.setVin(i, tmpTxBuilder.build());
+            txCopyInput.setPubKey(utxo.getPublicKeyHash());
 
-            // get copy's hash value
-            byte[] txCopyHash = hashTransaction(txCopyBuilder);
+            // get deepClone's hash value
+            byte[] txCopyHash = transactionCopy.hash();
 
             // recover old pubKey
-            tmpTxBuilder.setPubKey(oldPubKey);
-            txCopyBuilder.setVin(i, tmpTxBuilder.build());
+            txCopyInput.setPubKey(oldPubKey);
 
             byte[] signature = HashUtil.secp256k1Sign(txCopyHash, privKeyBytes);
 
-            // fill signature to each original transaction input
-            updateOriginalInputSignature(txBuilder, i, signature);
+            // Update original transaction data with vin's signature.
+            transaction.getTxInputs().get(i).setSignature(signature);
         }
-    }
-
-    /**
-     * Update original transaction data with vin's signature.
-     * @param txBuilder original transaction
-     * @param index vin index
-     * @param signature vin signature
-     */
-    private static void updateOriginalInputSignature(Transaction.Builder txBuilder, int index, byte[] signature) {
-        TXInput.Builder txInputBuilder = txBuilder.getVin(index).toBuilder()
-                .setSignature(ByteString.copyFrom(signature));
-        txBuilder.setVin(index, txInputBuilder);
     }
 
     /**
@@ -246,17 +226,17 @@ public class TransactionManager {
      * @param txInputs transaction input list
      * @param transactionMap previous transaction data map
      */
-    private static void validateTransactionInputs(List<TXInput> txInputs, Map<String, Transaction> transactionMap) {
-        for (TXInput txInput : txInputs) {
+    private static void validateTransactionInputs(List<TxInput> txInputs, Map<String, Transaction> transactionMap) {
+        for (TxInput txInput : txInputs) {
             if (txInput == null) {
                 continue;
             }
-            Transaction prev = transactionMap.get(HexUtil.toHex(txInput.getTxid()));
+            Transaction prev = transactionMap.get(HexUtil.toHex(txInput.getTxId()));
             // previous transaction not found
             if (prev == null) {
                 throw new IllegalArgumentException("Previous transaction is invalid");
             }
-            List<TXOutput> prevVoutList = prev.getVoutList();
+            List<TxOutput> prevVoutList = prev.getTxOutputs();
             if (CollectionUtils.isEmpty(prevVoutList)) {
                 throw new IllegalArgumentException("Previous transaction is invalid");
             }
@@ -268,70 +248,6 @@ public class TransactionManager {
     }
 
     /**
-     * trimedCopy creates a trimmed copy of Transaction to be used in signing
-     * @param txBuilder old builder
-     * @return Transaction.Builder new builder
-     */
-    private static Transaction.Builder trimedCopy(Transaction.Builder txBuilder) {
-        Transaction.Builder newBuilder = txBuilder.clone();
-        List<TXInput> txInputs = newBuilder.getVinList();
-        if (CollectionUtils.isEmpty(txInputs)) {
-            return null;
-        }
-        List<TXInput> txNewInputs = new ArrayList<>(txInputs.size());
-        TXInput.Builder tmpTxBuilder = null;
-        for (TXInput txInput : txInputs) {
-            tmpTxBuilder = txInput.toBuilder();
-            // clear pubKey and signature
-            tmpTxBuilder.clearPubKey();
-            tmpTxBuilder.clearSignature();
-            txInput = tmpTxBuilder.build();
-            txNewInputs.add(txInput);
-        }
-        // remove all old inputs
-        newBuilder.clearVin();
-        // add new input list
-        newBuilder.addAllVin(txNewInputs);
-        return newBuilder;
-    }
-
-    /**
-     * Generate ID of Transaction object
-     * <p>The ID is a ByteString object</p>
-     * @param transactionBuilder builder
-     * @return ByteString ID bytes
-     */
-    public static ByteString newId(Transaction.Builder transactionBuilder) {
-        byte[] hash = hashTransaction(transactionBuilder);
-        return ByteString.copyFrom(hash);
-    }
-
-    /**
-     * Returns the hash value of transaction
-     * @param transaction
-     * @return byte[] hash value
-     */
-    public static byte[] hashTransaction(Transaction transaction) {
-        return hashTransaction(transaction.toBuilder());
-    }
-
-    /**
-     * Returns the hash value of transaction
-     * @param txBuilder a transaction in transaction list
-     * @return byte[] hash value
-     */
-    public static byte[] hashTransaction(Transaction.Builder txBuilder) {
-        // clear id property
-        txBuilder.setID(ByteUtil.EMPTY_BYTE_STRING);
-
-        // serialize the new transaction oject
-        byte[] serialized = serialize(txBuilder.build());
-        // get sha256 hash
-        byte[] hash = ShaDigest.sha256(serialized);
-        return hash;
-    }
-
-    /**
      * Returns the hash value of transaction list
      * <p>Combine all hash of each transaction and calculate a SHA256 digest for result.</p>
      * @param transactions transaction list of block
@@ -340,49 +256,10 @@ public class TransactionManager {
     public static byte[] hashTransactions(List<Transaction> transactions) {
         byte[] txHash = new byte[0];
         for (Transaction transaction : transactions) {
-            txHash = ByteUtil.concat(txHash, hashTransaction(transaction));
+            txHash = ByteUtil.concat(txHash, transaction.hash());
         }
         txHash = ShaDigest.sha256(txHash);
         return txHash;
     }
 
-    /**
-     * Serialize Transaction object in promissory format
-     * @param transaction object
-     * @return byte[] serialized data
-     */
-    public static byte[] serialize(Transaction transaction) {
-        // serialize transaction
-        List<byte[]> bytesList = new LinkedList<>();
-
-        // add vin
-        List<TXInput> txInputs = transaction.getVinList();
-        if (txInputs != null) {
-            for (TXInput txInput : txInputs) {
-                // txid
-                bytesList.add(txInput.getTxid() == null ? null : txInput.getTxid().toByteArray());
-                // vout
-                bytesList.add(ByteUtil.int2Bytes(txInput.getVout()));
-                // pubkey
-                bytesList.add(txInput.getPubKey() == null ? null : txInput.getPubKey().toByteArray());
-                // signature
-                bytesList.add(txInput.getSignature() == null ? null : txInput.getSignature().toByteArray());
-            }
-        }
-
-        // add vout
-        List<TXOutput> txOutputs = transaction.getVoutList();
-        if (txOutputs != null) {
-            for (TXOutput txOutput : txOutputs) {
-                // value
-                bytesList.add(txOutput.getValue() == null ? null : txOutput.getValue().toByteArray());
-                // pubKeyHash
-                bytesList.add(txOutput.getPubKeyHash() == null ? null : txOutput.getPubKeyHash().toByteArray());
-            }
-        }
-        // add tip
-        bytesList.add(ByteUtil.long2Bytes(transaction.getTip()));
-
-        return ByteUtil.joinBytes(bytesList);
-    }
 }

@@ -8,19 +8,17 @@ import com.dappley.android.sdk.crypto.AesCipher;
 import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
-import com.dappley.android.sdk.db.BlockDBMk;
+import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
-import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Base64;
 import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
-import org.junit.Assert;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.web3j.crypto.ECKeyPair;
@@ -135,8 +133,7 @@ public class DappleyTest {
 
     public static void testDB(Context context) {
         MMKV.initialize(context);
-        BlockDBMk blockDB = new BlockDBMk(context);
-        blockDB.open();
+        BlockDb blockDB = new BlockDb(context);
         BlockProto.BlockHeader blockHeader = BlockProto.BlockHeader.newBuilder().setHash(ByteString.copyFromUtf8("testblock")).build();
         BlockProto.Block block = BlockProto.Block.newBuilder().setHeader(blockHeader).build();
 //        boolean isSuccess = blockDB.saveBytes(block);
@@ -146,9 +143,9 @@ public class DappleyTest {
 
         // read
 //        byte[] bytes = blockDB.getBytes("testblock");
-        BlockProto.Block block1 = blockDB.get("testblock");
+//        BlockProto.Block block1 = blockDB.get("testblock");
 //        System.out.println(new String(bytes));
-        System.out.println(block1);
+//        System.out.println(block1);
     }
 
     public static void testRecovery() {

@@ -2,6 +2,7 @@ package com.dappley.android.sdk.po;
 
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
+import com.dappley.android.sdk.util.SerializeUtil;
 import com.google.protobuf.ByteString;
 
 import java.util.ArrayList;
@@ -41,6 +42,15 @@ public class Block {
     }
 
     /**
+     * Recovery from serialized bytes.
+     * @param bytes byte array
+     * @return Block object
+     */
+    public static Block parseBytes(byte[] bytes) {
+        return SerializeUtil.decode(bytes, Block.class);
+    }
+
+    /**
      * Parse BlockProto.Block to this object.
      * @param block protobuf obj
      */
@@ -58,8 +68,7 @@ public class Block {
             this.setTransactions(transactions);
         }
 
-        this.setParentHash(block.getParentHash() == null ? null : block.getParentHash().toByteArray())
-        ;
+        this.setParentHash(block.getParentHash() == null ? null : block.getParentHash().toByteArray());
     }
 
     /**
@@ -100,4 +109,13 @@ public class Block {
         }
         transactions.add(transaction);
     }
+
+    /**
+     * Convert this object to byte array
+     * @return byte[] array
+     */
+    public byte[] toByteArray() {
+        return SerializeUtil.encode(this);
+    }
+
 }

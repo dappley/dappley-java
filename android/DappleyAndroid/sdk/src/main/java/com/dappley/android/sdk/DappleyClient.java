@@ -12,6 +12,7 @@ import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.dappley.android.sdk.util.AddressUtil;
+import com.tencent.mmkv.MMKV;
 
 import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.Keys;
@@ -41,6 +42,7 @@ public class DappleyClient {
         } else {
             throw new IllegalArgumentException("only rpc protocal is supported now.");
         }
+        MMKV.initialize(context);
     }
 
     /**

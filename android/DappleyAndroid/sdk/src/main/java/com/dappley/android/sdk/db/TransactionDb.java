@@ -5,17 +5,20 @@ import android.content.Context;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.android.sdk.util.SerializeUtil;
 import com.tencent.mmkv.MMKV;
+
+import org.bouncycastle.util.encoders.Hex;
 
 import java.util.List;
 
 /**
- * Database for Block class.
+ * Database for Block transaction list.
  * <p>Base on MMKV key-value database. Constructor with context also create a mmkv database object.</p>
  * <p>Values would be temporary saved in cache memory and persisted into disk automatically.</p>
  */
-public class BlockDb {
-    private static final String DB_NAME = "block";
+public class TransactionDb {
+    private static final String DB_NAME = "transaction";
     private Context context;
     private MMKV mmkv;
 
@@ -23,26 +26,31 @@ public class BlockDb {
      * Constructor
      * @param context
      */
-    public BlockDb(Context context) {
+    public TransactionDb(Context context) {
         this.context = context;
         mmkv = MMKV.mmkvWithID(DB_NAME);
     }
 
     /**
      * Save object data to database.
-     * <p>Only save simple block info, not contains transaction list data.</p>
-     * @param block object
+     * @param blockHash block hash value
+     * @param transactions list object
      * @return boolean true/false
      */
-    public boolean save(Block block) {
+    public boolean save(byte[] blockHash, List<Transaction> transactions) {
+        return save(HexUtil.toHex(blockHash), transactions);
+    }
+
+    /**
+     * Save object data to database.
+     * @param blockHash block hash value in Hex format
+     * @param transactions list object
+     * @return boolean true/false
+     */
+    public boolean save(String blockHash, List<Transaction> transactions) {
         boolean success = false;
         try {
-            List<Transaction> transactions = block.getTransactions();
-            block.setTransactions(null);
-            String key = HexUtil.toHex(block.getHeader().getHash());
-            mmkv.encode(key, block.toByteArray());
-
-            block.setTransactions(transactions);
+            mmkv.encode(blockHash, SerializeUtil.encode(transactions));
             success = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,10 +60,10 @@ public class BlockDb {
 
     /**
      * Read object from database.
-     * @param blockHash block hash value (key)
+     * @param blockHash block hash value
      * @return Block If key does not exits, returns null.
      */
-    public Block get(byte[] blockHash) {
+    public List<Transaction> get(byte[] blockHash) {
         return get(HexUtil.toHex(blockHash));
     }
 
@@ -64,10 +72,10 @@ public class BlockDb {
      * @param blockHash A String ID(Key)
      * @return Block If key does not exits, returns null.
      */
-    public Block get(String blockHash) {
+    public List<Transaction> get(String blockHash) {
         try {
             byte[] bytes = mmkv.decodeBytes(blockHash);
-            return Block.parseBytes(bytes);
+            return SerializeUtil.decode(bytes, List.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

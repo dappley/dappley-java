@@ -1,6 +1,7 @@
 package com.dappley.android.sdk.po;
 
 import com.dappley.android.sdk.protobuf.RpcProto;
+import com.dappley.android.sdk.util.SerializeUtil;
 import com.google.protobuf.ByteString;
 
 import lombok.Data;
@@ -23,14 +24,23 @@ public class Utxo {
      * @param utxo
      */
     public Utxo(RpcProto.UTXO utxo) {
-        this.fromProto(utxo);
+        this.parseProto(utxo);
+    }
+
+    /**
+     * Recovery from serialized bytes.
+     * @param bytes byte array
+     * @return Utxo object
+     */
+    public static Utxo parseBytes(byte[] bytes) {
+        return SerializeUtil.decode(bytes, Utxo.class);
     }
 
     /**
      * Parse RpcProto.UTXO to this object.
      * @param utxo RpcProto.UTXO
      */
-    public void fromProto(RpcProto.UTXO utxo) {
+    public void parseProto(RpcProto.UTXO utxo) {
         this.setAmount(utxo.getAmount());
         this.setPublicKeyHash(utxo.getPublicKeyHash().toByteArray());
         this.setTxId(utxo.getTxid().toByteArray());
@@ -50,4 +60,7 @@ public class Utxo {
         return builder.build();
     }
 
+    public byte[] toByteArray() {
+        return SerializeUtil.encode(this);
+    }
 }

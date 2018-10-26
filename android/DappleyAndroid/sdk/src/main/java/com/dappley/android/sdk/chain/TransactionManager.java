@@ -118,7 +118,7 @@ public class TransactionManager {
             // set from address's pubKeyHash
             byte[] myPubKeyHash = HashUtil.getPubKeyHash(ecKeyPair.getPublicKey());
             txOutput.setPubKeyHash(myPubKeyHash);
-            txOutput.setValue(ByteUtil.bigInteger2Bytes(new BigInteger(String.valueOf(amount))));
+            txOutput.setValue(ByteUtil.bigInteger2Bytes(totalAmount.subtract(amount)));
             transaction.addTxOutput(txOutput);
         }
     }

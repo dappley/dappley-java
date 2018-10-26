@@ -12,9 +12,9 @@ public class Asserts {
      * @param channel RPC protocol channel
      * @throws IllegalAccessException
      */
-    public static void clientInit(ManagedChannel channel) throws IllegalAccessException {
+    public static void clientInit(ManagedChannel channel) {
         if (channel == null) {
-            throw new IllegalAccessException("DappleyClient.init should be called first.");
+            throw new IllegalStateException("DappleyClient.init should be called first.");
         }
     }
 
@@ -23,7 +23,7 @@ public class Asserts {
      * @param channel RPC protocol channel
      * @throws IllegalStateException
      */
-    public static void channalOpen(ManagedChannel channel) throws IllegalStateException {
+    public static void channalOpen(ManagedChannel channel) {
         if (channel == null || channel.isShutdown() || channel.isTerminated()) {
             throw new IllegalStateException("channel is not opened.");
         }

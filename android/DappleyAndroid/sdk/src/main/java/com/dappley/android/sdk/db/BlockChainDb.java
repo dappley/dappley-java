@@ -3,7 +3,9 @@ package com.dappley.android.sdk.db;
 import android.content.Context;
 
 import com.dappley.android.sdk.po.Block;
+import com.dappley.android.sdk.po.BlockChainInfo;
 import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.android.sdk.util.SerializeUtil;
 import com.tencent.mmkv.MMKV;
 
 /**
@@ -14,6 +16,7 @@ import com.tencent.mmkv.MMKV;
 public class BlockChainDb {
     private static final String DB_NAME = "block_chain";
     private static final String KEY_CURRENT_HASH = "current_hash";
+    private static final String KEY_BLOCK_CHAIN_INFO = "block_chain_info";
 
     private Context context;
     private MMKV mmkv;
@@ -50,6 +53,36 @@ public class BlockChainDb {
     public String getCurrentHash() {
         try {
             return mmkv.decodeString(KEY_CURRENT_HASH);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Save Block chain info to database.
+     * @param blockChainInfo object
+     * @return boolean true/false
+     */
+    public boolean saveBlockChainInfo(BlockChainInfo blockChainInfo) {
+        boolean success = false;
+        try {
+            mmkv.encode(KEY_BLOCK_CHAIN_INFO, blockChainInfo.toByteArray());
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    /**
+     * Read block chain info from database.
+     * @return BlockChainInfo
+     */
+    public BlockChainInfo getBlockChainInfo() {
+        try {
+            byte[] bytes = mmkv.decodeBytes(KEY_BLOCK_CHAIN_INFO);
+            return BlockChainInfo.parseBytes(bytes);
         } catch (Exception e) {
             e.printStackTrace();
         }

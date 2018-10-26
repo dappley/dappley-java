@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }).start();
 
-        DappleyTest.testTransaction(this);
+//        DappleyTest.testTransaction(this);
+        DappleyTest.testSchedule(this);
     }
 
     @OnClick(R.id.btn_version)
@@ -112,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_get_blocks)
     void getBlocks() {
-        try {
-            DappleyClient.getBlocks();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DappleyClient.getBlocks();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @OnClick(R.id.btn_send_transaction)

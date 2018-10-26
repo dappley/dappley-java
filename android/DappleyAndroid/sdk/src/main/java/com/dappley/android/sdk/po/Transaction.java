@@ -233,4 +233,25 @@ public class Transaction {
         byte[] hash = this.hash();
         this.setId(hash);
     }
+
+    /**
+     * Returns if the transaction is Coinbase.
+     * @return boolean true/false
+     */
+    public boolean isCoinbase() {
+        // len(tx.Vin) == 1 && len(tx.Vin[0].Txid) == 0 && tx.Vin[0].Vout == -1 && len(tx.Vout) == 1
+        if (this.getTxInputs() == null || this.getTxInputs().size() != 1) {
+            return false;
+        }
+        if (this.getTxInputs().get(0).getTxId() != null && this.getTxInputs().get(0).getTxId().length > 0) {
+            return false;
+        }
+        if (this.getTxInputs().get(0).getVout() != -1) {
+            return false;
+        }
+        if (this.getTxOutputs() == null || this.getTxOutputs().size() != 1) {
+            return false;
+        }
+        return true;
+    }
 }

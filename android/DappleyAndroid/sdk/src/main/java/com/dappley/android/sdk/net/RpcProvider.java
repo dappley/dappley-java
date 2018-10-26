@@ -3,6 +3,7 @@ package com.dappley.android.sdk.net;
 import android.content.Context;
 
 import com.dappley.android.sdk.config.Configuration;
+import com.dappley.android.sdk.po.BlockChainInfo;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
@@ -49,7 +50,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public String getVersion() throws IllegalAccessException {
+    public String getVersion() {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
 
@@ -61,7 +62,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public String getBalance(String address) throws IllegalAccessException {
+    public String getBalance(String address) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
 
@@ -74,7 +75,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public String addBalance(String address) throws IllegalAccessException {
+    public String addBalance(String address) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.AddBalanceRequest request = RpcProto.AddBalanceRequest.newBuilder()
@@ -86,7 +87,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public void getBlockchainInfo() throws IllegalAccessException {
+    public BlockChainInfo getBlockchainInfo() {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetBlockchainInfoRequest request = RpcProto.GetBlockchainInfoRequest.newBuilder()
@@ -95,10 +96,15 @@ public class RpcProvider implements ProtocalProvider {
         System.out.println("getBlockchainInfo blockHeight: " + response.getBlockHeight());
         ByteString byteString = response.getTailBlockHash();
         System.out.println(byteString);
+        BlockChainInfo blockChainInfo = new BlockChainInfo();
+        blockChainInfo.setTailBlockHash(response.getTailBlockHash());
+        blockChainInfo.setBlockHeight(response.getBlockHeight());
+        blockChainInfo.setProducers(response.getProducersList());
+        return blockChainInfo;
     }
 
     @Override
-    public List<RpcProto.UTXO> getUtxo(String address) throws IllegalAccessException {
+    public List<RpcProto.UTXO> getUtxo(String address) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetUTXORequest request = RpcProto.GetUTXORequest.newBuilder()
@@ -111,19 +117,20 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public void getBlocks() throws IllegalAccessException {
+    public List<BlockProto.Block> getBlocks(List<ByteString> startHashs, int count) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetBlocksRequest request = RpcProto.GetBlocksRequest.newBuilder()
-//                .setStartBlockHashs(0, null)
+                .addAllStartBlockHashs(startHashs)
+                .setMaxCount(count)
                 .build();
         RpcProto.GetBlocksResponse response = getRpcServiceBlockingStub().rpcGetBlocks(request);
-        response.getBlocksList();
         System.out.println("getBlocks blockCount: " + response.getBlocksCount());
+        return response.getBlocksList();
     }
 
     @Override
-    public void getBlockByHash(ByteString byteHash) throws IllegalAccessException {
+    public BlockProto.Block getBlockByHash(ByteString byteHash) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetBlockByHashRequest request = RpcProto.GetBlockByHashRequest.newBuilder()
@@ -132,10 +139,11 @@ public class RpcProvider implements ProtocalProvider {
         RpcProto.GetBlockByHashResponse response = getRpcServiceBlockingStub().rpcGetBlockByHash(request);
         BlockProto.Block block = response.getBlock();
         System.out.println("getBlockByHash block: " + block);
+        return block;
     }
 
     @Override
-    public BlockProto.Block getBlockByHeight(long height) throws IllegalAccessException {
+    public BlockProto.Block getBlockByHeight(long height) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetBlockByHeightRequest request = RpcProto.GetBlockByHeightRequest.newBuilder()
@@ -148,7 +156,7 @@ public class RpcProvider implements ProtocalProvider {
     }
 
     @Override
-    public int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException {
+    public int sendTransaction(TransactionProto.Transaction transaction) {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.SendTransactionRequest request = RpcProto.SendTransactionRequest.newBuilder()

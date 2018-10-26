@@ -38,7 +38,7 @@ public class TransactionTest {
         try {
             int errorCode = DappleyClient.sendTransaction(transaction);
             Assert.assertEquals(errorCode, 0);
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

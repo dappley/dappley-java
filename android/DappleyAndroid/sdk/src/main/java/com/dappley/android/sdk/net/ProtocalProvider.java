@@ -3,6 +3,7 @@ package com.dappley.android.sdk.net;
 import android.content.Context;
 
 import com.dappley.android.sdk.po.Block;
+import com.dappley.android.sdk.po.BlockChainInfo;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.TransactionProto;
@@ -26,23 +27,23 @@ public interface ProtocalProvider {
      */
     void close();
 
-    String getVersion() throws IllegalAccessException;
+    String getVersion();
 
-    String getBalance(String address) throws IllegalAccessException;
+    String getBalance(String address);
 
-    String addBalance(String address) throws IllegalAccessException;
+    String addBalance(String address);
 
-    void getBlockchainInfo() throws IllegalAccessException;
+    BlockChainInfo getBlockchainInfo();
 
-    List<RpcProto.UTXO> getUtxo(String address) throws IllegalAccessException;
+    List<RpcProto.UTXO> getUtxo(String address);
 
-    void getBlocks() throws IllegalAccessException;
+    List<BlockProto.Block> getBlocks(List<ByteString> startHashs, int count);
 
-    void getBlockByHash(ByteString byteHash) throws IllegalAccessException;
+    BlockProto.Block getBlockByHash(ByteString byteHash);
 
-    BlockProto.Block getBlockByHeight(long height) throws IllegalAccessException;
+    BlockProto.Block getBlockByHeight(long height);
 
-    int sendTransaction(TransactionProto.Transaction transaction) throws IllegalAccessException;
+    int sendTransaction(TransactionProto.Transaction transaction);
 
     /**
      * Define types of network protocal supported.

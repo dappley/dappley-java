@@ -2,6 +2,7 @@ package com.dappley.android.sdk;
 
 import android.content.Context;
 
+import com.dappley.android.sdk.chain.BlockChainManager;
 import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.crypto.AesCipher;
@@ -14,11 +15,15 @@ import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
+import com.dappley.android.sdk.task.LocalBlockSchedule;
 import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Base64;
+import com.dappley.android.sdk.util.HashUtil;
+import com.dappley.android.sdk.util.HexUtil;
 import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
+import org.bouncycastle.util.encoders.Hex;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.web3j.crypto.ECKeyPair;
@@ -97,7 +102,8 @@ public class DappleyTest {
 //        ByteString bytes = ByteString.copyFromUtf8("hello");
 //        System.out.println(bytes.toStringUtf8());
 
-
+        String addr= "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
+        System.out.println(HexUtil.toHex(HashUtil.getPubKeyHash(addr)));
     }
 
     public static void testTransaction(Context context){
@@ -194,5 +200,13 @@ public class DappleyTest {
         RpcProto.GetBalanceResponse response = stub.rpcGetBalance(request);
         String message = response.getMessage();
         System.out.println(message);
+    }
+
+    public static void testSchedule(Context context){
+        MMKV.initialize(context);
+
+        BlockChainManager.initGenesisBlock(context);
+
+        LocalBlockSchedule.start(context);
     }
 }

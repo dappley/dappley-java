@@ -1,5 +1,7 @@
 package com.dappley.android.sdk.chain;
 
+import android.util.Log;
+
 import com.dappley.android.sdk.crypto.Sha3Digest;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.BlockHeader;
@@ -19,6 +21,7 @@ import java.util.List;
  * Utils to handle Block datas.
  */
 public class BlockManager {
+    private static final String TAG = "BlockManager";
     private static final String GENESIS_COIN_BASE_DATA = "Hello world";
     private static final String SUBSIDY = "10";
     private static final String GENESIS_ADDRESS = "121yKAXeG4cw6uaGCBYjWk9yTWmMkhcoDD";
@@ -28,13 +31,17 @@ public class BlockManager {
      * @return Block genesis block
      * @throws UnsupportedEncodingException
      */
-    public static Block newGenesisBlock() throws UnsupportedEncodingException {
+    public static Block newGenesisBlock() {
         // set input
         TxInput txInput = new TxInput();
         txInput.setTxId(ByteUtil.EMPTY_BYTE);
         txInput.setVout(-1);
         txInput.setSignature(ByteUtil.EMPTY_BYTE);
-        txInput.setPubKey(GENESIS_COIN_BASE_DATA.getBytes(Constant.CHARSET_UTF_8));
+        try {
+            txInput.setPubKey(GENESIS_COIN_BASE_DATA.getBytes(Constant.CHARSET_UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "newGenesisBlock: ", e);
+        }
 
         // set output
         TxOutput txOutput = new TxOutput();

@@ -42,7 +42,6 @@ public class DappleyClient {
         } else {
             throw new IllegalArgumentException("only rpc protocal is supported now.");
         }
-        MMKV.initialize(context);
     }
 
     /**
@@ -85,16 +84,16 @@ public class DappleyClient {
         return utxos;
     }
 
-    public static void getBlocks() throws IllegalAccessException {
-        protocalProvider.getBlocks();
-    }
+//    public static void getBlocks(){
+//        protocalProvider.getBlocks();
+//    }
 
-    public static int sendTransaction(Transaction transaction) throws IllegalAccessException {
+    public static int sendTransaction(Transaction transaction){
         TransactionProto.Transaction transactionProto = transaction.toProto();
         return protocalProvider.sendTransaction(transactionProto);
     }
 
-    public static Block getBlockByHeight(long height) throws IllegalAccessException {
+    public static Block getBlockByHeight(long height){
         BlockProto.Block block = protocalProvider.getBlockByHeight(height);
         return new Block(block);
     }

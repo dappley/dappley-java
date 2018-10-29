@@ -75,4 +75,35 @@ public class BlockDb {
         return null;
     }
 
+    /**
+     * Remove block from db
+     * @param block
+     */
+    public void remove(Block block) {
+        remove(HexUtil.toHex(block.getHeader().getHash()));
+    }
+
+    /**
+     * Remove block from db by hash value
+     * @param blockHash hash
+     */
+    public void remove(String blockHash) {
+        try {
+            mmkv.removeValueForKey(blockHash);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Remove a set of blocks by hash keys
+     * @param blockHashes hash keys
+     */
+    public void remove(String[] blockHashes) {
+        try {
+            mmkv.removeValuesForKeys(blockHashes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

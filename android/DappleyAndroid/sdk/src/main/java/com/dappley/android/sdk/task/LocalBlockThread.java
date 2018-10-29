@@ -5,10 +5,14 @@ import android.util.Log;
 
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
+import com.dappley.android.sdk.db.BlockIndexDb;
 import com.dappley.android.sdk.db.TransactionDb;
+import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.net.DataProvider;
 import com.dappley.android.sdk.net.RemoteDataProvider;
 import com.dappley.android.sdk.po.Block;
+import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.util.HexUtil;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -16,7 +20,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
 
 /**
  * Synchronize block datas from online node
@@ -28,14 +31,17 @@ public class LocalBlockThread implements Runnable {
     private Context context;
     private DataProvider dataProvider;
     private BlockDb blockDb;
+    private BlockIndexDb blockIndexDb;
     private TransactionDb transactionDb;
     private BlockChainDb blockChainDb;
+    private UtxoDb utxoDb;
 
     public LocalBlockThread(Context context) {
         this.context = context;
         blockDb = new BlockDb(context);
         blockChainDb = new BlockChainDb(context);
         transactionDb = new TransactionDb(context);
+        utxoDb = new UtxoDb(context);
         // TODO get a provider
         dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
 
@@ -52,7 +58,7 @@ public class LocalBlockThread implements Runnable {
         try {
             List<Block> blocks = dataProvider.getBlocks(startHashes, ONCE_COUNT);
             // save blocks to db
-            saveBlocks(blocks);
+            saveBlocks(blocks, startHashes);
         } catch (Exception e) {
             Log.e(TAG, "run: ", e);
         }
@@ -100,22 +106,91 @@ public class LocalBlockThread implements Runnable {
      *    Save transactions data into TransactionDb while BlockDb do not contains transactions info.
      *    Update current hash value in BlockChainDb for next use.
      * </p>
-     * @param blocks
+     * @param blocks new tail blocks
+     * @param startHashs old tail blocks
      */
-    private void saveBlocks(List<Block> blocks) {
+    private void saveBlocks(List<Block> blocks, List<String> startHashs) {
         if (CollectionUtils.isEmpty(blocks)) {
             return;
         }
         Log.i(TAG, "saveBlocks count " + blocks.size());
+
+        // handler fork, remove invalid blocks
+        String newParentHash = HexUtil.toHex(blocks.get(0).getHeader().getPrevHash());
+        removeInvalidBlocks(newParentHash, startHashs);
+
+        // save new datas
         String currentHash = null;
         for (Block block : blocks) {
             currentHash = HexUtil.toHex(block.getHeader().getHash());
             blockDb.save(block);
+            blockIndexDb.save(HexUtil.toHex(block.getHeader().getPrevHash()), currentHash);
             transactionDb.save(currentHash, block.getTransactions());
+
+            // TODO save new utxo data
         }
         // update current hash value
         blockChainDb.saveCurrentHash(currentHash);
-        // TODO handler fork
     }
 
+    /**
+     * Remove invalid blocks from db
+     * <p>Remove some invalid blocks when synchronized blocks from chain are not the same.</p>
+     * <p>When the first hash equals to an old one, the process is stopped.</p>
+     * @param newParentHash  the first block's hash of synchronized blocks from chain
+     * @param oldHashes the last several block hash of chain tail in local db
+     */
+    private void removeInvalidBlocks(String newParentHash, List<String> oldHashes) {
+        if (StringUtils.isEmpty(newParentHash) || CollectionUtils.isEmpty(oldHashes)) {
+            return;
+        }
+        // form invalid block hash list
+        List<String> invalidHashes = new ArrayList<>();
+        for (String oldHash : oldHashes) {
+            if (oldHash.equals(newParentHash)) {
+                break;
+            }
+            // remove from db
+            blockDb.remove(oldHash);
+            blockIndexDb.remove(oldHash);
+            invalidHashes.add(oldHash);
+        }
+
+        // remove transactions by invalid hashes
+        removeInvalidTransactions(invalidHashes);
+    }
+
+    /**
+     * Remove all invalid transactions from database.
+     * @param blockHashes invalid block hash list
+     */
+    private void removeInvalidTransactions(List<String> blockHashes) {
+        if (CollectionUtils.isEmpty(blockHashes)) {
+            return;
+        }
+        List<Transaction> transactions;
+        for (String blockHash : blockHashes) {
+            transactions = transactionDb.get(blockHash);
+            // remove values in utxo
+            removeInvalidUtxo(transactions);
+
+            transactionDb.remove(blockHash);
+        }
+    }
+
+    /**
+     * Remove all invalid utxo data from database.
+     * @param transactions transaciton info list
+     */
+    private void removeInvalidUtxo(List<Transaction> transactions) {
+        if (CollectionUtils.isEmpty(transactions)) {
+            return;
+        }
+        for (Transaction transaction : transactions) {
+            if (transaction == null) {
+                continue;
+            }
+            utxoDb.remove(transaction.getId());
+        }
+    }
 }

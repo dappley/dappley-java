@@ -16,6 +16,7 @@ import com.tencent.mmkv.MMKV;
 public class BlockChainDb {
     private static final String DB_NAME = "block_chain";
     private static final String KEY_CURRENT_HASH = "current_hash";
+    private static final String KEY_GENESIS_HASH = "genesis_hash";
     private static final String KEY_BLOCK_CHAIN_INFO = "block_chain_info";
 
     private Context context;
@@ -53,6 +54,35 @@ public class BlockChainDb {
     public String getCurrentHash() {
         try {
             return mmkv.decodeString(KEY_CURRENT_HASH);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Save genesis hash to database.
+     * @param hashString object
+     * @return boolean true/false
+     */
+    public boolean saveGenesisHash(String hashString) {
+        boolean success = false;
+        try {
+            mmkv.encode(KEY_GENESIS_HASH, hashString);
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    /**
+     * Read genesis hash from database.
+     * @return String genesis hash string.
+     */
+    public String getGenesisHash() {
+        try {
+            return mmkv.decodeString(KEY_GENESIS_HASH);
         } catch (Exception e) {
             e.printStackTrace();
         }

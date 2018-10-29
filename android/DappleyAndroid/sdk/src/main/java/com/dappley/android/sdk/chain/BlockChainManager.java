@@ -13,6 +13,10 @@ import org.apache.commons.lang3.StringUtils;
  * Utils of BlockChain service.
  */
 public class BlockChainManager {
+    /**
+     * Genesis block's hash
+     */
+    private static String genesisHash;
 
     /**
      * Initialize genesis block and save into block db.
@@ -27,8 +31,31 @@ public class BlockChainManager {
         if (block == null || block.getHeader() == null || block.getHeader().getHash() == null) {
             return;
         }
-        blockChainDb.saveCurrentHash(HexUtil.toHex(block.getHeader().getHash()));
+        String genesisHash = HexUtil.toHex(block.getHeader().getHash());
+        blockChainDb.saveGenesisHash(genesisHash);
+        blockChainDb.saveCurrentHash(genesisHash);
         BlockDb blockDb = new BlockDb(context);
         blockDb.save(block);
+    }
+
+    /**
+     * Returns the genesis hash value of chain
+     * @param context
+     * @return String genesis hash value
+     */
+    public static String getGenesisHash(Context context) {
+        if (StringUtils.isNotEmpty(genesisHash)) {
+            return genesisHash;
+        }
+        // first query from db
+        BlockChainDb blockChainDb = new BlockChainDb(context);
+        genesisHash = blockChainDb.getGenesisHash();
+        if (StringUtils.isNotEmpty(genesisHash)) {
+            return genesisHash;
+        }
+        // init genesis block
+        initGenesisBlock(context);
+        genesisHash = blockChainDb.getGenesisHash();
+        return genesisHash;
     }
 }

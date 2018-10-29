@@ -82,4 +82,20 @@ public class TransactionDb {
         return null;
     }
 
+    /**
+     * Remove transaction list by block hash
+     * @param blockHash block hash
+     */
+    public void remove(String blockHash) {
+        mmkv.removeValueForKey(blockHash);
+    }
+
+    /**
+     * Remove a set of transaction by block hash
+     * @param blockHashes block hash array
+     */
+    public void remove(String[] blockHashes) {
+        mmkv.removeValuesForKeys(blockHashes);
+    }
+
 }

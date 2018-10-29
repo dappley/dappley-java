@@ -8,6 +8,8 @@ import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.util.HexUtil;
 import com.tencent.mmkv.MMKV;
 
+import org.bouncycastle.util.encoders.Hex;
+
 import java.util.List;
 import java.util.Map;
 
@@ -75,4 +77,27 @@ public class UtxoDb {
         return null;
     }
 
+    /**
+     * Remove Utxo from db.
+     * @param txId transaction id
+     */
+    public void remove(byte[] txId) {
+        remove(HexUtil.toHex(txId));
+    }
+
+    /**
+     * Remove Utxo from db.
+     * @param txId transaction id
+     */
+    public void remove(String txId) {
+        mmkv.removeValueForKey(txId);
+    }
+
+    /**
+     * Remove Utxos from db.
+     * @param txIds transaction id array
+     */
+    public void remove(String[] txIds) {
+        mmkv.removeValuesForKeys(txIds);
+    }
 }

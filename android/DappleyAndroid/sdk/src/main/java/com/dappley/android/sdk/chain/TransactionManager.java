@@ -85,7 +85,7 @@ public class TransactionManager {
             }
             txInput = new TxInput();
             txInput.setTxId(utxo.getTxId());
-            txInput.setVout(utxo.getTxIndex());
+            txInput.setVout(utxo.getVoutIndex());
             // add from publicKey value
             txInput.setPubKey(pubKey);
             totalAmount = totalAmount.add(BigInteger.valueOf(utxo.getAmount()));
@@ -155,12 +155,12 @@ public class TransactionManager {
     /**
      * Format previous transaction datas
      * @param utxos previous transaction vouts
-     * @return Map <txId-txIndex,utxo>
+     * @return Map <txId-voutIndex,utxo>
      */
     public static Map<String, Utxo> getPrevUtxos(List<Utxo> utxos) {
         Map<String, Utxo> utxoMap = new HashMap<>(utxos.size());
         for (Utxo utxo : utxos) {
-            utxoMap.put(HexUtil.toHex(utxo.getTxId()) + "-" + utxo.getTxIndex(), utxo);
+            utxoMap.put(HexUtil.toHex(utxo.getTxId()) + "-" + utxo.getVoutIndex(), utxo);
         }
         return utxoMap;
     }

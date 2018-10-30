@@ -14,7 +14,7 @@ public class Utxo {
     private long amount;
     private byte[] publicKeyHash;
     private byte[] txId;
-    private int txIndex;
+    private int voutIndex;
 
     public Utxo() {
     }
@@ -44,7 +44,7 @@ public class Utxo {
         this.setAmount(utxo.getAmount());
         this.setPublicKeyHash(utxo.getPublicKeyHash().toByteArray());
         this.setTxId(utxo.getTxid().toByteArray());
-        this.setTxIndex(utxo.getTxIndex());
+        this.setVoutIndex(utxo.getTxIndex());
     }
 
     /**
@@ -56,7 +56,7 @@ public class Utxo {
         builder.setAmount(this.getAmount());
         builder.setPublicKeyHash(ByteString.copyFrom(this.getTxId()));
         builder.setTxid(ByteString.copyFrom(this.getTxId()));
-        builder.setTxIndex(this.getTxIndex());
+        builder.setTxIndex(this.getVoutIndex());
         return builder.build();
     }
 

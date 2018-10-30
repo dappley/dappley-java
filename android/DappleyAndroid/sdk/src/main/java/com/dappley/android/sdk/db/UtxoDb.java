@@ -2,22 +2,15 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Block;
-import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.util.HexUtil;
 import com.tencent.mmkv.MMKV;
-
-import org.bouncycastle.util.encoders.Hex;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Database for Utxo data.
  * <p>Base on MMKV key-value database. Constructor with context also create a mmkv database object.</p>
  * <p>Values would be temporary saved in cache memory and persisted into disk automatically.</p>
- * <p>Transaction's id is used for key and utxo is for value. </p>
+ * <p>Transaction's id and vount index is used for key and utxo is for value. </p>
  * <p>We would only save current user's utxo into database.
  *    If a new user is added into the wallet, related utxos would be newly saved by recalculating transactions.
  * </p>
@@ -44,7 +37,7 @@ public class UtxoDb {
     public boolean save(Utxo utxo) {
         boolean success = false;
         try {
-            String key = HexUtil.toHex(utxo.getTxId());
+            String key = HexUtil.toHex(utxo.getTxId()) + "-" + utxo.getVoutIndex();
             mmkv.encode(key, utxo.toByteArray());
             success = true;
         } catch (Exception e) {
@@ -55,21 +48,32 @@ public class UtxoDb {
 
     /**
      * Read object from database.
-     * @param txId transaction id (key)
+     * @param txId transaction id
+     * @param voutIndex vout index
      * @return Utxo If key does not exits, returns null.
      */
-    public Utxo get(byte[] txId) {
-        return get(HexUtil.toHex(txId));
+    public Utxo get(byte[] txId, int voutIndex) {
+        return get(HexUtil.toHex(txId), voutIndex);
     }
 
     /**
      * Read object from database.
-     * @param txId A String ID(Key)
-     * @return Block If key does not exits, returns null.
+     * @param txId A String ID
+     * @param voutIndex vout index
+     * @return Utxo If key does not exits, returns null.
      */
-    public Utxo get(String txId) {
+    public Utxo get(String txId, int voutIndex) {
+        return get(txId + "-" + voutIndex);
+    }
+
+    /**
+     * Read object from database
+     * @param utxoIndex utxo index to string value
+     * @return Utxo object data
+     */
+    public Utxo get(String utxoIndex) {
         try {
-            byte[] bytes = mmkv.decodeBytes(txId);
+            byte[] bytes = mmkv.decodeBytes(utxoIndex);
             return Utxo.parseBytes(bytes);
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,24 +84,34 @@ public class UtxoDb {
     /**
      * Remove Utxo from db.
      * @param txId transaction id
+     * @param voutIndex vout index
      */
-    public void remove(byte[] txId) {
-        remove(HexUtil.toHex(txId));
+    public void remove(byte[] txId, int voutIndex) {
+        remove(HexUtil.toHex(txId), voutIndex);
     }
 
     /**
      * Remove Utxo from db.
      * @param txId transaction id
+     * @param voutIndex vout index
      */
-    public void remove(String txId) {
-        mmkv.removeValueForKey(txId);
+    public void remove(String txId, int voutIndex) {
+        remove(txId + "-" + voutIndex);
+    }
+
+    /**
+     *  Remove Utxo from db.
+     * @param utxoIndex utxo index to string value
+     */
+    public void remove(String utxoIndex) {
+        mmkv.removeValueForKey(utxoIndex);
     }
 
     /**
      * Remove Utxos from db.
-     * @param txIds transaction id array
+     * @param keys transaction id and voutIndex array
      */
-    public void remove(String[] txIds) {
-        mmkv.removeValuesForKeys(txIds);
+    public void remove(String[] keys) {
+        mmkv.removeValuesForKeys(keys);
     }
 }

@@ -1,5 +1,7 @@
 package com.dappley.android.sdk.util;
 
+import android.support.annotation.NonNull;
+
 import com.dappley.android.sdk.crypto.KeyPairTool;
 
 import org.web3j.crypto.ECKeyPair;
@@ -29,6 +31,15 @@ public class AddressUtil {
     public static String createAddress(ECKeyPair keyPair) {
         // generate publicKey hash
         byte[] pubKeyHash = HashUtil.getPubKeyHash(keyPair.getPublicKey());
+        return createAddress(pubKeyHash);
+    }
+
+    /**
+     * Recover a wallet address from public key hash
+     * @param pubKeyHash public key hash
+     * @return String wallet address
+     */
+    public static String createAddress(byte[] pubKeyHash) {
         // prefix 0x00
         byte[] version = new byte[]{0x00};
         // concat version and pubKeyHash to get a new byte array

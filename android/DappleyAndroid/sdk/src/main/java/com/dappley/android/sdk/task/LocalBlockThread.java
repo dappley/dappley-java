@@ -8,18 +8,23 @@ import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.db.BlockIndexDb;
 import com.dappley.android.sdk.db.TransactionDb;
 import com.dappley.android.sdk.db.UtxoDb;
+import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.android.sdk.net.DataProvider;
 import com.dappley.android.sdk.net.RemoteDataProvider;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.po.Utxo;
+import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.HexUtil;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Synchronize block datas from online node
@@ -35,13 +40,16 @@ public class LocalBlockThread implements Runnable {
     private TransactionDb transactionDb;
     private BlockChainDb blockChainDb;
     private UtxoDb utxoDb;
+    private UtxoIndexDb utxoIndexDb;
 
     public LocalBlockThread(Context context) {
         this.context = context;
         blockDb = new BlockDb(context);
+        blockIndexDb = new BlockIndexDb(context);
         blockChainDb = new BlockChainDb(context);
         transactionDb = new TransactionDb(context);
         utxoDb = new UtxoDb(context);
+        utxoIndexDb = new UtxoIndexDb(context);
         // TODO get a provider
         dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
 
@@ -127,10 +135,69 @@ public class LocalBlockThread implements Runnable {
             blockIndexDb.save(HexUtil.toHex(block.getHeader().getPrevHash()), currentHash);
             transactionDb.save(currentHash, block.getTransactions());
 
-            // TODO save new utxo data
+            // save new utxo data
+            saveNewUtxos(block.getTransactions());
         }
         // update current hash value
         blockChainDb.saveCurrentHash(currentHash);
+    }
+
+    /**
+     * Save new utxo datas into database.
+     * @param transactions block's transactions
+     */
+    public void saveNewUtxos(List<Transaction> transactions) {
+        // save new utxo data
+        if (CollectionUtils.isEmpty(transactions)) {
+            return;
+        }
+        for (Transaction transaction : transactions) {
+            if (transaction == null) {
+                continue;
+            }
+            // handle one
+            saveNewUtxos(transaction);
+        }
+    }
+
+    /**
+     * Convert a transaction's outputs to utxos and save them if needed.
+     * @param transaction
+     */
+    public void saveNewUtxos(Transaction transaction) {
+        List<TxOutput> txOutputs = transaction.getTxOutputs();
+        if (CollectionUtils.isEmpty(txOutputs)) {
+            return;
+        }
+        Set<String> addressSet = blockChainDb.getWalletAddressSet();
+        if (CollectionUtils.isEmpty(addressSet)) {
+            return;
+        }
+        TxOutput tempOutput;
+        Utxo tempUtxo;
+        String tempAddress;
+        for (int i = 0; i < txOutputs.size(); i++) {
+            tempOutput = txOutputs.get(i);
+            if (tempOutput == null || tempOutput.getPubKeyHash() == null) {
+                continue;
+            }
+            tempAddress = AddressUtil.createAddress(tempOutput.getPubKeyHash());
+            if (!addressSet.contains(addressSet)) {
+                continue;
+            }
+            // vout point to a user address
+            tempUtxo = new Utxo();
+            tempUtxo.setTxId(transaction.getId());
+            tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());
+            // TODO modify long format
+            tempUtxo.setAmount(new BigInteger(tempOutput.getValue()).longValue());
+            tempUtxo.setVoutIndex(i);
+            // update utxo
+            utxoDb.save(tempUtxo);
+
+            // update utxo index
+            utxoIndexDb.save(tempAddress, transaction.getId(), i);
+        }
     }
 
     /**
@@ -168,14 +235,16 @@ public class LocalBlockThread implements Runnable {
         if (CollectionUtils.isEmpty(blockHashes)) {
             return;
         }
-        List<Transaction> transactions;
+        List<Transaction> transactions = new ArrayList<>();
+        List<Transaction> tempTransactions;
         for (String blockHash : blockHashes) {
-            transactions = transactionDb.get(blockHash);
-            // remove values in utxo
-            removeInvalidUtxo(transactions);
+            tempTransactions = transactionDb.get(blockHash);
+            transactions.addAll(tempTransactions);
 
             transactionDb.remove(blockHash);
         }
+        // remove related values in utxo
+        removeInvalidUtxo(transactions);
     }
 
     /**
@@ -186,11 +255,52 @@ public class LocalBlockThread implements Runnable {
         if (CollectionUtils.isEmpty(transactions)) {
             return;
         }
+        Set<String> addressSet = blockChainDb.getWalletAddressSet();
         for (Transaction transaction : transactions) {
             if (transaction == null) {
                 continue;
             }
-            utxoDb.remove(transaction.getId());
+            // remove stored utxo database's datas
+            removeInvalidUtxo(transaction);
+            // remove stored utxo index infos (related to user)
+            removeInvalidUtxoIndex(transaction, addressSet);
+        }
+    }
+
+    /**
+     * Remove all invalid utxo data from utxo database.
+     * @param transaction
+     */
+    private void removeInvalidUtxo(Transaction transaction) {
+        List<TxOutput> txOutputs = transaction.getTxOutputs();
+        if (CollectionUtils.isEmpty(txOutputs)) {
+            return;
+        }
+        for (int i = 0; i < txOutputs.size(); i++) {
+            utxoDb.remove(transaction.getId(), i);
+        }
+    }
+
+    /**
+     * Remove all invalid utxo index data from utxo index database.
+     * @param transaction
+     * @param addressetSet user's address set
+     */
+    private void removeInvalidUtxoIndex(Transaction transaction, Set<String> addressetSet) {
+        if (CollectionUtils.isEmpty(addressetSet)) {
+            return;
+        }
+        List<TxOutput> txOutputs = transaction.getTxOutputs();
+        if (CollectionUtils.isEmpty(txOutputs)) {
+            return;
+        }
+        for (String tempAddress : addressetSet) {
+            if (StringUtils.isEmpty(tempAddress)) {
+                continue;
+            }
+            for (int i = 0; i < txOutputs.size(); i++) {
+                utxoIndexDb.remove(tempAddress, transaction.getId(), i);
+            }
         }
     }
 }

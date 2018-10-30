@@ -2,11 +2,12 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.BlockChainInfo;
-import com.dappley.android.sdk.util.HexUtil;
 import com.dappley.android.sdk.util.SerializeUtil;
 import com.tencent.mmkv.MMKV;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Database for BlockChain data.
@@ -18,6 +19,7 @@ public class BlockChainDb {
     private static final String KEY_CURRENT_HASH = "current_hash";
     private static final String KEY_GENESIS_HASH = "genesis_hash";
     private static final String KEY_BLOCK_CHAIN_INFO = "block_chain_info";
+    private static final String KEY_WALLET_ADDRESSES = "wallet_address";
 
     private Context context;
     private MMKV mmkv;
@@ -113,6 +115,50 @@ public class BlockChainDb {
         try {
             byte[] bytes = mmkv.decodeBytes(KEY_BLOCK_CHAIN_INFO);
             return BlockChainInfo.parseBytes(bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Save user's wallet address into db.
+     * @param walletAddress address in base58 string format
+     * @return boolean true/false
+     */
+    public boolean saveWalletAddress(String walletAddress) {
+        Set<String> walletAddressSet = getWalletAddressSet();
+        if (walletAddressSet == null) {
+            walletAddressSet = new HashSet<>(1);
+        }
+        return saveWalletAddressSet(walletAddressSet);
+    }
+
+    /**
+     * Save a set of user's wallet address into db.
+     * @param walletAddressSet several addresses
+     * @return boolean true/false
+     */
+    public boolean saveWalletAddressSet(Set<String> walletAddressSet) {
+        boolean success = false;
+        try {
+            byte[] bytes = SerializeUtil.encode(walletAddressSet);
+            mmkv.encode(KEY_WALLET_ADDRESSES, bytes);
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    /**
+     * Returns all user's address info list from database
+     * @return Set<String> wallet address set in base68 format
+     */
+    public Set<String> getWalletAddressSet() {
+        try {
+            byte[] bytes = mmkv.decodeBytes(KEY_WALLET_ADDRESSES);
+            return SerializeUtil.decode(bytes, Set.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

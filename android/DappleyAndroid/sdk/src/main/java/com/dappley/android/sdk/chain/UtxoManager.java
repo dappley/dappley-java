@@ -49,7 +49,7 @@ public class UtxoManager {
             if (utxo == null) {
                 continue;
             }
-            accumulated = accumulated.add(BigInteger.valueOf(utxo.getAmount()));
+            accumulated = accumulated.add(utxo.getAmount());
             spendables.add(utxo);
             if (accumulated.compareTo(amount) >= 0) {
                 break;

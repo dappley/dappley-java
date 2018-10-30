@@ -10,13 +10,7 @@ option java_outer_classname = "RpcProto";
 
 service RpcService {
     rpc RpcGetVersion (GetVersionRequest) returns (GetVersionResponse) {}
-    rpc RpcCreateWallet (CreateWalletRequest) returns (CreateWalletResponse) {}
-    rpc RpcAddProducer (AddProducerRequest) returns (AddProducerResponse) {}
     rpc RpcGetBalance (GetBalanceRequest) returns (GetBalanceResponse) {}
-    rpc RpcAddBalance (AddBalanceRequest) returns (AddBalanceResponse) {}
-    rpc RpcGetWalletAddress (GetWalletAddressRequest) returns (GetWalletAddressResponse) {}
-    rpc RpcSend (SendRequest) returns (SendResponse) {}
-    rpc RpcGetPeerInfo (GetPeerInfoRequest) returns (GetPeerInfoResponse) {}
     rpc RpcGetBlockchainInfo (GetBlockchainInfoRequest) returns (GetBlockchainInfoResponse) {}
     rpc RpcGetUTXO(GetUTXORequest) returns (GetUTXOResponse) {}
     rpc RpcGetBlocks(GetBlocksRequest) returns (GetBlocksResponse) {}
@@ -27,12 +21,25 @@ service RpcService {
 
 service AdminService{
     rpc RpcAddPeer(AddPeerRequest) returns (AddPeerResponse) {}
+    rpc RpcSend (SendRequest) returns (SendResponse) {}
+    rpc RpcGetPeerInfo (GetPeerInfoRequest) returns (GetPeerInfoResponse) {}
+    rpc RpcSendFromMiner (SendFromMinerRequest) returns (SendFromMinerResponse) {}
+    rpc RpcAddProducer (AddProducerRequest) returns (AddProducerResponse) {}
+    rpc RpcUnlockWallet (UnlockWalletRequest) returns (UnlockWalletResponse) {}
 }
 
 // The request message
 message CreateWalletRequest {
     string name = 1;
     string passphrase = 2;
+}
+
+message UnlockWalletRequest {
+    string name = 1;
+}
+
+message UnlockWalletResponse {
+    string message = 1;
 }
 
 message AddProducerRequest {
@@ -46,8 +53,8 @@ message GetBalanceRequest {
     string address = 3;
 }
 
-message AddBalanceRequest {
-    string address = 1;
+message SendFromMinerRequest {
+    string to = 1;
     bytes amount = 2;
 }
 
@@ -56,6 +63,7 @@ message SendRequest {
     string to = 2;
     bytes amount = 3;
     string Walletpath = 4;
+    uint64 tip = 5;
 }
 
 message GetWalletAddressRequest {
@@ -73,11 +81,6 @@ message AddPeerRequest {
 
 // The response message
 
-message CreateWalletResponse {
-    string message = 1;
-    string address = 2;
-}
-
 message AddProducerResponse {
     string message = 1;
 }
@@ -87,7 +90,7 @@ message GetBalanceResponse {
     int64 amount = 2;
 }
 
-message AddBalanceResponse {
+message SendFromMinerResponse {
     string message = 1;
 }
 
@@ -103,16 +106,11 @@ message GetBlockchainInfoResponse {
     bytes   tailBlockHash = 1;
     uint64  blockHeight = 2;
     repeated string producers = 3; // all producers' addresses
+    int64   timestamp = 4;
 }
 
 message AddPeerResponse {
     string status = 1;
-}
-
-message GetWalletAddressResponse {
-    string message = 1;
-    repeated string address = 2;
-    repeated string privateKey = 3;
 }
 
 message GetVersionRequest {
@@ -136,14 +134,14 @@ message GetUTXOResponse {
 }
 
 message UTXO {
-    int64   amount = 1;
+    bytes   amount = 1;
     bytes   publicKeyHash = 2;
     bytes   txid = 3;
     uint32  txIndex = 4;
 }
 
 message GetBlocksRequest {
-    repeated bytes startBlockHashs = 1;  // Query start block hashes, sorted descending by height.
+    repeated bytes startBlockHashes = 1;  // Query start block hashes, sorted descending by height.
     int32 maxCount = 2;   // Max query block count
 }
 

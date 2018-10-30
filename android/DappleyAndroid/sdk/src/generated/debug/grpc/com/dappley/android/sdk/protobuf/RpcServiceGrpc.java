@@ -58,68 +58,6 @@ public final class RpcServiceGrpc {
      return getRpcGetVersionMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse> getRpcCreateWalletMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcCreateWallet",
-      requestType = com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest.class,
-      responseType = com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse> getRpcCreateWalletMethod() {
-    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest, com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse> getRpcCreateWalletMethod;
-    if ((getRpcCreateWalletMethod = RpcServiceGrpc.getRpcCreateWalletMethod) == null) {
-      synchronized (RpcServiceGrpc.class) {
-        if ((getRpcCreateWalletMethod = RpcServiceGrpc.getRpcCreateWalletMethod) == null) {
-          RpcServiceGrpc.getRpcCreateWalletMethod = getRpcCreateWalletMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest, com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcCreateWallet"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse.getDefaultInstance()))
-                  .build();
-          }
-        }
-     }
-     return getRpcCreateWalletMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse> getRpcAddProducerMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcAddProducer",
-      requestType = com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest.class,
-      responseType = com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse> getRpcAddProducerMethod() {
-    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest, com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse> getRpcAddProducerMethod;
-    if ((getRpcAddProducerMethod = RpcServiceGrpc.getRpcAddProducerMethod) == null) {
-      synchronized (RpcServiceGrpc.class) {
-        if ((getRpcAddProducerMethod = RpcServiceGrpc.getRpcAddProducerMethod) == null) {
-          RpcServiceGrpc.getRpcAddProducerMethod = getRpcAddProducerMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest, com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcAddProducer"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse.getDefaultInstance()))
-                  .build();
-          }
-        }
-     }
-     return getRpcAddProducerMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest,
       com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse> getRpcGetBalanceMethod;
 
@@ -149,130 +87,6 @@ public final class RpcServiceGrpc {
         }
      }
      return getRpcGetBalanceMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse> getRpcAddBalanceMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcAddBalance",
-      requestType = com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest.class,
-      responseType = com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse> getRpcAddBalanceMethod() {
-    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest, com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse> getRpcAddBalanceMethod;
-    if ((getRpcAddBalanceMethod = RpcServiceGrpc.getRpcAddBalanceMethod) == null) {
-      synchronized (RpcServiceGrpc.class) {
-        if ((getRpcAddBalanceMethod = RpcServiceGrpc.getRpcAddBalanceMethod) == null) {
-          RpcServiceGrpc.getRpcAddBalanceMethod = getRpcAddBalanceMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest, com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcAddBalance"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse.getDefaultInstance()))
-                  .build();
-          }
-        }
-     }
-     return getRpcAddBalanceMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse> getRpcGetWalletAddressMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcGetWalletAddress",
-      requestType = com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest.class,
-      responseType = com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse> getRpcGetWalletAddressMethod() {
-    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest, com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse> getRpcGetWalletAddressMethod;
-    if ((getRpcGetWalletAddressMethod = RpcServiceGrpc.getRpcGetWalletAddressMethod) == null) {
-      synchronized (RpcServiceGrpc.class) {
-        if ((getRpcGetWalletAddressMethod = RpcServiceGrpc.getRpcGetWalletAddressMethod) == null) {
-          RpcServiceGrpc.getRpcGetWalletAddressMethod = getRpcGetWalletAddressMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest, com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcGetWalletAddress"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse.getDefaultInstance()))
-                  .build();
-          }
-        }
-     }
-     return getRpcGetWalletAddressMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.SendRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.SendResponse> getRpcSendMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcSend",
-      requestType = com.dappley.android.sdk.protobuf.RpcProto.SendRequest.class,
-      responseType = com.dappley.android.sdk.protobuf.RpcProto.SendResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.SendRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.SendResponse> getRpcSendMethod() {
-    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.SendRequest, com.dappley.android.sdk.protobuf.RpcProto.SendResponse> getRpcSendMethod;
-    if ((getRpcSendMethod = RpcServiceGrpc.getRpcSendMethod) == null) {
-      synchronized (RpcServiceGrpc.class) {
-        if ((getRpcSendMethod = RpcServiceGrpc.getRpcSendMethod) == null) {
-          RpcServiceGrpc.getRpcSendMethod = getRpcSendMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.SendRequest, com.dappley.android.sdk.protobuf.RpcProto.SendResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcSend"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.SendRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.SendResponse.getDefaultInstance()))
-                  .build();
-          }
-        }
-     }
-     return getRpcSendMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse> getRpcGetPeerInfoMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcGetPeerInfo",
-      requestType = com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest.class,
-      responseType = com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest,
-      com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse> getRpcGetPeerInfoMethod() {
-    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest, com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse> getRpcGetPeerInfoMethod;
-    if ((getRpcGetPeerInfoMethod = RpcServiceGrpc.getRpcGetPeerInfoMethod) == null) {
-      synchronized (RpcServiceGrpc.class) {
-        if ((getRpcGetPeerInfoMethod = RpcServiceGrpc.getRpcGetPeerInfoMethod) == null) {
-          RpcServiceGrpc.getRpcGetPeerInfoMethod = getRpcGetPeerInfoMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest, com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcGetPeerInfo"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
-                  com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse.getDefaultInstance()))
-                  .build();
-          }
-        }
-     }
-     return getRpcGetPeerInfoMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetBlockchainInfoRequest,
@@ -497,51 +311,9 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public void rpcCreateWallet(com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcCreateWalletMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void rpcAddProducer(com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcAddProducerMethod(), responseObserver);
-    }
-
-    /**
-     */
     public void rpcGetBalance(com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest request,
         io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getRpcGetBalanceMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void rpcAddBalance(com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcAddBalanceMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void rpcGetWalletAddress(com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcGetWalletAddressMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void rpcSend(com.dappley.android.sdk.protobuf.RpcProto.SendRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcSendMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void rpcGetPeerInfo(com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcGetPeerInfoMethod(), responseObserver);
     }
 
     /**
@@ -596,54 +368,12 @@ public final class RpcServiceGrpc {
                 com.dappley.android.sdk.protobuf.RpcProto.GetVersionResponse>(
                   this, METHODID_RPC_GET_VERSION)))
           .addMethod(
-            getRpcCreateWalletMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest,
-                com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse>(
-                  this, METHODID_RPC_CREATE_WALLET)))
-          .addMethod(
-            getRpcAddProducerMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest,
-                com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse>(
-                  this, METHODID_RPC_ADD_PRODUCER)))
-          .addMethod(
             getRpcGetBalanceMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest,
                 com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse>(
                   this, METHODID_RPC_GET_BALANCE)))
-          .addMethod(
-            getRpcAddBalanceMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest,
-                com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse>(
-                  this, METHODID_RPC_ADD_BALANCE)))
-          .addMethod(
-            getRpcGetWalletAddressMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest,
-                com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse>(
-                  this, METHODID_RPC_GET_WALLET_ADDRESS)))
-          .addMethod(
-            getRpcSendMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.dappley.android.sdk.protobuf.RpcProto.SendRequest,
-                com.dappley.android.sdk.protobuf.RpcProto.SendResponse>(
-                  this, METHODID_RPC_SEND)))
-          .addMethod(
-            getRpcGetPeerInfoMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest,
-                com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse>(
-                  this, METHODID_RPC_GET_PEER_INFO)))
           .addMethod(
             getRpcGetBlockchainInfoMethod(),
             asyncUnaryCall(
@@ -718,58 +448,10 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public void rpcCreateWallet(com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcCreateWalletMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void rpcAddProducer(com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcAddProducerMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
     public void rpcGetBalance(com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest request,
         io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRpcGetBalanceMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void rpcAddBalance(com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcAddBalanceMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void rpcGetWalletAddress(com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcGetWalletAddressMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void rpcSend(com.dappley.android.sdk.protobuf.RpcProto.SendRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcSendMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void rpcGetPeerInfo(com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcGetPeerInfoMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -848,51 +530,9 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse rpcCreateWallet(com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcCreateWalletMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse rpcAddProducer(com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcAddProducerMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
     public com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse rpcGetBalance(com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest request) {
       return blockingUnaryCall(
           getChannel(), getRpcGetBalanceMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse rpcAddBalance(com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcAddBalanceMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse rpcGetWalletAddress(com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcGetWalletAddressMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.dappley.android.sdk.protobuf.RpcProto.SendResponse rpcSend(com.dappley.android.sdk.protobuf.RpcProto.SendRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcSendMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse rpcGetPeerInfo(com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcGetPeerInfoMethod(), getCallOptions(), request);
     }
 
     /**
@@ -966,58 +606,10 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse> rpcCreateWallet(
-        com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcCreateWalletMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse> rpcAddProducer(
-        com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcAddProducerMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse> rpcGetBalance(
         com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getRpcGetBalanceMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse> rpcAddBalance(
-        com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcAddBalanceMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse> rpcGetWalletAddress(
-        com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcGetWalletAddressMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.SendResponse> rpcSend(
-        com.dappley.android.sdk.protobuf.RpcProto.SendRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcSendMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse> rpcGetPeerInfo(
-        com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcGetPeerInfoMethod(), getCallOptions()), request);
     }
 
     /**
@@ -1070,19 +662,13 @@ public final class RpcServiceGrpc {
   }
 
   private static final int METHODID_RPC_GET_VERSION = 0;
-  private static final int METHODID_RPC_CREATE_WALLET = 1;
-  private static final int METHODID_RPC_ADD_PRODUCER = 2;
-  private static final int METHODID_RPC_GET_BALANCE = 3;
-  private static final int METHODID_RPC_ADD_BALANCE = 4;
-  private static final int METHODID_RPC_GET_WALLET_ADDRESS = 5;
-  private static final int METHODID_RPC_SEND = 6;
-  private static final int METHODID_RPC_GET_PEER_INFO = 7;
-  private static final int METHODID_RPC_GET_BLOCKCHAIN_INFO = 8;
-  private static final int METHODID_RPC_GET_UTXO = 9;
-  private static final int METHODID_RPC_GET_BLOCKS = 10;
-  private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 11;
-  private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 12;
-  private static final int METHODID_RPC_SEND_TRANSACTION = 13;
+  private static final int METHODID_RPC_GET_BALANCE = 1;
+  private static final int METHODID_RPC_GET_BLOCKCHAIN_INFO = 2;
+  private static final int METHODID_RPC_GET_UTXO = 3;
+  private static final int METHODID_RPC_GET_BLOCKS = 4;
+  private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 5;
+  private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 6;
+  private static final int METHODID_RPC_SEND_TRANSACTION = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1105,33 +691,9 @@ public final class RpcServiceGrpc {
           serviceImpl.rpcGetVersion((com.dappley.android.sdk.protobuf.RpcProto.GetVersionRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetVersionResponse>) responseObserver);
           break;
-        case METHODID_RPC_CREATE_WALLET:
-          serviceImpl.rpcCreateWallet((com.dappley.android.sdk.protobuf.RpcProto.CreateWalletRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse>) responseObserver);
-          break;
-        case METHODID_RPC_ADD_PRODUCER:
-          serviceImpl.rpcAddProducer((com.dappley.android.sdk.protobuf.RpcProto.AddProducerRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.AddProducerResponse>) responseObserver);
-          break;
         case METHODID_RPC_GET_BALANCE:
           serviceImpl.rpcGetBalance((com.dappley.android.sdk.protobuf.RpcProto.GetBalanceRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetBalanceResponse>) responseObserver);
-          break;
-        case METHODID_RPC_ADD_BALANCE:
-          serviceImpl.rpcAddBalance((com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse>) responseObserver);
-          break;
-        case METHODID_RPC_GET_WALLET_ADDRESS:
-          serviceImpl.rpcGetWalletAddress((com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse>) responseObserver);
-          break;
-        case METHODID_RPC_SEND:
-          serviceImpl.rpcSend((com.dappley.android.sdk.protobuf.RpcProto.SendRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendResponse>) responseObserver);
-          break;
-        case METHODID_RPC_GET_PEER_INFO:
-          serviceImpl.rpcGetPeerInfo((com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetPeerInfoResponse>) responseObserver);
           break;
         case METHODID_RPC_GET_BLOCKCHAIN_INFO:
           serviceImpl.rpcGetBlockchainInfo((com.dappley.android.sdk.protobuf.RpcProto.GetBlockchainInfoRequest) request,
@@ -1183,13 +745,7 @@ public final class RpcServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .addMethod(getRpcGetVersionMethod())
-              .addMethod(getRpcCreateWalletMethod())
-              .addMethod(getRpcAddProducerMethod())
               .addMethod(getRpcGetBalanceMethod())
-              .addMethod(getRpcAddBalanceMethod())
-              .addMethod(getRpcGetWalletAddressMethod())
-              .addMethod(getRpcSendMethod())
-              .addMethod(getRpcGetPeerInfoMethod())
               .addMethod(getRpcGetBlockchainInfoMethod())
               .addMethod(getRpcGetUTXOMethod())
               .addMethod(getRpcGetBlocksMethod())

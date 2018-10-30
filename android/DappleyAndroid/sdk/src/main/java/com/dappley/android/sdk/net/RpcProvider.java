@@ -76,14 +76,15 @@ public class RpcProvider implements ProtocalProvider {
 
     @Override
     public String addBalance(String address) {
-        Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
-        RpcProto.AddBalanceRequest request = RpcProto.AddBalanceRequest.newBuilder()
-                .setAddress(address)
-                .build();
-        RpcProto.AddBalanceResponse response = getRpcServiceBlockingStub().rpcAddBalance(request);
-        String message = response.getMessage();
-        return message;
+//        Asserts.clientInit(channel);
+//        Asserts.channalOpen(channel);
+//        RpcProto.AddBalanceRequest request = RpcProto.AddBalanceRequest.newBuilder()
+//                .setAddress(address)
+//                .build();
+//        RpcProto.AddBalanceResponse response = getRpcServiceBlockingStub().rpcAddBalance(request);
+//        String message = response.getMessage();
+//        return message;
+        return null;
     }
 
     @Override
@@ -121,7 +122,7 @@ public class RpcProvider implements ProtocalProvider {
         Asserts.clientInit(channel);
         Asserts.channalOpen(channel);
         RpcProto.GetBlocksRequest request = RpcProto.GetBlocksRequest.newBuilder()
-                .addAllStartBlockHashs(startHashs)
+                .addAllStartBlockHashes(startHashs)
                 .setMaxCount(count)
                 .build();
         RpcProto.GetBlocksResponse response = getRpcServiceBlockingStub().rpcGetBlocks(request);

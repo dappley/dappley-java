@@ -440,6 +440,630 @@ public final class RpcProto {
     }
   }
 
+  public interface UnlockWalletRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.UnlockWalletRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+  }
+  /**
+   * Protobuf type {@code rpcpb.UnlockWalletRequest}
+   */
+  public  static final class UnlockWalletRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          UnlockWalletRequest, UnlockWalletRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.UnlockWalletRequest)
+      UnlockWalletRequestOrBuilder {
+    private UnlockWalletRequest() {
+      name_ = "";
+    }
+    public static final int NAME_FIELD_NUMBER = 1;
+    private java.lang.String name_;
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public java.lang.String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    private void setName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!name_.isEmpty()) {
+        output.writeString(1, getName());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getName());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.UnlockWalletRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.UnlockWalletRequest)
+        com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequestOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public java.lang.String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.UnlockWalletRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest other = (com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest) arg1;
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.UnlockWalletRequest)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UnlockWalletRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UnlockWalletRequest> PARSER;
+
+    public static com.google.protobuf.Parser<UnlockWalletRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface UnlockWalletResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.UnlockWalletResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+  }
+  /**
+   * Protobuf type {@code rpcpb.UnlockWalletResponse}
+   */
+  public  static final class UnlockWalletResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          UnlockWalletResponse, UnlockWalletResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.UnlockWalletResponse)
+      UnlockWalletResponseOrBuilder {
+    private UnlockWalletResponse() {
+      message_ = "";
+    }
+    public static final int MESSAGE_FIELD_NUMBER = 1;
+    private java.lang.String message_;
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    public java.lang.String getMessage() {
+      return message_;
+    }
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(message_);
+    }
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    private void setMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      message_ = value;
+    }
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    private void clearMessage() {
+      
+      message_ = getDefaultInstance().getMessage();
+    }
+    /**
+     * <code>optional string message = 1;</code>
+     */
+    private void setMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      message_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!message_.isEmpty()) {
+        output.writeString(1, getMessage());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!message_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getMessage());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.UnlockWalletResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.UnlockWalletResponse)
+        com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponseOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string message = 1;</code>
+       */
+      public java.lang.String getMessage() {
+        return instance.getMessage();
+      }
+      /**
+       * <code>optional string message = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        return instance.getMessageBytes();
+      }
+      /**
+       * <code>optional string message = 1;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string message = 1;</code>
+       */
+      public Builder clearMessage() {
+        copyOnWrite();
+        instance.clearMessage();
+        return this;
+      }
+      /**
+       * <code>optional string message = 1;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMessageBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.UnlockWalletResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse other = (com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse) arg1;
+          message_ = visitor.visitString(!message_.isEmpty(), message_,
+              !other.message_.isEmpty(), other.message_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  message_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.UnlockWalletResponse)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UnlockWalletResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.UnlockWalletResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UnlockWalletResponse> PARSER;
+
+    public static com.google.protobuf.Parser<UnlockWalletResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface AddProducerRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.AddProducerRequest)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -1400,19 +2024,19 @@ public final class RpcProto {
     }
   }
 
-  public interface AddBalanceRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.AddBalanceRequest)
+  public interface SendFromMinerRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.SendFromMinerRequest)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
-    java.lang.String getAddress();
+    java.lang.String getTo();
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
     com.google.protobuf.ByteString
-        getAddressBytes();
+        getToBytes();
 
     /**
      * <code>optional bytes amount = 2;</code>
@@ -1420,61 +2044,61 @@ public final class RpcProto {
     com.google.protobuf.ByteString getAmount();
   }
   /**
-   * Protobuf type {@code rpcpb.AddBalanceRequest}
+   * Protobuf type {@code rpcpb.SendFromMinerRequest}
    */
-  public  static final class AddBalanceRequest extends
+  public  static final class SendFromMinerRequest extends
       com.google.protobuf.GeneratedMessageLite<
-          AddBalanceRequest, AddBalanceRequest.Builder> implements
-      // @@protoc_insertion_point(message_implements:rpcpb.AddBalanceRequest)
-      AddBalanceRequestOrBuilder {
-    private AddBalanceRequest() {
-      address_ = "";
+          SendFromMinerRequest, SendFromMinerRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.SendFromMinerRequest)
+      SendFromMinerRequestOrBuilder {
+    private SendFromMinerRequest() {
+      to_ = "";
       amount_ = com.google.protobuf.ByteString.EMPTY;
     }
-    public static final int ADDRESS_FIELD_NUMBER = 1;
-    private java.lang.String address_;
+    public static final int TO_FIELD_NUMBER = 1;
+    private java.lang.String to_;
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
-    public java.lang.String getAddress() {
-      return address_;
+    public java.lang.String getTo() {
+      return to_;
     }
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getAddressBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(address_);
+        getToBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(to_);
     }
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
-    private void setAddress(
+    private void setTo(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      address_ = value;
+      to_ = value;
     }
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
-    private void clearAddress() {
+    private void clearTo() {
       
-      address_ = getDefaultInstance().getAddress();
+      to_ = getDefaultInstance().getTo();
     }
     /**
-     * <code>optional string address = 1;</code>
+     * <code>optional string to = 1;</code>
      */
-    private void setAddressBytes(
+    private void setToBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      address_ = value.toStringUtf8();
+      to_ = value.toStringUtf8();
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 2;
@@ -1505,8 +2129,8 @@ public final class RpcProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!address_.isEmpty()) {
-        output.writeString(1, getAddress());
+      if (!to_.isEmpty()) {
+        output.writeString(1, getTo());
       }
       if (!amount_.isEmpty()) {
         output.writeBytes(2, amount_);
@@ -1518,9 +2142,9 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!address_.isEmpty()) {
+      if (!to_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getAddress());
+          .computeStringSize(1, getTo());
       }
       if (!amount_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -1530,60 +2154,60 @@ public final class RpcProto {
       return size;
     }
 
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(byte[] data)
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(java.io.InputStream input)
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseDelimitedFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1594,61 +2218,61 @@ public final class RpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest prototype) {
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code rpcpb.AddBalanceRequest}
+     * Protobuf type {@code rpcpb.SendFromMinerRequest}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest, Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.AddBalanceRequest)
-        com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequestOrBuilder {
-      // Construct using com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest.newBuilder()
+          com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.SendFromMinerRequest)
+        com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequestOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string address = 1;</code>
+       * <code>optional string to = 1;</code>
        */
-      public java.lang.String getAddress() {
-        return instance.getAddress();
+      public java.lang.String getTo() {
+        return instance.getTo();
       }
       /**
-       * <code>optional string address = 1;</code>
+       * <code>optional string to = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getAddressBytes() {
-        return instance.getAddressBytes();
+          getToBytes() {
+        return instance.getToBytes();
       }
       /**
-       * <code>optional string address = 1;</code>
+       * <code>optional string to = 1;</code>
        */
-      public Builder setAddress(
+      public Builder setTo(
           java.lang.String value) {
         copyOnWrite();
-        instance.setAddress(value);
+        instance.setTo(value);
         return this;
       }
       /**
-       * <code>optional string address = 1;</code>
+       * <code>optional string to = 1;</code>
        */
-      public Builder clearAddress() {
+      public Builder clearTo() {
         copyOnWrite();
-        instance.clearAddress();
+        instance.clearTo();
         return this;
       }
       /**
-       * <code>optional string address = 1;</code>
+       * <code>optional string to = 1;</code>
        */
-      public Builder setAddressBytes(
+      public Builder setToBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setAddressBytes(value);
+        instance.setToBytes(value);
         return this;
       }
 
@@ -1675,14 +2299,14 @@ public final class RpcProto {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:rpcpb.AddBalanceRequest)
+      // @@protoc_insertion_point(builder_scope:rpcpb.SendFromMinerRequest)
     }
     protected final Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest();
+          return new com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1695,9 +2319,9 @@ public final class RpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest other = (com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest) arg1;
-          address_ = visitor.visitString(!address_.isEmpty(), address_,
-              !other.address_.isEmpty(), other.address_);
+          com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest other = (com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest) arg1;
+          to_ = visitor.visitString(!to_.isEmpty(), to_,
+              !other.to_.isEmpty(), other.to_);
           amount_ = visitor.visitByteString(amount_ != com.google.protobuf.ByteString.EMPTY, amount_,
               other.amount_ != com.google.protobuf.ByteString.EMPTY, other.amount_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -1727,7 +2351,7 @@ public final class RpcProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  address_ = s;
+                  to_ = s;
                   break;
                 }
                 case 18: {
@@ -1750,7 +2374,7 @@ public final class RpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest.class) {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1763,20 +2387,20 @@ public final class RpcProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:rpcpb.AddBalanceRequest)
-    private static final com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:rpcpb.SendFromMinerRequest)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new AddBalanceRequest();
+      DEFAULT_INSTANCE = new SendFromMinerRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceRequest getDefaultInstance() {
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<AddBalanceRequest> PARSER;
+    private static volatile com.google.protobuf.Parser<SendFromMinerRequest> PARSER;
 
-    public static com.google.protobuf.Parser<AddBalanceRequest> parser() {
+    public static com.google.protobuf.Parser<SendFromMinerRequest> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -1819,6 +2443,11 @@ public final class RpcProto {
      */
     com.google.protobuf.ByteString
         getWalletpathBytes();
+
+    /**
+     * <code>optional uint64 tip = 5;</code>
+     */
+    long getTip();
   }
   /**
    * Protobuf type {@code rpcpb.SendRequest}
@@ -1998,6 +2627,29 @@ public final class RpcProto {
       walletpath_ = value.toStringUtf8();
     }
 
+    public static final int TIP_FIELD_NUMBER = 5;
+    private long tip_;
+    /**
+     * <code>optional uint64 tip = 5;</code>
+     */
+    public long getTip() {
+      return tip_;
+    }
+    /**
+     * <code>optional uint64 tip = 5;</code>
+     */
+    private void setTip(long value) {
+      
+      tip_ = value;
+    }
+    /**
+     * <code>optional uint64 tip = 5;</code>
+     */
+    private void clearTip() {
+      
+      tip_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!from_.isEmpty()) {
@@ -2011,6 +2663,9 @@ public final class RpcProto {
       }
       if (!walletpath_.isEmpty()) {
         output.writeString(4, getWalletpath());
+      }
+      if (tip_ != 0L) {
+        output.writeUInt64(5, tip_);
       }
     }
 
@@ -2034,6 +2689,10 @@ public final class RpcProto {
       if (!walletpath_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getWalletpath());
+      }
+      if (tip_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(5, tip_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2264,6 +2923,29 @@ public final class RpcProto {
         return this;
       }
 
+      /**
+       * <code>optional uint64 tip = 5;</code>
+       */
+      public long getTip() {
+        return instance.getTip();
+      }
+      /**
+       * <code>optional uint64 tip = 5;</code>
+       */
+      public Builder setTip(long value) {
+        copyOnWrite();
+        instance.setTip(value);
+        return this;
+      }
+      /**
+       * <code>optional uint64 tip = 5;</code>
+       */
+      public Builder clearTip() {
+        copyOnWrite();
+        instance.clearTip();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:rpcpb.SendRequest)
     }
     protected final Object dynamicMethod(
@@ -2293,6 +2975,8 @@ public final class RpcProto {
               other.amount_ != com.google.protobuf.ByteString.EMPTY, other.amount_);
           walletpath_ = visitor.visitString(!walletpath_.isEmpty(), walletpath_,
               !other.walletpath_.isEmpty(), other.walletpath_);
+          tip_ = visitor.visitLong(tip_ != 0L, tip_,
+              other.tip_ != 0L, other.tip_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2338,6 +3022,11 @@ public final class RpcProto {
                   String s = input.readStringRequireUtf8();
 
                   walletpath_ = s;
+                  break;
+                }
+                case 40: {
+
+                  tip_ = input.readUInt64();
                   break;
                 }
               }
@@ -3522,430 +4211,6 @@ public final class RpcProto {
     }
   }
 
-  public interface CreateWalletResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.CreateWalletResponse)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    java.lang.String getMessage();
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getMessageBytes();
-
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    java.lang.String getAddress();
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getAddressBytes();
-  }
-  /**
-   * Protobuf type {@code rpcpb.CreateWalletResponse}
-   */
-  public  static final class CreateWalletResponse extends
-      com.google.protobuf.GeneratedMessageLite<
-          CreateWalletResponse, CreateWalletResponse.Builder> implements
-      // @@protoc_insertion_point(message_implements:rpcpb.CreateWalletResponse)
-      CreateWalletResponseOrBuilder {
-    private CreateWalletResponse() {
-      message_ = "";
-      address_ = "";
-    }
-    public static final int MESSAGE_FIELD_NUMBER = 1;
-    private java.lang.String message_;
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    public java.lang.String getMessage() {
-      return message_;
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMessageBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(message_);
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    private void setMessage(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      message_ = value;
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    private void clearMessage() {
-      
-      message_ = getDefaultInstance().getMessage();
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    private void setMessageBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      message_ = value.toStringUtf8();
-    }
-
-    public static final int ADDRESS_FIELD_NUMBER = 2;
-    private java.lang.String address_;
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    public java.lang.String getAddress() {
-      return address_;
-    }
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAddressBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(address_);
-    }
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    private void setAddress(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      address_ = value;
-    }
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    private void clearAddress() {
-      
-      address_ = getDefaultInstance().getAddress();
-    }
-    /**
-     * <code>optional string address = 2;</code>
-     */
-    private void setAddressBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      address_ = value.toStringUtf8();
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!message_.isEmpty()) {
-        output.writeString(1, getMessage());
-      }
-      if (!address_.isEmpty()) {
-        output.writeString(2, getAddress());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!message_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getMessage());
-      }
-      if (!address_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getAddress());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    /**
-     * Protobuf type {@code rpcpb.CreateWalletResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse, Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.CreateWalletResponse)
-        com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponseOrBuilder {
-      // Construct using com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public java.lang.String getMessage() {
-        return instance.getMessage();
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMessageBytes() {
-        return instance.getMessageBytes();
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public Builder setMessage(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setMessage(value);
-        return this;
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public Builder clearMessage() {
-        copyOnWrite();
-        instance.clearMessage();
-        return this;
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public Builder setMessageBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setMessageBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string address = 2;</code>
-       */
-      public java.lang.String getAddress() {
-        return instance.getAddress();
-      }
-      /**
-       * <code>optional string address = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAddressBytes() {
-        return instance.getAddressBytes();
-      }
-      /**
-       * <code>optional string address = 2;</code>
-       */
-      public Builder setAddress(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setAddress(value);
-        return this;
-      }
-      /**
-       * <code>optional string address = 2;</code>
-       */
-      public Builder clearAddress() {
-        copyOnWrite();
-        instance.clearAddress();
-        return this;
-      }
-      /**
-       * <code>optional string address = 2;</code>
-       */
-      public Builder setAddressBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setAddressBytes(value);
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.CreateWalletResponse)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse other = (com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse) arg1;
-          message_ = visitor.visitString(!message_.isEmpty(), message_,
-              !other.message_.isEmpty(), other.message_);
-          address_ = visitor.visitString(!address_.isEmpty(), address_,
-              !other.address_.isEmpty(), other.address_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
-
-                  message_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
-
-                  address_ = s;
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:rpcpb.CreateWalletResponse)
-    private static final com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new CreateWalletResponse();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.dappley.android.sdk.protobuf.RpcProto.CreateWalletResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<CreateWalletResponse> PARSER;
-
-    public static com.google.protobuf.Parser<CreateWalletResponse> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
   public interface AddProducerResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.AddProducerResponse)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -4635,8 +4900,8 @@ public final class RpcProto {
     }
   }
 
-  public interface AddBalanceResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.AddBalanceResponse)
+  public interface SendFromMinerResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.SendFromMinerResponse)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
@@ -4650,14 +4915,14 @@ public final class RpcProto {
         getMessageBytes();
   }
   /**
-   * Protobuf type {@code rpcpb.AddBalanceResponse}
+   * Protobuf type {@code rpcpb.SendFromMinerResponse}
    */
-  public  static final class AddBalanceResponse extends
+  public  static final class SendFromMinerResponse extends
       com.google.protobuf.GeneratedMessageLite<
-          AddBalanceResponse, AddBalanceResponse.Builder> implements
-      // @@protoc_insertion_point(message_implements:rpcpb.AddBalanceResponse)
-      AddBalanceResponseOrBuilder {
-    private AddBalanceResponse() {
+          SendFromMinerResponse, SendFromMinerResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.SendFromMinerResponse)
+      SendFromMinerResponseOrBuilder {
+    private SendFromMinerResponse() {
       message_ = "";
     }
     public static final int MESSAGE_FIELD_NUMBER = 1;
@@ -4726,60 +4991,60 @@ public final class RpcProto {
       return size;
     }
 
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(byte[] data)
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(java.io.InputStream input)
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseDelimitedFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse parseFrom(
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4790,19 +5055,19 @@ public final class RpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse prototype) {
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code rpcpb.AddBalanceResponse}
+     * Protobuf type {@code rpcpb.SendFromMinerResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse, Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.AddBalanceResponse)
-        com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponseOrBuilder {
-      // Construct using com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse.newBuilder()
+          com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.SendFromMinerResponse)
+        com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponseOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
@@ -4848,14 +5113,14 @@ public final class RpcProto {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:rpcpb.AddBalanceResponse)
+      // @@protoc_insertion_point(builder_scope:rpcpb.SendFromMinerResponse)
     }
     protected final Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse();
+          return new com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4868,7 +5133,7 @@ public final class RpcProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse other = (com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse) arg1;
+          com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse other = (com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse) arg1;
           message_ = visitor.visitString(!message_.isEmpty(), message_,
               !other.message_.isEmpty(), other.message_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -4916,7 +5181,7 @@ public final class RpcProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse.class) {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4929,20 +5194,20 @@ public final class RpcProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:rpcpb.AddBalanceResponse)
-    private static final com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:rpcpb.SendFromMinerResponse)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new AddBalanceResponse();
+      DEFAULT_INSTANCE = new SendFromMinerResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.dappley.android.sdk.protobuf.RpcProto.AddBalanceResponse getDefaultInstance() {
+    public static com.dappley.android.sdk.protobuf.RpcProto.SendFromMinerResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<AddBalanceResponse> PARSER;
+    private static volatile com.google.protobuf.Parser<SendFromMinerResponse> PARSER;
 
-    public static com.google.protobuf.Parser<AddBalanceResponse> parser() {
+    public static com.google.protobuf.Parser<SendFromMinerResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -5634,6 +5899,11 @@ public final class RpcProto {
      */
     com.google.protobuf.ByteString
         getProducersBytes(int index);
+
+    /**
+     * <code>optional int64 timestamp = 4;</code>
+     */
+    long getTimestamp();
   }
   /**
    * Protobuf type {@code rpcpb.GetBlockchainInfoResponse}
@@ -5817,6 +6087,29 @@ public final class RpcProto {
       producers_.add(value.toStringUtf8());
     }
 
+    public static final int TIMESTAMP_FIELD_NUMBER = 4;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 4;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional int64 timestamp = 4;</code>
+     */
+    private void setTimestamp(long value) {
+      
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional int64 timestamp = 4;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!tailBlockHash_.isEmpty()) {
@@ -5827,6 +6120,9 @@ public final class RpcProto {
       }
       for (int i = 0; i < producers_.size(); i++) {
         output.writeString(3, producers_.get(i));
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(4, timestamp_);
       }
     }
 
@@ -5851,6 +6147,10 @@ public final class RpcProto {
         }
         size += dataSize;
         size += 1 * getProducersList().size();
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, timestamp_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -6092,6 +6392,29 @@ public final class RpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 timestamp = 4;</code>
+       */
+      public long getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional int64 timestamp = 4;</code>
+       */
+      public Builder setTimestamp(long value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 4;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockchainInfoResponse)
     }
     protected final Object dynamicMethod(
@@ -6119,6 +6442,8 @@ public final class RpcProto {
           blockHeight_ = visitor.visitLong(blockHeight_ != 0L, blockHeight_,
               other.blockHeight_ != 0L, other.blockHeight_);
           producers_= visitor.visitList(producers_, other.producers_);
+          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+              other.timestamp_ != 0L, other.timestamp_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6161,6 +6486,11 @@ public final class RpcProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(producers_);
                   }
                   producers_.add(s);
+                  break;
+                }
+                case 32: {
+
+                  timestamp_ = input.readInt64();
                   break;
                 }
               }
@@ -6517,718 +6847,6 @@ public final class RpcProto {
     private static volatile com.google.protobuf.Parser<AddPeerResponse> PARSER;
 
     public static com.google.protobuf.Parser<AddPeerResponse> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface GetWalletAddressResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetWalletAddressResponse)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    java.lang.String getMessage();
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getMessageBytes();
-
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    java.util.List<String>
-        getAddressList();
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    int getAddressCount();
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    java.lang.String getAddress(int index);
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getAddressBytes(int index);
-
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    java.util.List<String>
-        getPrivateKeyList();
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    int getPrivateKeyCount();
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    java.lang.String getPrivateKey(int index);
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getPrivateKeyBytes(int index);
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetWalletAddressResponse}
-   */
-  public  static final class GetWalletAddressResponse extends
-      com.google.protobuf.GeneratedMessageLite<
-          GetWalletAddressResponse, GetWalletAddressResponse.Builder> implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetWalletAddressResponse)
-      GetWalletAddressResponseOrBuilder {
-    private GetWalletAddressResponse() {
-      message_ = "";
-      address_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-      privateKey_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    private int bitField0_;
-    public static final int MESSAGE_FIELD_NUMBER = 1;
-    private java.lang.String message_;
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    public java.lang.String getMessage() {
-      return message_;
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMessageBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(message_);
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    private void setMessage(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      message_ = value;
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    private void clearMessage() {
-      
-      message_ = getDefaultInstance().getMessage();
-    }
-    /**
-     * <code>optional string message = 1;</code>
-     */
-    private void setMessageBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      message_ = value.toStringUtf8();
-    }
-
-    public static final int ADDRESS_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<String> address_;
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    public java.util.List<String> getAddressList() {
-      return address_;
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    public int getAddressCount() {
-      return address_.size();
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    public java.lang.String getAddress(int index) {
-      return address_.get(index);
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAddressBytes(int index) {
-      return com.google.protobuf.ByteString.copyFromUtf8(
-          address_.get(index));
-    }
-    private void ensureAddressIsMutable() {
-      if (!address_.isModifiable()) {
-        address_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(address_);
-       }
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    private void setAddress(
-        int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureAddressIsMutable();
-      address_.set(index, value);
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    private void addAddress(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureAddressIsMutable();
-      address_.add(value);
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    private void addAllAddress(
-        java.lang.Iterable<java.lang.String> values) {
-      ensureAddressIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, address_);
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    private void clearAddress() {
-      address_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    /**
-     * <code>repeated string address = 2;</code>
-     */
-    private void addAddressBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureAddressIsMutable();
-      address_.add(value.toStringUtf8());
-    }
-
-    public static final int PRIVATEKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.Internal.ProtobufList<String> privateKey_;
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    public java.util.List<String> getPrivateKeyList() {
-      return privateKey_;
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    public int getPrivateKeyCount() {
-      return privateKey_.size();
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    public java.lang.String getPrivateKey(int index) {
-      return privateKey_.get(index);
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPrivateKeyBytes(int index) {
-      return com.google.protobuf.ByteString.copyFromUtf8(
-          privateKey_.get(index));
-    }
-    private void ensurePrivateKeyIsMutable() {
-      if (!privateKey_.isModifiable()) {
-        privateKey_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(privateKey_);
-       }
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    private void setPrivateKey(
-        int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensurePrivateKeyIsMutable();
-      privateKey_.set(index, value);
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    private void addPrivateKey(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensurePrivateKeyIsMutable();
-      privateKey_.add(value);
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    private void addAllPrivateKey(
-        java.lang.Iterable<java.lang.String> values) {
-      ensurePrivateKeyIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, privateKey_);
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    private void clearPrivateKey() {
-      privateKey_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    /**
-     * <code>repeated string privateKey = 3;</code>
-     */
-    private void addPrivateKeyBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensurePrivateKeyIsMutable();
-      privateKey_.add(value.toStringUtf8());
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!message_.isEmpty()) {
-        output.writeString(1, getMessage());
-      }
-      for (int i = 0; i < address_.size(); i++) {
-        output.writeString(2, address_.get(i));
-      }
-      for (int i = 0; i < privateKey_.size(); i++) {
-        output.writeString(3, privateKey_.get(i));
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!message_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getMessage());
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < address_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeStringSizeNoTag(address_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getAddressList().size();
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < privateKey_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeStringSizeNoTag(privateKey_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getPrivateKeyList().size();
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    /**
-     * Protobuf type {@code rpcpb.GetWalletAddressResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse, Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetWalletAddressResponse)
-        com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponseOrBuilder {
-      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public java.lang.String getMessage() {
-        return instance.getMessage();
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMessageBytes() {
-        return instance.getMessageBytes();
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public Builder setMessage(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setMessage(value);
-        return this;
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public Builder clearMessage() {
-        copyOnWrite();
-        instance.clearMessage();
-        return this;
-      }
-      /**
-       * <code>optional string message = 1;</code>
-       */
-      public Builder setMessageBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setMessageBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public java.util.List<String>
-          getAddressList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getAddressList());
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public int getAddressCount() {
-        return instance.getAddressCount();
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public java.lang.String getAddress(int index) {
-        return instance.getAddress(index);
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAddressBytes(int index) {
-        return instance.getAddressBytes(index);
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public Builder setAddress(
-          int index, java.lang.String value) {
-        copyOnWrite();
-        instance.setAddress(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public Builder addAddress(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.addAddress(value);
-        return this;
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public Builder addAllAddress(
-          java.lang.Iterable<java.lang.String> values) {
-        copyOnWrite();
-        instance.addAllAddress(values);
-        return this;
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public Builder clearAddress() {
-        copyOnWrite();
-        instance.clearAddress();
-        return this;
-      }
-      /**
-       * <code>repeated string address = 2;</code>
-       */
-      public Builder addAddressBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addAddressBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public java.util.List<String>
-          getPrivateKeyList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getPrivateKeyList());
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public int getPrivateKeyCount() {
-        return instance.getPrivateKeyCount();
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public java.lang.String getPrivateKey(int index) {
-        return instance.getPrivateKey(index);
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPrivateKeyBytes(int index) {
-        return instance.getPrivateKeyBytes(index);
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public Builder setPrivateKey(
-          int index, java.lang.String value) {
-        copyOnWrite();
-        instance.setPrivateKey(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public Builder addPrivateKey(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.addPrivateKey(value);
-        return this;
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public Builder addAllPrivateKey(
-          java.lang.Iterable<java.lang.String> values) {
-        copyOnWrite();
-        instance.addAllPrivateKey(values);
-        return this;
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public Builder clearPrivateKey() {
-        copyOnWrite();
-        instance.clearPrivateKey();
-        return this;
-      }
-      /**
-       * <code>repeated string privateKey = 3;</code>
-       */
-      public Builder addPrivateKeyBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addPrivateKeyBytes(value);
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetWalletAddressResponse)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          address_.makeImmutable();
-          privateKey_.makeImmutable();
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse other = (com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse) arg1;
-          message_ = visitor.visitString(!message_.isEmpty(), message_,
-              !other.message_.isEmpty(), other.message_);
-          address_= visitor.visitList(address_, other.address_);
-          privateKey_= visitor.visitList(privateKey_, other.privateKey_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
-
-                  message_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
-                  if (!address_.isModifiable()) {
-                    address_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(address_);
-                  }
-                  address_.add(s);
-                  break;
-                }
-                case 26: {
-                  String s = input.readStringRequireUtf8();
-                  if (!privateKey_.isModifiable()) {
-                    privateKey_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(privateKey_);
-                  }
-                  privateKey_.add(s);
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetWalletAddressResponse)
-    private static final com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new GetWalletAddressResponse();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.dappley.android.sdk.protobuf.RpcProto.GetWalletAddressResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<GetWalletAddressResponse> PARSER;
-
-    public static com.google.protobuf.Parser<GetWalletAddressResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -9282,9 +8900,9 @@ public final class RpcProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int64 amount = 1;</code>
+     * <code>optional bytes amount = 1;</code>
      */
-    long getAmount();
+    com.google.protobuf.ByteString getAmount();
 
     /**
      * <code>optional bytes publicKeyHash = 2;</code>
@@ -9310,30 +8928,34 @@ public final class RpcProto {
       // @@protoc_insertion_point(message_implements:rpcpb.UTXO)
       UTXOOrBuilder {
     private UTXO() {
+      amount_ = com.google.protobuf.ByteString.EMPTY;
       publicKeyHash_ = com.google.protobuf.ByteString.EMPTY;
       txid_ = com.google.protobuf.ByteString.EMPTY;
     }
     public static final int AMOUNT_FIELD_NUMBER = 1;
-    private long amount_;
+    private com.google.protobuf.ByteString amount_;
     /**
-     * <code>optional int64 amount = 1;</code>
+     * <code>optional bytes amount = 1;</code>
      */
-    public long getAmount() {
+    public com.google.protobuf.ByteString getAmount() {
       return amount_;
     }
     /**
-     * <code>optional int64 amount = 1;</code>
+     * <code>optional bytes amount = 1;</code>
      */
-    private void setAmount(long value) {
-      
+    private void setAmount(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       amount_ = value;
     }
     /**
-     * <code>optional int64 amount = 1;</code>
+     * <code>optional bytes amount = 1;</code>
      */
     private void clearAmount() {
       
-      amount_ = 0L;
+      amount_ = getDefaultInstance().getAmount();
     }
 
     public static final int PUBLICKEYHASH_FIELD_NUMBER = 2;
@@ -9413,8 +9035,8 @@ public final class RpcProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (amount_ != 0L) {
-        output.writeInt64(1, amount_);
+      if (!amount_.isEmpty()) {
+        output.writeBytes(1, amount_);
       }
       if (!publicKeyHash_.isEmpty()) {
         output.writeBytes(2, publicKeyHash_);
@@ -9432,9 +9054,9 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (amount_ != 0L) {
+      if (!amount_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, amount_);
+          .computeBytesSize(1, amount_);
       }
       if (!publicKeyHash_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -9535,21 +9157,21 @@ public final class RpcProto {
 
 
       /**
-       * <code>optional int64 amount = 1;</code>
+       * <code>optional bytes amount = 1;</code>
        */
-      public long getAmount() {
+      public com.google.protobuf.ByteString getAmount() {
         return instance.getAmount();
       }
       /**
-       * <code>optional int64 amount = 1;</code>
+       * <code>optional bytes amount = 1;</code>
        */
-      public Builder setAmount(long value) {
+      public Builder setAmount(com.google.protobuf.ByteString value) {
         copyOnWrite();
         instance.setAmount(value);
         return this;
       }
       /**
-       * <code>optional int64 amount = 1;</code>
+       * <code>optional bytes amount = 1;</code>
        */
       public Builder clearAmount() {
         copyOnWrite();
@@ -9647,8 +9269,8 @@ public final class RpcProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.dappley.android.sdk.protobuf.RpcProto.UTXO other = (com.dappley.android.sdk.protobuf.RpcProto.UTXO) arg1;
-          amount_ = visitor.visitLong(amount_ != 0L, amount_,
-              other.amount_ != 0L, other.amount_);
+          amount_ = visitor.visitByteString(amount_ != com.google.protobuf.ByteString.EMPTY, amount_,
+              other.amount_ != com.google.protobuf.ByteString.EMPTY, other.amount_);
           publicKeyHash_ = visitor.visitByteString(publicKeyHash_ != com.google.protobuf.ByteString.EMPTY, publicKeyHash_,
               other.publicKeyHash_ != com.google.protobuf.ByteString.EMPTY, other.publicKeyHash_);
           txid_ = visitor.visitByteString(txid_ != com.google.protobuf.ByteString.EMPTY, txid_,
@@ -9679,9 +9301,9 @@ public final class RpcProto {
                   }
                   break;
                 }
-                case 8: {
+                case 10: {
 
-                  amount_ = input.readInt64();
+                  amount_ = input.readBytes();
                   break;
                 }
                 case 18: {
@@ -9754,25 +9376,25 @@ public final class RpcProto {
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    java.util.List<com.google.protobuf.ByteString> getStartBlockHashsList();
+    java.util.List<com.google.protobuf.ByteString> getStartBlockHashesList();
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    int getStartBlockHashsCount();
+    int getStartBlockHashesCount();
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    com.google.protobuf.ByteString getStartBlockHashs(int index);
+    com.google.protobuf.ByteString getStartBlockHashes(int index);
 
     /**
      * <pre>
@@ -9792,46 +9414,46 @@ public final class RpcProto {
       // @@protoc_insertion_point(message_implements:rpcpb.GetBlocksRequest)
       GetBlocksRequestOrBuilder {
     private GetBlocksRequest() {
-      startBlockHashs_ = emptyProtobufList();
+      startBlockHashes_ = emptyProtobufList();
     }
     private int bitField0_;
-    public static final int STARTBLOCKHASHS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> startBlockHashs_;
+    public static final int STARTBLOCKHASHES_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> startBlockHashes_;
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
     public java.util.List<com.google.protobuf.ByteString>
-        getStartBlockHashsList() {
-      return startBlockHashs_;
+        getStartBlockHashesList() {
+      return startBlockHashes_;
     }
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    public int getStartBlockHashsCount() {
-      return startBlockHashs_.size();
+    public int getStartBlockHashesCount() {
+      return startBlockHashes_.size();
     }
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    public com.google.protobuf.ByteString getStartBlockHashs(int index) {
-      return startBlockHashs_.get(index);
+    public com.google.protobuf.ByteString getStartBlockHashes(int index) {
+      return startBlockHashes_.get(index);
     }
-    private void ensureStartBlockHashsIsMutable() {
-      if (!startBlockHashs_.isModifiable()) {
-        startBlockHashs_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(startBlockHashs_);
+    private void ensureStartBlockHashesIsMutable() {
+      if (!startBlockHashes_.isModifiable()) {
+        startBlockHashes_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(startBlockHashes_);
        }
     }
     /**
@@ -9839,52 +9461,52 @@ public final class RpcProto {
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    private void setStartBlockHashs(
+    private void setStartBlockHashes(
         int index, com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
-  ensureStartBlockHashsIsMutable();
-      startBlockHashs_.set(index, value);
+  ensureStartBlockHashesIsMutable();
+      startBlockHashes_.set(index, value);
     }
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    private void addStartBlockHashs(com.google.protobuf.ByteString value) {
+    private void addStartBlockHashes(com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
-  ensureStartBlockHashsIsMutable();
-      startBlockHashs_.add(value);
+  ensureStartBlockHashesIsMutable();
+      startBlockHashes_.add(value);
     }
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    private void addAllStartBlockHashs(
+    private void addAllStartBlockHashes(
         java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-      ensureStartBlockHashsIsMutable();
+      ensureStartBlockHashesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
-          values, startBlockHashs_);
+          values, startBlockHashes_);
     }
     /**
      * <pre>
      * Query start block hashes, sorted descending by height.
      * </pre>
      *
-     * <code>repeated bytes startBlockHashs = 1;</code>
+     * <code>repeated bytes startBlockHashes = 1;</code>
      */
-    private void clearStartBlockHashs() {
-      startBlockHashs_ = emptyProtobufList();
+    private void clearStartBlockHashes() {
+      startBlockHashes_ = emptyProtobufList();
     }
 
     public static final int MAXCOUNT_FIELD_NUMBER = 2;
@@ -9924,8 +9546,8 @@ public final class RpcProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < startBlockHashs_.size(); i++) {
-        output.writeBytes(1, startBlockHashs_.get(i));
+      for (int i = 0; i < startBlockHashes_.size(); i++) {
+        output.writeBytes(1, startBlockHashes_.get(i));
       }
       if (maxCount_ != 0) {
         output.writeInt32(2, maxCount_);
@@ -9939,12 +9561,12 @@ public final class RpcProto {
       size = 0;
       {
         int dataSize = 0;
-        for (int i = 0; i < startBlockHashs_.size(); i++) {
+        for (int i = 0; i < startBlockHashes_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(startBlockHashs_.get(i));
+            .computeBytesSizeNoTag(startBlockHashes_.get(i));
         }
         size += dataSize;
-        size += 1 * getStartBlockHashsList().size();
+        size += 1 * getStartBlockHashesList().size();
       }
       if (maxCount_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -10041,44 +9663,44 @@ public final class RpcProto {
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
       public java.util.List<com.google.protobuf.ByteString>
-          getStartBlockHashsList() {
+          getStartBlockHashesList() {
         return java.util.Collections.unmodifiableList(
-            instance.getStartBlockHashsList());
+            instance.getStartBlockHashesList());
       }
       /**
        * <pre>
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
-      public int getStartBlockHashsCount() {
-        return instance.getStartBlockHashsCount();
+      public int getStartBlockHashesCount() {
+        return instance.getStartBlockHashesCount();
       }
       /**
        * <pre>
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
-      public com.google.protobuf.ByteString getStartBlockHashs(int index) {
-        return instance.getStartBlockHashs(index);
+      public com.google.protobuf.ByteString getStartBlockHashes(int index) {
+        return instance.getStartBlockHashes(index);
       }
       /**
        * <pre>
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
-      public Builder setStartBlockHashs(
+      public Builder setStartBlockHashes(
           int index, com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setStartBlockHashs(index, value);
+        instance.setStartBlockHashes(index, value);
         return this;
       }
       /**
@@ -10086,11 +9708,11 @@ public final class RpcProto {
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
-      public Builder addStartBlockHashs(com.google.protobuf.ByteString value) {
+      public Builder addStartBlockHashes(com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.addStartBlockHashs(value);
+        instance.addStartBlockHashes(value);
         return this;
       }
       /**
@@ -10098,12 +9720,12 @@ public final class RpcProto {
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
-      public Builder addAllStartBlockHashs(
+      public Builder addAllStartBlockHashes(
           java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
         copyOnWrite();
-        instance.addAllStartBlockHashs(values);
+        instance.addAllStartBlockHashes(values);
         return this;
       }
       /**
@@ -10111,11 +9733,11 @@ public final class RpcProto {
        * Query start block hashes, sorted descending by height.
        * </pre>
        *
-       * <code>repeated bytes startBlockHashs = 1;</code>
+       * <code>repeated bytes startBlockHashes = 1;</code>
        */
-      public Builder clearStartBlockHashs() {
+      public Builder clearStartBlockHashes() {
         copyOnWrite();
-        instance.clearStartBlockHashs();
+        instance.clearStartBlockHashes();
         return this;
       }
 
@@ -10167,7 +9789,7 @@ public final class RpcProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
-          startBlockHashs_.makeImmutable();
+          startBlockHashes_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -10176,7 +9798,7 @@ public final class RpcProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest other = (com.dappley.android.sdk.protobuf.RpcProto.GetBlocksRequest) arg1;
-          startBlockHashs_= visitor.visitList(startBlockHashs_, other.startBlockHashs_);
+          startBlockHashes_= visitor.visitList(startBlockHashes_, other.startBlockHashes_);
           maxCount_ = visitor.visitInt(maxCount_ != 0, maxCount_,
               other.maxCount_ != 0, other.maxCount_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -10205,11 +9827,11 @@ public final class RpcProto {
                   break;
                 }
                 case 10: {
-                  if (!startBlockHashs_.isModifiable()) {
-                    startBlockHashs_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(startBlockHashs_);
+                  if (!startBlockHashes_.isModifiable()) {
+                    startBlockHashes_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(startBlockHashes_);
                   }
-                  startBlockHashs_.add(input.readBytes());
+                  startBlockHashes_.add(input.readBytes());
                   break;
                 }
                 case 16: {

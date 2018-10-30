@@ -190,7 +190,7 @@ public class LocalBlockThread implements Runnable {
             tempUtxo.setTxId(transaction.getId());
             tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());
             // TODO modify long format
-            tempUtxo.setAmount(new BigInteger(tempOutput.getValue()).longValue());
+            tempUtxo.setAmount(new BigInteger(tempOutput.getValue()));
             tempUtxo.setVoutIndex(i);
             // update utxo
             utxoDb.save(tempUtxo);

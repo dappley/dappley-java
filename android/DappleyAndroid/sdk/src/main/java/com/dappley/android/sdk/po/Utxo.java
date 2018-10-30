@@ -1,8 +1,11 @@
 package com.dappley.android.sdk.po;
 
 import com.dappley.android.sdk.protobuf.RpcProto;
+import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.SerializeUtil;
 import com.google.protobuf.ByteString;
+
+import java.math.BigInteger;
 
 import lombok.Data;
 
@@ -11,7 +14,7 @@ import lombok.Data;
  */
 @Data
 public class Utxo {
-    private long amount;
+    private BigInteger amount;
     private byte[] publicKeyHash;
     private byte[] txId;
     private int voutIndex;
@@ -41,7 +44,7 @@ public class Utxo {
      * @param utxo RpcProto.UTXO
      */
     public void parseProto(RpcProto.UTXO utxo) {
-        this.setAmount(utxo.getAmount());
+        this.setAmount(new BigInteger(utxo.getAmount().toByteArray()));
         this.setPublicKeyHash(utxo.getPublicKeyHash().toByteArray());
         this.setTxId(utxo.getTxid().toByteArray());
         this.setVoutIndex(utxo.getTxIndex());
@@ -53,7 +56,7 @@ public class Utxo {
      */
     public RpcProto.UTXO toProto() {
         RpcProto.UTXO.Builder builder = RpcProto.UTXO.newBuilder();
-        builder.setAmount(this.getAmount());
+        builder.setAmount(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getAmount())));
         builder.setPublicKeyHash(ByteString.copyFrom(this.getTxId()));
         builder.setTxid(ByteString.copyFrom(this.getTxId()));
         builder.setTxIndex(this.getVoutIndex());

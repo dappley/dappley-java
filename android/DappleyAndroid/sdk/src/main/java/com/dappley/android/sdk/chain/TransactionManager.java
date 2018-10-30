@@ -88,7 +88,7 @@ public class TransactionManager {
             txInput.setVout(utxo.getVoutIndex());
             // add from publicKey value
             txInput.setPubKey(pubKey);
-            totalAmount = totalAmount.add(BigInteger.valueOf(utxo.getAmount()));
+            totalAmount = totalAmount.add(utxo.getAmount());
             transaction.addTxInput(txInput);
         }
         return totalAmount;
@@ -109,7 +109,7 @@ public class TransactionManager {
         TxOutput txOutput = new TxOutput();
         // set to address's pubKeyHash
         txOutput.setPubKeyHash(HashUtil.getPubKeyHash(toAddress));
-        txOutput.setValue(ByteUtil.bigInteger2Bytes(new BigInteger(String.valueOf(amount))));
+        txOutput.setValue(ByteUtil.bigInteger2Bytes(amount));
         transaction.addTxOutput(txOutput);
 
         // if totalAmout is greater than amount, we need to add change value after.

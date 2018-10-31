@@ -74,6 +74,9 @@ public class UtxoDb {
     public Utxo get(String utxoIndex) {
         try {
             byte[] bytes = mmkv.decodeBytes(utxoIndex);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
             return Utxo.parseBytes(bytes);
         } catch (Exception e) {
             e.printStackTrace();

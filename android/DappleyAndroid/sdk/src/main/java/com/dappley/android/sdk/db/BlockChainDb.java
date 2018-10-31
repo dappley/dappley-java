@@ -114,6 +114,9 @@ public class BlockChainDb {
     public BlockChainInfo getBlockChainInfo() {
         try {
             byte[] bytes = mmkv.decodeBytes(KEY_BLOCK_CHAIN_INFO);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
             return BlockChainInfo.parseBytes(bytes);
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,6 +134,7 @@ public class BlockChainDb {
         if (walletAddressSet == null) {
             walletAddressSet = new HashSet<>(1);
         }
+        walletAddressSet.add(walletAddress);
         return saveWalletAddressSet(walletAddressSet);
     }
 
@@ -142,7 +146,7 @@ public class BlockChainDb {
     public boolean saveWalletAddressSet(Set<String> walletAddressSet) {
         boolean success = false;
         try {
-            byte[] bytes = SerializeUtil.encode(walletAddressSet);
+            byte[] bytes = SerializeUtil.encodeSet(walletAddressSet, String.class);
             mmkv.encode(KEY_WALLET_ADDRESSES, bytes);
             success = true;
         } catch (Exception e) {
@@ -158,7 +162,10 @@ public class BlockChainDb {
     public Set<String> getWalletAddressSet() {
         try {
             byte[] bytes = mmkv.decodeBytes(KEY_WALLET_ADDRESSES);
-            return SerializeUtil.decode(bytes, Set.class);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
+            return SerializeUtil.decodeSet(bytes, String.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

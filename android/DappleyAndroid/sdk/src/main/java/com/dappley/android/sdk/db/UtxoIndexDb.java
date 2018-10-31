@@ -38,7 +38,10 @@ public class UtxoIndexDb {
     public Set<UtxoIndex> get(String address) {
         try {
             byte[] bytes = mmkv.decodeBytes(address);
-            return SerializeUtil.decode(bytes, Set.class);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
+            return SerializeUtil.decodeSet(bytes, UtxoIndex.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +54,7 @@ public class UtxoIndexDb {
      * @param utxoIndexSet index set
      */
     public void save(String address, Set<UtxoIndex> utxoIndexSet) {
-        byte[] bytes = SerializeUtil.encode(utxoIndexSet);
+        byte[] bytes = SerializeUtil.encodeSet(utxoIndexSet, UtxoIndex.class);
         mmkv.encode(address, bytes);
     }
 
@@ -109,5 +112,12 @@ public class UtxoIndexDb {
      */
     public void remove(String address, byte[] txId, int voutIndex) {
         remove(address, new UtxoIndex(HexUtil.toHex(txId), voutIndex));
+    }
+
+    /**
+     * Clear all data
+     */
+    public void clearAll() {
+        mmkv.clearAll();
     }
 }

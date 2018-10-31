@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
 //        }).start();
 
 //        DappleyTest.testTransaction(this);
+//        DappleyTest.clearAll(this);
         DappleyTest.testSchedule(this);
+//        DappleyTest.testLocal(this);
     }
 
     @OnClick(R.id.btn_version)

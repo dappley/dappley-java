@@ -10,8 +10,12 @@ import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.db.BlockDb;
+import com.dappley.android.sdk.db.UtxoDb;
+import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.Utxo;
+import com.dappley.android.sdk.po.UtxoIndex;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
@@ -24,6 +28,7 @@ import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
 import org.bouncycastle.util.encoders.Hex;
+import org.junit.Assert;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.web3j.crypto.ECKeyPair;
@@ -33,6 +38,7 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Arrays;
+import java.util.Set;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -102,11 +108,11 @@ public class DappleyTest {
 //        ByteString bytes = ByteString.copyFromUtf8("hello");
 //        System.out.println(bytes.toStringUtf8());
 
-        String addr= "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
+        String addr = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
         System.out.println(HexUtil.toHex(HashUtil.getPubKeyHash(addr)));
     }
 
-    public static void testTransaction(Context context){
+    public static void testTransaction(Context context) {
         DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
 
         new Thread(new Runnable() {
@@ -125,12 +131,12 @@ public class DappleyTest {
         }).start();
     }
 
-    public static void testAes(){
+    public static void testAes() {
         String encoded = AesCipher.encryptToHex("I am the one.", "aesKey");
         System.out.println(encoded);
         String decoded = AesCipher.decryptFromHex(encoded, "aesKey");
         System.out.println(decoded);
-        System.out.println(new String(AesCipher.decrypt(AesCipher.encrypt("I am the one.".getBytes(), "aesKey"),"aesKey")));
+        System.out.println(new String(AesCipher.decrypt(AesCipher.encrypt("I am the one.".getBytes(), "aesKey"), "aesKey")));
     }
 
     public static void testWord() {
@@ -202,11 +208,49 @@ public class DappleyTest {
         System.out.println(message);
     }
 
-    public static void testSchedule(Context context){
+    public static void testSchedule(Context context) {
         MMKV.initialize(context);
 
         BlockChainManager.initGenesisBlock(context);
 
+        String address = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
+        BlockChainManager.addWalletAddress(context, address);
+        // receiver
+        address = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
+        BlockChainManager.addWalletAddress(context, address);
+
         LocalBlockSchedule.start(context);
+    }
+
+    public static void testLocal(Context context) {
+        String address = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
+//        String address = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
+        MMKV.initialize(context);
+        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
+
+//        BlockChainManager.initGenesisBlock(context);
+        UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);
+        UtxoDb utxoDb = new UtxoDb(context);
+        Set<UtxoIndex> utxoIndexSet = utxoIndexDb.get(address);
+
+        System.out.println("utxoIndexSet: " + (utxoIndexSet == null ? 0 : utxoIndexSet.size()));
+
+        if (utxoIndexSet != null) {
+            int i = 0;
+            for (UtxoIndex utxoIndex : utxoIndexSet) {
+                if (i > 10) {
+                    break;
+                }
+                Utxo utxo = utxoDb.get(utxoIndex.toString());
+                System.out.println(utxo.toString());
+                i++;
+            }
+        }
+    }
+
+    public static void clearAll(Context context){
+        MMKV.initialize(context);
+        UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);
+        utxoIndexDb.clearAll();
     }
 }

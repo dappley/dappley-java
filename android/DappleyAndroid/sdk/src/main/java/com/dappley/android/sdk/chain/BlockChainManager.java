@@ -58,4 +58,14 @@ public class BlockChainManager {
         genesisHash = blockChainDb.getGenesisHash();
         return genesisHash;
     }
+
+    /**
+     *
+     * @param context
+     * @param walletAddress
+     */
+    public static void addWalletAddress(Context context, String walletAddress) {
+        BlockChainDb blockChainDb = new BlockChainDb(context);
+        blockChainDb.saveWalletAddress(walletAddress);
+    }
 }

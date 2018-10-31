@@ -75,6 +75,9 @@ public class TransactionDb {
     public List<Transaction> get(String blockHash) {
         try {
             byte[] bytes = mmkv.decodeBytes(blockHash);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
             return SerializeUtil.decode(bytes, List.class);
         } catch (Exception e) {
             e.printStackTrace();

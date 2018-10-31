@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import lombok.Synchronized;
+
 /**
  * Synchronize block datas from online node
  */
@@ -33,6 +35,11 @@ public class LocalBlockThread implements Runnable {
     private static final String TAG = "LocalBlockThread";
     private static final int PREV_COUNT = 7;
     private static final int ONCE_COUNT = 200;
+    /**
+     * sysn process tag
+     */
+    private static boolean isSync;
+
     private Context context;
     private DataProvider dataProvider;
     private BlockDb blockDb;
@@ -56,20 +63,49 @@ public class LocalBlockThread implements Runnable {
         Log.i(TAG, "LocalBlockThread created");
     }
 
+    /**
+     * Thread run once. When the previous process is not finised, current process will be terminated.
+     */
     @Override
     public void run() {
+        if (isIsSync()) {
+            // give up synchronize
+            return;
+        }
         Log.i(TAG, "run at time " + System.currentTimeMillis());
         List<String> startHashes = getStartHashes();
         if (CollectionUtils.isEmpty(startHashes)) {
             return;
         }
         try {
+            // set sysn tag true
+            setIsSync(true);
             List<Block> blocks = dataProvider.getBlocks(startHashes, ONCE_COUNT);
             // save blocks to db
             saveBlocks(blocks, startHashes);
+
+            // set sysn tag false
+            setIsSync(false);
         } catch (Exception e) {
             Log.e(TAG, "run: ", e);
         }
+    }
+
+    /**
+     * Returns if there is a synchronize process.
+     * @return
+     */
+    public static boolean isIsSync() {
+        return isSync;
+    }
+
+    /**
+     * Set synchronize tag.
+     * @param isSync true/false
+     */
+    @Synchronized
+    public static void setIsSync(boolean isSync) {
+        LocalBlockThread.isSync = isSync;
     }
 
     /**
@@ -182,14 +218,13 @@ public class LocalBlockThread implements Runnable {
                 continue;
             }
             tempAddress = AddressUtil.createAddress(tempOutput.getPubKeyHash());
-            if (!addressSet.contains(addressSet)) {
+            if (!addressSet.contains(tempAddress)) {
                 continue;
             }
             // vout point to a user address
             tempUtxo = new Utxo();
             tempUtxo.setTxId(transaction.getId());
             tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());
-            // TODO modify long format
             tempUtxo.setAmount(new BigInteger(tempOutput.getValue()));
             tempUtxo.setVoutIndex(i);
             // update utxo

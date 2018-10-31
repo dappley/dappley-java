@@ -1,5 +1,6 @@
 package com.dappley.android.sdk.po;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UtxoIndex {
+public class UtxoIndex implements Serializable{
     /**
      * Related transaction id
      */

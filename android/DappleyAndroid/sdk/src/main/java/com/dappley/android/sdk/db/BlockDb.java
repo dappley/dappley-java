@@ -68,6 +68,9 @@ public class BlockDb {
     public Block get(String blockHash) {
         try {
             byte[] bytes = mmkv.decodeBytes(blockHash);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
             return Block.parseBytes(bytes);
         } catch (Exception e) {
             e.printStackTrace();

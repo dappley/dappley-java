@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class LocalBlockSchedule {
     private static final int TASK_INIT_DELAY = 0;
-    private static final int TASK_PERIOD = 1;
+    private static final int TASK_PERIOD = 10;
 
     private static ScheduledExecutorService schedule;
     private static ScheduledFuture future;
@@ -25,7 +25,7 @@ public class LocalBlockSchedule {
         if (schedule == null) {
             schedule = Executors.newScheduledThreadPool(1);
         }
-        future = schedule.scheduleAtFixedRate(new LocalBlockThread(context), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.MINUTES);
+        future = schedule.scheduleAtFixedRate(new LocalBlockThread(context), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
     }
 
     /**

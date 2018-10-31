@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
 import com.dappley.android.sdk.net.DataProvider;
+import com.dappley.android.sdk.net.ProtocalProvider;
 import com.dappley.android.sdk.task.LocalBlockSchedule;
 import com.tencent.mmkv.MMKV;
 
@@ -19,6 +20,7 @@ public class LocalBlockScheduleTest {
     public void getBlocks() {
         Context context = InstrumentationRegistry.getTargetContext();
         MMKV.initialize(context);
+        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
 
         BlockChainManager.initGenesisBlock(context);
 

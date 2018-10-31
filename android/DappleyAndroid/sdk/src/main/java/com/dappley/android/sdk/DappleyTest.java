@@ -41,6 +41,7 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import io.grpc.ManagedChannel;
@@ -249,6 +250,12 @@ public class DappleyTest {
                 i++;
             }
         }
+    }
+
+    public static void clearAddress(Context context){
+        MMKV.initialize(context);
+        BlockChainDb blockChainDb = new BlockChainDb(context);
+        blockChainDb.saveWalletAddressSet(new HashSet<String>());
     }
 
     public static void clearAll(Context context) {

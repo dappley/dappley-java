@@ -9,7 +9,11 @@ import com.esotericsoftware.kryo.serializers.JavaSerializer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -89,6 +93,53 @@ public class SerializeUtil {
         kryo.register(HashSet.class, serializer);
         Input input = new Input(bytes);
         HashSet<T> t = kryo.readObject(input, HashSet.class, serializer);
+        input.close();
+        return t;
+    }
+
+    /**
+     * Serialize ArrayList
+     * @param list object list
+     * @param clazz object Class name
+     * @param <T> the type of object
+     * @return byte[] byte array
+     */
+    public static <T extends Serializable> byte[] encodeList(List<T> list, Class<T> clazz) {
+        Kryo kryo = new Kryo();
+        CollectionSerializer serializer = new CollectionSerializer();
+        serializer.setElementClass(clazz, new JavaSerializer());
+        kryo.register(clazz, new JavaSerializer());
+        kryo.register(ArrayList.class, serializer);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Output output = new Output(baos);
+        kryo.writeObject(output, list);
+        output.flush();
+        output.close();
+        byte[] bytes = baos.toByteArray();
+        try {
+            baos.flush();
+            baos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
+    }
+
+    /**
+     * Deserialize ArrayList
+     * @param bytes byte array
+     * @param clazz object Class name
+     * @param <T> the type of elements in set
+     * @return List<T>
+     */
+    public static <T extends Serializable> List<T> decodeList(byte[] bytes, Class<T> clazz) {
+        Kryo kryo = new Kryo();
+        CollectionSerializer serializer = new CollectionSerializer();
+        serializer.setElementClass(clazz, new JavaSerializer());
+        kryo.register(clazz, new JavaSerializer());
+        kryo.register(ArrayList.class, serializer);
+        Input input = new Input(bytes);
+        List<T> t = kryo.readObject(input, ArrayList.class, serializer);
         input.close();
         return t;
     }

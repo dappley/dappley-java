@@ -158,6 +158,10 @@ public class LocalBlockThread implements Runnable {
      *    Save transactions data into TransactionDb while BlockDb do not contains transactions info.
      *    Update current hash value in BlockChainDb for next use.
      * </p>
+     * <p>
+     *     If the first synchronized block is linked to genesis block, the whole blockchain should be replaced by new blocks.
+     *     This may happen in some unpredictable scene.
+     * </p>
      * @param blocks new tail blocks
      * @param startHashs old tail blocks
      */
@@ -232,12 +236,12 @@ public class LocalBlockThread implements Runnable {
      * @param transaction
      */
     public void removeSpentVouts(Transaction transaction) {
-        if (transaction.isCoinbase()) {
-            // coinbase transaction do not have related spent vout info
-            return;
-        }
         List<TxInput> txInputs = transaction.getTxInputs();
         if (CollectionUtils.isEmpty(txInputs)) {
+            return;
+        }
+        if (transaction.isCoinbase()) {
+            // coinbase transaction do not have related spent vout info
             return;
         }
         Set<String> addressSet = blockChainDb.getWalletAddressSet();

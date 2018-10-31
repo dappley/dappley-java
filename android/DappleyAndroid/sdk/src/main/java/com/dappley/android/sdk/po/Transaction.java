@@ -7,6 +7,7 @@ import com.google.protobuf.ByteString;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ import lombok.Data;
  * Transaction object
  */
 @Data
-public class Transaction {
+public class Transaction implements Serializable {
     private byte[] id;
     private List<TxInput> txInputs;
     private List<TxOutput> txOutputs;

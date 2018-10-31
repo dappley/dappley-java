@@ -50,7 +50,7 @@ public class TransactionDb {
     public boolean save(String blockHash, List<Transaction> transactions) {
         boolean success = false;
         try {
-            mmkv.encode(blockHash, SerializeUtil.encode(transactions));
+            mmkv.encode(blockHash, SerializeUtil.encodeList(transactions, Transaction.class));
             success = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class TransactionDb {
             if (bytes == null || bytes.length == 0) {
                 return null;
             }
-            return SerializeUtil.decode(bytes, List.class);
+            return SerializeUtil.decodeList(bytes, Transaction.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -9,6 +9,8 @@ import com.dappley.android.sdk.util.HexUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Set;
+
 /**
  * Utils of BlockChain service.
  */
@@ -61,12 +63,23 @@ public class BlockChainManager {
     }
 
     /**
-     *
+     * Add buildUserUtxo wallet address into system db.
      * @param context
-     * @param walletAddress
+     * @param walletAddress user's wallet address
      */
     public static void addWalletAddress(Context context, String walletAddress) {
+        if (StringUtils.isEmpty(walletAddress)) {
+            return;
+        }
         BlockChainDb blockChainDb = new BlockChainDb(context);
+        Set<String> walletAddressSet = blockChainDb.getWalletAddressSet();
+        if (walletAddressSet.contains(walletAddress)) {
+            return;
+        }
+        // form related utxos
+        UtxoManager.buildUserUtxo(context, walletAddress);
+
         blockChainDb.saveWalletAddress(walletAddress);
     }
+
 }

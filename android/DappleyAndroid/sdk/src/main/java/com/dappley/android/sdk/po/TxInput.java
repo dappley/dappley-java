@@ -3,13 +3,15 @@ package com.dappley.android.sdk.po;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.google.protobuf.ByteString;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
  * Transaction Input
  */
 @Data
-public class TxInput {
+public class TxInput implements Serializable{
     private byte[] txId;
     private int vout;
     private byte[] signature;

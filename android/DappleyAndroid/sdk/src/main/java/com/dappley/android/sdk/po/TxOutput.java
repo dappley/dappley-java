@@ -3,13 +3,15 @@ package com.dappley.android.sdk.po;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.google.protobuf.ByteString;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
  * Transaction Output
  */
 @Data
-public class TxOutput {
+public class TxOutput implements Serializable{
     private byte[] value;
     private byte[] pubKeyHash;
 

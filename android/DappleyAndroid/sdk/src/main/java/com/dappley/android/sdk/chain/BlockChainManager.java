@@ -24,7 +24,9 @@ public class BlockChainManager {
      */
     public static void initGenesisBlock(Context context) {
         BlockChainDb blockChainDb = new BlockChainDb(context);
-        if (StringUtils.isNotEmpty(blockChainDb.getCurrentHash())) {
+        BlockDb blockDb = new BlockDb(context);
+        if (StringUtils.isNotEmpty(blockChainDb.getCurrentHash())
+                && blockDb.get(blockChainDb.getCurrentHash()) != null) {
             return;
         }
         Block block = BlockManager.newGenesisBlock();
@@ -34,7 +36,6 @@ public class BlockChainManager {
         String genesisHash = HexUtil.toHex(block.getHeader().getHash());
         blockChainDb.saveGenesisHash(genesisHash);
         blockChainDb.saveCurrentHash(genesisHash);
-        BlockDb blockDb = new BlockDb(context);
         blockDb.save(block);
     }
 

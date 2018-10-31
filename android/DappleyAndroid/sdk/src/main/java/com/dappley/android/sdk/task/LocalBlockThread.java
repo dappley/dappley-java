@@ -3,6 +3,7 @@ package com.dappley.android.sdk.task;
 import android.content.Context;
 import android.util.Log;
 
+import com.dappley.android.sdk.chain.BlockChainManager;
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.db.BlockIndexDb;
@@ -49,6 +50,7 @@ public class LocalBlockThread implements Runnable {
     private BlockChainDb blockChainDb;
     private UtxoDb utxoDb;
     private UtxoIndexDb utxoIndexDb;
+    private String genesisHash;
 
     public LocalBlockThread(Context context) {
         this.context = context;
@@ -60,6 +62,8 @@ public class LocalBlockThread implements Runnable {
         utxoIndexDb = new UtxoIndexDb(context);
         // TODO get a provider
         dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
+
+        genesisHash = BlockChainManager.getGenesisHash(context);
 
         Log.i(TAG, "LocalBlockThread created");
     }
@@ -121,16 +125,16 @@ public class LocalBlockThread implements Runnable {
      * @return List<String> formed hash list
      */
     private List<String> getStartHashes() {
-        List<String> startHashes = new ArrayList<>();
         String currentHash = blockChainDb.getCurrentHash();
         if (StringUtils.isEmpty(currentHash)) {
             return null;
         }
+        List<String> startHashes = new ArrayList<>();
+        startHashes.add(currentHash);
         Block block = blockDb.get(currentHash);
         if (block == null) {
-            return null;
+            return startHashes;
         }
-        startHashes.add(currentHash);
         // traverse PREV_COUNT block data
         for (int i = 1; i < PREV_COUNT; i++) {
             if (block.getHeader().getPrevHash() == null
@@ -165,7 +169,13 @@ public class LocalBlockThread implements Runnable {
 
         // handler fork, remove invalid blocks
         String newParentHash = HexUtil.toHex(blocks.get(0).getHeader().getPrevHash());
-        removeForkedBlocks(newParentHash, startHashs);
+        if (genesisHash.equals(newParentHash)) {
+            // whole chain has been replaced
+            clearChain();
+        } else {
+            // judge if there are some forked blocks
+            removeForkedBlocks(newParentHash, startHashs);
+        }
 
         // save new datas
         String currentHash = null;
@@ -180,6 +190,21 @@ public class LocalBlockThread implements Runnable {
         }
         // update current hash value
         blockChainDb.saveCurrentHash(currentHash);
+    }
+
+    /**
+     * Clear all datas in database.
+     * <p>BlockChainDb has saved wallet addresses, and they should not be cleared.</p>
+     */
+    public void clearChain() {
+        utxoIndexDb.clearAll();
+        utxoDb.clearAll();
+        transactionDb.clearAll();
+        blockIndexDb.clearAll();
+        blockDb.clearAll();
+
+        // add genesis block
+        BlockChainManager.initGenesisBlock(this.context);
     }
 
     /**

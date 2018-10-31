@@ -101,4 +101,10 @@ public class TransactionDb {
         mmkv.removeValuesForKeys(blockHashes);
     }
 
+    /**
+     * Clear all data
+     */
+    public void clearAll() {
+        mmkv.clearAll();
+    }
 }

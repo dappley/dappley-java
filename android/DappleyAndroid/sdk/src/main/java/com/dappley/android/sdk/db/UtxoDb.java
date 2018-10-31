@@ -117,4 +117,11 @@ public class UtxoDb {
     public void remove(String[] keys) {
         mmkv.removeValuesForKeys(keys);
     }
+
+    /**
+     * Clear all data
+     */
+    public void clearAll() {
+        mmkv.clearAll();
+    }
 }

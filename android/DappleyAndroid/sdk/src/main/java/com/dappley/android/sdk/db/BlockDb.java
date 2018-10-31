@@ -109,4 +109,11 @@ public class BlockDb {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Clear all data
+     */
+    public void clearAll() {
+        mmkv.clearAll();
+    }
 }

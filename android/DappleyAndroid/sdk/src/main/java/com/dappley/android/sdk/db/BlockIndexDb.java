@@ -48,4 +48,11 @@ public class BlockIndexDb {
     public void remove(String hash) {
         mmkv.removeValueForKey(hash);
     }
+
+    /**
+     * Clear all data
+     */
+    public void clearAll() {
+        mmkv.clearAll();
+    }
 }

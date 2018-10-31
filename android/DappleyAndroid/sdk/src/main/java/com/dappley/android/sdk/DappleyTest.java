@@ -9,7 +9,10 @@ import com.dappley.android.sdk.crypto.AesCipher;
 import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
+import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
+import com.dappley.android.sdk.db.BlockIndexDb;
+import com.dappley.android.sdk.db.TransactionDb;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.android.sdk.net.ProtocalProvider;
@@ -248,9 +251,21 @@ public class DappleyTest {
         }
     }
 
-    public static void clearAll(Context context){
+    public static void clearAll(Context context) {
         MMKV.initialize(context);
         UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);
+        BlockDb blockDb = new BlockDb(context);
+        BlockIndexDb blockIndexDb = new BlockIndexDb(context);
+        TransactionDb transactionDb = new TransactionDb(context);
+        UtxoDb utxoDb = new UtxoDb(context);
+
         utxoIndexDb.clearAll();
+        utxoDb.clearAll();
+        transactionDb.clearAll();
+        blockIndexDb.clearAll();
+        blockDb.clearAll();
+
+        // add genesis block
+        BlockChainManager.initGenesisBlock(context);
     }
 }

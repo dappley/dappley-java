@@ -111,7 +111,7 @@ public class UtxoManager {
      * @param utxoDb utxo database
      * @param utxoIndexDb utxo index database
      */
-    public static void saveUnspentVouts(List<Transaction> transactions, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
+    private static void saveUnspentVouts(List<Transaction> transactions, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
         for (Transaction transaction : transactions) {
             if (transaction == null) {
                 continue;
@@ -129,7 +129,7 @@ public class UtxoManager {
      * @param utxoDb utxo database
      * @param utxoIndexDb utxo index database
      */
-    public static void removeSpentVouts(Transaction transaction, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
+    private static void removeSpentVouts(Transaction transaction, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
         List<TxInput> txInputs = transaction.getTxInputs();
         if (CollectionUtils.isEmpty(txInputs)) {
             return;
@@ -153,7 +153,7 @@ public class UtxoManager {
      * @param utxoDb utxo database
      * @param utxoIndexDb utxo index database
      */
-    public static void saveUnspentVouts(Transaction transaction, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
+    private static void saveUnspentVouts(Transaction transaction, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
         if (CollectionUtils.isEmpty(txOutputs)) {
             return;

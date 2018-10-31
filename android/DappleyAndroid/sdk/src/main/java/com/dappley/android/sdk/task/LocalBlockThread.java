@@ -103,7 +103,7 @@ public class LocalBlockThread implements Runnable {
      * Returns if there is a synchronize process.
      * @return
      */
-    public static boolean isIsSync() {
+    private static boolean isIsSync() {
         return isSync;
     }
 
@@ -112,7 +112,7 @@ public class LocalBlockThread implements Runnable {
      * @param isSync true/false
      */
     @Synchronized
-    public static void setIsSync(boolean isSync) {
+    private static void setIsSync(boolean isSync) {
         LocalBlockThread.isSync = isSync;
     }
 
@@ -200,7 +200,7 @@ public class LocalBlockThread implements Runnable {
      * Clear all datas in database.
      * <p>BlockChainDb has saved wallet addresses, and they should not be cleared.</p>
      */
-    public void clearChain() {
+    private void clearChain() {
         utxoIndexDb.clearAll();
         utxoDb.clearAll();
         transactionDb.clearAll();
@@ -215,7 +215,7 @@ public class LocalBlockThread implements Runnable {
      * Save new utxo datas into database.
      * @param transactions block's transactions
      */
-    public void saveUnspentVouts(List<Transaction> transactions) {
+    private void saveUnspentVouts(List<Transaction> transactions) {
         // save new utxo data
         if (CollectionUtils.isEmpty(transactions)) {
             return;
@@ -235,7 +235,7 @@ public class LocalBlockThread implements Runnable {
      * Remove spent vout in utxoDb and utxoIndexDb
      * @param transaction
      */
-    public void removeSpentVouts(Transaction transaction) {
+    private void removeSpentVouts(Transaction transaction) {
         List<TxInput> txInputs = transaction.getTxInputs();
         if (CollectionUtils.isEmpty(txInputs)) {
             return;
@@ -262,7 +262,7 @@ public class LocalBlockThread implements Runnable {
      * Convert a transaction's outputs to utxos and save them if needed.
      * @param transaction
      */
-    public void saveUnspentVouts(Transaction transaction) {
+    private void saveUnspentVouts(Transaction transaction) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
         if (CollectionUtils.isEmpty(txOutputs)) {
             return;

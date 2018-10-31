@@ -3,6 +3,7 @@ package com.dappley.android.sdk.net;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Utxo;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface DataProvider {
@@ -12,4 +13,6 @@ public interface DataProvider {
     Block getBlockByHash(String hash);
 
     List<Block> getBlocks(List<String> startHashs, int count);
+
+    BigInteger getBalance(String address);
 }

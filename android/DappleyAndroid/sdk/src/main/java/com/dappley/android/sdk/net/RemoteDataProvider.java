@@ -10,6 +10,10 @@ import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.util.HexUtil;
 import com.google.protobuf.ByteString;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +96,26 @@ public class RemoteDataProvider implements DataProvider {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public BigInteger getBalance(String address) {
+        BigInteger balance = BigInteger.ZERO;
+        if (StringUtils.isEmpty(address)) {
+            return balance;
+        }
+        // compute from getUtxo method
+        List<RpcProto.UTXO> utxos = protocalProvider.getUtxo(address);
+        if (CollectionUtils.isEmpty(utxos)) {
+            return balance;
+        }
+        for (RpcProto.UTXO utxo : utxos) {
+            if (utxo == null || utxo.getAmount() == null) {
+                continue;
+            }
+            balance = balance.add(new BigInteger(utxo.getAmount().toByteArray()));
+        }
+        return balance;
     }
 
     /**

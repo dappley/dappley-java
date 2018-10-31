@@ -13,6 +13,7 @@ import com.dappley.android.sdk.net.DataProvider;
 import com.dappley.android.sdk.net.RemoteDataProvider;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Transaction;
+import com.dappley.android.sdk.po.TxInput;
 import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.util.AddressUtil;
@@ -72,7 +73,9 @@ public class LocalBlockThread implements Runnable {
             // give up synchronize
             return;
         }
+
         Log.i(TAG, "run at time " + System.currentTimeMillis());
+
         List<String> startHashes = getStartHashes();
         if (CollectionUtils.isEmpty(startHashes)) {
             return;
@@ -80,9 +83,10 @@ public class LocalBlockThread implements Runnable {
         try {
             // set sysn tag true
             setIsSync(true);
+
             List<Block> blocks = dataProvider.getBlocks(startHashes, ONCE_COUNT);
             // save blocks to db
-            saveBlocks(blocks, startHashes);
+            saveSynchronizedBlocks(blocks, startHashes);
 
             // set sysn tag false
             setIsSync(false);
@@ -144,7 +148,7 @@ public class LocalBlockThread implements Runnable {
     }
 
     /**
-     * Save block datas into db
+     * Save synchronized block datas into db.
      * <p>Save each block data into BlockDb.
      *    RPC protocal blocks is ranged in increase mode. That means the last one in block list is the tail block.
      *    Save transactions data into TransactionDb while BlockDb do not contains transactions info.
@@ -153,15 +157,15 @@ public class LocalBlockThread implements Runnable {
      * @param blocks new tail blocks
      * @param startHashs old tail blocks
      */
-    private void saveBlocks(List<Block> blocks, List<String> startHashs) {
+    private void saveSynchronizedBlocks(List<Block> blocks, List<String> startHashs) {
         if (CollectionUtils.isEmpty(blocks)) {
             return;
         }
-        Log.i(TAG, "saveBlocks count " + blocks.size());
+        Log.i(TAG, "saveSynchronizedBlocks count " + blocks.size());
 
         // handler fork, remove invalid blocks
         String newParentHash = HexUtil.toHex(blocks.get(0).getHeader().getPrevHash());
-        removeInvalidBlocks(newParentHash, startHashs);
+        removeForkedBlocks(newParentHash, startHashs);
 
         // save new datas
         String currentHash = null;
@@ -172,7 +176,7 @@ public class LocalBlockThread implements Runnable {
             transactionDb.save(currentHash, block.getTransactions());
 
             // save new utxo data
-            saveNewUtxos(block.getTransactions());
+            saveUnspentVouts(block.getTransactions());
         }
         // update current hash value
         blockChainDb.saveCurrentHash(currentHash);
@@ -182,7 +186,7 @@ public class LocalBlockThread implements Runnable {
      * Save new utxo datas into database.
      * @param transactions block's transactions
      */
-    public void saveNewUtxos(List<Transaction> transactions) {
+    public void saveUnspentVouts(List<Transaction> transactions) {
         // save new utxo data
         if (CollectionUtils.isEmpty(transactions)) {
             return;
@@ -191,8 +195,37 @@ public class LocalBlockThread implements Runnable {
             if (transaction == null) {
                 continue;
             }
-            // handle one
-            saveNewUtxos(transaction);
+            // remove spent
+            removeSpentVouts(transaction);
+            // save unspent
+            saveUnspentVouts(transaction);
+        }
+    }
+
+    /**
+     * Remove spent vout in utxoDb and utxoIndexDb
+     * @param transaction
+     */
+    public void removeSpentVouts(Transaction transaction) {
+        if (transaction.isCoinbase()) {
+            // coinbase transaction do not have related spent vout info
+            return;
+        }
+        List<TxInput> txInputs = transaction.getTxInputs();
+        if (CollectionUtils.isEmpty(txInputs)) {
+            return;
+        }
+        Set<String> addressSet = blockChainDb.getWalletAddressSet();
+        for (TxInput txInput : txInputs) {
+            // remove spent utxo in utxoDb
+            utxoDb.remove(txInput.getTxId(), txInput.getVout());
+            if (CollectionUtils.isEmpty(addressSet)) {
+                continue;
+            }
+            // remove spent utxo in utxoIndexDb
+            for (String address : addressSet) {
+                utxoIndexDb.remove(address, txInput.getTxId(), txInput.getVout());
+            }
         }
     }
 
@@ -200,7 +233,7 @@ public class LocalBlockThread implements Runnable {
      * Convert a transaction's outputs to utxos and save them if needed.
      * @param transaction
      */
-    public void saveNewUtxos(Transaction transaction) {
+    public void saveUnspentVouts(Transaction transaction) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
         if (CollectionUtils.isEmpty(txOutputs)) {
             return;
@@ -236,18 +269,18 @@ public class LocalBlockThread implements Runnable {
     }
 
     /**
-     * Remove invalid blocks from db
+     * Remove invalid blocks(forked chain) from db
      * <p>Remove some invalid blocks when synchronized blocks from chain are not the same.</p>
      * <p>When the first hash equals to an old one, the process is stopped.</p>
      * @param newParentHash  the first block's hash of synchronized blocks from chain
      * @param oldHashes the last several block hash of chain tail in local db
      */
-    private void removeInvalidBlocks(String newParentHash, List<String> oldHashes) {
+    private void removeForkedBlocks(String newParentHash, List<String> oldHashes) {
         if (StringUtils.isEmpty(newParentHash) || CollectionUtils.isEmpty(oldHashes)) {
             return;
         }
-        // form invalid block hash list
-        List<String> invalidHashes = new ArrayList<>();
+        // form forked block hash list
+        List<String> forkedHashes = new ArrayList<>();
         for (String oldHash : oldHashes) {
             if (oldHash.equals(newParentHash)) {
                 break;
@@ -255,18 +288,18 @@ public class LocalBlockThread implements Runnable {
             // remove from db
             blockDb.remove(oldHash);
             blockIndexDb.remove(oldHash);
-            invalidHashes.add(oldHash);
+            forkedHashes.add(oldHash);
         }
 
-        // remove transactions by invalid hashes
-        removeInvalidTransactions(invalidHashes);
+        // remove transactions by forked hashes
+        removeForkedTransactions(forkedHashes);
     }
 
     /**
-     * Remove all invalid transactions from database.
-     * @param blockHashes invalid block hash list
+     * Remove all forked transactions from database.
+     * @param blockHashes forked block hash list
      */
-    private void removeInvalidTransactions(List<String> blockHashes) {
+    private void removeForkedTransactions(List<String> blockHashes) {
         if (CollectionUtils.isEmpty(blockHashes)) {
             return;
         }
@@ -279,14 +312,14 @@ public class LocalBlockThread implements Runnable {
             transactionDb.remove(blockHash);
         }
         // remove related values in utxo
-        removeInvalidUtxo(transactions);
+        removeForkedUtxo(transactions);
     }
 
     /**
-     * Remove all invalid utxo data from database.
+     * Remove all forked utxo data (invalid utxo) from database.
      * @param transactions transaciton info list
      */
-    private void removeInvalidUtxo(List<Transaction> transactions) {
+    private void removeForkedUtxo(List<Transaction> transactions) {
         if (CollectionUtils.isEmpty(transactions)) {
             return;
         }
@@ -296,17 +329,17 @@ public class LocalBlockThread implements Runnable {
                 continue;
             }
             // remove stored utxo database's datas
-            removeInvalidUtxo(transaction);
+            removeForkedUtxo(transaction);
             // remove stored utxo index infos (related to user)
-            removeInvalidUtxoIndex(transaction, addressSet);
+            removeForkedUtxoIndex(transaction, addressSet);
         }
     }
 
     /**
-     * Remove all invalid utxo data from utxo database.
+     * Remove all forked utxo data from utxo database.
      * @param transaction
      */
-    private void removeInvalidUtxo(Transaction transaction) {
+    private void removeForkedUtxo(Transaction transaction) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
         if (CollectionUtils.isEmpty(txOutputs)) {
             return;
@@ -317,11 +350,11 @@ public class LocalBlockThread implements Runnable {
     }
 
     /**
-     * Remove all invalid utxo index data from utxo index database.
+     * Remove all forked utxo index data from utxo index database.
      * @param transaction
      * @param addressetSet user's address set
      */
-    private void removeInvalidUtxoIndex(Transaction transaction, Set<String> addressetSet) {
+    private void removeForkedUtxoIndex(Transaction transaction, Set<String> addressetSet) {
         if (CollectionUtils.isEmpty(addressetSet)) {
             return;
         }

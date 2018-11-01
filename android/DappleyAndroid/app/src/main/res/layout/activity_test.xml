@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include layout="@layout/toolbar_title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip">
+
+        <Button
+            android:id="@+id/btn_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="create_wallet" />
+
+        <Button
+            android:id="@+id/btn_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get_version" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get_balance" />
+
+        <Button
+            android:id="@+id/btn_add_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add_balance" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_get_blockchain_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get_blockchain_info" />
+
+        <Button
+            android:id="@+id/btn_get_utxo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get_utxo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_get_blocks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get_blocks" />
+
+        <Button
+            android:id="@+id/btn_send_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="send_ransaction" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="20dip"
+        android:layout_weight="1"
+        android:padding="10dip"
+        android:text="sdk sample" />
+
+</LinearLayout>

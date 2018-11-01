@@ -5,12 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".WalletCreateActivity">
 
-    <include layout="@layout/toolbar_main" />
-
-    <deadline.swiperecyclerview.SwipeRecyclerView
-        android:id="@+id/swipe_fresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include layout="@layout/toolbar_title_back" />
 </LinearLayout>

@@ -16,9 +16,11 @@ import lombok.Data;
  */
 @Data
 public class Wallet {
+    private String address;
     private String mnemonic;
     private BigInteger privateKey;
     private BigInteger publicKey;
+    private BigInteger balance;
 
     public Wallet() {
     }

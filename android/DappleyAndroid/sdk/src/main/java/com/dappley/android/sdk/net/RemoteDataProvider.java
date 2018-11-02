@@ -9,6 +9,7 @@ import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.util.HexUtil;
 import com.google.protobuf.ByteString;
+import com.tencent.mmkv.MMKV;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,9 @@ public class RemoteDataProvider implements DataProvider {
 
     public RemoteDataProvider(Context context, RemoteProtocalType type) {
         this.context = context;
+        // initialize MMKV database instance
+        MMKV.initialize(context);
+
         if (type == RemoteProtocalType.RPC) {
             protocalProvider = new RpcProvider();
         } else {

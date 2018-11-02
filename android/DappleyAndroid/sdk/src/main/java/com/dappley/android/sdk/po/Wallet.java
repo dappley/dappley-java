@@ -1,8 +1,11 @@
 package com.dappley.android.sdk.po;
 
 import com.dappley.android.sdk.crypto.Bip39;
+import com.dappley.android.sdk.crypto.KeyPairTool;
+import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.HashUtil;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import lombok.Data;
@@ -15,7 +18,8 @@ import lombok.Data;
  * </p>
  */
 @Data
-public class Wallet {
+public class Wallet implements Serializable {
+    private String name;
     private String address;
     private String mnemonic;
     private BigInteger privateKey;
@@ -28,9 +32,13 @@ public class Wallet {
     public Wallet(String mnemonic) {
         this.mnemonic = mnemonic;
         this.privateKey = Bip39.getPrivateKey(mnemonic);
+        this.publicKey = KeyPairTool.getPublicKeyFromPrivate(privateKey);
+        this.address = AddressUtil.createAddress(this.publicKey);
     }
 
-    public Wallet(BigInteger privateKey){
+    public Wallet(BigInteger privateKey) {
         this.privateKey = privateKey;
+        this.publicKey = KeyPairTool.getPublicKeyFromPrivate(privateKey);
+        this.address = AddressUtil.createAddress(this.publicKey);
     }
 }

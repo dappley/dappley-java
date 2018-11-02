@@ -1,5 +1,7 @@
 package com.dappley.android.sdk.util;
 
+import android.content.Context;
+
 import io.grpc.ManagedChannel;
 
 /**
@@ -26,6 +28,17 @@ public class Asserts {
     public static void channalOpen(ManagedChannel channel) {
         if (channel == null || channel.isShutdown() || channel.isTerminated()) {
             throw new IllegalStateException("channel is not opened.");
+        }
+    }
+
+    /**
+     * Assert client is init
+     * @param context
+     * @throws IllegalStateException
+     */
+    public static void init(Context context) {
+        if (context == null) {
+            throw new IllegalStateException("Dappley.init should be called first.");
         }
     }
 }

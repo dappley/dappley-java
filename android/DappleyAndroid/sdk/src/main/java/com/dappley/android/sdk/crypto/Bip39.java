@@ -19,18 +19,17 @@ public class Bip39 {
 
         String mnemonic = MnemonicUtils.generateMnemonic(initialEntropy);
         System.out.println(mnemonic);
-        byte[] seed = MnemonicUtils.generateSeed(mnemonic, "123456");
+        byte[] seed = MnemonicUtils.generateSeed(mnemonic, "");
         ECKeyPair ecKeyPair = ECKeyPair.create(ShaDigest.sha256(seed));
         System.out.println(new BigInteger(1, ShaDigest.sha256(seed)));
         System.out.println(ecKeyPair.getPrivateKey());
         System.out.println(ecKeyPair.getPrivateKey().toString(16));
 
-        getPrivateKey(MNEMONIC);
         return mnemonic;
     }
 
     public static BigInteger getPrivateKey(String mnemonic) {
-        byte[] seed = MnemonicUtils.generateSeed(mnemonic, "123456");
+        byte[] seed = MnemonicUtils.generateSeed(mnemonic, "");
         ECKeyPair ecKeyPair = ECKeyPair.create(ShaDigest.sha256(seed));
         Credentials credentials = Credentials.create(ecKeyPair);
         String addr2 = AddressUtil.createAddress(ecKeyPair);

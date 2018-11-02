@@ -129,7 +129,7 @@ public class KeyPairTool {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
             ECParameterSpec ecParameters = ECNamedCurveTable.getParameterSpec(STD_NAME);
-            ECNamedCurveSpec params  = new ECNamedCurveSpec(STD_NAME, ecParameters.getCurve(), ecParameters.getG(), ecParameters.getN());
+            ECNamedCurveSpec params = new ECNamedCurveSpec(STD_NAME, ecParameters.getCurve(), ecParameters.getG(), ecParameters.getN());
             byte[] pubKey = pubKeyInteger.toByteArray();
             BigInteger x = new BigInteger(1, Arrays.copyOfRange(pubKey, 1, 33));
             BigInteger y = new BigInteger(1, Arrays.copyOfRange(pubKey, 33, 65));
@@ -168,4 +168,8 @@ public class KeyPairTool {
         return null;
     }
 
+    public static BigInteger getPublicKeyFromPrivate(BigInteger privateKey) {
+        ECKeyPair keyPair = ECKeyPair.create(privateKey);
+        return keyPair.getPublicKey();
+    }
 }

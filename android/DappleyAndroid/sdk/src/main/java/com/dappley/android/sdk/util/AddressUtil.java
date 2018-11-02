@@ -6,6 +6,7 @@ import com.dappley.android.sdk.crypto.KeyPairTool;
 
 import org.web3j.crypto.ECKeyPair;
 
+import java.math.BigInteger;
 import java.security.KeyPair;
 
 /**
@@ -31,6 +32,17 @@ public class AddressUtil {
     public static String createAddress(ECKeyPair keyPair) {
         // generate publicKey hash
         byte[] pubKeyHash = HashUtil.getPubKeyHash(keyPair.getPublicKey());
+        return createAddress(pubKeyHash);
+    }
+
+    /**
+     * Recovery a wallet address from public key
+     * @param publicKey
+     * @return String wallet address
+     */
+    public static String createAddress(BigInteger publicKey) {
+        // generate publicKey hash
+        byte[] pubKeyHash = HashUtil.getPubKeyHash(publicKey);
         return createAddress(pubKeyHash);
     }
 

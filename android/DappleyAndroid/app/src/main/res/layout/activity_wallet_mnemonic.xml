@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WalletMnemonicActivity">
+
+    <include layout="@layout/toolbar_title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="20dip"
+        android:layout_marginRight="@dimen/margin_15"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="钱包名：" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="钱包地址：" />
+
+        <TextView
+            android:id="@+id/txt_address"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="私钥：" />
+
+        <TextView
+            android:id="@+id/txt_private_key"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="助记词：" />
+
+        <TextView
+            android:id="@+id/txt_mnemonic"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        style="?borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dip"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="30dip"
+        android:layout_marginRight="@dimen/margin_15"
+        android:background="@drawable/btn_primary_selector"
+        android:text="加密存储到本地"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>

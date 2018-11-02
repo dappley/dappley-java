@@ -43,7 +43,7 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
         if (context == null) {
             context = viewGroup.getContext();
         }
-        View viewItem = LayoutInflater.from(context).inflate(R.layout.item_wallet, null);
+        View viewItem = LayoutInflater.from(context).inflate(R.layout.item_wallet, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(viewItem);
         if (onItemClickListener != null) {
             viewItem.setOnClickListener(new View.OnClickListener() {

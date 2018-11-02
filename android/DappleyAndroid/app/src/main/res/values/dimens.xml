@@ -1,4 +1,5 @@
 <resources>
     <dimen name="margin_15">15dip</dimen>
+    <dimen name="margin_8">8dip</dimen>
 
 </resources>

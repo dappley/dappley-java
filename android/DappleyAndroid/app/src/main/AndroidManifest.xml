@@ -3,8 +3,11 @@
     package="com.dappley.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".application.AppData"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +24,8 @@
         <activity android:name=".TestActivity" />
         <activity android:name=".WalletAddActivity" />
         <activity android:name=".WalletCreateActivity" />
-        <activity android:name=".WalletImportActivity"></activity>
+        <activity android:name=".WalletImportActivity" />
+        <activity android:name=".WalletMnemonicActivity"></activity>
     </application>
 
 </manifest>

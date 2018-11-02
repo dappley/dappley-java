@@ -8,4 +8,59 @@
     tools:context=".WalletCreateActivity">
 
     <include layout="@layout/toolbar_title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="20dip"
+        android:layout_marginRight="@dimen/margin_15"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="钱包名：" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="钱包密码：" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_create"
+        style="?borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dip"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="30dip"
+        android:layout_marginRight="@dimen/margin_15"
+        android:background="@drawable/btn_primary_selector"
+        android:text="创建钱包"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 </LinearLayout>

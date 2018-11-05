@@ -9,10 +9,8 @@ import com.dappley.android.sdk.net.LocalDataProvider;
 import com.dappley.android.sdk.net.RemoteDataProvider;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.sdk.util.Asserts;
-import com.dappley.android.sdk.util.SerializeUtil;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Dappley {
@@ -25,7 +23,7 @@ public class Dappley {
         try {
             if (dataMode == DataMode.LOCAL_STORAGE) {
                 dataProvider = new LocalDataProvider(context);
-            } else if (dataMode == DataMode.REMOVE_ONLINE) {
+            } else if (dataMode == DataMode.REMOTE_ONLINE) {
                 dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
             }
         } catch (Exception e) {
@@ -36,6 +34,18 @@ public class Dappley {
     public static Wallet createWallet() {
         Asserts.init(context);
         Wallet wallet = WalletManager.createWallet();
+        return wallet;
+    }
+
+    public static Wallet importWalletFromMnemonic(String mnemonic) {
+        Asserts.init(context);
+        Wallet wallet = WalletManager.importWalletFromMnemonic(mnemonic);
+        return wallet;
+    }
+
+    public static Wallet importWalletFromPrivateKey(String privateKey) {
+        Asserts.init(context);
+        Wallet wallet = WalletManager.importWalletFromPrivateKey(privateKey);
         return wallet;
     }
 
@@ -71,6 +81,6 @@ public class Dappley {
         /**
          * All datas will be get from remove node in real time.
          */
-        REMOVE_ONLINE
+        REMOTE_ONLINE
     }
 }

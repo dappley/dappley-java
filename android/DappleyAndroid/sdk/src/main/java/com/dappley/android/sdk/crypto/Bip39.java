@@ -37,4 +37,8 @@ public class Bip39 {
         System.out.println("addr2: " + addr2);
         return ecKeyPair.getPrivateKey();
     }
+
+    public static boolean validateMnemonic(String mnemonic){
+        return MnemonicUtils.validateMnemonic(mnemonic);
+    }
 }

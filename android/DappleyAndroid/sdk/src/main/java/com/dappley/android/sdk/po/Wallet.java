@@ -30,6 +30,9 @@ public class Wallet implements Serializable {
     }
 
     public Wallet(String mnemonic) {
+        if (!Bip39.validateMnemonic(mnemonic)) {
+            return;
+        }
         this.mnemonic = mnemonic;
         this.privateKey = Bip39.getPrivateKey(mnemonic);
         this.publicKey = KeyPairTool.getPublicKeyFromPrivate(privateKey);

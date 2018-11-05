@@ -35,6 +35,7 @@ public class RemoteDataProvider implements DataProvider {
         } else {
             throw new IllegalArgumentException("only rpc protocal is supported now.");
         }
+        protocalProvider.init(context);
 
         BlockChainManager.initGenesisBlock(context);
     }

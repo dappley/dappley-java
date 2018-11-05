@@ -12,6 +12,7 @@ import com.dappley.android.sdk.util.Asserts;
 import com.dappley.android.sdk.util.SerializeUtil;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dappley {
@@ -38,8 +39,17 @@ public class Dappley {
         return wallet;
     }
 
-    public static BigInteger getWalletBalance() {
-        return BigInteger.ZERO;
+    public static BigInteger getWalletBalance(String address) {
+        return dataProvider.getBalance(address);
+    }
+
+    public static List<Wallet> getWalletBalances(List<Wallet> wallets) {
+        BigInteger balance;
+        for (Wallet wallet : wallets) {
+            balance = dataProvider.getBalance(wallet.getAddress());
+            wallet.setBalance(balance);
+        }
+        return wallets;
     }
 
     public static byte[] encryptWallet(Wallet wallet, String password) {

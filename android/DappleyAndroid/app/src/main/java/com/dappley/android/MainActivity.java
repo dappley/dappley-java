@@ -19,6 +19,7 @@ import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,9 @@ import deadline.swiperecyclerview.SwipeRecyclerView;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
+
     WalletListAdapter adapter;
+    List<Wallet> wallets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +114,20 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         adapter.setList(wallets);
+
+        this.wallets = wallets;
+
+        loadBalance();
+    }
+
+    private void loadBalance() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                wallets = Dappley.getWalletBalances(wallets);
+                adapter.setList(wallets);
+            }
+        }).start();
     }
 
     private WalletListAdapter.OnItemClickListener itemClickListener = new WalletListAdapter.OnItemClickListener() {

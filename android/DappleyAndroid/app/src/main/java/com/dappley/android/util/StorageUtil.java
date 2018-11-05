@@ -2,6 +2,7 @@ package com.dappley.android.util;
 
 import android.os.Environment;
 
+import com.dappley.android.sdk.po.Wallet;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -31,7 +32,6 @@ public class StorageUtil {
 
     public static void saveWalletMap(Map<String, byte[]> walletMap) throws IOException {
         File file = new File(getWalletPath() + File.separator + "wallet");
-//            Files.write(bytes, file);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.writeValue(file, walletMap);
@@ -52,9 +52,6 @@ public class StorageUtil {
 
     public static void saveAddresses(List<String> addresses) throws IOException {
         File file = new File(getWalletPath() + File.separator + "address");
-//            byte[] bytes = SerializeUtil.encodeList(addresses, String.class);
-//            Files.write(bytes, file);
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.writeValue(file, addresses);
@@ -65,13 +62,28 @@ public class StorageUtil {
         if (!file.exists()) {
             return null;
         }
-//            byte[] bytes = Files.toByteArray(file);
-//            return SerializeUtil.decodeList(bytes, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
         List<String> addressList = objectMapper.readValue(file, List.class);
         return addressList;
+    }
+
+    public static void deleteAddress(String address) {
+        try {
+            List<String> addresses = getAddresses();
+            if (addresses != null) {
+                addresses.remove(address);
+                saveAddresses(addresses);
+            }
+            Map<String, byte[]> walletMap = getWalletMap();
+            if (walletMap != null) {
+                walletMap.remove(walletMap);
+                saveWalletMap(walletMap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

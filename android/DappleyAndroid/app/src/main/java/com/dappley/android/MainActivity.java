@@ -1,7 +1,10 @@
 package com.dappley.android;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,14 +14,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dappley.android.adapter.WalletListAdapter;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
+import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
+import com.dappley.android.window.DeleteMenuWindow;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -36,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
 
+    DeleteMenuWindow menuWindow;
     WalletListAdapter adapter;
     List<Wallet> wallets;
+    Wallet wallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         initView();
 
         loadData();
+
+        registerBroadcast();
     }
 
     private void initView() {
@@ -132,12 +142,61 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
+    private void deleteWallet(String address) {
+        if (CommonUtil.isNull(address)) {
+            return;
+        }
+        StorageUtil.deleteAddress(address);
+
+        Dappley.removeAddress(address);
+
+        loadData();
+    }
+
+
     private WalletListAdapter.OnItemClickListener itemClickListener = new WalletListAdapter.OnItemClickListener() {
         @Override
         public void onClick(View view, int position) {
 
         }
+
+        @Override
+        public void onLongClick(View view, int position) {
+            wallet = wallets.get(position);
+            View rootView = ((ViewGroup) (getWindow().getDecorView().findViewById(android.R.id.content))).getChildAt(0);
+            if (menuWindow == null) {
+                menuWindow = new DeleteMenuWindow(MainActivity.this, new DeleteMenuWindow.OnWindowClickListener() {
+                    @Override
+                    public void onDelClick() {
+                        deleteWallet(wallet.getAddress());
+                    }
+                });
+            }
+            menuWindow.showPopupWindow(rootView);
+        }
     };
+
+    private void registerBroadcast() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.BROAD_WALLET_LIST_UPDATE);
+        registerReceiver(receiver, filter);
+    }
+
+    public BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Constant.BROAD_WALLET_LIST_UPDATE.equals(intent.getAction())) {
+                loadData();
+            }
+        }
+
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

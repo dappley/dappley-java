@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AnimationPopBottom" parent="@android:style/Animation.InputMethod">
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
     <!-- toolbar ImageButton -->
     <style name="image_button">
         <item name="android:layout_width">40dip</item>

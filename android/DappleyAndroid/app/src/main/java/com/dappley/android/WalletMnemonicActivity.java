@@ -72,6 +72,9 @@ public class WalletMnemonicActivity extends AppCompatActivity {
         wallet = (Wallet) intent.getSerializableExtra("wallet");
         password = intent.getStringExtra("password");
         type = intent.getIntExtra("type", 1);
+        if (type == Constant.REQ_WALLET_IMPORT) {
+            tvTitle.setText("导入钱包");
+        }
 
         tvName.setText(CommonUtil.getNotNullString(wallet.getName()));
         tvAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
@@ -115,11 +118,15 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             }
             byte[] encryptWallet = Dappley.encryptWallet(wallet, password);
             walletMap.put(wallet.getAddress(), encryptWallet);
-
+            System.out.println(wallet.getMnemonic());
             // write to files
             StorageUtil.saveAddresses(addresses);
             StorageUtil.saveWalletMap(walletMap);
-            Toast.makeText(this, "save success", Toast.LENGTH_SHORT).show();
+
+            Dappley.addAddress(wallet.getAddress());
+
+            Intent intent = new Intent(Constant.BROAD_WALLET_LIST_UPDATE);
+            sendBroadcast(intent);
             finish();
         } catch (IOException e) {
             Toast.makeText(this, "read/write data failed", Toast.LENGTH_SHORT).show();

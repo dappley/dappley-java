@@ -79,10 +79,14 @@ public class WalletImportActivity extends AppCompatActivity {
             return;
         }
         Wallet wallet = null;
-        if (rbMnemonic.isChecked()) {
-            wallet = Dappley.importWalletFromMnemonic(etMnemonic.getText().toString());
-        } else {
-            wallet = Dappley.importWalletFromPrivateKey(etPrivateKey.getText().toString());
+        try {
+            if (rbMnemonic.isChecked()) {
+                wallet = Dappley.importWalletFromMnemonic(etMnemonic.getText().toString());
+            } else {
+                wallet = Dappley.importWalletFromPrivateKey(etPrivateKey.getText().toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         if (wallet == null || wallet.getPrivateKey() == null) {
             Toast.makeText(this, "import wallet failed, please check you mnemonic or private key", Toast.LENGTH_SHORT).show();

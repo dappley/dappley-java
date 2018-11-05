@@ -52,6 +52,13 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
                     onItemClickListener.onClick(v, (int) v.getTag());
                 }
             });
+            viewItem.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemClickListener.onLongClick(v, (int) v.getTag());
+                    return false;
+                }
+            });
         }
         return viewHolder;
     }
@@ -96,5 +103,7 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
 
     public interface OnItemClickListener {
         void onClick(View view, int position);
+
+        void onLongClick(View view, int position);
     }
 }

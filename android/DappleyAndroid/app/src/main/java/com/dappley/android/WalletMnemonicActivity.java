@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,9 +43,12 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     TextView tvPrivateKey;
     @BindView(R.id.txt_mnemonic)
     TextView tvMneonic;
+    @BindView(R.id.linear_mnemonic)
+    LinearLayout linearMnemonic;
 
     private Wallet wallet;
     private String password;
+    private int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +71,17 @@ public class WalletMnemonicActivity extends AppCompatActivity {
         Intent intent = getIntent();
         wallet = (Wallet) intent.getSerializableExtra("wallet");
         password = intent.getStringExtra("password");
+        type = intent.getIntExtra("type", 1);
 
         tvName.setText(CommonUtil.getNotNullString(wallet.getName()));
         tvAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
         tvPrivateKey.setText(wallet.getPrivateKey().toString(16));
-        tvMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
+        if (wallet.getMnemonic() == null) {
+            linearMnemonic.setVisibility(View.GONE);
+        } else {
+            linearMnemonic.setVisibility(View.VISIBLE);
+            tvMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
+        }
     }
 
     @OnClick(R.id.btn_save)

@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 wallets = Dappley.getWalletBalances(wallets);
-                adapter.setList(wallets);
+                handler.sendEmptyMessage(Constant.MSG_HOME_LIST);
             }
         }).start();
     }
@@ -150,4 +152,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == Constant.MSG_HOME_LIST) {
+                adapter.setList(wallets);
+            }
+        }
+    };
 }

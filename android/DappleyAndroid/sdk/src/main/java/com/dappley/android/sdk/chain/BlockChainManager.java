@@ -63,7 +63,7 @@ public class BlockChainManager {
     }
 
     /**
-     * Add buildUserUtxo wallet address into system db.
+     * Add a wallet address into system db.
      * @param context
      * @param walletAddress user's wallet address
      */
@@ -82,4 +82,24 @@ public class BlockChainManager {
         blockChainDb.saveWalletAddress(walletAddress);
     }
 
+    /**
+     * Remove a wallet address into system db.
+     * @param context
+     * @param walletAddress user's wallet address
+     */
+    public static void removeWalletAddress(Context context, String walletAddress) {
+        if (StringUtils.isEmpty(walletAddress)) {
+            return;
+        }
+        BlockChainDb blockChainDb = new BlockChainDb(context);
+        Set<String> walletAddressSet = blockChainDb.getWalletAddressSet();
+        if (!walletAddressSet.contains(walletAddress)) {
+            return;
+        }
+        walletAddressSet.remove(walletAddress);
+
+        // remove related utxos
+        UtxoManager.removeUserUtxo(context, walletAddress);
+        blockChainDb.saveWalletAddress(walletAddress);
+    }
 }

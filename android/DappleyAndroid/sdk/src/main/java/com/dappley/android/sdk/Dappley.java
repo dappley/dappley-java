@@ -3,6 +3,7 @@ package com.dappley.android.sdk;
 import android.content.Context;
 import android.util.Log;
 
+import com.dappley.android.sdk.chain.BlockChainManager;
 import com.dappley.android.sdk.chain.WalletManager;
 import com.dappley.android.sdk.net.DataProvider;
 import com.dappley.android.sdk.net.LocalDataProvider;
@@ -50,10 +51,12 @@ public class Dappley {
     }
 
     public static BigInteger getWalletBalance(String address) {
+        Asserts.init(context);
         return dataProvider.getBalance(address);
     }
 
     public static List<Wallet> getWalletBalances(List<Wallet> wallets) {
+        Asserts.init(context);
         BigInteger balance;
         for (Wallet wallet : wallets) {
             balance = dataProvider.getBalance(wallet.getAddress());
@@ -63,11 +66,27 @@ public class Dappley {
     }
 
     public static byte[] encryptWallet(Wallet wallet, String password) {
+        Asserts.init(context);
         return WalletManager.encryptWallet(wallet, password);
     }
 
     public static byte[] encryptWallets(List<Wallet> wallets, String password) {
+        Asserts.init(context);
         return WalletManager.encryptWallets(wallets, password);
+    }
+
+    public static void addAddress(String address) {
+        Asserts.init(context);
+        if (dataProvider instanceof LocalDataProvider) {
+            BlockChainManager.addWalletAddress(context, address);
+        }
+    }
+
+    public static void removeAddress(String address) {
+        Asserts.init(context);
+        if (dataProvider instanceof LocalDataProvider) {
+            BlockChainManager.removeWalletAddress(context, address);
+        }
     }
 
     /**

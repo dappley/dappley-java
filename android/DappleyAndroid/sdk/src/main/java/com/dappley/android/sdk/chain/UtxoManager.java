@@ -13,6 +13,7 @@ import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.TxInput;
 import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.po.Utxo;
+import com.dappley.android.sdk.po.UtxoIndex;
 import com.dappley.android.sdk.util.AddressUtil;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -21,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Utils to handle UTXO datas.
@@ -105,6 +107,30 @@ public class UtxoManager {
     }
 
     /**
+     * Remove all new user's utxo info.
+     * <p>Remove values in UtxoIndex db. Remove key-values pairs in Utxo db.</p>
+     * @param context
+     * @param walletAddress wallet address
+     */
+    public static void removeUserUtxo(Context context, String walletAddress) {
+        UtxoDb utxoDb = new UtxoDb(context);
+        UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);
+        Set<UtxoIndex> utxoIndexSet = utxoIndexDb.get(walletAddress);
+        if (CollectionUtils.isEmpty(utxoIndexSet)) {
+            return;
+        }
+        // remove all related keys in utxo db
+        for (UtxoIndex utxoIndex : utxoIndexSet) {
+            if (utxoIndex == null) {
+                continue;
+            }
+            utxoDb.remove(utxoIndex.toString());
+        }
+        // remove related values in utxoIndex db
+        utxoIndexDb.remove(walletAddress);
+    }
+
+    /**
      * Save current wallet address utxo datas into database.
      * @param transactions block's transactions
      * @param walletAddress wallet address
@@ -147,7 +173,7 @@ public class UtxoManager {
     }
 
     /**
-     * Convert buildUserUtxo transaction's outputs to utxos and save them if needed.
+     * Convert a transaction's outputs to utxos and save them if needed.
      * @param transaction
      * @param walletAddress wallet address
      * @param utxoDb utxo database
@@ -170,7 +196,7 @@ public class UtxoManager {
             if (!walletAddress.equals(tempAddress)) {
                 continue;
             }
-            // vout point to buildUserUtxo user address
+            // vout point to a user address
             tempUtxo = new Utxo();
             tempUtxo.setTxId(transaction.getId());
             tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());

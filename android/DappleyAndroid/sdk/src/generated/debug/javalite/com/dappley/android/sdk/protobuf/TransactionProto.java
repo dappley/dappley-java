@@ -1329,6 +1329,16 @@ public final class TransactionProto {
      * <code>optional bytes PubKeyHash = 2;</code>
      */
     com.google.protobuf.ByteString getPubKeyHash();
+
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    java.lang.String getContract();
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getContractBytes();
   }
   /**
    * Protobuf type {@code corepb.TXOutput}
@@ -1341,6 +1351,7 @@ public final class TransactionProto {
     private TXOutput() {
       value_ = com.google.protobuf.ByteString.EMPTY;
       pubKeyHash_ = com.google.protobuf.ByteString.EMPTY;
+      contract_ = "";
     }
     public static final int VALUE_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString value_;
@@ -1394,6 +1405,52 @@ public final class TransactionProto {
       pubKeyHash_ = getDefaultInstance().getPubKeyHash();
     }
 
+    public static final int CONTRACT_FIELD_NUMBER = 3;
+    private java.lang.String contract_;
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    public java.lang.String getContract() {
+      return contract_;
+    }
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContractBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(contract_);
+    }
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    private void setContract(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      contract_ = value;
+    }
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    private void clearContract() {
+      
+      contract_ = getDefaultInstance().getContract();
+    }
+    /**
+     * <code>optional string Contract = 3;</code>
+     */
+    private void setContractBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      contract_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!value_.isEmpty()) {
@@ -1401,6 +1458,9 @@ public final class TransactionProto {
       }
       if (!pubKeyHash_.isEmpty()) {
         output.writeBytes(2, pubKeyHash_);
+      }
+      if (!contract_.isEmpty()) {
+        output.writeString(3, getContract());
       }
     }
 
@@ -1416,6 +1476,10 @@ public final class TransactionProto {
       if (!pubKeyHash_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, pubKeyHash_);
+      }
+      if (!contract_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getContract());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1549,6 +1613,46 @@ public final class TransactionProto {
         return this;
       }
 
+      /**
+       * <code>optional string Contract = 3;</code>
+       */
+      public java.lang.String getContract() {
+        return instance.getContract();
+      }
+      /**
+       * <code>optional string Contract = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContractBytes() {
+        return instance.getContractBytes();
+      }
+      /**
+       * <code>optional string Contract = 3;</code>
+       */
+      public Builder setContract(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setContract(value);
+        return this;
+      }
+      /**
+       * <code>optional string Contract = 3;</code>
+       */
+      public Builder clearContract() {
+        copyOnWrite();
+        instance.clearContract();
+        return this;
+      }
+      /**
+       * <code>optional string Contract = 3;</code>
+       */
+      public Builder setContractBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setContractBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:corepb.TXOutput)
     }
     protected final Object dynamicMethod(
@@ -1574,6 +1678,8 @@ public final class TransactionProto {
               other.value_ != com.google.protobuf.ByteString.EMPTY, other.value_);
           pubKeyHash_ = visitor.visitByteString(pubKeyHash_ != com.google.protobuf.ByteString.EMPTY, pubKeyHash_,
               other.pubKeyHash_ != com.google.protobuf.ByteString.EMPTY, other.pubKeyHash_);
+          contract_ = visitor.visitString(!contract_.isEmpty(), contract_,
+              !other.contract_.isEmpty(), other.contract_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1606,6 +1712,12 @@ public final class TransactionProto {
                 case 18: {
 
                   pubKeyHash_ = input.readBytes();
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  contract_ = s;
                   break;
                 }
               }

@@ -2448,6 +2448,16 @@ public final class RpcProto {
      * <code>optional uint64 tip = 5;</code>
      */
     long getTip();
+
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    java.lang.String getContract();
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getContractBytes();
   }
   /**
    * Protobuf type {@code rpcpb.SendRequest}
@@ -2462,6 +2472,7 @@ public final class RpcProto {
       to_ = "";
       amount_ = com.google.protobuf.ByteString.EMPTY;
       walletpath_ = "";
+      contract_ = "";
     }
     public static final int FROM_FIELD_NUMBER = 1;
     private java.lang.String from_;
@@ -2650,6 +2661,52 @@ public final class RpcProto {
       tip_ = 0L;
     }
 
+    public static final int CONTRACT_FIELD_NUMBER = 6;
+    private java.lang.String contract_;
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    public java.lang.String getContract() {
+      return contract_;
+    }
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContractBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(contract_);
+    }
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    private void setContract(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      contract_ = value;
+    }
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    private void clearContract() {
+      
+      contract_ = getDefaultInstance().getContract();
+    }
+    /**
+     * <code>optional string contract = 6;</code>
+     */
+    private void setContractBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      contract_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!from_.isEmpty()) {
@@ -2666,6 +2723,9 @@ public final class RpcProto {
       }
       if (tip_ != 0L) {
         output.writeUInt64(5, tip_);
+      }
+      if (!contract_.isEmpty()) {
+        output.writeString(6, getContract());
       }
     }
 
@@ -2693,6 +2753,10 @@ public final class RpcProto {
       if (tip_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(5, tip_);
+      }
+      if (!contract_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getContract());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2946,6 +3010,46 @@ public final class RpcProto {
         return this;
       }
 
+      /**
+       * <code>optional string contract = 6;</code>
+       */
+      public java.lang.String getContract() {
+        return instance.getContract();
+      }
+      /**
+       * <code>optional string contract = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContractBytes() {
+        return instance.getContractBytes();
+      }
+      /**
+       * <code>optional string contract = 6;</code>
+       */
+      public Builder setContract(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setContract(value);
+        return this;
+      }
+      /**
+       * <code>optional string contract = 6;</code>
+       */
+      public Builder clearContract() {
+        copyOnWrite();
+        instance.clearContract();
+        return this;
+      }
+      /**
+       * <code>optional string contract = 6;</code>
+       */
+      public Builder setContractBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setContractBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:rpcpb.SendRequest)
     }
     protected final Object dynamicMethod(
@@ -2977,6 +3081,8 @@ public final class RpcProto {
               !other.walletpath_.isEmpty(), other.walletpath_);
           tip_ = visitor.visitLong(tip_ != 0L, tip_,
               other.tip_ != 0L, other.tip_);
+          contract_ = visitor.visitString(!contract_.isEmpty(), contract_,
+              !other.contract_.isEmpty(), other.contract_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -3027,6 +3133,12 @@ public final class RpcProto {
                 case 40: {
 
                   tip_ = input.readUInt64();
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  contract_ = s;
                   break;
                 }
               }
@@ -12308,6 +12420,533 @@ public final class RpcProto {
     private static volatile com.google.protobuf.Parser<SendTransactionResponse> PARSER;
 
     public static com.google.protobuf.Parser<SendTransactionResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetNewTransactionsRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetNewTransactionsRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetNewTransactionsRequest}
+   */
+  public  static final class GetNewTransactionsRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetNewTransactionsRequest, GetNewTransactionsRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetNewTransactionsRequest)
+      GetNewTransactionsRequestOrBuilder {
+    private GetNewTransactionsRequest() {
+    }
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.GetNewTransactionsRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetNewTransactionsRequest)
+        com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequestOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetNewTransactionsRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest other = (com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest) arg1;
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetNewTransactionsRequest)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetNewTransactionsRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetNewTransactionsRequest> PARSER;
+
+    public static com.google.protobuf.Parser<GetNewTransactionsRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface GetNewTransactionsResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetNewTransactionsResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    boolean hasTransaction();
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.android.sdk.protobuf.TransactionProto.Transaction getTransaction();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetNewTransactionsResponse}
+   */
+  public  static final class GetNewTransactionsResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          GetNewTransactionsResponse, GetNewTransactionsResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetNewTransactionsResponse)
+      GetNewTransactionsResponseOrBuilder {
+    private GetNewTransactionsResponse() {
+    }
+    public static final int TRANSACTION_FIELD_NUMBER = 1;
+    private com.dappley.android.sdk.protobuf.TransactionProto.Transaction transaction_;
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    public boolean hasTransaction() {
+      return transaction_ != null;
+    }
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.android.sdk.protobuf.TransactionProto.Transaction getTransaction() {
+      return transaction_ == null ? com.dappley.android.sdk.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+    }
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    private void setTransaction(com.dappley.android.sdk.protobuf.TransactionProto.Transaction value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      transaction_ = value;
+      
+      }
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    private void setTransaction(
+        com.dappley.android.sdk.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+      transaction_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    private void mergeTransaction(com.dappley.android.sdk.protobuf.TransactionProto.Transaction value) {
+      if (transaction_ != null &&
+          transaction_ != com.dappley.android.sdk.protobuf.TransactionProto.Transaction.getDefaultInstance()) {
+        transaction_ =
+          com.dappley.android.sdk.protobuf.TransactionProto.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+      } else {
+        transaction_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .corepb.Transaction transaction = 1;</code>
+     */
+    private void clearTransaction() {  transaction_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (transaction_ != null) {
+        output.writeMessage(1, getTransaction());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (transaction_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getTransaction());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code rpcpb.GetNewTransactionsResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetNewTransactionsResponse)
+        com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponseOrBuilder {
+      // Construct using com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .corepb.Transaction transaction = 1;</code>
+       */
+      public boolean hasTransaction() {
+        return instance.hasTransaction();
+      }
+      /**
+       * <code>optional .corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.android.sdk.protobuf.TransactionProto.Transaction getTransaction() {
+        return instance.getTransaction();
+      }
+      /**
+       * <code>optional .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(com.dappley.android.sdk.protobuf.TransactionProto.Transaction value) {
+        copyOnWrite();
+        instance.setTransaction(value);
+        return this;
+        }
+      /**
+       * <code>optional .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(
+          com.dappley.android.sdk.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTransaction(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder mergeTransaction(com.dappley.android.sdk.protobuf.TransactionProto.Transaction value) {
+        copyOnWrite();
+        instance.mergeTransaction(value);
+        return this;
+      }
+      /**
+       * <code>optional .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder clearTransaction() {  copyOnWrite();
+        instance.clearTransaction();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetNewTransactionsResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse other = (com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse) arg1;
+          transaction_ = visitor.visitMessage(transaction_, other.transaction_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  com.dappley.android.sdk.protobuf.TransactionProto.Transaction.Builder subBuilder = null;
+                  if (transaction_ != null) {
+                    subBuilder = transaction_.toBuilder();
+                  }
+                  transaction_ = input.readMessage(com.dappley.android.sdk.protobuf.TransactionProto.Transaction.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(transaction_);
+                    transaction_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetNewTransactionsResponse)
+    private static final com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GetNewTransactionsResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GetNewTransactionsResponse> PARSER;
+
+    public static com.google.protobuf.Parser<GetNewTransactionsResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

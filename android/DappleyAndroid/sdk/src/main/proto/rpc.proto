@@ -17,6 +17,7 @@ service RpcService {
     rpc RpcGetBlockByHash(GetBlockByHashRequest) returns (GetBlockByHashResponse) {}
     rpc RpcGetBlockByHeight(GetBlockByHeightRequest) returns (GetBlockByHeightResponse) {}
     rpc RpcSendTransaction(SendTransactionRequest) returns (SendTransactionResponse) {}
+    rpc RpcGetNewTransactions(GetNewTransactionsRequest) returns (stream GetNewTransactionsResponse) {}
 }
 
 service AdminService{
@@ -64,6 +65,7 @@ message SendRequest {
     bytes amount = 3;
     string Walletpath = 4;
     uint64 tip = 5;
+    string contract = 6;
 }
 
 message GetWalletAddressRequest {
@@ -174,4 +176,11 @@ message SendTransactionRequest {
 
 message SendTransactionResponse {
     uint32 errorCode = 1;
+}
+
+message GetNewTransactionsRequest {
+}
+
+message GetNewTransactionsResponse {
+    corepb.Transaction transaction = 1;
 }

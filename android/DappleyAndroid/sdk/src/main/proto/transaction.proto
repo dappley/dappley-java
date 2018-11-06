@@ -19,6 +19,7 @@ message TXInput{
 }
 
 message TXOutput{
-    bytes Value = 1;
-    bytes PubKeyHash = 2;
+    bytes   Value = 1;
+    bytes   PubKeyHash = 2;
+    string  Contract = 3;
 }

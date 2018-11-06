@@ -19,6 +19,6 @@ public class AppData extends Application {
         super.onCreate();
 
         // register dappley service
-        Dappley.init(getApplicationContext(), Dappley.DataMode.LOCAL_STORAGE);
+        Dappley.init(getApplicationContext(), Dappley.DataMode.REMOTE_ONLINE);
     }
 }

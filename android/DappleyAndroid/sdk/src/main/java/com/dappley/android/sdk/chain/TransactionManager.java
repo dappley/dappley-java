@@ -1,5 +1,6 @@
 package com.dappley.android.sdk.chain;
 
+import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.ShaDigest;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.TxInput;
@@ -25,6 +26,19 @@ public class TransactionManager {
      * default tip of each transaction
      */
     private static final long TIP_DEFAULT = 0;
+
+    /**
+     * Create a new transaction
+     * @param utxos user's unspend vouts
+     * @param toAddress account address to be transfered
+     * @param amount alue to be transfered
+     * @param privateKey
+     * @return Transaction a new transaction object
+     */
+    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, BigInteger privateKey) {
+        ECKeyPair keyPair = ECKeyPair.create(privateKey);
+        return newTransaction(utxos, toAddress, amount, keyPair);
+    }
 
     /**
      * Create a new transaction

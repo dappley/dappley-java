@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,14 +31,14 @@ public class StorageUtil {
         return path;
     }
 
-    public static void saveWalletMap(Map<String, byte[]> walletMap) throws IOException {
+    public static void saveWalletMap(Map<String, Object> walletMap) throws IOException {
         File file = new File(getWalletPath() + File.separator + "wallet");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.writeValue(file, walletMap);
     }
 
-    public static Map<String, byte[]> getWalletMap() throws IOException {
+    public static Map<String, Object> getWalletMap() throws IOException {
         File file = new File(getWalletPath() + File.separator + "wallet");
         if (!file.exists()) {
             return null;
@@ -46,8 +47,20 @@ public class StorageUtil {
         objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
-        Map<String, byte[]> walletMap = objectMapper.readValue(file, Map.class);
+        Map<String, Object> walletMap = objectMapper.readValue(file, Map.class);
         return walletMap;
+    }
+
+    public static String getWallet(String address) throws IOException {
+        if (address == null || address.length() == 0) {
+            return null;
+        }
+        Map<String, Object> walletMap = getWalletMap();
+        if (walletMap == null) {
+            return null;
+        }
+        String encryped = (String) walletMap.get(address);
+        return encryped;
     }
 
     public static void saveAddresses(List<String> addresses) throws IOException {
@@ -77,7 +90,7 @@ public class StorageUtil {
                 addresses.remove(address);
                 saveAddresses(addresses);
             }
-            Map<String, byte[]> walletMap = getWalletMap();
+            Map<String, Object> walletMap = getWalletMap();
             if (walletMap != null) {
                 walletMap.remove(walletMap);
                 saveWalletMap(walletMap);

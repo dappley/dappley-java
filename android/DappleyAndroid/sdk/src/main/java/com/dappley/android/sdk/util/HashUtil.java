@@ -54,7 +54,7 @@ public class HashUtil {
         // decode address in Base58 format
         byte[] addrs = Base58.decode(address);
         // pubKeyHash[1 : len(pubKeyHash)-4]
-        byte[] pubKeyHash = ByteUtil.slice(addrs, 1, addrs.length - 5);
+        byte[] pubKeyHash = ByteUtil.slice(addrs, 1, addrs.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
         return pubKeyHash;
     }
 

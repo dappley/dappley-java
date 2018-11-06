@@ -3,6 +3,7 @@ package com.dappley.android;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class WalletDetailActivity extends AppCompatActivity {
@@ -108,6 +110,13 @@ public class WalletDetailActivity extends AppCompatActivity {
         tvAddress.setText(wallet.getAddress());
     }
 
+    @OnClick(R.id.btn_transfer)
+    void tranfer() {
+        Intent intent = new Intent(this, TransferActivity.class);
+        intent.putExtra("wallet", wallet);
+        startActivityForResult(intent, Constant.REQ_ACT_TRANSFER);
+    }
+
     private void loadData() {
         new Thread(new Runnable() {
             @Override
@@ -160,4 +169,16 @@ public class WalletDetailActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constant.REQ_ACT_TRANSFER) {
+                // transfer success
+                pageIndex = 1;
+                loadData();
+            }
+        }
+    }
 }

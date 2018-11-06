@@ -4,10 +4,14 @@ import android.support.annotation.NonNull;
 
 import com.dappley.android.sdk.crypto.KeyPairTool;
 
+import org.apache.commons.lang3.StringUtils;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
 import java.security.KeyPair;
+import java.util.Arrays;
+
+import io.opencensus.internal.StringUtil;
 
 /**
  * Wallet address util.
@@ -64,5 +68,34 @@ public class AddressUtil {
         byte[] address = Base58.encodeBytes(fullPayload);
         // return encoded String as a wallet address
         return new String(address);
+    }
+
+    /**
+     * Returns if the wallet address is legal
+     * @param address wallet address
+     * @return boolean true/false
+     */
+    public static boolean validateAddress(String address) {
+        if (StringUtils.isEmpty(address)) {
+            return false;
+        }
+        byte[] addrBytes;
+        try {
+            addrBytes = Base58.decode(address);
+        } catch (Exception e) {
+            return false;
+        }
+        if (addrBytes == null || addrBytes.length < Constant.ADDRESS_CHECKSUM_LENGTH) {
+            return false;
+        }
+        byte[] actualChecksum = ByteUtil.slice(addrBytes, addrBytes.length - Constant.ADDRESS_CHECKSUM_LENGTH
+                , Constant.ADDRESS_CHECKSUM_LENGTH);
+        byte[] version = new byte[]{addrBytes[0]};
+        byte[] pubKeyHash = ByteUtil.slice(addrBytes, 1, addrBytes.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
+        // concat version and pubKeyHash to get a new byte array
+        byte[] versionedPayload = ByteUtil.concat(version, pubKeyHash);
+        // get the checksum of versionedPayload
+        byte[] checksum = HashUtil.getAddressChecksum(versionedPayload, Constant.ADDRESS_CHECKSUM_LENGTH);
+        return Arrays.equals(actualChecksum, checksum);
     }
 }

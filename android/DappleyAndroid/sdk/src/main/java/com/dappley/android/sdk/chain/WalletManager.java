@@ -30,9 +30,9 @@ public class WalletManager {
         return wallet;
     }
 
-    public static byte[] encryptWallet(Wallet wallet, String password) {
+    public static String encryptWallet(Wallet wallet, String password) {
         byte[] bytes = SerializeUtil.encode(wallet);
-        byte[] encryped = AesCipher.encrypt(bytes, password);
+        String encryped = AesCipher.encryptToHex(bytes, password);
         return encryped;
     }
 
@@ -40,5 +40,11 @@ public class WalletManager {
         byte[] bytes = SerializeUtil.encodeList(wallets, Wallet.class);
         byte[] encryped = AesCipher.encrypt(bytes, password);
         return encryped;
+    }
+
+    public static Wallet decryptWallet(String walletString, String password) {
+        byte[] decrypted = AesCipher.decryptBytesFromHex(walletString, password);
+        Wallet wallet = SerializeUtil.decode(decrypted, Wallet.class);
+        return wallet;
     }
 }

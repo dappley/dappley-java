@@ -4,11 +4,14 @@ import android.content.Context;
 import android.util.Log;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
+import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.chain.UtxoManager;
 import com.dappley.android.sdk.chain.WalletManager;
 import com.dappley.android.sdk.net.DataProvider;
 import com.dappley.android.sdk.net.LocalDataProvider;
 import com.dappley.android.sdk.net.RemoteDataProvider;
+import com.dappley.android.sdk.net.TransactionSender;
+import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.sdk.util.AddressUtil;
@@ -23,6 +26,7 @@ public class Dappley {
     private static final String TAG = "Dappley";
     private static Context context;
     private static DataProvider dataProvider;
+    private static TransactionSender transactionSender;
 
     public static void init(Context context, DataMode dataMode) {
         Dappley.context = context;
@@ -32,6 +36,7 @@ public class Dappley {
             } else if (dataMode == DataMode.REMOTE_ONLINE) {
                 dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
             }
+            transactionSender = new TransactionSender(context);
         } catch (Exception e) {
             Log.e(TAG, "init: ", e);
         }
@@ -70,7 +75,7 @@ public class Dappley {
         return wallets;
     }
 
-    public static byte[] encryptWallet(Wallet wallet, String password) {
+    public static String encryptWallet(Wallet wallet, String password) {
         Asserts.init(context);
         return WalletManager.encryptWallet(wallet, password);
     }
@@ -78,6 +83,11 @@ public class Dappley {
     public static byte[] encryptWallets(List<Wallet> wallets, String password) {
         Asserts.init(context);
         return WalletManager.encryptWallets(wallets, password);
+    }
+
+    public static Wallet decryptWallet(String walletString, String password) {
+        Asserts.init(context);
+        return WalletManager.decryptWallet(walletString, password);
     }
 
     public static void addAddress(String address) {
@@ -98,6 +108,10 @@ public class Dappley {
         return AddressUtil.createAddress(pubKeyHash);
     }
 
+    public static boolean validateAddress(String address) {
+        return AddressUtil.validateAddress(address);
+    }
+
     public static List<Utxo> getUtxos(String address, int pageIndex, int pageSize) {
         if (pageIndex <= 0 || pageSize <= 0) {
             return null;
@@ -116,6 +130,24 @@ public class Dappley {
         }
         List<Utxo> subList = utxos.subList(pageNo, toIndex);
         return subList;
+    }
+
+    public static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey) {
+        List<Utxo> allUtxo = dataProvider.getUtxos(fromAddress);
+        if (CollectionUtils.isEmpty(allUtxo)) {
+            return false;
+        }
+        List<Utxo> utxos = UtxoManager.getSpendableUtxos(allUtxo, amount);
+        if (CollectionUtils.isEmpty(utxos)) {
+            return false;
+        }
+        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey);
+        int errorCode = transactionSender.sendTransaction(transaction);
+        if (errorCode == 0) {
+            // success
+            return true;
+        }
+        return false;
     }
 
     /**

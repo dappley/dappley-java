@@ -35,6 +35,11 @@ public class AesCipher {
         return Hex.toHexString(enc);
     }
 
+    public static String encryptToHex(byte[] messageBytes, String key){
+        byte[] enc = encrypt(messageBytes, key);
+        return Hex.toHexString(enc);
+    }
+
     /**
      * Returns the encypted bytes by 'AES' algorithm.
      * @param messageBytes the orginal data
@@ -64,6 +69,11 @@ public class AesCipher {
     public static String decryptFromHex(String message, String key) {
         byte[] dec = decrypt(Hex.decode(message), key);
         return new String(dec);
+    }
+
+    public static byte[] decryptBytesFromHex(String message, String key) {
+        byte[] dec = decrypt(Hex.decode(message), key);
+        return dec;
     }
 
     /**

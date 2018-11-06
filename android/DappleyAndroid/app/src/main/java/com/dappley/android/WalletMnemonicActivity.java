@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,14 +36,14 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     ImageButton btnBack;
     @BindView(R.id.txt_title)
     TextView tvTitle;
-    @BindView(R.id.txt_name)
-    TextView tvName;
-    @BindView(R.id.txt_address)
-    TextView tvAddress;
-    @BindView(R.id.txt_private_key)
-    TextView tvPrivateKey;
-    @BindView(R.id.txt_mnemonic)
-    TextView tvMneonic;
+    @BindView(R.id.et_name)
+    EditText etName;
+    @BindView(R.id.et_address)
+    EditText etAddress;
+    @BindView(R.id.et_private_key)
+    EditText etPrivateKey;
+    @BindView(R.id.et_mnemonic)
+    EditText etMneonic;
     @BindView(R.id.linear_mnemonic)
     LinearLayout linearMnemonic;
 
@@ -76,14 +77,14 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             tvTitle.setText("导入钱包");
         }
 
-        tvName.setText(CommonUtil.getNotNullString(wallet.getName()));
-        tvAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
-        tvPrivateKey.setText(wallet.getPrivateKey().toString(16));
+        etName.setText(CommonUtil.getNotNullString(wallet.getName()));
+        etAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
+        etPrivateKey.setText(wallet.getPrivateKey().toString(16));
         if (wallet.getMnemonic() == null) {
             linearMnemonic.setVisibility(View.GONE);
         } else {
             linearMnemonic.setVisibility(View.VISIBLE);
-            tvMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
+            etMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
         }
     }
 

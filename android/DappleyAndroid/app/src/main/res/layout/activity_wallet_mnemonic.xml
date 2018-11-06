@@ -22,11 +22,16 @@
             android:layout_height="wrap_content"
             android:text="钱包名：" />
 
-        <TextView
-            android:id="@+id/txt_name"
+        <EditText
+            android:id="@+id/et_name"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@null"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/gray_text"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,11 +47,16 @@
             android:layout_height="wrap_content"
             android:text="钱包地址：" />
 
-        <TextView
-            android:id="@+id/txt_address"
+        <EditText
+            android:id="@+id/et_address"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@null"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/gray_text"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,11 +72,16 @@
             android:layout_height="wrap_content"
             android:text="私钥：" />
 
-        <TextView
-            android:id="@+id/txt_private_key"
+        <EditText
+            android:id="@+id/et_private_key"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@null"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/gray_text"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,11 +98,16 @@
             android:layout_height="wrap_content"
             android:text="助记词：" />
 
-        <TextView
-            android:id="@+id/txt_mnemonic"
+        <EditText
+            android:id="@+id/et_mnemonic"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@null"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/gray_text"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <Button

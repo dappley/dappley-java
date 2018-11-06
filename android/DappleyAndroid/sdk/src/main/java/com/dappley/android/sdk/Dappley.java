@@ -4,12 +4,17 @@ import android.content.Context;
 import android.util.Log;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
+import com.dappley.android.sdk.chain.UtxoManager;
 import com.dappley.android.sdk.chain.WalletManager;
 import com.dappley.android.sdk.net.DataProvider;
 import com.dappley.android.sdk.net.LocalDataProvider;
 import com.dappley.android.sdk.net.RemoteDataProvider;
+import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.Wallet;
+import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Asserts;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -87,6 +92,30 @@ public class Dappley {
         if (dataProvider instanceof LocalDataProvider) {
             BlockChainManager.removeWalletAddress(context, address);
         }
+    }
+
+    public static String formatAddress(byte[] pubKeyHash) {
+        return AddressUtil.createAddress(pubKeyHash);
+    }
+
+    public static List<Utxo> getUtxos(String address, int pageIndex, int pageSize) {
+        if (pageIndex <= 0 || pageSize <= 0) {
+            return null;
+        }
+        List<Utxo> utxos = dataProvider.getUtxos(address);
+        if (CollectionUtils.isEmpty(utxos)) {
+            return null;
+        }
+        int pageNo = (pageIndex - 1) * pageSize;
+        if (utxos.size() <= pageNo) {
+            return null;
+        }
+        int toIndex = pageNo + pageSize;
+        if (toIndex >= utxos.size()) {
+            toIndex = utxos.size() - 1;
+        }
+        List<Utxo> subList = utxos.subList(pageNo, toIndex);
+        return subList;
     }
 
     /**

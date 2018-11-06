@@ -157,7 +157,10 @@ public class MainActivity extends AppCompatActivity {
     private WalletListAdapter.OnItemClickListener itemClickListener = new WalletListAdapter.OnItemClickListener() {
         @Override
         public void onClick(View view, int position) {
-
+            wallet = wallets.get(position);
+            Intent intent = new Intent(MainActivity.this, WalletDetailActivity.class);
+            intent.putExtra("wallet", wallet);
+            startActivity(intent);
         }
 
         @Override

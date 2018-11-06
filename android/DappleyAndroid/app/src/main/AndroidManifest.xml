@@ -25,7 +25,8 @@
         <activity android:name=".WalletAddActivity" />
         <activity android:name=".WalletCreateActivity" />
         <activity android:name=".WalletImportActivity" />
-        <activity android:name=".WalletMnemonicActivity"></activity>
+        <activity android:name=".WalletMnemonicActivity" />
+        <activity android:name=".WalletDetailActivity"></activity>
     </application>
 
 </manifest>

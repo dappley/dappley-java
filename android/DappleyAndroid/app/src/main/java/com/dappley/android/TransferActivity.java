@@ -100,7 +100,7 @@ public class TransferActivity extends AppCompatActivity {
             setResult(RESULT_OK);
             finish();
         } else {
-            Toast.makeText(this, "transfer failed, please your inputs", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "transfer failed, please check your inputs", Toast.LENGTH_SHORT).show();
         }
     }
 

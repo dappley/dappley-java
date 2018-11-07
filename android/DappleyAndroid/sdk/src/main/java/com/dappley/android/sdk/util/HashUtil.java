@@ -24,7 +24,7 @@ public class HashUtil {
         byte[] shaBytes = Sha3Digest.sha3256(publicKeyBytes);
         byte[] ripeBytes = RipemdDigest.ripemd160(shaBytes);
         // add version head to pubKeyHash
-        byte[] pubKeyHash= ByteUtil.concat(VERSION_USER, ripeBytes);
+        byte[] pubKeyHash = ByteUtil.concat(VERSION_USER, ripeBytes);
         return pubKeyHash;
     }
 
@@ -41,16 +41,26 @@ public class HashUtil {
 
     /**
      * Generate a hash byte array from publicKey
-     * @param pubInteger publicKey in BigInteger format
+     * @param pubKey publicKey in BigInteger format
      * @return byte[] hash bytes
      */
-    public static byte[] getPubKeyHash(BigInteger pubInteger) {
-        byte[] pubBytes = pubInteger.toByteArray();
-        int byteLength = pubInteger.bitLength() / 8;
-        if (pubBytes.length > byteLength) {
-            pubBytes = ByteUtil.slice(pubBytes, pubBytes.length - byteLength, byteLength);
-        }
+    public static byte[] getPubKeyHash(BigInteger pubKey) {
+        byte[] pubBytes = getPubKeyBytes(pubKey);
         return getPubKeyHash(pubBytes);
+    }
+
+    /**
+     * Transform pubKey into byte array.
+     * @param pubKey public key
+     * @return byte[] byte array
+     */
+    public static byte[] getPubKeyBytes(BigInteger pubKey) {
+        byte[] pubKeyBytes = pubKey.toByteArray();
+        int byteLength = pubKey.bitLength() / 8;
+        if (pubKeyBytes.length > byteLength) {
+            pubKeyBytes = ByteUtil.slice(pubKeyBytes, pubKeyBytes.length - byteLength, byteLength);
+        }
+        return pubKeyBytes;
     }
 
     /**
@@ -62,7 +72,7 @@ public class HashUtil {
         // decode address in Base58 format
         byte[] addrs = Base58.decode(address);
         // pubKeyHash[0 : len(pubKeyHash)-4]
-        byte[] pubKeyHash = ByteUtil.slice(addrs, 0, addrs.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
+        byte[] pubKeyHash = ByteUtil.slice(addrs, 0, addrs.length - Constant.ADDRESS_CHECKSUM_LENGTH);
         return pubKeyHash;
     }
 

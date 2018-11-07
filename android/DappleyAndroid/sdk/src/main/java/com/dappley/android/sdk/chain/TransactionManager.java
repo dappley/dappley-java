@@ -90,7 +90,7 @@ public class TransactionManager {
      */
     private static BigInteger buildVin(Transaction transaction, List<Utxo> utxos, ECKeyPair ecKeyPair) {
         TxInput txInput;
-        byte[] pubKey = ecKeyPair.getPublicKey().toByteArray();
+        byte[] pubKey = HashUtil.getPubKeyBytes(ecKeyPair.getPublicKey());
         // save total amount value of all txInput value
         BigInteger totalAmount = BigInteger.ZERO;
         for (Utxo utxo : utxos) {

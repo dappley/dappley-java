@@ -87,7 +87,7 @@ public class AddressUtil {
         byte[] actualChecksum = ByteUtil.slice(fullPayload, fullPayload.length - Constant.ADDRESS_CHECKSUM_LENGTH
                 , Constant.ADDRESS_CHECKSUM_LENGTH);
         // get pubKeyHash data
-        byte[] pubKeyHash = ByteUtil.slice(fullPayload, 0, fullPayload.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
+        byte[] pubKeyHash = ByteUtil.slice(fullPayload, 0, fullPayload.length - Constant.ADDRESS_CHECKSUM_LENGTH);
         // get the checksum of versionedPayload
         byte[] checksum = HashUtil.getAddressChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
         return Arrays.equals(actualChecksum, checksum);

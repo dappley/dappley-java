@@ -75,7 +75,7 @@ public class UtxoListAdapter extends RecyclerView.Adapter<UtxoListAdapter.ViewHo
             viewHolder.tvTxid.setText("tx hash: " + HexUtil.toHex(utxo.getTxId()));
         }
         if (utxo.getPublicKeyHash() != null) {
-            viewHolder.tvAddress.setText("from: " + Dappley.formatAddress(utxo.getPublicKeyHash()));
+            viewHolder.tvAddress.setText("to: " + Dappley.formatAddress(utxo.getPublicKeyHash()));
         }
         if (utxo.getAmount() != null) {
             viewHolder.tvValue.setText(utxo.getAmount().toString());

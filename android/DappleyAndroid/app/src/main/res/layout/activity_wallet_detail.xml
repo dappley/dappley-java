@@ -111,6 +111,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_receive"
             style="?borderlessButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"

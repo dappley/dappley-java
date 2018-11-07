@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WalletReceiveCodeActivity">
+
+    <include layout="@layout/toolbar_title_back" />
+
+    <ImageView
+        android:id="@+id/img_code"
+        android:layout_width="200dip"
+        android:layout_height="200dip"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_code"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="address"
+            android:textColor="@color/gray_text_light"
+            android:textIsSelectable="true"
+            android:textSize="11sp" />
+
+        <ImageButton
+            android:id="@+id/btn_copy"
+            android:layout_width="28dip"
+            android:layout_height="28dip"
+            android:layout_marginLeft="2dip"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_copy" />
+    </LinearLayout>
+</RelativeLayout>

@@ -13,4 +13,7 @@ public class Constant {
     public static final int REQ_WALLET_IMPORT = 2;
 
     public static final String BROAD_WALLET_LIST_UPDATE = "30001";
+
+    public static final int QR_WIDTH = 200;
+    public static final int QR_HEIGHT = 200;
 }

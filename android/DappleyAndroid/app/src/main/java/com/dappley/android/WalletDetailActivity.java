@@ -110,6 +110,13 @@ public class WalletDetailActivity extends AppCompatActivity {
         tvAddress.setText(wallet.getAddress());
     }
 
+    @OnClick(R.id.btn_receive)
+    void receive() {
+        Intent intent = new Intent(this, WalletReceiveCodeActivity.class);
+        intent.putExtra("wallet", wallet);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.btn_transfer)
     void tranfer() {
         Intent intent = new Intent(this, TransferActivity.class);

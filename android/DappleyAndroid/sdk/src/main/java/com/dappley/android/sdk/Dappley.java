@@ -125,8 +125,8 @@ public class Dappley {
             return null;
         }
         int toIndex = pageNo + pageSize;
-        if (toIndex >= utxos.size()) {
-            toIndex = utxos.size() - 1;
+        if (toIndex > utxos.size()) {
+            toIndex = utxos.size();
         }
         List<Utxo> subList = utxos.subList(pageNo, toIndex);
         return subList;

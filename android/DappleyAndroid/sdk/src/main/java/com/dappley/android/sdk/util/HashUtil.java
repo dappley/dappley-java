@@ -12,6 +12,8 @@ import java.security.PublicKey;
  * Provides several methods used in wallet address generate.
  */
 public class HashUtil {
+    private static final byte[] VERSION_USER = new byte[]{0x5A};
+    private static final byte[] VERSION_CONTRACT = new byte[]{0x58};
 
     /**
      * Generate a hash byte array from publicKey bytes
@@ -21,7 +23,9 @@ public class HashUtil {
     public static byte[] getPubKeyHash(byte[] publicKeyBytes) {
         byte[] shaBytes = Sha3Digest.sha3256(publicKeyBytes);
         byte[] ripeBytes = RipemdDigest.ripemd160(shaBytes);
-        return ripeBytes;
+        // add version head to pubKeyHash
+        byte[] pubKeyHash= ByteUtil.concat(VERSION_USER, ripeBytes);
+        return pubKeyHash;
     }
 
     /**
@@ -42,6 +46,10 @@ public class HashUtil {
      */
     public static byte[] getPubKeyHash(BigInteger pubInteger) {
         byte[] pubBytes = pubInteger.toByteArray();
+        int byteLength = pubInteger.bitLength() / 8;
+        if (pubBytes.length > byteLength) {
+            pubBytes = ByteUtil.slice(pubBytes, pubBytes.length - byteLength, byteLength);
+        }
         return getPubKeyHash(pubBytes);
     }
 
@@ -53,8 +61,8 @@ public class HashUtil {
     public static byte[] getPubKeyHash(String address) {
         // decode address in Base58 format
         byte[] addrs = Base58.decode(address);
-        // pubKeyHash[1 : len(pubKeyHash)-4]
-        byte[] pubKeyHash = ByteUtil.slice(addrs, 1, addrs.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
+        // pubKeyHash[0 : len(pubKeyHash)-4]
+        byte[] pubKeyHash = ByteUtil.slice(addrs, 0, addrs.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
         return pubKeyHash;
     }
 

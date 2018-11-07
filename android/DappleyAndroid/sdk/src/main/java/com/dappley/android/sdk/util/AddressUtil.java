@@ -56,14 +56,10 @@ public class AddressUtil {
      * @return String wallet address
      */
     public static String createAddress(byte[] pubKeyHash) {
-        // prefix 0x00
-        byte[] version = new byte[]{0x00};
-        // concat version and pubKeyHash to get a new byte array
-        byte[] versionedPayload = ByteUtil.concat(version, pubKeyHash);
-        // get the checksum of versionedPayload
-        byte[] checksum = HashUtil.getAddressChecksum(versionedPayload, Constant.ADDRESS_CHECKSUM_LENGTH);
-        // append the checksum to versionedPayload's tail
-        byte[] fullPayload = ByteUtil.concat(versionedPayload, checksum);
+        // get the checksum of pubKeyHash
+        byte[] checksum = HashUtil.getAddressChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
+        // append the checksum to pubKeyHash's tail
+        byte[] fullPayload = ByteUtil.concat(pubKeyHash, checksum);
         // use Base58 encode method to get the encodes byte array
         byte[] address = Base58.encodeBytes(fullPayload);
         // return encoded String as a wallet address
@@ -79,23 +75,21 @@ public class AddressUtil {
         if (StringUtils.isEmpty(address)) {
             return false;
         }
-        byte[] addrBytes;
+        byte[] fullPayload;
         try {
-            addrBytes = Base58.decode(address);
+            fullPayload = Base58.decode(address);
         } catch (Exception e) {
             return false;
         }
-        if (addrBytes == null || addrBytes.length < Constant.ADDRESS_CHECKSUM_LENGTH) {
+        if (fullPayload == null || fullPayload.length < Constant.ADDRESS_CHECKSUM_LENGTH) {
             return false;
         }
-        byte[] actualChecksum = ByteUtil.slice(addrBytes, addrBytes.length - Constant.ADDRESS_CHECKSUM_LENGTH
+        byte[] actualChecksum = ByteUtil.slice(fullPayload, fullPayload.length - Constant.ADDRESS_CHECKSUM_LENGTH
                 , Constant.ADDRESS_CHECKSUM_LENGTH);
-        byte[] version = new byte[]{addrBytes[0]};
-        byte[] pubKeyHash = ByteUtil.slice(addrBytes, 1, addrBytes.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
-        // concat version and pubKeyHash to get a new byte array
-        byte[] versionedPayload = ByteUtil.concat(version, pubKeyHash);
+        // get pubKeyHash data
+        byte[] pubKeyHash = ByteUtil.slice(fullPayload, 0, fullPayload.length - Constant.ADDRESS_CHECKSUM_LENGTH - 1);
         // get the checksum of versionedPayload
-        byte[] checksum = HashUtil.getAddressChecksum(versionedPayload, Constant.ADDRESS_CHECKSUM_LENGTH);
+        byte[] checksum = HashUtil.getAddressChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
         return Arrays.equals(actualChecksum, checksum);
     }
 }

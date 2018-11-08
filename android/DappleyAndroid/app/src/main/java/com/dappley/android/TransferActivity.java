@@ -11,6 +11,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -87,6 +89,23 @@ public class TransferActivity extends AppCompatActivity {
         walletPagerAdapter = new WalletPagerAdapter(this);
         viewPager.setAdapter(walletPagerAdapter);
         viewPager.addOnPageChangeListener(pageChangeListener);
+        // handle conflict with SwipeRefreshLayout
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_MOVE:
+                        refreshLayout.setEnabled(false);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        refreshLayout.setEnabled(true);
+                        break;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void initData() {

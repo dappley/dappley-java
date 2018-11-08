@@ -1,8 +1,13 @@
 package com.dappley.android;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dappley.android.adapter.WalletPagerAdapter;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -21,6 +27,7 @@ import com.dappley.android.util.StorageUtil;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,10 +42,8 @@ public class TransferActivity extends AppCompatActivity {
     @BindView(R.id.refresh_layout)
     SwipeRefreshLayout refreshLayout;
 
-    @BindView(R.id.txt_address)
-    TextView tvAddress;
-    @BindView(R.id.txt_value)
-    TextView tvValue;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
 
     @BindView(R.id.et_to_address)
     EditText etToAddress;
@@ -47,8 +52,11 @@ public class TransferActivity extends AppCompatActivity {
     @BindView(R.id.et_value)
     EditText etValue;
 
+    WalletPagerAdapter walletPagerAdapter;
+    List<Wallet> wallets;
     Wallet wallet;
     BigInteger balance;
+    int selectedIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +79,19 @@ public class TransferActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadData();
+                loadBalance();
             }
         });
+
+        walletPagerAdapter = new WalletPagerAdapter(this);
+        viewPager.setAdapter(walletPagerAdapter);
+        viewPager.addOnPageChangeListener(pageChangeListener);
+        viewPager.setOffscreenPageLimit(0);
     }
 
     private void initData() {
         Intent intent = getIntent();
         wallet = (Wallet) intent.getSerializableExtra("wallet");
-
-        tvAddress.setText(wallet.getAddress());
     }
 
     @OnClick(R.id.btn_transfer)
@@ -105,17 +116,74 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                loadBalance();
-                handler.sendEmptyMessage(Constant.MSG_TRANSFER_BALANCE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
+                    .WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "please allow read/write storage authority！", Toast.LENGTH_SHORT).show();
             }
-        }).start();
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constant.REQ_PERM_STORAGE);
+            return;
+        }
+        readWallets();
+
+        checkDefault();
+
+        refreshLayout.setRefreshing(true);
+        loadBalance();
+    }
+
+    private void readWallets() {
+        List<Wallet> wallets = new ArrayList<>();
+        try {
+            List<String> addresses = StorageUtil.getAddresses();
+            if (addresses == null) {
+                addresses = new ArrayList<>(1);
+            }
+            Wallet wallet;
+            for (String address : addresses) {
+                wallet = new Wallet();
+                wallet.setAddress(address);
+                wallets.add(wallet);
+            }
+        } catch (IOException e) {
+            Toast.makeText(this, "read data failed", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        walletPagerAdapter.setList(wallets, -1);
+
+        this.wallets = wallets;
+    }
+
+    private void checkDefault() {
+        if (wallets == null) {
+            return;
+        }
+        Wallet wallet;
+        for (int i = 0; i < wallets.size(); i++) {
+            wallet = wallets.get(i);
+            if (wallet == null) {
+                continue;
+            }
+            if (wallet.getAddress() == null) {
+                continue;
+            }
+            if (wallet.getAddress().equals(this.wallet.getAddress())) {
+                selectedIndex = i;
+                break;
+            }
+        }
+        viewPager.setCurrentItem(selectedIndex, false);
     }
 
     private void loadBalance() {
-        balance = Dappley.getWalletBalance(wallet.getAddress());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                balance = Dappley.getWalletBalance(wallet.getAddress());
+                handler.sendEmptyMessage(Constant.MSG_TRANSFER_BALANCE);
+            }
+        }).start();
     }
 
     private boolean checkNull() {
@@ -160,13 +228,54 @@ public class TransferActivity extends AppCompatActivity {
         return false;
     }
 
+    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int i, float v, int i1) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if (selectedIndex == position) {
+                return;
+            }
+            selectedIndex = position;
+            wallet = wallets.get(position);
+            refreshLayout.setRefreshing(true);
+            loadBalance();
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+
+        }
+    };
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_TRANSFER_BALANCE) {
-                tvValue.setText(balance.toString());
+                wallet.setBalance(balance);
+                wallets.set(selectedIndex, wallet);
+                walletPagerAdapter.setList(wallets, selectedIndex);
+                refreshLayout.setRefreshing(false);
             }
         }
     };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constant.REQ_PERM_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    readWallets();
+                } else {
+                    Toast.makeText(this, "please allow read storage authority！", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
 }

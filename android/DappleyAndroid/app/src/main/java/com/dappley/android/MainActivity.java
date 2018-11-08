@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
 import com.dappley.android.window.DeleteMenuWindow;
+import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -85,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
         swipeRecyclerView.setEmptyView(EmptyView.get(this));
     }
 
-    @OnClick(R.id.btn_test)
-    void testPage() {
-        startActivity(new Intent(this, TestActivity.class));
+    @OnClick(R.id.btn_qrcode)
+    void qrCode() {
+        startQrCode();
     }
 
     @OnClick(R.id.btn_add)
@@ -153,6 +155,14 @@ public class MainActivity extends AppCompatActivity {
         loadData();
     }
 
+    private void startQrCode() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
+            return;
+        }
+        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_ACT_QR_CODE);
+    }
 
     private WalletListAdapter.OnItemClickListener itemClickListener = new WalletListAdapter.OnItemClickListener() {
         @Override
@@ -209,11 +219,35 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     readData();
                 } else {
-                    Toast.makeText(this, "please allow read storage authority！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "please allow read storage authority!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case Constant.REQ_PERM_CAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startQrCode();
+                } else {
+                    Toast.makeText(MainActivity.this, "please allow camera use authority!", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.REQ_ACT_QR_CODE && resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString(com.google.zxing.util.Constant.INTENT_EXTRA_KEY_QR_SCAN);
+            System.out.println("scan:" + scanResult);
+
+            if (scanResult != null && scanResult.length() > 0) {
+                Intent intent = new Intent(MainActivity.this, TransferActivity.class);
+                intent.putExtra("toAddress", scanResult);
+                startActivity(intent);
+            }
+        }
+    }
+
 
     private Handler handler = new Handler() {
         @Override

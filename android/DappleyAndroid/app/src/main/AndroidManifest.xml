@@ -28,7 +28,8 @@
         <activity android:name=".WalletMnemonicActivity" />
         <activity android:name=".WalletDetailActivity" />
         <activity android:name=".TransferActivity" />
-        <activity android:name=".WalletReceiveCodeActivity"></activity>
+        <activity android:name=".WalletReceiveCodeActivity"/>
+        <activity android:name="com.google.zxing.activity.CaptureActivity"/>
     </application>
 
 </manifest>

@@ -55,6 +55,7 @@ public class TransferActivity extends AppCompatActivity {
     WalletPagerAdapter walletPagerAdapter;
     List<Wallet> wallets;
     Wallet wallet;
+    String toAddress;
     BigInteger balance;
     int selectedIndex;
 
@@ -73,7 +74,7 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("钱包");
+        tvTitle.setText("钱包转账");
         btnBack.setOnClickListener(new BtnBackListener(this));
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -86,16 +87,28 @@ public class TransferActivity extends AppCompatActivity {
         walletPagerAdapter = new WalletPagerAdapter(this);
         viewPager.setAdapter(walletPagerAdapter);
         viewPager.addOnPageChangeListener(pageChangeListener);
-        viewPager.setOffscreenPageLimit(0);
     }
 
     private void initData() {
         Intent intent = getIntent();
         wallet = (Wallet) intent.getSerializableExtra("wallet");
+        toAddress = intent.getStringExtra("toAddress");
+
+        if (toAddress != null && toAddress.length() > 0) {
+            if (Dappley.validateAddress(toAddress)) {
+                etToAddress.setText(toAddress);
+            } else {
+                Toast.makeText(this, "The code is not a valid wallet address", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @OnClick(R.id.btn_transfer)
     void tranfer() {
+        if (wallet == null) {
+            Toast.makeText(this, "no valid wallet", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (checkNull()) {
             return;
         }
@@ -156,7 +169,12 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     private void checkDefault() {
-        if (wallets == null) {
+        if (wallets == null || wallets.size() == 0) {
+            return;
+        }
+        if (this.wallet == null) {
+            this.wallet = wallets.get(0);
+            selectedIndex = 0;
             return;
         }
         Wallet wallet;
@@ -177,6 +195,11 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     private void loadBalance() {
+        if (wallet == null) {
+            Toast.makeText(this, "no valid wallet", Toast.LENGTH_SHORT).show();
+            refreshLayout.setRefreshing(false);
+            return;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {

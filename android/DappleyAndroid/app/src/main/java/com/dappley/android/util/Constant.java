@@ -3,7 +3,8 @@ package com.dappley.android.util;
 public class Constant {
     public static final int PAGE_SIZE = 10;
     public static final int REQ_PERM_STORAGE = 10001;
-
+    public static final int REQ_PERM_CAMERA = 10002;
+    public static final int REQ_ACT_QR_CODE = 10002;
     public static final int REQ_ACT_TRANSFER = 30001;
 
     public static final int MSG_HOME_LIST = 20001;

@@ -119,7 +119,6 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             }
             String encryptWallet = Dappley.encryptWallet(wallet, password);
             walletMap.put(wallet.getAddress(), encryptWallet);
-            System.out.println(wallet.getMnemonic());
             // write to files
             StorageUtil.saveAddresses(addresses);
             StorageUtil.saveWalletMap(walletMap);

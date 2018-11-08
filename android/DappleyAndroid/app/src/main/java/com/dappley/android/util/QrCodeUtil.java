@@ -21,7 +21,7 @@ public class QrCodeUtil {
         }
         Map<EncodeHintType, Object> hintsMap = new HashMap<>(3);
         hintsMap.put(EncodeHintType.CHARACTER_SET, "utf-8");
-        hintsMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+        hintsMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         hintsMap.put(EncodeHintType.MARGIN, 0);
         try {
             BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height, hintsMap);

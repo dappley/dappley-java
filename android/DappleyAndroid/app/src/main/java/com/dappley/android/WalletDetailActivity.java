@@ -67,7 +67,7 @@ public class WalletDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("钱包");
+        tvTitle.setText(R.string.title_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

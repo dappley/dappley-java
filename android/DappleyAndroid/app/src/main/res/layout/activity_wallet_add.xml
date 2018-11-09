@@ -17,7 +17,7 @@
         android:layout_marginTop="30dip"
         android:layout_marginRight="@dimen/margin_15"
         android:background="@drawable/btn_primary_selector"
-        android:text="创建钱包"
+        android:text="@string/layout_create_wallet"
         android:textColor="@color/white"
         android:textSize="15sp" />
 
@@ -30,7 +30,7 @@
         android:layout_marginTop="10dip"
         android:layout_marginRight="@dimen/margin_15"
         android:background="@drawable/btn_gray_selector"
-        android:text="导入钱包"
+        android:text="@string/layout_import_wallet"
         android:textColor="@color/white"
         android:textSize="15sp" />
 </LinearLayout>

@@ -163,7 +163,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
                     CaptureActivity.this.setResult(RESULT_OK, resultIntent);
                     finish();
                 } else {
-                    Toast.makeText(CaptureActivity.this, "识别失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CaptureActivity.this, R.string.note_identify_failed, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -265,7 +265,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
         playBeepSoundAndVibrate();
         String resultString = result.getText();
         if (TextUtils.isEmpty(resultString)) {
-            Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CaptureActivity.this, R.string.note_scan_failed, Toast.LENGTH_SHORT).show();
         } else {
             Intent resultIntent = new Intent();
             Bundle bundle = new Bundle();
@@ -379,7 +379,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
             try {
                 boolean isSuccess = CameraManager.get().setFlashLight(!isFlashOn);
                 if (!isSuccess) {
-                    Toast.makeText(CaptureActivity.this, "暂时无法开启闪光灯", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CaptureActivity.this, R.string.note_no_flashlight, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (isFlashOn) {

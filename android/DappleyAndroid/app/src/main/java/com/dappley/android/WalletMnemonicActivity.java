@@ -64,7 +64,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("创建钱包");
+        tvTitle.setText(R.string.title_create_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 
@@ -74,7 +74,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
         password = intent.getStringExtra("password");
         type = intent.getIntExtra("type", 1);
         if (type == Constant.REQ_WALLET_IMPORT) {
-            tvTitle.setText("导入钱包");
+            tvTitle.setText(R.string.title_import_wallet);
         }
 
         etName.setText(CommonUtil.getNotNullString(wallet.getName()));
@@ -94,7 +94,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
                     .WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this, "please allow read/write storage authority！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
             }
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constant.REQ_PERM_STORAGE);
             return;
@@ -109,7 +109,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
                 addresses = new ArrayList<>(1);
             }
             if (addresses.contains(wallet.getAddress())) {
-                Toast.makeText(this, "wallet address has been existed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.note_wallet_exists, Toast.LENGTH_SHORT).show();
                 return;
             }
             addresses.add(wallet.getAddress());
@@ -129,7 +129,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             sendBroadcast(intent);
             finish();
         } catch (IOException e) {
-            Toast.makeText(this, "read/write data failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -142,7 +142,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     readWriteLocal();
                 } else {
-                    Toast.makeText(this, "please allow read/write storage authority！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

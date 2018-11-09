@@ -49,7 +49,7 @@ public class WalletReceiveCodeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("收款");
+        tvTitle.setText(R.string.title_receive);
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 
@@ -67,7 +67,7 @@ public class WalletReceiveCodeActivity extends AppCompatActivity {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("data", wallet.getAddress());
         clipboardManager.setPrimaryClip(clipData);
-        Toast.makeText(this, "wallet address is copied", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.note_wallet_copied, Toast.LENGTH_SHORT).show();
     }
 
     private void showQrCode() {

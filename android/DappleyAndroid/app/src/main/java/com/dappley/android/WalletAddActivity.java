@@ -29,7 +29,7 @@ public class WalletAddActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("添加钱包");
+        tvTitle.setText(R.string.title_add_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 

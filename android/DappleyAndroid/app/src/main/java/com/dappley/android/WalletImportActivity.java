@@ -58,7 +58,7 @@ public class WalletImportActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("导入钱包");
+        tvTitle.setText(R.string.title_import_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 
@@ -89,7 +89,7 @@ public class WalletImportActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if (wallet == null || wallet.getPrivateKey() == null) {
-            Toast.makeText(this, "import wallet failed, please check you mnemonic or private key", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_error_import_wallet, Toast.LENGTH_SHORT).show();
             return;
         }
         wallet.setName(etName.getText().toString());
@@ -103,22 +103,22 @@ public class WalletImportActivity extends AppCompatActivity {
 
     private boolean checkNull() {
         if (CommonUtil.isNull(etName)) {
-            Toast.makeText(this, "input a wallet name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_wallet_name, Toast.LENGTH_SHORT).show();
             etName.requestFocus();
             return true;
         }
         if (CommonUtil.isNull(etPassword)) {
-            Toast.makeText(this, "input a password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
             etPassword.requestFocus();
             return true;
         }
         if (rbMnemonic.isChecked() && CommonUtil.isNull(etMnemonic)) {
-            Toast.makeText(this, "input mnemonics", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_mnemonic, Toast.LENGTH_SHORT).show();
             etMnemonic.requestFocus();
             return true;
         }
         if (rbPrivateKey.isChecked() && CommonUtil.isNull(etPrivateKey)) {
-            Toast.makeText(this, "input your private key", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_private_key, Toast.LENGTH_SHORT).show();
             etPrivateKey.requestFocus();
             return true;
         }

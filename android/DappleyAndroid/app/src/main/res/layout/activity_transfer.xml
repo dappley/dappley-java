@@ -23,7 +23,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="112dip"
+                android:layout_height="120dip"
                 android:padding="6dip" />
 
             <LinearLayout
@@ -36,13 +36,14 @@
                 <TextView
                     android:layout_width="70dip"
                     android:layout_height="wrap_content"
-                    android:text="收款地址：" />
+                    android:text="@string/layout_receive_address" />
 
                 <EditText
                     android:id="@+id/et_to_address"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:hint="@string/layout_receive_address_tip" />
             </LinearLayout>
 
             <LinearLayout
@@ -55,13 +56,14 @@
                 <TextView
                     android:layout_width="70dip"
                     android:layout_height="wrap_content"
-                    android:text="钱包密码：" />
+                    android:text="@string/layout_wallet_password" />
 
                 <EditText
                     android:id="@+id/et_password"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:hint="@string/layout_wallet_password_tip"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </LinearLayout>
@@ -76,35 +78,15 @@
                 <TextView
                     android:layout_width="70dip"
                     android:layout_height="wrap_content"
-                    android:text="转账金额：" />
+                    android:text="@string/layout_transfer_amount" />
 
                 <EditText
                     android:id="@+id/et_value"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:hint="@string/layout_transfer_amount_tip"
                     android:inputType="number" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_private_key"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_15"
-                android:layout_marginRight="@dimen/margin_15"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="70dip"
-                    android:layout_height="wrap_content"
-                    android:text="私钥：" />
-
-                <EditText
-                    android:id="@+id/et_private_key"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:minLines="2" />
             </LinearLayout>
 
             <Button
@@ -116,7 +98,7 @@
                 android:layout_marginTop="30dip"
                 android:layout_marginRight="@dimen/margin_15"
                 android:background="@drawable/btn_primary_selector"
-                android:text="转账"
+                android:text="@string/layout_transfer"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </LinearLayout>

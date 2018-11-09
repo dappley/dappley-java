@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -76,7 +77,7 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("钱包转账");
+        tvTitle.setText(R.string.title_transfer);
         btnBack.setOnClickListener(new BtnBackListener(this));
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -117,7 +118,7 @@ public class TransferActivity extends AppCompatActivity {
             if (Dappley.validateAddress(toAddress)) {
                 etToAddress.setText(toAddress);
             } else {
-                Toast.makeText(this, "The code is not a valid wallet address", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.note_not_valid_wallet, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -125,7 +126,7 @@ public class TransferActivity extends AppCompatActivity {
     @OnClick(R.id.btn_transfer)
     void tranfer() {
         if (wallet == null) {
-            Toast.makeText(this, "no valid wallet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_valid_wallet, Toast.LENGTH_SHORT).show();
             return;
         }
         if (checkNull()) {
@@ -133,17 +134,17 @@ public class TransferActivity extends AppCompatActivity {
         }
         BigInteger amount = new BigInteger(etValue.getText().toString().trim());
         if (amount.compareTo(balance) > 0) {
-            Toast.makeText(this, "balance is not enough", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_balance_not_enought, Toast.LENGTH_SHORT).show();
             return;
         }
         String toAddress = etToAddress.getText().toString().trim();
         boolean isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
         if (isSuccess) {
-            Toast.makeText(this, "transfer success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
             finish();
         } else {
-            Toast.makeText(this, "transfer failed, please check your inputs", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_transfer_failed, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,7 +153,7 @@ public class TransferActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
                     .WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this, "please allow read/write storage authority！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
             }
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constant.REQ_PERM_STORAGE);
             return;
@@ -179,7 +180,7 @@ public class TransferActivity extends AppCompatActivity {
                 wallets.add(wallet);
             }
         } catch (IOException e) {
-            Toast.makeText(this, "read data failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         walletPagerAdapter.setList(wallets, -1);
@@ -215,7 +216,7 @@ public class TransferActivity extends AppCompatActivity {
 
     private void loadBalance() {
         if (wallet == null) {
-            Toast.makeText(this, "no valid wallet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_valid_wallet, Toast.LENGTH_SHORT).show();
             refreshLayout.setRefreshing(false);
             return;
         }
@@ -230,32 +231,32 @@ public class TransferActivity extends AppCompatActivity {
 
     private boolean checkNull() {
         if (CommonUtil.isNull(etToAddress)) {
-            Toast.makeText(this, "input receiver address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_receiver, Toast.LENGTH_SHORT).show();
             return true;
         }
         if (!Dappley.validateAddress(etToAddress.getText().toString().trim())) {
-            Toast.makeText(this, "receiver address is illegal", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_receiver_illegal, Toast.LENGTH_SHORT).show();
             return true;
         }
         if (CommonUtil.isNull(etPassword)) {
-            Toast.makeText(this, "input wallet password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
             return true;
         }
         try {
             String walletString = StorageUtil.getWallet(wallet.getAddress());
             Wallet wallet = Dappley.decryptWallet(walletString, etPassword.getText().toString());
             if (wallet == null || wallet.getPrivateKey() == null) {
-                Toast.makeText(this, "password is not correct", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
                 return true;
             }
             this.wallet = wallet;
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "password is not correct", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
             return true;
         }
         if (CommonUtil.isNull(etValue)) {
-            Toast.makeText(this, "input your transfer amount", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_amount, Toast.LENGTH_SHORT).show();
             return true;
         }
         BigInteger value = null;
@@ -264,7 +265,7 @@ public class TransferActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
         if (value == null || value.compareTo(BigInteger.ZERO) <= 0) {
-            Toast.makeText(this, "input a correct transfer amount", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_error_amount, Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
@@ -314,7 +315,7 @@ public class TransferActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     readWallets();
                 } else {
-                    Toast.makeText(this, "please allow read storage authority！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

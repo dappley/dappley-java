@@ -38,7 +38,7 @@ public class WalletCreateActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText("创建钱包");
+        tvTitle.setText(R.string.title_create_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 
@@ -49,7 +49,7 @@ public class WalletCreateActivity extends AppCompatActivity {
         }
         Wallet wallet = Dappley.createWallet();
         if (wallet == null) {
-            Toast.makeText(this, "create wallet failed, please try later", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_create_wallet_failed, Toast.LENGTH_SHORT).show();
             return;
         }
         wallet.setName(etName.getText().toString());
@@ -62,12 +62,12 @@ public class WalletCreateActivity extends AppCompatActivity {
 
     private boolean checkNull() {
         if (CommonUtil.isNull(etName)) {
-            Toast.makeText(this, "input a wallet name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_wallet_name, Toast.LENGTH_SHORT).show();
             etName.requestFocus();
             return true;
         }
         if (CommonUtil.isNull(etPassword)) {
-            Toast.makeText(this, "input a password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_no_pasword, Toast.LENGTH_SHORT).show();
             etPassword.requestFocus();
             return true;
         }

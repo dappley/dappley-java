@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_8"
                 android:layout_marginTop="@dimen/margin_8"
-                android:text="余额记录"
+                android:text="@string/layout_balance_records"
                 android:textColor="@color/colorAccent"
                 android:textSize="14sp" />
 
@@ -117,7 +117,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:text="收钱" />
+            android:text="@string/layout_receive" />
 
         <View
             android:layout_width="1dip"
@@ -133,6 +133,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:text="转账" />
+            android:text="@string/layout_transfer" />
     </LinearLayout>
 </LinearLayout>

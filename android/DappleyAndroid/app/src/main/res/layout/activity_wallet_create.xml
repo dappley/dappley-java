@@ -20,13 +20,14 @@
         <TextView
             android:layout_width="70dip"
             android:layout_height="wrap_content"
-            android:text="钱包名：" />
+            android:text="@string/layout_wallet_name" />
 
         <EditText
             android:id="@+id/et_name"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="@string/layout_wallet_name_tip"
             android:maxLines="1" />
     </LinearLayout>
 
@@ -40,13 +41,14 @@
         <TextView
             android:layout_width="70dip"
             android:layout_height="wrap_content"
-            android:text="钱包密码：" />
+            android:text="@string/layout_wallet_password" />
 
         <EditText
             android:id="@+id/et_password"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="@string/layout_wallet_password_tip"
             android:inputType="textPassword"
             android:maxLines="1" />
     </LinearLayout>
@@ -60,7 +62,7 @@
         android:layout_marginTop="30dip"
         android:layout_marginRight="@dimen/margin_15"
         android:background="@drawable/btn_primary_selector"
-        android:text="创建钱包"
+        android:text="@string/layout_create_wallet"
         android:textColor="@color/white"
         android:textSize="15sp" />
 </LinearLayout>

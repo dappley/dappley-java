@@ -1,3 +1,57 @@
 <resources>
     <string name="app_name">DappleyAndroidSdk</string>
+
+    <string name="title_transfer">Transfer</string>
+    <string name="title_add_wallet">Add Wallet</string>
+    <string name="title_create_wallet">Create Wallet</string>
+    <string name="title_wallet">Wallet</string>
+    <string name="title_import_wallet">Import Wallet</string>
+    <string name="title_receive">Receive</string>
+
+    <string name="layout_receive_address">receiver:</string>
+    <string name="layout_receive_address_tip">receiver address</string>
+    <string name="layout_wallet_password">password:</string>
+    <string name="layout_wallet_password_tip">wallet password</string>
+    <string name="layout_transfer_amount">amount:</string>
+    <string name="layout_transfer_amount_tip">transfer amount</string>
+    <string name="layout_transfer">transfer</string>
+    <string name="layout_receive">receive</string>
+    <string name="layout_wallet_name">name：</string>
+    <string name="layout_wallet_name_tip">wallet name</string>
+    <string name="layout_create_wallet">create wallet</string>
+    <string name="layout_balance_records">Balance Records</string>
+    <string name="layout_import_type">from:</string>
+    <string name="layout_import_type_mnemonic">mnemonics</string>
+    <string name="layout_import_type_private_key">private key</string>
+    <string name="layout_import_mnemonic">mnemonics：</string>
+    <string name="layout_import_mnemonic_tip">input mnemonics</string>
+    <string name="layout_import_private_key">private key：</string>
+    <string name="layout_import_private_key_tip">input private key</string>
+    <string name="layout_import_wallet">import wallet</string>
+    <string name="layout_wallet_address">address:</string>
+    <string name="layout_encrypt_and_save">encrypt and save</string>
+    <string name="layout_cancel">Cancel</string>
+    <string name="layout_delete">Delete</string>
+
+    <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
+    <string name="note_no_valid_wallet">no valid wallet</string>
+    <string name="note_balance_not_enought">balance is not enough</string>
+    <string name="note_no_receiver">input receiver address</string>
+    <string name="note_receiver_illegal">receiver address is illegal</string>
+    <string name="note_no_password">input wallet password</string>
+    <string name="note_error_password">password is not correct</string>
+    <string name="note_no_amount">input your transfer amount</string>
+    <string name="note_error_amount">input a correct transfer amount</string>
+    <string name="note_transfer_success">transfer success</string>
+    <string name="note_transfer_failed">transfer failed, please check your inputs</string>
+    <string name="note_permittion_read">please allow read/write storage authority</string>
+    <string name="note_read_failed">read/write data failed</string>
+    <string name="note_create_wallet_failed">create wallet failed, please try later</string>
+    <string name="note_no_wallet_name">input a wallet name</string>
+    <string name="note_no_pasword">input a password</string>
+    <string name="note_no_mnemonic">input mnemonics</string>
+    <string name="note_no_private_key">input your private key</string>
+    <string name="note_error_import_wallet">import wallet failed, please check you mnemonic or private key</string>
+    <string name="note_wallet_exists">wallet address has been existed</string>
+    <string name="note_wallet_copied">wallet address is copied</string>
 </resources>

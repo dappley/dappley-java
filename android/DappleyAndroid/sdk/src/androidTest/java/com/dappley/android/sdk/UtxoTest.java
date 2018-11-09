@@ -24,8 +24,6 @@ public class UtxoTest {
         Context context = InstrumentationRegistry.getTargetContext();
         MMKV.initialize(context);
 
-        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
-
         String address = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
         DataProvider dataProvider = new LocalDataProvider(context);
         List<Utxo> utxos = dataProvider.getUtxos(address);

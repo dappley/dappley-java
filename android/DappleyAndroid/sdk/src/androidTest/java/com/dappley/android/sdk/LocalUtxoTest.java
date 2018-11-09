@@ -26,7 +26,6 @@ public class LocalUtxoTest {
         String address = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
         Context context = InstrumentationRegistry.getTargetContext();
         MMKV.initialize(context);
-        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
 
 //        BlockChainManager.initGenesisBlock(context);
         UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);

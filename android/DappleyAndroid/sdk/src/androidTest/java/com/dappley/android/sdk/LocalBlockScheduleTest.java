@@ -20,7 +20,6 @@ public class LocalBlockScheduleTest {
     public void getBlocks() {
         Context context = InstrumentationRegistry.getTargetContext();
         MMKV.initialize(context);
-        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
 
         BlockChainManager.initGenesisBlock(context);
 

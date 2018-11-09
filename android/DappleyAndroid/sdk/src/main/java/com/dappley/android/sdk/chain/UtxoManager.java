@@ -1,9 +1,7 @@
 package com.dappley.android.sdk.chain;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.dappley.android.sdk.DappleyClient;
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockIndexDb;
 import com.dappley.android.sdk.db.TransactionDb;
@@ -29,22 +27,6 @@ import java.util.Set;
  */
 public class UtxoManager {
     private static final String TAG = "UtxoManager";
-
-    /**
-     * Returns suitable utxo list of the address
-     * @param address user's account address
-     * @param amount target vout amount
-     * @return List<Utxo> unspend vouts meet the need for target amount
-     */
-    public static List<Utxo> getSpendableUtxos(String address, BigInteger amount) {
-        try {
-            List<Utxo> all = DappleyClient.getUtxo(address);
-            return getSpendableUtxos(all, amount);
-        } catch (IllegalAccessException e) {
-            Log.e(TAG, "getSpendableUtxos: ", e);
-        }
-        return null;
-    }
 
     /**
      * Reform utxo list of target amount

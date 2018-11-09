@@ -42,19 +42,6 @@ public class TransactionManager {
 
     /**
      * Create a new transaction
-     * @param fromAddress user's account address
-     * @param toAddress account address to be transfered
-     * @param amount alue to be transfered
-     * @param ecKeyPair user's keypair
-     * @return Transaction a new transaction object
-     */
-    public static Transaction newTransaction(String fromAddress, String toAddress, BigInteger amount, ECKeyPair ecKeyPair) {
-        List<Utxo> spendableList = UtxoManager.getSpendableUtxos(fromAddress, amount);
-        return newTransaction(spendableList, toAddress, amount, ecKeyPair);
-    }
-
-    /**
-     * Create a new transaction
      * @param utxos user's unspend vouts
      * @param toAddress account address to be transfered
      * @param amount value to be transfered

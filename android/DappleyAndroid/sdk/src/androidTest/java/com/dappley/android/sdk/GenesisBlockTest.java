@@ -7,9 +7,12 @@ import android.support.test.runner.AndroidJUnit4;
 import com.dappley.android.sdk.chain.BlockManager;
 import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.net.ProtocalProvider;
+import com.dappley.android.sdk.net.RpcProvider;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.util.HexUtil;
+import com.tencent.mmkv.MMKV;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,9 +24,11 @@ public class GenesisBlockTest {
     @Test
     public void newGenesis() throws UnsupportedEncodingException, IllegalAccessException {
         Context context = InstrumentationRegistry.getTargetContext();
-        DappleyClient.init(context, ProtocalProvider.ProviderType.RPC);
+        MMKV.initialize(context);
 
-        Block blockOnline = DappleyClient.getBlockByHeight(0);
+        ProtocalProvider protocalProvider = new RpcProvider();
+        protocalProvider.init(context);
+        Block blockOnline = new Block(protocalProvider.getBlockByHeight(0));
         System.out.println(blockOnline.toString());
 
         Block block = BlockManager.newGenesisBlock();
@@ -36,5 +41,7 @@ public class GenesisBlockTest {
 
         block = blockDB.get(HexUtil.toHex(block.getHeader().getHash()));
         System.out.println(HexUtil.toHex(block.getHeader().getHash()));
+
+        Assert.assertEquals(HexUtil.toHex(block.getHeader().getHash()), HexUtil.toHex(blockOnline.getHeader().getHash()));
     }
 }

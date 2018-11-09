@@ -3,7 +3,6 @@ package com.dappley.android.sdk.po;
 import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.util.AddressUtil;
-import com.dappley.android.sdk.util.HashUtil;
 
 import java.io.Serializable;
 import java.math.BigInteger;

@@ -9,20 +9,13 @@ import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.UtxoIndex;
-import com.dappley.android.sdk.protobuf.BlockProto;
-import com.dappley.android.sdk.protobuf.RpcProto;
-import com.dappley.android.sdk.protobuf.TransactionProto;
-import com.dappley.android.sdk.util.HashUtil;
-import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 

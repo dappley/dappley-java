@@ -1,6 +1,5 @@
 package com.dappley.android.sdk.chain;
 
-import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.ShaDigest;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.TxInput;

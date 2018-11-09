@@ -2,13 +2,10 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.util.HexUtil;
 import com.dappley.android.sdk.util.SerializeUtil;
 import com.tencent.mmkv.MMKV;
-
-import org.bouncycastle.util.encoders.Hex;
 
 import java.util.List;
 

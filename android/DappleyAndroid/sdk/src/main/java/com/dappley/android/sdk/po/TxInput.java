@@ -11,7 +11,7 @@ import lombok.Data;
  * Transaction Input
  */
 @Data
-public class TxInput implements Serializable{
+public class TxInput implements Serializable {
     private byte[] txId;
     private int vout;
     private byte[] signature;

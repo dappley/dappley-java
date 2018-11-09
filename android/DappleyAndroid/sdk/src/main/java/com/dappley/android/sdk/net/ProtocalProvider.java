@@ -2,7 +2,6 @@ package com.dappley.android.sdk.net;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.po.BlockChainInfo;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;

@@ -3,11 +3,9 @@ package com.dappley.android.sdk;
 import android.content.Context;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
-import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.crypto.AesCipher;
 import com.dappley.android.sdk.crypto.Bip39;
-import com.dappley.android.sdk.crypto.EcCipher;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
@@ -15,8 +13,6 @@ import com.dappley.android.sdk.db.BlockIndexDb;
 import com.dappley.android.sdk.db.TransactionDb;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
-import com.dappley.android.sdk.net.ProtocalProvider;
-import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.UtxoIndex;
 import com.dappley.android.sdk.protobuf.BlockProto;
@@ -24,23 +20,14 @@ import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.protobuf.RpcServiceGrpc;
 import com.dappley.android.sdk.task.LocalBlockSchedule;
 import com.dappley.android.sdk.util.AddressUtil;
-import com.dappley.android.sdk.util.Base64;
 import com.dappley.android.sdk.util.HashUtil;
 import com.dappley.android.sdk.util.HexUtil;
 import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
 
-import org.bouncycastle.util.encoders.Hex;
-import org.junit.Assert;
-import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
-import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.web3j.crypto.ECKeyPair;
 
-import java.math.BigInteger;
 import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -65,8 +52,6 @@ public class DappleyTest {
     public static void testAes() {
         String encoded = AesCipher.encryptToHex("I am the one.", "aesKey");
         System.out.println(encoded);
-        String decoded = AesCipher.decryptFromHex(encoded, "aesKey");
-        System.out.println(decoded);
         System.out.println(new String(AesCipher.decrypt(AesCipher.encrypt("I am the one.".getBytes(), "aesKey"), "aesKey")));
     }
 
@@ -83,41 +68,6 @@ public class DappleyTest {
 //        boolean isSuccess = blockDB.save(block);
         System.out.println(block);
 
-    }
-
-    public static void testRecovery() {
-        BigInteger privateKey = new BigInteger("bb23d2ff19f5b16955e8a24dca34dd520980fe3bddca2b3e1b56663f0ec1aa7e", 16);
-        BigInteger publicKey = new BigInteger("5767188359795479736405662394620174832271978020098784807457600728164221489565479030464547807529865979388276872414794355820379785119919302677391625913455408", 16);
-        ECKeyPair ecKeyPair = ECKeyPair.create(privateKey);
-        System.out.println(ecKeyPair.getPublicKey());
-        BCECPublicKey prk = KeyPairTool.fromPubInteger(publicKey);
-        BCECPrivateKey prvk = KeyPairTool.fromPrivInteger(privateKey);
-        byte[] publicKeyBytes = prk.getQ().getEncoded(false);
-        BigInteger publicKeyValue =
-                new BigInteger(1, Arrays.copyOfRange(publicKeyBytes, 1, publicKeyBytes.length));
-        System.out.println(publicKeyValue);
-        System.out.println(prvk);
-    }
-
-    public static String testEncrypt() {
-        KeyPair keyPair = KeyPairTool.newKeyPair();
-//        ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
-//        ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
-        try {
-//            System.out.println(new BigInteger(keyPair.getPrivate().getEncoded()));
-            PublicKey publicKey = KeyPairTool.getPublicKey(Base64.encode(keyPair.getPublic().getEncoded()));
-            PrivateKey privateKey = KeyPairTool.getPrivateKey(Base64.encode(keyPair.getPrivate().getEncoded()));
-            String test = "this is data";
-            byte[] encoded = new byte[0];
-            encoded = EcCipher.encrypt(test.getBytes("UTF-8"), publicKey);
-            String result = "original:" + test;
-            byte[] decoded = EcCipher.decrypt(encoded, privateKey);
-            result += "\ndecoded:" + new String(decoded, "UTF-8");
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     public static void testRpcConnect(Context context) {
@@ -172,7 +122,7 @@ public class DappleyTest {
         }
     }
 
-    public static void clearAddress(Context context){
+    public static void clearAddress(Context context) {
         MMKV.initialize(context);
         BlockChainDb blockChainDb = new BlockChainDb(context);
         blockChainDb.saveWalletAddressSet(new HashSet<String>());

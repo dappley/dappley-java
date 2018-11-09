@@ -2,7 +2,6 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.UtxoIndex;
 import com.dappley.android.sdk.util.HexUtil;
 import com.dappley.android.sdk.util.SerializeUtil;

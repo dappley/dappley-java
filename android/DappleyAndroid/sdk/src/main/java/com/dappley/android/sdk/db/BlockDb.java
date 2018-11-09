@@ -8,7 +8,6 @@ import com.dappley.android.sdk.util.HexUtil;
 import com.tencent.mmkv.MMKV;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Database for Block class.

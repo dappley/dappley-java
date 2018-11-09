@@ -11,7 +11,7 @@ import lombok.Data;
  * Transaction Output
  */
 @Data
-public class TxOutput implements Serializable{
+public class TxOutput implements Serializable {
     private byte[] value;
     private byte[] pubKeyHash;
 

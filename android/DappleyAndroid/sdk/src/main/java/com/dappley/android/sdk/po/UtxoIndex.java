@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UtxoIndex implements Serializable{
+public class UtxoIndex implements Serializable {
     /**
      * Related transaction id
      */

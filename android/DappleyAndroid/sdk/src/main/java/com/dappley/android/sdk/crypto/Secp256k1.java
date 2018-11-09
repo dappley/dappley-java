@@ -285,7 +285,7 @@ public class Secp256k1 {
             return true;
         }
 
-        private static boolean isLessThan(BigInteger valueA, BigInteger valueB){
+        private static boolean isLessThan(BigInteger valueA, BigInteger valueB) {
             return valueA.compareTo(valueB) < 0;
         }
 
@@ -310,7 +310,10 @@ public class Secp256k1 {
                 throw new RuntimeException(e);
             } finally {
                 if (decoder != null)
-                    try { decoder.close(); } catch (IOException x) {}
+                    try {
+                        decoder.close();
+                    } catch (IOException x) {
+                    }
             }
         }
 
@@ -351,7 +354,7 @@ public class Secp256k1 {
         public byte[] toByteArray() {
             final byte fixedV = this.v >= 27
                     ? (byte) (this.v - 27)
-                    :this.v;
+                    : this.v;
 
             return ByteUtil.joinBytes(
                     ByteUtil.bigInteger2BytesOmitSign(this.r),

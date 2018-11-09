@@ -74,10 +74,22 @@ public class BlockManager {
         return block;
     }
 
+    /**
+     * Returns block's hash value
+     * @param blockHeader header info
+     * @param transactions transaction list
+     * @return byte[] hash value
+     */
     public static byte[] calculateHash(BlockHeader blockHeader, List<Transaction> transactions) {
         return calculateHashWithoutNonce(blockHeader, transactions);
     }
 
+    /**
+     * Returns block's hash value without nonce
+     * @param blockHeader header info
+     * @param transactions transaction list
+     * @return byte[] hash value
+     */
     public static byte[] calculateHashWithoutNonce(BlockHeader blockHeader, List<Transaction> transactions) {
         byte[] prevHash = blockHeader.getPrevHash();
         byte[] txHash = TransactionManager.hashTransactions(transactions);

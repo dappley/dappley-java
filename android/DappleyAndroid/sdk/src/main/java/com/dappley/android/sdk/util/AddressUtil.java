@@ -1,7 +1,5 @@
 package com.dappley.android.sdk.util;
 
-import android.support.annotation.NonNull;
-
 import com.dappley.android.sdk.crypto.KeyPairTool;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,8 +8,6 @@ import org.web3j.crypto.ECKeyPair;
 import java.math.BigInteger;
 import java.security.KeyPair;
 import java.util.Arrays;
-
-import io.opencensus.internal.StringUtil;
 
 /**
  * Wallet address util.

@@ -8,6 +8,7 @@ public class Constant {
     public static final int REQ_ACT_TRANSFER = 30001;
 
     public static final int MSG_HOME_LIST = 20001;
+    public static final int MSG_HOME_LIST_ERROR = 20004;
     public static final int MSG_WALLET_DETAIL = 20002;
     public static final int MSG_TRANSFER_BALANCE = 20003;
 

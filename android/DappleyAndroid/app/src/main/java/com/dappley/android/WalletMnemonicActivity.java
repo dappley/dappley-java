@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -36,14 +37,14 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     ImageButton btnBack;
     @BindView(R.id.txt_title)
     TextView tvTitle;
-    @BindView(R.id.et_name)
-    EditText etName;
-    @BindView(R.id.et_address)
-    EditText etAddress;
-    @BindView(R.id.et_private_key)
-    EditText etPrivateKey;
-    @BindView(R.id.et_mnemonic)
-    EditText etMneonic;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_address)
+    TextView tvAddress;
+    @BindView(R.id.tv_private_key)
+    TextView tvPrivateKey;
+    @BindView(R.id.tv_mnemonic)
+    TextView tvMneonic;
     @BindView(R.id.linear_mnemonic)
     LinearLayout linearMnemonic;
 
@@ -77,14 +78,14 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             tvTitle.setText(R.string.title_import_wallet);
         }
 
-        etName.setText(CommonUtil.getNotNullString(wallet.getName()));
-        etAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
-        etPrivateKey.setText(wallet.getPrivateKey().toString(16));
+        tvName.setText(CommonUtil.getNotNullString(wallet.getName()));
+        tvAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
+        tvPrivateKey.setText(wallet.getPrivateKey().toString(16));
         if (wallet.getMnemonic() == null) {
             linearMnemonic.setVisibility(View.GONE);
         } else {
             linearMnemonic.setVisibility(View.VISIBLE);
-            etMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
+            tvMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
         }
     }
 
@@ -103,6 +104,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     }
 
     private void readWriteLocal() {
+        LoadingDialog.show(this);
         try {
             List<String> addresses = StorageUtil.getAddresses();
             if (addresses == null) {
@@ -132,6 +134,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+        LoadingDialog.close();
     }
 
     @Override

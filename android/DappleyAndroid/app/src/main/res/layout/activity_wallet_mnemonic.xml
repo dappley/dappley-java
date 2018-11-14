@@ -22,13 +22,11 @@
             android:layout_height="wrap_content"
             android:text="@string/layout_wallet_name" />
 
-        <EditText
-            android:id="@+id/et_name"
+        <TextView
+            android:id="@+id/tv_name"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:focusableInTouchMode="false"
             android:textColor="@color/gray_text"
             android:textIsSelectable="true"
             android:textSize="14sp" />
@@ -47,13 +45,11 @@
             android:layout_height="wrap_content"
             android:text="@string/layout_wallet_address" />
 
-        <EditText
-            android:id="@+id/et_address"
+        <TextView
+            android:id="@+id/tv_address"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:focusableInTouchMode="false"
             android:textColor="@color/gray_text"
             android:textIsSelectable="true"
             android:textSize="14sp" />
@@ -72,13 +68,11 @@
             android:layout_height="wrap_content"
             android:text="@string/layout_import_private_key" />
 
-        <EditText
-            android:id="@+id/et_private_key"
+        <TextView
+            android:id="@+id/tv_private_key"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:focusableInTouchMode="false"
             android:textColor="@color/gray_text"
             android:textIsSelectable="true"
             android:textSize="14sp" />
@@ -98,13 +92,11 @@
             android:layout_height="wrap_content"
             android:text="@string/layout_import_mnemonic" />
 
-        <EditText
-            android:id="@+id/et_mnemonic"
+        <TextView
+            android:id="@+id/tv_mnemonic"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:focusableInTouchMode="false"
             android:textColor="@color/gray_text"
             android:textIsSelectable="true"
             android:textSize="14sp" />

@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.adapter.WalletPagerAdapter;
+import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -37,6 +39,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TransferActivity extends AppCompatActivity {
+    private static final String TAG = "TransferActivity";
+
     @BindView(R.id.btn_back)
     ImageButton btnBack;
     @BindView(R.id.txt_title)
@@ -137,8 +141,15 @@ public class TransferActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_balance_not_enought, Toast.LENGTH_SHORT).show();
             return;
         }
+        LoadingDialog.show(this);
         String toAddress = etToAddress.getText().toString().trim();
-        boolean isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
+        boolean isSuccess = false;
+        try {
+            isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
+        } catch (Exception e) {
+            Log.e(TAG, "tranfer: ", e);
+        }
+        LoadingDialog.close();
         if (isSuccess) {
             Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);

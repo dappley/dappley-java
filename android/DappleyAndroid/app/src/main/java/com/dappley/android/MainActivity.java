@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -41,6 +42,8 @@ import butterknife.OnClick;
 import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
 
@@ -102,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
                     .WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this, "please allow read/write storage authority！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
             }
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constant.REQ_PERM_STORAGE);
             return;
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 wallets.add(wallet);
             }
         } catch (IOException e) {
-            Toast.makeText(this, "read data failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         adapter.setList(wallets);
@@ -138,8 +141,14 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                wallets = Dappley.getWalletBalances(wallets);
-                handler.sendEmptyMessage(Constant.MSG_HOME_LIST);
+                try {
+                    wallets = Dappley.getWalletBalances(wallets);
+                    handler.sendEmptyMessage(Constant.MSG_HOME_LIST);
+                } catch (Exception e) {
+                    handler.sendEmptyMessage(Constant.MSG_HOME_LIST_ERROR);
+                    Log.e(TAG, "run: ", e);
+                }
+
             }
         }).start();
     }
@@ -219,14 +228,14 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     readData();
                 } else {
-                    Toast.makeText(this, "please allow read storage authority!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case Constant.REQ_PERM_CAMERA:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startQrCode();
                 } else {
-                    Toast.makeText(MainActivity.this, "please allow camera use authority!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.note_permittion_camera, Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -248,13 +257,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_HOME_LIST) {
                 adapter.setList(wallets);
+            } else if (msg.what == Constant.MSG_HOME_LIST_ERROR) {
+                Toast.makeText(MainActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();
             }
         }
     };

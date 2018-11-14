@@ -54,4 +54,6 @@
     <string name="note_error_import_wallet">导入钱包失败，请检查助记词或私钥是否正确</string>
     <string name="note_wallet_exists">钱包地址已经存在</string>
     <string name="note_wallet_copied">钱包地址已拷贝</string>
+    <string name="note_node_error">节点通信异常，请稍后重试</string>
+    <string name="note_permittion_camera">打开相机失败，请打开本应用相机使用权限</string>
 </resources>

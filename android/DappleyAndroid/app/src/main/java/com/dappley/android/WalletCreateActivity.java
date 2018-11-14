@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -47,11 +48,14 @@ public class WalletCreateActivity extends AppCompatActivity {
         if (checkNull()) {
             return;
         }
+        LoadingDialog.show(this);
         Wallet wallet = Dappley.createWallet();
         if (wallet == null) {
             Toast.makeText(this, R.string.note_create_wallet_failed, Toast.LENGTH_SHORT).show();
+            LoadingDialog.close();
             return;
         }
+        LoadingDialog.close();
         wallet.setName(etName.getText().toString());
         Intent intent = new Intent(this, WalletMnemonicActivity.class);
         intent.putExtra("wallet", wallet);

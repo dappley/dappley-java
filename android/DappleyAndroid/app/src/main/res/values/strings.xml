@@ -54,4 +54,6 @@
     <string name="note_error_import_wallet">import wallet failed, please check you mnemonic or private key</string>
     <string name="note_wallet_exists">wallet address has been existed</string>
     <string name="note_wallet_copied">wallet address is copied</string>
+    <string name="note_node_error">connect error</string>
+    <string name="note_permittion_camera">please allow camera authority</string>
 </resources>

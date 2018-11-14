@@ -21,15 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity" />
         <activity android:name=".WalletAddActivity" />
         <activity android:name=".WalletCreateActivity" />
         <activity android:name=".WalletImportActivity" />
         <activity android:name=".WalletMnemonicActivity" />
         <activity android:name=".WalletDetailActivity" />
         <activity android:name=".TransferActivity" />
-        <activity android:name=".WalletReceiveCodeActivity"/>
-        <activity android:name="com.google.zxing.activity.CaptureActivity"/>
+        <activity android:name=".WalletReceiveCodeActivity" />
+        <activity android:name="com.google.zxing.activity.CaptureActivity" />
+
+        <service android:name=".sdk.service.LocalBlockService" />
     </application>
 
 </manifest>

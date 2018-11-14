@@ -1,6 +1,7 @@
 package com.dappley.android.sdk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
@@ -14,6 +15,7 @@ import com.dappley.android.sdk.net.TransactionSender;
 import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.Wallet;
+import com.dappley.android.sdk.service.LocalBlockService;
 import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Asserts;
 
@@ -48,6 +50,10 @@ public class Dappley {
         try {
             if (dataMode == DataMode.LOCAL_STORAGE) {
                 dataProvider = new LocalDataProvider(context);
+
+                // start schedule service
+                Intent intent = new Intent(context, LocalBlockService.class);
+                context.startService(intent);
             } else if (dataMode == DataMode.REMOTE_ONLINE) {
                 dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
             }

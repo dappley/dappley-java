@@ -86,14 +86,14 @@ public class HashUtil {
     }
 
     /**
-     * Get the checksum of versionedPayload
+     * Get the checksum of pubKeyHash
      * <p>Use sha256 algorithm compute twice to get a hash byte array, and then get the first N bytes as the checksum.</p>
-     * @param versionedPayload orginal data
+     * @param pubKeyHash orginal data
      * @param length the checksum's length
      * @return byte[] the checksum of versionedPayload
      */
-    public static byte[] getAddressChecksum(byte[] versionedPayload, int length) {
-        byte[] firstSHA = ShaDigest.sha256(versionedPayload);
+    public static byte[] getPubKeyHashChecksum(byte[] pubKeyHash, int length) {
+        byte[] firstSHA = ShaDigest.sha256(pubKeyHash);
         byte[] secondSHA = ShaDigest.sha256(firstSHA);
         return ByteUtil.slice(secondSHA, 0, length);
     }

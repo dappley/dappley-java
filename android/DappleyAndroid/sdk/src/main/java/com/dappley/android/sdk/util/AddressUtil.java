@@ -53,7 +53,7 @@ public class AddressUtil {
      */
     public static String createAddress(byte[] pubKeyHash) {
         // get the checksum of pubKeyHash
-        byte[] checksum = HashUtil.getAddressChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
+        byte[] checksum = HashUtil.getPubKeyHashChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
         // append the checksum to pubKeyHash's tail
         byte[] fullPayload = ByteUtil.concat(pubKeyHash, checksum);
         // use Base58 encode method to get the encodes byte array
@@ -84,8 +84,8 @@ public class AddressUtil {
                 , Constant.ADDRESS_CHECKSUM_LENGTH);
         // get pubKeyHash data
         byte[] pubKeyHash = ByteUtil.slice(fullPayload, 0, fullPayload.length - Constant.ADDRESS_CHECKSUM_LENGTH);
-        // get the checksum of versionedPayload
-        byte[] checksum = HashUtil.getAddressChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
+        // get the checksum of pubKeyHash
+        byte[] checksum = HashUtil.getPubKeyHashChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
         return Arrays.equals(actualChecksum, checksum);
     }
 }

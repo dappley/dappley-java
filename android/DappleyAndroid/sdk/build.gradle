@@ -1,5 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.google.protobuf'
+// binary plugins
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def RELEASE_GROUPID = "com.dappley"
+def RELEASE_ARTIFACTID = "android-sdk"
+def RELEASE_VERSION = "0.2-alpha"
+def SITE_URL = "https://github.com/dappley/dappley-java"
 
 buildscript {
     repositories {
@@ -88,7 +96,8 @@ dependencies {
     implementation 'com.snappydb:snappydb-lib:0.5.2'
     implementation 'com.esotericsoftware.kryo:kryo:2.24.0'
     implementation 'com.tencent:mmkv:1.0.11'
-    implementation 'org.projectlombok:lombok:1.16.20'
+    implementation 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -120,4 +129,88 @@ protobuf {
     }
 
     generatedFilesBaseDir = "$projectDir/src/generated"
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'dappley-android-sdk'
+                groupId RELEASE_GROUPID
+                artifactId RELEASE_ARTIFACTID
+                version RELEASE_VERSION
+                url SITE_URL
+                licenses {
+                    license {
+                        name 'GNU Lesser General Public License v3.0'
+                        url 'http://www.gnu.org/licenses/lgpl-3.0.en.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'Dappley'
+                        name 'Dappley'
+                    }
+                }
+                scm {
+                    connection SITE_URL
+                    developerConnection SITE_URL
+                    url SITE_URL
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+bintray {
+    user = readPropertyFromLocalProperties("bintray.user")
+    key = readPropertyFromLocalProperties("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "dappley-java"
+        name = "dappley-android-sdk"
+        websiteUrl = SITE_URL
+        vcsUrl = SITE_URL
+        licenses = ["LGPL-3.0"]
+        publish = true
+    }
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/8/docs/api"
+    }
+}
+
+def readPropertyFromLocalProperties(String key) {
+    Properties properties = new Properties()
+    try {
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    } catch (Exception e) {
+        println("load local properties failed msg:${e.message}")
+    }
+    return properties.getProperty(key)
 }

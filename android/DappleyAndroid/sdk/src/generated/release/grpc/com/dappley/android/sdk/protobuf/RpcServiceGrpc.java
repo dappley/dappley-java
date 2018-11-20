@@ -275,6 +275,37 @@ public final class RpcServiceGrpc {
      return getRpcSendTransactionMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest,
+      com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetNewTransactions",
+      requestType = com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest.class,
+      responseType = com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest,
+      com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod() {
+    io.grpc.MethodDescriptor<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest, com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod;
+    if ((getRpcGetNewTransactionsMethod = RpcServiceGrpc.getRpcGetNewTransactionsMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcGetNewTransactionsMethod = RpcServiceGrpc.getRpcGetNewTransactionsMethod) == null) {
+          RpcServiceGrpc.getRpcGetNewTransactionsMethod = getRpcGetNewTransactionsMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest, com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcGetNewTransactions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse.getDefaultInstance()))
+                  .build();
+          }
+        }
+     }
+     return getRpcGetNewTransactionsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -358,6 +389,13 @@ public final class RpcServiceGrpc {
       asyncUnimplementedUnaryCall(getRpcSendTransactionMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void rpcGetNewTransactions(com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetNewTransactionsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -416,6 +454,13 @@ public final class RpcServiceGrpc {
                 com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest,
                 com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse>(
                   this, METHODID_RPC_SEND_TRANSACTION)))
+          .addMethod(
+            getRpcGetNewTransactionsMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest,
+                com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse>(
+                  this, METHODID_RPC_GET_NEW_TRANSACTIONS)))
           .build();
     }
   }
@@ -501,6 +546,14 @@ public final class RpcServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRpcSendTransactionMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void rpcGetNewTransactions(com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getRpcGetNewTransactionsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -575,6 +628,14 @@ public final class RpcServiceGrpc {
     public com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse rpcSendTransaction(com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest request) {
       return blockingUnaryCall(
           getChannel(), getRpcSendTransactionMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse> rpcGetNewTransactions(
+        com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getRpcGetNewTransactionsMethod(), getCallOptions(), request);
     }
   }
 
@@ -669,6 +730,7 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 5;
   private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 6;
   private static final int METHODID_RPC_SEND_TRANSACTION = 7;
+  private static final int METHODID_RPC_GET_NEW_TRANSACTIONS = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -719,6 +781,10 @@ public final class RpcServiceGrpc {
           serviceImpl.rpcSendTransaction((com.dappley.android.sdk.protobuf.RpcProto.SendTransactionRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.SendTransactionResponse>) responseObserver);
           break;
+        case METHODID_RPC_GET_NEW_TRANSACTIONS:
+          serviceImpl.rpcGetNewTransactions((com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.android.sdk.protobuf.RpcProto.GetNewTransactionsResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -752,6 +818,7 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcGetBlockByHashMethod())
               .addMethod(getRpcGetBlockByHeightMethod())
               .addMethod(getRpcSendTransactionMethod())
+              .addMethod(getRpcGetNewTransactionsMethod())
               .build();
         }
       }

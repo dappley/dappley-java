@@ -37,14 +37,14 @@ public class Configuration {
     }
 
     /**
-     * Read conf.properties once
+     * Read node.properties once
      * @param context
      */
     private void init(Context context) {
         InputStream in = null;
         try {
             Properties prop = new Properties();
-            in = context.getAssets().open("conf.properties");
+            in = context.getAssets().open("node.properties");
             prop.load(in);
             serverIp = prop.getProperty("serverIp", "");
             String port = prop.getProperty("serverPort", "");
@@ -53,6 +53,7 @@ public class Configuration {
             } else {
                 serverPort = 135;
             }
+            Log.i(TAG, "init: serverIp:" + serverIp + ", serverPort:" + serverPort);
         } catch (FileNotFoundException e) {
             Log.e(TAG, "init: ", e);
         } catch (IOException e) {

@@ -22,7 +22,7 @@ import java.io.UnsupportedEncodingException;
 public class GenesisBlockTest {
 
     @Test
-    public void newGenesis() throws UnsupportedEncodingException, IllegalAccessException {
+    public void newGenesis() {
         Context context = InstrumentationRegistry.getTargetContext();
         MMKV.initialize(context);
 

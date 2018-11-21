@@ -1,6 +1,7 @@
 package com.dappley.android.sdk.chain;
 
 import android.content.Context;
+import android.util.ArraySet;
 
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
@@ -9,6 +10,7 @@ import com.dappley.android.sdk.util.HexUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -73,6 +75,9 @@ public class BlockChainManager {
         }
         BlockChainDb blockChainDb = new BlockChainDb(context);
         Set<String> walletAddressSet = blockChainDb.getWalletAddressSet();
+        if (walletAddressSet == null) {
+            walletAddressSet = new HashSet<>();
+        }
         if (walletAddressSet.contains(walletAddress)) {
             return;
         }
@@ -93,6 +98,9 @@ public class BlockChainManager {
         }
         BlockChainDb blockChainDb = new BlockChainDb(context);
         Set<String> walletAddressSet = blockChainDb.getWalletAddressSet();
+        if (walletAddressSet == null) {
+            walletAddressSet = new HashSet<>();
+        }
         if (!walletAddressSet.contains(walletAddress)) {
             return;
         }
@@ -100,6 +108,6 @@ public class BlockChainManager {
 
         // remove related utxos
         UtxoManager.removeUserUtxo(context, walletAddress);
-        blockChainDb.saveWalletAddress(walletAddress);
+        blockChainDb.saveWalletAddressSet(walletAddressSet);
     }
 }

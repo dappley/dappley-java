@@ -14,4 +14,7 @@
     <color name="gray_text_light">#979797</color>
     <color name="window_half_transparent">#90000000</color>
     <color name="delete">#FF4081</color>
+
+    <color name="arc_start">#00D584</color>
+    <color name="arc_middle">#00C6B9</color>
 </resources>

@@ -10,6 +10,7 @@
     <string name="title_wallet">Wallet</string>
     <string name="title_import_wallet">Import Wallet</string>
     <string name="title_receive">Receive</string>
+    <string name="title_step">Step</string>
 
     <string name="layout_receive_address">receiver:</string>
     <string name="layout_receive_address_tip">receiver address</string>
@@ -36,6 +37,7 @@
     <string name="layout_cancel">Cancel</string>
     <string name="layout_delete">Delete</string>
     <string name="layout_copy_address">Copy address</string>
+    <string name="layout_step_today">Total Step</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>

@@ -10,6 +10,7 @@
     <string name="title_wallet">钱包</string>
     <string name="title_import_wallet">导入钱包</string>
     <string name="title_receive">收款</string>
+    <string name="title_step">步数</string>
 
     <string name="layout_receive_address">收款地址：</string>
     <string name="layout_receive_address_tip">请输入收款钱包地址</string>
@@ -36,6 +37,7 @@
     <string name="layout_cancel">取消</string>
     <string name="layout_delete">删除</string>
     <string name="layout_copy_address">复制钱包地址</string>
+    <string name="layout_step_today">今日累计步数</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>

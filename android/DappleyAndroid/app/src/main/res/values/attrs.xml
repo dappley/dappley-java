@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <declare-styleable name="StepArcView">
+        <attr name="srp_roundStartColor" format="color" />
+        <attr name="srp_roundMiddleColor" format="color" />
+        <attr name="srp_roundEndColor" format="color" />
+        <attr name="srp_roundWidth" format="dimension" />
+        <attr name="srp_startAngle" format="integer" />
+    </declare-styleable>
+</resources>

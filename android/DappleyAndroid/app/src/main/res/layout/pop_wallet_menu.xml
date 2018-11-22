@@ -41,7 +41,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:text="@string/layout_delete"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/delete"
                 android:textSize="16sp" />
         </LinearLayout>
 

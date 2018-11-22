@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DappleyAndroidSdk</string>
 
+    <string name="menu_wallet">Wallet</string>
+    <string name="menu_step">Step</string>
+
     <string name="title_transfer">Transfer</string>
     <string name="title_add_wallet">Add Wallet</string>
     <string name="title_create_wallet">Create Wallet</string>
@@ -57,4 +60,6 @@
     <string name="note_wallet_copied">wallet address is copied</string>
     <string name="note_node_error">connect error</string>
     <string name="note_permittion_camera">please allow camera authority</string>
+    <string name="note_press_again">press again to exit</string>
+
 </resources>

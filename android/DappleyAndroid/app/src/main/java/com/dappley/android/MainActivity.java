@@ -2,6 +2,8 @@ package com.dappley.android;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -26,15 +28,12 @@ import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
-import com.dappley.android.window.DeleteMenuWindow;
+import com.dappley.android.window.WalletMenuWindow;
 import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
 
-    DeleteMenuWindow menuWindow;
+    WalletMenuWindow menuWindow;
     WalletListAdapter adapter;
     List<Wallet> wallets;
     Wallet wallet;
@@ -187,7 +186,15 @@ public class MainActivity extends AppCompatActivity {
             wallet = wallets.get(position);
             View rootView = ((ViewGroup) (getWindow().getDecorView().findViewById(android.R.id.content))).getChildAt(0);
             if (menuWindow == null) {
-                menuWindow = new DeleteMenuWindow(MainActivity.this, new DeleteMenuWindow.OnWindowClickListener() {
+                menuWindow = new WalletMenuWindow(MainActivity.this, new WalletMenuWindow.OnWindowClickListener() {
+                    @Override
+                    public void onCopyClick() {
+                        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clipData = ClipData.newPlainText("data", wallet.getAddress());
+                        clipboardManager.setPrimaryClip(clipData);
+                        Toast.makeText(MainActivity.this, R.string.note_wallet_copied, Toast.LENGTH_SHORT).show();
+                    }
+
                     @Override
                     public void onDelClick() {
                         deleteWallet(wallet.getAddress());

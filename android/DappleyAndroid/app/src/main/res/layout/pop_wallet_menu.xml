@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_white_corner"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_copy"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/layout_copy_address"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dip"
+                android:background="@color/line_gray_light" />
+
+            <TextView
+                android:id="@+id/txt_del"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/layout_delete"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/bg_input_white_corner">
+
+            <TextView
+                android:id="@+id/txt_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/layout_cancel"
+                android:textColor="@color/gray_text_light"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

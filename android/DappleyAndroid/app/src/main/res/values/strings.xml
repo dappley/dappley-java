@@ -32,6 +32,7 @@
     <string name="layout_encrypt_and_save">encrypt and save</string>
     <string name="layout_cancel">Cancel</string>
     <string name="layout_delete">Delete</string>
+    <string name="layout_copy_address">Copy address</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>

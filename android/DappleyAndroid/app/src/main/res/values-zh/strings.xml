@@ -32,6 +32,7 @@
     <string name="layout_encrypt_and_save">加密存储到本地</string>
     <string name="layout_cancel">取消</string>
     <string name="layout_delete">删除</string>
+    <string name="layout_copy_address">复制钱包地址</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>

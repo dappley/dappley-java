@@ -2,6 +2,10 @@ package com.dappley.android.util;
 
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class CommonUtil {
 
     public static boolean isNull(String str) {
@@ -24,5 +28,22 @@ public class CommonUtil {
             return "";
         }
         return str;
+    }
+
+    public static Date dateAdd(Date time, int interval) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(time);
+        cal.add(Calendar.DAY_OF_MONTH, interval);
+        return cal.getTime();
+    }
+
+    public static String formatDate(Date date, String pattern) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            return format.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

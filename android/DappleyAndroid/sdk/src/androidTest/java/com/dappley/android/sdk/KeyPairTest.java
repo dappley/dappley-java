@@ -6,6 +6,9 @@ import android.util.Log;
 import com.dappley.android.sdk.chain.WalletManager;
 import com.dappley.android.sdk.crypto.KeyPairTool;
 import com.dappley.android.sdk.po.Wallet;
+import com.dappley.android.sdk.util.AddressUtil;
+import com.dappley.android.sdk.util.HashUtil;
+import com.dappley.android.sdk.util.HexUtil;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,5 +29,18 @@ public class KeyPairTest {
         Log.d(TAG, "testPubKey: publicKey: " + publickKey.toString(16));
 
         Assert.assertEquals(publickKey, wallet.getPublicKey());
+    }
+
+    @Test
+    public void getAddress() {
+        String privateKey = "4ecff43e39d3d65bfaa3eca0999fddecf12785228269c772b603dd93532c748f";
+        BigInteger publickKey = KeyPairTool.getPublicKeyFromPrivate(new BigInteger(privateKey, 16));
+        byte[] pubKeyHash = HashUtil.getPubKeyHash(publickKey);
+        String userAddress = AddressUtil.createAddress(pubKeyHash);
+
+        Log.d(TAG, "testPubKey: pubKeyHash: " + HexUtil.toHex(pubKeyHash));
+        Log.d(TAG, "testPubKey: userAddress: " + userAddress);
+
+        Assert.assertEquals("dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC", userAddress);
     }
 }

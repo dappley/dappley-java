@@ -57,6 +57,8 @@ public class HashUtil {
     public static byte[] getPubKeyBytes(BigInteger pubKey) {
         byte[] pubKeyBytes = pubKey.toByteArray();
         int byteLength = pubKey.bitLength() / 8;
+        int mod = pubKey.bitLength() % 8;
+        byteLength += mod > 0 ? 1 : 0;
         if (pubKeyBytes.length > byteLength) {
             pubKeyBytes = ByteUtil.slice(pubKeyBytes, pubKeyBytes.length - byteLength, byteLength);
         }

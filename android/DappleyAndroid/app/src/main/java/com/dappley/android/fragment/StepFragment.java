@@ -47,7 +47,7 @@ import butterknife.OnClick;
 public class StepFragment extends Fragment {
     private static final String TAG = "StepFragment";
     private static final int TASK_INIT_DELAY = 3;
-    private static final int TASK_PERIOD = 20;
+    private static final int TASK_PERIOD = 10;
 
     ISportStepInterface iSportStepInterface;
     ScheduledExecutorService schedule;
@@ -91,6 +91,7 @@ public class StepFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_step, container, false);
         ButterKnife.bind(this, view);
 
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -67,6 +67,6 @@
     <string name="note_node_error">connect error</string>
     <string name="note_permittion_camera">please allow camera authority</string>
     <string name="note_press_again">press again to exit</string>
-    <string name="note_no_step">no step can ben converted</string>
+    <string name="note_no_step">no step can be converted</string>
 
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_page_bg"
     tools:context=".fragment.StepFragment">
 
     <LinearLayout
@@ -49,11 +50,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:layout_weight="3"
+                    android:background="@drawable/bg_step"
                     android:gravity="center">
 
                     <RelativeLayout
-                        android:layout_width="200dip"
-                        android:layout_height="200dip">
+                        android:layout_width="220dip"
+                        android:layout_height="220dip">
 
                         <com.dappley.android.widget.StepArcView
                             android:layout_width="match_parent"
@@ -61,7 +63,7 @@
                             app:srp_roundEndColor="@color/arc_start"
                             app:srp_roundMiddleColor="@color/arc_middle"
                             app:srp_roundStartColor="@color/arc_start"
-                            app:srp_roundWidth="12dip"
+                            app:srp_roundWidth="13dip"
                             app:srp_startAngle="135" />
 
                         <TextView
@@ -71,7 +73,7 @@
                             android:layout_centerInParent="true"
                             android:text="0"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="46sp" />
+                            android:textSize="54sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -81,7 +83,7 @@
                             android:layout_marginBottom="4dip"
                             android:text="@string/layout_step_today"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="50dip"
@@ -96,17 +98,38 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:layout_weight="2"
-                    android:background="@color/line_gray_light"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_15"
-                        android:text="@string/layout_convert_coin"
-                        android:textColor="@color/gray_text"
-                        android:textSize="16sp" />
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_8">
+
+                        <View
+                            android:layout_width="5dip"
+                            android:layout_height="20dip"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/margin_15"
+                            android:background="@color/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_8"
+                            android:text="@string/layout_convert_coin"
+                            android:textColor="@color/gray_text_dark"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dip"
+                        android:background="@color/line_gray" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -127,27 +150,28 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="2dip"
-                                    android:text="@string/layout_step_yest"
-                                    android:textSize="12sp" />
-
-                                <TextView
                                     android:id="@+id/txt_step_yest"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
-                                    android:textSize="36sp" />
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="44sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dip"
+                                    android:text="@string/layout_step_yest"
+                                    android:textColor="@color/gray_text_dark"
+                                    android:textSize="12sp" />
                             </LinearLayout>
                         </RelativeLayout>
 
                         <View
                             android:layout_width="0.5dip"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/margin_15"
-                            android:layout_marginBottom="@dimen/margin_15"
-                            android:background="@color/line_gray" />
+                            android:layout_height="50dip"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/line_gray_light" />
 
                         <RelativeLayout
                             android:layout_width="0dip"
@@ -165,20 +189,21 @@
                                 android:visibility="visible">
 
                                 <TextView
-                                    android:id="@+id/txt_convert"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="2dip"
-                                    android:text="@string/layout_coin_exchanged"
-                                    android:textSize="12sp" />
-
-                                <TextView
                                     android:id="@+id/txt_coin"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
-                                    android:textSize="36sp" />
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="44sp" />
 
+                                <TextView
+                                    android:id="@+id/txt_convert"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dip"
+                                    android:text="@string/layout_coin_exchanged"
+                                    android:textColor="@color/gray_text_dark"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                             <Button

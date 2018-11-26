@@ -115,7 +115,7 @@ public class RemoteDataProvider implements DataProvider {
             return balance;
         }
         for (RpcProto.UTXO utxo : utxos) {
-            if (utxo == null || utxo.getAmount() == null) {
+            if (utxo == null || utxo.getAmount() == null || utxo.getAmount().size() == 0) {
                 continue;
             }
             balance = balance.add(new BigInteger(utxo.getAmount().toByteArray()));

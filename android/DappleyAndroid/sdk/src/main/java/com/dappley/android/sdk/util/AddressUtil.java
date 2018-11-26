@@ -18,10 +18,10 @@ public class AddressUtil {
      * Create a new wallet address
      * @return String wallet address
      */
-    public static String createAddress() {
+    public static String createUserAddress() {
         KeyPair keyPair = KeyPairTool.newKeyPair();
         ECKeyPair ecKeyPair = KeyPairTool.castToEcKeyPair(keyPair);
-        return AddressUtil.createAddress(ecKeyPair);
+        return AddressUtil.getUserAddress(ecKeyPair);
     }
 
     /**
@@ -29,10 +29,10 @@ public class AddressUtil {
      * @param keyPair Key group
      * @return String wallet address
      */
-    public static String createAddress(ECKeyPair keyPair) {
+    public static String getUserAddress(ECKeyPair keyPair) {
         // generate publicKey hash
-        byte[] pubKeyHash = HashUtil.getPubKeyHash(keyPair.getPublicKey());
-        return createAddress(pubKeyHash);
+        byte[] pubKeyHash = HashUtil.getUserPubKeyHash(keyPair.getPublicKey());
+        return getAddressFromPubKeyHash(pubKeyHash);
     }
 
     /**
@@ -40,18 +40,39 @@ public class AddressUtil {
      * @param publicKey
      * @return String wallet address
      */
-    public static String createAddress(BigInteger publicKey) {
+    public static String getUserAddress(BigInteger publicKey) {
         // generate publicKey hash
-        byte[] pubKeyHash = HashUtil.getPubKeyHash(publicKey);
-        return createAddress(pubKeyHash);
+        byte[] pubKeyHash = HashUtil.getUserPubKeyHash(publicKey);
+        return getAddressFromPubKeyHash(pubKeyHash);
     }
 
     /**
-     * Recover a wallet address from public key hash
-     * @param pubKeyHash public key hash
-     * @return String wallet address
+     * Create a new contract address
+     * @return String contract address
      */
-    public static String createAddress(byte[] pubKeyHash) {
+    public static String createContractAddress() {
+        KeyPair keyPair = KeyPairTool.newKeyPair();
+        ECKeyPair ecKeyPair = KeyPairTool.castToEcKeyPair(keyPair);
+        return AddressUtil.getContractAddress(ecKeyPair);
+    }
+
+    /**
+     * Recovery a contract address from KeyPair
+     * @param keyPair Key group
+     * @return String contract address
+     */
+    public static String getContractAddress(ECKeyPair keyPair) {
+        // generate publicKey hash
+        byte[] pubKeyHash = HashUtil.getContractPubKeyHash(keyPair.getPublicKey());
+        return getAddressFromPubKeyHash(pubKeyHash);
+    }
+
+    /**
+     * Recover a address from public key hash
+     * @param pubKeyHash public key hash
+     * @return String address
+     */
+    public static String getAddressFromPubKeyHash(byte[] pubKeyHash) {
         // get the checksum of pubKeyHash
         byte[] checksum = HashUtil.getPubKeyHashChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
         // append the checksum to pubKeyHash's tail

@@ -279,7 +279,7 @@ public class LocalBlockThread implements Runnable {
             if (tempOutput == null || tempOutput.getPubKeyHash() == null) {
                 continue;
             }
-            tempAddress = AddressUtil.createAddress(tempOutput.getPubKeyHash());
+            tempAddress = AddressUtil.getAddressFromPubKeyHash(tempOutput.getPubKeyHash());
             if (!addressSet.contains(tempAddress)) {
                 continue;
             }

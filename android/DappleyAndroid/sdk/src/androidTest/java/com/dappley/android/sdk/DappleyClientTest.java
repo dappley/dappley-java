@@ -13,7 +13,6 @@ import com.dappley.android.sdk.util.HashUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.web3j.crypto.Hash;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -148,7 +147,7 @@ public class DappleyClientTest {
         Wallet wallet = Dappley.importWalletFromPrivateKey(privateKey);
 
         BigInteger publicKey = wallet.getPublicKey();
-        byte[] pubKeyHash = HashUtil.getPubKeyHash(publicKey);
+        byte[] pubKeyHash = HashUtil.getUserPubKeyHash(publicKey);
         String address = Dappley.publicKeyToAddress(pubKeyHash);
         Log.d(TAG, "publicKeyToAddress: " + address);
 

@@ -14,6 +14,7 @@ import lombok.Data;
 public class TxOutput implements Serializable {
     private byte[] value;
     private byte[] pubKeyHash;
+    private String contract;
 
     public TxOutput() {
     }
@@ -33,6 +34,7 @@ public class TxOutput implements Serializable {
     public void parseProto(TransactionProto.TXOutput txOutput) {
         this.setValue(txOutput.getValue() == null ? null : txOutput.getValue().toByteArray());
         this.setPubKeyHash(txOutput.getPubKeyHash() == null ? null : txOutput.getPubKeyHash().toByteArray());
+        this.setContract(txOutput.getContract());
     }
 
     /**
@@ -47,6 +49,7 @@ public class TxOutput implements Serializable {
         if (this.getPubKeyHash() != null) {
             builder.setPubKeyHash(ByteString.copyFrom(this.getPubKeyHash()));
         }
+        builder.setContract(this.getContract() == null ? "" : this.getContract());
         return builder.build();
     }
 }

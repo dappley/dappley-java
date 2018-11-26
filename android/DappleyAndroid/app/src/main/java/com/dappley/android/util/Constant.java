@@ -11,6 +11,7 @@ public class Constant {
     public static final int MSG_HOME_LIST_ERROR = 20004;
     public static final int MSG_WALLET_DETAIL = 20002;
     public static final int MSG_TRANSFER_BALANCE = 20003;
+    public static final int MSG_TRANSFER_FINISH = 20007;
     public static final int MSG_STEP_UPDATE = 20005;
     public static final int MSG_STEP_YESTERDAY = 20006;
 

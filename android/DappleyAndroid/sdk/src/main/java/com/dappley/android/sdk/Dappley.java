@@ -167,7 +167,7 @@ public class Dappley {
      * @return String wallet address
      */
     public static String publicKeyToAddress(byte[] pubKeyHash) {
-        return AddressUtil.createAddress(pubKeyHash);
+        return AddressUtil.getAddressFromPubKeyHash(pubKeyHash);
     }
 
     /**
@@ -223,7 +223,7 @@ public class Dappley {
         if (CollectionUtils.isEmpty(utxos)) {
             return false;
         }
-        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey);
+        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, null);
         int errorCode = transactionSender.sendTransaction(transaction);
         if (errorCode == 0) {
             // success

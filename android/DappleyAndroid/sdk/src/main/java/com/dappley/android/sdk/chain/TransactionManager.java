@@ -5,11 +5,13 @@ import com.dappley.android.sdk.po.Transaction;
 import com.dappley.android.sdk.po.TxInput;
 import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.po.Utxo;
+import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
 import com.dappley.android.sdk.util.HexUtil;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
@@ -32,11 +34,12 @@ public class TransactionManager {
      * @param toAddress account address to be transfered
      * @param amount alue to be transfered
      * @param privateKey
+     * @param contract contract content
      * @return Transaction a new transaction object
      */
-    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, BigInteger privateKey) {
+    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, BigInteger privateKey, String contract) {
         ECKeyPair keyPair = ECKeyPair.create(privateKey);
-        return newTransaction(utxos, toAddress, amount, keyPair);
+        return newTransaction(utxos, toAddress, amount, keyPair, contract);
     }
 
     /**
@@ -45,15 +48,16 @@ public class TransactionManager {
      * @param toAddress account address to be transfered
      * @param amount value to be transfered
      * @param ecKeyPair user's keypair
+     * @param contract contract content
      * @return Transaction a new transaction object
      */
-    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair) {
+    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair, String contract) {
         Transaction transaction = new Transaction();
         // add vin list and return the total amount of vin values
         BigInteger totalAmount = buildVin(transaction, utxos, ecKeyPair);
 
         // add vout list. If there is change is this transaction, vout list wound have two elements, or have just one to coin receiver.
-        buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair);
+        buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair, contract);
 
         // add default tip value
         transaction.setTip(TIP_DEFAULT);
@@ -100,15 +104,24 @@ public class TransactionManager {
      * @param toAddress To User address
      * @param amount transfer account
      * @param totalAmount utxo's all vout values
+     * @param contract contract content
      * @param ecKeyPair user's keypair
      */
-    private static void buildVout(Transaction transaction, String toAddress, BigInteger amount, BigInteger totalAmount, ECKeyPair ecKeyPair) {
+    private static void buildVout(Transaction transaction, String toAddress, BigInteger amount, BigInteger totalAmount, ECKeyPair ecKeyPair, String contract) {
         if (totalAmount.compareTo(amount) < 0) {
             return;
         }
+        if (StringUtils.isNotEmpty(contract)) {
+            // set contract output
+            TxOutput txOutput = new TxOutput();
+            toAddress = AddressUtil.createContractAddress();
+            txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(toAddress));
+            txOutput.setValue(ByteUtil.bigInteger2Bytes(BigInteger.ZERO));
+            txOutput.setContract(contract);
+        }
         TxOutput txOutput = new TxOutput();
         // set to address's pubKeyHash
-        txOutput.setPubKeyHash(HashUtil.getPubKeyHash(toAddress));
+        txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(toAddress));
         txOutput.setValue(ByteUtil.bigInteger2Bytes(amount));
         transaction.addTxOutput(txOutput);
 
@@ -116,7 +129,7 @@ public class TransactionManager {
         if (totalAmount.compareTo(amount) > 0) {
             txOutput = new TxOutput();
             // set from address's pubKeyHash
-            byte[] myPubKeyHash = HashUtil.getPubKeyHash(ecKeyPair.getPublicKey());
+            byte[] myPubKeyHash = HashUtil.getUserPubKeyHash(ecKeyPair.getPublicKey());
             txOutput.setPubKeyHash(myPubKeyHash);
             txOutput.setValue(ByteUtil.bigInteger2Bytes(totalAmount.subtract(amount)));
             transaction.addTxOutput(txOutput);

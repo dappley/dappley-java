@@ -40,13 +40,13 @@ public class DappleyTest {
 
         ECKeyPair ecKeyPair = KeyPairTool.castToEcKeyPair(keyPair);
         System.out.println(ecKeyPair.getPrivateKey().toString(16));
-        String address = AddressUtil.createAddress(ecKeyPair);
+        String address = AddressUtil.getUserAddress(ecKeyPair);
         System.out.println(address);
 
 //        testRpcConnect(null);
 
         String addr = "1FZqATrZWdXWi9tsGHZzHzgwJRnpwQoCGi";
-        System.out.println(HexUtil.toHex(HashUtil.getPubKeyHash(addr)));
+        System.out.println(HexUtil.toHex(HashUtil.getPublicKeyHash(addr)));
     }
 
     public static void testAes() {

@@ -174,7 +174,7 @@ public class UtxoManager {
             if (tempOutput == null || tempOutput.getPubKeyHash() == null) {
                 continue;
             }
-            tempAddress = AddressUtil.createAddress(tempOutput.getPubKeyHash());
+            tempAddress = AddressUtil.getAddressFromPubKeyHash(tempOutput.getPubKeyHash());
             if (!walletAddress.equals(tempAddress)) {
                 continue;
             }

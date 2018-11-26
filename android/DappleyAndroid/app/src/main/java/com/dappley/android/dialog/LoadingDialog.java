@@ -15,7 +15,7 @@ public class LoadingDialog {
 
     public static void show(Context context) {
         initViews(context);
-        tvMessage.setText("processing...");
+        tvMessage.setText(R.string.note_processing);
         dialog.show();
     }
 

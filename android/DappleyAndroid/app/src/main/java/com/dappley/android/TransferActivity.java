@@ -136,27 +136,30 @@ public class TransferActivity extends AppCompatActivity {
         if (checkNull()) {
             return;
         }
-        BigInteger amount = new BigInteger(etValue.getText().toString().trim());
-        if (amount.compareTo(balance) > 0) {
+        final BigInteger amount = new BigInteger(etValue.getText().toString().trim());
+        if (balance == null || amount.compareTo(balance) > 0) {
             Toast.makeText(this, R.string.note_balance_not_enought, Toast.LENGTH_SHORT).show();
             return;
         }
         LoadingDialog.show(this);
-        String toAddress = etToAddress.getText().toString().trim();
-        boolean isSuccess = false;
-        try {
-            isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
-        } catch (Exception e) {
-            Log.e(TAG, "tranfer: ", e);
-        }
-        LoadingDialog.close();
-        if (isSuccess) {
-            Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
-            finish();
-        } else {
-            Toast.makeText(this, R.string.note_transfer_failed, Toast.LENGTH_SHORT).show();
-        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String toAddress = etToAddress.getText().toString().trim();
+                boolean isSuccess = false;
+                try {
+                    isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
+                } catch (Exception e) {
+                    Log.e(TAG, "tranfer: ", e);
+                }
+                Message msg = new Message();
+                msg.obj = isSuccess;
+                msg.what = Constant.MSG_TRANSFER_FINISH;
+                handler.sendMessage(msg);
+            }
+        }).start();
+
     }
 
     private void loadData() {
@@ -282,6 +285,17 @@ public class TransferActivity extends AppCompatActivity {
         return false;
     }
 
+    private void onTransferFinish(boolean isSuccess) {
+        LoadingDialog.close();
+        if (isSuccess) {
+            Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
+        } else {
+            Toast.makeText(this, R.string.note_transfer_failed, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
@@ -314,6 +328,9 @@ public class TransferActivity extends AppCompatActivity {
                 wallets.set(selectedIndex, wallet);
                 walletPagerAdapter.setList(wallets, selectedIndex);
                 refreshLayout.setRefreshing(false);
+            } else if (msg.what == Constant.MSG_TRANSFER_FINISH) {
+                boolean isSuccess = (boolean) msg.obj;
+                onTransferFinish(isSuccess);
             }
         }
     };

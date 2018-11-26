@@ -35,12 +35,12 @@ public class Wallet implements Serializable {
         this.mnemonic = mnemonic;
         this.privateKey = Bip39.getPrivateKey(mnemonic);
         this.publicKey = KeyPairTool.getPublicKeyFromPrivate(privateKey);
-        this.address = AddressUtil.createAddress(this.publicKey);
+        this.address = AddressUtil.getUserAddress(this.publicKey);
     }
 
     public Wallet(BigInteger privateKey) {
         this.privateKey = privateKey;
         this.publicKey = KeyPairTool.getPublicKeyFromPrivate(privateKey);
-        this.address = AddressUtil.createAddress(this.publicKey);
+        this.address = AddressUtil.getUserAddress(this.publicKey);
     }
 }

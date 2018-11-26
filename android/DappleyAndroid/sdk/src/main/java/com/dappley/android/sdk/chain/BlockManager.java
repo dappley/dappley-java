@@ -46,7 +46,7 @@ public class BlockManager {
         // set output
         TxOutput txOutput = new TxOutput();
         txOutput.setValue(new BigInteger(SUBSIDY).toByteArray());
-        txOutput.setPubKeyHash(HashUtil.getPubKeyHash(GENESIS_ADDRESS));
+        txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(GENESIS_ADDRESS));
 
         Transaction transaction = new Transaction();
         transaction.addTxInput(txInput);

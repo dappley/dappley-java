@@ -11,8 +11,8 @@ import java.math.BigInteger;
  * Provides several methods used in wallet address generate.
  */
 public class HashUtil {
-    private static final byte[] VERSION_USER = new byte[]{0x5A};
-    private static final byte[] VERSION_CONTRACT = new byte[]{0x58};
+    public static final byte[] VERSION_USER = new byte[]{0x5A};
+    public static final byte[] VERSION_CONTRACT = new byte[]{0x58};
 
     /**
      * Returns public key hash value

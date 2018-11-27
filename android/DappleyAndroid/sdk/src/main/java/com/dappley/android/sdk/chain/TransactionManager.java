@@ -112,9 +112,12 @@ public class TransactionManager {
             return;
         }
         if (StringUtils.isNotEmpty(contract)) {
+            if (StringUtils.isEmpty(toAddress)) {
+                toAddress = AddressUtil.createContractAddress();
+            }
+            contract = String.format(contract, toAddress);
             // set contract output
             TxOutput txOutput = new TxOutput();
-            toAddress = AddressUtil.createContractAddress();
             txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(toAddress));
             txOutput.setValue(ByteUtil.bigInteger2Bytes(BigInteger.ZERO));
             txOutput.setContract(contract);

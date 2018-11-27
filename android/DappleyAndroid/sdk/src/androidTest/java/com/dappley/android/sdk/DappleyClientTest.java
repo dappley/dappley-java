@@ -8,8 +8,10 @@ import android.util.Log;
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.Wallet;
+import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.HashUtil;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -183,6 +185,23 @@ public class DappleyClientTest {
         String privateKey = "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a";
 
         boolean isSuccess = Dappley.sendTransaction(fromAddress, toAddress, amount, new BigInteger(privateKey, 16));
+
+        Assert.assertTrue(isSuccess);
+    }
+
+    @Test
+    public void senTransactionWithContract() {
+        Context context = InstrumentationRegistry.getTargetContext();
+        Dappley.init(context, Dappley.DataMode.REMOTE_ONLINE);
+
+        String fromAddress = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
+        BigInteger amount = new BigInteger("1");
+        String privateKey = "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a";
+
+        String contractAddress = Dappley.createContractAddress();
+        String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"4\"]}";
+        contract = String.format(contract, contractAddress);
+        boolean isSuccess = Dappley.sendTransactionWithContract(fromAddress, contractAddress, amount, new BigInteger(privateKey, 16), contract);
 
         Assert.assertTrue(isSuccess);
     }

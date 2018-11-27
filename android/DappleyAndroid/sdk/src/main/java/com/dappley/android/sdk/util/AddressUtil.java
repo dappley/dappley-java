@@ -84,8 +84,8 @@ public class AddressUtil {
     }
 
     /**
-     * Returns if the wallet address is legal
-     * @param address wallet address
+     * Returns if the address is legal
+     * @param address
      * @return boolean true/false
      */
     public static boolean validateAddress(String address) {
@@ -108,5 +108,41 @@ public class AddressUtil {
         // get the checksum of pubKeyHash
         byte[] checksum = HashUtil.getPubKeyHashChecksum(pubKeyHash, Constant.ADDRESS_CHECKSUM_LENGTH);
         return Arrays.equals(actualChecksum, checksum);
+    }
+
+    /**
+     * Returns if the user address is legal
+     * @param userAddress user address
+     * @return boolean true/false
+     */
+    public static boolean validateUserAddress(String userAddress) {
+        if (!validateAddress(userAddress)) {
+            return false;
+        }
+        byte[] fullPayload = null;
+        try {
+            fullPayload = Base58.decode(userAddress);
+        } catch (Exception e) {
+        }
+        byte[] prefix = ByteUtil.slice(fullPayload, 0, 1);
+        return Arrays.equals(prefix, HashUtil.VERSION_USER);
+    }
+
+    /**
+     * Returns if the contract address is legal
+     * @param contractAddress contract address
+     * @return boolean true/false
+     */
+    public static boolean validateContractAddress(String contractAddress) {
+        if (!validateAddress(contractAddress)) {
+            return false;
+        }
+        byte[] fullPayload = null;
+        try {
+            fullPayload = Base58.decode(contractAddress);
+        } catch (Exception e) {
+        }
+        byte[] prefix = ByteUtil.slice(fullPayload, 0, 1);
+        return Arrays.equals(prefix, HashUtil.VERSION_CONTRACT);
     }
 }

@@ -20,6 +20,7 @@ import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Asserts;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -215,6 +216,50 @@ public class Dappley {
      * @return boolean is transaction committed successful
      */
     public static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey) {
+        if (!AddressUtil.validateUserAddress(fromAddress)) {
+            throw new IllegalArgumentException("fromAddress is illegal !");
+        }
+        if (!AddressUtil.validateUserAddress(toAddress)) {
+            throw new IllegalArgumentException("toAddress is illegal !");
+        }
+        return sendTransaction(fromAddress, toAddress, amount, privateKey, null);
+    }
+
+    /**
+     * Send a new transaction to blockchain online.
+     * @param fromAddress from user's address
+     * @param contractAddress contract's address
+     * @param amount transferred amount
+     * @param privateKey from user's privateKey
+     * @param contract contract content
+     * @return boolean is transaction committed successful
+     */
+    public static boolean sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger amount, BigInteger privateKey, String contract) {
+        if (!AddressUtil.validateUserAddress(fromAddress)) {
+            throw new IllegalArgumentException("fromAddress is illegal !");
+        }
+        if (!AddressUtil.validateContractAddress(contractAddress)) {
+            throw new IllegalArgumentException("contractAddress is illegal !");
+        }
+        if (contract == null) {
+            throw new NullPointerException("contract cannot be null !");
+        }
+        return sendTransaction(fromAddress, contractAddress, amount, privateKey, contract);
+    }
+
+    /**
+     * Send a new transaction to blockchain online.
+     * @param fromAddress from user's address
+     * @param toAddress to address
+     * @param amount transferred amount
+     * @param privateKey from user's privateKey
+     * @param contract contract content
+     * @return boolean is transaction committed successful
+     */
+    private static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, String contract) {
+        if (StringUtils.isEmpty(fromAddress) || StringUtils.isEmpty(toAddress)) {
+            return false;
+        }
         List<Utxo> allUtxo = dataProvider.getUtxos(fromAddress);
         if (CollectionUtils.isEmpty(allUtxo)) {
             return false;
@@ -223,13 +268,21 @@ public class Dappley {
         if (CollectionUtils.isEmpty(utxos)) {
             return false;
         }
-        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, null);
+        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, contract);
         int errorCode = transactionSender.sendTransaction(transaction);
         if (errorCode == 0) {
             // success
             return true;
         }
         return false;
+    }
+
+    /**
+     * Create a new contract address
+     * @return String contract address
+     */
+    public static String createContractAddress() {
+        return AddressUtil.createContractAddress();
     }
 
     /**

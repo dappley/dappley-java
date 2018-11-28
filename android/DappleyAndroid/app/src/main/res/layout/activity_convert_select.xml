@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_page_bg"
+    android:orientation="vertical"
+    tools:context=".ConvertSelectActivity">
+
+    <include layout="@layout/toolbar_title_back" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/margin_15"
+        android:paddingRight="@dimen/margin_15">
+
+        <TextView
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="@string/layout_wallet_password" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/layout_wallet_password_tip"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginTop="10dip"
+        android:background="@color/white">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:text="@string/layout_cancel"
+            android:textColor="@color/gray_text_light" />
+
+        <View
+            android:layout_width="0.5dip"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:background="@color/line_gray" />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:text="@string/layout_confirm"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+</LinearLayout>

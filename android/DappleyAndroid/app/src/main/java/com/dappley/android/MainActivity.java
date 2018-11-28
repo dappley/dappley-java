@@ -24,7 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.adapter.MainFragmentAdapter;
+import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
+import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.Constant;
 
 import java.util.List;
@@ -199,17 +201,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constant.REQ_ACT_QR_CODE && resultCode == RESULT_OK) {
-            WalletFragment walletFragment = getWalletFragment();
-            if (walletFragment == null) {
-                return;
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constant.REQ_ACT_QR_CODE) {
+                WalletFragment walletFragment = getWalletFragment();
+                if (walletFragment == null) {
+                    return;
+                }
+                walletFragment.scanResult(data);
+            } else if (requestCode == Constant.REQ_ACT_CONVERT_SELECT) {
+                StepFragment stepFragment = getStepFragment();
+                if (stepFragment == null) {
+                    return;
+                }
+                Wallet wallet = (Wallet) data.getSerializableExtra("wallet");
+                stepFragment.onAddressSeleted(wallet);
             }
-            walletFragment.scanResult(data);
         }
     }
 
     private WalletFragment getWalletFragment() {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
         return (WalletFragment) fragments.get(0);
+    }
+
+    private StepFragment getStepFragment() {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        return (StepFragment) fragments.get(1);
     }
 }

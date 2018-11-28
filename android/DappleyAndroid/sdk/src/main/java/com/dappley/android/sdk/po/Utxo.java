@@ -44,7 +44,9 @@ public class Utxo {
      * @param utxo RpcProto.UTXO
      */
     public void parseProto(RpcProto.UTXO utxo) {
-        this.setAmount(new BigInteger(utxo.getAmount().toByteArray()));
+        if (utxo.getAmount() != null && utxo.getAmount().size() > 0) {
+            this.setAmount(new BigInteger(utxo.getAmount().toByteArray()));
+        }
         this.setPublicKeyHash(utxo.getPublicKeyHash().toByteArray());
         this.setTxId(utxo.getTxid().toByteArray());
         this.setVoutIndex(utxo.getTxIndex());

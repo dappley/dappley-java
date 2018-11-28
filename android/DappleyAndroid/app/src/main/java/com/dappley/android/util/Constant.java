@@ -6,6 +6,7 @@ public class Constant {
     public static final int REQ_PERM_CAMERA = 10002;
     public static final int REQ_ACT_QR_CODE = 10002;
     public static final int REQ_ACT_TRANSFER = 30001;
+    public static final int REQ_ACT_CONVERT_SELECT = 30002;
 
     public static final int MSG_HOME_LIST = 20001;
     public static final int MSG_HOME_LIST_ERROR = 20004;
@@ -14,6 +15,9 @@ public class Constant {
     public static final int MSG_TRANSFER_FINISH = 20007;
     public static final int MSG_STEP_UPDATE = 20005;
     public static final int MSG_STEP_YESTERDAY = 20006;
+    public static final int MSG_WALLET_SELECT_LIST = 20008;
+    public static final int MSG_WALLET_SELECT_ERROR = 20009;
+    public static final int MSG_CONVERT_FINISH = 20010;
 
     public static final int REQ_WALLET_IMPORT = 2;
 
@@ -24,4 +28,6 @@ public class Constant {
 
     public static final int QR_WIDTH = 200;
     public static final int QR_HEIGHT = 200;
+
+    public static final String ADDRESS_STEP_CONTRACT = "cekzBT3kewbmFejNrN8vG9Rmpojtme29hr";
 }

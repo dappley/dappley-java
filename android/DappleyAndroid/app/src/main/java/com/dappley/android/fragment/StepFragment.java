@@ -21,8 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dappley.android.ConvertSelectActivity;
 import com.dappley.android.R;
 import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.sdk.Dappley;
+import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.PreferenceUtil;
@@ -34,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -48,6 +52,7 @@ public class StepFragment extends Fragment {
     private static final String TAG = "StepFragment";
     private static final int TASK_INIT_DELAY = 3;
     private static final int TASK_PERIOD = 10;
+    private static final BigInteger baseFee = new BigInteger("1");
 
     ISportStepInterface iSportStepInterface;
     ScheduledExecutorService schedule;
@@ -68,6 +73,7 @@ public class StepFragment extends Fragment {
 
     int currentStep;
     int yesterdayStep;
+    int convertedCoin;
     String yesterDay;
 
     public StepFragment() {
@@ -154,18 +160,15 @@ public class StepFragment extends Fragment {
 
     @OnClick(R.id.btn_convert)
     void convertCoin() {
+        // TODO delete const value
+        yesterdayStep = 10;
         if (yesterdayStep <= 0) {
             Toast.makeText(getActivity(), R.string.note_no_step, Toast.LENGTH_SHORT).show();
             return;
         }
-        LoadingDialog.show(getActivity());
-        // TODO convert with chain nodes
-        int covertCoin = 2;
-        PreferenceUtil.set(getContext(), Constant.PREF_CONVERTED_DAY, yesterDay);
-        PreferenceUtil.setInt(getContext(), Constant.PREF_CONVERTED_COIN, covertCoin);
-        LoadingDialog.close();
-
-        readYesterDayData();
+        Intent intent = new Intent(getActivity(), ConvertSelectActivity.class);
+        intent.putExtra("baseFee", baseFee);
+        getActivity().startActivityForResult(intent, Constant.REQ_ACT_CONVERT_SELECT);
     }
 
     @Override
@@ -186,6 +189,47 @@ public class StepFragment extends Fragment {
     public void onDetach() {
         getActivity().unbindService(stepServiceConnection);
         super.onDetach();
+    }
+
+    public void onAddressSeleted(final Wallet wallet) {
+        if (wallet == null || wallet.getAddress() == null || wallet.getAddress().length() == 0) {
+            Toast.makeText(getActivity(), R.string.note_select_address, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        LoadingDialog.show(getActivity());
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean isSuccess = false;
+                try {
+                    String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
+                    contract = String.format(contract, Constant.ADDRESS_STEP_CONTRACT, yesterdayStep);
+                    // TODO
+                    convertedCoin = yesterdayStep / 10;
+                    isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), Constant.ADDRESS_STEP_CONTRACT, baseFee, wallet.getPrivateKey(), contract);
+                } catch (Exception e) {
+                    Log.e(TAG, "sendTransactionWithContract: ", e);
+                }
+                Message msg = new Message();
+                msg.obj = isSuccess;
+                msg.what = Constant.MSG_CONVERT_FINISH;
+                handler.sendMessage(msg);
+            }
+        }).start();
+    }
+
+    private void onConvertFinish(boolean isSuccess) {
+        LoadingDialog.close();
+        if (isSuccess) {
+            Toast.makeText(getActivity(), R.string.note_convert_success, Toast.LENGTH_SHORT).show();
+            PreferenceUtil.set(getContext(), Constant.PREF_CONVERTED_DAY, yesterDay);
+            PreferenceUtil.setInt(getContext(), Constant.PREF_CONVERTED_COIN, convertedCoin);
+
+            readYesterDayData();
+        } else {
+            Toast.makeText(getActivity(), R.string.note_convert_failed, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private ServiceConnection stepServiceConnection = new ServiceConnection() {
@@ -304,6 +348,9 @@ public class StepFragment extends Fragment {
             } else if (msg.what == Constant.MSG_STEP_YESTERDAY) {
                 tvStepYesterday.setText("" + yesterdayStep);
                 showConvertedCoin();
+            } else if (msg.what == Constant.MSG_CONVERT_FINISH) {
+                boolean isSuccess = (boolean) msg.obj;
+                onConvertFinish(isSuccess);
             }
         }
     };

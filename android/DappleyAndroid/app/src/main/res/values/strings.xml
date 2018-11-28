@@ -11,6 +11,7 @@
     <string name="title_import_wallet">Import Wallet</string>
     <string name="title_receive">Receive</string>
     <string name="title_step">Step</string>
+    <string name="title_select_address">Select Address</string>
 
     <string name="layout_receive_address">receiver:</string>
     <string name="layout_receive_address_tip">receiver address</string>
@@ -36,6 +37,7 @@
     <string name="layout_encrypt_and_save">encrypt and save</string>
     <string name="layout_cancel">Cancel</string>
     <string name="layout_delete">Delete</string>
+    <string name="layout_confirm">Confirm</string>
     <string name="layout_copy_address">Copy address</string>
     <string name="layout_step_today">Total Step</string>
     <string name="layout_convert_coin">Convert Coin</string>
@@ -68,5 +70,8 @@
     <string name="note_permittion_camera">please allow camera authority</string>
     <string name="note_press_again">press again to exit</string>
     <string name="note_no_step">no step can be converted</string>
+    <string name="note_select_address">please select a wallet address with enough balance</string>
+    <string name="note_convert_success">convert success</string>
+    <string name="note_convert_failed">convert failed, please try later</string>
 
 </resources>

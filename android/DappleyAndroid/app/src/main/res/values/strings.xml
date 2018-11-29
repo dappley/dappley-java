@@ -9,6 +9,7 @@
     <string name="title_create_wallet">Create Wallet</string>
     <string name="title_wallet">Wallet</string>
     <string name="title_import_wallet">Import Wallet</string>
+    <string name="title_export_wallet">Export Wallet</string>
     <string name="title_receive">Receive</string>
     <string name="title_step">Step</string>
     <string name="title_select_address">Select Address</string>
@@ -44,6 +45,7 @@
     <string name="layout_step_yest">Step Yesterday</string>
     <string name="layout_coin_exchanged">Coin Exchanged</string>
     <string name="layout_btn_convert">Convert Coin</string>
+    <string name="layout_input_wallet_password">Input wallet password</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>
@@ -66,6 +68,7 @@
     <string name="note_error_import_wallet">import wallet failed, please check you mnemonic or private key</string>
     <string name="note_wallet_exists">wallet address has been existed</string>
     <string name="note_wallet_copied">wallet address is copied</string>
+    <string name="note_wallet_private_key_copied">wallet private key is copied</string>
     <string name="note_node_error">connect error</string>
     <string name="note_permittion_camera">please allow camera authority</string>
     <string name="note_press_again">press again to exit</string>

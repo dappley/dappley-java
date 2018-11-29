@@ -11,14 +11,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dappley.android.adapter.UtxoListAdapter;
 import com.dappley.android.adapter.WalletListAdapter;
+import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
 
 import java.math.BigInteger;
@@ -44,6 +47,8 @@ public class WalletDetailActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
+
+    WalletPasswordDialog walletPasswordDialog;
 
     UtxoListAdapter adapter;
     List<Utxo> utxos;
@@ -117,6 +122,19 @@ public class WalletDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.btn_export)
+    void export() {
+        if (walletPasswordDialog == null) {
+            walletPasswordDialog = new WalletPasswordDialog(this, new WalletPasswordDialog.OnClickListener() {
+                @Override
+                public void onConfirm(String password) {
+                    onPasswordInput(password);
+                }
+            });
+        }
+        walletPasswordDialog.show();
+    }
+
     @OnClick(R.id.btn_transfer)
     void tranfer() {
         Intent intent = new Intent(this, TransferActivity.class);
@@ -153,6 +171,31 @@ public class WalletDetailActivity extends AppCompatActivity {
             } else {
                 this.utxos.addAll(utxos);
             }
+        }
+    }
+
+    private void onPasswordInput(String password) {
+        if (password.length() == 0) {
+            Toast.makeText(WalletDetailActivity.this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            String walletString = StorageUtil.getWallet(wallet.getAddress());
+            Wallet wallet = Dappley.decryptWallet(walletString, password);
+            if (wallet == null || wallet.getPrivateKey() == null) {
+                Toast.makeText(WalletDetailActivity.this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            WalletDetailActivity.this.wallet = wallet;
+
+            walletPasswordDialog.close();
+            Intent intent = new Intent(WalletDetailActivity.this, WalletExportActivity.class);
+            intent.putExtra("wallet", wallet);
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(WalletDetailActivity.this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+            return;
         }
     }
 

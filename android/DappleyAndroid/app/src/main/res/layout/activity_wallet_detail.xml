@@ -37,6 +37,7 @@
                     android:padding="10dip">
 
                     <TextView
+                        android:id="@+id/txt_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"

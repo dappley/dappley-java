@@ -24,6 +24,8 @@ public class Wallet implements Serializable {
     private BigInteger privateKey;
     private BigInteger publicKey;
     private BigInteger balance;
+    private String encryptedMnemonic;
+    private String encryptedPrivateKey;
 
     public Wallet() {
     }

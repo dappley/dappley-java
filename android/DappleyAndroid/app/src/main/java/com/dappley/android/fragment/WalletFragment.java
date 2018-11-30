@@ -117,17 +117,11 @@ public class WalletFragment extends Fragment {
     }
 
     public void readData() {
-        List<Wallet> wallets = new ArrayList<>();
+        List<Wallet> wallets = null;
         try {
-            List<String> addresses = StorageUtil.getAddresses();
-            if (addresses == null) {
-                addresses = new ArrayList<>(1);
-            }
-            Wallet wallet;
-            for (String address : addresses) {
-                wallet = new Wallet();
-                wallet.setAddress(address);
-                wallets.add(wallet);
+            wallets = StorageUtil.getWallets(getActivity());
+            if (wallets == null) {
+                wallets = new ArrayList<>(1);
             }
         } catch (IOException e) {
             Toast.makeText(getActivity(), R.string.note_read_failed, Toast.LENGTH_SHORT).show();
@@ -160,11 +154,12 @@ public class WalletFragment extends Fragment {
         if (CommonUtil.isNull(address)) {
             return;
         }
-        StorageUtil.deleteAddress(address);
+        StorageUtil.deleteAddress(getActivity(), address);
 
         Dappley.removeAddress(address);
 
-        loadData();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.loadChangedData();
     }
 
     public void startQrCode() {

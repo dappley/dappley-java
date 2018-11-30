@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.adapter.MainFragmentAdapter;
+import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
 import com.dappley.android.sdk.po.Wallet;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        viewPager.setOffscreenPageLimit(TAB_TITLES.length);
     }
 
     public boolean checkReadPermission() {
@@ -130,17 +132,24 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(receiver, filter);
     }
 
+    public void loadChangedData() {
+        WalletFragment walletFragment = getWalletFragment();
+        if (walletFragment != null) {
+            walletFragment.loadData();
+        }
+        MeFragment meFragment = getMeFragment();
+        if (meFragment != null) {
+            meFragment.loadData();
+        }
+    }
+
     public BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (Constant.BROAD_WALLET_LIST_UPDATE.equals(intent.getAction())) {
-                WalletFragment walletFragment = getWalletFragment();
-                if (walletFragment != null) {
-                    walletFragment.loadData();
-                }
+                loadChangedData();
             }
         }
-
     };
 
     @Override
@@ -227,5 +236,10 @@ public class MainActivity extends AppCompatActivity {
     private StepFragment getStepFragment() {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
         return (StepFragment) fragments.get(1);
+    }
+
+    private MeFragment getMeFragment() {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        return (MeFragment) fragments.get(2);
     }
 }

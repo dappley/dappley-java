@@ -124,20 +124,20 @@ public class Dappley {
      * Encrypt wallet data with AES.
      * @param wallet data
      * @param password
-     * @return String encrypted data in Hex format
+     * @return Wallet encrypted wallet data
      */
-    public static String encryptWallet(Wallet wallet, String password) {
+    public static Wallet encryptWallet(Wallet wallet, String password) {
         return WalletManager.encryptWallet(wallet, password);
     }
 
     /**
      * Decrypt wallet data.
-     * @param walletString encrypted data in Hex format
+     * @param wallet encrypted wallet data
      * @param password
      * @return Wallet wallet data
      */
-    public static Wallet decryptWallet(String walletString, String password) {
-        return WalletManager.decryptWallet(walletString, password);
+    public static Wallet decryptWallet(Wallet wallet, String password) {
+        return WalletManager.decryptWallet(wallet, password);
     }
 
     /**

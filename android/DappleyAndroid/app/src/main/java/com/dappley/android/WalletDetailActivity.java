@@ -38,6 +38,8 @@ public class WalletDetailActivity extends AppCompatActivity {
     ImageButton btnBack;
     @BindView(R.id.txt_title)
     TextView tvTitle;
+    @BindView(R.id.txt_name)
+    TextView tvName;
     @BindView(R.id.txt_address)
     TextView tvAddress;
     @BindView(R.id.txt_value)
@@ -112,6 +114,7 @@ public class WalletDetailActivity extends AppCompatActivity {
         wallet = (Wallet) intent.getSerializableExtra("wallet");
         utxos = new ArrayList<>();
 
+        tvName.setText(wallet.getName());
         tvAddress.setText(wallet.getAddress());
     }
 
@@ -180,8 +183,7 @@ public class WalletDetailActivity extends AppCompatActivity {
             return;
         }
         try {
-            String walletString = StorageUtil.getWallet(wallet.getAddress());
-            Wallet wallet = Dappley.decryptWallet(walletString, password);
+            Wallet wallet = Dappley.decryptWallet(this.wallet, password);
             if (wallet == null || wallet.getPrivateKey() == null) {
                 Toast.makeText(WalletDetailActivity.this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
                 return;

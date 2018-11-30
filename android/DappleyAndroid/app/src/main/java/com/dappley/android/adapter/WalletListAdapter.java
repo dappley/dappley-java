@@ -74,6 +74,9 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
         if (wallet == null) {
             return;
         }
+        if (wallet.getName() != null) {
+            viewHolder.tvName.setText(wallet.getName());
+        }
         if (wallet.getAddress() != null) {
             viewHolder.tvAddress.setText(wallet.getAddress());
         }
@@ -88,6 +91,8 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_name)
+        TextView tvName;
         @BindView(R.id.txt_address)
         TextView tvAddress;
         @BindView(R.id.txt_value)

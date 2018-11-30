@@ -2,6 +2,7 @@ package com.dappley.android.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dappley.android.R;
+import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.StorageUtil;
 
 import java.io.IOException;
@@ -19,6 +21,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MeFragment extends Fragment {
+    private static final String TAG = "MeFragment";
+
     @BindView(R.id.txt_wallet_num)
     TextView tvWalletNum;
 
@@ -40,13 +44,20 @@ public class MeFragment extends Fragment {
         loadData();
     }
 
-    private void loadData() {
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Log.d(TAG, "onResume:----------------------- ");
+    }
+
+    public void loadData() {
         try {
-            List<String> walletAddresses = StorageUtil.getAddresses();
-            if (walletAddresses == null) {
+            List<Wallet> wallets = StorageUtil.getWallets(getActivity());
+            if (wallets == null) {
                 tvWalletNum.setText("0");
             } else {
-                tvWalletNum.setText("" + walletAddresses.size());
+                tvWalletNum.setText("" + wallets.size());
             }
         } catch (IOException e) {
             e.printStackTrace();

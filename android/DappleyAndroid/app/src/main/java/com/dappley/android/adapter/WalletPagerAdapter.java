@@ -65,6 +65,9 @@ public class WalletPagerAdapter extends PagerAdapter {
 
         Wallet wallet = wallets.get(position);
         if (wallet != null) {
+            if (wallet.getName() != null) {
+                viewHolder.tvName.setText(wallet.getName());
+            }
             if (wallet.getAddress() != null) {
                 viewHolder.tvAddress.setText(wallet.getAddress());
             }
@@ -111,6 +114,8 @@ public class WalletPagerAdapter extends PagerAdapter {
     }
 
     static class ViewHolder {
+        @BindView(R.id.txt_name)
+        TextView tvName;
         @BindView(R.id.txt_address)
         TextView tvAddress;
         @BindView(R.id.txt_value)

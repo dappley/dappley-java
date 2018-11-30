@@ -13,6 +13,7 @@ import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.CommonUtil;
+import com.dappley.android.util.StorageUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,6 +76,16 @@ public class WalletCreateActivity extends AppCompatActivity {
             etPassword.requestFocus();
             return true;
         }
+        boolean isPassCorrect = StorageUtil.checkPassword(this, etPassword.getText().toString());
+        if (!isPassCorrect) {
+            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+            etPassword.requestFocus();
+            return true;
+        }
         return false;
+    }
+
+    private boolean checkPassword(String password) {
+        return true;
     }
 }

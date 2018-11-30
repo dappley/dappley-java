@@ -26,6 +26,9 @@ public class WalletExportActivity extends AppCompatActivity {
     ImageButton btnBack;
     @BindView(R.id.txt_title)
     TextView tvTitle;
+
+    @BindView(R.id.tv_name)
+    TextView tvName;
     @BindView(R.id.tv_address)
     TextView tvAddress;
     @BindView(R.id.tv_private_key)
@@ -57,6 +60,8 @@ public class WalletExportActivity extends AppCompatActivity {
     private void initData() {
         Intent intent = getIntent();
         wallet = (Wallet) intent.getSerializableExtra("wallet");
+
+        tvName.setText(CommonUtil.getNotNullString(wallet.getName()));
         tvAddress.setText(CommonUtil.getNotNullString(wallet.getAddress()));
         tvPrivateKey.setText(wallet.getPrivateKey().toString(16));
         if (wallet.getMnemonic() == null || wallet.getMnemonic().length() == 0) {

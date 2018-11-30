@@ -47,23 +47,40 @@ public class WalletManager {
      * Encrypt wallet data with AES.
      * @param wallet
      * @param password
-     * @return String encrypted data in Hex format
+     * @return Wallet encrypted wallet data
      */
-    public static String encryptWallet(Wallet wallet, String password) {
-        byte[] bytes = SerializeUtil.encode(wallet);
-        String encryped = AesCipher.encryptToHex(bytes, password);
-        return encryped;
+    public static Wallet encryptWallet(Wallet wallet, String password) {
+        if (wallet.getMnemonic() != null && wallet.getMnemonic().length() > 0) {
+            String encrypted = AesCipher.encryptToHex(wallet.getMnemonic().getBytes(), password);
+            wallet.setEncryptedMnemonic(encrypted);
+        }
+        if (wallet.getPrivateKey() != null) {
+            String encrypted = AesCipher.encryptToHex(wallet.getPrivateKey().toByteArray(), password);
+            wallet.setEncryptedPrivateKey(encrypted);
+        }
+        wallet.setPrivateKey(null);
+        wallet.setMnemonic(null);
+        return wallet;
     }
 
     /**
      * Decrypt wallet data.
-     * @param walletString encrypted data in Hex format
+     * @param wallet encrypted wallet data
      * @param password
      * @return Wallet wallet data
      */
-    public static Wallet decryptWallet(String walletString, String password) {
-        byte[] decrypted = AesCipher.decryptBytesFromHex(walletString, password);
-        Wallet wallet = SerializeUtil.decode(decrypted, Wallet.class);
+    public static Wallet decryptWallet(Wallet wallet, String password) {
+        if (wallet.getEncryptedMnemonic() != null && wallet.getEncryptedMnemonic().length() > 0) {
+            byte[] decrypted = AesCipher.decryptBytesFromHex(wallet.getEncryptedMnemonic(), password);
+            wallet.setMnemonic(new String(decrypted));
+        }
+        if (wallet.getEncryptedPrivateKey() != null && wallet.getEncryptedPrivateKey().length() > 0) {
+            byte[] decrypted = AesCipher.decryptBytesFromHex(wallet.getEncryptedPrivateKey(), password);
+            if (decrypted != null) {
+                wallet.setPrivateKey(new BigInteger(decrypted));
+            }
+        }
         return wallet;
     }
+
 }

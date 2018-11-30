@@ -106,24 +106,23 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     private void readWriteLocal() {
         LoadingDialog.show(this);
         try {
-            List<String> addresses = StorageUtil.getAddresses();
-            if (addresses == null) {
-                addresses = new ArrayList<>(1);
+            List<Wallet> wallets = StorageUtil.getWallets(this);
+            if (wallets == null) {
+                wallets = new ArrayList<>(1);
             }
-            if (addresses.contains(wallet.getAddress())) {
-                Toast.makeText(this, R.string.note_wallet_exists, Toast.LENGTH_SHORT).show();
-                return;
+            for (Wallet w : wallets) {
+                if (w == null) {
+                    continue;
+                }
+                if (w.getAddress() != null && w.getAddress().equals(wallet.getAddress())) {
+                    Toast.makeText(this, R.string.note_wallet_exists, Toast.LENGTH_SHORT).show();
+                    LoadingDialog.close();
+                    return;
+                }
             }
-            addresses.add(wallet.getAddress());
-            Map<String, Object> walletMap = StorageUtil.getWalletMap();
-            if (walletMap == null) {
-                walletMap = new HashMap<>(1);
-            }
-            String encryptWallet = Dappley.encryptWallet(wallet, password);
-            walletMap.put(wallet.getAddress(), encryptWallet);
+            Wallet wallet = Dappley.encryptWallet(this.wallet, password);
             // write to files
-            StorageUtil.saveAddresses(addresses);
-            StorageUtil.saveWalletMap(walletMap);
+            StorageUtil.saveWallet(this, wallet);
 
             Dappley.addAddress(wallet.getAddress());
 

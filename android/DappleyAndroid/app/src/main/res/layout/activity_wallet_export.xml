@@ -13,6 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:paddingTop="@dimen/margin_8"
+        android:paddingBottom="@dimen/margin_8">
+
+        <TextView
+            android:layout_width="92dip"
+            android:layout_height="wrap_content"
+            android:text="@string/layout_wallet_name" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/gray_text"
+            android:textIsSelectable="true"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
         android:layout_marginRight="@dimen/margin_15"
         android:paddingTop="@dimen/margin_8"
         android:paddingBottom="@dimen/margin_8">

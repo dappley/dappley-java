@@ -17,6 +17,7 @@ import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.StorageUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,6 +121,12 @@ public class WalletImportActivity extends AppCompatActivity {
         if (rbPrivateKey.isChecked() && CommonUtil.isNull(etPrivateKey)) {
             Toast.makeText(this, R.string.note_no_private_key, Toast.LENGTH_SHORT).show();
             etPrivateKey.requestFocus();
+            return true;
+        }
+        boolean isPassCorrect = StorageUtil.checkPassword(this, etPassword.getText().toString());
+        if (!isPassCorrect) {
+            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+            etPassword.requestFocus();
             return true;
         }
         return false;

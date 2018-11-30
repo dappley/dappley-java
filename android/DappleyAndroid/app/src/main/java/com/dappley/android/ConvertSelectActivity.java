@@ -119,8 +119,7 @@ public class ConvertSelectActivity extends AppCompatActivity {
             return;
         }
         try {
-            String walletString = StorageUtil.getWallet(wallet.getAddress());
-            Wallet wallet = Dappley.decryptWallet(walletString, etPassword.getText().toString());
+            Wallet wallet = Dappley.decryptWallet(this.wallet, etPassword.getText().toString());
             if (wallet == null || wallet.getPrivateKey() == null) {
                 Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
                 return;
@@ -151,17 +150,11 @@ public class ConvertSelectActivity extends AppCompatActivity {
     }
 
     public void readData() {
-        List<Wallet> wallets = new ArrayList<>();
+        List<Wallet> wallets = null;
         try {
-            List<String> addresses = StorageUtil.getAddresses();
-            if (addresses == null) {
-                addresses = new ArrayList<>(1);
-            }
-            Wallet wallet;
-            for (String address : addresses) {
-                wallet = new Wallet();
-                wallet.setAddress(address);
-                wallets.add(wallet);
+            wallets = StorageUtil.getWallets(this);
+            if (wallets == null) {
+                wallets = new ArrayList<>(1);
             }
         } catch (IOException e) {
             Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();

@@ -3,6 +3,7 @@
 
     <string name="menu_wallet">钱包</string>
     <string name="menu_step">步数</string>
+    <string name="menu_me">我</string>
 
     <string name="title_transfer">钱包转账</string>
     <string name="title_add_wallet">添加钱包</string>
@@ -46,6 +47,8 @@
     <string name="layout_coin_exchanged">已兑换代币</string>
     <string name="layout_btn_convert">兑换代币</string>
     <string name="layout_input_wallet_password">请输入钱包密码</string>
+    <string name="layout_menu_wallet_password">修改钱包密码</string>
+    <string name="layout_wallet_sege">个钱包</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>

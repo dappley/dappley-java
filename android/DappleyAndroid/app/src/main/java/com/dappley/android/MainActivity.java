@@ -37,8 +37,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private final int[] TAB_TITLES = new int[]{R.string.menu_wallet, R.string.menu_step};
-    private final int[] TAB_IMGS = new int[]{R.drawable.tab_main_wallet_selector, R.drawable.tab_main_step_selector};
+    private final int[] TAB_TITLES = new int[]{R.string.menu_wallet, R.string.menu_step, R.string.menu_me};
+    private final int[] TAB_IMGS = new int[]{R.drawable.tab_main_wallet_selector, R.drawable.tab_main_step_selector, R.drawable.tab_main_me_selector};
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;

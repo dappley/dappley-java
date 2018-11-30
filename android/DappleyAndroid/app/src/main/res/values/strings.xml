@@ -3,6 +3,7 @@
 
     <string name="menu_wallet">Wallet</string>
     <string name="menu_step">Step</string>
+    <string name="menu_me">Me</string>
 
     <string name="title_transfer">Transfer</string>
     <string name="title_add_wallet">Add Wallet</string>
@@ -46,6 +47,8 @@
     <string name="layout_coin_exchanged">Coin Exchanged</string>
     <string name="layout_btn_convert">Convert Coin</string>
     <string name="layout_input_wallet_password">Input wallet password</string>
+    <string name="layout_menu_wallet_password">Modify Wallet Password</string>
+    <string name="layout_wallet_sege">wallet(s)</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>

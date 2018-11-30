@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
 
@@ -22,6 +23,9 @@ public class MainFragmentAdapter extends FragmentPagerAdapter {
             case 1:
                 fragment = new StepFragment();
                 break;
+            case 2:
+                fragment = new MeFragment();
+                break;
             default:
                 break;
         }
@@ -30,7 +34,7 @@ public class MainFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
 }

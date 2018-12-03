@@ -88,6 +88,32 @@ public class StorageUtil {
         return false;
     }
 
+    public static boolean modifyPassword(Context context, String oldPassword, String newPassword) {
+        if (oldPassword == null || oldPassword.length() == 0 || newPassword == null || newPassword.length() == 0) {
+            return false;
+        }
+        try {
+            List<Wallet> wallets = getWallets(context);
+            if (wallets == null || wallets.size() == 0) {
+                return true;
+            }
+            List<Wallet> newWallets = new ArrayList<>(wallets.size());
+            for (Wallet wallet : wallets) {
+                if (wallet == null) {
+                    continue;
+                }
+                wallet = Dappley.decryptWallet(wallet, oldPassword);
+                wallet = Dappley.encryptWallet(wallet, newPassword);
+                newWallets.add(wallet);
+            }
+            saveWallets(context, newWallets);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void deleteAddress(Context context, String address) {
         if (address == null) {
             return;

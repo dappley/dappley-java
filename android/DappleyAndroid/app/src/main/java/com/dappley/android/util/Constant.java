@@ -7,6 +7,7 @@ public class Constant {
     public static final int REQ_ACT_QR_CODE = 10002;
     public static final int REQ_ACT_TRANSFER = 30001;
     public static final int REQ_ACT_CONVERT_SELECT = 30002;
+    public static final int REQ_ACT_MODIFY_PASSWORD = 30003;
 
     public static final int MSG_HOME_LIST = 20001;
     public static final int MSG_HOME_LIST_ERROR = 20004;

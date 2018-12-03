@@ -38,7 +38,8 @@
         <receiver android:name=".listener.StepNotificationReceiver" />
 
         <activity android:name=".ConvertSelectActivity" />
-        <activity android:name=".WalletExportActivity"></activity>
+        <activity android:name=".WalletExportActivity" />
+        <activity android:name=".ModifyPasswordActivity"></activity>
     </application>
 
 </manifest>

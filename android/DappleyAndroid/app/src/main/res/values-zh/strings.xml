@@ -14,6 +14,7 @@
     <string name="title_receive">收款</string>
     <string name="title_step">步数</string>
     <string name="title_select_address">选择钱包地址</string>
+    <string name="title_modify_password">修改钱包密码</string>
 
     <string name="layout_receive_address">收款地址：</string>
     <string name="layout_receive_address_tip">请输入收款钱包地址</string>
@@ -49,6 +50,13 @@
     <string name="layout_input_wallet_password">请输入钱包密码</string>
     <string name="layout_menu_wallet_password">修改钱包密码</string>
     <string name="layout_wallet_sege">个钱包</string>
+    <string name="layout_wallet_old_password">旧密码:</string>
+    <string name="layout_wallet_old_password_tip">请输入钱包旧密码</string>
+    <string name="layout_wallet_new_password">新密码:</string>
+    <string name="layout_wallet_new_password_tip">请输入钱包新密码</string>
+    <string name="layout_wallet_confirm_password">确认密码:</string>
+    <string name="layout_wallet_confirm_password_tip">请输入确认密码</string>
+    <string name="layout_btn_modify_password">修改密码</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>
@@ -79,4 +87,12 @@
     <string name="note_select_address">请选择一个有足够余额的钱包地址</string>
     <string name="note_convert_success">兑换成功</string>
     <string name="note_convert_failed">兑换失败，请稍后重试</string>
+    <string name="note_old_password">请输入旧密码</string>
+    <string name="note_new_password">请输入新密码</string>
+    <string name="note_confirm_password">请输入确认密码</string>
+    <string name="note_modify_password_diff">两次输入的新密码不一致</string>
+    <string name="note_old_password_error">旧密码输入错误</string>
+    <string name="note_modify_password_success">修改钱包密码成功</string>
+    <string name="note_modify_password_failed">修改钱包密码失败</string>
+
 </resources>

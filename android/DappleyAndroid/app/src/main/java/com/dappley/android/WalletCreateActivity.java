@@ -85,7 +85,4 @@ public class WalletCreateActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean checkPassword(String password) {
-        return true;
-    }
 }

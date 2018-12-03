@@ -1,16 +1,17 @@
 package com.dappley.android.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dappley.android.R;
+import com.dappley.android.ModifyPasswordActivity;
 import com.dappley.android.sdk.po.Wallet;
+import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 
 import java.io.IOException;
@@ -44,13 +45,6 @@ public class MeFragment extends Fragment {
         loadData();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Log.d(TAG, "onResume:----------------------- ");
-    }
-
     public void loadData() {
         try {
             List<Wallet> wallets = StorageUtil.getWallets(getActivity());
@@ -67,6 +61,7 @@ public class MeFragment extends Fragment {
 
     @OnClick(R.id.linear_modify_password)
     void modifyPassword() {
-
+        Intent intent = new Intent(getActivity(), ModifyPasswordActivity.class);
+        getActivity().startActivityForResult(intent, Constant.REQ_ACT_MODIFY_PASSWORD);
     }
 }

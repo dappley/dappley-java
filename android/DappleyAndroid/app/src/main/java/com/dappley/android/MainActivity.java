@@ -224,6 +224,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Wallet wallet = (Wallet) data.getSerializableExtra("wallet");
                 stepFragment.onAddressSeleted(wallet);
+            } else if (requestCode == Constant.REQ_ACT_MODIFY_PASSWORD) {
+                WalletFragment walletFragment = getWalletFragment();
+                if (walletFragment == null) {
+                    return;
+                }
+                walletFragment.loadData();
             }
         }
     }

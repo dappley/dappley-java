@@ -14,6 +14,7 @@
     <string name="title_receive">Receive</string>
     <string name="title_step">Step</string>
     <string name="title_select_address">Select Address</string>
+    <string name="title_modify_password">Modify Wallet Password</string>
 
     <string name="layout_receive_address">receiver:</string>
     <string name="layout_receive_address_tip">receiver address</string>
@@ -49,6 +50,13 @@
     <string name="layout_input_wallet_password">Input wallet password</string>
     <string name="layout_menu_wallet_password">Modify Wallet Password</string>
     <string name="layout_wallet_sege">wallet(s)</string>
+    <string name="layout_wallet_old_password">old password:</string>
+    <string name="layout_wallet_old_password_tip">wallet old password</string>
+    <string name="layout_wallet_new_password">new password:</string>
+    <string name="layout_wallet_new_password_tip">wallet new password</string>
+    <string name="layout_wallet_confirm_password">confirm:</string>
+    <string name="layout_wallet_confirm_password_tip">confirm new password</string>
+    <string name="layout_btn_modify_password">Mofify Password</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>
@@ -79,5 +87,12 @@
     <string name="note_select_address">please select a wallet address with enough balance</string>
     <string name="note_convert_success">convert success</string>
     <string name="note_convert_failed">convert failed, please try later</string>
+    <string name="note_old_password">input old password</string>
+    <string name="note_new_password">input new password</string>
+    <string name="note_confirm_password">input confirm password</string>
+    <string name="note_modify_password_diff">new passwords are different</string>
+    <string name="note_old_password_error">old password is not correct</string>
+    <string name="note_modify_password_success">modify password success</string>
+    <string name="note_modify_password_failed">modify password failed</string>
 
 </resources>

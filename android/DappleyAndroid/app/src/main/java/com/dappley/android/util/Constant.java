@@ -24,10 +24,9 @@ public class Constant {
     public static final String BROAD_WALLET_LIST_UPDATE = "30001";
 
     public static final String PREF_CONVERTED_DAY = "converted-day";
-    public static final String PREF_CONVERTED_COIN = "converted-coin";
 
     public static final int QR_WIDTH = 200;
     public static final int QR_HEIGHT = 200;
 
-    public static final String ADDRESS_STEP_CONTRACT = "cekzBT3kewbmFejNrN8vG9Rmpojtme29hr";
+    public static final String ADDRESS_STEP_CONTRACT = "ccSAAixLKaM2wn6T6qr7JUPhZCLp3oUvE1";
 }

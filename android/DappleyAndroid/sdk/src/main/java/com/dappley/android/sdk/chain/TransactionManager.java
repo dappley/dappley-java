@@ -111,18 +111,14 @@ public class TransactionManager {
         if (totalAmount.compareTo(amount) < 0) {
             return;
         }
+        TxOutput txOutput = new TxOutput();
         if (StringUtils.isNotEmpty(contract)) {
             if (StringUtils.isEmpty(toAddress)) {
                 toAddress = AddressUtil.createContractAddress();
             }
-            contract = String.format(contract, toAddress);
             // set contract output
-            TxOutput txOutput = new TxOutput();
-            txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(toAddress));
-            txOutput.setValue(ByteUtil.bigInteger2Bytes(BigInteger.ZERO));
             txOutput.setContract(contract);
         }
-        TxOutput txOutput = new TxOutput();
         // set to address's pubKeyHash
         txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(toAddress));
         txOutput.setValue(ByteUtil.bigInteger2Bytes(amount));

@@ -66,14 +66,11 @@ public class StepFragment extends Fragment {
     TextView tvStepYesterday;
     @BindView(R.id.linear_converted)
     LinearLayout linearConverted;
-    @BindView(R.id.txt_coin)
-    TextView tvCoin;
     @BindView(R.id.btn_convert)
     Button btnConvert;
 
     int currentStep;
     int yesterdayStep;
-    int convertedCoin;
     String yesterDay;
 
     public StepFragment() {
@@ -148,13 +145,9 @@ public class StepFragment extends Fragment {
         if (yesterDay.equals(day)) {
             linearConverted.setVisibility(View.VISIBLE);
             btnConvert.setVisibility(View.GONE);
-
-            int coin = PreferenceUtil.getInt(getContext(), Constant.PREF_CONVERTED_COIN, 0);
-            tvCoin.setText("" + coin);
         } else {
             linearConverted.setVisibility(View.GONE);
             btnConvert.setVisibility(View.VISIBLE);
-            tvCoin.setText("0");
         }
     }
 
@@ -204,9 +197,7 @@ public class StepFragment extends Fragment {
                 boolean isSuccess = false;
                 try {
                     String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
-                    contract = String.format(contract, Constant.ADDRESS_STEP_CONTRACT, yesterdayStep);
-                    // TODO
-                    convertedCoin = yesterdayStep / 10;
+                    contract = String.format(contract, wallet.getAddress(), yesterdayStep);
                     isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), Constant.ADDRESS_STEP_CONTRACT, baseFee, wallet.getPrivateKey(), contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
@@ -224,7 +215,6 @@ public class StepFragment extends Fragment {
         if (isSuccess) {
             Toast.makeText(getActivity(), R.string.note_convert_success, Toast.LENGTH_SHORT).show();
             PreferenceUtil.set(getContext(), Constant.PREF_CONVERTED_DAY, yesterDay);
-            PreferenceUtil.setInt(getContext(), Constant.PREF_CONVERTED_COIN, convertedCoin);
 
             readYesterDayData();
         } else {

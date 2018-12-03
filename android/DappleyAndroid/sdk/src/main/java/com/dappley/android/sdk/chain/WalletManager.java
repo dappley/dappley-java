@@ -72,7 +72,9 @@ public class WalletManager {
     public static Wallet decryptWallet(Wallet wallet, String password) {
         if (wallet.getEncryptedMnemonic() != null && wallet.getEncryptedMnemonic().length() > 0) {
             byte[] decrypted = AesCipher.decryptBytesFromHex(wallet.getEncryptedMnemonic(), password);
-            wallet.setMnemonic(new String(decrypted));
+            if (decrypted != null) {
+                wallet.setMnemonic(new String(decrypted));
+            }
         }
         if (wallet.getEncryptedPrivateKey() != null && wallet.getEncryptedPrivateKey().length() > 0) {
             byte[] decrypted = AesCipher.decryptBytesFromHex(wallet.getEncryptedPrivateKey(), password);

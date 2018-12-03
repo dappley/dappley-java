@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.dappley.android.adapter.WalletListAdapter;
 import com.dappley.android.adapter.WalletSelectListAdapter;
 import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -50,8 +51,8 @@ public class ConvertSelectActivity extends AppCompatActivity {
     TextView tvTitle;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(R.id.et_password)
-    EditText etPassword;
+
+    WalletPasswordDialog walletPasswordDialog;
 
     WalletSelectListAdapter adapter;
     List<Wallet> wallets;
@@ -114,26 +115,16 @@ public class ConvertSelectActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_select_address, Toast.LENGTH_SHORT).show();
             return;
         }
-        if (etPassword.getText().toString().length() == 0) {
-            Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
-            return;
+
+        if (walletPasswordDialog == null) {
+            walletPasswordDialog = new WalletPasswordDialog(this, new WalletPasswordDialog.OnClickListener() {
+                @Override
+                public void onConfirm(String password) {
+                    onPasswordInput(password);
+                }
+            });
         }
-        try {
-            Wallet wallet = Dappley.decryptWallet(this.wallet, etPassword.getText().toString());
-            if (wallet == null || wallet.getPrivateKey() == null) {
-                Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-                return;
-            }
-            this.wallet = wallet;
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        Intent intent = new Intent();
-        intent.putExtra("wallet", this.wallet);
-        setResult(RESULT_OK, intent);
-        finish();
+        walletPasswordDialog.show();
     }
 
     public void loadData() {
@@ -182,6 +173,32 @@ public class ConvertSelectActivity extends AppCompatActivity {
 
             }
         }).start();
+    }
+
+    private void onPasswordInput(String password) {
+        if (password.length() == 0) {
+            Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            Wallet wallet = Dappley.decryptWallet(this.wallet, password);
+            if (wallet == null || wallet.getPrivateKey() == null) {
+                Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            this.wallet = wallet;
+
+            walletPasswordDialog.close();
+
+            Intent intent = new Intent();
+            intent.putExtra("wallet", this.wallet);
+            setResult(RESULT_OK, intent);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     private WalletSelectListAdapter.OnItemClickListener itemClickListener = new WalletSelectListAdapter.OnItemClickListener() {

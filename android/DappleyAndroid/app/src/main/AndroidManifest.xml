@@ -17,29 +17,52 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WalletAddActivity" />
-        <activity android:name=".WalletCreateActivity" />
-        <activity android:name=".WalletImportActivity" />
-        <activity android:name=".WalletMnemonicActivity" />
-        <activity android:name=".WalletDetailActivity" />
-        <activity android:name=".TransferActivity" />
-        <activity android:name=".WalletReceiveCodeActivity" />
-        <activity android:name="com.google.zxing.activity.CaptureActivity" />
+        <activity
+            android:name=".WalletAddActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WalletCreateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WalletImportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WalletMnemonicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WalletDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WalletReceiveCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.google.zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".sdk.service.LocalBlockService" />
 
         <receiver android:name=".listener.StepNotificationReceiver" />
 
-        <activity android:name=".ConvertSelectActivity" />
-        <activity android:name=".WalletExportActivity" />
-        <activity android:name=".ModifyPasswordActivity"></activity>
+        <activity
+            android:name=".ConvertSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WalletExportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ModifyPasswordActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

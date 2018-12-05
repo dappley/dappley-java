@@ -118,7 +118,7 @@ public class RemoteDataProvider implements DataProvider {
             if (utxo == null || utxo.getAmount() == null || utxo.getAmount().size() == 0) {
                 continue;
             }
-            balance = balance.add(new BigInteger(utxo.getAmount().toByteArray()));
+            balance = balance.add(new BigInteger(1, utxo.getAmount().toByteArray()));
         }
         return balance;
     }

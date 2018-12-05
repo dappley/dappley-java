@@ -182,7 +182,7 @@ public class UtxoManager {
             tempUtxo = new Utxo();
             tempUtxo.setTxId(transaction.getId());
             tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());
-            tempUtxo.setAmount(new BigInteger(tempOutput.getValue()));
+            tempUtxo.setAmount(new BigInteger(1, tempOutput.getValue()));
             tempUtxo.setVoutIndex(i);
             // update utxo
             utxoDb.save(tempUtxo);

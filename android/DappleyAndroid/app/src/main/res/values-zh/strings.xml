@@ -61,8 +61,8 @@
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>
     <string name="note_balance_not_enought">钱包余额不足</string>
-    <string name="note_no_receiver">请输入收件地址</string>
-    <string name="note_receiver_illegal">收件地址格式错误</string>
+    <string name="note_no_receiver">请输入收款地址</string>
+    <string name="note_receiver_illegal">收款地址格式错误</string>
     <string name="note_no_password">请输入钱包密码</string>
     <string name="note_error_password">钱包密码错误</string>
     <string name="note_no_amount">请输入转账金额</string>

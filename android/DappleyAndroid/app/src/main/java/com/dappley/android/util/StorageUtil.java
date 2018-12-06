@@ -23,6 +23,7 @@ import java.util.Map;
 public class StorageUtil {
 
     private static final String FILE_WALLET = "wallet";
+    private static final String FODLER_STEP = "step";
 
     public static void saveWallet(Context context, Wallet wallet) throws IOException {
         List<Wallet> wallets = getWallets(context);
@@ -140,5 +141,45 @@ public class StorageUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void saveSteps(Context context, String date, List<Integer> steps) throws IOException {
+        File folder = context.getExternalFilesDir(null);
+        File stepFolder = new File(folder, FODLER_STEP);
+        if (!stepFolder.exists()) {
+            stepFolder.mkdir();
+        }
+        File file = new File(stepFolder, date);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.writeValue(file, steps);
+    }
+
+    public static List<Integer> getSteps(Context context, String date) throws IOException {
+        File folder = context.getExternalFilesDir(null);
+        File stepFolder = new File(folder, FODLER_STEP);
+        if (!stepFolder.exists()) {
+            stepFolder.mkdir();
+        }
+        File file = new File(stepFolder, date);
+        if (!file.exists()) {
+            return null;
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, Integer.class);
+        List<Integer> steps = objectMapper.readValue(file, javaType);
+        return steps;
+    }
+
+    public static void saveStep(Context context, String date, Integer step) throws IOException {
+        List<Integer> steps = getSteps(context, date);
+        if (steps == null) {
+            steps = new ArrayList<>();
+        }
+        steps.add(step);
+        saveSteps(context, date, steps);
     }
 }

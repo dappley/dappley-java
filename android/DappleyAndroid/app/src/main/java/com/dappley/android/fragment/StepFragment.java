@@ -51,7 +51,7 @@ import butterknife.OnClick;
 public class StepFragment extends Fragment {
     private static final String TAG = "StepFragment";
     private static final int TASK_INIT_DELAY = 3;
-    private static final int TASK_PERIOD = 10;
+    private static final int TASK_PERIOD = 3;
     private static final BigInteger baseFee = new BigInteger("1");
 
     ISportStepInterface iSportStepInterface;
@@ -122,8 +122,8 @@ public class StepFragment extends Fragment {
                 int delay = 0;
                 while (iSportStepInterface == null) {
                     try {
-                        Thread.sleep(500);
-                        delay += 500;
+                        Thread.sleep(50);
+                        delay += 50;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -265,6 +265,7 @@ public class StepFragment extends Fragment {
 
     private void startUpdateAnimator(final int newStep) {
         if (newStep <= 0) {
+            tvStep.setText("0");
             return;
         }
         if (newStep == currentStep) {

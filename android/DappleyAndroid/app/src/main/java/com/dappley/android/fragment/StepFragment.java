@@ -81,11 +81,6 @@ public class StepFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         TodayStepManager.init(getActivity().getApplication());
-
-        Intent intent = new Intent(getActivity(), TodayStepService.class);
-        getActivity().startService(intent);
-
-        getActivity().bindService(intent, stepServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -93,6 +88,11 @@ public class StepFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step, container, false);
         ButterKnife.bind(this, view);
+
+        Intent intent = new Intent(getActivity(), TodayStepService.class);
+        getActivity().startService(intent);
+
+        getActivity().bindService(intent, stepServiceConnection, Context.BIND_AUTO_CREATE);
 
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -226,6 +226,9 @@ public class StepFragment extends Fragment {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             iSportStepInterface = ISportStepInterface.Stub.asInterface(service);
+
+            int newStep = getNewStep();
+            startUpdateAnimator(newStep);
         }
 
         @Override

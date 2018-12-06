@@ -83,6 +83,7 @@ public class TransferActivity extends AppCompatActivity {
         tvTitle.setText(R.string.title_transfer);
         btnBack.setOnClickListener(new BtnBackListener(this));
 
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -242,6 +243,19 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     private boolean checkNull() {
+        if (CommonUtil.isNull(etValue)) {
+            Toast.makeText(this, R.string.note_no_amount, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        BigInteger value = null;
+        try {
+            value = new BigInteger(etValue.getText().toString().trim());
+        } catch (Exception e) {
+        }
+        if (value == null || value.compareTo(BigInteger.ZERO) <= 0) {
+            Toast.makeText(this, R.string.note_error_amount, Toast.LENGTH_SHORT).show();
+            return true;
+        }
         if (CommonUtil.isNull(etToAddress)) {
             Toast.makeText(this, R.string.note_no_receiver, Toast.LENGTH_SHORT).show();
             return true;
@@ -264,19 +278,6 @@ public class TransferActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        if (CommonUtil.isNull(etValue)) {
-            Toast.makeText(this, R.string.note_no_amount, Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        BigInteger value = null;
-        try {
-            value = new BigInteger(etValue.getText().toString().trim());
-        } catch (Exception e) {
-        }
-        if (value == null || value.compareTo(BigInteger.ZERO) <= 0) {
-            Toast.makeText(this, R.string.note_error_amount, Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

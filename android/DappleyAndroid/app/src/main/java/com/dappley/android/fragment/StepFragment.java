@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +27,7 @@ import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
-import com.dappley.android.util.PreferenceUtil;
+import com.dappley.android.util.StorageUtil;
 import com.today.step.lib.ISportStepInterface;
 import com.today.step.lib.TodayStepManager;
 import com.today.step.lib.TodayStepService;
@@ -37,13 +36,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -62,16 +64,17 @@ public class StepFragment extends Fragment {
     SwipeRefreshLayout refreshLayout;
     @BindView(R.id.txt_step)
     TextView tvStep;
-    @BindView(R.id.txt_step_yest)
-    TextView tvStepYesterday;
-    @BindView(R.id.linear_converted)
-    LinearLayout linearConverted;
+    @BindView(R.id.txt_step_converted)
+    TextView tvStepConverted;
     @BindView(R.id.btn_convert)
     Button btnConvert;
+    @BindString(R.string.note_convert_success)
+    String successString;
 
-    int currentStep;
-    int yesterdayStep;
-    String yesterDay;
+    int todayStep;
+    int convertedStep;
+    int stepDiff;
+    String today;
 
     public StepFragment() {
     }
@@ -98,64 +101,26 @@ public class StepFragment extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                currentStep = 0;
+                todayStep = 0;
                 int newStep = getNewStep();
                 startUpdateAnimator(newStep);
                 refreshLayout.setRefreshing(false);
             }
         });
 
-        readYesterDayData();
-
         return view;
     }
 
-    private void readYesterDayData() {
-        Date today = new Date();
-        Date yest = CommonUtil.dateAdd(today, -1);
-        yesterDay = CommonUtil.formatDate(yest, "yyyy-MM-dd");
-        // get yesterday steps
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int totalDelay = 10000;
-                int delay = 0;
-                while (iSportStepInterface == null) {
-                    try {
-                        Thread.sleep(50);
-                        delay += 50;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (delay > totalDelay) {
-                        break;
-                    }
-                }
-                yesterdayStep = getYesterSteps(yesterDay);
-
-                Message msg = new Message();
-                msg.what = Constant.MSG_STEP_YESTERDAY;
-                handler.sendMessage(msg);
-            }
-        }).start();
-    }
-
-    private void showConvertedCoin() {
-        String day = PreferenceUtil.get(getContext(), Constant.PREF_CONVERTED_DAY);
-        if (yesterDay.equals(day)) {
-            linearConverted.setVisibility(View.VISIBLE);
-            btnConvert.setVisibility(View.GONE);
-        } else {
-            linearConverted.setVisibility(View.GONE);
-            btnConvert.setVisibility(View.VISIBLE);
-        }
+    private void readTodayConverted() {
+        Date now = new Date();
+        today = CommonUtil.formatDate(now, "yyyy-MM-dd");
+        convertedStep = getTodayConvertedSteps(today);
+        tvStepConverted.setText("" + convertedStep);
     }
 
     @OnClick(R.id.btn_convert)
     void convertCoin() {
-        // TODO delete const value
-        yesterdayStep = 10;
-        if (yesterdayStep <= 0) {
+        if (todayStep <= 0 || todayStep <= convertedStep) {
             Toast.makeText(getActivity(), R.string.note_no_step, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -167,6 +132,8 @@ public class StepFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        readTodayConverted();
 
         startSchedule();
     }
@@ -191,13 +158,14 @@ public class StepFragment extends Fragment {
         }
         LoadingDialog.show(getActivity());
 
+        stepDiff = todayStep - convertedStep;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean isSuccess = false;
                 try {
                     String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
-                    contract = String.format(contract, wallet.getAddress(), yesterdayStep);
+                    contract = String.format(contract, wallet.getAddress(), stepDiff);
                     isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), Constant.ADDRESS_STEP_CONTRACT, baseFee, wallet.getPrivateKey(), contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
@@ -213,10 +181,15 @@ public class StepFragment extends Fragment {
     private void onConvertFinish(boolean isSuccess) {
         LoadingDialog.close();
         if (isSuccess) {
-            Toast.makeText(getActivity(), R.string.note_convert_success, Toast.LENGTH_SHORT).show();
-            PreferenceUtil.set(getContext(), Constant.PREF_CONVERTED_DAY, yesterDay);
+            String note = String.format(successString, stepDiff);
+            Toast.makeText(getActivity(), note, Toast.LENGTH_SHORT).show();
 
-            readYesterDayData();
+            try {
+                StorageUtil.saveStep(getActivity(), today, stepDiff);
+            } catch (IOException e) {
+            }
+            stepDiff = 0;
+            readTodayConverted();
         } else {
             Toast.makeText(getActivity(), R.string.note_convert_failed, Toast.LENGTH_SHORT).show();
         }
@@ -271,17 +244,17 @@ public class StepFragment extends Fragment {
             tvStep.setText("0");
             return;
         }
-        if (newStep == currentStep) {
+        if (newStep == todayStep) {
             return;
         }
-        if (newStep < currentStep) {
-            currentStep = 0;
+        if (newStep < todayStep) {
+            todayStep = 0;
         }
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int i = currentStep;
-                int diff = newStep - currentStep;
+                int i = todayStep;
+                int diff = newStep - todayStep;
                 int segment = (int) diff / 10;
                 if (segment < 1) {
                     segment = 1;
@@ -303,31 +276,26 @@ public class StepFragment extends Fragment {
                     } catch (InterruptedException e) {
                     }
                 }
-                currentStep = newStep;
+                todayStep = newStep;
             }
         }).start();
     }
 
-    public int getYesterSteps(String yesterday) {
-        if (iSportStepInterface != null) {
-            try {
-                String json = iSportStepInterface.getTodaySportStepArrayByDate(yesterday);
-                JSONArray jsonArray = new JSONArray(json);
-                if (jsonArray == null || jsonArray.length() == 0) {
-                    return 0;
-                }
-                JSONObject jsonObject = jsonArray.getJSONObject(jsonArray.length() - 1);
-                if (jsonObject == null) {
-                    return 0;
-                }
-                if (jsonObject.has("stepNum")) {
-                    return jsonObject.getInt("stepNum");
-                }
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
+    public int getTodayConvertedSteps(String today) {
+        try {
+            List<Integer> steps = StorageUtil.getSteps(getActivity(), today);
+            if (steps == null || steps.size() == 0) {
+                return 0;
             }
+            int total = 0;
+            for (Integer integer : steps) {
+                if (integer != null) {
+                    total += integer;
+                }
+            }
+            return total;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return 0;
     }
@@ -339,9 +307,6 @@ public class StepFragment extends Fragment {
 
             if (msg.what == Constant.MSG_STEP_UPDATE && tvStep != null) {
                 tvStep.setText("" + msg.arg1);
-            } else if (msg.what == Constant.MSG_STEP_YESTERDAY) {
-                tvStepYesterday.setText("" + yesterdayStep);
-                showConvertedCoin();
             } else if (msg.what == Constant.MSG_CONVERT_FINISH) {
                 boolean isSuccess = (boolean) msg.obj;
                 onConvertFinish(isSuccess);

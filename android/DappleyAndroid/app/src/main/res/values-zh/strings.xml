@@ -44,7 +44,7 @@
     <string name="layout_copy_address">复制钱包地址</string>
     <string name="layout_step_today">今日累计步数</string>
     <string name="layout_convert_coin">兑换代币</string>
-    <string name="layout_step_yest">昨日步数</string>
+    <string name="layout_step_yest">今日已兑换步数</string>
     <string name="layout_coin_exchanged">已兑换代币</string>
     <string name="layout_btn_convert">兑换代币</string>
     <string name="layout_input_wallet_password">请输入钱包密码</string>
@@ -85,7 +85,7 @@
     <string name="note_press_again">再按一次退出</string>
     <string name="note_no_step">没有可兑换的步数</string>
     <string name="note_select_address">请选择一个有足够余额的钱包地址</string>
-    <string name="note_convert_success">兑换成功</string>
+    <string name="note_convert_success">本次成功兑换%d步</string>
     <string name="note_convert_failed">兑换失败，请稍后重试</string>
     <string name="note_old_password">请输入旧密码</string>
     <string name="note_new_password">请输入新密码</string>

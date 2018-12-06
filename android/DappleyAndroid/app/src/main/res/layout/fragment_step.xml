@@ -151,7 +151,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/txt_step_yest"
+                                    android:id="@+id/txt_step_converted"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -187,7 +187,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:gravity="center_horizontal"
                                 android:orientation="vertical"
-                                android:visibility="visible">
+                                android:visibility="gone">
 
                                 <ImageView
                                     android:layout_width="30dip"
@@ -213,7 +213,7 @@
                                 android:text="@string/layout_btn_convert"
                                 android:textAllCaps="false"
                                 android:textColor="@color/delete"
-                                android:visibility="gone" />
+                                android:visibility="visible" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>

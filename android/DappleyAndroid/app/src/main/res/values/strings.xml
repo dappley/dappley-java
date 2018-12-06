@@ -44,7 +44,7 @@
     <string name="layout_copy_address">Copy address</string>
     <string name="layout_step_today">Total Step</string>
     <string name="layout_convert_coin">Convert Coin</string>
-    <string name="layout_step_yest">Step Yesterday</string>
+    <string name="layout_step_yest">Today Converted Steps</string>
     <string name="layout_coin_exchanged">Coin Exchanged</string>
     <string name="layout_btn_convert">Convert Coin</string>
     <string name="layout_input_wallet_password">Input wallet password</string>
@@ -85,7 +85,7 @@
     <string name="note_press_again">press again to exit</string>
     <string name="note_no_step">no step can be converted</string>
     <string name="note_select_address">please select a wallet address with enough balance</string>
-    <string name="note_convert_success">convert success</string>
+    <string name="note_convert_success">Successfully convert %d steps</string>
     <string name="note_convert_failed">convert failed, please try later</string>
     <string name="note_old_password">input old password</string>
     <string name="note_new_password">input new password</string>

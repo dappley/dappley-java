@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_page_gradient"
     android:orientation="vertical"
     tools:context=".WalletAddActivity">
 
-    <include layout="@layout/toolbar_title_back" />
+    <include layout="@layout/toolbar_title_back_trans" />
 
-    <Button
-        android:id="@+id/btn_create"
-        style="?borderlessButtonStyle"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constrain"
         android:layout_width="match_parent"
-        android:layout_height="46dip"
-        android:layout_marginLeft="@dimen/margin_15"
-        android:layout_marginTop="30dip"
-        android:layout_marginRight="@dimen/margin_15"
-        android:background="@drawable/btn_primary_selector"
-        android:text="@string/layout_create_wallet"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_import"
-        style="?borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="46dip"
-        android:layout_marginLeft="@dimen/margin_15"
-        android:layout_marginTop="10dip"
-        android:layout_marginRight="@dimen/margin_15"
-        android:background="@drawable/btn_gray_selector"
-        android:text="@string/layout_import_wallet"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
-</LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/wallet_add_top"
+            app:layout_constraintHeight_percent="0.7" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/constrain"
+            app:layout_constraintHeight_percent="0.3">
+
+            <Button
+                android:id="@+id/btn_create"
+                style="?borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="46dip"
+                android:background="@drawable/btn_white_line_selector"
+                android:text="@string/layout_create_wallet"
+                android:textColor="@drawable/txt_btn_white_selector"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_import"
+                style="?borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="46dip"
+                android:layout_marginTop="@dimen/margin_20"
+                android:background="@drawable/btn_white_selector"
+                android:text="@string/layout_import_wallet"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>

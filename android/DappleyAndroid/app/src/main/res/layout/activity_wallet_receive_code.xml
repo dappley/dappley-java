@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_page_gradient"
+    android:orientation="vertical"
     tools:context=".WalletReceiveCodeActivity">
 
-    <include layout="@layout/toolbar_title_back" />
+    <include layout="@layout/toolbar_title_back_trans" />
 
-    <ImageView
-        android:id="@+id/img_code"
-        android:layout_width="200dip"
-        android:layout_height="200dip"
-        android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/empty" />
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginTop="30dip"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@drawable/bg_gray_light_top_radius"
+        android:gravity="center"
+        android:text="address"
+        android:textColor="@color/gray_text"
+        android:textIsSelectable="true"
+        android:textSize="14sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img_code"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dip"
-        android:gravity="center_vertical">
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@color/white"
+        android:paddingTop="@dimen/margin_30"
+        android:paddingBottom="@dimen/margin_30">
 
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="address"
-            android:textColor="@color/gray_text_light"
-            android:textIsSelectable="true"
-            android:textSize="11sp" />
+        <ImageView
+            android:id="@+id/img_code"
+            android:layout_width="200dip"
+            android:layout_height="200dip"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop" />
 
-        <ImageButton
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@drawable/bg_gray_light_bottom_radius">
+
+        <Button
             android:id="@+id/btn_copy"
-            android:layout_width="28dip"
-            android:layout_height="28dip"
-            android:layout_marginLeft="2dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:background="?attr/selectableItemBackground"
-            android:padding="8dip"
-            android:scaleType="centerCrop"
-            android:src="@drawable/btn_copy" />
-    </LinearLayout>
-</RelativeLayout>
+            android:text="@string/layout_copy_receive_address"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary" />
+    </RelativeLayout>
+</LinearLayout>

@@ -8,6 +8,7 @@
     <color name="black">#000000</color>
     <color name="line_gray">#dcdcdc</color>
     <color name="line_gray_light">#f1f1f1</color>
+    <color name="gray_card_light">#f4f4f4</color>
     <color name="gray_page_bg">#ecedf1</color>
     <color name="gray_text">#5b5b5b</color>
     <color name="gray_text_dark">#292929</color>

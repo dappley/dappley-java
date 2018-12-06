@@ -57,6 +57,7 @@
     <string name="layout_wallet_confirm_password">确认密码:</string>
     <string name="layout_wallet_confirm_password_tip">请输入确认密码</string>
     <string name="layout_btn_modify_password">修改密码</string>
+    <string name="layout_copy_receive_address">复制收款地址</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>

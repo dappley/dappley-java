@@ -50,11 +50,11 @@
     <string name="layout_input_wallet_password">请输入钱包密码</string>
     <string name="layout_menu_wallet_password">修改钱包密码</string>
     <string name="layout_wallet_sege">个钱包</string>
-    <string name="layout_wallet_old_password">旧密码:</string>
+    <string name="layout_wallet_old_password">旧密码</string>
     <string name="layout_wallet_old_password_tip">请输入钱包旧密码</string>
-    <string name="layout_wallet_new_password">新密码:</string>
+    <string name="layout_wallet_new_password">新密码</string>
     <string name="layout_wallet_new_password_tip">请输入钱包新密码</string>
-    <string name="layout_wallet_confirm_password">确认密码:</string>
+    <string name="layout_wallet_confirm_password">确认密码</string>
     <string name="layout_wallet_confirm_password_tip">请输入确认密码</string>
     <string name="layout_btn_modify_password">修改密码</string>
     <string name="layout_copy_receive_address">复制收款地址</string>

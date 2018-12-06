@@ -50,13 +50,13 @@
     <string name="layout_input_wallet_password">Input wallet password</string>
     <string name="layout_menu_wallet_password">Modify Wallet Password</string>
     <string name="layout_wallet_sege">wallet(s)</string>
-    <string name="layout_wallet_old_password">old password:</string>
+    <string name="layout_wallet_old_password">old password</string>
     <string name="layout_wallet_old_password_tip">wallet old password</string>
-    <string name="layout_wallet_new_password">new password:</string>
+    <string name="layout_wallet_new_password">new password</string>
     <string name="layout_wallet_new_password_tip">wallet new password</string>
-    <string name="layout_wallet_confirm_password">confirm:</string>
+    <string name="layout_wallet_confirm_password">confirm</string>
     <string name="layout_wallet_confirm_password_tip">confirm new password</string>
-    <string name="layout_btn_modify_password">Mofify Password</string>
+    <string name="layout_btn_modify_password">Modify Password</string>
     <string name="layout_copy_receive_address">Copy Receive Address</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>

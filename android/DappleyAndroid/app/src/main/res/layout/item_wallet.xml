@@ -16,38 +16,56 @@
         android:orientation="vertical"
         android:padding="10dip">
 
-        <TextView
-            android:id="@+id/txt_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="Dappley Wallet"
-            android:textSize="14sp" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dip"
+                android:layout_height="22dip"
+                android:src="@drawable/icon_wallet" />
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dip"
+                android:layout_marginTop="2dip"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="name"
+                android:textColor="@color/gray_text_light"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txt_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="28dip"
             android:layout_marginTop="10dip"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="address"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textColor="@color/gray_text_light"
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginTop="8dip"
-            android:gravity="center_vertical"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¥"
+                android:textColor="@color/gray_text"
                 android:textSize="12sp" />
 
             <TextView
@@ -57,8 +75,9 @@
                 android:layout_marginLeft="4dip"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="1000"
-                android:textSize="16sp" />
+                android:text="-"
+                android:textColor="@color/gray_text"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 

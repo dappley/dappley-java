@@ -28,6 +28,10 @@ import com.dappley.android.widget.EmptyView;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +40,12 @@ import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class WalletDetailActivity extends AppCompatActivity {
     private static final String TAG = "WalletDetailActivity";
+    private static final int TASK_INIT_DELAY = 5;
+    private static final int TASK_PERIOD = 10;
+
+    ScheduledExecutorService schedule;
+    ScheduledFuture future;
+
     @BindView(R.id.btn_back)
     ImageButton btnBack;
     @BindView(R.id.txt_title)
@@ -147,6 +157,20 @@ public class WalletDetailActivity extends AppCompatActivity {
         startActivityForResult(intent, Constant.REQ_ACT_TRANSFER);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        startSchedule();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        stopSchedule();
+    }
+
     private void loadData() {
         new Thread(new Runnable() {
             @Override
@@ -215,6 +239,25 @@ public class WalletDetailActivity extends AppCompatActivity {
         }
     };
 
+    private void startSchedule() {
+        stopSchedule();
+
+        if (schedule == null) {
+            schedule = Executors.newScheduledThreadPool(1);
+        }
+        future = schedule.scheduleAtFixedRate(new DataThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
+
+        Log.d(TAG, "startSchedule: walletDetail data sync started.");
+    }
+
+    public void stopSchedule() {
+        if (future != null && !future.isCancelled()) {
+            future.cancel(false);
+
+            Log.d(TAG, "stopSchedule: walletDetail data sync stopped.");
+        }
+    }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -229,6 +272,8 @@ public class WalletDetailActivity extends AppCompatActivity {
                 Toast.makeText(WalletDetailActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();
                 refreshLayout.setRefreshing(false);
                 swipeRecyclerView.complete();
+            } else if (msg.what == Constant.MSG_WALLET_DETAIL_REFRESH) {
+                tvValue.setText(balance.toString());
             }
         }
     };
@@ -242,6 +287,19 @@ public class WalletDetailActivity extends AppCompatActivity {
                 pageIndex = 1;
                 loadData();
             }
+        }
+    }
+
+    class DataThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                loadBalance();
+                handler.sendEmptyMessage(Constant.MSG_WALLET_DETAIL_REFRESH);
+            } catch (Exception e) {
+                handler.sendEmptyMessage(Constant.MSG_WALLET_DETAIL_ERROR);
+            }
+            Log.d(TAG, "DataThread run once");
         }
     }
 }

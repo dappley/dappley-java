@@ -11,8 +11,10 @@ public class Constant {
 
     public static final int MSG_HOME_LIST = 20001;
     public static final int MSG_HOME_LIST_ERROR = 20004;
+    public static final int MSG_HOME_LIST_BREAK = 20014;
     public static final int MSG_WALLET_DETAIL = 20002;
     public static final int MSG_WALLET_DETAIL_ERROR = 20011;
+    public static final int MSG_WALLET_DETAIL_REFRESH = 20013;
     public static final int MSG_TRANSFER_BALANCE = 20003;
     public static final int MSG_TRANSFER_BALANCE_ERROR = 20012;
     public static final int MSG_TRANSFER_FINISH = 20007;
@@ -31,5 +33,6 @@ public class Constant {
     public static final int QR_WIDTH = 200;
     public static final int QR_HEIGHT = 200;
 
-    public static final String ADDRESS_STEP_CONTRACT = "ccSAAixLKaM2wn6T6qr7JUPhZCLp3oUvE1";
+//    public static final String ADDRESS_STEP_CONTRACT = "ccSAAixLKaM2wn6T6qr7JUPhZCLp3oUvE1";
+    public static final String ADDRESS_STEP_CONTRACT = "cdH7QFfErem1dYcoAyEkbc1m6RnWawVG47";
 }

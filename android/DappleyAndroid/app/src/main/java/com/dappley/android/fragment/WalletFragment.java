@@ -1,21 +1,13 @@
 package com.dappley.android.fragment;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +32,13 @@ import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +47,11 @@ import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class WalletFragment extends Fragment {
     private static final String TAG = "WalletFragment";
+    private static final int TASK_INIT_DELAY = 2;
+    private static final int TASK_PERIOD = 8;
+
+    ScheduledExecutorService schedule;
+    ScheduledFuture future;
 
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
@@ -73,6 +76,20 @@ public class WalletFragment extends Fragment {
         loadData();
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        startSchedule();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        stopSchedule();
     }
 
     private void initView() {
@@ -134,19 +151,7 @@ public class WalletFragment extends Fragment {
     }
 
     private void loadBalance() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    wallets = Dappley.getWalletBalances(wallets);
-                    handler.sendEmptyMessage(Constant.MSG_HOME_LIST);
-                } catch (Exception e) {
-                    handler.sendEmptyMessage(Constant.MSG_HOME_LIST_ERROR);
-                    Log.e(TAG, "run: ", e);
-                }
-
-            }
-        }).start();
+        new DataThread().start();
     }
 
     private void deleteWallet(String address) {
@@ -173,6 +178,9 @@ public class WalletFragment extends Fragment {
     private WalletListAdapter.OnItemClickListener itemClickListener = new WalletListAdapter.OnItemClickListener() {
         @Override
         public void onClick(View view, int position) {
+            if (position >= wallets.size()) {
+                return;
+            }
             wallet = wallets.get(position);
             Intent intent = new Intent(getActivity(), WalletDetailActivity.class);
             intent.putExtra("wallet", wallet);
@@ -181,6 +189,9 @@ public class WalletFragment extends Fragment {
 
         @Override
         public void onLongClick(View view, int position) {
+            if (position >= wallets.size()) {
+                return;
+            }
             wallet = wallets.get(position);
             View rootView = ((ViewGroup) (getActivity().getWindow().getDecorView().findViewById(android.R.id.content))).getChildAt(0);
             if (menuWindow == null) {
@@ -215,6 +226,25 @@ public class WalletFragment extends Fragment {
         }
     }
 
+    private void startSchedule() {
+        stopSchedule();
+
+        if (schedule == null) {
+            schedule = Executors.newScheduledThreadPool(1);
+        }
+        future = schedule.scheduleAtFixedRate(new DataThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
+
+        Log.d(TAG, "startSchedule: walletFrag data sync started.");
+    }
+
+    public void stopSchedule() {
+        if (future != null && !future.isCancelled()) {
+            future.cancel(false);
+
+            Log.d(TAG, "stopSchedule: walletFrag data sync stopped.");
+        }
+    }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -225,7 +255,27 @@ public class WalletFragment extends Fragment {
             } else if (msg.what == Constant.MSG_HOME_LIST_ERROR) {
                 Toast.makeText(getActivity(), R.string.note_node_error, Toast.LENGTH_SHORT).show();
                 swipeRecyclerView.complete();
+            } else if (msg.what == Constant.MSG_HOME_LIST_BREAK) {
+                swipeRecyclerView.complete();
             }
         }
     };
+
+    class DataThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                if (wallets == null || wallets.size() == 0) {
+                    handler.sendEmptyMessage(Constant.MSG_HOME_LIST_BREAK);
+                    return;
+                }
+                wallets = Dappley.getWalletBalances(wallets);
+                handler.sendEmptyMessage(Constant.MSG_HOME_LIST);
+            } catch (Exception e) {
+                handler.sendEmptyMessage(Constant.MSG_HOME_LIST_ERROR);
+                Log.e(TAG, "run: ", e);
+            }
+            Log.d(TAG, "DataThread run once");
+        }
+    }
 }

@@ -34,5 +34,5 @@ public class Constant {
     public static final int QR_HEIGHT = 200;
 
 //    public static final String ADDRESS_STEP_CONTRACT = "ccSAAixLKaM2wn6T6qr7JUPhZCLp3oUvE1";
-    public static final String ADDRESS_STEP_CONTRACT = "cdH7QFfErem1dYcoAyEkbc1m6RnWawVG47";
+    public static final String ADDRESS_STEP_CONTRACT = "cXuhH7BZKHuMAGtLkqyzGZWSBBSWqm19KY";
 }

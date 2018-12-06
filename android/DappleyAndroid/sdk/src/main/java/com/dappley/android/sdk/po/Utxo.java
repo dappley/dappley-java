@@ -46,6 +46,8 @@ public class Utxo {
     public void parseProto(RpcProto.UTXO utxo) {
         if (utxo.getAmount() != null && utxo.getAmount().size() > 0) {
             this.setAmount(new BigInteger(1, utxo.getAmount().toByteArray()));
+        } else {
+            this.setAmount(BigInteger.ZERO);
         }
         this.setPublicKeyHash(utxo.getPublicKeyHash().toByteArray());
         this.setTxId(utxo.getTxid().toByteArray());

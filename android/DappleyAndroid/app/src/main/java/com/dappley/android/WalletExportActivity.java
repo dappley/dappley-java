@@ -53,7 +53,7 @@ public class WalletExportActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText(R.string.title_wallet);
+        tvTitle.setText(R.string.title_export_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 

@@ -87,7 +87,6 @@ public class WalletFragment extends Fragment {
             @Override
             public void onRefresh() {
                 loadData();
-                swipeRecyclerView.complete();
             }
 
             @Override
@@ -222,8 +221,10 @@ public class WalletFragment extends Fragment {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_HOME_LIST) {
                 adapter.setList(wallets);
+                swipeRecyclerView.complete();
             } else if (msg.what == Constant.MSG_HOME_LIST_ERROR) {
                 Toast.makeText(getActivity(), R.string.note_node_error, Toast.LENGTH_SHORT).show();
+                swipeRecyclerView.complete();
             }
         }
     };

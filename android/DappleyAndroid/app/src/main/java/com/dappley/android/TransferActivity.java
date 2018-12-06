@@ -3,6 +3,7 @@ package com.dappley.android;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -10,11 +11,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -231,8 +230,13 @@ public class TransferActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                balance = Dappley.getWalletBalance(wallet.getAddress());
-                handler.sendEmptyMessage(Constant.MSG_TRANSFER_BALANCE);
+                try {
+                    balance = Dappley.getWalletBalance(wallet.getAddress());
+                    handler.sendEmptyMessage(Constant.MSG_TRANSFER_BALANCE);
+                } catch (Exception e) {
+                    handler.sendEmptyMessage(Constant.MSG_TRANSFER_BALANCE_ERROR);
+                    Log.e(TAG, "run: ", e);
+                }
             }
         }).start();
     }
@@ -320,6 +324,9 @@ public class TransferActivity extends AppCompatActivity {
                 wallet.setBalance(balance);
                 wallets.set(selectedIndex, wallet);
                 walletPagerAdapter.setList(wallets, selectedIndex);
+                refreshLayout.setRefreshing(false);
+            } else if (msg.what == Constant.MSG_TRANSFER_BALANCE_ERROR) {
+                Toast.makeText(TransferActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();
                 refreshLayout.setRefreshing(false);
             } else if (msg.what == Constant.MSG_TRANSFER_FINISH) {
                 boolean isSuccess = (boolean) msg.obj;

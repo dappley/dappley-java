@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import butterknife.OnClick;
 import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class WalletDetailActivity extends AppCompatActivity {
+    private static final String TAG = "WalletDetailActivity";
     @BindView(R.id.btn_back)
     ImageButton btnBack;
     @BindView(R.id.txt_title)
@@ -149,9 +151,14 @@ public class WalletDetailActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                loadBalance();
-                loadUtxoList();
-                handler.sendEmptyMessage(Constant.MSG_WALLET_DETAIL);
+                try {
+                    loadBalance();
+                    loadUtxoList();
+                    handler.sendEmptyMessage(Constant.MSG_WALLET_DETAIL);
+                } catch (Exception e) {
+                    handler.sendEmptyMessage(Constant.MSG_WALLET_DETAIL_ERROR);
+                    Log.e(TAG, "run: ", e);
+                }
             }
         }).start();
     }
@@ -216,6 +223,10 @@ public class WalletDetailActivity extends AppCompatActivity {
                 tvValue.setText(balance.toString());
                 adapter.setList(utxos);
 
+                refreshLayout.setRefreshing(false);
+                swipeRecyclerView.complete();
+            } else if (msg.what == Constant.MSG_WALLET_DETAIL_ERROR) {
+                Toast.makeText(WalletDetailActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();
                 refreshLayout.setRefreshing(false);
                 swipeRecyclerView.complete();
             }

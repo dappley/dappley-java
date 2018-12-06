@@ -36,7 +36,7 @@
     <string name="layout_import_private_key">私钥：</string>
     <string name="layout_import_private_key_tip">请输入私钥</string>
     <string name="layout_import_wallet">导入钱包</string>
-    <string name="layout_wallet_address">钱包地址</string>
+    <string name="layout_wallet_address">钱包地址：</string>
     <string name="layout_encrypt_and_save">加密存储到本地</string>
     <string name="layout_cancel">取消</string>
     <string name="layout_delete">删除</string>

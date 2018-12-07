@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/margin_8"
             android:background="@null"
             android:hint="@string/layout_wallet_name_tip"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="@color/gray_text"
             android:textColorHint="@color/line_gray" />
     </LinearLayout>
@@ -63,7 +63,7 @@
             android:background="@null"
             android:hint="@string/layout_wallet_password_tip"
             android:inputType="textPassword"
-            android:maxLines="1"
+            android:lines="1"
             android:textColor="@color/gray_text"
             android:textColorHint="@color/line_gray" />
     </LinearLayout>

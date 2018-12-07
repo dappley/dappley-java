@@ -44,7 +44,8 @@
     <string name="layout_copy_address">Copy address</string>
     <string name="layout_step_today">Total Steps</string>
     <string name="layout_convert_coin">Convert Coin</string>
-    <string name="layout_step_yest">Today Converted Steps</string>
+    <string name="layout_step_converted">Today Converted Steps</string>
+    <string name="layout_step_rest">Today Rest Steps</string>
     <string name="layout_coin_exchanged">Coin Exchanged</string>
     <string name="layout_btn_convert">Convert Coin</string>
     <string name="layout_input_wallet_password">Input wallet password</string>

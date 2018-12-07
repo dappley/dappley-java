@@ -44,7 +44,8 @@
     <string name="layout_copy_address">复制钱包地址</string>
     <string name="layout_step_today">今日累计步数</string>
     <string name="layout_convert_coin">兑换代币</string>
-    <string name="layout_step_yest">今日已兑换步数</string>
+    <string name="layout_step_converted">今日已兑换步数</string>
+    <string name="layout_step_rest">剩余可兑换步数</string>
     <string name="layout_coin_exchanged">已兑换代币</string>
     <string name="layout_btn_convert">兑换代币</string>
     <string name="layout_input_wallet_password">请输入钱包密码</string>

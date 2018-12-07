@@ -123,6 +123,7 @@
                 android:layout_marginRight="@dimen/margin_15"
                 android:background="@drawable/btn_primary_selector"
                 android:text="@string/layout_transfer"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </LinearLayout>

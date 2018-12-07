@@ -137,7 +137,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:text="@string/layout_receive" />
+            android:text="@string/layout_receive"
+            android:textAllCaps="false" />
 
         <View
             android:layout_width="1dip"
@@ -153,6 +154,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:text="@string/layout_transfer" />
+            android:text="@string/layout_transfer"
+            android:textAllCaps="false" />
     </LinearLayout>
 </LinearLayout>

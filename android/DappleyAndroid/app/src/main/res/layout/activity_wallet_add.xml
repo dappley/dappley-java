@@ -38,6 +38,7 @@
                 android:layout_height="46dip"
                 android:background="@drawable/btn_white_line_selector"
                 android:text="@string/layout_create_wallet"
+                android:textAllCaps="false"
                 android:textColor="@drawable/txt_btn_white_selector"
                 android:textSize="15sp" />
 
@@ -49,6 +50,7 @@
                 android:layout_marginTop="@dimen/margin_20"
                 android:background="@drawable/btn_white_selector"
                 android:text="@string/layout_import_wallet"
+                android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp" />
         </LinearLayout>

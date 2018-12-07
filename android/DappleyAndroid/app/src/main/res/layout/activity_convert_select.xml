@@ -31,6 +31,7 @@
             android:layout_weight="1"
             android:background="?selectableItemBackground"
             android:text="@string/layout_cancel"
+            android:textAllCaps="false"
             android:textColor="@color/gray_text_light" />
 
         <View
@@ -47,6 +48,7 @@
             android:layout_weight="1"
             android:background="?selectableItemBackground"
             android:text="@string/layout_confirm"
+            android:textAllCaps="false"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 </LinearLayout>

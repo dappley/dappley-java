@@ -83,11 +83,14 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
         if (wallet == null) {
             return;
         }
+        if (wallet.getName() != null) {
+            viewHolder.tvName.setText(wallet.getName());
+        }
         if (wallet.getAddress() != null) {
             viewHolder.tvAddress.setText(wallet.getAddress());
         }
         if (wallet.getBalance() != null) {
-            viewHolder.tvBalance.setText("(" + wallet.getBalance().toString() + ")");
+            viewHolder.tvBalance.setText(wallet.getBalance().toString());
         }
         if (position == selectedIndex) {
             viewHolder.imgIcon.setVisibility(View.VISIBLE);
@@ -109,6 +112,8 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_name)
+        TextView tvName;
         @BindView(R.id.txt_address)
         TextView tvAddress;
         @BindView(R.id.txt_balance)

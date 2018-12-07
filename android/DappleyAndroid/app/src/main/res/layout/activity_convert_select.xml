@@ -8,47 +8,14 @@
     android:orientation="vertical"
     tools:context=".ConvertSelectActivity">
 
-    <include layout="@layout/toolbar_title_back" />
+    <include layout="@layout/toolbar_wallet_select" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_8"
         android:background="@color/white"
         android:orientation="vertical" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_marginTop="10dip"
-        android:background="@color/white">
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?selectableItemBackground"
-            android:text="@string/layout_cancel"
-            android:textAllCaps="false"
-            android:textColor="@color/gray_text_light" />
-
-        <View
-            android:layout_width="0.5dip"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/margin_8"
-            android:layout_marginBottom="@dimen/margin_8"
-            android:background="@color/line_gray" />
-
-        <Button
-            android:id="@+id/btn_confirm"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?selectableItemBackground"
-            android:text="@string/layout_confirm"
-            android:textAllCaps="false"
-            android:textColor="@color/colorPrimary" />
-    </LinearLayout>
 </LinearLayout>

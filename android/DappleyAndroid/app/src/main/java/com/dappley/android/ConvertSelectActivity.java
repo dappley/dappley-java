@@ -95,11 +95,6 @@ public class ConvertSelectActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.btn_cancel)
-    void cancel() {
-        finish();
-    }
-
     @OnClick(R.id.btn_confirm)
     void confirm() {
         if (wallets == null || wallets.size() == 0) {

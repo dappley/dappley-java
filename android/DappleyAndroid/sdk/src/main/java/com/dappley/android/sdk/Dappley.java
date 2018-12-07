@@ -173,11 +173,20 @@ public class Dappley {
 
     /**
      * Valid the address is legal
-     * @param address wallet address
+     * @param address wallet or contract address
      * @return boolean is legal
      */
     public static boolean validateAddress(String address) {
         return AddressUtil.validateAddress(address);
+    }
+
+    /**
+     * Valid the contract address is legal
+     * @param address contract address
+     * @return boolean is legal
+     */
+    public static boolean validateContractAddress(String address) {
+        return AddressUtil.validateContractAddress(address);
     }
 
     /**

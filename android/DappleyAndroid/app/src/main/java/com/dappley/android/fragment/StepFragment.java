@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.dappley.android.ConvertSelectActivity;
 import com.dappley.android.R;
 import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.CommonUtil;
@@ -31,10 +32,6 @@ import com.dappley.android.util.StorageUtil;
 import com.today.step.lib.ISportStepInterface;
 import com.today.step.lib.TodayStepManager;
 import com.today.step.lib.TodayStepService;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -158,6 +155,39 @@ public class StepFragment extends Fragment {
         }
         LoadingDialog.show(getActivity());
 
+        requestContractAddress(wallet);
+    }
+
+    private void requestContractAddress(final Wallet wallet) {
+        RetrofitRequest.sendGetRequest(Constant.URL_CONTRACT_ADDRESS, new RetrofitRequest.ResultHandler(getActivity()) {
+            @Override
+            public void onBeforeResult() {
+            }
+
+            @Override
+            public void onResult(String response) {
+                if (response == null || response.length() == 0) {
+                    Toast.makeText(getActivity(), R.string.note_remote_contract_empty, Toast.LENGTH_SHORT).show();
+                    LoadingDialog.close();
+                    return;
+                }
+                boolean isContract = Dappley.validateContractAddress(response);
+                if (!isContract) {
+                    Toast.makeText(getActivity(), R.string.note_remote_contract_invalid, Toast.LENGTH_SHORT).show();
+                    LoadingDialog.close();
+                    return;
+                }
+                toConvert(wallet);
+            }
+
+            @Override
+            public void onAfterFailure() {
+                LoadingDialog.close();
+            }
+        });
+    }
+
+    private void toConvert(final Wallet wallet) {
         stepDiff = todayStep - convertedStep;
         new Thread(new Runnable() {
             @Override

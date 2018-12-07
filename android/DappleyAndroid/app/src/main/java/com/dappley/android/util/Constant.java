@@ -33,6 +33,9 @@ public class Constant {
     public static final int QR_WIDTH = 200;
     public static final int QR_HEIGHT = 200;
 
-//    public static final String ADDRESS_STEP_CONTRACT = "ccSAAixLKaM2wn6T6qr7JUPhZCLp3oUvE1";
+    //    public static final String ADDRESS_STEP_CONTRACT = "ccSAAixLKaM2wn6T6qr7JUPhZCLp3oUvE1";
     public static final String ADDRESS_STEP_CONTRACT = "cXuhH7BZKHuMAGtLkqyzGZWSBBSWqm19KY";
+
+    public static final String URL_CONTRACT_BASE = "http://test.dappworks.xyz/";
+    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
 }

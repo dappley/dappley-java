@@ -95,5 +95,13 @@
     <string name="note_old_password_error">old password is not correct</string>
     <string name="note_modify_password_success">modify password success</string>
     <string name="note_modify_password_failed">modify password failed</string>
+    <string name="note_remote_contract_empty">remote contract address is empty</string>
+    <string name="note_remote_contract_invalid">remote contract address is invalid</string>
+
+    <string name="net_not_connected">network not connnected</string>
+    <string name="net_server_connected_error">server connect error, please try later</string>
+    <string name="net_server_error">server internal error, please try later</string>
+    <string name="net_server_param_error">request param error, please try later</string>
+    <string name="net_unknown_error">unknown error, please try later</string>
 
 </resources>

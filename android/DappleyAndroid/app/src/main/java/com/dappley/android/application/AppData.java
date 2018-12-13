@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.dappley.android.sdk.Dappley;
+import com.dappley.android.util.CrashHandler;
 
 public class AppData extends Application {
 
@@ -20,5 +21,7 @@ public class AppData extends Application {
 
         // register dappley service
         Dappley.init(getApplicationContext(), Dappley.DataMode.REMOTE_ONLINE);
+
+        CrashHandler.getInstance().init(getApplicationContext());
     }
 }

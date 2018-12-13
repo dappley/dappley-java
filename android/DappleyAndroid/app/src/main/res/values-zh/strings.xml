@@ -107,4 +107,6 @@
     <string name="net_server_param_error">应用数据出错，请刷新重试</string>
     <string name="net_unknown_error">未知错误，请稍后重试</string>
 
+    <string name="error_app">未知异常，程序即将退出</string>
+
 </resources>

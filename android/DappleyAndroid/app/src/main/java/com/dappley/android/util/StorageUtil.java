@@ -19,7 +19,7 @@ import java.util.List;
 public class StorageUtil {
 
     private static final String FILE_WALLET = "wallet";
-    private static final String FODLER_STEP = "step";
+    private static final String FOLDER_STEP = "step";
 
     public static void saveWallet(Context context, Wallet wallet) throws IOException {
         List<Wallet> wallets = getWallets(context);
@@ -141,7 +141,7 @@ public class StorageUtil {
 
     public static void saveSteps(Context context, String date, List<Integer> steps) throws IOException {
         File folder = context.getExternalFilesDir(null);
-        File stepFolder = new File(folder, FODLER_STEP);
+        File stepFolder = new File(folder, FOLDER_STEP);
         if (!stepFolder.exists()) {
             stepFolder.mkdir();
         }
@@ -153,7 +153,7 @@ public class StorageUtil {
 
     public static List<Integer> getSteps(Context context, String date) throws IOException {
         File folder = context.getExternalFilesDir(null);
-        File stepFolder = new File(folder, FODLER_STEP);
+        File stepFolder = new File(folder, FOLDER_STEP);
         if (!stepFolder.exists()) {
             stepFolder.mkdir();
         }

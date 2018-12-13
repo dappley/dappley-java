@@ -107,4 +107,6 @@
     <string name="net_server_param_error">request param error, please try later</string>
     <string name="net_unknown_error">unknown error, please try later</string>
 
+    <string name="error_app">unknown error, program will exit</string>
+
 </resources>

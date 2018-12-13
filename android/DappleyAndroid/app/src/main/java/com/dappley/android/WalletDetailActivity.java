@@ -1,12 +1,12 @@
 package com.dappley.android;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -15,14 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.adapter.UtxoListAdapter;
-import com.dappley.android.adapter.WalletListAdapter;
 import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.Constant;
-import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
 
 import java.math.BigInteger;
@@ -66,7 +64,6 @@ public class WalletDetailActivity extends AppCompatActivity {
 
     UtxoListAdapter adapter;
     List<Utxo> utxos;
-    Utxo utxo;
     Wallet wallet;
     BigInteger balance;
     int pageIndex = 1;
@@ -151,10 +148,10 @@ public class WalletDetailActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_transfer)
-    void tranfer() {
+    void transfer() {
         Intent intent = new Intent(this, TransferActivity.class);
         intent.putExtra("wallet", wallet);
-        startActivityForResult(intent, Constant.REQ_ACT_TRANSFER);
+        startActivity(intent);
     }
 
     @Override
@@ -226,9 +223,8 @@ public class WalletDetailActivity extends AppCompatActivity {
             intent.putExtra("wallet", wallet);
             startActivity(intent);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.i(TAG, "onPasswordInput: ", e);
             Toast.makeText(WalletDetailActivity.this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-            return;
         }
     }
 
@@ -277,18 +273,6 @@ public class WalletDetailActivity extends AppCompatActivity {
             }
         }
     };
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == Constant.REQ_ACT_TRANSFER) {
-                // transfer success
-                pageIndex = 1;
-                loadData();
-            }
-        }
-    }
 
     class DataThread extends Thread {
         @Override

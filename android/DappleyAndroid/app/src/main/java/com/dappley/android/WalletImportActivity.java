@@ -1,10 +1,10 @@
 package com.dappley.android;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -19,12 +20,15 @@ import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 
+import java.math.BigInteger;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class WalletImportActivity extends AppCompatActivity {
+    private static final String TAG = "WalletImportActivity";
+
     @BindView(R.id.btn_back)
     ImageButton btnBack;
     @BindView(R.id.txt_title)
@@ -79,6 +83,7 @@ public class WalletImportActivity extends AppCompatActivity {
         if (checkNull()) {
             return;
         }
+        LoadingDialog.show(this);
         Wallet wallet = null;
         try {
             if (rbMnemonic.isChecked()) {
@@ -87,8 +92,9 @@ public class WalletImportActivity extends AppCompatActivity {
                 wallet = Dappley.importWalletFromPrivateKey(etPrivateKey.getText().toString());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "importWallet: ", e);
         }
+        LoadingDialog.close();
         if (wallet == null || wallet.getPrivateKey() == null) {
             Toast.makeText(this, R.string.note_error_import_wallet, Toast.LENGTH_SHORT).show();
             return;
@@ -128,6 +134,26 @@ public class WalletImportActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
             etPassword.requestFocus();
             return true;
+        }
+        if (rbMnemonic.isChecked() && etMnemonic.getText().toString().split("\\s+").length != 12) {
+            Toast.makeText(this, R.string.note_error_mnemonic, Toast.LENGTH_SHORT).show();
+            etMnemonic.requestFocus();
+            return true;
+        }
+        if (rbPrivateKey.isChecked()) {
+            BigInteger bigInteger;
+            try {
+                bigInteger = new BigInteger(etPrivateKey.getText().toString(), 16);
+            } catch (Exception e) {
+                Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
+                etPrivateKey.requestFocus();
+                return true;
+            }
+            if (bigInteger.toString(2).length() != (32 * 8)) {
+                Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
+                etPrivateKey.requestFocus();
+                return true;
+            }
         }
         return false;
     }

@@ -1,7 +1,6 @@
 package com.dappley.android.util;
 
 import android.content.Context;
-import android.os.Environment;
 
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.sdk.po.Wallet;
@@ -10,15 +9,12 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.zxing.common.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class StorageUtil {
 

@@ -106,8 +106,8 @@ public class WalletMenuWindow extends PopupWindow {
     }
 
     public interface OnWindowClickListener {
-        public void onCopyClick();
+        void onCopyClick();
 
-        public void onDelClick();
+        void onDelClick();
     }
 }

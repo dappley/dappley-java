@@ -120,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
+                    .CAMERA)) {
+                Toast.makeText(this, R.string.note_permittion_camera, Toast.LENGTH_SHORT).show();
+            }
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
             return false;
         }
@@ -216,14 +220,14 @@ public class MainActivity extends AppCompatActivity {
                 if (walletFragment == null) {
                     return;
                 }
-                walletFragment.scanResult(data);
+                walletFragment.onScanResult(data);
             } else if (requestCode == Constant.REQ_ACT_CONVERT_SELECT) {
                 StepFragment stepFragment = getStepFragment();
                 if (stepFragment == null) {
                     return;
                 }
                 Wallet wallet = (Wallet) data.getSerializableExtra("wallet");
-                stepFragment.onAddressSeleted(wallet);
+                stepFragment.onAddressSelected(wallet);
             } else if (requestCode == Constant.REQ_ACT_MODIFY_PASSWORD) {
                 WalletFragment walletFragment = getWalletFragment();
                 if (walletFragment == null) {
@@ -236,16 +240,25 @@ public class MainActivity extends AppCompatActivity {
 
     private WalletFragment getWalletFragment() {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments.size() == 0) {
+            return null;
+        }
         return (WalletFragment) fragments.get(0);
     }
 
     private StepFragment getStepFragment() {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments.size() <= 1) {
+            return null;
+        }
         return (StepFragment) fragments.get(1);
     }
 
     private MeFragment getMeFragment() {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments.size() <= 2) {
+            return null;
+        }
         return (MeFragment) fragments.get(2);
     }
 }

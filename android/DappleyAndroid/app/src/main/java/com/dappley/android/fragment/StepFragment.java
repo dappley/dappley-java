@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -149,7 +148,7 @@ public class StepFragment extends Fragment {
         super.onDetach();
     }
 
-    public void onAddressSeleted(final Wallet wallet) {
+    public void onAddressSelected(final Wallet wallet) {
         if (wallet == null || wallet.getAddress() == null || wallet.getAddress().length() == 0) {
             Toast.makeText(getActivity(), R.string.note_select_address, Toast.LENGTH_SHORT).show();
             return;
@@ -195,8 +194,7 @@ public class StepFragment extends Fragment {
             public void run() {
                 boolean isSuccess = false;
                 try {
-                    String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
-                    contract = String.format(contract, wallet.getAddress(), stepDiff);
+                    String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), stepDiff);
                     isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), Constant.ADDRESS_STEP_CONTRACT, baseFee, wallet.getPrivateKey(), contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
@@ -330,7 +328,7 @@ public class StepFragment extends Fragment {
             }
             return total;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "getTodayConvertedSteps: ", e);
         }
         return 0;
     }

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,15 +24,15 @@ import com.dappley.android.util.StorageUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WalletMnemonicActivity extends AppCompatActivity {
+    private static final String TAG = "WalletMnemonicActivity";
+
     @BindView(R.id.btn_back)
     ImageButton btnBack;
     @BindView(R.id.txt_title)
@@ -131,7 +131,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             finish();
         } catch (IOException e) {
             Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+            Log.e(TAG, "readWriteLocal: ", e);
         }
         LoadingDialog.close();
     }

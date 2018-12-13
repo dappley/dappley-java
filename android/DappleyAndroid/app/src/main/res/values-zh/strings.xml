@@ -77,7 +77,9 @@
     <string name="note_no_wallet_name">请输入钱包名称</string>
     <string name="note_no_pasword">请输入钱包密码</string>
     <string name="note_no_mnemonic">请输入助记词</string>
+    <string name="note_error_mnemonic">请输入正确的助记词</string>
     <string name="note_no_private_key">请输入私钥</string>
+    <string name="note_error_private_key">请输入正确的私钥</string>
     <string name="note_error_import_wallet">导入钱包失败，请检查助记词或私钥是否正确</string>
     <string name="note_wallet_exists">钱包地址已经存在</string>
     <string name="note_wallet_copied">钱包地址已拷贝</string>

@@ -1,29 +1,22 @@
 package com.dappley.android;
 
 import android.Manifest;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dappley.android.adapter.WalletListAdapter;
 import com.dappley.android.adapter.WalletSelectListAdapter;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.dialog.WalletPasswordDialog;
@@ -33,6 +26,7 @@ import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.DividerListItemDecoration;
+import com.dappley.android.widget.EmptyView;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -42,6 +36,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class ConvertSelectActivity extends AppCompatActivity {
     private static final String TAG = "ConvertSelectActivity";
@@ -49,8 +44,9 @@ public class ConvertSelectActivity extends AppCompatActivity {
     ImageButton btnBack;
     @BindView(R.id.txt_title)
     TextView tvTitle;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+
+    @BindView(R.id.swipe_fresh)
+    SwipeRecyclerView swipeRecyclerView;
 
     WalletPasswordDialog walletPasswordDialog;
 
@@ -81,10 +77,22 @@ public class ConvertSelectActivity extends AppCompatActivity {
 
         adapter = new WalletSelectListAdapter(this, baseValue);
         adapter.addOnItemClickListener(itemClickListener);
-        recyclerView.setAdapter(adapter);
+        swipeRecyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerListItemDecoration(this));
+        swipeRecyclerView.getRecyclerView().setLayoutManager(layoutManager);
+        swipeRecyclerView.getRecyclerView().addItemDecoration(new DividerListItemDecoration(this));
+        swipeRecyclerView.setOnLoadListener(new SwipeRecyclerView.OnLoadListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+        swipeRecyclerView.setEmptyView(EmptyView.get(this));
     }
 
     private void initData() {
@@ -144,11 +152,13 @@ public class ConvertSelectActivity extends AppCompatActivity {
             }
         } catch (IOException e) {
             Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+            Log.e(TAG, "readData: ", e);
         }
         adapter.setList(wallets);
 
         this.wallets = wallets;
+
+        swipeRecyclerView.setRefreshing(false);
 
         loadBalance();
     }
@@ -190,7 +200,7 @@ public class ConvertSelectActivity extends AppCompatActivity {
             setResult(RESULT_OK, intent);
             finish();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "onPasswordInput: ", e);
             Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
             return;
         }

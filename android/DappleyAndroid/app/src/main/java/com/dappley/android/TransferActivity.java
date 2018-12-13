@@ -128,7 +128,7 @@ public class TransferActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_transfer)
-    void tranfer() {
+    void transfer() {
         if (wallet == null) {
             Toast.makeText(this, R.string.note_no_valid_wallet, Toast.LENGTH_SHORT).show();
             return;
@@ -151,7 +151,7 @@ public class TransferActivity extends AppCompatActivity {
                 try {
                     isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
                 } catch (Exception e) {
-                    Log.e(TAG, "tranfer: ", e);
+                    Log.e(TAG, "transfer: ", e);
                 }
                 Message msg = new Message();
                 msg.obj = isSuccess;
@@ -159,7 +159,6 @@ public class TransferActivity extends AppCompatActivity {
                 handler.sendMessage(msg);
             }
         }).start();
-
     }
 
     private void loadData() {
@@ -189,7 +188,7 @@ public class TransferActivity extends AppCompatActivity {
             }
         } catch (IOException e) {
             Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
+            Log.e(TAG, "readWallets: ", e);
         }
         walletPagerAdapter.setList(wallets, -1);
 
@@ -276,7 +275,7 @@ public class TransferActivity extends AppCompatActivity {
             }
             this.wallet = wallet;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.i(TAG, "checkNull: ", e);
             Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -287,7 +286,6 @@ public class TransferActivity extends AppCompatActivity {
         LoadingDialog.close();
         if (isSuccess) {
             Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
             finish();
         } else {
             Toast.makeText(this, R.string.note_transfer_failed, Toast.LENGTH_SHORT).show();

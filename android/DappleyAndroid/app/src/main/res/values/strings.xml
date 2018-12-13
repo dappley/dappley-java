@@ -77,7 +77,9 @@
     <string name="note_no_wallet_name">input a wallet name</string>
     <string name="note_no_pasword">input a password</string>
     <string name="note_no_mnemonic">input mnemonics</string>
+    <string name="note_error_mnemonic">error mnemonics</string>
     <string name="note_no_private_key">input your private key</string>
+    <string name="note_error_private_key">error private key</string>
     <string name="note_error_import_wallet">import wallet failed, please check you mnemonic or private key</string>
     <string name="note_wallet_exists">wallet address has been existed</string>
     <string name="note_wallet_copied">wallet address is copied</string>
@@ -87,7 +89,7 @@
     <string name="note_press_again">press again to exit</string>
     <string name="note_no_step">no step can be converted</string>
     <string name="note_select_address">please select a wallet address with enough balance</string>
-    <string name="note_convert_success">Successfully convert %d steps</string>
+    <string name="note_convert_success">successfully convert %d steps</string>
     <string name="note_convert_failed">convert failed, please try later</string>
     <string name="note_old_password">input old password</string>
     <string name="note_new_password">input new password</string>
@@ -99,7 +101,7 @@
     <string name="note_remote_contract_empty">remote contract address is empty</string>
     <string name="note_remote_contract_invalid">remote contract address is invalid</string>
 
-    <string name="net_not_connected">network not connnected</string>
+    <string name="net_not_connected">network not connected</string>
     <string name="net_server_connected_error">server connect error, please try later</string>
     <string name="net_server_error">server internal error, please try later</string>
     <string name="net_server_param_error">request param error, please try later</string>

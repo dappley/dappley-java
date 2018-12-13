@@ -56,10 +56,6 @@
             android:name="com.google.zxing.activity.CaptureActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".sdk.service.LocalBlockService" />
-
-        <receiver android:name=".listener.StepNotificationReceiver" />
-
         <activity
             android:name=".ConvertSelectActivity"
             android:screenOrientation="portrait" />
@@ -68,7 +64,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ModifyPasswordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
+        <service android:name=".sdk.service.LocalBlockService" />
+
+        <receiver android:name=".listener.StepNotificationReceiver" />
     </application>
 
 </manifest>

@@ -4,8 +4,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.util.CommonUtil;
-import com.dappley.android.util.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +33,7 @@ public class WalletExportActivity extends AppCompatActivity {
     @BindView(R.id.tv_private_key)
     TextView tvPrivateKey;
     @BindView(R.id.tv_mnemonic)
-    TextView tvMneonic;
+    TextView tvMnemonic;
     @BindView(R.id.linear_mnemonic)
     LinearLayout linearMnemonic;
 
@@ -68,7 +67,7 @@ public class WalletExportActivity extends AppCompatActivity {
             linearMnemonic.setVisibility(View.GONE);
         } else {
             linearMnemonic.setVisibility(View.VISIBLE);
-            tvMneonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
+            tvMnemonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
         }
     }
 

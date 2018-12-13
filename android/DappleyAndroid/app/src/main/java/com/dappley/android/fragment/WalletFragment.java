@@ -32,8 +32,6 @@ import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -140,8 +138,8 @@ public class WalletFragment extends Fragment {
                 wallets = new ArrayList<>(1);
             }
         } catch (IOException e) {
+            Log.e(TAG, "readData: ", e);
             Toast.makeText(getActivity(), R.string.note_read_failed, Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
         }
         adapter.setList(wallets);
 
@@ -214,7 +212,7 @@ public class WalletFragment extends Fragment {
         }
     };
 
-    public void scanResult(Intent data) {
+    public void onScanResult(Intent data) {
         Bundle bundle = data.getExtras();
         String scanResult = bundle.getString(com.google.zxing.util.Constant.INTENT_EXTRA_KEY_QR_SCAN);
         System.out.println("scan:" + scanResult);

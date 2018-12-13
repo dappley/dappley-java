@@ -67,7 +67,7 @@
             android:layout_marginLeft="2dip"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="0"
+            android:text="-"
             android:textColor="@color/gray_text"
             android:textSize="16sp" />
 

@@ -1,8 +1,8 @@
 package com.dappley.android;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;

@@ -97,6 +97,6 @@ public class DeleteMenuWindow extends PopupWindow {
     }
 
     public interface OnWindowClickListener {
-        public void onDelClick();
+        void onDelClick();
     }
 }

@@ -2,14 +2,12 @@ package com.dappley.android.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.dappley.android.R;
 
@@ -74,6 +72,6 @@ public class WalletPasswordDialog {
     }
 
     public interface OnClickListener {
-        public void onConfirm(String password);
+        void onConfirm(String password);
     }
 }

@@ -1,7 +1,7 @@
 package com.dappley.android;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -89,7 +89,4 @@ public class ModifyPasswordActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean checkPassword(String password) {
-        return true;
-    }
 }

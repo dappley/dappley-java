@@ -5,10 +5,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.po.Wallet;
-import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.QrCodeUtil;
 

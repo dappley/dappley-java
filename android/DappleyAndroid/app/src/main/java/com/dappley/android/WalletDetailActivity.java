@@ -86,6 +86,7 @@ public class WalletDetailActivity extends AppCompatActivity {
         tvTitle.setText(R.string.title_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
 
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -100,7 +101,6 @@ public class WalletDetailActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         swipeRecyclerView.getRecyclerView().setLayoutManager(layoutManager);
 
-        swipeRecyclerView.getSwipeRefreshLayout().setColorSchemeResources(R.color.colorPrimary);
         swipeRecyclerView.setOnLoadListener(new SwipeRecyclerView.OnLoadListener() {
             @Override
             public void onRefresh() {

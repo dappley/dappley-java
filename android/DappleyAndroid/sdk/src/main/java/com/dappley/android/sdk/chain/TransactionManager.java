@@ -9,9 +9,8 @@ import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.ByteUtil;
 import com.dappley.android.sdk.util.HashUtil;
 import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.android.sdk.util.ObjectUtils;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
@@ -112,8 +111,8 @@ public class TransactionManager {
             return;
         }
         TxOutput txOutput = new TxOutput();
-        if (StringUtils.isNotEmpty(contract)) {
-            if (StringUtils.isEmpty(toAddress)) {
+        if (ObjectUtils.isNotEmpty(contract)) {
+            if (ObjectUtils.isEmpty(toAddress)) {
                 toAddress = AddressUtil.createContractAddress();
             }
             // set contract output
@@ -185,7 +184,7 @@ public class TransactionManager {
      */
     public static void sign(Transaction transaction, BigInteger privateKey, List<Utxo> utxos) {
         List<TxInput> txInputs = transaction.getTxInputs();
-        if (CollectionUtils.isEmpty(txInputs)) {
+        if (ObjectUtils.isEmpty(txInputs)) {
             return;
         }
         // format previous transaction data
@@ -249,7 +248,7 @@ public class TransactionManager {
                 throw new IllegalArgumentException("Previous transaction is invalid");
             }
             List<TxOutput> prevVoutList = prev.getTxOutputs();
-            if (CollectionUtils.isEmpty(prevVoutList)) {
+            if (ObjectUtils.isEmpty(prevVoutList)) {
                 throw new IllegalArgumentException("Previous transaction is invalid");
             }
             // vout index should not be greater than previous vout list size

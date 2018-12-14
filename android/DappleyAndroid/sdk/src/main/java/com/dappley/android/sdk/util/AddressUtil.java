@@ -2,7 +2,6 @@ package com.dappley.android.sdk.util;
 
 import com.dappley.android.sdk.crypto.KeyPairTool;
 
-import org.apache.commons.lang3.StringUtils;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
@@ -89,7 +88,7 @@ public class AddressUtil {
      * @return boolean true/false
      */
     public static boolean validateAddress(String address) {
-        if (StringUtils.isEmpty(address)) {
+        if (ObjectUtils.isEmpty(address)) {
             return false;
         }
         byte[] fullPayload;

@@ -52,21 +52,21 @@ public class HashUtil {
 
     /**
      * Generate a hash byte array from publicKey
-     * @param pubKey publicKey in BigInteger format
+     * @param publicKey publicKey in BigInteger format
      * @return byte[] hash bytes
      */
-    public static byte[] getUserPubKeyHash(BigInteger pubKey) {
-        byte[] pubBytes = getPubKeyBytes(pubKey);
+    public static byte[] getUserPubKeyHash(BigInteger publicKey) {
+        byte[] pubBytes = getPubKeyBytes(publicKey);
         return getUserPubKeyHash(pubBytes);
     }
 
     /**
      * Generate a contract hash byte array from publicKey
-     * @param pubKey publicKey in BigInteger format
+     * @param publicKey publicKey in BigInteger format
      * @return byte[] hash bytes
      */
-    public static byte[] getContractPubKeyHash(BigInteger pubKey) {
-        byte[] pubBytes = getPubKeyBytes(pubKey);
+    public static byte[] getContractPubKeyHash(BigInteger publicKey) {
+        byte[] pubBytes = getPubKeyBytes(publicKey);
         return getContractPubKeyHash(pubBytes);
     }
 
@@ -84,13 +84,13 @@ public class HashUtil {
 
     /**
      * Transform pubKey into byte array.
-     * @param pubKey public key
+     * @param publicKey public key
      * @return byte[] byte array
      */
-    public static byte[] getPubKeyBytes(BigInteger pubKey) {
-        byte[] pubKeyBytes = pubKey.toByteArray();
-        int byteLength = pubKey.bitLength() / 8;
-        int mod = pubKey.bitLength() % 8;
+    public static byte[] getPubKeyBytes(BigInteger publicKey) {
+        byte[] pubKeyBytes = publicKey.toByteArray();
+        int byteLength = publicKey.bitLength() / 8;
+        int mod = publicKey.bitLength() % 8;
         byteLength += mod > 0 ? 1 : 0;
         if (pubKeyBytes.length > byteLength) {
             pubKeyBytes = ByteUtil.slice(pubKeyBytes, pubKeyBytes.length - byteLength, byteLength);

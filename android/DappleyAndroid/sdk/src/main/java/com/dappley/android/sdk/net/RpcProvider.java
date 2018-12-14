@@ -1,6 +1,7 @@
 package com.dappley.android.sdk.net;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.po.BlockChainInfo;
@@ -19,6 +20,7 @@ import io.grpc.ManagedChannel;
  * Implementation of ProtocalProvider on RPC protocal.
  */
 public class RpcProvider implements ProtocalProvider {
+    private static final String TAG = "RpcProvider";
 
     private static ManagedChannel channel;
     private static RpcServiceGrpc.RpcServiceBlockingStub rpcServiceBlockingStub;
@@ -52,120 +54,107 @@ public class RpcProvider implements ProtocalProvider {
     @Override
     public String getVersion() {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
 
         RpcProto.GetVersionRequest request = RpcProto.GetVersionRequest.newBuilder()
                 .build();
         RpcProto.GetVersionResponse response = getRpcServiceBlockingStub().rpcGetVersion(request);
         String message = "[protocal version:" + response.getProtoVersion() + "] [server version: " + response.getServerVersion() + "]";
+        Log.d(TAG, "getVersion: " + message);
         return message;
     }
 
     @Override
     public String getBalance(String address) {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
 
         RpcProto.GetBalanceRequest request = RpcProto.GetBalanceRequest.newBuilder()
                 .setAddress(address)
                 .build();
         RpcProto.GetBalanceResponse response = getRpcServiceBlockingStub().rpcGetBalance(request);
         String message = response.getMessage();
+        Log.d(TAG, "getBalance: " + response.getAmount());
         return message;
-    }
-
-    @Override
-    public String addBalance(String address) {
-//        Asserts.clientInit(channel);
-//        Asserts.channalOpen(channel);
-//        RpcProto.AddBalanceRequest request = RpcProto.AddBalanceRequest.newBuilder()
-//                .setAddress(address)
-//                .build();
-//        RpcProto.AddBalanceResponse response = getRpcServiceBlockingStub().rpcAddBalance(request);
-//        String message = response.getMessage();
-//        return message;
-        return null;
     }
 
     @Override
     public BlockChainInfo getBlockchainInfo() {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
         RpcProto.GetBlockchainInfoRequest request = RpcProto.GetBlockchainInfoRequest.newBuilder()
                 .build();
         RpcProto.GetBlockchainInfoResponse response = getRpcServiceBlockingStub().rpcGetBlockchainInfo(request);
-        System.out.println("getBlockchainInfo blockHeight: " + response.getBlockHeight());
-        ByteString byteString = response.getTailBlockHash();
-        System.out.println(byteString);
         BlockChainInfo blockChainInfo = new BlockChainInfo();
         blockChainInfo.setTailBlockHash(response.getTailBlockHash());
         blockChainInfo.setBlockHeight(response.getBlockHeight());
         blockChainInfo.setProducers(response.getProducersList());
+        Log.d(TAG, "getBlockchainInfo: " + response.toString());
         return blockChainInfo;
     }
 
     @Override
     public List<RpcProto.UTXO> getUtxo(String address) {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
         RpcProto.GetUTXORequest request = RpcProto.GetUTXORequest.newBuilder()
                 .setAddress(address)
                 .build();
         RpcProto.GetUTXOResponse response = getRpcServiceBlockingStub().rpcGetUTXO(request);
-        System.out.println("getUtxo errorCode: " + response.getErrorCode());
         List<RpcProto.UTXO> utxos = response.getUtxosList();
+        Log.d(TAG, "getUtxo errorCode: " + response.getErrorCode());
         return utxos;
     }
 
     @Override
     public List<BlockProto.Block> getBlocks(List<ByteString> startHashs, int count) {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
         RpcProto.GetBlocksRequest request = RpcProto.GetBlocksRequest.newBuilder()
                 .addAllStartBlockHashes(startHashs)
                 .setMaxCount(count)
                 .build();
         RpcProto.GetBlocksResponse response = getRpcServiceBlockingStub().rpcGetBlocks(request);
-        System.out.println("getBlocks blockCount: " + response.getBlocksCount());
+        Log.d(TAG, "getBlocks blockCount" + response.getBlocksCount());
         return response.getBlocksList();
     }
 
     @Override
     public BlockProto.Block getBlockByHash(ByteString byteHash) {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
         RpcProto.GetBlockByHashRequest request = RpcProto.GetBlockByHashRequest.newBuilder()
                 .setHash(byteHash)
                 .build();
         RpcProto.GetBlockByHashResponse response = getRpcServiceBlockingStub().rpcGetBlockByHash(request);
         BlockProto.Block block = response.getBlock();
-        System.out.println("getBlockByHash block: " + block);
+        Log.d(TAG, "getBlockByHash errorCode: " + response.getErrorCode());
         return block;
     }
 
     @Override
     public BlockProto.Block getBlockByHeight(long height) {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
         RpcProto.GetBlockByHeightRequest request = RpcProto.GetBlockByHeightRequest.newBuilder()
                 .setHeight(height)
                 .build();
         RpcProto.GetBlockByHeightResponse response = getRpcServiceBlockingStub().rpcGetBlockByHeight(request);
         BlockProto.Block block = response.getBlock();
-        System.out.println("getBlockByHeight block: " + block);
+        Log.d(TAG, "getBlockByHeight errorCode: " + response.getErrorCode());
         return block;
     }
 
     @Override
     public int sendTransaction(TransactionProto.Transaction transaction) {
         Asserts.clientInit(channel);
-        Asserts.channalOpen(channel);
+        Asserts.channelOpen(channel);
         RpcProto.SendTransactionRequest request = RpcProto.SendTransactionRequest.newBuilder()
                 .setTransaction(transaction)
                 .build();
         RpcProto.SendTransactionResponse response = getRpcServiceBlockingStub().rpcSendTransaction(request);
         int errorCode = response.getErrorCode();
-        System.out.println("sendTransaction errorCode: " + errorCode);
+        Log.d(TAG, "sendTransaction errorCode: " + errorCode);
         return errorCode;
     }
 }

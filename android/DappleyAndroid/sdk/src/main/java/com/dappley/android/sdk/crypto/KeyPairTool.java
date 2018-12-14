@@ -1,7 +1,5 @@
 package com.dappley.android.sdk.crypto;
 
-import com.dappley.android.sdk.util.Base64;
-
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
@@ -9,18 +7,12 @@ import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.security.Security;
 import java.security.spec.ECGenParameterSpec;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 
 /**
@@ -85,36 +77,6 @@ public class KeyPairTool {
                 new BigInteger(1, Arrays.copyOfRange(publicKeyBytes, 1, publicKeyBytes.length));
 
         return new ECKeyPair(privateKeyValue, publicKeyValue);
-    }
-
-    /**
-     * Returns the PublicKey object from pubKey string in Base64 format.
-     * @param pubKey String in Base64 format
-     * @return PublicKey converted object
-     * @throws NoSuchAlgorithmException If EC is not supported
-     * @throws InvalidKeySpecException If key is not valid
-     */
-    public static PublicKey getPublicKey(String pubKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] pubKeyBytes = Base64.decode(pubKey);
-        X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(pubKeyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-        PublicKey publicKey = keyFactory.generatePublic(x509KeySpec);
-        return publicKey;
-    }
-
-    /**
-     * Returns the PrivateKey object from pubKey string in Base64 format.
-     * @param privKey String in Base64 format
-     * @return PrivateKey converted object
-     * @throws NoSuchAlgorithmException If EC is not supported
-     * @throws InvalidKeySpecException If key is not valid
-     */
-    public static PrivateKey getPrivateKey(String privKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] privKeyBytes = Base64.decode(privKey);
-        PKCS8EncodedKeySpec x509KeySpec = new PKCS8EncodedKeySpec(privKeyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-        PrivateKey privateKey = keyFactory.generatePrivate(x509KeySpec);
-        return privateKey;
     }
 
     /**

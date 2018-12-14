@@ -25,7 +25,7 @@ public class Asserts {
      * @param channel RPC protocol channel
      * @throws IllegalStateException
      */
-    public static void channalOpen(ManagedChannel channel) {
+    public static void channelOpen(ManagedChannel channel) {
         if (channel == null || channel.isShutdown() || channel.isTerminated()) {
             throw new IllegalStateException("channel is not opened.");
         }

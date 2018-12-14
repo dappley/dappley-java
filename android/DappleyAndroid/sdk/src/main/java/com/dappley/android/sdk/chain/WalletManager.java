@@ -3,7 +3,6 @@ package com.dappley.android.sdk.chain;
 import com.dappley.android.sdk.crypto.AesCipher;
 import com.dappley.android.sdk.crypto.Bip39;
 import com.dappley.android.sdk.po.Wallet;
-import com.dappley.android.sdk.util.SerializeUtil;
 
 import java.math.BigInteger;
 

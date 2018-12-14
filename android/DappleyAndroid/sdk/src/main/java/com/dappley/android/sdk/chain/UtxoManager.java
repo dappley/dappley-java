@@ -13,9 +13,7 @@ import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.po.UtxoIndex;
 import com.dappley.android.sdk.util.AddressUtil;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.dappley.android.sdk.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -34,8 +32,8 @@ public class UtxoManager {
      * @param amount target amount
      * @return List<Utxo> suitable utxo list
      */
-    public static List<Utxo> getSpendableUtxos(List<Utxo> utxos, BigInteger amount) {
-        if (CollectionUtils.isEmpty(utxos)) {
+    public static List<Utxo> getUnspentUtxos(List<Utxo> utxos, BigInteger amount) {
+        if (ObjectUtils.isEmpty(utxos)) {
             return null;
         }
         List<Utxo> spendables = new ArrayList<>();
@@ -73,12 +71,12 @@ public class UtxoManager {
         String nextHash;
         while (true) {
             nextHash = blockIndexDb.get(hash);
-            if (StringUtils.isEmpty(nextHash)) {
+            if (ObjectUtils.isEmpty(nextHash)) {
                 break;
             }
             // get transactions
             List<Transaction> transactions = transactionDb.get(nextHash);
-            if (CollectionUtils.isEmpty(transactions)) {
+            if (ObjectUtils.isEmpty(transactions)) {
                 continue;
             }
             // compute utxo by transactions
@@ -98,7 +96,7 @@ public class UtxoManager {
         UtxoDb utxoDb = new UtxoDb(context);
         UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);
         Set<UtxoIndex> utxoIndexSet = utxoIndexDb.get(walletAddress);
-        if (CollectionUtils.isEmpty(utxoIndexSet)) {
+        if (ObjectUtils.isEmpty(utxoIndexSet)) {
             return;
         }
         // remove all related keys in utxo db
@@ -139,7 +137,7 @@ public class UtxoManager {
      */
     private static void removeSpentVouts(Transaction transaction, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
         List<TxInput> txInputs = transaction.getTxInputs();
-        if (CollectionUtils.isEmpty(txInputs)) {
+        if (ObjectUtils.isEmpty(txInputs)) {
             return;
         }
         if (transaction.isCoinbase()) {
@@ -163,7 +161,7 @@ public class UtxoManager {
      */
     private static void saveUnspentVouts(Transaction transaction, String walletAddress, UtxoDb utxoDb, UtxoIndexDb utxoIndexDb) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
-        if (CollectionUtils.isEmpty(txOutputs)) {
+        if (ObjectUtils.isEmpty(txOutputs)) {
             return;
         }
         TxOutput tempOutput;

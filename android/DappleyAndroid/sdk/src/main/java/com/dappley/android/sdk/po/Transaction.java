@@ -3,9 +3,8 @@ package com.dappley.android.sdk.po;
 import com.dappley.android.sdk.crypto.ShaDigest;
 import com.dappley.android.sdk.protobuf.TransactionProto;
 import com.dappley.android.sdk.util.ByteUtil;
+import com.dappley.android.sdk.util.ObjectUtils;
 import com.google.protobuf.ByteString;
-
-import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -157,7 +156,7 @@ public class Transaction implements Serializable {
     public Transaction trimedCopy() {
         Transaction newTransaction = this.deepClone();
         List<TxInput> txInputs = newTransaction.getTxInputs();
-        if (CollectionUtils.isEmpty(txInputs)) {
+        if (ObjectUtils.isEmpty(txInputs)) {
             return null;
         }
         for (TxInput txInput : txInputs) {

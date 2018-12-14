@@ -18,9 +18,7 @@ import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.sdk.service.LocalBlockService;
 import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Asserts;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.dappley.android.sdk.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -201,7 +199,7 @@ public class Dappley {
             return null;
         }
         List<Utxo> utxos = dataProvider.getUtxos(address);
-        if (CollectionUtils.isEmpty(utxos)) {
+        if (ObjectUtils.isEmpty(utxos)) {
             return null;
         }
         int pageNo = (pageIndex - 1) * pageSize;
@@ -266,15 +264,15 @@ public class Dappley {
      * @return boolean is transaction committed successful
      */
     private static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, String contract) {
-        if (StringUtils.isEmpty(fromAddress) || StringUtils.isEmpty(toAddress)) {
+        if (ObjectUtils.isEmpty(fromAddress) || ObjectUtils.isEmpty(toAddress)) {
             return false;
         }
         List<Utxo> allUtxo = dataProvider.getUtxos(fromAddress);
-        if (CollectionUtils.isEmpty(allUtxo)) {
+        if (ObjectUtils.isEmpty(allUtxo)) {
             return false;
         }
-        List<Utxo> utxos = UtxoManager.getSpendableUtxos(allUtxo, amount);
-        if (CollectionUtils.isEmpty(utxos)) {
+        List<Utxo> utxos = UtxoManager.getUnspentUtxos(allUtxo, amount);
+        if (ObjectUtils.isEmpty(utxos)) {
             return false;
         }
         Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, contract);

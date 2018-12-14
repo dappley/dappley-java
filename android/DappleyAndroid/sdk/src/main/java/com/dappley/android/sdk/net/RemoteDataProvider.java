@@ -8,11 +8,9 @@ import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.protobuf.BlockProto;
 import com.dappley.android.sdk.protobuf.RpcProto;
 import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.android.sdk.util.ObjectUtils;
 import com.google.protobuf.ByteString;
 import com.tencent.mmkv.MMKV;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -106,12 +104,12 @@ public class RemoteDataProvider implements DataProvider {
     @Override
     public BigInteger getBalance(String address) {
         BigInteger balance = BigInteger.ZERO;
-        if (StringUtils.isEmpty(address)) {
+        if (ObjectUtils.isEmpty(address)) {
             return balance;
         }
         // compute from getUtxo method
         List<RpcProto.UTXO> utxos = protocalProvider.getUtxo(address);
-        if (CollectionUtils.isEmpty(utxos)) {
+        if (ObjectUtils.isEmpty(utxos)) {
             return balance;
         }
         for (RpcProto.UTXO utxo : utxos) {

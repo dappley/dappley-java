@@ -30,8 +30,6 @@ public interface ProtocalProvider {
 
     String getBalance(String address);
 
-    String addBalance(String address);
-
     BlockChainInfo getBlockchainInfo();
 
     List<RpcProto.UTXO> getUtxo(String address);

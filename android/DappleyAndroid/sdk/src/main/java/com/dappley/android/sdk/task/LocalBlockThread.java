@@ -19,9 +19,7 @@ import com.dappley.android.sdk.po.TxOutput;
 import com.dappley.android.sdk.po.Utxo;
 import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.HexUtil;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.dappley.android.sdk.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -60,7 +58,6 @@ public class LocalBlockThread implements Runnable {
         transactionDb = new TransactionDb(context);
         utxoDb = new UtxoDb(context);
         utxoIndexDb = new UtxoIndexDb(context);
-        // TODO get a provider
         dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
 
         genesisHash = BlockChainManager.getGenesisHash(context);
@@ -81,7 +78,7 @@ public class LocalBlockThread implements Runnable {
         Log.i(TAG, "run at time " + System.currentTimeMillis());
 
         List<String> startHashes = getStartHashes();
-        if (CollectionUtils.isEmpty(startHashes)) {
+        if (ObjectUtils.isEmpty(startHashes)) {
             return;
         }
         try {
@@ -126,7 +123,7 @@ public class LocalBlockThread implements Runnable {
      */
     private List<String> getStartHashes() {
         String currentHash = blockChainDb.getCurrentHash();
-        if (StringUtils.isEmpty(currentHash)) {
+        if (ObjectUtils.isEmpty(currentHash)) {
             return null;
         }
         List<String> startHashes = new ArrayList<>();
@@ -138,7 +135,7 @@ public class LocalBlockThread implements Runnable {
         // traverse PREV_COUNT block data
         for (int i = 1; i < PREV_COUNT; i++) {
             if (block.getHeader().getPrevHash() == null
-                    || StringUtils.isEmpty(HexUtil.toHex(block.getHeader().getPrevHash()))) {
+                    || ObjectUtils.isEmpty(HexUtil.toHex(block.getHeader().getPrevHash()))) {
                 break;
             }
             block = blockDb.get(block.getHeader().getPrevHash());
@@ -166,7 +163,7 @@ public class LocalBlockThread implements Runnable {
      * @param startHashs old tail blocks
      */
     private void saveSynchronizedBlocks(List<Block> blocks, List<String> startHashs) {
-        if (CollectionUtils.isEmpty(blocks)) {
+        if (ObjectUtils.isEmpty(blocks)) {
             return;
         }
         Log.i(TAG, "saveSynchronizedBlocks count " + blocks.size());
@@ -217,7 +214,7 @@ public class LocalBlockThread implements Runnable {
      */
     private void saveUnspentVouts(List<Transaction> transactions) {
         // save new utxo data
-        if (CollectionUtils.isEmpty(transactions)) {
+        if (ObjectUtils.isEmpty(transactions)) {
             return;
         }
         for (Transaction transaction : transactions) {
@@ -237,7 +234,7 @@ public class LocalBlockThread implements Runnable {
      */
     private void removeSpentVouts(Transaction transaction) {
         List<TxInput> txInputs = transaction.getTxInputs();
-        if (CollectionUtils.isEmpty(txInputs)) {
+        if (ObjectUtils.isEmpty(txInputs)) {
             return;
         }
         if (transaction.isCoinbase()) {
@@ -248,7 +245,7 @@ public class LocalBlockThread implements Runnable {
         for (TxInput txInput : txInputs) {
             // remove spent utxo in utxoDb
             utxoDb.remove(txInput.getTxId(), txInput.getVout());
-            if (CollectionUtils.isEmpty(addressSet)) {
+            if (ObjectUtils.isEmpty(addressSet)) {
                 continue;
             }
             // remove spent utxo in utxoIndexDb
@@ -264,11 +261,11 @@ public class LocalBlockThread implements Runnable {
      */
     private void saveUnspentVouts(Transaction transaction) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
-        if (CollectionUtils.isEmpty(txOutputs)) {
+        if (ObjectUtils.isEmpty(txOutputs)) {
             return;
         }
         Set<String> addressSet = blockChainDb.getWalletAddressSet();
-        if (CollectionUtils.isEmpty(addressSet)) {
+        if (ObjectUtils.isEmpty(addressSet)) {
             return;
         }
         TxOutput tempOutput;
@@ -305,7 +302,7 @@ public class LocalBlockThread implements Runnable {
      * @param oldHashes the last several block hash of chain tail in local db
      */
     private void removeForkedBlocks(String newParentHash, List<String> oldHashes) {
-        if (StringUtils.isEmpty(newParentHash) || CollectionUtils.isEmpty(oldHashes)) {
+        if (ObjectUtils.isEmpty(newParentHash) || ObjectUtils.isEmpty(oldHashes)) {
             return;
         }
         // form forked block hash list
@@ -329,7 +326,7 @@ public class LocalBlockThread implements Runnable {
      * @param blockHashes forked block hash list
      */
     private void removeForkedTransactions(List<String> blockHashes) {
-        if (CollectionUtils.isEmpty(blockHashes)) {
+        if (ObjectUtils.isEmpty(blockHashes)) {
             return;
         }
         List<Transaction> transactions = new ArrayList<>();
@@ -349,7 +346,7 @@ public class LocalBlockThread implements Runnable {
      * @param transactions transaciton info list
      */
     private void removeForkedUtxo(List<Transaction> transactions) {
-        if (CollectionUtils.isEmpty(transactions)) {
+        if (ObjectUtils.isEmpty(transactions)) {
             return;
         }
         Set<String> addressSet = blockChainDb.getWalletAddressSet();
@@ -370,7 +367,7 @@ public class LocalBlockThread implements Runnable {
      */
     private void removeForkedUtxo(Transaction transaction) {
         List<TxOutput> txOutputs = transaction.getTxOutputs();
-        if (CollectionUtils.isEmpty(txOutputs)) {
+        if (ObjectUtils.isEmpty(txOutputs)) {
             return;
         }
         for (int i = 0; i < txOutputs.size(); i++) {
@@ -384,15 +381,15 @@ public class LocalBlockThread implements Runnable {
      * @param addressetSet user's address set
      */
     private void removeForkedUtxoIndex(Transaction transaction, Set<String> addressetSet) {
-        if (CollectionUtils.isEmpty(addressetSet)) {
+        if (ObjectUtils.isEmpty(addressetSet)) {
             return;
         }
         List<TxOutput> txOutputs = transaction.getTxOutputs();
-        if (CollectionUtils.isEmpty(txOutputs)) {
+        if (ObjectUtils.isEmpty(txOutputs)) {
             return;
         }
         for (String tempAddress : addressetSet) {
-            if (StringUtils.isEmpty(tempAddress)) {
+            if (ObjectUtils.isEmpty(tempAddress)) {
                 continue;
             }
             for (int i = 0; i < txOutputs.size(); i++) {

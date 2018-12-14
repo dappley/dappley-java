@@ -1,14 +1,12 @@
 package com.dappley.android.sdk.chain;
 
 import android.content.Context;
-import android.util.ArraySet;
 
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.po.Block;
 import com.dappley.android.sdk.util.HexUtil;
-
-import org.apache.commons.lang3.StringUtils;
+import com.dappley.android.sdk.util.ObjectUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +27,7 @@ public class BlockChainManager {
     public static void initGenesisBlock(Context context) {
         BlockChainDb blockChainDb = new BlockChainDb(context);
         BlockDb blockDb = new BlockDb(context);
-        if (StringUtils.isNotEmpty(blockChainDb.getCurrentHash())
+        if (ObjectUtils.isNotEmpty(blockChainDb.getCurrentHash())
                 && blockDb.get(blockChainDb.getCurrentHash()) != null) {
             return;
         }
@@ -49,13 +47,13 @@ public class BlockChainManager {
      * @return String genesis hash value
      */
     public static String getGenesisHash(Context context) {
-        if (StringUtils.isNotEmpty(genesisHash)) {
+        if (ObjectUtils.isNotEmpty(genesisHash)) {
             return genesisHash;
         }
         // first query from db
         BlockChainDb blockChainDb = new BlockChainDb(context);
         genesisHash = blockChainDb.getGenesisHash();
-        if (StringUtils.isNotEmpty(genesisHash)) {
+        if (ObjectUtils.isNotEmpty(genesisHash)) {
             return genesisHash;
         }
         // init genesis block
@@ -70,7 +68,7 @@ public class BlockChainManager {
      * @param walletAddress user's wallet address
      */
     public static void addWalletAddress(Context context, String walletAddress) {
-        if (StringUtils.isEmpty(walletAddress)) {
+        if (ObjectUtils.isEmpty(walletAddress)) {
             return;
         }
         BlockChainDb blockChainDb = new BlockChainDb(context);
@@ -93,7 +91,7 @@ public class BlockChainManager {
      * @param walletAddress user's wallet address
      */
     public static void removeWalletAddress(Context context, String walletAddress) {
-        if (StringUtils.isEmpty(walletAddress)) {
+        if (ObjectUtils.isEmpty(walletAddress)) {
             return;
         }
         BlockChainDb blockChainDb = new BlockChainDb(context);

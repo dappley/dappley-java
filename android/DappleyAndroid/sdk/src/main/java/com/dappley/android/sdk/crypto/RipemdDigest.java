@@ -1,10 +1,10 @@
 package com.dappley.android.sdk.crypto;
 
-import org.bouncycastle.jcajce.provider.digest.RIPEMD128;
-import org.bouncycastle.jcajce.provider.digest.RIPEMD160;
-import org.bouncycastle.jcajce.provider.digest.RIPEMD256;
-import org.bouncycastle.jcajce.provider.digest.RIPEMD320;
-import org.bouncycastle.util.encoders.Hex;
+import org.spongycastle.jcajce.provider.digest.RIPEMD128;
+import org.spongycastle.jcajce.provider.digest.RIPEMD160;
+import org.spongycastle.jcajce.provider.digest.RIPEMD256;
+import org.spongycastle.jcajce.provider.digest.RIPEMD320;
+import org.spongycastle.util.encoders.Hex;
 
 /**
  * RIPEMD(RACE Integrity Primitives Evaluation Message Digest) algorithm tool

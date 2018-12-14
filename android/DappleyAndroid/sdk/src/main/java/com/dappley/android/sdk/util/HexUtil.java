@@ -2,7 +2,7 @@ package com.dappley.android.sdk.util;
 
 import com.google.protobuf.ByteString;
 
-import org.bouncycastle.util.encoders.Hex;
+import org.spongycastle.util.encoders.Hex;
 
 /**
  * Utils of Hex string format.

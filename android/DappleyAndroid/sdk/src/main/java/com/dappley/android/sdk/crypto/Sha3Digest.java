@@ -1,7 +1,7 @@
 package com.dappley.android.sdk.crypto;
 
-import org.bouncycastle.jcajce.provider.digest.SHA3;
-import org.bouncycastle.util.encoders.Hex;
+import org.spongycastle.jcajce.provider.digest.SHA3;
+import org.spongycastle.util.encoders.Hex;
 
 /**
  * SHA-3(Secure Hash Algorithm 3) algorithm tool

@@ -1,7 +1,7 @@
 package com.dappley.android.sdk.crypto;
 
-import org.bouncycastle.jcajce.provider.digest.SHA256;
-import org.bouncycastle.jcajce.provider.digest.SHA512;
+import org.spongycastle.jcajce.provider.digest.SHA256;
+import org.spongycastle.jcajce.provider.digest.SHA512;
 
 /**
  * SHA(Secure Hash Algorithm) algorithm tool

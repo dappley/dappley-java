@@ -4,10 +4,9 @@ import com.dappley.java.core.protobuf.RpcProto;
 import com.dappley.java.core.util.ByteUtil;
 import com.dappley.java.core.util.SerializeUtil;
 import com.google.protobuf.ByteString;
+import lombok.Data;
 
 import java.math.BigInteger;
-
-import lombok.Data;
 
 /**
  * UTXO object

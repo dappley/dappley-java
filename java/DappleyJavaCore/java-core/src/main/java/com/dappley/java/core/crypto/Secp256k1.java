@@ -34,7 +34,9 @@ public class Secp256k1 {
     // The parameters of the secp256k1 curve that Bitcoin uses.
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
 
-    /** The parameters of the secp256k1 curve that Bitcoin uses. */
+    /**
+     * The parameters of the secp256k1 curve that Bitcoin uses.
+     */
     public static final ECDomainParameters CURVE;
 
     /**
@@ -92,8 +94,7 @@ public class Secp256k1 {
 
     /**
      * Decompress a compressed public key (x co-ord and low-bit of y-coord).
-     *
-     * @param xBN -
+     * @param xBN  -
      * @param yBit -
      * @return -
      */
@@ -223,7 +224,6 @@ public class Secp256k1 {
 
         /**
          * Constructs a signature with the given components. Does NOT automatically canonicalise the signature.
-         *
          * @param r -
          * @param s -
          */
@@ -233,7 +233,7 @@ public class Secp256k1 {
         }
 
         /**
-         *t
+         * t
          * @param r
          * @param s
          * @return -
@@ -243,7 +243,6 @@ public class Secp256k1 {
         }
 
         /**
-         *
          * @param sign -
          * @return -
          */
@@ -255,7 +254,6 @@ public class Secp256k1 {
         }
 
         /**
-         *
          * @param r -
          * @param s -
          * @param v -
@@ -322,8 +320,7 @@ public class Secp256k1 {
          * the same message. However, we dislike the ability to modify the bits of a Ethereum transaction after it's
          * been signed, as that violates various assumed invariants. Thus in future only one of those forms will be
          * considered legal and the other will be banned.
-         *
-         * @return  -
+         * @return -
          */
         public ECDSASignature toCanonicalised() {
             if (s.compareTo(HALF_CURVE_ORDER) > 0) {
@@ -339,7 +336,6 @@ public class Secp256k1 {
         }
 
         /**
-         *
          * @return -
          */
         public String toBase64() {

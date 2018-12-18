@@ -4,11 +4,10 @@ import com.dappley.java.core.protobuf.BlockProto;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.SerializeUtil;
 import com.google.protobuf.ByteString;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.Data;
 
 /**
  * Block object.

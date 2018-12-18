@@ -10,7 +10,7 @@ public class TransactionSender {
     private ProtocalProvider protocalProvider;
 
     public TransactionSender(String serverIp, int serverPort) {
-        this.protocalProvider = new RpcProvider();
+        this.protocalProvider = new RpcProtocalProvider();
         this.protocalProvider.init(serverIp, serverPort);
     }
 

@@ -7,17 +7,16 @@ import com.dappley.java.core.protobuf.RpcServiceGrpc;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.Asserts;
 import com.google.protobuf.ByteString;
-
-import java.util.List;
-
 import io.grpc.ManagedChannel;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 /**
  * Implementation of ProtocalProvider on RPC protocal.
  */
 @Slf4j
-public class RpcProvider implements ProtocalProvider {
+public class RpcProtocalProvider implements ProtocalProvider {
 
     private static ManagedChannel channel;
     private static RpcServiceGrpc.RpcServiceBlockingStub rpcServiceBlockingStub;

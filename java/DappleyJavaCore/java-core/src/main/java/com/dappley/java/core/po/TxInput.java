@@ -2,10 +2,9 @@ package com.dappley.java.core.po;
 
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.google.protobuf.ByteString;
+import lombok.Data;
 
 import java.io.Serializable;
-
-import lombok.Data;
 
 /**
  * Transaction Input

@@ -3,10 +3,9 @@ package com.dappley.java.core.po;
 import com.dappley.java.core.util.HexUtil;
 import com.dappley.java.core.util.SerializeUtil;
 import com.google.protobuf.ByteString;
+import lombok.Data;
 
 import java.util.List;
-
-import lombok.Data;
 
 /**
  * Block chain info

@@ -3,11 +3,10 @@ package com.dappley.java.core.po;
 import com.dappley.java.core.crypto.Bip39;
 import com.dappley.java.core.crypto.KeyPairTool;
 import com.dappley.java.core.util.AddressUtil;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-
-import lombok.Data;
 
 /**
  * Block chain wallet.

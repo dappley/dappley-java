@@ -1,11 +1,11 @@
 package com.dappley.java.core.po;
 
-import java.io.Serializable;
-import java.util.Arrays;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Object for utxo index.

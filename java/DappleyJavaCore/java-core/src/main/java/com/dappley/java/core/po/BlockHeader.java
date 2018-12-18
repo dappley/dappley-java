@@ -2,7 +2,6 @@ package com.dappley.java.core.po;
 
 import com.dappley.java.core.protobuf.BlockProto;
 import com.google.protobuf.ByteString;
-
 import lombok.Data;
 
 /**

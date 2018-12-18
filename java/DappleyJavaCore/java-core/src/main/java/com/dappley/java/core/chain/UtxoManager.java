@@ -1,17 +1,11 @@
 package com.dappley.java.core.chain;
 
-import com.dappley.java.core.po.Transaction;
-import com.dappley.java.core.po.TxInput;
-import com.dappley.java.core.po.TxOutput;
 import com.dappley.java.core.po.Utxo;
-import com.dappley.java.core.po.UtxoIndex;
-import com.dappley.java.core.util.AddressUtil;
 import com.dappley.java.core.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Utils to handle UTXO datas.
@@ -25,7 +19,7 @@ public class UtxoManager {
      * @param amount target amount
      * @return List<Utxo> suitable utxo list
      */
-    public static List<Utxo> getUnspentUtxos(List<Utxo> utxos, BigInteger amount) {
+    public static List<Utxo> getSuitableUtxos(List<Utxo> utxos, BigInteger amount) {
         if (ObjectUtils.isEmpty(utxos)) {
             return null;
         }

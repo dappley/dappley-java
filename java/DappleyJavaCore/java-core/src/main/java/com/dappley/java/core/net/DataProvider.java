@@ -31,7 +31,7 @@ public interface DataProvider {
      * <p>If the chain has been forked, the start hashes will be used in order to find the forked position.</p>
      * <p><code>startHashs</code>: the first one is the chain' tail. It's grouped by reverse order.</p>
      * @param startHashs hash list.
-     * @param count the total back num
+     * @param count      the total back num
      * @return List<Block> block list
      */
     List<Block> getBlocks(List<String> startHashs, int count);

@@ -31,7 +31,6 @@ public class ECDSASignature {
      * ability to modify the bits of a Bitcoin transaction after it's been signed, as that
      * violates various assumed invariants. Thus in future only one of those forms will be
      * considered legal and the other will be banned.
-     *
      * @return the signature in a canonicalised form.
      */
 

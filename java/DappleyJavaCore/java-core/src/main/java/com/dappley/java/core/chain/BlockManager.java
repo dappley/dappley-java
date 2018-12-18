@@ -1,11 +1,7 @@
 package com.dappley.java.core.chain;
 
 import com.dappley.java.core.crypto.Sha3Digest;
-import com.dappley.java.core.po.Block;
-import com.dappley.java.core.po.BlockHeader;
-import com.dappley.java.core.po.Transaction;
-import com.dappley.java.core.po.TxInput;
-import com.dappley.java.core.po.TxOutput;
+import com.dappley.java.core.po.*;
 import com.dappley.java.core.util.ByteUtil;
 import com.dappley.java.core.util.Constant;
 import com.dappley.java.core.util.HashUtil;
@@ -75,7 +71,7 @@ public class BlockManager {
 
     /**
      * Returns block's hash value
-     * @param blockHeader header info
+     * @param blockHeader  header info
      * @param transactions transaction list
      * @return byte[] hash value
      */
@@ -85,7 +81,7 @@ public class BlockManager {
 
     /**
      * Returns block's hash value without nonce
-     * @param blockHeader header info
+     * @param blockHeader  header info
      * @param transactions transaction list
      * @return byte[] hash value
      */

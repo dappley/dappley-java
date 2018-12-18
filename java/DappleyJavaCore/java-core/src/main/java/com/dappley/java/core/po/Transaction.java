@@ -5,13 +5,12 @@ import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.ByteUtil;
 import com.dappley.java.core.util.ObjectUtils;
 import com.google.protobuf.ByteString;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import lombok.Data;
 
 /**
  * Transaction object

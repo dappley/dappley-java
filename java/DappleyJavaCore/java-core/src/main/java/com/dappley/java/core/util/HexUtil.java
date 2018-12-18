@@ -1,7 +1,6 @@
 package com.dappley.java.core.util;
 
 import com.google.protobuf.ByteString;
-
 import org.spongycastle.util.encoders.Hex;
 
 /**

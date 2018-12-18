@@ -28,7 +28,7 @@ public class ByteUtil {
 
     /**
      * Slice some data from byte array.
-     * @param data source byte array
+     * @param data  source byte array
      * @param begin slice start position
      * @param count sliced data length
      * @return byte[] sliced byte array
@@ -88,10 +88,9 @@ public class ByteUtil {
      * <br><br>
      * Instead of {@link org.spongycastle.util.BigIntegers#asUnsignedByteArray(BigInteger)}
      * <br>we use this custom method to avoid an empty array in case of BigInteger.ZERO
-     *
      * @param value - any big integer number. A <code>null</code>-value will return <code>null</code>
      * @return A byte array without a leading zero byte if present in the signed encoding.
-     *      BigInteger.ZERO will return an array with length 1 and byte-value 0.
+     * BigInteger.ZERO will return an array with length 1 and byte-value 0.
      */
     public static byte[] bigInteger2BytesOmitSign(BigInteger value) {
         if (value == null) {
@@ -110,8 +109,7 @@ public class ByteUtil {
     /**
      * The regular {@link BigInteger#toByteArray()} method isn't quite what we often need:
      * it appends a leading zero to indicate that the number is positive and may need padding.
-     *
-     * @param b the integer to format into a byte array
+     * @param b        the integer to format into a byte array
      * @param numBytes the desired size of the resulting byte array
      * @return numBytes byte long array.
      */

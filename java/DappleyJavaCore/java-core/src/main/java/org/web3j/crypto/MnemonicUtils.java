@@ -1,5 +1,9 @@
 package org.web3j.crypto;
 
+import org.spongycastle.crypto.digests.SHA512Digest;
+import org.spongycastle.crypto.generators.PKCS5S2ParametersGenerator;
+import org.spongycastle.crypto.params.KeyParameter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,16 +13,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.spongycastle.crypto.digests.SHA512Digest;
-import org.spongycastle.crypto.generators.PKCS5S2ParametersGenerator;
-import org.spongycastle.crypto.params.KeyParameter;
-
 import static org.web3j.crypto.Hash.sha256;
 
 /**
  * Provides utility methods to generate random mnemonics and also generate
  * seeds from mnemonics.
- *
  * @see <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">Mnemonic code
  * for generating deterministic keys</a>
  */
@@ -39,11 +38,10 @@ public class MnemonicUtils {
      * the end of the initial entropy. Next, these concatenated bits are split into groups of
      * 11 bits, each encoding a number from 0-2047, serving as an index into a wordlist. Finally,
      * we convert these numbers into words and use the joined words as a mnemonic sentence.
-     *
      * @param initialEntropy The initial entropy to generate mnemonic from
      * @return The generated mnemonic
      * @throws IllegalArgumentException If the given entropy is invalid
-     * @throws IllegalStateException If the word list has not been loaded
+     * @throws IllegalStateException    If the word list has not been loaded
      */
     public static String generateMnemonic(byte[] initialEntropy) {
         if (WORD_LIST == null) {
@@ -111,9 +109,8 @@ public class MnemonicUtils {
      * + passphrase (again in UTF-8 NFKD) used as the salt. The iteration count is set
      * to 2048 and HMAC-SHA512 is used as the pseudo-random function. The length of the
      * derived key is 512 bits (= 64 bytes).
-     *
-     * @param mnemonic The input mnemonic which should be 128-160 bits in length containing
-     *                 only valid words
+     * @param mnemonic   The input mnemonic which should be 128-160 bits in length containing
+     *                   only valid words
      * @param passphrase The passphrase which will be used as part of salt for PBKDF2
      *                   function
      * @return Byte array representation of the generated seed
@@ -190,7 +187,7 @@ public class MnemonicUtils {
         int value = 0;
         for (int i = 0; i < bits.length; i++) {
             boolean isSet = bits[i];
-            if (isSet)  {
+            if (isSet) {
                 value += 1 << bits.length - i - 1;
             }
         }

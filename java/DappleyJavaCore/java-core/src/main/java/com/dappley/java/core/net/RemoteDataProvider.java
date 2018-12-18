@@ -20,7 +20,7 @@ public class RemoteDataProvider implements DataProvider {
 
     public RemoteDataProvider(RemoteProtocalType type, String serverIp, int serverPort) {
         if (type == RemoteProtocalType.RPC) {
-            protocalProvider = new RpcProvider();
+            protocalProvider = new RpcProtocalProvider();
         } else {
             throw new IllegalArgumentException("only rpc protocal is supported now.");
         }

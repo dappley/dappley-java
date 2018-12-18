@@ -1,11 +1,11 @@
 package org.web3j.utils;
 
+import org.web3j.exceptions.MessageDecodingException;
+import org.web3j.exceptions.MessageEncodingException;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
-
-import org.web3j.exceptions.MessageDecodingException;
-import org.web3j.exceptions.MessageEncodingException;
 
 /**
  * <p>Message codec functions.</p>
@@ -113,7 +113,7 @@ public final class Numeric {
     public static String toHexStringWithPrefixZeroPadded(BigInteger value, int size) {
         return toHexStringZeroPadded(value, size, true);
     }
-    
+
     public static String toHexStringWithPrefixSafe(BigInteger value) {
         String result = toHexStringNoPrefix(value);
         if (result.length() < 2) {
@@ -177,7 +177,7 @@ public final class Numeric {
         int len = cleanInput.length();
 
         if (len == 0) {
-            return new byte[] {};
+            return new byte[]{};
         }
 
         byte[] data;

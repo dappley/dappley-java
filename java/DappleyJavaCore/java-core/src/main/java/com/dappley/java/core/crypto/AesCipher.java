@@ -3,16 +3,15 @@ package com.dappley.java.core.crypto;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.spongycastle.util.encoders.Hex;
 
-import java.security.Security;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.Security;
 
 /**
  * Utils of AES crypto encrypt/decrypt.
  * <p>Call encryptToHex to convert the result into Hex format in order to save on the disk.
- *    Call decryptFromHex to decrypt a secret string in Hex formt.</p>
+ * Call decryptFromHex to decrypt a secret string in Hex formt.</p>
  */
 public class AesCipher {
     private static final String TRANSFORMATION = "AES/CBC/PKCS7Padding";
@@ -27,7 +26,7 @@ public class AesCipher {
     /**
      * Returns the encypted data in hex format by 'AES' algorithm.
      * @param message the orginal data
-     * @param key secret key
+     * @param key     secret key
      * @return String hex format encypted data
      */
     public static String encryptToHex(String message, String key) {
@@ -43,7 +42,7 @@ public class AesCipher {
     /**
      * Returns the encypted bytes by 'AES' algorithm.
      * @param messageBytes the orginal data
-     * @param key secret key
+     * @param key          secret key
      * @return byte[] encypted data
      */
     public static byte[] encrypt(byte[] messageBytes, String key) {
@@ -63,7 +62,7 @@ public class AesCipher {
     /**
      * Returns the decrypted data by 'AES' algorithm.
      * @param message the encrypted data in hex format
-     * @param key secret key
+     * @param key     secret key
      * @return String decrypted data
      */
     public static byte[] decryptBytesFromHex(String message, String key) {
@@ -74,7 +73,7 @@ public class AesCipher {
     /**
      * Returns the decrypted data by 'AES' algorithm.
      * @param messageBytes the encrypted data
-     * @param key secret key
+     * @param key          secret key
      * @return byte[] decrypted data
      */
     public static byte[] decrypt(byte[] messageBytes, String key) {

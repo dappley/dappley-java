@@ -102,7 +102,7 @@ public class HashUtil {
      * Get the checksum of pubKeyHash
      * <p>Use sha256 algorithm compute twice to get a hash byte array, and then get the first N bytes as the checksum.</p>
      * @param pubKeyHash orginal data
-     * @param length the checksum's length
+     * @param length     the checksum's length
      * @return byte[] the checksum of versionedPayload
      */
     public static byte[] getPubKeyHashChecksum(byte[] pubKeyHash, int length) {
@@ -122,7 +122,7 @@ public class HashUtil {
 
     /**
      * Returns sign data of message
-     * @param data message
+     * @param data         message
      * @param privKeyBytes
      * @return byte[] sign data
      */

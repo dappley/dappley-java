@@ -5,12 +5,7 @@ import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.TxInput;
 import com.dappley.java.core.po.TxOutput;
 import com.dappley.java.core.po.Utxo;
-import com.dappley.java.core.util.AddressUtil;
-import com.dappley.java.core.util.ByteUtil;
-import com.dappley.java.core.util.HashUtil;
-import com.dappley.java.core.util.HexUtil;
-import com.dappley.java.core.util.ObjectUtils;
-
+import com.dappley.java.core.util.*;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
@@ -29,11 +24,11 @@ public class TransactionManager {
 
     /**
      * Create a new transaction
-     * @param utxos user's unspend vouts
-     * @param toAddress account address to be transfered
-     * @param amount alue to be transfered
+     * @param utxos      user's unspend vouts
+     * @param toAddress  account address to be transfered
+     * @param amount     alue to be transfered
      * @param privateKey
-     * @param contract contract content
+     * @param contract   contract content
      * @return Transaction a new transaction object
      */
     public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, BigInteger privateKey, String contract) {
@@ -43,11 +38,11 @@ public class TransactionManager {
 
     /**
      * Create a new transaction
-     * @param utxos user's unspend vouts
+     * @param utxos     user's unspend vouts
      * @param toAddress account address to be transfered
-     * @param amount value to be transfered
+     * @param amount    value to be transfered
      * @param ecKeyPair user's keypair
-     * @param contract contract content
+     * @param contract  contract content
      * @return Transaction a new transaction object
      */
     public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair, String contract) {
@@ -73,8 +68,8 @@ public class TransactionManager {
     /**
      * Build Transaction Vin list
      * @param transaction
-     * @param utxos unspend vouts
-     * @param ecKeyPair user's keypair
+     * @param utxos       unspend vouts
+     * @param ecKeyPair   user's keypair
      * @return BigInteger total amount can be used
      */
     private static BigInteger buildVin(Transaction transaction, List<Utxo> utxos, ECKeyPair ecKeyPair) {
@@ -100,11 +95,11 @@ public class TransactionManager {
     /**
      * Build Transaction Vout list
      * @param transaction
-     * @param toAddress To User address
-     * @param amount transfer account
+     * @param toAddress   To User address
+     * @param amount      transfer account
      * @param totalAmount utxo's all vout values
-     * @param contract contract content
-     * @param ecKeyPair user's keypair
+     * @param contract    contract content
+     * @param ecKeyPair   user's keypair
      */
     private static void buildVout(Transaction transaction, String toAddress, BigInteger amount, BigInteger totalAmount, ECKeyPair ecKeyPair, String contract) {
         if (totalAmount.compareTo(amount) < 0) {
@@ -147,7 +142,7 @@ public class TransactionManager {
     /**
      * Returns a Map relative to current transaction input list.
      * <p>Each input related to a previous transaction's output.
-     *    Make sure each txId reference in input is refer to a legal transaction's id.</p>
+     * Make sure each txId reference in input is refer to a legal transaction's id.</p>
      * @param txInputs current transaction inputs
      * @return Map related previous transaction data
      */
@@ -179,8 +174,8 @@ public class TransactionManager {
     /**
      * Sign for transaction's inputs
      * @param transaction
-     * @param privateKey user's private key
-     * @param utxos user's unspend vouts
+     * @param privateKey  user's private key
+     * @param utxos       user's unspend vouts
      */
     public static void sign(Transaction transaction, BigInteger privateKey, List<Utxo> utxos) {
         List<TxInput> txInputs = transaction.getTxInputs();
@@ -203,10 +198,10 @@ public class TransactionManager {
 
     /**
      * calculate transaction input list's sign value
-     * @param transaction origin transaction
-     * @param utxoMap previous utxos
+     * @param transaction     origin transaction
+     * @param utxoMap         previous utxos
      * @param transactionCopy copied transaction (for assemble sign value)
-     * @param privKeyBytes user's private key bytes
+     * @param privKeyBytes    user's private key bytes
      */
     private static void buildSignValue(Transaction transaction, Map<String, Utxo> utxoMap, Transaction transactionCopy, byte[] privKeyBytes) {
         List<TxInput> txCopyInputs = transactionCopy.getTxInputs();
@@ -234,7 +229,7 @@ public class TransactionManager {
 
     /**
      * Validate all input refer to a previous transaction's vout
-     * @param txInputs transaction input list
+     * @param txInputs       transaction input list
      * @param transactionMap previous transaction data map
      */
     private static void validateTransactionInputs(List<TxInput> txInputs, Map<String, Transaction> transactionMap) {

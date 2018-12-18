@@ -1,24 +1,18 @@
 package org.web3j.crypto;
 
-import java.math.BigInteger;
-import java.security.SignatureException;
-import java.util.Arrays;
-import java.util.Optional;
-
 import org.spongycastle.asn1.x9.X9ECParameters;
 import org.spongycastle.asn1.x9.X9IntegerConverter;
-import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.ec.CustomNamedCurves;
 import org.spongycastle.crypto.params.ECDomainParameters;
-import org.spongycastle.crypto.params.ECPrivateKeyParameters;
-import org.spongycastle.crypto.signers.ECDSASigner;
-import org.spongycastle.crypto.signers.HMacDSAKCalculator;
 import org.spongycastle.math.ec.ECAlgorithms;
 import org.spongycastle.math.ec.ECPoint;
 import org.spongycastle.math.ec.FixedPointCombMultiplier;
 import org.spongycastle.math.ec.custom.sec.SecP256K1Curve;
-
 import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+import java.security.SignatureException;
+import java.util.Arrays;
 
 import static org.web3j.utils.Assertions.verifyPrecondition;
 
@@ -90,9 +84,8 @@ public class Sign {
      * <p>Given the above two points, a correct usage of this method is inside a for loop from
      * 0 to 3, and if the output is null OR a key that is not the one you expect, you try again
      * with the next recId.</p>
-     *
-     * @param recId Which possible key to recover.
-     * @param sig the R and S components of the signature, wrapped.
+     * @param recId   Which possible key to recover.
+     * @param sig     the R and S components of the signature, wrapped.
      * @param message Hash of the data that was signed.
      * @return An ECKey containing only the public part, or null if recovery wasn't possible.
      */
@@ -154,11 +147,13 @@ public class Sign {
         return new BigInteger(1, Arrays.copyOfRange(qBytes, 1, qBytes.length));
     }
 
-    /** Decompress a compressed public key (x co-ord and low-bit of y-coord). */
+    /**
+     * Decompress a compressed public key (x co-ord and low-bit of y-coord).
+     */
     private static ECPoint decompressKey(BigInteger xBN, boolean yBit) {
         X9IntegerConverter x9 = new X9IntegerConverter();
         byte[] compEnc = x9.integerToBytes(xBN, 1 + x9.getByteLength(CURVE.getCurve()));
-        compEnc[0] = (byte)(yBit ? 0x03 : 0x02);
+        compEnc[0] = (byte) (yBit ? 0x03 : 0x02);
         return CURVE.getCurve().decodePoint(compEnc);
     }
 
@@ -166,12 +161,11 @@ public class Sign {
      * Given an arbitrary piece of text and an Ethereum message signature encoded in bytes,
      * returns the public key that was used to sign it. This can then be compared to the expected
      * public key to determine if the signature was correct.
-     *
-     * @param message RLP encoded message.
+     * @param message       RLP encoded message.
      * @param signatureData The message signature components
      * @return the public key used to sign the message
      * @throws SignatureException If the public key could not be recovered or if there was a
-     *     signature format error.
+     *                            signature format error.
      */
     public static BigInteger signedMessageToKey(
             byte[] message, SignatureData signatureData) throws SignatureException {
@@ -203,7 +197,6 @@ public class Sign {
 
     /**
      * Returns public key from the given private key.
-     *
      * @param privKey the private key to derive the public key from
      * @return BigInteger encoded public key
      */

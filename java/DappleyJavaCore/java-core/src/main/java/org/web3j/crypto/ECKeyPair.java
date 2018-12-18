@@ -1,17 +1,16 @@
 package org.web3j.crypto;
 
-import java.math.BigInteger;
-import java.security.KeyPair;
-import java.util.Arrays;
-
 import org.spongycastle.crypto.digests.SHA256Digest;
 import org.spongycastle.crypto.params.ECPrivateKeyParameters;
 import org.spongycastle.crypto.signers.ECDSASigner;
 import org.spongycastle.crypto.signers.HMacDSAKCalculator;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.spongycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
-
 import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+import java.security.KeyPair;
+import java.util.Arrays;
 
 /**
  * Elliptic Curve SECP-256k1 generated key pair.
@@ -35,8 +34,8 @@ public class ECKeyPair {
 
     /**
      * Sign a hash with the private key of this key pair.
-     * @param transactionHash   the hash to sign
-     * @return  An {@link ECDSASignature} of the hash
+     * @param transactionHash the hash to sign
+     * @return An {@link ECDSASignature} of the hash
      */
     public ECDSASignature sign(byte[] transactionHash) {
         ECDSASigner signer = new ECDSASigner(new HMacDSAKCalculator(new SHA256Digest()));

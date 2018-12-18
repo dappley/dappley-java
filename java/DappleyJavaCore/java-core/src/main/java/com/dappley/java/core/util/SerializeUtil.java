@@ -37,7 +37,7 @@ public class SerializeUtil {
      * Deserialize object
      * @param bytes byte array
      * @param clazz object Class name
-     * @param <T> the type of object
+     * @param <T>   the type of object
      * @return T object
      */
     public static <T> T decode(byte[] bytes, Class<T> clazz) {
@@ -50,9 +50,9 @@ public class SerializeUtil {
 
     /**
      * Serialize HashSet
-     * @param set object
+     * @param set   object
      * @param clazz object Class name
-     * @param <T> the type of object
+     * @param <T>   the type of object
      * @return byte[] byte array
      */
     public static <T> byte[] encodeSet(Set<T> set, Class<T> clazz) {
@@ -80,7 +80,7 @@ public class SerializeUtil {
      * Deserialize HashSet
      * @param bytes byte array
      * @param clazz object Class name
-     * @param <T> the type of elements in set
+     * @param <T>   the type of elements in set
      * @return HashSet<T>
      */
     public static <T> HashSet<T> decodeSet(byte[] bytes, Class<T> clazz) {
@@ -97,9 +97,9 @@ public class SerializeUtil {
 
     /**
      * Serialize ArrayList
-     * @param list object list
+     * @param list  object list
      * @param clazz object Class name
-     * @param <T> the type of object
+     * @param <T>   the type of object
      * @return byte[] byte array
      */
     public static <T extends Serializable> byte[] encodeList(List<T> list, Class<T> clazz) {
@@ -127,7 +127,7 @@ public class SerializeUtil {
      * Deserialize ArrayList
      * @param bytes byte array
      * @param clazz object Class name
-     * @param <T> the type of elements in set
+     * @param <T>   the type of elements in set
      * @return List<T>
      */
     public static <T extends Serializable> List<T> decodeList(byte[] bytes, Class<T> clazz) {

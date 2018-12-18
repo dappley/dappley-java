@@ -14,7 +14,7 @@ public class Asserts {
      */
     public static void clientInit(ManagedChannel channel) {
         if (channel == null) {
-            throw new IllegalStateException("RpcProvider.init should be called first.");
+            throw new IllegalStateException("RpcProtocalProvider.init should be called first.");
         }
     }
 

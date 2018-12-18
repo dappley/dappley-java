@@ -6,20 +6,15 @@ import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.web3j.crypto.ECKeyPair;
 
 import java.math.BigInteger;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.Security;
+import java.security.*;
 import java.security.spec.ECGenParameterSpec;
 import java.util.Arrays;
 
 /**
  * This class is used to generate EC KeyPairs and read key bytes from a base64 format string.
  * <p>
- *     The method <code>newKeyPair</code>will generate a new KeyPair by EC algorithm.
- *     If you wanna to read private/public key from disk, use getPublicKey/getPrivateKey.
+ * The method <code>newKeyPair</code>will generate a new KeyPair by EC algorithm.
+ * If you wanna to read private/public key from disk, use getPublicKey/getPrivateKey.
  * </p>
  */
 public class KeyPairTool {

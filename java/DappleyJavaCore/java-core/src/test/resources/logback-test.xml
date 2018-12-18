@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <contextName>dappley-java-core</contextName>
+    <timestamp key="TIMESTAMP" datePattern="yyyy-MM-dd" />
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{40} - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="stdout"  />
+    </root>
+</configuration>

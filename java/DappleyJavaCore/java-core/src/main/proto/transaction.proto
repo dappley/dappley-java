@@ -1,0 +1,25 @@
+syntax = "proto3";
+package corepb;
+
+option java_package = "com.dappley.java.core.protobuf";
+option java_outer_classname = "TransactionProto";
+
+message Transaction{
+    bytes ID = 1;
+    repeated TXInput Vin = 2;
+    repeated TXOutput Vout = 3;
+    uint64 Tip = 4;
+}
+
+message TXInput{
+    bytes Txid = 1;
+    int32 Vout = 2;
+    bytes Signature = 3;
+    bytes PubKey = 4;
+}
+
+message TXOutput{
+    bytes   Value = 1;
+    bytes   PubKeyHash = 2;
+    string  Contract = 3;
+}

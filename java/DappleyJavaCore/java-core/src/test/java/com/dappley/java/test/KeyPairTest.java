@@ -17,6 +17,13 @@ public class KeyPairTest {
     private static final String TAG = "KeyPairTest";
 
     @Test
+    public void newAddress() {
+        String address = AddressUtil.createUserAddress();
+        log.debug("address:" + address);
+        Assert.assertTrue(address.length() > 0);
+    }
+
+    @Test
     public void toPublicKey() {
         String privateKey = "f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b";
         BigInteger publickKey = KeyPairTool.getPublicKeyFromPrivate(new BigInteger(privateKey, 16));

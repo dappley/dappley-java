@@ -34,7 +34,7 @@ public class BlockChainInfo {
 
     /**
      * Convert to byte array
-     * @return
+     * @return byte[]
      */
     public byte[] toByteArray() {
         return SerializeUtil.encode(this);

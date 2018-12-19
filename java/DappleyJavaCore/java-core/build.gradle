@@ -1,10 +1,18 @@
 plugins {
     id 'java'
     id 'com.google.protobuf' version '0.8.7'
+    // binary plugins
+    id 'com.github.dcendents.android-maven' version '2.1'
+    id 'com.jfrog.bintray' version '1.8.4'
 }
 
-group 'com.dappley'
-version '1.0-SNAPSHOT'
+def RELEASE_GROUP_ID = "com.dappley"
+def RELEASE_ARTIFACT_ID = "java-core"
+def RELEASE_VERSION = "0.2-alpha"
+def SITE_URL = "https://github.com/dappley/dappley-java"
+
+group RELEASE_GROUP_ID
+version RELEASE_VERSION
 
 sourceCompatibility = 1.8
 
@@ -20,7 +28,7 @@ dependencies {
     implementation 'com.esotericsoftware.kryo:kryo:2.24.0'
     implementation 'com.google.protobuf:protobuf-java:3.6.1'
     implementation 'io.grpc:grpc-stub:1.15.1'
-    implementation 'io.grpc:grpc-protobuf:1.17.1'
+    implementation 'io.grpc:grpc-protobuf:1.15.1'
     implementation 'io.grpc:grpc-okhttp:1.15.1'
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
@@ -36,6 +44,7 @@ sourceSets {
         }
         java {
             srcDirs 'src/main/java', 'src/generated/main/grpc', 'src/generated/main/java'
+            exclude '**/*.proto'
         }
     }
 }
@@ -60,4 +69,92 @@ protobuf {
     }
 
     generatedFilesBaseDir = "$projectDir/src/generated"
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'jar'
+                name 'dappley-java-core'
+                groupId RELEASE_GROUP_ID
+                artifactId RELEASE_ARTIFACT_ID
+                version RELEASE_VERSION
+                url SITE_URL
+                licenses {
+                    license {
+                        name 'GNU Lesser General Public License v3.0'
+                        url 'http://www.gnu.org/licenses/lgpl-3.0.en.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'Dappley'
+                        name 'Dappley'
+                    }
+                }
+                scm {
+                    connection SITE_URL
+                    developerConnection SITE_URL
+                    url SITE_URL
+                }
+            }
+        }
+    }
+}
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task myJavadocs(type: Javadoc) {
+    failOnError false
+    source = sourceSets.main.java.srcDirs
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+bintray {
+    user = readPropertyFromLocalProperties("bintray.user")
+    key = readPropertyFromLocalProperties("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "dappley-java"
+        name = "dappley-java-core"
+        websiteUrl = SITE_URL
+        vcsUrl = SITE_URL
+        licenses = ["LGPL-3.0"]
+        publish = true
+    }
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/8/docs/api"
+    }
+}
+
+def readPropertyFromLocalProperties(String key) {
+    Properties properties = new Properties()
+    try {
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    } catch (Exception e) {
+        println("load local properties failed msg:${e.message}")
+    }
+    return properties.getProperty(key)
 }

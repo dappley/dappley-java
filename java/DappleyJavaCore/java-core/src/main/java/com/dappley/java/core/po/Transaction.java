@@ -62,7 +62,7 @@ public class Transaction implements Serializable {
 
     /**
      * Convert to TransactionProto.Transaction
-     * @return
+     * @return TransactionProto.Transaction
      */
     public TransactionProto.Transaction toProto() {
         TransactionProto.Transaction.Builder builder = TransactionProto.Transaction.newBuilder();
@@ -170,7 +170,7 @@ public class Transaction implements Serializable {
      * Returns hash of this object.
      * <p>First use serialize method to convert this one to a byte array.</p>
      * <p>Then call sha256 hash digest to get a hash value.</p>
-     * @return
+     * @return byte[]
      */
     public byte[] hash() {
         byte[] oldId = this.getId();

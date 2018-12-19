@@ -51,7 +51,7 @@ public class BlockHeader {
 
     /**
      * Convert to BlockProto.BlockHeader
-     * @return
+     * @return BlockProto.BlockHeader
      */
     public BlockProto.BlockHeader toProto() {
         BlockProto.BlockHeader.Builder builder = BlockProto.BlockHeader.newBuilder();

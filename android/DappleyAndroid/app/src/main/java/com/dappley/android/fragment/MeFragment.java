@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.dappley.android.ModifyPasswordActivity;
 import com.dappley.android.R;
-import com.dappley.android.sdk.po.Wallet;
+import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 

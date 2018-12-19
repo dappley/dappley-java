@@ -3,10 +3,10 @@ package com.dappley.android.sdk;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
-import com.dappley.android.sdk.crypto.AesCipher;
-import com.dappley.android.sdk.crypto.ShaDigest;
-import com.dappley.android.sdk.util.HashUtil;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.crypto.AesCipher;
+import com.dappley.java.core.crypto.ShaDigest;
+import com.dappley.java.core.util.HashUtil;
+import com.dappley.java.core.util.HexUtil;
 
 import org.junit.Assert;
 import org.junit.Test;

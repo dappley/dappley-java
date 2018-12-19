@@ -2,8 +2,8 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.BlockChainInfo;
-import com.dappley.android.sdk.util.SerializeUtil;
+import com.dappley.java.core.po.BlockChainInfo;
+import com.dappley.java.core.util.SerializeUtil;
 import com.tencent.mmkv.MMKV;
 
 import java.util.HashSet;

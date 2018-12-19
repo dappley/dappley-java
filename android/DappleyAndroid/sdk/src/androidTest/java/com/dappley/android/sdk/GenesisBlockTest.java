@@ -4,12 +4,13 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.dappley.android.sdk.chain.BlockManager;
+import com.dappley.android.sdk.config.Configuration;
+import com.dappley.java.core.chain.BlockManager;
 import com.dappley.android.sdk.db.BlockDb;
-import com.dappley.android.sdk.net.ProtocalProvider;
-import com.dappley.android.sdk.net.RpcProvider;
-import com.dappley.android.sdk.po.Block;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.net.ProtocalProvider;
+import com.dappley.java.core.net.RpcProtocalProvider;
+import com.dappley.java.core.po.Block;
+import com.dappley.java.core.util.HexUtil;
 import com.tencent.mmkv.MMKV;
 
 import org.junit.Assert;
@@ -24,10 +25,12 @@ public class GenesisBlockTest {
     @Test
     public void newGenesis() {
         Context context = InstrumentationRegistry.getTargetContext();
+        String serverIp = Configuration.getInstance(context).getServerIp();
+        int serverPort = Configuration.getInstance(context).getServerPort();
         MMKV.initialize(context);
 
-        ProtocalProvider protocalProvider = new RpcProvider();
-        protocalProvider.init(context);
+        ProtocalProvider protocalProvider = new RpcProtocalProvider();
+        protocalProvider.init(serverIp, serverPort);
         Block blockOnline = new Block(protocalProvider.getBlockByHeight(0));
         System.out.println(blockOnline.toString());
 

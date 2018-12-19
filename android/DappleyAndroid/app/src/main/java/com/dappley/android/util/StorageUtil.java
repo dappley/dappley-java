@@ -3,7 +3,7 @@ package com.dappley.android.util;
 import android.content.Context;
 
 import com.dappley.android.sdk.Dappley;
-import com.dappley.android.sdk.po.Wallet;
+import com.dappley.java.core.po.Wallet;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;

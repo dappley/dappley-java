@@ -27,7 +27,7 @@ import com.dappley.android.adapter.MainFragmentAdapter;
 import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
-import com.dappley.android.sdk.po.Wallet;
+import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.Constant;
 
 import java.util.List;

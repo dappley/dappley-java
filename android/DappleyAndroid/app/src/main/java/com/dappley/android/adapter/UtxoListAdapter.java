@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.dappley.android.R;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.util.HexUtil;
 
 import java.util.ArrayList;
 import java.util.List;

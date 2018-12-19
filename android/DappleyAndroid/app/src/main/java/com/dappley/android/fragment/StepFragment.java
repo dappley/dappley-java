@@ -24,7 +24,7 @@ import com.dappley.android.R;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.android.sdk.po.Wallet;
+import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;

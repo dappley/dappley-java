@@ -2,8 +2,8 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.util.HexUtil;
 import com.tencent.mmkv.MMKV;
 
 /**

@@ -6,12 +6,11 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.dappley.android.sdk.db.BlockChainDb;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.po.Wallet;
-import com.dappley.android.sdk.util.AddressUtil;
-import com.dappley.android.sdk.util.HashUtil;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.po.Wallet;
+import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.HashUtil;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -98,16 +97,18 @@ public class DappleyClientTest {
     public void encryptWallet() {
         Wallet wallet = new Wallet();
         wallet.setAddress("dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa");
-        String encypt = Dappley.encryptWallet(wallet, "123456");
-        Log.d(TAG, "encryptWallet: " + encypt);
+        wallet = Dappley.encryptWallet(wallet, "123456");
+        Log.d(TAG, "encryptWallet: " + wallet.toString());
 
-        Assert.assertTrue(encypt.length() > 0);
+        Assert.assertTrue(wallet.getEncryptedPrivateKey().length() > 0);
     }
 
     @Test
     public void decryptWallet() {
+        Wallet wallet = new Wallet();
         String encypted = "5bcbcba5d9f6f0ddff4ace46a2b001011a68bacec2231cfc3c07d570bf2dd048c694309cf1359a37f584d724258acb61";
-        Wallet wallet = Dappley.decryptWallet(encypted, "123456");
+        wallet.setEncryptedPrivateKey(encypted);
+        wallet = Dappley.decryptWallet(wallet, "123456");
         Log.d(TAG, "decryptWallet: " + wallet.toString());
 
         Assert.assertNotNull(wallet);

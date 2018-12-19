@@ -5,8 +5,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
-import com.dappley.android.sdk.net.DataProvider;
-import com.dappley.android.sdk.net.ProtocalProvider;
+import com.dappley.java.core.net.DataProvider;
+import com.dappley.java.core.net.ProtocalProvider;
 import com.dappley.android.sdk.task.LocalBlockSchedule;
 import com.tencent.mmkv.MMKV;
 

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dappley.android.R;
-import com.dappley.android.sdk.po.Wallet;
+import com.dappley.java.core.po.Wallet;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

@@ -22,7 +22,7 @@ import com.dappley.android.WalletAddActivity;
 import com.dappley.android.WalletDetailActivity;
 import com.dappley.android.adapter.WalletListAdapter;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.android.sdk.po.Wallet;
+import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;

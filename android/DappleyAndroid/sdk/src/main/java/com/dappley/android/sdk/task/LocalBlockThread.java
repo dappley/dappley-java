@@ -4,22 +4,23 @@ import android.content.Context;
 import android.util.Log;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
+import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.db.BlockIndexDb;
 import com.dappley.android.sdk.db.TransactionDb;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
-import com.dappley.android.sdk.net.DataProvider;
-import com.dappley.android.sdk.net.RemoteDataProvider;
-import com.dappley.android.sdk.po.Block;
-import com.dappley.android.sdk.po.Transaction;
-import com.dappley.android.sdk.po.TxInput;
-import com.dappley.android.sdk.po.TxOutput;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.util.AddressUtil;
-import com.dappley.android.sdk.util.HexUtil;
-import com.dappley.android.sdk.util.ObjectUtils;
+import com.dappley.java.core.net.DataProvider;
+import com.dappley.java.core.net.RemoteDataProvider;
+import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Transaction;
+import com.dappley.java.core.po.TxInput;
+import com.dappley.java.core.po.TxOutput;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.HexUtil;
+import com.dappley.java.core.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -52,13 +53,16 @@ public class LocalBlockThread implements Runnable {
 
     public LocalBlockThread(Context context) {
         this.context = context;
+        String serverIp = Configuration.getInstance(context).getServerIp();
+        int serverPort = Configuration.getInstance(context).getServerPort();
+
         blockDb = new BlockDb(context);
         blockIndexDb = new BlockIndexDb(context);
         blockChainDb = new BlockChainDb(context);
         transactionDb = new TransactionDb(context);
         utxoDb = new UtxoDb(context);
         utxoIndexDb = new UtxoIndexDb(context);
-        dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
+        dataProvider = new RemoteDataProvider(RemoteDataProvider.RemoteProtocalType.RPC, serverIp, serverPort);
 
         genesisHash = BlockChainManager.getGenesisHash(context);
 

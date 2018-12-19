@@ -4,11 +4,12 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.dappley.android.sdk.net.DataProvider;
+import com.dappley.android.sdk.config.Configuration;
+import com.dappley.java.core.net.DataProvider;
 import com.dappley.android.sdk.net.LocalDataProvider;
-import com.dappley.android.sdk.net.ProtocalProvider;
-import com.dappley.android.sdk.net.RemoteDataProvider;
-import com.dappley.android.sdk.po.Utxo;
+import com.dappley.java.core.net.ProtocalProvider;
+import com.dappley.java.core.net.RemoteDataProvider;
+import com.dappley.java.core.po.Utxo;
 import com.tencent.mmkv.MMKV;
 
 import org.junit.Test;
@@ -22,6 +23,8 @@ public class UtxoTest {
     @Test
     public void testUtxo() {
         Context context = InstrumentationRegistry.getTargetContext();
+        String serverIp = Configuration.getInstance(context).getServerIp();
+        int serverPort = Configuration.getInstance(context).getServerPort();
         MMKV.initialize(context);
 
         String address = "1BpXBb3uunLa9PL8MmkMtKNd3jzb5DHFkG";
@@ -29,7 +32,7 @@ public class UtxoTest {
         List<Utxo> utxos = dataProvider.getUtxos(address);
         System.out.println(utxos == null ? 0 : utxos.size());
 
-        dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
+        dataProvider = new RemoteDataProvider(RemoteDataProvider.RemoteProtocalType.RPC, serverIp, serverPort);
         utxos = dataProvider.getUtxos(address);
         System.out.println(utxos == null ? 0 : utxos.size());
     }

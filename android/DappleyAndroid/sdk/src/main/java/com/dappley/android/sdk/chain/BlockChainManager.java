@@ -4,9 +4,10 @@ import android.content.Context;
 
 import com.dappley.android.sdk.db.BlockChainDb;
 import com.dappley.android.sdk.db.BlockDb;
-import com.dappley.android.sdk.po.Block;
-import com.dappley.android.sdk.util.HexUtil;
-import com.dappley.android.sdk.util.ObjectUtils;
+import com.dappley.java.core.chain.BlockManager;
+import com.dappley.java.core.po.Block;
+import com.dappley.java.core.util.HexUtil;
+import com.dappley.java.core.util.ObjectUtils;
 
 import java.util.HashSet;
 import java.util.Set;

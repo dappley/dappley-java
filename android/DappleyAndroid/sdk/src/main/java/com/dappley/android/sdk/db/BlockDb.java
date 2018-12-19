@@ -2,9 +2,9 @@ package com.dappley.android.sdk.db;
 
 import android.content.Context;
 
-import com.dappley.android.sdk.po.Block;
-import com.dappley.android.sdk.po.Transaction;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Transaction;
+import com.dappley.java.core.util.HexUtil;
 import com.tencent.mmkv.MMKV;
 
 import java.util.List;

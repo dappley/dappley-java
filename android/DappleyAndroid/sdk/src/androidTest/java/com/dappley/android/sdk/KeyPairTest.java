@@ -3,12 +3,12 @@ package com.dappley.android.sdk;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
-import com.dappley.android.sdk.chain.WalletManager;
-import com.dappley.android.sdk.crypto.KeyPairTool;
-import com.dappley.android.sdk.po.Wallet;
-import com.dappley.android.sdk.util.AddressUtil;
-import com.dappley.android.sdk.util.HashUtil;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.chain.WalletManager;
+import com.dappley.java.core.crypto.KeyPairTool;
+import com.dappley.java.core.po.Wallet;
+import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.HashUtil;
+import com.dappley.java.core.util.HexUtil;
 
 import org.junit.Assert;
 import org.junit.Test;

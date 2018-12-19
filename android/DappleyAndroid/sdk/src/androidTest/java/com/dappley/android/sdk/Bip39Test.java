@@ -3,8 +3,8 @@ package com.dappley.android.sdk;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
-import com.dappley.android.sdk.crypto.Bip39;
-import com.dappley.android.sdk.util.HexUtil;
+import com.dappley.java.core.crypto.Bip39;
+import com.dappley.java.core.util.HexUtil;
 
 import org.junit.Assert;
 import org.junit.Test;

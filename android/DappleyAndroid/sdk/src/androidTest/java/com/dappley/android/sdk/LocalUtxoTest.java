@@ -7,9 +7,9 @@ import android.support.test.runner.AndroidJUnit4;
 import com.dappley.android.sdk.chain.BlockChainManager;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
-import com.dappley.android.sdk.net.ProtocalProvider;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.po.UtxoIndex;
+import com.dappley.java.core.net.ProtocalProvider;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.po.UtxoIndex;
 import com.tencent.mmkv.MMKV;
 
 import org.junit.Assert;

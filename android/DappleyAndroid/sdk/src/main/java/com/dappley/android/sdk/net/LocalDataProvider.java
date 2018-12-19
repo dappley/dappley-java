@@ -6,10 +6,11 @@ import com.dappley.android.sdk.chain.BlockChainManager;
 import com.dappley.android.sdk.db.BlockDb;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
-import com.dappley.android.sdk.po.Block;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.po.UtxoIndex;
-import com.dappley.android.sdk.util.ObjectUtils;
+import com.dappley.java.core.net.DataProvider;
+import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.po.UtxoIndex;
+import com.dappley.java.core.util.ObjectUtils;
 import com.tencent.mmkv.MMKV;
 
 import java.math.BigInteger;

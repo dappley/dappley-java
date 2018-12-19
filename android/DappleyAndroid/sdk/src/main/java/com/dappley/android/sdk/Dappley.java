@@ -5,20 +5,21 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.dappley.android.sdk.chain.BlockChainManager;
-import com.dappley.android.sdk.chain.TransactionManager;
 import com.dappley.android.sdk.chain.UtxoManager;
-import com.dappley.android.sdk.chain.WalletManager;
-import com.dappley.android.sdk.net.DataProvider;
+import com.dappley.android.sdk.config.Configuration;
 import com.dappley.android.sdk.net.LocalDataProvider;
-import com.dappley.android.sdk.net.RemoteDataProvider;
-import com.dappley.android.sdk.net.TransactionSender;
-import com.dappley.android.sdk.po.Transaction;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.po.Wallet;
 import com.dappley.android.sdk.service.LocalBlockService;
-import com.dappley.android.sdk.util.AddressUtil;
 import com.dappley.android.sdk.util.Asserts;
-import com.dappley.android.sdk.util.ObjectUtils;
+import com.dappley.java.core.chain.TransactionManager;
+import com.dappley.java.core.chain.WalletManager;
+import com.dappley.java.core.net.DataProvider;
+import com.dappley.java.core.net.RemoteDataProvider;
+import com.dappley.java.core.net.TransactionSender;
+import com.dappley.java.core.po.Transaction;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.po.Wallet;
+import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -46,6 +47,8 @@ public class Dappley {
      */
     public static void init(Context context, DataMode dataMode) {
         Dappley.context = context;
+        String serverIp = Configuration.getInstance(context).getServerIp();
+        int serverPort = Configuration.getInstance(context).getServerPort();
         try {
             if (dataMode == DataMode.LOCAL_STORAGE) {
                 dataProvider = new LocalDataProvider(context);
@@ -54,9 +57,9 @@ public class Dappley {
                 Intent intent = new Intent(context, LocalBlockService.class);
                 context.startService(intent);
             } else if (dataMode == DataMode.REMOTE_ONLINE) {
-                dataProvider = new RemoteDataProvider(context, RemoteDataProvider.RemoteProtocalType.RPC);
+                dataProvider = new RemoteDataProvider(RemoteDataProvider.RemoteProtocalType.RPC, serverIp, serverPort);
             }
-            transactionSender = new TransactionSender(context);
+            transactionSender = new TransactionSender(serverIp, serverPort);
         } catch (Exception e) {
             Log.e(TAG, "init: ", e);
         }
@@ -271,7 +274,7 @@ public class Dappley {
         if (ObjectUtils.isEmpty(allUtxo)) {
             return false;
         }
-        List<Utxo> utxos = UtxoManager.getUnspentUtxos(allUtxo, amount);
+        List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, amount);
         if (ObjectUtils.isEmpty(utxos)) {
             return false;
         }

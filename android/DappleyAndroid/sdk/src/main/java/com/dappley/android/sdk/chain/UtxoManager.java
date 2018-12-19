@@ -7,16 +7,15 @@ import com.dappley.android.sdk.db.BlockIndexDb;
 import com.dappley.android.sdk.db.TransactionDb;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
-import com.dappley.android.sdk.po.Transaction;
-import com.dappley.android.sdk.po.TxInput;
-import com.dappley.android.sdk.po.TxOutput;
-import com.dappley.android.sdk.po.Utxo;
-import com.dappley.android.sdk.po.UtxoIndex;
-import com.dappley.android.sdk.util.AddressUtil;
-import com.dappley.android.sdk.util.ObjectUtils;
+import com.dappley.java.core.po.Transaction;
+import com.dappley.java.core.po.TxInput;
+import com.dappley.java.core.po.TxOutput;
+import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.po.UtxoIndex;
+import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.ObjectUtils;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -32,26 +31,8 @@ public class UtxoManager {
      * @param amount target amount
      * @return List<Utxo> suitable utxo list
      */
-    public static List<Utxo> getUnspentUtxos(List<Utxo> utxos, BigInteger amount) {
-        if (ObjectUtils.isEmpty(utxos)) {
-            return null;
-        }
-        List<Utxo> spendables = new ArrayList<>();
-        BigInteger accumulated = BigInteger.ZERO;
-        for (Utxo utxo : utxos) {
-            if (utxo == null) {
-                continue;
-            }
-            accumulated = accumulated.add(utxo.getAmount());
-            spendables.add(utxo);
-            if (accumulated.compareTo(amount) >= 0) {
-                break;
-            }
-        }
-        if (accumulated.compareTo(amount) < 0) {
-            throw new IllegalArgumentException("there is no enough vout");
-        }
-        return spendables;
+    public static List<Utxo> getSuitableUtxos(List<Utxo> utxos, BigInteger amount) {
+        return com.dappley.java.core.chain.UtxoManager.getSuitableUtxos(utxos, amount);
     }
 
     /**

@@ -100,9 +100,12 @@ install {
                 }
             }
         }
+        jar {
+            exclude '**/*.proto'
+        }
     }
 }
-tasks.withType(JavaCompile){
+tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 tasks.withType(Javadoc) {
@@ -111,10 +114,6 @@ tasks.withType(Javadoc) {
 task sourcesJar(type: Jar) {
     from sourceSets.main.java.srcDirs
     classifier = 'sources'
-}
-task myJavadocs(type: Javadoc) {
-    failOnError false
-    source = sourceSets.main.java.srcDirs
 }
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'

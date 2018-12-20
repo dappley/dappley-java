@@ -1,0 +1,3 @@
+rootProject.name = 'DappleyJavaSdk'
+include 'java-sdk'
+

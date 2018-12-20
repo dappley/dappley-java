@@ -25,12 +25,12 @@ import java.math.BigInteger;
 import java.util.List;
 
 /**
- * Dapple sdk enter.
+ * Dappley Android Sdk client.
  * <p>
- *     Provides different method to synchronize block infomation from neighbor chain nodes.
+ *     Provides different method to synchronize block information from neighbor chain nodes.
  * </p>
  * <p>
- *    DataMode.LOCAL_STORAGE: use local storage with frame MMKV.
+ *    DataMode.LOCAL_STORAGE: use local storage with database frame MMKV.
  *    DataMode.REMOTE_ONLINE: use real data from neighbor chain node. This may cause info delay while the node's data is not accurate.
  * </p>
  */

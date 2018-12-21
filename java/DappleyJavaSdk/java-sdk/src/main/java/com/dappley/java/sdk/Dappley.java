@@ -41,10 +41,11 @@ public class Dappley {
     public static void init(DataMode dataMode) {
         String serverIp = Configuration.getInstance().getServerIp();
         int serverPort = Configuration.getInstance().getServerPort();
+        if (dataMode == DataMode.LOCAL_STORAGE) {
+            throw new IllegalArgumentException("only remote online mode is supported now.");
+        }
         try {
-            if (dataMode == DataMode.LOCAL_STORAGE) {
-                throw new IllegalArgumentException("only remote online mode is supported now.");
-            } else if (dataMode == DataMode.REMOTE_ONLINE) {
+            if (dataMode == DataMode.REMOTE_ONLINE) {
                 dataProvider = new RemoteDataProvider(RemoteDataProvider.RemoteProtocalType.RPC, serverIp, serverPort);
             }
             transactionSender = new TransactionSender(serverIp, serverPort);
@@ -186,6 +187,7 @@ public class Dappley {
      * @return List<Utxo>
      */
     public static List<Utxo> getUtxos(String address, int pageIndex, int pageSize) {
+        Asserts.init(dataProvider);
         if (pageIndex <= 0 || pageSize <= 0) {
             return null;
         }
@@ -214,6 +216,7 @@ public class Dappley {
      * @return boolean is transaction committed successful
      */
     public static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey) {
+        Asserts.init(dataProvider);
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
         }
@@ -227,12 +230,13 @@ public class Dappley {
      * Send a new transaction to blockchain online.
      * @param fromAddress     from user's address
      * @param contractAddress contract's address
-     * @param amount          transferred amount
+     * @param fee             contract transaction fee
      * @param privateKey      from user's privateKey
      * @param contract        contract content
      * @return boolean is transaction committed successful
      */
-    public static boolean sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger amount, BigInteger privateKey, String contract) {
+    public static boolean sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger fee, BigInteger privateKey, String contract) {
+        Asserts.init(dataProvider);
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
         }
@@ -242,7 +246,7 @@ public class Dappley {
         if (contract == null) {
             throw new NullPointerException("contract cannot be null !");
         }
-        return sendTransaction(fromAddress, contractAddress, amount, privateKey, contract);
+        return sendTransaction(fromAddress, contractAddress, fee, privateKey, contract);
     }
 
     /**

@@ -152,10 +152,10 @@ public class DappleyTest {
     @Test
     public void testSendTransactionWithContract() {
         Dappley.init(Dappley.DataMode.REMOTE_ONLINE);
-        String from = "dW9JqNxJ4T39MmTPx5imuS1LopsGzrXj9X";
+        String from = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         String toContract = "cXuhH7BZKHuMAGtLkqyzGZWSBBSWqm19KY";
         BigInteger amount = new BigInteger("1");
-        BigInteger privateKey = new BigInteger("558d86a761934501f6419b8187925b5cc186368c20aace1d7af91f98fc5c79bc", 16);
+        BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
         String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
         contract = String.format(contract, from, 10);
         boolean isSuccess = Dappley.sendTransactionWithContract(from, toContract, amount, privateKey, contract);

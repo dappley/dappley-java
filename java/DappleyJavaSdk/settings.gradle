@@ -1,3 +1,4 @@
 rootProject.name = 'DappleyJavaSdk'
 include 'java-sdk'
+include 'java-sdk-demo'
 

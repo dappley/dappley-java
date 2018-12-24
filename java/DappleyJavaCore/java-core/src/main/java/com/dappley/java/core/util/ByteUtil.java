@@ -103,6 +103,15 @@ public class ByteUtil {
             System.arraycopy(data, 1, tmp, 0, tmp.length);
             data = tmp;
         }
+        // add prefix 0... if data.length is less than 32 (256/8)
+        if (data.length < 32) {
+            int diff = 32 - data.length;
+            byte[] prefix = new byte[diff];
+            for (int i = 0; i < diff; i++) {
+                prefix[i] = 0;
+            }
+            data = concat(prefix, data);
+        }
         return data;
     }
 

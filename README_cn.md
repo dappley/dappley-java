@@ -1,6 +1,6 @@
 # Dappley Java
 
-![platform](https://img.shields.io/badge/platform-Android | Java-lightgrey.svg)
+![platform](https://img.shields.io/badge/platform-Android%20%7C%20Java-lightgrey.svg)
 ![Gradle](https://img.shields.io/badge/Gradle-4.6-brightgreen.svg)
 [![last commit](https://img.shields.io/github/last-commit/dappley/dappley-java.svg)](https://github.com/dappley/dappley-java/commits/master)
 ![repo size](https://img.shields.io/github/repo-size/dappley/dappley-java.svg)

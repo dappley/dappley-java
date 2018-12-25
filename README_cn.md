@@ -1,7 +1,14 @@
 # Dappley Java
+
+![platform](https://img.shields.io/badge/platform-Android | Java-lightgrey.svg)
+![Gradle](https://img.shields.io/badge/Gradle-4.6-brightgreen.svg)
+[![last commit](https://img.shields.io/github/last-commit/dappley/dappley-java.svg)](https://github.com/dappley/dappley-java/commits/master)
+![repo size](https://img.shields.io/github/repo-size/dappley/dappley-java.svg)
+[![Licence](https://img.shields.io/github/license/dappley/dappley-java.svg)](https://github.com/dappley/dappley-java/blob/master/LICENSE)
+
 Dappley公链项目Java生态应用接入SDK。
 
-English versioned document see [README](README).
+English versioned document see [README](README.md).
 
 ## Android SDK指南
 dappley-android-sdk是Dappley项目在Android平台上的SDK。
@@ -80,3 +87,6 @@ Wallet wallet = Dappley.createWallet();
 * [MMKV](https://github.com/Tencent/MMKV)
 * [web3j](https://github.com/web3j/web3j)
 * [TodayStepCounter](https://github.com/jiahongfei/TodayStepCounter)
+
+## 开源协议
+dappley-java项目遵从开源协议[LGPL-3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html).

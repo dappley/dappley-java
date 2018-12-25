@@ -1,7 +1,14 @@
 # Dappley Java
+
+![platform](https://img.shields.io/badge/platform-Android | Java-lightgrey.svg)
+![Gradle](https://img.shields.io/badge/Gradle-4.6-brightgreen.svg)
+[![last commit](https://img.shields.io/github/last-commit/dappley/dappley-java.svg)](https://github.com/dappley/dappley-java/commits/master)
+![repo size](https://img.shields.io/github/repo-size/dappley/dappley-java.svg)
+[![Licence](https://img.shields.io/github/license/dappley/dappley-java.svg)](https://github.com/dappley/dappley-java/blob/master/LICENSE)
+
 Project dapplay-java is built for applications of Dappley project base on java language.
 
-中文版文档详见 [README](README_cn).
+中文版文档详见 [README](README_cn.md).
 
 ## Android SDK Guide
 The dappley-android-sdk is a sdk for Dappley project on Android platform.
@@ -89,3 +96,6 @@ Go and see [FAQ](https://github.com/dappley/dappley-java/wiki/FAQ)
 * [MMKV](https://github.com/Tencent/MMKV)
 * [web3j](https://github.com/web3j/web3j)
 * [TodayStepCounter](https://github.com/jiahongfei/TodayStepCounter)
+
+## License
+The dappley-java project is licensed under the [GNU Lesser General Public License Version 3.0 (“LGPL v3”)](https://www.gnu.org/licenses/lgpl-3.0.en.html).

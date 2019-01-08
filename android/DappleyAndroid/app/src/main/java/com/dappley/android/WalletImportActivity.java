@@ -149,12 +149,12 @@ public class WalletImportActivity extends AppCompatActivity {
                 etPrivateKey.requestFocus();
                 return true;
             }
-            int byte32 = 32 * 8;
-            if (bigInteger.toString(2).length() != byte32 && bigInteger.toString(2).length() != byte32 - 1) {
-                Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
-                etPrivateKey.requestFocus();
-                return true;
-            }
+//            int byte32 = 32 * 8;
+//            if (bigInteger.toString(2).length() != byte32 && bigInteger.toString(2).length() != byte32 - 1) {
+//                Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
+//                etPrivateKey.requestFocus();
+//                return true;
+//            }
         }
         return false;
     }

@@ -215,7 +215,6 @@ public class WalletFragment extends Fragment {
     public void onScanResult(Intent data) {
         Bundle bundle = data.getExtras();
         String scanResult = bundle.getString(com.google.zxing.util.Constant.INTENT_EXTRA_KEY_QR_SCAN);
-        System.out.println("scan:" + scanResult);
 
         if (scanResult != null && scanResult.length() > 0) {
             Intent intent = new Intent(getActivity(), TransferActivity.class);

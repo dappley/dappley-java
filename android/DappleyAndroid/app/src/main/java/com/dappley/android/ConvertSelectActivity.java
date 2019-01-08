@@ -92,6 +92,7 @@ public class ConvertSelectActivity extends AppCompatActivity {
 
             }
         });
+        swipeRecyclerView.setLoadMoreEnable(false);
         swipeRecyclerView.setEmptyView(EmptyView.get(this));
     }
 

@@ -23,6 +23,7 @@ import com.dappley.android.adapter.WalletPagerAdapter;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
+import com.dappley.android.widget.AutoHeightViewPager;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
@@ -49,7 +50,7 @@ public class TransferActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
 
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
+    AutoHeightViewPager viewPager;
 
     @BindView(R.id.et_to_address)
     EditText etToAddress;

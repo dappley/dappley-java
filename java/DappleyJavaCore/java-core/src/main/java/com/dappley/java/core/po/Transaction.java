@@ -186,7 +186,6 @@ public class Transaction implements Serializable {
 
         // serialize the new transaction oject
         byte[] serialized = serialize();
-        log.error("serialized hex: " + HexUtil.toHex(serialized));
         // get sha256 hash
         byte[] hash = ShaDigest.sha256(serialized);
         this.setId(oldId);

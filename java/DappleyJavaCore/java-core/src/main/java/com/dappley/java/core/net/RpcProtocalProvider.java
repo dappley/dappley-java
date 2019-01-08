@@ -7,6 +7,7 @@ import com.dappley.java.core.protobuf.RpcServiceGrpc;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.Asserts;
 import com.google.protobuf.ByteString;
+import io.grpc.ConnectivityState;
 import io.grpc.ManagedChannel;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,11 +19,22 @@ import java.util.List;
 @Slf4j
 public class RpcProtocalProvider implements ProtocalProvider {
 
-    private static ManagedChannel channel;
-    private static RpcServiceGrpc.RpcServiceBlockingStub rpcServiceBlockingStub;
+    private ManagedChannel channel;
+    private RpcServiceGrpc.RpcServiceBlockingStub rpcServiceBlockingStub;
+    private String serverIp;
+    private int serverPort;
 
     @Override
     public void init(String serverIp, int serverPort) {
+        this.serverIp = serverIp;
+        this.serverPort = serverPort;
+        initChannel();
+    }
+
+    /**
+     * Initialize rpc channel
+     */
+    private void initChannel() {
         RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverIp, serverPort);
         channel = channelBuilder.build();
     }
@@ -31,7 +43,13 @@ public class RpcProtocalProvider implements ProtocalProvider {
      * Returns the singleton of RpcServiceBlockingStub
      * @return RpcServiceBlockingStub
      */
-    private static RpcServiceGrpc.RpcServiceBlockingStub getRpcServiceBlockingStub() {
+    private RpcServiceGrpc.RpcServiceBlockingStub getRpcServiceBlockingStub() {
+        if (channel.getState(true) == ConnectivityState.IDLE
+                || channel.getState(true) == ConnectivityState.SHUTDOWN
+                || channel.getState(true) == ConnectivityState.TRANSIENT_FAILURE) {
+            initChannel();
+            rpcServiceBlockingStub = RpcServiceGrpc.newBlockingStub(channel);
+        }
         if (rpcServiceBlockingStub == null) {
             rpcServiceBlockingStub = RpcServiceGrpc.newBlockingStub(channel);
         }

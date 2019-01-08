@@ -3,6 +3,8 @@ package com.dappley.java.core.net;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Builder for ManagedChannel Class
  */
@@ -17,6 +19,7 @@ public class RpcChannelBuilder {
      */
     public RpcChannelBuilder newChannel(String name, int port) {
         channelBuilder = ManagedChannelBuilder.forAddress(name, port)
+                .idleTimeout(15, TimeUnit.SECONDS)
                 .usePlaintext();
         return this;
     }

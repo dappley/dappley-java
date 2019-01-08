@@ -20,7 +20,7 @@ public class TransactionManager {
     /**
      * default tip of each transaction
      */
-    private static final long TIP_DEFAULT = 0;
+    private static final BigInteger TIP_DEFAULT = BigInteger.ZERO;
 
     /**
      * Create a new transaction

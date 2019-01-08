@@ -283,6 +283,38 @@ public final class RpcServiceGrpc {
      return getRpcSendTransactionMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest,
+      com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse> getRpcSendBatchTransactionMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcSendBatchTransaction",
+      requestType = com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest,
+      com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse> getRpcSendBatchTransactionMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest, com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse> getRpcSendBatchTransactionMethod;
+    if ((getRpcSendBatchTransactionMethod = RpcServiceGrpc.getRpcSendBatchTransactionMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcSendBatchTransactionMethod = RpcServiceGrpc.getRpcSendBatchTransactionMethod) == null) {
+          RpcServiceGrpc.getRpcSendBatchTransactionMethod = getRpcSendBatchTransactionMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest, com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcSendBatchTransaction"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcSendBatchTransaction"))
+                  .build();
+          }
+        }
+     }
+     return getRpcSendBatchTransactionMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest,
       com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod;
 
@@ -313,6 +345,38 @@ public final class RpcServiceGrpc {
         }
      }
      return getRpcGetNewTransactionsMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse> getRpcGetAllTransactionsFromTxPoolMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetAllTransactionsFromTxPool",
+      requestType = com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse> getRpcGetAllTransactionsFromTxPoolMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest, com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse> getRpcGetAllTransactionsFromTxPoolMethod;
+    if ((getRpcGetAllTransactionsFromTxPoolMethod = RpcServiceGrpc.getRpcGetAllTransactionsFromTxPoolMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcGetAllTransactionsFromTxPoolMethod = RpcServiceGrpc.getRpcGetAllTransactionsFromTxPoolMethod) == null) {
+          RpcServiceGrpc.getRpcGetAllTransactionsFromTxPoolMethod = getRpcGetAllTransactionsFromTxPoolMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest, com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcGetAllTransactionsFromTxPool"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcGetAllTransactionsFromTxPool"))
+                  .build();
+          }
+        }
+     }
+     return getRpcGetAllTransactionsFromTxPoolMethod;
   }
 
   /**
@@ -400,9 +464,23 @@ public final class RpcServiceGrpc {
 
     /**
      */
+    public void rpcSendBatchTransaction(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcSendBatchTransactionMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void rpcGetNewTransactions(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest request,
         io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getRpcGetNewTransactionsMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rpcGetAllTransactionsFromTxPool(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetAllTransactionsFromTxPoolMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -464,12 +542,26 @@ public final class RpcServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse>(
                   this, METHODID_RPC_SEND_TRANSACTION)))
           .addMethod(
+            getRpcSendBatchTransactionMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest,
+                com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse>(
+                  this, METHODID_RPC_SEND_BATCH_TRANSACTION)))
+          .addMethod(
             getRpcGetNewTransactionsMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
                 com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest,
                 com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse>(
                   this, METHODID_RPC_GET_NEW_TRANSACTIONS)))
+          .addMethod(
+            getRpcGetAllTransactionsFromTxPoolMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest,
+                com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse>(
+                  this, METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL)))
           .build();
     }
   }
@@ -558,10 +650,26 @@ public final class RpcServiceGrpc {
 
     /**
      */
+    public void rpcSendBatchTransaction(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcSendBatchTransactionMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void rpcGetNewTransactions(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest request,
         io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getRpcGetNewTransactionsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rpcGetAllTransactionsFromTxPool(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcGetAllTransactionsFromTxPoolMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -641,10 +749,24 @@ public final class RpcServiceGrpc {
 
     /**
      */
+    public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse rpcSendBatchTransaction(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcSendBatchTransactionMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public java.util.Iterator<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> rpcGetNewTransactions(
         com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest request) {
       return blockingServerStreamingCall(
           getChannel(), getRpcGetNewTransactionsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse rpcGetAllTransactionsFromTxPool(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcGetAllTransactionsFromTxPoolMethod(), getCallOptions(), request);
     }
   }
 
@@ -729,6 +851,22 @@ public final class RpcServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRpcSendTransactionMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse> rpcSendBatchTransaction(
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcSendBatchTransactionMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse> rpcGetAllTransactionsFromTxPool(
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcGetAllTransactionsFromTxPoolMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RPC_GET_VERSION = 0;
@@ -739,7 +877,9 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 5;
   private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 6;
   private static final int METHODID_RPC_SEND_TRANSACTION = 7;
-  private static final int METHODID_RPC_GET_NEW_TRANSACTIONS = 8;
+  private static final int METHODID_RPC_SEND_BATCH_TRANSACTION = 8;
+  private static final int METHODID_RPC_GET_NEW_TRANSACTIONS = 9;
+  private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 10;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -790,9 +930,17 @@ public final class RpcServiceGrpc {
           serviceImpl.rpcSendTransaction((com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse>) responseObserver);
           break;
+        case METHODID_RPC_SEND_BATCH_TRANSACTION:
+          serviceImpl.rpcSendBatchTransaction((com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse>) responseObserver);
+          break;
         case METHODID_RPC_GET_NEW_TRANSACTIONS:
           serviceImpl.rpcGetNewTransactions((com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse>) responseObserver);
+          break;
+        case METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL:
+          serviceImpl.rpcGetAllTransactionsFromTxPool((com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -863,7 +1011,9 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcGetBlockByHashMethod())
               .addMethod(getRpcGetBlockByHeightMethod())
               .addMethod(getRpcSendTransactionMethod())
+              .addMethod(getRpcSendBatchTransactionMethod())
               .addMethod(getRpcGetNewTransactionsMethod())
+              .addMethod(getRpcGetAllTransactionsFromTxPoolMethod())
               .build();
         }
       }

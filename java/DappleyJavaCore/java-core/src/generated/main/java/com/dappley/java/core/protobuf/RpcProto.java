@@ -19,30 +19,16 @@ public final class RpcProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>string passphrase = 2;</code>
+     * <code>string passphrase = 1;</code>
      */
     java.lang.String getPassphrase();
     /**
-     * <code>string passphrase = 2;</code>
+     * <code>string passphrase = 1;</code>
      */
     com.google.protobuf.ByteString
         getPassphraseBytes();
   }
   /**
-   * <pre>
-   * The request message
-   * </pre>
-   *
    * Protobuf type {@code rpcpb.CreateWalletRequest}
    */
   public  static final class CreateWalletRequest extends
@@ -55,7 +41,6 @@ public final class RpcProto {
       super(builder);
     }
     private CreateWalletRequest() {
-      name_ = "";
       passphrase_ = "";
     }
 
@@ -84,12 +69,6 @@ public final class RpcProto {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               passphrase_ = s;
@@ -127,44 +106,10 @@ public final class RpcProto {
               com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest.class, com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest.Builder.class);
     }
 
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PASSPHRASE_FIELD_NUMBER = 2;
+    public static final int PASSPHRASE_FIELD_NUMBER = 1;
     private volatile java.lang.Object passphrase_;
     /**
-     * <code>string passphrase = 2;</code>
+     * <code>string passphrase = 1;</code>
      */
     public java.lang.String getPassphrase() {
       java.lang.Object ref = passphrase_;
@@ -179,7 +124,7 @@ public final class RpcProto {
       }
     }
     /**
-     * <code>string passphrase = 2;</code>
+     * <code>string passphrase = 1;</code>
      */
     public com.google.protobuf.ByteString
         getPassphraseBytes() {
@@ -209,11 +154,8 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
       if (!getPassphraseBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, passphrase_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, passphrase_);
       }
       unknownFields.writeTo(output);
     }
@@ -224,11 +166,8 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
       if (!getPassphraseBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, passphrase_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, passphrase_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -246,8 +185,6 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest other = (com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest) obj;
 
       boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
       result = result && getPassphrase()
           .equals(other.getPassphrase());
       result = result && unknownFields.equals(other.unknownFields);
@@ -261,8 +198,6 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + PASSPHRASE_FIELD_NUMBER;
       hash = (53 * hash) + getPassphrase().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -361,10 +296,6 @@ public final class RpcProto {
       return builder;
     }
     /**
-     * <pre>
-     * The request message
-     * </pre>
-     *
      * Protobuf type {@code rpcpb.CreateWalletRequest}
      */
     public static final class Builder extends
@@ -402,8 +333,6 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        name_ = "";
-
         passphrase_ = "";
 
         return this;
@@ -432,7 +361,6 @@ public final class RpcProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest result = new com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest(this);
-        result.name_ = name_;
         result.passphrase_ = passphrase_;
         onBuilt();
         return result;
@@ -482,10 +410,6 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.CreateWalletRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
         if (!other.getPassphrase().isEmpty()) {
           passphrase_ = other.passphrase_;
           onChanged();
@@ -519,78 +443,9 @@ public final class RpcProto {
         return this;
       }
 
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object passphrase_ = "";
       /**
-       * <code>string passphrase = 2;</code>
+       * <code>string passphrase = 1;</code>
        */
       public java.lang.String getPassphrase() {
         java.lang.Object ref = passphrase_;
@@ -605,7 +460,7 @@ public final class RpcProto {
         }
       }
       /**
-       * <code>string passphrase = 2;</code>
+       * <code>string passphrase = 1;</code>
        */
       public com.google.protobuf.ByteString
           getPassphraseBytes() {
@@ -621,7 +476,7 @@ public final class RpcProto {
         }
       }
       /**
-       * <code>string passphrase = 2;</code>
+       * <code>string passphrase = 1;</code>
        */
       public Builder setPassphrase(
           java.lang.String value) {
@@ -634,7 +489,7 @@ public final class RpcProto {
         return this;
       }
       /**
-       * <code>string passphrase = 2;</code>
+       * <code>string passphrase = 1;</code>
        */
       public Builder clearPassphrase() {
         
@@ -643,7 +498,7 @@ public final class RpcProto {
         return this;
       }
       /**
-       * <code>string passphrase = 2;</code>
+       * <code>string passphrase = 1;</code>
        */
       public Builder setPassphraseBytes(
           com.google.protobuf.ByteString value) {
@@ -712,16 +567,6 @@ public final class RpcProto {
   public interface UnlockWalletRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.UnlockWalletRequest)
       com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
   }
   /**
    * Protobuf type {@code rpcpb.UnlockWalletRequest}
@@ -736,7 +581,6 @@ public final class RpcProto {
       super(builder);
     }
     private UnlockWalletRequest() {
-      name_ = "";
     }
 
     @java.lang.Override
@@ -752,7 +596,6 @@ public final class RpcProto {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -763,12 +606,6 @@ public final class RpcProto {
             case 0:
               done = true;
               break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
             default: {
               if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -801,40 +638,6 @@ public final class RpcProto {
               com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest.class, com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest.Builder.class);
     }
 
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -849,9 +652,6 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -861,9 +661,6 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -880,8 +677,6 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest other = (com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest) obj;
 
       boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -893,8 +688,6 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1028,8 +821,6 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        name_ = "";
-
         return this;
       }
 
@@ -1056,7 +847,6 @@ public final class RpcProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest result = new com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest(this);
-        result.name_ = name_;
         onBuilt();
         return result;
       }
@@ -1105,10 +895,6 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -1135,75 +921,6 @@ public final class RpcProto {
             mergeFrom(parsedMessage);
           }
         }
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
         return this;
       }
       @java.lang.Override
@@ -1259,576 +976,16 @@ public final class RpcProto {
 
   }
 
-  public interface UnlockWalletResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.UnlockWalletResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string message = 1;</code>
-     */
-    java.lang.String getMessage();
-    /**
-     * <code>string message = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getMessageBytes();
-  }
-  /**
-   * Protobuf type {@code rpcpb.UnlockWalletResponse}
-   */
-  public  static final class UnlockWalletResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.UnlockWalletResponse)
-      UnlockWalletResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use UnlockWalletResponse.newBuilder() to construct.
-    private UnlockWalletResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private UnlockWalletResponse() {
-      message_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UnlockWalletResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              message_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.class, com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.Builder.class);
-    }
-
-    public static final int MESSAGE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object message_;
-    /**
-     * <code>string message = 1;</code>
-     */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        message_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string message = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse other = (com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse) obj;
-
-      boolean result = true;
-      result = result && getMessage()
-          .equals(other.getMessage());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.UnlockWalletResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.UnlockWalletResponse)
-        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.class, com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        message_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse build() {
-        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse result = new com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse(this);
-        result.message_ = message_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.getDefaultInstance()) return this;
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object message_ = "";
-      /**
-       * <code>string message = 1;</code>
-       */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          message_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string message = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          message_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string message = 1;</code>
-       */
-      public Builder setMessage(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        message_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string message = 1;</code>
-       */
-      public Builder clearMessage() {
-        
-        message_ = getDefaultInstance().getMessage();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string message = 1;</code>
-       */
-      public Builder setMessageBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        message_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.UnlockWalletResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.UnlockWalletResponse)
-    private static final com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<UnlockWalletResponse>
-        PARSER = new com.google.protobuf.AbstractParser<UnlockWalletResponse>() {
-      @java.lang.Override
-      public UnlockWalletResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UnlockWalletResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<UnlockWalletResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UnlockWalletResponse> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface AddProducerRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.AddProducerRequest)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>string address = 2;</code>
+     * <code>string address = 1;</code>
      */
     java.lang.String getAddress();
     /**
-     * <code>string address = 2;</code>
+     * <code>string address = 1;</code>
      */
     com.google.protobuf.ByteString
         getAddressBytes();
@@ -1846,7 +1003,6 @@ public final class RpcProto {
       super(builder);
     }
     private AddProducerRequest() {
-      name_ = "";
       address_ = "";
     }
 
@@ -1875,12 +1031,6 @@ public final class RpcProto {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               address_ = s;
@@ -1918,44 +1068,10 @@ public final class RpcProto {
               com.dappley.java.core.protobuf.RpcProto.AddProducerRequest.class, com.dappley.java.core.protobuf.RpcProto.AddProducerRequest.Builder.class);
     }
 
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ADDRESS_FIELD_NUMBER = 2;
+    public static final int ADDRESS_FIELD_NUMBER = 1;
     private volatile java.lang.Object address_;
     /**
-     * <code>string address = 2;</code>
+     * <code>string address = 1;</code>
      */
     public java.lang.String getAddress() {
       java.lang.Object ref = address_;
@@ -1970,7 +1086,7 @@ public final class RpcProto {
       }
     }
     /**
-     * <code>string address = 2;</code>
+     * <code>string address = 1;</code>
      */
     public com.google.protobuf.ByteString
         getAddressBytes() {
@@ -2000,11 +1116,8 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
       if (!getAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, address_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       unknownFields.writeTo(output);
     }
@@ -2015,11 +1128,8 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
       if (!getAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, address_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2037,8 +1147,6 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.AddProducerRequest other = (com.dappley.java.core.protobuf.RpcProto.AddProducerRequest) obj;
 
       boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
       result = result && getAddress()
           .equals(other.getAddress());
       result = result && unknownFields.equals(other.unknownFields);
@@ -2052,8 +1160,6 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAddress().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -2189,8 +1295,6 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        name_ = "";
-
         address_ = "";
 
         return this;
@@ -2219,7 +1323,6 @@ public final class RpcProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.RpcProto.AddProducerRequest buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.AddProducerRequest result = new com.dappley.java.core.protobuf.RpcProto.AddProducerRequest(this);
-        result.name_ = name_;
         result.address_ = address_;
         onBuilt();
         return result;
@@ -2269,10 +1372,6 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.AddProducerRequest other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.AddProducerRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
         if (!other.getAddress().isEmpty()) {
           address_ = other.address_;
           onChanged();
@@ -2306,78 +1405,9 @@ public final class RpcProto {
         return this;
       }
 
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object address_ = "";
       /**
-       * <code>string address = 2;</code>
+       * <code>string address = 1;</code>
        */
       public java.lang.String getAddress() {
         java.lang.Object ref = address_;
@@ -2392,7 +1422,7 @@ public final class RpcProto {
         }
       }
       /**
-       * <code>string address = 2;</code>
+       * <code>string address = 1;</code>
        */
       public com.google.protobuf.ByteString
           getAddressBytes() {
@@ -2408,7 +1438,7 @@ public final class RpcProto {
         }
       }
       /**
-       * <code>string address = 2;</code>
+       * <code>string address = 1;</code>
        */
       public Builder setAddress(
           java.lang.String value) {
@@ -2421,7 +1451,7 @@ public final class RpcProto {
         return this;
       }
       /**
-       * <code>string address = 2;</code>
+       * <code>string address = 1;</code>
        */
       public Builder clearAddress() {
         
@@ -2430,7 +1460,7 @@ public final class RpcProto {
         return this;
       }
       /**
-       * <code>string address = 2;</code>
+       * <code>string address = 1;</code>
        */
       public Builder setAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -2501,31 +1531,11 @@ public final class RpcProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    java.lang.String getPassphrase();
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getPassphraseBytes();
-
-    /**
-     * <code>string address = 3;</code>
+     * <code>string address = 1;</code>
      */
     java.lang.String getAddress();
     /**
-     * <code>string address = 3;</code>
+     * <code>string address = 1;</code>
      */
     com.google.protobuf.ByteString
         getAddressBytes();
@@ -2543,8 +1553,6 @@ public final class RpcProto {
       super(builder);
     }
     private GetBalanceRequest() {
-      name_ = "";
-      passphrase_ = "";
       address_ = "";
     }
 
@@ -2573,18 +1581,6 @@ public final class RpcProto {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              passphrase_ = s;
-              break;
-            }
-            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               address_ = s;
@@ -2622,78 +1618,10 @@ public final class RpcProto {
               com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest.Builder.class);
     }
 
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PASSPHRASE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object passphrase_;
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    public java.lang.String getPassphrase() {
-      java.lang.Object ref = passphrase_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        passphrase_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPassphraseBytes() {
-      java.lang.Object ref = passphrase_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        passphrase_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ADDRESS_FIELD_NUMBER = 3;
+    public static final int ADDRESS_FIELD_NUMBER = 1;
     private volatile java.lang.Object address_;
     /**
-     * <code>string address = 3;</code>
+     * <code>string address = 1;</code>
      */
     public java.lang.String getAddress() {
       java.lang.Object ref = address_;
@@ -2708,7 +1636,7 @@ public final class RpcProto {
       }
     }
     /**
-     * <code>string address = 3;</code>
+     * <code>string address = 1;</code>
      */
     public com.google.protobuf.ByteString
         getAddressBytes() {
@@ -2738,14 +1666,8 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
-      if (!getPassphraseBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, passphrase_);
-      }
       if (!getAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       unknownFields.writeTo(output);
     }
@@ -2756,14 +1678,8 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
-      if (!getPassphraseBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, passphrase_);
-      }
       if (!getAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2781,10 +1697,6 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest) obj;
 
       boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getPassphrase()
-          .equals(other.getPassphrase());
       result = result && getAddress()
           .equals(other.getAddress());
       result = result && unknownFields.equals(other.unknownFields);
@@ -2798,10 +1710,6 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + PASSPHRASE_FIELD_NUMBER;
-      hash = (53 * hash) + getPassphrase().hashCode();
       hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAddress().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -2937,10 +1845,6 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        name_ = "";
-
-        passphrase_ = "";
-
         address_ = "";
 
         return this;
@@ -2969,8 +1873,6 @@ public final class RpcProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest(this);
-        result.name_ = name_;
-        result.passphrase_ = passphrase_;
         result.address_ = address_;
         onBuilt();
         return result;
@@ -3020,14 +1922,6 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.GetBalanceRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (!other.getPassphrase().isEmpty()) {
-          passphrase_ = other.passphrase_;
-          onChanged();
-        }
         if (!other.getAddress().isEmpty()) {
           address_ = other.address_;
           onChanged();
@@ -3061,147 +1955,9 @@ public final class RpcProto {
         return this;
       }
 
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object passphrase_ = "";
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public java.lang.String getPassphrase() {
-        java.lang.Object ref = passphrase_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          passphrase_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPassphraseBytes() {
-        java.lang.Object ref = passphrase_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          passphrase_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public Builder setPassphrase(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        passphrase_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public Builder clearPassphrase() {
-        
-        passphrase_ = getDefaultInstance().getPassphrase();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public Builder setPassphraseBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        passphrase_ = value;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object address_ = "";
       /**
-       * <code>string address = 3;</code>
+       * <code>string address = 1;</code>
        */
       public java.lang.String getAddress() {
         java.lang.Object ref = address_;
@@ -3216,7 +1972,7 @@ public final class RpcProto {
         }
       }
       /**
-       * <code>string address = 3;</code>
+       * <code>string address = 1;</code>
        */
       public com.google.protobuf.ByteString
           getAddressBytes() {
@@ -3232,7 +1988,7 @@ public final class RpcProto {
         }
       }
       /**
-       * <code>string address = 3;</code>
+       * <code>string address = 1;</code>
        */
       public Builder setAddress(
           java.lang.String value) {
@@ -3245,7 +2001,7 @@ public final class RpcProto {
         return this;
       }
       /**
-       * <code>string address = 3;</code>
+       * <code>string address = 1;</code>
        */
       public Builder clearAddress() {
         
@@ -3254,7 +2010,7 @@ public final class RpcProto {
         return this;
       }
       /**
-       * <code>string address = 3;</code>
+       * <code>string address = 1;</code>
        */
       public Builder setAddressBytes(
           com.google.protobuf.ByteString value) {
@@ -3966,29 +2722,29 @@ public final class RpcProto {
     com.google.protobuf.ByteString getAmount();
 
     /**
-     * <code>string Walletpath = 4;</code>
+     * <code>string walletPath = 4;</code>
      */
-    java.lang.String getWalletpath();
+    java.lang.String getWalletPath();
     /**
-     * <code>string Walletpath = 4;</code>
+     * <code>string walletPath = 4;</code>
      */
     com.google.protobuf.ByteString
-        getWalletpathBytes();
+        getWalletPathBytes();
 
     /**
-     * <code>uint64 tip = 5;</code>
+     * <code>bytes tip = 5;</code>
      */
-    long getTip();
+    com.google.protobuf.ByteString getTip();
 
     /**
-     * <code>string contract = 6;</code>
+     * <code>string data = 6;</code>
      */
-    java.lang.String getContract();
+    java.lang.String getData();
     /**
-     * <code>string contract = 6;</code>
+     * <code>string data = 6;</code>
      */
     com.google.protobuf.ByteString
-        getContractBytes();
+        getDataBytes();
   }
   /**
    * Protobuf type {@code rpcpb.SendRequest}
@@ -4006,9 +2762,9 @@ public final class RpcProto {
       from_ = "";
       to_ = "";
       amount_ = com.google.protobuf.ByteString.EMPTY;
-      walletpath_ = "";
-      tip_ = 0L;
-      contract_ = "";
+      walletPath_ = "";
+      tip_ = com.google.protobuf.ByteString.EMPTY;
+      data_ = "";
     }
 
     @java.lang.Override
@@ -4055,18 +2811,18 @@ public final class RpcProto {
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              walletpath_ = s;
+              walletPath_ = s;
               break;
             }
-            case 40: {
+            case 42: {
 
-              tip_ = input.readUInt64();
+              tip_ = input.readBytes();
               break;
             }
             case 50: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              contract_ = s;
+              data_ = s;
               break;
             }
             default: {
@@ -4179,33 +2935,33 @@ public final class RpcProto {
     }
 
     public static final int WALLETPATH_FIELD_NUMBER = 4;
-    private volatile java.lang.Object walletpath_;
+    private volatile java.lang.Object walletPath_;
     /**
-     * <code>string Walletpath = 4;</code>
+     * <code>string walletPath = 4;</code>
      */
-    public java.lang.String getWalletpath() {
-      java.lang.Object ref = walletpath_;
+    public java.lang.String getWalletPath() {
+      java.lang.Object ref = walletPath_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        walletpath_ = s;
+        walletPath_ = s;
         return s;
       }
     }
     /**
-     * <code>string Walletpath = 4;</code>
+     * <code>string walletPath = 4;</code>
      */
     public com.google.protobuf.ByteString
-        getWalletpathBytes() {
-      java.lang.Object ref = walletpath_;
+        getWalletPathBytes() {
+      java.lang.Object ref = walletPath_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        walletpath_ = b;
+        walletPath_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -4213,42 +2969,42 @@ public final class RpcProto {
     }
 
     public static final int TIP_FIELD_NUMBER = 5;
-    private long tip_;
+    private com.google.protobuf.ByteString tip_;
     /**
-     * <code>uint64 tip = 5;</code>
+     * <code>bytes tip = 5;</code>
      */
-    public long getTip() {
+    public com.google.protobuf.ByteString getTip() {
       return tip_;
     }
 
-    public static final int CONTRACT_FIELD_NUMBER = 6;
-    private volatile java.lang.Object contract_;
+    public static final int DATA_FIELD_NUMBER = 6;
+    private volatile java.lang.Object data_;
     /**
-     * <code>string contract = 6;</code>
+     * <code>string data = 6;</code>
      */
-    public java.lang.String getContract() {
-      java.lang.Object ref = contract_;
+    public java.lang.String getData() {
+      java.lang.Object ref = data_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        contract_ = s;
+        data_ = s;
         return s;
       }
     }
     /**
-     * <code>string contract = 6;</code>
+     * <code>string data = 6;</code>
      */
     public com.google.protobuf.ByteString
-        getContractBytes() {
-      java.lang.Object ref = contract_;
+        getDataBytes() {
+      java.lang.Object ref = data_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        contract_ = b;
+        data_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -4278,14 +3034,14 @@ public final class RpcProto {
       if (!amount_.isEmpty()) {
         output.writeBytes(3, amount_);
       }
-      if (!getWalletpathBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, walletpath_);
+      if (!getWalletPathBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, walletPath_);
       }
-      if (tip_ != 0L) {
-        output.writeUInt64(5, tip_);
+      if (!tip_.isEmpty()) {
+        output.writeBytes(5, tip_);
       }
-      if (!getContractBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, contract_);
+      if (!getDataBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, data_);
       }
       unknownFields.writeTo(output);
     }
@@ -4306,15 +3062,15 @@ public final class RpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, amount_);
       }
-      if (!getWalletpathBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, walletpath_);
+      if (!getWalletPathBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, walletPath_);
       }
-      if (tip_ != 0L) {
+      if (!tip_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(5, tip_);
+          .computeBytesSize(5, tip_);
       }
-      if (!getContractBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, contract_);
+      if (!getDataBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, data_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4338,12 +3094,12 @@ public final class RpcProto {
           .equals(other.getTo());
       result = result && getAmount()
           .equals(other.getAmount());
-      result = result && getWalletpath()
-          .equals(other.getWalletpath());
-      result = result && (getTip()
-          == other.getTip());
-      result = result && getContract()
-          .equals(other.getContract());
+      result = result && getWalletPath()
+          .equals(other.getWalletPath());
+      result = result && getTip()
+          .equals(other.getTip());
+      result = result && getData()
+          .equals(other.getData());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4362,12 +3118,11 @@ public final class RpcProto {
       hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
       hash = (53 * hash) + getAmount().hashCode();
       hash = (37 * hash) + WALLETPATH_FIELD_NUMBER;
-      hash = (53 * hash) + getWalletpath().hashCode();
+      hash = (53 * hash) + getWalletPath().hashCode();
       hash = (37 * hash) + TIP_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getTip());
-      hash = (37 * hash) + CONTRACT_FIELD_NUMBER;
-      hash = (53 * hash) + getContract().hashCode();
+      hash = (53 * hash) + getTip().hashCode();
+      hash = (37 * hash) + DATA_FIELD_NUMBER;
+      hash = (53 * hash) + getData().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4507,11 +3262,11 @@ public final class RpcProto {
 
         amount_ = com.google.protobuf.ByteString.EMPTY;
 
-        walletpath_ = "";
+        walletPath_ = "";
 
-        tip_ = 0L;
+        tip_ = com.google.protobuf.ByteString.EMPTY;
 
-        contract_ = "";
+        data_ = "";
 
         return this;
       }
@@ -4542,9 +3297,9 @@ public final class RpcProto {
         result.from_ = from_;
         result.to_ = to_;
         result.amount_ = amount_;
-        result.walletpath_ = walletpath_;
+        result.walletPath_ = walletPath_;
         result.tip_ = tip_;
-        result.contract_ = contract_;
+        result.data_ = data_;
         onBuilt();
         return result;
       }
@@ -4604,15 +3359,15 @@ public final class RpcProto {
         if (other.getAmount() != com.google.protobuf.ByteString.EMPTY) {
           setAmount(other.getAmount());
         }
-        if (!other.getWalletpath().isEmpty()) {
-          walletpath_ = other.walletpath_;
+        if (!other.getWalletPath().isEmpty()) {
+          walletPath_ = other.walletPath_;
           onChanged();
         }
-        if (other.getTip() != 0L) {
+        if (other.getTip() != com.google.protobuf.ByteString.EMPTY) {
           setTip(other.getTip());
         }
-        if (!other.getContract().isEmpty()) {
-          contract_ = other.contract_;
+        if (!other.getData().isEmpty()) {
+          data_ = other.data_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -4811,166 +3566,169 @@ public final class RpcProto {
         return this;
       }
 
-      private java.lang.Object walletpath_ = "";
+      private java.lang.Object walletPath_ = "";
       /**
-       * <code>string Walletpath = 4;</code>
+       * <code>string walletPath = 4;</code>
        */
-      public java.lang.String getWalletpath() {
-        java.lang.Object ref = walletpath_;
+      public java.lang.String getWalletPath() {
+        java.lang.Object ref = walletPath_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          walletpath_ = s;
+          walletPath_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string Walletpath = 4;</code>
+       * <code>string walletPath = 4;</code>
        */
       public com.google.protobuf.ByteString
-          getWalletpathBytes() {
-        java.lang.Object ref = walletpath_;
+          getWalletPathBytes() {
+        java.lang.Object ref = walletPath_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          walletpath_ = b;
+          walletPath_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string Walletpath = 4;</code>
+       * <code>string walletPath = 4;</code>
        */
-      public Builder setWalletpath(
+      public Builder setWalletPath(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        walletpath_ = value;
+        walletPath_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string Walletpath = 4;</code>
+       * <code>string walletPath = 4;</code>
        */
-      public Builder clearWalletpath() {
+      public Builder clearWalletPath() {
         
-        walletpath_ = getDefaultInstance().getWalletpath();
+        walletPath_ = getDefaultInstance().getWalletPath();
         onChanged();
         return this;
       }
       /**
-       * <code>string Walletpath = 4;</code>
+       * <code>string walletPath = 4;</code>
        */
-      public Builder setWalletpathBytes(
+      public Builder setWalletPathBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        walletpath_ = value;
+        walletPath_ = value;
         onChanged();
         return this;
       }
 
-      private long tip_ ;
+      private com.google.protobuf.ByteString tip_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>uint64 tip = 5;</code>
+       * <code>bytes tip = 5;</code>
        */
-      public long getTip() {
+      public com.google.protobuf.ByteString getTip() {
         return tip_;
       }
       /**
-       * <code>uint64 tip = 5;</code>
+       * <code>bytes tip = 5;</code>
        */
-      public Builder setTip(long value) {
-        
+      public Builder setTip(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         tip_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 tip = 5;</code>
+       * <code>bytes tip = 5;</code>
        */
       public Builder clearTip() {
         
-        tip_ = 0L;
+        tip_ = getDefaultInstance().getTip();
         onChanged();
         return this;
       }
 
-      private java.lang.Object contract_ = "";
+      private java.lang.Object data_ = "";
       /**
-       * <code>string contract = 6;</code>
+       * <code>string data = 6;</code>
        */
-      public java.lang.String getContract() {
-        java.lang.Object ref = contract_;
+      public java.lang.String getData() {
+        java.lang.Object ref = data_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          contract_ = s;
+          data_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string contract = 6;</code>
+       * <code>string data = 6;</code>
        */
       public com.google.protobuf.ByteString
-          getContractBytes() {
-        java.lang.Object ref = contract_;
+          getDataBytes() {
+        java.lang.Object ref = data_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          contract_ = b;
+          data_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string contract = 6;</code>
+       * <code>string data = 6;</code>
        */
-      public Builder setContract(
+      public Builder setData(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        contract_ = value;
+        data_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string contract = 6;</code>
+       * <code>string data = 6;</code>
        */
-      public Builder clearContract() {
+      public Builder clearData() {
         
-        contract_ = getDefaultInstance().getContract();
+        data_ = getDefaultInstance().getData();
         onChanged();
         return this;
       }
       /**
-       * <code>string contract = 6;</code>
+       * <code>string data = 6;</code>
        */
-      public Builder setContractBytes(
+      public Builder setDataBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        contract_ = value;
+        data_ = value;
         onChanged();
         return this;
       }
@@ -5022,693 +3780,6 @@ public final class RpcProto {
 
     @java.lang.Override
     public com.dappley.java.core.protobuf.RpcProto.SendRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface GetWalletAddressRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetWalletAddressRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string name = 1;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>string name = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    java.lang.String getPassphrase();
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getPassphraseBytes();
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetWalletAddressRequest}
-   */
-  public  static final class GetWalletAddressRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetWalletAddressRequest)
-      GetWalletAddressRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetWalletAddressRequest.newBuilder() to construct.
-    private GetWalletAddressRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetWalletAddressRequest() {
-      name_ = "";
-      passphrase_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetWalletAddressRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              passphrase_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetWalletAddressRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetWalletAddressRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.class, com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.Builder.class);
-    }
-
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
-    /**
-     * <code>string name = 1;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PASSPHRASE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object passphrase_;
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    public java.lang.String getPassphrase() {
-      java.lang.Object ref = passphrase_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        passphrase_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string passphrase = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPassphraseBytes() {
-      java.lang.Object ref = passphrase_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        passphrase_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
-      if (!getPassphraseBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, passphrase_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
-      if (!getPassphraseBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, passphrase_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest other = (com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest) obj;
-
-      boolean result = true;
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getPassphrase()
-          .equals(other.getPassphrase());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-      hash = (37 * hash) + PASSPHRASE_FIELD_NUMBER;
-      hash = (53 * hash) + getPassphrase().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.GetWalletAddressRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetWalletAddressRequest)
-        com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetWalletAddressRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetWalletAddressRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.class, com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        name_ = "";
-
-        passphrase_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetWalletAddressRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest result = new com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest(this);
-        result.name_ = name_;
-        result.passphrase_ = passphrase_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest.getDefaultInstance()) return this;
-        if (!other.getName().isEmpty()) {
-          name_ = other.name_;
-          onChanged();
-        }
-        if (!other.getPassphrase().isEmpty()) {
-          passphrase_ = other.passphrase_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object name_ = "";
-      /**
-       * <code>string name = 1;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          name_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder clearName() {
-        
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string name = 1;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object passphrase_ = "";
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public java.lang.String getPassphrase() {
-        java.lang.Object ref = passphrase_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          passphrase_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getPassphraseBytes() {
-        java.lang.Object ref = passphrase_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          passphrase_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public Builder setPassphrase(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        passphrase_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public Builder clearPassphrase() {
-        
-        passphrase_ = getDefaultInstance().getPassphrase();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string passphrase = 2;</code>
-       */
-      public Builder setPassphraseBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        passphrase_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetWalletAddressRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetWalletAddressRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetWalletAddressRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetWalletAddressRequest>() {
-      @java.lang.Override
-      public GetWalletAddressRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetWalletAddressRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetWalletAddressRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetWalletAddressRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetWalletAddressRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7088,6 +5159,4606 @@ public final class RpcProto {
 
   }
 
+  public interface GetVersionRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetVersionRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string protoVersion = 1;</code>
+     */
+    java.lang.String getProtoVersion();
+    /**
+     * <code>string protoVersion = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getProtoVersionBytes();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetVersionRequest}
+   */
+  public  static final class GetVersionRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetVersionRequest)
+      GetVersionRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetVersionRequest.newBuilder() to construct.
+    private GetVersionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetVersionRequest() {
+      protoVersion_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetVersionRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              protoVersion_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.class, com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.Builder.class);
+    }
+
+    public static final int PROTOVERSION_FIELD_NUMBER = 1;
+    private volatile java.lang.Object protoVersion_;
+    /**
+     * <code>string protoVersion = 1;</code>
+     */
+    public java.lang.String getProtoVersion() {
+      java.lang.Object ref = protoVersion_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        protoVersion_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string protoVersion = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProtoVersionBytes() {
+      java.lang.Object ref = protoVersion_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        protoVersion_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getProtoVersionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, protoVersion_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getProtoVersionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, protoVersion_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetVersionRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetVersionRequest other = (com.dappley.java.core.protobuf.RpcProto.GetVersionRequest) obj;
+
+      boolean result = true;
+      result = result && getProtoVersion()
+          .equals(other.getProtoVersion());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PROTOVERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getProtoVersion().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetVersionRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetVersionRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetVersionRequest)
+        com.dappley.java.core.protobuf.RpcProto.GetVersionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.class, com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        protoVersion_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetVersionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetVersionRequest result = new com.dappley.java.core.protobuf.RpcProto.GetVersionRequest(this);
+        result.protoVersion_ = protoVersion_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetVersionRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetVersionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetVersionRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.getDefaultInstance()) return this;
+        if (!other.getProtoVersion().isEmpty()) {
+          protoVersion_ = other.protoVersion_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetVersionRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object protoVersion_ = "";
+      /**
+       * <code>string protoVersion = 1;</code>
+       */
+      public java.lang.String getProtoVersion() {
+        java.lang.Object ref = protoVersion_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          protoVersion_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string protoVersion = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProtoVersionBytes() {
+        java.lang.Object ref = protoVersion_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          protoVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string protoVersion = 1;</code>
+       */
+      public Builder setProtoVersion(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        protoVersion_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string protoVersion = 1;</code>
+       */
+      public Builder clearProtoVersion() {
+        
+        protoVersion_ = getDefaultInstance().getProtoVersion();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string protoVersion = 1;</code>
+       */
+      public Builder setProtoVersionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        protoVersion_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetVersionRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetVersionRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetVersionRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetVersionRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetVersionRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetVersionRequest>() {
+      @java.lang.Override
+      public GetVersionRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetVersionRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetVersionRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetVersionRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetUTXORequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetUTXORequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *wallet address
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     */
+    java.lang.String getAddress();
+    /**
+     * <pre>
+     *wallet address
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetUTXORequest}
+   */
+  public  static final class GetUTXORequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetUTXORequest)
+      GetUTXORequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetUTXORequest.newBuilder() to construct.
+    private GetUTXORequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetUTXORequest() {
+      address_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetUTXORequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              address_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.class, com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.Builder.class);
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 1;
+    private volatile java.lang.Object address_;
+    /**
+     * <pre>
+     *wallet address
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     */
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *wallet address
+     * </pre>
+     *
+     * <code>string address = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetUTXORequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetUTXORequest other = (com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) obj;
+
+      boolean result = true;
+      result = result && getAddress()
+          .equals(other.getAddress());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetUTXORequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetUTXORequest)
+        com.dappley.java.core.protobuf.RpcProto.GetUTXORequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.class, com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        address_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest result = new com.dappley.java.core.protobuf.RpcProto.GetUTXORequest(this);
+        result.address_ = address_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetUTXORequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.getDefaultInstance()) return this;
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object address_ = "";
+      /**
+       * <pre>
+       *wallet address
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       */
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *wallet address
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *wallet address
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       */
+      public Builder setAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *wallet address
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       */
+      public Builder clearAddress() {
+        
+        address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *wallet address
+       * </pre>
+       *
+       * <code>string address = 1;</code>
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetUTXORequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetUTXORequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetUTXORequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetUTXORequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetUTXORequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetUTXORequest>() {
+      @java.lang.Override
+      public GetUTXORequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetUTXORequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetUTXORequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetUTXORequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetBlocksRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlocksRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Query start block hashes, sorted descending by height.
+     * </pre>
+     *
+     * <code>repeated bytes startBlockHashes = 1;</code>
+     */
+    java.util.List<com.google.protobuf.ByteString> getStartBlockHashesList();
+    /**
+     * <pre>
+     * Query start block hashes, sorted descending by height.
+     * </pre>
+     *
+     * <code>repeated bytes startBlockHashes = 1;</code>
+     */
+    int getStartBlockHashesCount();
+    /**
+     * <pre>
+     * Query start block hashes, sorted descending by height.
+     * </pre>
+     *
+     * <code>repeated bytes startBlockHashes = 1;</code>
+     */
+    com.google.protobuf.ByteString getStartBlockHashes(int index);
+
+    /**
+     * <pre>
+     * Max query block count
+     * </pre>
+     *
+     * <code>int32 maxCount = 2;</code>
+     */
+    int getMaxCount();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlocksRequest}
+   */
+  public  static final class GetBlocksRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlocksRequest)
+      GetBlocksRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetBlocksRequest.newBuilder() to construct.
+    private GetBlocksRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetBlocksRequest() {
+      startBlockHashes_ = java.util.Collections.emptyList();
+      maxCount_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetBlocksRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                startBlockHashes_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              startBlockHashes_.add(input.readBytes());
+              break;
+            }
+            case 16: {
+
+              maxCount_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          startBlockHashes_ = java.util.Collections.unmodifiableList(startBlockHashes_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int STARTBLOCKHASHES_FIELD_NUMBER = 1;
+    private java.util.List<com.google.protobuf.ByteString> startBlockHashes_;
+    /**
+     * <pre>
+     * Query start block hashes, sorted descending by height.
+     * </pre>
+     *
+     * <code>repeated bytes startBlockHashes = 1;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getStartBlockHashesList() {
+      return startBlockHashes_;
+    }
+    /**
+     * <pre>
+     * Query start block hashes, sorted descending by height.
+     * </pre>
+     *
+     * <code>repeated bytes startBlockHashes = 1;</code>
+     */
+    public int getStartBlockHashesCount() {
+      return startBlockHashes_.size();
+    }
+    /**
+     * <pre>
+     * Query start block hashes, sorted descending by height.
+     * </pre>
+     *
+     * <code>repeated bytes startBlockHashes = 1;</code>
+     */
+    public com.google.protobuf.ByteString getStartBlockHashes(int index) {
+      return startBlockHashes_.get(index);
+    }
+
+    public static final int MAXCOUNT_FIELD_NUMBER = 2;
+    private int maxCount_;
+    /**
+     * <pre>
+     * Max query block count
+     * </pre>
+     *
+     * <code>int32 maxCount = 2;</code>
+     */
+    public int getMaxCount() {
+      return maxCount_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < startBlockHashes_.size(); i++) {
+        output.writeBytes(1, startBlockHashes_.get(i));
+      }
+      if (maxCount_ != 0) {
+        output.writeInt32(2, maxCount_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < startBlockHashes_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(startBlockHashes_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getStartBlockHashesList().size();
+      }
+      if (maxCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, maxCount_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) obj;
+
+      boolean result = true;
+      result = result && getStartBlockHashesList()
+          .equals(other.getStartBlockHashesList());
+      result = result && (getMaxCount()
+          == other.getMaxCount());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getStartBlockHashesCount() > 0) {
+        hash = (37 * hash) + STARTBLOCKHASHES_FIELD_NUMBER;
+        hash = (53 * hash) + getStartBlockHashesList().hashCode();
+      }
+      hash = (37 * hash) + MAXCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxCount();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetBlocksRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlocksRequest)
+        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        startBlockHashes_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        maxCount_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          startBlockHashes_ = java.util.Collections.unmodifiableList(startBlockHashes_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.startBlockHashes_ = startBlockHashes_;
+        result.maxCount_ = maxCount_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.getDefaultInstance()) return this;
+        if (!other.startBlockHashes_.isEmpty()) {
+          if (startBlockHashes_.isEmpty()) {
+            startBlockHashes_ = other.startBlockHashes_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureStartBlockHashesIsMutable();
+            startBlockHashes_.addAll(other.startBlockHashes_);
+          }
+          onChanged();
+        }
+        if (other.getMaxCount() != 0) {
+          setMaxCount(other.getMaxCount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.google.protobuf.ByteString> startBlockHashes_ = java.util.Collections.emptyList();
+      private void ensureStartBlockHashesIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          startBlockHashes_ = new java.util.ArrayList<com.google.protobuf.ByteString>(startBlockHashes_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getStartBlockHashesList() {
+        return java.util.Collections.unmodifiableList(startBlockHashes_);
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public int getStartBlockHashesCount() {
+        return startBlockHashes_.size();
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public com.google.protobuf.ByteString getStartBlockHashes(int index) {
+        return startBlockHashes_.get(index);
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public Builder setStartBlockHashes(
+          int index, com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStartBlockHashesIsMutable();
+        startBlockHashes_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public Builder addStartBlockHashes(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureStartBlockHashesIsMutable();
+        startBlockHashes_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public Builder addAllStartBlockHashes(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        ensureStartBlockHashesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, startBlockHashes_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Query start block hashes, sorted descending by height.
+       * </pre>
+       *
+       * <code>repeated bytes startBlockHashes = 1;</code>
+       */
+      public Builder clearStartBlockHashes() {
+        startBlockHashes_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+
+      private int maxCount_ ;
+      /**
+       * <pre>
+       * Max query block count
+       * </pre>
+       *
+       * <code>int32 maxCount = 2;</code>
+       */
+      public int getMaxCount() {
+        return maxCount_;
+      }
+      /**
+       * <pre>
+       * Max query block count
+       * </pre>
+       *
+       * <code>int32 maxCount = 2;</code>
+       */
+      public Builder setMaxCount(int value) {
+        
+        maxCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Max query block count
+       * </pre>
+       *
+       * <code>int32 maxCount = 2;</code>
+       */
+      public Builder clearMaxCount() {
+        
+        maxCount_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlocksRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlocksRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetBlocksRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetBlocksRequest>() {
+      @java.lang.Override
+      public GetBlocksRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetBlocksRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetBlocksRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetBlocksRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetBlockByHashRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHashRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes hash = 1;</code>
+     */
+    com.google.protobuf.ByteString getHash();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlockByHashRequest}
+   */
+  public  static final class GetBlockByHashRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHashRequest)
+      GetBlockByHashRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetBlockByHashRequest.newBuilder() to construct.
+    private GetBlockByHashRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetBlockByHashRequest() {
+      hash_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetBlockByHashRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              hash_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.Builder.class);
+    }
+
+    public static final int HASH_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString hash_;
+    /**
+     * <code>bytes hash = 1;</code>
+     */
+    public com.google.protobuf.ByteString getHash() {
+      return hash_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!hash_.isEmpty()) {
+        output.writeBytes(1, hash_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!hash_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, hash_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest) obj;
+
+      boolean result = true;
+      result = result && getHash()
+          .equals(other.getHash());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HASH_FIELD_NUMBER;
+      hash = (53 * hash) + getHash().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetBlockByHashRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHashRequest)
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        hash_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest(this);
+        result.hash_ = hash_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.getDefaultInstance()) return this;
+        if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
+          setHash(other.getHash());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes hash = 1;</code>
+       */
+      public com.google.protobuf.ByteString getHash() {
+        return hash_;
+      }
+      /**
+       * <code>bytes hash = 1;</code>
+       */
+      public Builder setHash(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        hash_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes hash = 1;</code>
+       */
+      public Builder clearHash() {
+        
+        hash_ = getDefaultInstance().getHash();
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHashRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHashRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetBlockByHashRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetBlockByHashRequest>() {
+      @java.lang.Override
+      public GetBlockByHashRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetBlockByHashRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetBlockByHashRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetBlockByHashRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetBlockByHeightRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHeightRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 height = 1;</code>
+     */
+    long getHeight();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetBlockByHeightRequest}
+   */
+  public  static final class GetBlockByHeightRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHeightRequest)
+      GetBlockByHeightRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetBlockByHeightRequest.newBuilder() to construct.
+    private GetBlockByHeightRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetBlockByHeightRequest() {
+      height_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetBlockByHeightRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              height_ = input.readUInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.Builder.class);
+    }
+
+    public static final int HEIGHT_FIELD_NUMBER = 1;
+    private long height_;
+    /**
+     * <code>uint64 height = 1;</code>
+     */
+    public long getHeight() {
+      return height_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (height_ != 0L) {
+        output.writeUInt64(1, height_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (height_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, height_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest) obj;
+
+      boolean result = true;
+      result = result && (getHeight()
+          == other.getHeight());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getHeight());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetBlockByHeightRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHeightRequest)
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        height_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest(this);
+        result.height_ = height_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.getDefaultInstance()) return this;
+        if (other.getHeight() != 0L) {
+          setHeight(other.getHeight());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long height_ ;
+      /**
+       * <code>uint64 height = 1;</code>
+       */
+      public long getHeight() {
+        return height_;
+      }
+      /**
+       * <code>uint64 height = 1;</code>
+       */
+      public Builder setHeight(long value) {
+        
+        height_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 height = 1;</code>
+       */
+      public Builder clearHeight() {
+        
+        height_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHeightRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHeightRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetBlockByHeightRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetBlockByHeightRequest>() {
+      @java.lang.Override
+      public GetBlockByHeightRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetBlockByHeightRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetBlockByHeightRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetBlockByHeightRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SendTransactionRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.SendTransactionRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    boolean hasTransaction();
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction();
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder();
+  }
+  /**
+   * Protobuf type {@code rpcpb.SendTransactionRequest}
+   */
+  public  static final class SendTransactionRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.SendTransactionRequest)
+      SendTransactionRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SendTransactionRequest.newBuilder() to construct.
+    private SendTransactionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SendTransactionRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SendTransactionRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder subBuilder = null;
+              if (transaction_ != null) {
+                subBuilder = transaction_.toBuilder();
+              }
+              transaction_ = input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(transaction_);
+                transaction_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.class, com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.Builder.class);
+    }
+
+    public static final int TRANSACTION_FIELD_NUMBER = 1;
+    private com.dappley.java.core.protobuf.TransactionProto.Transaction transaction_;
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    public boolean hasTransaction() {
+      return transaction_ != null;
+    }
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction() {
+      return transaction_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+    }
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder() {
+      return getTransaction();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (transaction_ != null) {
+        output.writeMessage(1, getTransaction());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (transaction_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getTransaction());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest other = (com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) obj;
+
+      boolean result = true;
+      result = result && (hasTransaction() == other.hasTransaction());
+      if (hasTransaction()) {
+        result = result && getTransaction()
+            .equals(other.getTransaction());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasTransaction()) {
+        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
+        hash = (53 * hash) + getTransaction().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.SendTransactionRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.SendTransactionRequest)
+        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.class, com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest result = new com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest(this);
+        if (transactionBuilder_ == null) {
+          result.transaction_ = transaction_;
+        } else {
+          result.transaction_ = transactionBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.getDefaultInstance()) return this;
+        if (other.hasTransaction()) {
+          mergeTransaction(other.getTransaction());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.dappley.java.core.protobuf.TransactionProto.Transaction transaction_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionBuilder_;
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public boolean hasTransaction() {
+        return transactionBuilder_ != null || transaction_ != null;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction() {
+        if (transactionBuilder_ == null) {
+          return transaction_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+        } else {
+          return transactionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          transaction_ = value;
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(
+          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          transaction_ = builderForValue.build();
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder mergeTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (transaction_ != null) {
+            transaction_ =
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+          } else {
+            transaction_ = value;
+          }
+          onChanged();
+        } else {
+          transactionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder clearTransaction() {
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+          onChanged();
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionBuilder() {
+        
+        onChanged();
+        return getTransactionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder() {
+        if (transactionBuilder_ != null) {
+          return transactionBuilder_.getMessageOrBuilder();
+        } else {
+          return transaction_ == null ?
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+        }
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+          getTransactionFieldBuilder() {
+        if (transactionBuilder_ == null) {
+          transactionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
+                  getTransaction(),
+                  getParentForChildren(),
+                  isClean());
+          transaction_ = null;
+        }
+        return transactionBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.SendTransactionRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.SendTransactionRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SendTransactionRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SendTransactionRequest>() {
+      @java.lang.Override
+      public SendTransactionRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SendTransactionRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SendTransactionRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendTransactionRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SendBatchTransactionRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.SendBatchTransactionRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> 
+        getTransactionList();
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction(int index);
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    int getTransactionCount();
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+        getTransactionOrBuilderList();
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code rpcpb.SendBatchTransactionRequest}
+   */
+  public  static final class SendBatchTransactionRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.SendBatchTransactionRequest)
+      SendBatchTransactionRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SendBatchTransactionRequest.newBuilder() to construct.
+    private SendBatchTransactionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SendBatchTransactionRequest() {
+      transaction_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SendBatchTransactionRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                transaction_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.Transaction>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              transaction_.add(
+                  input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          transaction_ = java.util.Collections.unmodifiableList(transaction_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.class, com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.Builder.class);
+    }
+
+    public static final int TRANSACTION_FIELD_NUMBER = 1;
+    private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transaction_;
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionList() {
+      return transaction_;
+    }
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+        getTransactionOrBuilderList() {
+      return transaction_;
+    }
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    public int getTransactionCount() {
+      return transaction_.size();
+    }
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction(int index) {
+      return transaction_.get(index);
+    }
+    /**
+     * <code>repeated .corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder(
+        int index) {
+      return transaction_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < transaction_.size(); i++) {
+        output.writeMessage(1, transaction_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < transaction_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, transaction_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest other = (com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest) obj;
+
+      boolean result = true;
+      result = result && getTransactionList()
+          .equals(other.getTransactionList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getTransactionCount() > 0) {
+        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
+        hash = (53 * hash) + getTransactionList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.SendBatchTransactionRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.SendBatchTransactionRequest)
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.class, com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getTransactionFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (transactionBuilder_ == null) {
+          transaction_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          transactionBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest result = new com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest(this);
+        int from_bitField0_ = bitField0_;
+        if (transactionBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            transaction_ = java.util.Collections.unmodifiableList(transaction_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.transaction_ = transaction_;
+        } else {
+          result.transaction_ = transactionBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest.getDefaultInstance()) return this;
+        if (transactionBuilder_ == null) {
+          if (!other.transaction_.isEmpty()) {
+            if (transaction_.isEmpty()) {
+              transaction_ = other.transaction_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureTransactionIsMutable();
+              transaction_.addAll(other.transaction_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.transaction_.isEmpty()) {
+            if (transactionBuilder_.isEmpty()) {
+              transactionBuilder_.dispose();
+              transactionBuilder_ = null;
+              transaction_ = other.transaction_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              transactionBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getTransactionFieldBuilder() : null;
+            } else {
+              transactionBuilder_.addAllMessages(other.transaction_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transaction_ =
+        java.util.Collections.emptyList();
+      private void ensureTransactionIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          transaction_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.Transaction>(transaction_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionBuilder_;
+
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionList() {
+        if (transactionBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(transaction_);
+        } else {
+          return transactionBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public int getTransactionCount() {
+        if (transactionBuilder_ == null) {
+          return transaction_.size();
+        } else {
+          return transactionBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction(int index) {
+        if (transactionBuilder_ == null) {
+          return transaction_.get(index);
+        } else {
+          return transactionBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionIsMutable();
+          transaction_.set(index, value);
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          ensureTransactionIsMutable();
+          transaction_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder addTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionIsMutable();
+          transaction_.add(value);
+          onChanged();
+        } else {
+          transactionBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder addTransaction(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionIsMutable();
+          transaction_.add(index, value);
+          onChanged();
+        } else {
+          transactionBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder addTransaction(
+          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          ensureTransactionIsMutable();
+          transaction_.add(builderForValue.build());
+          onChanged();
+        } else {
+          transactionBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder addTransaction(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          ensureTransactionIsMutable();
+          transaction_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          transactionBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder addAllTransaction(
+          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.Transaction> values) {
+        if (transactionBuilder_ == null) {
+          ensureTransactionIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, transaction_);
+          onChanged();
+        } else {
+          transactionBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder clearTransaction() {
+        if (transactionBuilder_ == null) {
+          transaction_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          transactionBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public Builder removeTransaction(int index) {
+        if (transactionBuilder_ == null) {
+          ensureTransactionIsMutable();
+          transaction_.remove(index);
+          onChanged();
+        } else {
+          transactionBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionBuilder(
+          int index) {
+        return getTransactionFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder(
+          int index) {
+        if (transactionBuilder_ == null) {
+          return transaction_.get(index);  } else {
+          return transactionBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+           getTransactionOrBuilderList() {
+        if (transactionBuilder_ != null) {
+          return transactionBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(transaction_);
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionBuilder() {
+        return getTransactionFieldBuilder().addBuilder(
+            com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionBuilder(
+          int index) {
+        return getTransactionFieldBuilder().addBuilder(
+            index, com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .corepb.Transaction transaction = 1;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder> 
+           getTransactionBuilderList() {
+        return getTransactionFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+          getTransactionFieldBuilder() {
+        if (transactionBuilder_ == null) {
+          transactionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
+                  transaction_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          transaction_ = null;
+        }
+        return transactionBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.SendBatchTransactionRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.SendBatchTransactionRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SendBatchTransactionRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SendBatchTransactionRequest>() {
+      @java.lang.Override
+      public SendBatchTransactionRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SendBatchTransactionRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SendBatchTransactionRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendBatchTransactionRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetNewTransactionsRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetNewTransactionsRequest)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetNewTransactionsRequest}
+   */
+  public  static final class GetNewTransactionsRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetNewTransactionsRequest)
+      GetNewTransactionsRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetNewTransactionsRequest.newBuilder() to construct.
+    private GetNewTransactionsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetNewTransactionsRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetNewTransactionsRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.class, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest other = (com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetNewTransactionsRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetNewTransactionsRequest)
+        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.class, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest result = new com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetNewTransactionsRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetNewTransactionsRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetNewTransactionsRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetNewTransactionsRequest>() {
+      @java.lang.Override
+      public GetNewTransactionsRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetNewTransactionsRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetNewTransactionsRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetNewTransactionsRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface AddProducerResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.AddProducerResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -7633,6 +10304,556 @@ public final class RpcProto {
 
     @java.lang.Override
     public com.dappley.java.core.protobuf.RpcProto.AddProducerResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UnlockWalletResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.UnlockWalletResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string message = 1;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>string message = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+  }
+  /**
+   * Protobuf type {@code rpcpb.UnlockWalletResponse}
+   */
+  public  static final class UnlockWalletResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.UnlockWalletResponse)
+      UnlockWalletResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UnlockWalletResponse.newBuilder() to construct.
+    private UnlockWalletResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UnlockWalletResponse() {
+      message_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UnlockWalletResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.class, com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.Builder.class);
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object message_;
+    /**
+     * <code>string message = 1;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string message = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse other = (com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse) obj;
+
+      boolean result = true;
+      result = result && getMessage()
+          .equals(other.getMessage());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.UnlockWalletResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.UnlockWalletResponse)
+        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.class, com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        message_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_UnlockWalletResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse build() {
+        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse result = new com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse(this);
+        result.message_ = message_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.getDefaultInstance()) return this;
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <code>string message = 1;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.UnlockWalletResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.UnlockWalletResponse)
+    private static final com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UnlockWalletResponse>
+        PARSER = new com.google.protobuf.AbstractParser<UnlockWalletResponse>() {
+      @java.lang.Override
+      public UnlockWalletResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UnlockWalletResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UnlockWalletResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UnlockWalletResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8815,6 +12036,26 @@ public final class RpcProto {
      */
     com.google.protobuf.ByteString
         getMessageBytes();
+
+    /**
+     * <code>string contractAddr = 2;</code>
+     */
+    java.lang.String getContractAddr();
+    /**
+     * <code>string contractAddr = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getContractAddrBytes();
+
+    /**
+     * <code>string txid = 3;</code>
+     */
+    java.lang.String getTxid();
+    /**
+     * <code>string txid = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTxidBytes();
   }
   /**
    * Protobuf type {@code rpcpb.SendResponse}
@@ -8830,6 +12071,8 @@ public final class RpcProto {
     }
     private SendResponse() {
       message_ = "";
+      contractAddr_ = "";
+      txid_ = "";
     }
 
     @java.lang.Override
@@ -8860,6 +12103,18 @@ public final class RpcProto {
               java.lang.String s = input.readStringRequireUtf8();
 
               message_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              contractAddr_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              txid_ = s;
               break;
             }
             default: {
@@ -8928,6 +12183,74 @@ public final class RpcProto {
       }
     }
 
+    public static final int CONTRACTADDR_FIELD_NUMBER = 2;
+    private volatile java.lang.Object contractAddr_;
+    /**
+     * <code>string contractAddr = 2;</code>
+     */
+    public java.lang.String getContractAddr() {
+      java.lang.Object ref = contractAddr_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        contractAddr_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string contractAddr = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContractAddrBytes() {
+      java.lang.Object ref = contractAddr_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        contractAddr_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TXID_FIELD_NUMBER = 3;
+    private volatile java.lang.Object txid_;
+    /**
+     * <code>string txid = 3;</code>
+     */
+    public java.lang.String getTxid() {
+      java.lang.Object ref = txid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        txid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string txid = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTxidBytes() {
+      java.lang.Object ref = txid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        txid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -8945,6 +12268,12 @@ public final class RpcProto {
       if (!getMessageBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
       }
+      if (!getContractAddrBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, contractAddr_);
+      }
+      if (!getTxidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, txid_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -8956,6 +12285,12 @@ public final class RpcProto {
       size = 0;
       if (!getMessageBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+      }
+      if (!getContractAddrBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, contractAddr_);
+      }
+      if (!getTxidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, txid_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -8975,6 +12310,10 @@ public final class RpcProto {
       boolean result = true;
       result = result && getMessage()
           .equals(other.getMessage());
+      result = result && getContractAddr()
+          .equals(other.getContractAddr());
+      result = result && getTxid()
+          .equals(other.getTxid());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -8988,6 +12327,10 @@ public final class RpcProto {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + CONTRACTADDR_FIELD_NUMBER;
+      hash = (53 * hash) + getContractAddr().hashCode();
+      hash = (37 * hash) + TXID_FIELD_NUMBER;
+      hash = (53 * hash) + getTxid().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9123,6 +12466,10 @@ public final class RpcProto {
         super.clear();
         message_ = "";
 
+        contractAddr_ = "";
+
+        txid_ = "";
+
         return this;
       }
 
@@ -9150,6 +12497,8 @@ public final class RpcProto {
       public com.dappley.java.core.protobuf.RpcProto.SendResponse buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.SendResponse result = new com.dappley.java.core.protobuf.RpcProto.SendResponse(this);
         result.message_ = message_;
+        result.contractAddr_ = contractAddr_;
+        result.txid_ = txid_;
         onBuilt();
         return result;
       }
@@ -9200,6 +12549,14 @@ public final class RpcProto {
         if (other == com.dappley.java.core.protobuf.RpcProto.SendResponse.getDefaultInstance()) return this;
         if (!other.getMessage().isEmpty()) {
           message_ = other.message_;
+          onChanged();
+        }
+        if (!other.getContractAddr().isEmpty()) {
+          contractAddr_ = other.contractAddr_;
+          onChanged();
+        }
+        if (!other.getTxid().isEmpty()) {
+          txid_ = other.txid_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -9296,6 +12653,144 @@ public final class RpcProto {
   checkByteStringIsUtf8(value);
         
         message_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object contractAddr_ = "";
+      /**
+       * <code>string contractAddr = 2;</code>
+       */
+      public java.lang.String getContractAddr() {
+        java.lang.Object ref = contractAddr_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          contractAddr_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string contractAddr = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContractAddrBytes() {
+        java.lang.Object ref = contractAddr_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          contractAddr_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string contractAddr = 2;</code>
+       */
+      public Builder setContractAddr(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        contractAddr_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string contractAddr = 2;</code>
+       */
+      public Builder clearContractAddr() {
+        
+        contractAddr_ = getDefaultInstance().getContractAddr();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string contractAddr = 2;</code>
+       */
+      public Builder setContractAddrBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        contractAddr_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object txid_ = "";
+      /**
+       * <code>string txid = 3;</code>
+       */
+      public java.lang.String getTxid() {
+        java.lang.Object ref = txid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          txid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string txid = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTxidBytes() {
+        java.lang.Object ref = txid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          txid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string txid = 3;</code>
+       */
+      public Builder setTxid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        txid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string txid = 3;</code>
+       */
+      public Builder clearTxid() {
+        
+        txid_ = getDefaultInstance().getTxid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string txid = 3;</code>
+       */
+      public Builder setTxidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        txid_ = value;
         onChanged();
         return this;
       }
@@ -11378,556 +14873,6 @@ public final class RpcProto {
 
   }
 
-  public interface GetVersionRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetVersionRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string protoVersion = 1;</code>
-     */
-    java.lang.String getProtoVersion();
-    /**
-     * <code>string protoVersion = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getProtoVersionBytes();
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetVersionRequest}
-   */
-  public  static final class GetVersionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetVersionRequest)
-      GetVersionRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetVersionRequest.newBuilder() to construct.
-    private GetVersionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetVersionRequest() {
-      protoVersion_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetVersionRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              protoVersion_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.class, com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.Builder.class);
-    }
-
-    public static final int PROTOVERSION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object protoVersion_;
-    /**
-     * <code>string protoVersion = 1;</code>
-     */
-    public java.lang.String getProtoVersion() {
-      java.lang.Object ref = protoVersion_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        protoVersion_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string protoVersion = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getProtoVersionBytes() {
-      java.lang.Object ref = protoVersion_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        protoVersion_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getProtoVersionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, protoVersion_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getProtoVersionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, protoVersion_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetVersionRequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.GetVersionRequest other = (com.dappley.java.core.protobuf.RpcProto.GetVersionRequest) obj;
-
-      boolean result = true;
-      result = result && getProtoVersion()
-          .equals(other.getProtoVersion());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PROTOVERSION_FIELD_NUMBER;
-      hash = (53 * hash) + getProtoVersion().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetVersionRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.GetVersionRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetVersionRequest)
-        com.dappley.java.core.protobuf.RpcProto.GetVersionRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.class, com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        protoVersion_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetVersionRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetVersionRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetVersionRequest result = new com.dappley.java.core.protobuf.RpcProto.GetVersionRequest(this);
-        result.protoVersion_ = protoVersion_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetVersionRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetVersionRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetVersionRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetVersionRequest.getDefaultInstance()) return this;
-        if (!other.getProtoVersion().isEmpty()) {
-          protoVersion_ = other.protoVersion_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetVersionRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetVersionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object protoVersion_ = "";
-      /**
-       * <code>string protoVersion = 1;</code>
-       */
-      public java.lang.String getProtoVersion() {
-        java.lang.Object ref = protoVersion_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          protoVersion_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string protoVersion = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getProtoVersionBytes() {
-        java.lang.Object ref = protoVersion_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          protoVersion_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string protoVersion = 1;</code>
-       */
-      public Builder setProtoVersion(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        protoVersion_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string protoVersion = 1;</code>
-       */
-      public Builder clearProtoVersion() {
-        
-        protoVersion_ = getDefaultInstance().getProtoVersion();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string protoVersion = 1;</code>
-       */
-      public Builder setProtoVersionBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        protoVersion_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetVersionRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetVersionRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetVersionRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetVersionRequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetVersionRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetVersionRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetVersionRequest>() {
-      @java.lang.Override
-      public GetVersionRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetVersionRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetVersionRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetVersionRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetVersionRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface GetVersionResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.GetVersionResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -12673,592 +15618,6 @@ public final class RpcProto {
 
     @java.lang.Override
     public com.dappley.java.core.protobuf.RpcProto.GetVersionResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface GetUTXORequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetUTXORequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *wallet address
-     * </pre>
-     *
-     * <code>string address = 1;</code>
-     */
-    java.lang.String getAddress();
-    /**
-     * <pre>
-     *wallet address
-     * </pre>
-     *
-     * <code>string address = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getAddressBytes();
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetUTXORequest}
-   */
-  public  static final class GetUTXORequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetUTXORequest)
-      GetUTXORequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetUTXORequest.newBuilder() to construct.
-    private GetUTXORequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetUTXORequest() {
-      address_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetUTXORequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              address_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.class, com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.Builder.class);
-    }
-
-    public static final int ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object address_;
-    /**
-     * <pre>
-     *wallet address
-     * </pre>
-     *
-     * <code>string address = 1;</code>
-     */
-    public java.lang.String getAddress() {
-      java.lang.Object ref = address_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        address_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *wallet address
-     * </pre>
-     *
-     * <code>string address = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAddressBytes() {
-      java.lang.Object ref = address_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        address_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getAddressBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetUTXORequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.GetUTXORequest other = (com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) obj;
-
-      boolean result = true;
-      result = result && getAddress()
-          .equals(other.getAddress());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getAddress().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.GetUTXORequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetUTXORequest)
-        com.dappley.java.core.protobuf.RpcProto.GetUTXORequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.class, com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        address_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetUTXORequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest result = new com.dappley.java.core.protobuf.RpcProto.GetUTXORequest(this);
-        result.address_ = address_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetUTXORequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.getDefaultInstance()) return this;
-        if (!other.getAddress().isEmpty()) {
-          address_ = other.address_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object address_ = "";
-      /**
-       * <pre>
-       *wallet address
-       * </pre>
-       *
-       * <code>string address = 1;</code>
-       */
-      public java.lang.String getAddress() {
-        java.lang.Object ref = address_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          address_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *wallet address
-       * </pre>
-       *
-       * <code>string address = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAddressBytes() {
-        java.lang.Object ref = address_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          address_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *wallet address
-       * </pre>
-       *
-       * <code>string address = 1;</code>
-       */
-      public Builder setAddress(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        address_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *wallet address
-       * </pre>
-       *
-       * <code>string address = 1;</code>
-       */
-      public Builder clearAddress() {
-        
-        address_ = getDefaultInstance().getAddress();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *wallet address
-       * </pre>
-       *
-       * <code>string address = 1;</code>
-       */
-      public Builder setAddressBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        address_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetUTXORequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetUTXORequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetUTXORequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetUTXORequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetUTXORequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetUTXORequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetUTXORequest>() {
-      @java.lang.Override
-      public GetUTXORequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetUTXORequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetUTXORequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetUTXORequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetUTXORequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -14616,6 +16975,10 @@ public final class RpcProto {
     int getTxIndex();
   }
   /**
+   * <pre>
+   * TODO: Refactor to corepb.UTXO
+   * </pre>
+   *
    * Protobuf type {@code rpcpb.UTXO}
    */
   public  static final class UTXO extends
@@ -14936,6 +17299,10 @@ public final class RpcProto {
       return builder;
     }
     /**
+     * <pre>
+     * TODO: Refactor to corepb.UTXO
+     * </pre>
+     *
      * Protobuf type {@code rpcpb.UTXO}
      */
     public static final class Builder extends
@@ -15260,713 +17627,6 @@ public final class RpcProto {
 
     @java.lang.Override
     public com.dappley.java.core.protobuf.RpcProto.UTXO getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface GetBlocksRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlocksRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * Query start block hashes, sorted descending by height.
-     * </pre>
-     *
-     * <code>repeated bytes startBlockHashes = 1;</code>
-     */
-    java.util.List<com.google.protobuf.ByteString> getStartBlockHashesList();
-    /**
-     * <pre>
-     * Query start block hashes, sorted descending by height.
-     * </pre>
-     *
-     * <code>repeated bytes startBlockHashes = 1;</code>
-     */
-    int getStartBlockHashesCount();
-    /**
-     * <pre>
-     * Query start block hashes, sorted descending by height.
-     * </pre>
-     *
-     * <code>repeated bytes startBlockHashes = 1;</code>
-     */
-    com.google.protobuf.ByteString getStartBlockHashes(int index);
-
-    /**
-     * <pre>
-     * Max query block count
-     * </pre>
-     *
-     * <code>int32 maxCount = 2;</code>
-     */
-    int getMaxCount();
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetBlocksRequest}
-   */
-  public  static final class GetBlocksRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetBlocksRequest)
-      GetBlocksRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetBlocksRequest.newBuilder() to construct.
-    private GetBlocksRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetBlocksRequest() {
-      startBlockHashes_ = java.util.Collections.emptyList();
-      maxCount_ = 0;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetBlocksRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                startBlockHashes_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              startBlockHashes_.add(input.readBytes());
-              break;
-            }
-            case 16: {
-
-              maxCount_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          startBlockHashes_ = java.util.Collections.unmodifiableList(startBlockHashes_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int STARTBLOCKHASHES_FIELD_NUMBER = 1;
-    private java.util.List<com.google.protobuf.ByteString> startBlockHashes_;
-    /**
-     * <pre>
-     * Query start block hashes, sorted descending by height.
-     * </pre>
-     *
-     * <code>repeated bytes startBlockHashes = 1;</code>
-     */
-    public java.util.List<com.google.protobuf.ByteString>
-        getStartBlockHashesList() {
-      return startBlockHashes_;
-    }
-    /**
-     * <pre>
-     * Query start block hashes, sorted descending by height.
-     * </pre>
-     *
-     * <code>repeated bytes startBlockHashes = 1;</code>
-     */
-    public int getStartBlockHashesCount() {
-      return startBlockHashes_.size();
-    }
-    /**
-     * <pre>
-     * Query start block hashes, sorted descending by height.
-     * </pre>
-     *
-     * <code>repeated bytes startBlockHashes = 1;</code>
-     */
-    public com.google.protobuf.ByteString getStartBlockHashes(int index) {
-      return startBlockHashes_.get(index);
-    }
-
-    public static final int MAXCOUNT_FIELD_NUMBER = 2;
-    private int maxCount_;
-    /**
-     * <pre>
-     * Max query block count
-     * </pre>
-     *
-     * <code>int32 maxCount = 2;</code>
-     */
-    public int getMaxCount() {
-      return maxCount_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < startBlockHashes_.size(); i++) {
-        output.writeBytes(1, startBlockHashes_.get(i));
-      }
-      if (maxCount_ != 0) {
-        output.writeInt32(2, maxCount_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < startBlockHashes_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(startBlockHashes_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getStartBlockHashesList().size();
-      }
-      if (maxCount_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, maxCount_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) obj;
-
-      boolean result = true;
-      result = result && getStartBlockHashesList()
-          .equals(other.getStartBlockHashesList());
-      result = result && (getMaxCount()
-          == other.getMaxCount());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getStartBlockHashesCount() > 0) {
-        hash = (37 * hash) + STARTBLOCKHASHES_FIELD_NUMBER;
-        hash = (53 * hash) + getStartBlockHashesList().hashCode();
-      }
-      hash = (37 * hash) + MAXCOUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getMaxCount();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.GetBlocksRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlocksRequest)
-        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        startBlockHashes_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        maxCount_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlocksRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          startBlockHashes_ = java.util.Collections.unmodifiableList(startBlockHashes_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.startBlockHashes_ = startBlockHashes_;
-        result.maxCount_ = maxCount_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest.getDefaultInstance()) return this;
-        if (!other.startBlockHashes_.isEmpty()) {
-          if (startBlockHashes_.isEmpty()) {
-            startBlockHashes_ = other.startBlockHashes_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureStartBlockHashesIsMutable();
-            startBlockHashes_.addAll(other.startBlockHashes_);
-          }
-          onChanged();
-        }
-        if (other.getMaxCount() != 0) {
-          setMaxCount(other.getMaxCount());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<com.google.protobuf.ByteString> startBlockHashes_ = java.util.Collections.emptyList();
-      private void ensureStartBlockHashesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          startBlockHashes_ = new java.util.ArrayList<com.google.protobuf.ByteString>(startBlockHashes_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public java.util.List<com.google.protobuf.ByteString>
-          getStartBlockHashesList() {
-        return java.util.Collections.unmodifiableList(startBlockHashes_);
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public int getStartBlockHashesCount() {
-        return startBlockHashes_.size();
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public com.google.protobuf.ByteString getStartBlockHashes(int index) {
-        return startBlockHashes_.get(index);
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public Builder setStartBlockHashes(
-          int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureStartBlockHashesIsMutable();
-        startBlockHashes_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public Builder addStartBlockHashes(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureStartBlockHashesIsMutable();
-        startBlockHashes_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public Builder addAllStartBlockHashes(
-          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensureStartBlockHashesIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, startBlockHashes_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Query start block hashes, sorted descending by height.
-       * </pre>
-       *
-       * <code>repeated bytes startBlockHashes = 1;</code>
-       */
-      public Builder clearStartBlockHashes() {
-        startBlockHashes_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-
-      private int maxCount_ ;
-      /**
-       * <pre>
-       * Max query block count
-       * </pre>
-       *
-       * <code>int32 maxCount = 2;</code>
-       */
-      public int getMaxCount() {
-        return maxCount_;
-      }
-      /**
-       * <pre>
-       * Max query block count
-       * </pre>
-       *
-       * <code>int32 maxCount = 2;</code>
-       */
-      public Builder setMaxCount(int value) {
-        
-        maxCount_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Max query block count
-       * </pre>
-       *
-       * <code>int32 maxCount = 2;</code>
-       */
-      public Builder clearMaxCount() {
-        
-        maxCount_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlocksRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetBlocksRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetBlocksRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetBlocksRequest>() {
-      @java.lang.Override
-      public GetBlocksRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetBlocksRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetBlocksRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetBlocksRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -16820,485 +18480,6 @@ public final class RpcProto {
 
   }
 
-  public interface GetBlockByHashRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHashRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bytes hash = 1;</code>
-     */
-    com.google.protobuf.ByteString getHash();
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetBlockByHashRequest}
-   */
-  public  static final class GetBlockByHashRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHashRequest)
-      GetBlockByHashRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetBlockByHashRequest.newBuilder() to construct.
-    private GetBlockByHashRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetBlockByHashRequest() {
-      hash_ = com.google.protobuf.ByteString.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetBlockByHashRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              hash_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.Builder.class);
-    }
-
-    public static final int HASH_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString hash_;
-    /**
-     * <code>bytes hash = 1;</code>
-     */
-    public com.google.protobuf.ByteString getHash() {
-      return hash_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!hash_.isEmpty()) {
-        output.writeBytes(1, hash_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!hash_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, hash_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest) obj;
-
-      boolean result = true;
-      result = result && getHash()
-          .equals(other.getHash());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + HASH_FIELD_NUMBER;
-      hash = (53 * hash) + getHash().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.GetBlockByHashRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHashRequest)
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        hash_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHashRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest(this);
-        result.hash_ = hash_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest.getDefaultInstance()) return this;
-        if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
-          setHash(other.getHash());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes hash = 1;</code>
-       */
-      public com.google.protobuf.ByteString getHash() {
-        return hash_;
-      }
-      /**
-       * <code>bytes hash = 1;</code>
-       */
-      public Builder setHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        hash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes hash = 1;</code>
-       */
-      public Builder clearHash() {
-        
-        hash_ = getDefaultInstance().getHash();
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHashRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHashRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetBlockByHashRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetBlockByHashRequest>() {
-      @java.lang.Override
-      public GetBlockByHashRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetBlockByHashRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetBlockByHashRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetBlockByHashRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface GetBlockByHashResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHashResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -17964,483 +19145,6 @@ public final class RpcProto {
 
     @java.lang.Override
     public com.dappley.java.core.protobuf.RpcProto.GetBlockByHashResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface GetBlockByHeightRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetBlockByHeightRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>uint64 height = 1;</code>
-     */
-    long getHeight();
-  }
-  /**
-   * Protobuf type {@code rpcpb.GetBlockByHeightRequest}
-   */
-  public  static final class GetBlockByHeightRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetBlockByHeightRequest)
-      GetBlockByHeightRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetBlockByHeightRequest.newBuilder() to construct.
-    private GetBlockByHeightRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetBlockByHeightRequest() {
-      height_ = 0L;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetBlockByHeightRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              height_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.Builder.class);
-    }
-
-    public static final int HEIGHT_FIELD_NUMBER = 1;
-    private long height_;
-    /**
-     * <code>uint64 height = 1;</code>
-     */
-    public long getHeight() {
-      return height_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (height_ != 0L) {
-        output.writeUInt64(1, height_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (height_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, height_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest other = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest) obj;
-
-      boolean result = true;
-      result = result && (getHeight()
-          == other.getHeight());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getHeight());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.GetBlockByHeightRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetBlockByHeightRequest)
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.class, com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        height_ = 0L;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest result = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest(this);
-        result.height_ = height_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest.getDefaultInstance()) return this;
-        if (other.getHeight() != 0L) {
-          setHeight(other.getHeight());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private long height_ ;
-      /**
-       * <code>uint64 height = 1;</code>
-       */
-      public long getHeight() {
-        return height_;
-      }
-      /**
-       * <code>uint64 height = 1;</code>
-       */
-      public Builder setHeight(long value) {
-        
-        height_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>uint64 height = 1;</code>
-       */
-      public Builder clearHeight() {
-        
-        height_ = 0L;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetBlockByHeightRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.GetBlockByHeightRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<GetBlockByHeightRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetBlockByHeightRequest>() {
-      @java.lang.Override
-      public GetBlockByHeightRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetBlockByHeightRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<GetBlockByHeightRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GetBlockByHeightRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetBlockByHeightRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -19116,613 +19820,6 @@ public final class RpcProto {
 
   }
 
-  public interface SendTransactionRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.SendTransactionRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.corepb.Transaction transaction = 1;</code>
-     */
-    boolean hasTransaction();
-    /**
-     * <code>.corepb.Transaction transaction = 1;</code>
-     */
-    com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction();
-    /**
-     * <code>.corepb.Transaction transaction = 1;</code>
-     */
-    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder();
-  }
-  /**
-   * Protobuf type {@code rpcpb.SendTransactionRequest}
-   */
-  public  static final class SendTransactionRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.SendTransactionRequest)
-      SendTransactionRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use SendTransactionRequest.newBuilder() to construct.
-    private SendTransactionRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private SendTransactionRequest() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SendTransactionRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder subBuilder = null;
-              if (transaction_ != null) {
-                subBuilder = transaction_.toBuilder();
-              }
-              transaction_ = input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(transaction_);
-                transaction_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.class, com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.Builder.class);
-    }
-
-    public static final int TRANSACTION_FIELD_NUMBER = 1;
-    private com.dappley.java.core.protobuf.TransactionProto.Transaction transaction_;
-    /**
-     * <code>.corepb.Transaction transaction = 1;</code>
-     */
-    public boolean hasTransaction() {
-      return transaction_ != null;
-    }
-    /**
-     * <code>.corepb.Transaction transaction = 1;</code>
-     */
-    public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction() {
-      return transaction_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
-    }
-    /**
-     * <code>.corepb.Transaction transaction = 1;</code>
-     */
-    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder() {
-      return getTransaction();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (transaction_ != null) {
-        output.writeMessage(1, getTransaction());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (transaction_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getTransaction());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest other = (com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) obj;
-
-      boolean result = true;
-      result = result && (hasTransaction() == other.hasTransaction());
-      if (hasTransaction()) {
-        result = result && getTransaction()
-            .equals(other.getTransaction());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTransaction()) {
-        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
-        hash = (53 * hash) + getTransaction().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code rpcpb.SendTransactionRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.SendTransactionRequest)
-        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.class, com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (transactionBuilder_ == null) {
-          transaction_ = null;
-        } else {
-          transaction_ = null;
-          transactionBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendTransactionRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest result = new com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest(this);
-        if (transactionBuilder_ == null) {
-          result.transaction_ = transaction_;
-        } else {
-          result.transaction_ = transactionBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest.getDefaultInstance()) return this;
-        if (other.hasTransaction()) {
-          mergeTransaction(other.getTransaction());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.dappley.java.core.protobuf.TransactionProto.Transaction transaction_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionBuilder_;
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public boolean hasTransaction() {
-        return transactionBuilder_ != null || transaction_ != null;
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction() {
-        if (transactionBuilder_ == null) {
-          return transaction_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
-        } else {
-          return transactionBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public Builder setTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
-        if (transactionBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          transaction_ = value;
-          onChanged();
-        } else {
-          transactionBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public Builder setTransaction(
-          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
-        if (transactionBuilder_ == null) {
-          transaction_ = builderForValue.build();
-          onChanged();
-        } else {
-          transactionBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public Builder mergeTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
-        if (transactionBuilder_ == null) {
-          if (transaction_ != null) {
-            transaction_ =
-              com.dappley.java.core.protobuf.TransactionProto.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
-          } else {
-            transaction_ = value;
-          }
-          onChanged();
-        } else {
-          transactionBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public Builder clearTransaction() {
-        if (transactionBuilder_ == null) {
-          transaction_ = null;
-          onChanged();
-        } else {
-          transaction_ = null;
-          transactionBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionBuilder() {
-        
-        onChanged();
-        return getTransactionFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder() {
-        if (transactionBuilder_ != null) {
-          return transactionBuilder_.getMessageOrBuilder();
-        } else {
-          return transaction_ == null ?
-              com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
-        }
-      }
-      /**
-       * <code>.corepb.Transaction transaction = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
-          getTransactionFieldBuilder() {
-        if (transactionBuilder_ == null) {
-          transactionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
-                  getTransaction(),
-                  getParentForChildren(),
-                  isClean());
-          transaction_ = null;
-        }
-        return transactionBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:rpcpb.SendTransactionRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:rpcpb.SendTransactionRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest();
-    }
-
-    public static com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SendTransactionRequest>
-        PARSER = new com.google.protobuf.AbstractParser<SendTransactionRequest>() {
-      @java.lang.Override
-      public SendTransactionRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SendTransactionRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<SendTransactionRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SendTransactionRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.SendTransactionRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface SendTransactionResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.SendTransactionResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -20199,23 +20296,37 @@ public final class RpcProto {
 
   }
 
-  public interface GetNewTransactionsRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:rpcpb.GetNewTransactionsRequest)
+  public interface SendBatchTransactionResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.SendBatchTransactionResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated uint32 errorCode = 1;</code>
+     */
+    java.util.List<java.lang.Integer> getErrorCodeList();
+    /**
+     * <code>repeated uint32 errorCode = 1;</code>
+     */
+    int getErrorCodeCount();
+    /**
+     * <code>repeated uint32 errorCode = 1;</code>
+     */
+    int getErrorCode(int index);
   }
   /**
-   * Protobuf type {@code rpcpb.GetNewTransactionsRequest}
+   * Protobuf type {@code rpcpb.SendBatchTransactionResponse}
    */
-  public  static final class GetNewTransactionsRequest extends
+  public  static final class SendBatchTransactionResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:rpcpb.GetNewTransactionsRequest)
-      GetNewTransactionsRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:rpcpb.SendBatchTransactionResponse)
+      SendBatchTransactionResponseOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GetNewTransactionsRequest.newBuilder() to construct.
-    private GetNewTransactionsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SendBatchTransactionResponse.newBuilder() to construct.
+    private SendBatchTransactionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GetNewTransactionsRequest() {
+    private SendBatchTransactionResponse() {
+      errorCode_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -20223,7 +20334,7 @@ public final class RpcProto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetNewTransactionsRequest(
+    private SendBatchTransactionResponse(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -20231,6 +20342,7 @@ public final class RpcProto {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -20241,6 +20353,27 @@ public final class RpcProto {
             case 0:
               done = true;
               break;
+            case 8: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                errorCode_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              errorCode_.add(input.readUInt32());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
+                errorCode_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                errorCode_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
             default: {
               if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -20256,22 +20389,48 @@ public final class RpcProto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          errorCode_ = java.util.Collections.unmodifiableList(errorCode_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.class, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.Builder.class);
+              com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.class, com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.Builder.class);
     }
+
+    public static final int ERRORCODE_FIELD_NUMBER = 1;
+    private java.util.List<java.lang.Integer> errorCode_;
+    /**
+     * <code>repeated uint32 errorCode = 1;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getErrorCodeList() {
+      return errorCode_;
+    }
+    /**
+     * <code>repeated uint32 errorCode = 1;</code>
+     */
+    public int getErrorCodeCount() {
+      return errorCode_.size();
+    }
+    /**
+     * <code>repeated uint32 errorCode = 1;</code>
+     */
+    public int getErrorCode(int index) {
+      return errorCode_.get(index);
+    }
+    private int errorCodeMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -20287,6 +20446,14 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
+      if (getErrorCodeList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(errorCodeMemoizedSerializedSize);
+      }
+      for (int i = 0; i < errorCode_.size(); i++) {
+        output.writeUInt32NoTag(errorCode_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -20296,6 +20463,20 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < errorCode_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(errorCode_.get(i));
+        }
+        size += dataSize;
+        if (!getErrorCodeList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        errorCodeMemoizedSerializedSize = dataSize;
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -20306,12 +20487,14 @@ public final class RpcProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest)) {
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse)) {
         return super.equals(obj);
       }
-      com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest other = (com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) obj;
+      com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse other = (com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse) obj;
 
       boolean result = true;
+      result = result && getErrorCodeList()
+          .equals(other.getErrorCodeList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -20323,74 +20506,78 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      if (getErrorCodeCount() > 0) {
+        hash = (37 * hash) + ERRORCODE_FIELD_NUMBER;
+        hash = (53 * hash) + getErrorCodeList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(byte[] data)
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(java.io.InputStream input)
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseDelimitedFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parseFrom(
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -20403,7 +20590,7 @@ public final class RpcProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest prototype) {
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -20419,26 +20606,26 @@ public final class RpcProto {
       return builder;
     }
     /**
-     * Protobuf type {@code rpcpb.GetNewTransactionsRequest}
+     * Protobuf type {@code rpcpb.SendBatchTransactionResponse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:rpcpb.GetNewTransactionsRequest)
-        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequestOrBuilder {
+        // @@protoc_insertion_point(builder_implements:rpcpb.SendBatchTransactionResponse)
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.class, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.Builder.class);
+                com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.class, com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.Builder.class);
       }
 
-      // Construct using com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.newBuilder()
+      // Construct using com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -20456,23 +20643,25 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        errorCode_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_SendBatchTransactionResponse_descriptor;
       }
 
       @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.getDefaultInstance();
+      public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest build() {
-        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest result = buildPartial();
+      public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse build() {
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -20480,8 +20669,14 @@ public final class RpcProto {
       }
 
       @java.lang.Override
-      public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest buildPartial() {
-        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest result = new com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest(this);
+      public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse result = new com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          errorCode_ = java.util.Collections.unmodifiableList(errorCode_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.errorCode_ = errorCode_;
         onBuilt();
         return result;
       }
@@ -20520,16 +20715,26 @@ public final class RpcProto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) {
-          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest)other);
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest other) {
-        if (other == com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse.getDefaultInstance()) return this;
+        if (!other.errorCode_.isEmpty()) {
+          if (errorCode_.isEmpty()) {
+            errorCode_ = other.errorCode_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureErrorCodeIsMutable();
+            errorCode_.addAll(other.errorCode_);
+          }
+          onChanged();
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -20545,17 +20750,84 @@ public final class RpcProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest parsedMessage = null;
+        com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<java.lang.Integer> errorCode_ = java.util.Collections.emptyList();
+      private void ensureErrorCodeIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          errorCode_ = new java.util.ArrayList<java.lang.Integer>(errorCode_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getErrorCodeList() {
+        return java.util.Collections.unmodifiableList(errorCode_);
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public int getErrorCodeCount() {
+        return errorCode_.size();
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public int getErrorCode(int index) {
+        return errorCode_.get(index);
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public Builder setErrorCode(
+          int index, int value) {
+        ensureErrorCodeIsMutable();
+        errorCode_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public Builder addErrorCode(int value) {
+        ensureErrorCodeIsMutable();
+        errorCode_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public Builder addAllErrorCode(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureErrorCodeIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, errorCode_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 errorCode = 1;</code>
+       */
+      public Builder clearErrorCode() {
+        errorCode_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -20571,41 +20843,41 @@ public final class RpcProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:rpcpb.GetNewTransactionsRequest)
+      // @@protoc_insertion_point(builder_scope:rpcpb.SendBatchTransactionResponse)
     }
 
-    // @@protoc_insertion_point(class_scope:rpcpb.GetNewTransactionsRequest)
-    private static final com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:rpcpb.SendBatchTransactionResponse)
+    private static final com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest();
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse();
     }
 
-    public static com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstance() {
+    public static com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetNewTransactionsRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetNewTransactionsRequest>() {
+    private static final com.google.protobuf.Parser<SendBatchTransactionResponse>
+        PARSER = new com.google.protobuf.AbstractParser<SendBatchTransactionResponse>() {
       @java.lang.Override
-      public GetNewTransactionsRequest parsePartialFrom(
+      public SendBatchTransactionResponse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetNewTransactionsRequest(input, extensionRegistry);
+        return new SendBatchTransactionResponse(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetNewTransactionsRequest> parser() {
+    public static com.google.protobuf.Parser<SendBatchTransactionResponse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetNewTransactionsRequest> getParserForType() {
+    public com.google.protobuf.Parser<SendBatchTransactionResponse> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest getDefaultInstanceForType() {
+    public com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -21218,6 +21490,1266 @@ public final class RpcProto {
 
   }
 
+  public interface GetAllTransactionsRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetAllTransactionsRequest)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetAllTransactionsRequest}
+   */
+  public  static final class GetAllTransactionsRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetAllTransactionsRequest)
+      GetAllTransactionsRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetAllTransactionsRequest.newBuilder() to construct.
+    private GetAllTransactionsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetAllTransactionsRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetAllTransactionsRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.class, com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest other = (com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetAllTransactionsRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetAllTransactionsRequest)
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.class, com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest result = new com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetAllTransactionsRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetAllTransactionsRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetAllTransactionsRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GetAllTransactionsRequest>() {
+      @java.lang.Override
+      public GetAllTransactionsRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetAllTransactionsRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetAllTransactionsRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetAllTransactionsRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetAllTransactionsResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetAllTransactionsResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint32 errorCode = 1;</code>
+     */
+    int getErrorCode();
+
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> 
+        getTransactionsList();
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index);
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    int getTransactionsCount();
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+        getTransactionsOrBuilderList();
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetAllTransactionsResponse}
+   */
+  public  static final class GetAllTransactionsResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetAllTransactionsResponse)
+      GetAllTransactionsResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetAllTransactionsResponse.newBuilder() to construct.
+    private GetAllTransactionsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetAllTransactionsResponse() {
+      errorCode_ = 0;
+      transactions_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetAllTransactionsResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              errorCode_ = input.readUInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                transactions_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.Transaction>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              transactions_.add(
+                  input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          transactions_ = java.util.Collections.unmodifiableList(transactions_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.class, com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ERRORCODE_FIELD_NUMBER = 1;
+    private int errorCode_;
+    /**
+     * <code>uint32 errorCode = 1;</code>
+     */
+    public int getErrorCode() {
+      return errorCode_;
+    }
+
+    public static final int TRANSACTIONS_FIELD_NUMBER = 2;
+    private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transactions_;
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
+      return transactions_;
+    }
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+        getTransactionsOrBuilderList() {
+      return transactions_;
+    }
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    public int getTransactionsCount() {
+      return transactions_.size();
+    }
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
+      return transactions_.get(index);
+    }
+    /**
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
+        int index) {
+      return transactions_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (errorCode_ != 0) {
+        output.writeUInt32(1, errorCode_);
+      }
+      for (int i = 0; i < transactions_.size(); i++) {
+        output.writeMessage(2, transactions_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (errorCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, errorCode_);
+      }
+      for (int i = 0; i < transactions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, transactions_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse other = (com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse) obj;
+
+      boolean result = true;
+      result = result && (getErrorCode()
+          == other.getErrorCode());
+      result = result && getTransactionsList()
+          .equals(other.getTransactionsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ERRORCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getErrorCode();
+      if (getTransactionsCount() > 0) {
+        hash = (37 * hash) + TRANSACTIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getTransactionsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetAllTransactionsResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetAllTransactionsResponse)
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.class, com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getTransactionsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        errorCode_ = 0;
+
+        if (transactionsBuilder_ == null) {
+          transactions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          transactionsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetAllTransactionsResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse build() {
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse result = new com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.errorCode_ = errorCode_;
+        if (transactionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            transactions_ = java.util.Collections.unmodifiableList(transactions_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.transactions_ = transactions_;
+        } else {
+          result.transactions_ = transactionsBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse.getDefaultInstance()) return this;
+        if (other.getErrorCode() != 0) {
+          setErrorCode(other.getErrorCode());
+        }
+        if (transactionsBuilder_ == null) {
+          if (!other.transactions_.isEmpty()) {
+            if (transactions_.isEmpty()) {
+              transactions_ = other.transactions_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureTransactionsIsMutable();
+              transactions_.addAll(other.transactions_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.transactions_.isEmpty()) {
+            if (transactionsBuilder_.isEmpty()) {
+              transactionsBuilder_.dispose();
+              transactionsBuilder_ = null;
+              transactions_ = other.transactions_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              transactionsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getTransactionsFieldBuilder() : null;
+            } else {
+              transactionsBuilder_.addAllMessages(other.transactions_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int errorCode_ ;
+      /**
+       * <code>uint32 errorCode = 1;</code>
+       */
+      public int getErrorCode() {
+        return errorCode_;
+      }
+      /**
+       * <code>uint32 errorCode = 1;</code>
+       */
+      public Builder setErrorCode(int value) {
+        
+        errorCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 errorCode = 1;</code>
+       */
+      public Builder clearErrorCode() {
+        
+        errorCode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transactions_ =
+        java.util.Collections.emptyList();
+      private void ensureTransactionsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          transactions_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.Transaction>(transactions_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionsBuilder_;
+
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
+        if (transactionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(transactions_);
+        } else {
+          return transactionsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public int getTransactionsCount() {
+        if (transactionsBuilder_ == null) {
+          return transactions_.size();
+        } else {
+          return transactionsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
+        if (transactionsBuilder_ == null) {
+          return transactions_.get(index);
+        } else {
+          return transactionsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder setTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionsIsMutable();
+          transactions_.set(index, value);
+          onChanged();
+        } else {
+          transactionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder setTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          transactionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder addTransactions(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionsIsMutable();
+          transactions_.add(value);
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder addTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionsIsMutable();
+          transactions_.add(index, value);
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder addTransactions(
+          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.add(builderForValue.build());
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder addTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder addAllTransactions(
+          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.Transaction> values) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, transactions_);
+          onChanged();
+        } else {
+          transactionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder clearTransactions() {
+        if (transactionsBuilder_ == null) {
+          transactions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          transactionsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public Builder removeTransactions(int index) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.remove(index);
+          onChanged();
+        } else {
+          transactionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionsBuilder(
+          int index) {
+        return getTransactionsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
+          int index) {
+        if (transactionsBuilder_ == null) {
+          return transactions_.get(index);  } else {
+          return transactionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+           getTransactionsOrBuilderList() {
+        if (transactionsBuilder_ != null) {
+          return transactionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(transactions_);
+        }
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder() {
+        return getTransactionsFieldBuilder().addBuilder(
+            com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder(
+          int index) {
+        return getTransactionsFieldBuilder().addBuilder(
+            index, com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder> 
+           getTransactionsBuilderList() {
+        return getTransactionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+          getTransactionsFieldBuilder() {
+        if (transactionsBuilder_ == null) {
+          transactionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
+                  transactions_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          transactions_ = null;
+        }
+        return transactionsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetAllTransactionsResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetAllTransactionsResponse)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetAllTransactionsResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetAllTransactionsResponse>() {
+      @java.lang.Override
+      public GetAllTransactionsResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetAllTransactionsResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetAllTransactionsResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetAllTransactionsResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_CreateWalletRequest_descriptor;
   private static final 
@@ -21228,11 +22760,6 @@ public final class RpcProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_UnlockWalletRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_UnlockWalletResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_AddProducerRequest_descriptor;
   private static final 
@@ -21254,11 +22781,6 @@ public final class RpcProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_SendRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetWalletAddressRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetWalletAddressRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetPeerInfoRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -21274,10 +22796,55 @@ public final class RpcProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_AddPeerRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetVersionRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetVersionRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetUTXORequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetUTXORequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetBlocksRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetBlockByHashRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_SendTransactionRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_SendBatchTransactionRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_SendBatchTransactionRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_AddProducerResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_AddProducerResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_UnlockWalletResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetBalanceResponse_descriptor;
   private static final 
@@ -21309,20 +22876,10 @@ public final class RpcProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_AddPeerResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetVersionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetVersionRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetVersionResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetVersionResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetUTXORequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetUTXORequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetUTXOResponse_descriptor;
   private static final 
@@ -21334,55 +22891,45 @@ public final class RpcProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_UTXO_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetBlocksRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetBlocksResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetBlocksResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetBlockByHashRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetBlockByHashResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetBlockByHashResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetBlockByHeightRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetBlockByHeightResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetBlockByHeightResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_SendTransactionRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_SendTransactionResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_SendTransactionResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_rpcpb_GetNewTransactionsRequest_descriptor;
+    internal_static_rpcpb_SendBatchTransactionResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable;
+      internal_static_rpcpb_SendBatchTransactionResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetNewTransactionsResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetNewTransactionsResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetAllTransactionsRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetAllTransactionsRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetAllTransactionsResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetAllTransactionsResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -21393,85 +22940,94 @@ public final class RpcProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\trpc.proto\022\005rpcpb\032\016peerlist.proto\032\013bloc" +
-      "k.proto\032\021transaction.proto\"7\n\023CreateWall" +
-      "etRequest\022\014\n\004name\030\001 \001(\t\022\022\n\npassphrase\030\002 " +
-      "\001(\t\"#\n\023UnlockWalletRequest\022\014\n\004name\030\001 \001(\t" +
-      "\"\'\n\024UnlockWalletResponse\022\017\n\007message\030\001 \001(" +
-      "\t\"3\n\022AddProducerRequest\022\014\n\004name\030\001 \001(\t\022\017\n" +
-      "\007address\030\002 \001(\t\"F\n\021GetBalanceRequest\022\014\n\004n" +
-      "ame\030\001 \001(\t\022\022\n\npassphrase\030\002 \001(\t\022\017\n\007address" +
-      "\030\003 \001(\t\"2\n\024SendFromMinerRequest\022\n\n\002to\030\001 \001" +
-      "(\t\022\016\n\006amount\030\002 \001(\014\"j\n\013SendRequest\022\014\n\004fro" +
-      "m\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\016\n\006amount\030\003 \001(\014\022\022\n\nW" +
-      "alletpath\030\004 \001(\t\022\013\n\003tip\030\005 \001(\004\022\020\n\010contract" +
-      "\030\006 \001(\t\";\n\027GetWalletAddressRequest\022\014\n\004nam" +
-      "e\030\001 \001(\t\022\022\n\npassphrase\030\002 \001(\t\"\024\n\022GetPeerIn" +
-      "foRequest\"\032\n\030GetBlockchainInfoRequest\"%\n" +
-      "\016AddPeerRequest\022\023\n\013fullAddress\030\001 \001(\t\"&\n\023" +
-      "AddProducerResponse\022\017\n\007message\030\001 \001(\t\"5\n\022" +
-      "GetBalanceResponse\022\017\n\007message\030\001 \001(\t\022\016\n\006a" +
-      "mount\030\002 \001(\003\"(\n\025SendFromMinerResponse\022\017\n\007" +
-      "message\030\001 \001(\t\"\037\n\014SendResponse\022\017\n\007message" +
-      "\030\001 \001(\t\"<\n\023GetPeerInfoResponse\022%\n\010peerLis" +
-      "t\030\001 \001(\0132\023.networkpb.Peerlist\"m\n\031GetBlock" +
-      "chainInfoResponse\022\025\n\rtailBlockHash\030\001 \001(\014" +
-      "\022\023\n\013blockHeight\030\002 \001(\004\022\021\n\tproducers\030\003 \003(\t" +
-      "\022\021\n\ttimestamp\030\004 \001(\003\"!\n\017AddPeerResponse\022\016" +
-      "\n\006status\030\001 \001(\t\")\n\021GetVersionRequest\022\024\n\014p" +
-      "rotoVersion\030\001 \001(\t\"T\n\022GetVersionResponse\022" +
-      "\021\n\terrorCode\030\001 \001(\r\022\024\n\014protoVersion\030\002 \001(\t" +
-      "\022\025\n\rserverVersion\030\003 \001(\t\"!\n\016GetUTXOReques" +
-      "t\022\017\n\007address\030\001 \001(\t\"k\n\017GetUTXOResponse\022\021\n" +
-      "\terrorCode\030\001 \001(\r\022\032\n\005utxos\030\002 \003(\0132\013.rpcpb." +
-      "UTXO\022)\n\014blockHeaders\030\003 \003(\0132\023.corepb.Bloc" +
-      "kHeader\"L\n\004UTXO\022\016\n\006amount\030\001 \001(\014\022\025\n\rpubli" +
-      "cKeyHash\030\002 \001(\014\022\014\n\004txid\030\003 \001(\014\022\017\n\007txIndex\030" +
-      "\004 \001(\r\">\n\020GetBlocksRequest\022\030\n\020startBlockH" +
-      "ashes\030\001 \003(\014\022\020\n\010maxCount\030\002 \001(\005\"E\n\021GetBloc" +
-      "ksResponse\022\021\n\terrorCode\030\001 \001(\r\022\035\n\006blocks\030" +
-      "\002 \003(\0132\r.corepb.Block\"%\n\025GetBlockByHashRe" +
-      "quest\022\014\n\004hash\030\001 \001(\014\"I\n\026GetBlockByHashRes" +
-      "ponse\022\021\n\terrorCode\030\001 \001(\r\022\034\n\005block\030\002 \001(\0132" +
-      "\r.corepb.Block\")\n\027GetBlockByHeightReques" +
-      "t\022\016\n\006height\030\001 \001(\004\"K\n\030GetBlockByHeightRes" +
-      "ponse\022\021\n\terrorCode\030\001 \001(\r\022\034\n\005block\030\002 \001(\0132" +
-      "\r.corepb.Block\"B\n\026SendTransactionRequest" +
-      "\022(\n\013transaction\030\001 \001(\0132\023.corepb.Transacti" +
-      "on\",\n\027SendTransactionResponse\022\021\n\terrorCo" +
-      "de\030\001 \001(\r\"\033\n\031GetNewTransactionsRequest\"F\n" +
-      "\032GetNewTransactionsResponse\022(\n\013transacti" +
-      "on\030\001 \001(\0132\023.corepb.Transaction2\344\005\n\nRpcSer" +
-      "vice\022F\n\rRpcGetVersion\022\030.rpcpb.GetVersion" +
-      "Request\032\031.rpcpb.GetVersionResponse\"\000\022F\n\r" +
-      "RpcGetBalance\022\030.rpcpb.GetBalanceRequest\032" +
-      "\031.rpcpb.GetBalanceResponse\"\000\022[\n\024RpcGetBl" +
-      "ockchainInfo\022\037.rpcpb.GetBlockchainInfoRe" +
-      "quest\032 .rpcpb.GetBlockchainInfoResponse\"" +
-      "\000\022=\n\nRpcGetUTXO\022\025.rpcpb.GetUTXORequest\032\026" +
-      ".rpcpb.GetUTXOResponse\"\000\022C\n\014RpcGetBlocks" +
-      "\022\027.rpcpb.GetBlocksRequest\032\030.rpcpb.GetBlo" +
-      "cksResponse\"\000\022R\n\021RpcGetBlockByHash\022\034.rpc" +
-      "pb.GetBlockByHashRequest\032\035.rpcpb.GetBloc" +
-      "kByHashResponse\"\000\022X\n\023RpcGetBlockByHeight" +
-      "\022\036.rpcpb.GetBlockByHeightRequest\032\037.rpcpb" +
-      ".GetBlockByHeightResponse\"\000\022U\n\022RpcSendTr" +
-      "ansaction\022\035.rpcpb.SendTransactionRequest" +
-      "\032\036.rpcpb.SendTransactionResponse\"\000\022`\n\025Rp" +
-      "cGetNewTransactions\022 .rpcpb.GetNewTransa" +
-      "ctionsRequest\032!.rpcpb.GetNewTransactions" +
-      "Response\"\0000\0012\270\003\n\014AdminService\022=\n\nRpcAddP" +
-      "eer\022\025.rpcpb.AddPeerRequest\032\026.rpcpb.AddPe" +
-      "erResponse\"\000\0224\n\007RpcSend\022\022.rpcpb.SendRequ" +
-      "est\032\023.rpcpb.SendResponse\"\000\022I\n\016RpcGetPeer" +
-      "Info\022\031.rpcpb.GetPeerInfoRequest\032\032.rpcpb." +
-      "GetPeerInfoResponse\"\000\022O\n\020RpcSendFromMine" +
-      "r\022\033.rpcpb.SendFromMinerRequest\032\034.rpcpb.S" +
-      "endFromMinerResponse\"\000\022I\n\016RpcAddProducer" +
-      "\022\031.rpcpb.AddProducerRequest\032\032.rpcpb.AddP" +
-      "roducerResponse\"\000\022L\n\017RpcUnlockWallet\022\032.r" +
-      "pcpb.UnlockWalletRequest\032\033.rpcpb.UnlockW" +
-      "alletResponse\"\000B*\n\036com.dappley.java.core" +
-      ".protobufB\010RpcProtob\006proto3"
+      "k.proto\032\021transaction.proto\")\n\023CreateWall" +
+      "etRequest\022\022\n\npassphrase\030\001 \001(\t\"\025\n\023UnlockW" +
+      "alletRequest\"%\n\022AddProducerRequest\022\017\n\007ad" +
+      "dress\030\001 \001(\t\"$\n\021GetBalanceRequest\022\017\n\007addr" +
+      "ess\030\001 \001(\t\"2\n\024SendFromMinerRequest\022\n\n\002to\030" +
+      "\001 \001(\t\022\016\n\006amount\030\002 \001(\014\"f\n\013SendRequest\022\014\n\004" +
+      "from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\016\n\006amount\030\003 \001(\014\022\022" +
+      "\n\nwalletPath\030\004 \001(\t\022\013\n\003tip\030\005 \001(\014\022\014\n\004data\030" +
+      "\006 \001(\t\"\024\n\022GetPeerInfoRequest\"\032\n\030GetBlockc" +
+      "hainInfoRequest\"%\n\016AddPeerRequest\022\023\n\013ful" +
+      "lAddress\030\001 \001(\t\")\n\021GetVersionRequest\022\024\n\014p" +
+      "rotoVersion\030\001 \001(\t\"!\n\016GetUTXORequest\022\017\n\007a" +
+      "ddress\030\001 \001(\t\">\n\020GetBlocksRequest\022\030\n\020star" +
+      "tBlockHashes\030\001 \003(\014\022\020\n\010maxCount\030\002 \001(\005\"%\n\025" +
+      "GetBlockByHashRequest\022\014\n\004hash\030\001 \001(\014\")\n\027G" +
+      "etBlockByHeightRequest\022\016\n\006height\030\001 \001(\004\"B" +
+      "\n\026SendTransactionRequest\022(\n\013transaction\030" +
+      "\001 \001(\0132\023.corepb.Transaction\"G\n\033SendBatchT" +
+      "ransactionRequest\022(\n\013transaction\030\001 \003(\0132\023" +
+      ".corepb.Transaction\"\033\n\031GetNewTransaction" +
+      "sRequest\"&\n\023AddProducerResponse\022\017\n\007messa" +
+      "ge\030\001 \001(\t\"\'\n\024UnlockWalletResponse\022\017\n\007mess" +
+      "age\030\001 \001(\t\"5\n\022GetBalanceResponse\022\017\n\007messa" +
+      "ge\030\001 \001(\t\022\016\n\006amount\030\002 \001(\003\"(\n\025SendFromMine" +
+      "rResponse\022\017\n\007message\030\001 \001(\t\"C\n\014SendRespon" +
+      "se\022\017\n\007message\030\001 \001(\t\022\024\n\014contractAddr\030\002 \001(" +
+      "\t\022\014\n\004txid\030\003 \001(\t\"<\n\023GetPeerInfoResponse\022%" +
+      "\n\010peerList\030\001 \001(\0132\023.networkpb.Peerlist\"m\n" +
+      "\031GetBlockchainInfoResponse\022\025\n\rtailBlockH" +
+      "ash\030\001 \001(\014\022\023\n\013blockHeight\030\002 \001(\004\022\021\n\tproduc" +
+      "ers\030\003 \003(\t\022\021\n\ttimestamp\030\004 \001(\003\"!\n\017AddPeerR" +
+      "esponse\022\016\n\006status\030\001 \001(\t\"T\n\022GetVersionRes" +
+      "ponse\022\021\n\terrorCode\030\001 \001(\r\022\024\n\014protoVersion" +
+      "\030\002 \001(\t\022\025\n\rserverVersion\030\003 \001(\t\"k\n\017GetUTXO" +
+      "Response\022\021\n\terrorCode\030\001 \001(\r\022\032\n\005utxos\030\002 \003" +
+      "(\0132\013.rpcpb.UTXO\022)\n\014blockHeaders\030\003 \003(\0132\023." +
+      "corepb.BlockHeader\"L\n\004UTXO\022\016\n\006amount\030\001 \001" +
+      "(\014\022\025\n\rpublicKeyHash\030\002 \001(\014\022\014\n\004txid\030\003 \001(\014\022" +
+      "\017\n\007txIndex\030\004 \001(\r\"E\n\021GetBlocksResponse\022\021\n" +
+      "\terrorCode\030\001 \001(\r\022\035\n\006blocks\030\002 \003(\0132\r.corep" +
+      "b.Block\"I\n\026GetBlockByHashResponse\022\021\n\terr" +
+      "orCode\030\001 \001(\r\022\034\n\005block\030\002 \001(\0132\r.corepb.Blo" +
+      "ck\"K\n\030GetBlockByHeightResponse\022\021\n\terrorC" +
+      "ode\030\001 \001(\r\022\034\n\005block\030\002 \001(\0132\r.corepb.Block\"" +
+      ",\n\027SendTransactionResponse\022\021\n\terrorCode\030" +
+      "\001 \001(\r\"1\n\034SendBatchTransactionResponse\022\021\n" +
+      "\terrorCode\030\001 \003(\r\"F\n\032GetNewTransactionsRe" +
+      "sponse\022(\n\013transaction\030\001 \001(\0132\023.corepb.Tra" +
+      "nsaction\"\033\n\031GetAllTransactionsRequest\"Z\n" +
+      "\032GetAllTransactionsResponse\022\021\n\terrorCode" +
+      "\030\001 \001(\r\022)\n\014transactions\030\002 \003(\0132\023.corepb.Tr" +
+      "ansaction2\264\007\n\nRpcService\022F\n\rRpcGetVersio" +
+      "n\022\030.rpcpb.GetVersionRequest\032\031.rpcpb.GetV" +
+      "ersionResponse\"\000\022F\n\rRpcGetBalance\022\030.rpcp" +
+      "b.GetBalanceRequest\032\031.rpcpb.GetBalanceRe" +
+      "sponse\"\000\022[\n\024RpcGetBlockchainInfo\022\037.rpcpb" +
+      ".GetBlockchainInfoRequest\032 .rpcpb.GetBlo" +
+      "ckchainInfoResponse\"\000\022=\n\nRpcGetUTXO\022\025.rp" +
+      "cpb.GetUTXORequest\032\026.rpcpb.GetUTXORespon" +
+      "se\"\000\022C\n\014RpcGetBlocks\022\027.rpcpb.GetBlocksRe" +
+      "quest\032\030.rpcpb.GetBlocksResponse\"\000\022R\n\021Rpc" +
+      "GetBlockByHash\022\034.rpcpb.GetBlockByHashReq" +
+      "uest\032\035.rpcpb.GetBlockByHashResponse\"\000\022X\n" +
+      "\023RpcGetBlockByHeight\022\036.rpcpb.GetBlockByH" +
+      "eightRequest\032\037.rpcpb.GetBlockByHeightRes" +
+      "ponse\"\000\022U\n\022RpcSendTransaction\022\035.rpcpb.Se" +
+      "ndTransactionRequest\032\036.rpcpb.SendTransac" +
+      "tionResponse\"\000\022d\n\027RpcSendBatchTransactio" +
+      "n\022\".rpcpb.SendBatchTransactionRequest\032#." +
+      "rpcpb.SendBatchTransactionResponse\"\000\022`\n\025" +
+      "RpcGetNewTransactions\022 .rpcpb.GetNewTran" +
+      "sactionsRequest\032!.rpcpb.GetNewTransactio" +
+      "nsResponse\"\0000\001\022h\n\037RpcGetAllTransactionsF" +
+      "romTxPool\022 .rpcpb.GetAllTransactionsRequ" +
+      "est\032!.rpcpb.GetAllTransactionsResponse\"\000" +
+      "2\270\003\n\014AdminService\022=\n\nRpcAddPeer\022\025.rpcpb." +
+      "AddPeerRequest\032\026.rpcpb.AddPeerResponse\"\000" +
+      "\0224\n\007RpcSend\022\022.rpcpb.SendRequest\032\023.rpcpb." +
+      "SendResponse\"\000\022I\n\016RpcGetPeerInfo\022\031.rpcpb" +
+      ".GetPeerInfoRequest\032\032.rpcpb.GetPeerInfoR" +
+      "esponse\"\000\022O\n\020RpcSendFromMiner\022\033.rpcpb.Se" +
+      "ndFromMinerRequest\032\034.rpcpb.SendFromMiner" +
+      "Response\"\000\022I\n\016RpcAddProducer\022\031.rpcpb.Add" +
+      "ProducerRequest\032\032.rpcpb.AddProducerRespo" +
+      "nse\"\000\022L\n\017RpcUnlockWallet\022\032.rpcpb.UnlockW" +
+      "alletRequest\032\033.rpcpb.UnlockWalletRespons" +
+      "e\"\000B*\n\036com.dappley.java.core.protobufB\010R" +
+      "pcProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21493,199 +23049,217 @@ public final class RpcProto {
     internal_static_rpcpb_CreateWalletRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_CreateWalletRequest_descriptor,
-        new java.lang.String[] { "Name", "Passphrase", });
+        new java.lang.String[] { "Passphrase", });
     internal_static_rpcpb_UnlockWalletRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_rpcpb_UnlockWalletRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_UnlockWalletRequest_descriptor,
-        new java.lang.String[] { "Name", });
-    internal_static_rpcpb_UnlockWalletResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_UnlockWalletResponse_descriptor,
-        new java.lang.String[] { "Message", });
+        new java.lang.String[] { });
     internal_static_rpcpb_AddProducerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_rpcpb_AddProducerRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_AddProducerRequest_descriptor,
-        new java.lang.String[] { "Name", "Address", });
+        new java.lang.String[] { "Address", });
     internal_static_rpcpb_GetBalanceRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_rpcpb_GetBalanceRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBalanceRequest_descriptor,
-        new java.lang.String[] { "Name", "Passphrase", "Address", });
+        new java.lang.String[] { "Address", });
     internal_static_rpcpb_SendFromMinerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_rpcpb_SendFromMinerRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendFromMinerRequest_descriptor,
         new java.lang.String[] { "To", "Amount", });
     internal_static_rpcpb_SendRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_rpcpb_SendRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendRequest_descriptor,
-        new java.lang.String[] { "From", "To", "Amount", "Walletpath", "Tip", "Contract", });
-    internal_static_rpcpb_GetWalletAddressRequest_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_rpcpb_GetWalletAddressRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetWalletAddressRequest_descriptor,
-        new java.lang.String[] { "Name", "Passphrase", });
+        new java.lang.String[] { "From", "To", "Amount", "WalletPath", "Tip", "Data", });
     internal_static_rpcpb_GetPeerInfoRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_rpcpb_GetPeerInfoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetPeerInfoRequest_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_GetBlockchainInfoRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_rpcpb_GetBlockchainInfoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockchainInfoRequest_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_AddPeerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_rpcpb_AddPeerRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_AddPeerRequest_descriptor,
         new java.lang.String[] { "FullAddress", });
-    internal_static_rpcpb_AddProducerResponse_descriptor =
+    internal_static_rpcpb_GetVersionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_rpcpb_GetVersionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetVersionRequest_descriptor,
+        new java.lang.String[] { "ProtoVersion", });
+    internal_static_rpcpb_GetUTXORequest_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_rpcpb_GetUTXORequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetUTXORequest_descriptor,
+        new java.lang.String[] { "Address", });
+    internal_static_rpcpb_GetBlocksRequest_descriptor =
       getDescriptor().getMessageTypes().get(11);
+    internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetBlocksRequest_descriptor,
+        new java.lang.String[] { "StartBlockHashes", "MaxCount", });
+    internal_static_rpcpb_GetBlockByHashRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetBlockByHashRequest_descriptor,
+        new java.lang.String[] { "Hash", });
+    internal_static_rpcpb_GetBlockByHeightRequest_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetBlockByHeightRequest_descriptor,
+        new java.lang.String[] { "Height", });
+    internal_static_rpcpb_SendTransactionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_SendTransactionRequest_descriptor,
+        new java.lang.String[] { "Transaction", });
+    internal_static_rpcpb_SendBatchTransactionRequest_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_rpcpb_SendBatchTransactionRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_SendBatchTransactionRequest_descriptor,
+        new java.lang.String[] { "Transaction", });
+    internal_static_rpcpb_GetNewTransactionsRequest_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetNewTransactionsRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_rpcpb_AddProducerResponse_descriptor =
+      getDescriptor().getMessageTypes().get(17);
     internal_static_rpcpb_AddProducerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_AddProducerResponse_descriptor,
         new java.lang.String[] { "Message", });
+    internal_static_rpcpb_UnlockWalletResponse_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_UnlockWalletResponse_descriptor,
+        new java.lang.String[] { "Message", });
     internal_static_rpcpb_GetBalanceResponse_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_rpcpb_GetBalanceResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBalanceResponse_descriptor,
         new java.lang.String[] { "Message", "Amount", });
     internal_static_rpcpb_SendFromMinerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_rpcpb_SendFromMinerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendFromMinerResponse_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_rpcpb_SendResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_rpcpb_SendResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendResponse_descriptor,
-        new java.lang.String[] { "Message", });
+        new java.lang.String[] { "Message", "ContractAddr", "Txid", });
     internal_static_rpcpb_GetPeerInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_rpcpb_GetPeerInfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetPeerInfoResponse_descriptor,
         new java.lang.String[] { "PeerList", });
     internal_static_rpcpb_GetBlockchainInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_rpcpb_GetBlockchainInfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockchainInfoResponse_descriptor,
         new java.lang.String[] { "TailBlockHash", "BlockHeight", "Producers", "Timestamp", });
     internal_static_rpcpb_AddPeerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_rpcpb_AddPeerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_AddPeerResponse_descriptor,
         new java.lang.String[] { "Status", });
-    internal_static_rpcpb_GetVersionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(18);
-    internal_static_rpcpb_GetVersionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetVersionRequest_descriptor,
-        new java.lang.String[] { "ProtoVersion", });
     internal_static_rpcpb_GetVersionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_rpcpb_GetVersionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetVersionResponse_descriptor,
         new java.lang.String[] { "ErrorCode", "ProtoVersion", "ServerVersion", });
-    internal_static_rpcpb_GetUTXORequest_descriptor =
-      getDescriptor().getMessageTypes().get(20);
-    internal_static_rpcpb_GetUTXORequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetUTXORequest_descriptor,
-        new java.lang.String[] { "Address", });
     internal_static_rpcpb_GetUTXOResponse_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_rpcpb_GetUTXOResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetUTXOResponse_descriptor,
         new java.lang.String[] { "ErrorCode", "Utxos", "BlockHeaders", });
     internal_static_rpcpb_UTXO_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_rpcpb_UTXO_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_UTXO_descriptor,
         new java.lang.String[] { "Amount", "PublicKeyHash", "Txid", "TxIndex", });
-    internal_static_rpcpb_GetBlocksRequest_descriptor =
-      getDescriptor().getMessageTypes().get(23);
-    internal_static_rpcpb_GetBlocksRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetBlocksRequest_descriptor,
-        new java.lang.String[] { "StartBlockHashes", "MaxCount", });
     internal_static_rpcpb_GetBlocksResponse_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_rpcpb_GetBlocksResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlocksResponse_descriptor,
         new java.lang.String[] { "ErrorCode", "Blocks", });
-    internal_static_rpcpb_GetBlockByHashRequest_descriptor =
-      getDescriptor().getMessageTypes().get(25);
-    internal_static_rpcpb_GetBlockByHashRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetBlockByHashRequest_descriptor,
-        new java.lang.String[] { "Hash", });
     internal_static_rpcpb_GetBlockByHashResponse_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_rpcpb_GetBlockByHashResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockByHashResponse_descriptor,
         new java.lang.String[] { "ErrorCode", "Block", });
-    internal_static_rpcpb_GetBlockByHeightRequest_descriptor =
-      getDescriptor().getMessageTypes().get(27);
-    internal_static_rpcpb_GetBlockByHeightRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetBlockByHeightRequest_descriptor,
-        new java.lang.String[] { "Height", });
     internal_static_rpcpb_GetBlockByHeightResponse_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_rpcpb_GetBlockByHeightResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockByHeightResponse_descriptor,
         new java.lang.String[] { "ErrorCode", "Block", });
-    internal_static_rpcpb_SendTransactionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(29);
-    internal_static_rpcpb_SendTransactionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_SendTransactionRequest_descriptor,
-        new java.lang.String[] { "Transaction", });
     internal_static_rpcpb_SendTransactionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_rpcpb_SendTransactionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendTransactionResponse_descriptor,
         new java.lang.String[] { "ErrorCode", });
-    internal_static_rpcpb_GetNewTransactionsRequest_descriptor =
-      getDescriptor().getMessageTypes().get(31);
-    internal_static_rpcpb_GetNewTransactionsRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_rpcpb_GetNewTransactionsRequest_descriptor,
-        new java.lang.String[] { });
-    internal_static_rpcpb_GetNewTransactionsResponse_descriptor =
+    internal_static_rpcpb_SendBatchTransactionResponse_descriptor =
       getDescriptor().getMessageTypes().get(32);
+    internal_static_rpcpb_SendBatchTransactionResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_SendBatchTransactionResponse_descriptor,
+        new java.lang.String[] { "ErrorCode", });
+    internal_static_rpcpb_GetNewTransactionsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(33);
     internal_static_rpcpb_GetNewTransactionsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetNewTransactionsResponse_descriptor,
         new java.lang.String[] { "Transaction", });
+    internal_static_rpcpb_GetAllTransactionsRequest_descriptor =
+      getDescriptor().getMessageTypes().get(34);
+    internal_static_rpcpb_GetAllTransactionsRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetAllTransactionsRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_rpcpb_GetAllTransactionsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(35);
+    internal_static_rpcpb_GetAllTransactionsResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetAllTransactionsResponse_descriptor,
+        new java.lang.String[] { "ErrorCode", "Transactions", });
     com.dappley.java.core.protobuf.PeerlistProto.getDescriptor();
     com.dappley.java.core.protobuf.BlockProto.getDescriptor();
     com.dappley.java.core.protobuf.TransactionProto.getDescriptor();

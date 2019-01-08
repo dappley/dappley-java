@@ -8,7 +8,7 @@ message Transaction{
     bytes ID = 1;
     repeated TXInput Vin = 2;
     repeated TXOutput Vout = 3;
-    uint64 Tip = 4;
+    bytes Tip = 4;
 }
 
 message TXInput{

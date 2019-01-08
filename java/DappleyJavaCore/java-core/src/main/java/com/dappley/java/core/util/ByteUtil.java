@@ -2,6 +2,7 @@ package com.dappley.java.core.util;
 
 import com.google.protobuf.ByteString;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.Collection;
@@ -166,5 +167,19 @@ public class ByteUtil {
     public static byte[] joinBytes(Collection<byte[]> list) {
         byte[][] bytes = list.toArray(new byte[list.size()][]);
         return joinBytes(bytes);
+    }
+
+    /**
+     * Convert String to byte array.
+     * @param str String data
+     * @return byte[] array
+     */
+    public static byte[] string2Bytes(String str) {
+        try {
+            return str.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

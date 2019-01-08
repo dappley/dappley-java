@@ -3,11 +3,14 @@ package com.dappley.java.core.po;
 import com.dappley.java.core.crypto.ShaDigest;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.ByteUtil;
+import com.dappley.java.core.util.HexUtil;
 import com.dappley.java.core.util.ObjectUtils;
 import com.google.protobuf.ByteString;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,11 +19,12 @@ import java.util.List;
  * Transaction object
  */
 @Data
+@Slf4j
 public class Transaction implements Serializable {
     private byte[] id;
     private List<TxInput> txInputs;
     private List<TxOutput> txOutputs;
-    private long tip;
+    private BigInteger tip;
 
     public Transaction() {
     }
@@ -57,7 +61,9 @@ public class Transaction implements Serializable {
             }
             this.setTxOutputs(txOutputs);
         }
-        this.setTip(transaction.getTip());
+        if (transaction.getTip() != null && transaction.getTip().size() > 0) {
+            this.setTip(new BigInteger(1, transaction.getTip().toByteArray()));
+        }
     }
 
     /**
@@ -83,7 +89,7 @@ public class Transaction implements Serializable {
                 builder.addVout(txOutput.toProto());
             }
         }
-        builder.setTip(this.getTip());
+        builder.setTip(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getTip())));
         return builder.build();
     }
 
@@ -139,6 +145,7 @@ public class Transaction implements Serializable {
                 txNewOutput = new TxOutput();
                 txNewOutput.setPubKeyHash(txOutput.getPubKeyHash());
                 txNewOutput.setValue(txOutput.getValue());
+                txNewOutput.setContract(txOutput.getContract());
                 txNewOutputs.add(txNewOutput);
             }
             transaction.setTxOutputs(txNewOutputs);
@@ -179,6 +186,7 @@ public class Transaction implements Serializable {
 
         // serialize the new transaction oject
         byte[] serialized = serialize();
+        log.error("serialized hex: " + HexUtil.toHex(serialized));
         // get sha256 hash
         byte[] hash = ShaDigest.sha256(serialized);
         this.setId(oldId);
@@ -216,10 +224,13 @@ public class Transaction implements Serializable {
                 bytesList.add(txOutput.getValue() == null ? null : txOutput.getValue());
                 // pubKeyHash
                 bytesList.add(txOutput.getPubKeyHash() == null ? null : txOutput.getPubKeyHash());
+                bytesList.add(txOutput.getContract() == null ? null : ByteUtil.string2Bytes(txOutput.getContract()));
             }
         }
         // add tip
-        bytesList.add(ByteUtil.long2Bytes(this.getTip()));
+        if (this.getTip() != null) {
+            bytesList.add(ByteUtil.bigInteger2Bytes(this.getTip()));
+        }
 
         return ByteUtil.joinBytes(bytesList);
     }

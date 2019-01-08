@@ -46,7 +46,7 @@ public class BlockManager {
         Transaction transaction = new Transaction();
         transaction.addTxInput(txInput);
         transaction.addTxOutput(txOutput);
-        transaction.setTip(0);
+        transaction.setTip(BigInteger.ZERO);
         // calculate ID of transaction
         transaction.createId();
 

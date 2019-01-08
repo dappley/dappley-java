@@ -72,9 +72,9 @@ public final class TransactionProto {
         int index);
 
     /**
-     * <code>uint64 Tip = 4;</code>
+     * <code>bytes Tip = 4;</code>
      */
-    long getTip();
+    com.google.protobuf.ByteString getTip();
   }
   /**
    * Protobuf type {@code corepb.Transaction}
@@ -92,7 +92,7 @@ public final class TransactionProto {
       iD_ = com.google.protobuf.ByteString.EMPTY;
       vin_ = java.util.Collections.emptyList();
       vout_ = java.util.Collections.emptyList();
-      tip_ = 0L;
+      tip_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -142,9 +142,9 @@ public final class TransactionProto {
                   input.readMessage(com.dappley.java.core.protobuf.TransactionProto.TXOutput.parser(), extensionRegistry));
               break;
             }
-            case 32: {
+            case 34: {
 
-              tip_ = input.readUInt64();
+              tip_ = input.readBytes();
               break;
             }
             default: {
@@ -266,11 +266,11 @@ public final class TransactionProto {
     }
 
     public static final int TIP_FIELD_NUMBER = 4;
-    private long tip_;
+    private com.google.protobuf.ByteString tip_;
     /**
-     * <code>uint64 Tip = 4;</code>
+     * <code>bytes Tip = 4;</code>
      */
-    public long getTip() {
+    public com.google.protobuf.ByteString getTip() {
       return tip_;
     }
 
@@ -297,8 +297,8 @@ public final class TransactionProto {
       for (int i = 0; i < vout_.size(); i++) {
         output.writeMessage(3, vout_.get(i));
       }
-      if (tip_ != 0L) {
-        output.writeUInt64(4, tip_);
+      if (!tip_.isEmpty()) {
+        output.writeBytes(4, tip_);
       }
       unknownFields.writeTo(output);
     }
@@ -321,9 +321,9 @@ public final class TransactionProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, vout_.get(i));
       }
-      if (tip_ != 0L) {
+      if (!tip_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(4, tip_);
+          .computeBytesSize(4, tip_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -347,8 +347,8 @@ public final class TransactionProto {
           .equals(other.getVinList());
       result = result && getVoutList()
           .equals(other.getVoutList());
-      result = result && (getTip()
-          == other.getTip());
+      result = result && getTip()
+          .equals(other.getTip());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -371,8 +371,7 @@ public final class TransactionProto {
         hash = (53 * hash) + getVoutList().hashCode();
       }
       hash = (37 * hash) + TIP_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getTip());
+      hash = (53 * hash) + getTip().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -522,7 +521,7 @@ public final class TransactionProto {
         } else {
           voutBuilder_.clear();
         }
-        tip_ = 0L;
+        tip_ = com.google.protobuf.ByteString.EMPTY;
 
         return this;
       }
@@ -676,7 +675,7 @@ public final class TransactionProto {
             }
           }
         }
-        if (other.getTip() != 0L) {
+        if (other.getTip() != com.google.protobuf.ByteString.EMPTY) {
           setTip(other.getTip());
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -1218,28 +1217,31 @@ public final class TransactionProto {
         return voutBuilder_;
       }
 
-      private long tip_ ;
+      private com.google.protobuf.ByteString tip_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>uint64 Tip = 4;</code>
+       * <code>bytes Tip = 4;</code>
        */
-      public long getTip() {
+      public com.google.protobuf.ByteString getTip() {
         return tip_;
       }
       /**
-       * <code>uint64 Tip = 4;</code>
+       * <code>bytes Tip = 4;</code>
        */
-      public Builder setTip(long value) {
-        
+      public Builder setTip(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         tip_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 Tip = 4;</code>
+       * <code>bytes Tip = 4;</code>
        */
       public Builder clearTip() {
         
-        tip_ = 0L;
+        tip_ = getDefaultInstance().getTip();
         onChanged();
         return this;
       }
@@ -2679,7 +2681,7 @@ public final class TransactionProto {
       "\n\021transaction.proto\022\006corepb\"d\n\013Transacti" +
       "on\022\n\n\002ID\030\001 \001(\014\022\034\n\003Vin\030\002 \003(\0132\017.corepb.TXI" +
       "nput\022\036\n\004Vout\030\003 \003(\0132\020.corepb.TXOutput\022\013\n\003" +
-      "Tip\030\004 \001(\004\"H\n\007TXInput\022\014\n\004Txid\030\001 \001(\014\022\014\n\004Vo" +
+      "Tip\030\004 \001(\014\"H\n\007TXInput\022\014\n\004Txid\030\001 \001(\014\022\014\n\004Vo" +
       "ut\030\002 \001(\005\022\021\n\tSignature\030\003 \001(\014\022\016\n\006PubKey\030\004 " +
       "\001(\014\"?\n\010TXOutput\022\r\n\005Value\030\001 \001(\014\022\022\n\nPubKey" +
       "Hash\030\002 \001(\014\022\020\n\010Contract\030\003 \001(\tB2\n\036com.dapp" +

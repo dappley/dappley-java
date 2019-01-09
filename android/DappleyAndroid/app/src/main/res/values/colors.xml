@@ -27,5 +27,6 @@
     <color name="purple_txt">#B3B8EC</color>
     <color name="purple_hint">#6C708D</color>
     <color name="purple_title">#5D639F</color>
+    <color name="purple_money">#7B86FA</color>
     <color name="line_blue_dark">#1E204F</color>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_page_bg"
+    android:background="@color/deep_bg"
     android:orientation="vertical"
     tools:context=".TransferActivity">
 
@@ -23,13 +23,14 @@
             <com.dappley.android.widget.AutoHeightViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_15" />
+                android:layout_height="150dip"
+                android:layout_marginTop="@dimen/margin_15"
+                android:layout_marginBottom="@dimen/margin_15" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/main_menu_bg"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/margin_20"
                 android:paddingTop="@dimen/margin_15"
@@ -40,7 +41,7 @@
                     android:layout_width="70dip"
                     android:layout_height="wrap_content"
                     android:text="@string/layout_transfer_amount"
-                    android:textColor="@color/gray_text_light" />
+                    android:textColor="@color/purple_title" />
 
                 <EditText
                     android:id="@+id/et_value"
@@ -51,15 +52,15 @@
                     android:hint="@string/layout_transfer_amount_tip"
                     android:inputType="number"
                     android:lines="1"
-                    android:textColor="@color/gray_text"
-                    android:textColorHint="@color/line_gray" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/purple_hint" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_15"
-                android:background="@color/white"
+                android:background="@color/main_menu_bg"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/margin_20"
                 android:paddingTop="@dimen/margin_15"
@@ -70,7 +71,7 @@
                     android:layout_width="70dip"
                     android:layout_height="wrap_content"
                     android:text="@string/layout_receive_address"
-                    android:textColor="@color/gray_text_light" />
+                    android:textColor="@color/purple_title" />
 
                 <EditText
                     android:id="@+id/et_to_address"
@@ -80,15 +81,15 @@
                     android:background="@null"
                     android:hint="@string/layout_receive_address_tip"
                     android:maxLines="2"
-                    android:textColor="@color/gray_text"
-                    android:textColorHint="@color/line_gray" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/purple_hint" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dip"
-                android:background="@color/white"
+                android:background="@color/main_menu_bg"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/margin_20"
                 android:paddingTop="@dimen/margin_15"
@@ -99,7 +100,7 @@
                     android:layout_width="70dip"
                     android:layout_height="wrap_content"
                     android:text="@string/layout_wallet_password"
-                    android:textColor="@color/gray_text_light" />
+                    android:textColor="@color/purple_title" />
 
                 <EditText
                     android:id="@+id/et_password"
@@ -110,8 +111,8 @@
                     android:hint="@string/layout_wallet_password_tip"
                     android:inputType="textPassword"
                     android:lines="1"
-                    android:textColor="@color/gray_text"
-                    android:textColorHint="@color/line_gray" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/purple_hint" />
             </LinearLayout>
 
 
@@ -123,7 +124,7 @@
                 android:layout_marginLeft="@dimen/margin_15"
                 android:layout_marginTop="30dip"
                 android:layout_marginRight="@dimen/margin_15"
-                android:background="@drawable/btn_primary_selector"
+                android:background="@drawable/btn_blue_selector"
                 android:text="@string/layout_transfer"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

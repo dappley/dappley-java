@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dappley.android.R;
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WalletPagerAdapter extends PagerAdapter {
+    private static int[] ICONS = new int[]{R.drawable.icon_wallet_1, R.drawable.icon_wallet_2, R.drawable.icon_wallet_3, R.drawable.icon_wallet_4};
     private Context context;
     private List<Wallet> wallets;
     private List<View> views;
@@ -75,6 +77,8 @@ public class WalletPagerAdapter extends PagerAdapter {
                 viewHolder.tvValue.setText(wallet.getBalance().toString());
             }
         }
+        viewHolder.iconWallet.setImageResource(ICONS[position % 4]);
+
         view.setTag(viewHolder);
 
         fillEmpty(views, position);
@@ -114,6 +118,8 @@ public class WalletPagerAdapter extends PagerAdapter {
     }
 
     static class ViewHolder {
+        @BindView(R.id.icon_wallet)
+        ImageView iconWallet;
         @BindView(R.id.txt_name)
         TextView tvName;
         @BindView(R.id.txt_address)

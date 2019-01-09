@@ -18,4 +18,9 @@
 
     <color name="arc_start">#00D584</color>
     <color name="arc_middle">#00C6B9</color>
+    <color name="deep_bg">#000131</color>
+    <color name="main_menu_bg">#121444</color>
+    <color name="main_menu_default">#6C7693</color>
+    <color name="main_menu_selected">#6479EE</color>
+    <color name="wallet_add_btn_blue">#6F87F3</color>
 </resources>

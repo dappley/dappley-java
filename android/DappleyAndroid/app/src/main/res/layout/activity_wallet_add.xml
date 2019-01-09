@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_page_gradient"
+    android:background="@drawable/welcome_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".WalletAddActivity">
 
@@ -13,12 +14,14 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constrain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dip"
-            android:scaleType="centerInside"
+            android:layout_margin="40dip"
+            android:scaleType="fitCenter"
             android:src="@drawable/wallet_add_top"
             app:layout_constraintHeight_percent="0.7" />
 
@@ -36,7 +39,7 @@
                 style="?borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="46dip"
-                android:background="@drawable/btn_white_line_selector"
+                android:background="@drawable/btn_blue_line_selector"
                 android:text="@string/layout_create_wallet"
                 android:textAllCaps="false"
                 android:textColor="@drawable/txt_btn_white_selector"
@@ -48,10 +51,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dip"
                 android:layout_marginTop="@dimen/margin_20"
-                android:background="@drawable/btn_white_selector"
+                android:background="@drawable/btn_blue_selector"
                 android:text="@string/layout_import_wallet"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@drawable/txt_btn_white_selector"
                 android:textSize="15sp" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

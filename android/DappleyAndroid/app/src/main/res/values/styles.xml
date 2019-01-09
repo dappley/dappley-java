@@ -10,6 +10,10 @@
         <item name="android:listDivider">@drawable/bg_item_divider</item>
     </style>
 
+    <!-- image top to status bar -->
+    <style name="ImageTop" parent="AppTheme">
+    </style>
+
     <style name="AnimationPopBottom" parent="@android:style/Animation.InputMethod">
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>

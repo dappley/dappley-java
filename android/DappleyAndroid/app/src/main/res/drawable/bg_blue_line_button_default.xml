@@ -2,7 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="@color/white" />
+    <stroke
+        android:width="1dip"
+        android:color="@color/wallet_add_btn_blue" />
     <corners android:radius="30dip" />
 
 </shape>

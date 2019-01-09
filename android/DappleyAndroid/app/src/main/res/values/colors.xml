@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00b69a</color>
-    <color name="colorPrimaryDark">#009b83</color>
+    <color name="colorPrimary">#000131</color>
+    <color name="colorPrimaryDark">#000120</color>
     <color name="colorAccent">#009b83</color>
 
     <color name="white">#ffffff</color>
@@ -22,5 +22,10 @@
     <color name="main_menu_bg">#121444</color>
     <color name="main_menu_default">#6C7693</color>
     <color name="main_menu_selected">#6479EE</color>
-    <color name="wallet_add_btn_blue">#6F87F3</color>
+    <color name="blue_btn_default">#6F87F3</color>
+    <color name="blue_btn_pressed">#657ff2</color>
+    <color name="purple_txt">#B3B8EC</color>
+    <color name="purple_hint">#6C708D</color>
+    <color name="purple_title">#5D639F</color>
+    <color name="line_blue_dark">#1E204F</color>
 </resources>

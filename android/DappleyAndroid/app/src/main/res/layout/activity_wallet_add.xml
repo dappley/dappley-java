@@ -54,7 +54,7 @@
                 android:background="@drawable/btn_blue_selector"
                 android:text="@string/layout_import_wallet"
                 android:textAllCaps="false"
-                android:textColor="@drawable/txt_btn_white_selector"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

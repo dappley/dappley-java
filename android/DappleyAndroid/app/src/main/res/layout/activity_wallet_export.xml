@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_page_bg"
+    android:background="@color/deep_bg"
     android:orientation="vertical"
     tools:context=".WalletExportActivity">
 
@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
-        android:background="@color/white"
+        android:background="@color/main_menu_bg"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/margin_15"
         android:paddingTop="@dimen/margin_15"
         android:paddingRight="@dimen/margin_15"
@@ -23,96 +24,108 @@
             android:layout_width="92dip"
             android:layout_height="wrap_content"
             android:text="@string/layout_wallet_name"
-            android:textColor="@color/gray_text_light" />
+            android:textColor="@color/purple_title" />
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="0dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@color/gray_text"
+            android:layout_marginTop="6dip"
+            android:textColor="@color/purple_txt"
             android:textIsSelectable="true"
             android:textSize="16sp" />
 
-        <View
-            android:layout_width="28dip"
-            android:layout_height="28dip"
-            android:layout_marginLeft="2dip" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0.5dip"
-        android:background="@color/white"
+        android:background="@color/main_menu_bg"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/margin_15"
         android:paddingTop="@dimen/margin_8"
         android:paddingRight="@dimen/margin_15"
         android:paddingBottom="@dimen/margin_8">
 
-        <TextView
-            android:layout_width="92dip"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/layout_wallet_address"
-            android:textColor="@color/gray_text_light" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/layout_wallet_address"
+                android:textColor="@color/purple_title" />
+
+            <ImageButton
+                android:id="@+id/btn_copy_address"
+                android:layout_width="28dip"
+                android:layout_height="28dip"
+                android:layout_marginLeft="2dip"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/btn_copy" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_address"
-            android:layout_width="0dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@color/gray_text"
+            android:layout_marginTop="6dip"
+            android:textColor="@color/purple_txt"
             android:textIsSelectable="true"
             android:textSize="16sp" />
 
-        <ImageButton
-            android:id="@+id/btn_copy_address"
-            android:layout_width="28dip"
-            android:layout_height="28dip"
-            android:layout_marginLeft="2dip"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dip"
-            android:scaleType="centerCrop"
-            android:src="@drawable/btn_copy" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0.5dip"
-        android:background="@color/white"
+        android:background="@color/main_menu_bg"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/margin_15"
         android:paddingTop="@dimen/margin_8"
         android:paddingRight="@dimen/margin_15"
         android:paddingBottom="@dimen/margin_8">
 
-        <TextView
-            android:layout_width="92dip"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/layout_import_private_key"
-            android:textColor="@color/gray_text_light" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/layout_import_private_key"
+                android:textColor="@color/purple_title" />
+
+            <ImageButton
+                android:id="@+id/btn_copy_private_key"
+                android:layout_width="28dip"
+                android:layout_height="28dip"
+                android:layout_marginLeft="2dip"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/btn_copy" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_private_key"
-            android:layout_width="0dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@color/gray_text"
+            android:layout_marginTop="6dip"
+            android:textColor="@color/purple_txt"
             android:textIsSelectable="true"
             android:textSize="16sp" />
 
-        <ImageButton
-            android:id="@+id/btn_copy_private_key"
-            android:layout_width="28dip"
-            android:layout_height="28dip"
-            android:layout_marginLeft="2dip"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dip"
-            android:scaleType="centerCrop"
-            android:src="@drawable/btn_copy" />
     </LinearLayout>
 
     <LinearLayout
@@ -120,31 +133,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0.5dip"
-        android:background="@color/white"
+        android:background="@color/main_menu_bg"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/margin_15"
         android:paddingTop="@dimen/margin_8"
         android:paddingRight="@dimen/margin_15"
-        android:paddingBottom="@dimen/margin_15">
+        android:paddingBottom="@dimen/margin_8">
 
         <TextView
             android:layout_width="92dip"
             android:layout_height="wrap_content"
             android:text="@string/layout_import_mnemonic"
-            android:textColor="@color/gray_text_light" />
+            android:textColor="@color/purple_title" />
 
         <TextView
             android:id="@+id/tv_mnemonic"
-            android:layout_width="0dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@color/gray_text"
+            android:layout_marginTop="6dip"
+            android:textColor="@color/purple_txt"
             android:textSize="16sp" />
 
-        <View
-            android:layout_width="28dip"
-            android:layout_height="28dip"
-            android:layout_marginLeft="2dip" />
-
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dip"
+        android:background="@color/main_menu_bg" />
 </LinearLayout>

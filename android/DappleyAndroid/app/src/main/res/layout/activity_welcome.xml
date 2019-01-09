@@ -3,11 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/welcome_bg"
     tools:context=".WelcomeActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/welcome_bg" />
+        android:src="@drawable/welcome_front" />
+
+    <ImageView
+        android:layout_width="260dip"
+        android:layout_height="100dip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dip"
+        android:scaleType="fitCenter"
+        android:src="@drawable/welcome_logo" />
 </RelativeLayout>

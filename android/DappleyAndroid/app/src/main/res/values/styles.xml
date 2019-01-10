@@ -12,6 +12,7 @@
 
     <!-- image top to status bar -->
     <style name="ImageTop" parent="AppTheme">
+        <item name="colorPrimaryDark">@android:color/transparent</item>
     </style>
 
     <style name="AnimationPopBottom" parent="@android:style/Animation.InputMethod">

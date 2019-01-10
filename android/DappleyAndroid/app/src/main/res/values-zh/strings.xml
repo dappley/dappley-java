@@ -13,6 +13,7 @@
     <string name="title_export_wallet">导出钱包</string>
     <string name="title_receive">收款</string>
     <string name="title_step">步数</string>
+    <string name="title_me">我的</string>
     <string name="title_select_address">选择钱包地址</string>
     <string name="title_modify_password">修改钱包密码</string>
 

@@ -13,6 +13,7 @@
     <string name="title_export_wallet">Export Wallet</string>
     <string name="title_receive">Receive</string>
     <string name="title_step">Step</string>
+    <string name="title_me">Me</string>
     <string name="title_select_address">Select Address</string>
     <string name="title_modify_password">Modify Wallet Password</string>
 

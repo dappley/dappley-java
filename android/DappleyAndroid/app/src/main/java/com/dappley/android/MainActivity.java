@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         }
         MeFragment meFragment = getMeFragment();
         if (meFragment != null) {
-            meFragment.loadData();
+//            meFragment.loadData();
         }
     }
 

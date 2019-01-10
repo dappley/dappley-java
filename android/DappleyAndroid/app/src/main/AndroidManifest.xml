@@ -30,8 +30,7 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImageTop" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".WalletAddActivity"
             android:screenOrientation="portrait"

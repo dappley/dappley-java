@@ -58,8 +58,8 @@ public class StepFragment extends Fragment {
 
     @BindView(R.id.swipe_fresh)
     SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.txt_step)
-    TextView tvStep;
+    @BindView(R.id.txt_step_all)
+    TextView tvStepAll;
     @BindView(R.id.txt_step_converted)
     TextView tvStepConverted;
     @BindView(R.id.txt_step_rest)
@@ -69,7 +69,7 @@ public class StepFragment extends Fragment {
 
     int todayStep;
     int convertedStep;
-    int stepDiff;
+    int restStep;
     String today;
 
     public StepFragment() {
@@ -99,7 +99,8 @@ public class StepFragment extends Fragment {
             public void onRefresh() {
                 int newStep = getNewStep();
 
-                startUpdateAnimator(newStep);
+                updateAll(newStep);
+                startUpdateRestAnimator(newStep);
                 refreshLayout.setRefreshing(false);
             }
         });
@@ -114,7 +115,7 @@ public class StepFragment extends Fragment {
         tvStepConverted.setText("" + convertedStep);
     }
 
-    @OnClick(R.id.txt_step_rest)
+    @OnClick(R.id.btn_convert)
     void convertCoin() {
         if (todayStep <= 0 || todayStep <= convertedStep) {
             Toast.makeText(getActivity(), R.string.note_no_step, Toast.LENGTH_SHORT).show();
@@ -130,7 +131,6 @@ public class StepFragment extends Fragment {
         super.onStart();
 
         readTodayConverted();
-        updateRestStep();
 
         startSchedule();
     }
@@ -188,13 +188,12 @@ public class StepFragment extends Fragment {
     }
 
     private void toConvert(final Wallet wallet) {
-        stepDiff = todayStep - convertedStep;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean isSuccess = false;
                 try {
-                    String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), stepDiff);
+                    String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), restStep);
                     isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), Constant.ADDRESS_STEP_CONTRACT, baseFee, wallet.getPrivateKey(), contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
@@ -210,16 +209,16 @@ public class StepFragment extends Fragment {
     private void onConvertFinish(boolean isSuccess) {
         LoadingDialog.close();
         if (isSuccess) {
-            String note = String.format(successString, stepDiff);
+            String note = String.format(successString, restStep);
             Toast.makeText(getActivity(), note, Toast.LENGTH_SHORT).show();
 
             try {
-                StorageUtil.saveStep(getActivity(), today, stepDiff);
+                StorageUtil.saveStep(getActivity(), today, restStep);
             } catch (IOException e) {
             }
-            stepDiff = 0;
+            restStep = 0;
+            tvStepRest.setText("0");
             readTodayConverted();
-            updateRestStep();
         } else {
             Toast.makeText(getActivity(), R.string.note_convert_failed, Toast.LENGTH_SHORT).show();
         }
@@ -231,7 +230,13 @@ public class StepFragment extends Fragment {
             iSportStepInterface = ISportStepInterface.Stub.asInterface(service);
 
             int newStep = getNewStep();
-            startUpdateAnimator(newStep);
+            // initialize restStep
+            restStep = newStep - convertedStep;
+            if (restStep < 0) {
+                restStep = 0;
+            }
+            updateAll(newStep);
+            startUpdateRestAnimator(newStep);
         }
 
         @Override
@@ -269,39 +274,44 @@ public class StepFragment extends Fragment {
         return newStep;
     }
 
-    private void startUpdateAnimator(final int newStep) {
+    private void updateAll(int newStep) {
+        todayStep = newStep;
         if (newStep <= 0) {
             todayStep = 0;
-            tvStep.setText("0");
-            return;
         }
-        if (newStep == todayStep) {
+        Message msg = new Message();
+        msg.what = Constant.MSG_STEP_ALL;
+        msg.arg1 = todayStep;
+        handler.sendMessage(msg);
+    }
+
+    private void startUpdateRestAnimator(final int newStep) {
+        if (newStep <= 0) {
+            tvStepRest.setText("0");
             return;
         }
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int i = todayStep;
-                int diff = newStep - todayStep;
+                int i = restStep;
+                int diff = todayStep - convertedStep - restStep;
                 if (diff < 0) {
-                    i = 0;
+                    return;
                 }
-                todayStep = newStep;
-                updateRestStep();
-
                 int segment = (int) diff / 10;
                 if (segment < 1) {
                     segment = 1;
                 }
+                restStep += diff;
                 while (true) {
                     Message msg = new Message();
                     msg.what = Constant.MSG_STEP_UPDATE;
-                    if (i > newStep) {
-                        i = newStep;
+                    if (i > restStep) {
+                        i = restStep;
                     }
                     msg.arg1 = i;
                     handler.sendMessage(msg);
-                    if (i >= newStep) {
+                    if (i >= restStep) {
                         break;
                     }
                     i += segment;
@@ -333,37 +343,26 @@ public class StepFragment extends Fragment {
         return 0;
     }
 
-    private void updateRestStep() {
-        int diff = todayStep - convertedStep;
-        if (todayStep == 0 && convertedStep > 0) {
-            diff = -1;
-        } else if (diff < 0) {
-            diff = 0;
-        }
-        Message msg = new Message();
-        msg.what = Constant.MSG_STEP_REST;
-        msg.arg1 = diff;
-        handler.sendMessage(msg);
-    }
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            if (msg.what == Constant.MSG_STEP_UPDATE && tvStep != null) {
-                tvStep.setText("" + msg.arg1);
+            if (msg.what == Constant.MSG_STEP_UPDATE && tvStepAll != null) {
+                tvStepRest.setText("" + msg.arg1);
             } else if (msg.what == Constant.MSG_CONVERT_FINISH) {
                 boolean isSuccess = (boolean) msg.obj;
                 onConvertFinish(isSuccess);
-            } else if (msg.what == Constant.MSG_STEP_REST) {
-                int diff = msg.arg1;
-                if (diff < 0) {
-                    tvStepRest.setText("-");
+            } else if (msg.what == Constant.MSG_STEP_ALL) {
+                int stepAll = msg.arg1;
+                if (stepAll < 0) {
+                    tvStepAll.setText("-");
                 } else {
-                    tvStepRest.setText("" + diff);
+                    tvStepAll.setText("" + stepAll);
                 }
+
             }
+
         }
     };
 
@@ -371,7 +370,8 @@ public class StepFragment extends Fragment {
         @Override
         public void run() {
             int newStep = getNewStep();
-            startUpdateAnimator(newStep);
+            updateAll(newStep);
+            startUpdateRestAnimator(newStep);
             Log.d(TAG, "StepThread run once: " + newStep);
         }
     }

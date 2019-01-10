@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -55,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
         // 初始化页卡
         initPager();

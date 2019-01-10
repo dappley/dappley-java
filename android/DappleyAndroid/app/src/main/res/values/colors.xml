@@ -29,4 +29,6 @@
     <color name="purple_title">#5D639F</color>
     <color name="purple_money">#7B86FA</color>
     <color name="line_blue_dark">#1E204F</color>
+    <color name="purple_convert">#A095FD</color>
+    <color name="purple_convert_dark">#978bfc</color>
 </resources>

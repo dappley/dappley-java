@@ -23,7 +23,7 @@ public class Constant {
     public static final int MSG_WALLET_SELECT_LIST = 20008;
     public static final int MSG_WALLET_SELECT_ERROR = 20009;
     public static final int MSG_CONVERT_FINISH = 20010;
-    public static final int MSG_STEP_REST = 20015;
+    public static final int MSG_STEP_ALL = 20015;
 
     public static final int REQ_WALLET_IMPORT = 2;
 

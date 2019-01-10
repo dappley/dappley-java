@@ -1,218 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_page_bg"
+    android:background="@color/deep_bg"
     tools:context=".fragment.StepFragment">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:background="@drawable/step_top_bg"
+            app:layout_constraintHeight_percent="0.61" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_fresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
-        <android.support.v7.widget.Toolbar
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:contentInsetStart="0dip"
-            app:layout_collapseMode="pin">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/txt_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/title_step"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_fresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="3"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dip"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/step_top_random" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dip"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/step_top_round" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dip"
+                        android:layout_marginRight="20dip"
+                        android:layout_marginBottom="10dip"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/step_top_arc" />
+
+                    <ImageView
+                        android:layout_width="80dip"
+                        android:layout_height="100dip"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="40dip"
+                        android:layout_marginBottom="40dip"
+                        android:src="@drawable/step_top_tree" />
+
+                    <ImageView
+                        android:layout_width="85dip"
+                        android:layout_height="110dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="24dip"
+                        android:layout_marginBottom="40dip"
+                        android:src="@drawable/step_top_man" />
+
+                    <TextView
+                        android:id="@+id/txt_step_rest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="@color/white"
+                        android:textSize="54sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/txt_step_rest"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="4dip"
+                        android:text="@string/layout_step_rest"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_convert"
+                        style="?borderlessButtonStyle"
+                        android:layout_width="100dip"
+                        android:layout_height="30dip"
+                        android:layout_below="@+id/txt_step_rest"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="6dip"
+                        android:background="@drawable/btn_convert_selector"
+                        android:text="@string/layout_btn_convert"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_weight="2"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
-                    android:layout_weight="3"
-                    android:background="@drawable/bg_step"
-                    android:gravity="center">
+                    android:layout_weight="1">
 
                     <RelativeLayout
-                        android:layout_width="220dip"
-                        android:layout_height="220dip">
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
 
-                        <com.dappley.android.widget.StepArcView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srp_roundEndColor="@color/arc_start"
-                            app:srp_roundMiddleColor="@color/arc_middle"
-                            app:srp_roundStartColor="@color/arc_start"
-                            app:srp_roundWidth="13dip"
-                            app:srp_startAngle="135" />
-
-                        <TextView
-                            android:id="@+id/txt_step"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="-"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="54sp" />
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_above="@id/txt_step"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="4dip"
-                            android:text="@string/layout_step_today"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="16sp" />
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="50dip"
-                            android:layout_height="50dip"
-                            android:layout_alignParentBottom="true"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="bottom">
+
+                                <View
+                                    android:layout_width="14dp"
+                                    android:layout_height="1.5dip"
+                                    android:layout_marginBottom="8dip"
+                                    android:background="@color/purple_convert" />
+
+                                <ImageView
+                                    android:layout_width="36dip"
+                                    android:layout_height="36dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_marginRight="2dip"
+                                    android:src="@drawable/step_bottom_man" />
+
+                                <View
+                                    android:layout_width="14dp"
+                                    android:layout_height="1.5dip"
+                                    android:layout_marginBottom="8dip"
+                                    android:background="@color/purple_convert" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txt_step_all"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textColor="@color/purple_money"
+                                android:textSize="44sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dip"
+                                android:text="@string/layout_step_today"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linear_converted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="10dip"
-                            android:src="@drawable/run_man" />
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="bottom">
+
+                                <View
+                                    android:layout_width="14dp"
+                                    android:layout_height="1.5dip"
+                                    android:layout_marginBottom="8dip"
+                                    android:background="@color/purple_convert" />
+
+                                <ImageView
+                                    android:layout_width="36dip"
+                                    android:layout_height="36dip"
+                                    android:layout_marginLeft="2dip"
+                                    android:layout_marginRight="2dip"
+                                    android:src="@drawable/step_bottom_foot" />
+
+                                <View
+                                    android:layout_width="14dip"
+                                    android:layout_height="1.5dip"
+                                    android:layout_marginBottom="8dip"
+                                    android:background="@color/purple_convert" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txt_step_converted"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?selectableItemBackground"
+                                android:paddingLeft="@dimen/margin_8"
+                                android:paddingRight="@dimen/margin_8"
+                                android:text="-"
+                                android:textColor="@color/purple_money"
+                                android:textSize="44sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dip"
+                                android:text="@string/layout_step_converted"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
                     </RelativeLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:layout_weight="2"
-                    android:background="@color/white"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/margin_8"
-                        android:paddingBottom="@dimen/margin_8">
-
-                        <View
-                            android:layout_width="5dip"
-                            android:layout_height="20dip"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/margin_15"
-                            android:background="@color/colorPrimary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_8"
-                            android:text="@string/layout_convert_coin"
-                            android:textColor="@color/gray_text_dark"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dip"
-                        android:background="@color/line_gray" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dip"
-                        android:layout_weight="1">
-
-                        <RelativeLayout
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txt_step_converted"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="44sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dip"
-                                    android:text="@string/layout_step_converted"
-                                    android:textColor="@color/gray_text_dark"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                        </RelativeLayout>
-
-                        <View
-                            android:layout_width="0.5dip"
-                            android:layout_height="50dip"
-                            android:layout_gravity="center_vertical"
-                            android:background="@color/line_gray_light" />
-
-                        <RelativeLayout
-                            android:layout_width="0dip"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical">
-
-                            <LinearLayout
-                                android:id="@+id/linear_converted"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txt_step_rest"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="?selectableItemBackground"
-                                    android:paddingLeft="@dimen/margin_8"
-                                    android:paddingRight="@dimen/margin_8"
-                                    android:text="-"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="44sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dip"
-                                    android:text="@string/layout_step_rest"
-                                    android:textColor="@color/gray_text_dark"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                        </RelativeLayout>
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
-    </LinearLayout>
-</FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</android.support.design.widget.CoordinatorLayout>

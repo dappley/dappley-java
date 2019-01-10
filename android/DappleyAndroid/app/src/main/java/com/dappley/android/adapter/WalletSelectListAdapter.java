@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.dappley.android.R;
@@ -90,18 +90,16 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
             viewHolder.tvAddress.setText(wallet.getAddress());
         }
         if (wallet.getBalance() != null) {
-            viewHolder.tvBalance.setText(wallet.getBalance().toString());
+            viewHolder.tvValue.setText(wallet.getBalance().toString());
         }
         if (position == selectedIndex) {
-            viewHolder.imgIcon.setVisibility(View.VISIBLE);
+            viewHolder.chbWallet.setChecked(true);
         } else {
-            viewHolder.imgIcon.setVisibility(View.INVISIBLE);
+            viewHolder.chbWallet.setChecked(false);
         }
         if (wallet.getBalance() == null || wallet.getBalance().compareTo(baseValue) < 0) {
-            viewHolder.tvAddress.setTextColor(viewHolder.colorGrayLight);
             viewHolder.itemView.setClickable(false);
         } else {
-            viewHolder.tvAddress.setTextColor(viewHolder.colorGrayDark);
             viewHolder.itemView.setClickable(true);
         }
     }
@@ -116,14 +114,10 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
         TextView tvName;
         @BindView(R.id.txt_address)
         TextView tvAddress;
-        @BindView(R.id.txt_balance)
-        TextView tvBalance;
-        @BindView(R.id.img_icon)
-        ImageView imgIcon;
-        @BindColor(R.color.gray_text_light)
-        int colorGrayLight;
-        @BindColor(R.color.gray_text_dark)
-        int colorGrayDark;
+        @BindView(R.id.txt_value)
+        TextView tvValue;
+        @BindView(R.id.chb_wallet)
+        CheckBox chbWallet;
 
         public ViewHolder(View itemView) {
             super(itemView);

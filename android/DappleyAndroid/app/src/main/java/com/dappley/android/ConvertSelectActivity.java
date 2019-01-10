@@ -80,7 +80,6 @@ public class ConvertSelectActivity extends AppCompatActivity {
         swipeRecyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         swipeRecyclerView.getRecyclerView().setLayoutManager(layoutManager);
-        swipeRecyclerView.getRecyclerView().addItemDecoration(new DividerListItemDecoration(this));
         swipeRecyclerView.setOnLoadListener(new SwipeRecyclerView.OnLoadListener() {
             @Override
             public void onRefresh() {

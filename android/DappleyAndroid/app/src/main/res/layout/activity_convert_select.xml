@@ -3,18 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_page_bg"
+    android:background="@color/deep_bg"
     android:orientation="vertical"
     tools:context=".ConvertSelectActivity">
 
-    <include layout="@layout/toolbar_wallet_select" />
+    <include layout="@layout/toolbar_title_back_trans" />
 
     <deadline.swiperecyclerview.SwipeRecyclerView
         android:id="@+id/swipe_fresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
-        android:layout_marginBottom="@dimen/margin_8"
-        android:background="@color/white"
+        android:layout_height="0dip"
+        android:layout_weight="1"
         android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/btn_confirm"
+        style="?borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dip"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginRight="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:background="@drawable/btn_blue_selector"
+        android:text="@string/layout_confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
 </LinearLayout>

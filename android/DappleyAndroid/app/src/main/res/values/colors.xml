@@ -31,4 +31,5 @@
     <color name="line_blue_dark">#1E204F</color>
     <color name="purple_convert">#A095FD</color>
     <color name="purple_convert_dark">#978bfc</color>
+    <color name="purple_wallet_status">#6365DB</color>
 </resources>

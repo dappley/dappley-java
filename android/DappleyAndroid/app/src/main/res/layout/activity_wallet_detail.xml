@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackground"
-            android:drawableTop="@drawable/detail_receive"
+            android:drawableTop="@drawable/detail_transfer"
             android:drawablePadding="2dip"
             android:paddingTop="@dimen/margin_8"
             android:paddingBottom="6dip"

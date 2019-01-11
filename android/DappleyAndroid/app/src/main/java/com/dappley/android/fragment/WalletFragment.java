@@ -4,15 +4,18 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.dappley.android.MainActivity;
@@ -53,6 +56,8 @@ public class WalletFragment extends Fragment {
 
     @BindView(R.id.swipe_fresh)
     SwipeRecyclerView swipeRecyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     WalletMenuWindow menuWindow;
     WalletListAdapter adapter;
@@ -91,6 +96,12 @@ public class WalletFragment extends Fragment {
     }
 
     private void initView() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
+            layoutParams.topMargin = CommonUtil.getStatusBarHeight(getActivity());
+            toolbar.setLayoutParams(layoutParams);
+        }
+
         adapter = new WalletListAdapter(getActivity());
         adapter.addOnItemClickListener(itemClickListener);
         swipeRecyclerView.setAdapter(adapter);

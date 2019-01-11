@@ -9,4 +9,7 @@
     <dimen name="item_menu_left_icon">20dip</dimen>
     <dimen name="item_menu_right_icon">20dip</dimen>
 
+    <dimen name="wallet_head_margin">260dip</dimen>
+    <dimen name="wallet_list_margin">-194dip</dimen>
+
 </resources>

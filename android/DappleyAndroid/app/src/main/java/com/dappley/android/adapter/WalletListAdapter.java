@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dappley.android.R;
@@ -18,6 +19,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.ViewHolder> {
+    private static int[] ICONS = new int[]{R.drawable.icon_wallet_1, R.drawable.icon_wallet_2, R.drawable.icon_wallet_3, R.drawable.icon_wallet_4};
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_NORMAL = 1;
+
     private Context context;
     private List<Wallet> wallets;
     private OnItemClickListener onItemClickListener;
@@ -37,14 +42,27 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
         this.onItemClickListener = onItemClickListener;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TYPE_HEADER;
+        }
+        return TYPE_NORMAL;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         if (context == null) {
             context = viewGroup.getContext();
         }
-        View viewItem = LayoutInflater.from(context).inflate(R.layout.item_wallet, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(viewItem);
+        View viewItem = null;
+        if (viewType == TYPE_HEADER) {
+            viewItem = LayoutInflater.from(context).inflate(R.layout.item_wallet_header, viewGroup, false);
+        } else if (viewType == TYPE_NORMAL) {
+            viewItem = LayoutInflater.from(context).inflate(R.layout.item_wallet, viewGroup, false);
+        }
+        ViewHolder viewHolder = new ViewHolder(viewItem, viewType);
         if (onItemClickListener != null) {
             viewItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,6 +101,9 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
         if (wallet.getBalance() != null) {
             viewHolder.tvValue.setText(wallet.getBalance().toString());
         }
+        if (position > 0) {
+            viewHolder.iconWallet.setImageResource(ICONS[(position - 1) % 4]);
+        }
     }
 
     @Override
@@ -91,6 +112,7 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView iconWallet;
         @BindView(R.id.txt_name)
         TextView tvName;
         @BindView(R.id.txt_address)
@@ -99,10 +121,14 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
         TextView tvValue;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, int viewType) {
             super(itemView);
 
             ButterKnife.bind(this, itemView);
+
+            if (viewType == TYPE_NORMAL) {
+                iconWallet = itemView.findViewById(R.id.icon_wallet);
+            }
         }
     }
 

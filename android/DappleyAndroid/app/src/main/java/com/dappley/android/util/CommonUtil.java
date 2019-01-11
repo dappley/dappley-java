@@ -1,5 +1,6 @@
 package com.dappley.android.util;
 
+import android.app.Activity;
 import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
@@ -45,5 +46,14 @@ public class CommonUtil {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static int getStatusBarHeight(Activity activity) {
+        int statusBarHeight = 0;
+        if (activity != null) {
+            int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            statusBarHeight = activity.getResources().getDimensionPixelSize(resourceId);
+        }
+        return statusBarHeight;
     }
 }

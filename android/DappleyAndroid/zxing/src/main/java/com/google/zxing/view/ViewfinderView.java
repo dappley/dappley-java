@@ -50,8 +50,8 @@ public final class ViewfinderView extends View {
     private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
     private static final long ANIMATION_DELAY = 10L;
     private static final int OPAQUE = 0xFF;
-    private static final int CORNER_RECT_WIDTH = 8;  //扫描区边角的宽
-    private static final int CORNER_RECT_HEIGHT = 40; //扫描区边角的高
+    private static final int CORNER_RECT_WIDTH = 10;  //扫描区边角的宽
+    private static final int CORNER_RECT_HEIGHT = 50; //扫描区边角的高
     private static final int SCANNER_LINE_MOVE_DISTANCE = 5;  //扫描线移动距离
     private static final int SCANNER_LINE_HEIGHT = 10;  //扫描线宽度
 
@@ -74,6 +74,7 @@ public final class ViewfinderView extends View {
     //扫描区域提示文本颜色
     private final int labelTextColor;
     private final float labelTextSize;
+    private final float labelTextMarginTop;
 
     public static int scannerStart = 0;
     public static int scannerEnd = 0;
@@ -95,7 +96,8 @@ public final class ViewfinderView extends View {
         resultColor = array.getColor(R.styleable.ViewfinderView_result_color, 0xB0000000);
         labelTextColor = array.getColor(R.styleable.ViewfinderView_label_text_color, 0x90FFFFFF);
         labelText = array.getString(R.styleable.ViewfinderView_label_text);
-        labelTextSize = array.getFloat(R.styleable.ViewfinderView_label_text_size, 36f);
+        labelTextSize = array.getDimension(R.styleable.ViewfinderView_label_text_size, 36f);
+        labelTextMarginTop = array.getDimension(R.styleable.ViewfinderView_label_text_margin_top, 0);
 
         // Initialize these once for performance rather than calling them every time in onDraw().
         paint = new Paint();
@@ -129,7 +131,7 @@ public final class ViewfinderView extends View {
             canvas.drawBitmap(resultBitmap, frame.left, frame.top, paint);
         } else {
             // Draw a two pixel solid black border inside the framing rect
-            drawFrame(canvas, frame);
+//            drawFrame(canvas, frame);
             // 绘制边角
             drawCorner(canvas, frame);
             //绘制提示信息
@@ -170,7 +172,7 @@ public final class ViewfinderView extends View {
         paint.setColor(labelTextColor);
         paint.setTextSize(labelTextSize);
         paint.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText(labelText, frame.left + frame.width() / 2, frame.bottom + CORNER_RECT_HEIGHT * 1.5f, paint);
+        canvas.drawText(labelText, frame.left + frame.width() / 2, frame.bottom + CORNER_RECT_HEIGHT * 1.5f + labelTextMarginTop, paint);
     }
 
 

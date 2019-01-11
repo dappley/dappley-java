@@ -25,6 +25,8 @@
             app:frame_color="@color/viewfinder_frame"
             app:label_text="@string/layout_focus_qrcode"
             app:label_text_color="@color/note_text_color"
+            app:label_text_margin_top="8dip"
+            app:label_text_size="16sp"
             app:laser_color="@color/laser_color"
             app:mask_color="@color/viewfinder_mask"
             app:result_color="@color/result_view"

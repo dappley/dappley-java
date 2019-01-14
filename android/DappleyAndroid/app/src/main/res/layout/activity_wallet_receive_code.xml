@@ -1,61 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_page_gradient"
+    android:background="@color/deep_bg"
     android:orientation="vertical"
     tools:context=".WalletReceiveCodeActivity">
 
     <include layout="@layout/toolbar_title_back_trans" />
 
-    <TextView
-        android:id="@+id/tv_address"
+    <com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
+        android:id="@+id/cycle_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_marginLeft="@dimen/margin_20"
-        android:layout_marginTop="30dip"
-        android:layout_marginRight="@dimen/margin_20"
-        android:background="@drawable/bg_gray_light_top_radius"
-        android:gravity="center"
-        android:text="address"
-        android:textColor="@color/gray_text"
-        android:textIsSelectable="true"
-        android:textSize="14sp" />
+        android:layout_height="0dip"
+        android:layout_weight="4"
+        app:icvp_center_page_scale_offset="30dp"
+        app:icvp_interpolator="@android:anim/accelerate_decelerate_interpolator"
+        app:icvp_max_page_scale="0.8"
+        app:icvp_medium_scaled="false"
+        app:icvp_min_page_scale="0.55"
+        app:icvp_min_page_scale_offset="@dimen/margin_20"
+        app:icvp_scroll_duration="250" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
         android:layout_marginLeft="@dimen/margin_20"
         android:layout_marginRight="@dimen/margin_20"
-        android:background="@color/white"
-        android:paddingTop="@dimen/margin_30"
-        android:paddingBottom="@dimen/margin_30">
-
-        <ImageView
-            android:id="@+id/img_code"
-            android:layout_width="200dip"
-            android:layout_height="200dip"
-            android:layout_centerInParent="true"
-            android:scaleType="centerCrop" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_marginLeft="@dimen/margin_20"
-        android:layout_marginRight="@dimen/margin_20"
-        android:background="@drawable/bg_gray_light_bottom_radius">
+        android:layout_weight="1">
 
         <Button
             android:id="@+id/btn_copy"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="?attr/selectableItemBackground"
+            android:layout_height="46dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/margin_30"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_30"
+            android:background="@drawable/btn_copy_address_selector"
             android:text="@string/layout_copy_receive_address"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@drawable/txt_btn_white_selector" />
     </RelativeLayout>
 </LinearLayout>

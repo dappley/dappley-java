@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class WalletDetailActivity extends AppCompatActivity {
     private static final String TAG = "WalletDetailActivity";
+    private static int[] ICONS = new int[]{R.drawable.icon_wallet_1, R.drawable.icon_wallet_2, R.drawable.icon_wallet_3, R.drawable.icon_wallet_4};
     private static final int TASK_INIT_DELAY = 5;
     private static final int TASK_PERIOD = 10;
 
@@ -54,6 +56,8 @@ public class WalletDetailActivity extends AppCompatActivity {
     TextView tvAddress;
     @BindView(R.id.txt_value)
     TextView tvValue;
+    @BindView(R.id.icon_wallet)
+    ImageView imgIcon;
 
     @BindView(R.id.refresh_layout)
     SwipeRefreshLayout refreshLayout;
@@ -67,6 +71,7 @@ public class WalletDetailActivity extends AppCompatActivity {
     Wallet wallet;
     BigInteger balance;
     int pageIndex = 1;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,10 +126,14 @@ public class WalletDetailActivity extends AppCompatActivity {
     private void initData() {
         Intent intent = getIntent();
         wallet = (Wallet) intent.getSerializableExtra("wallet");
+        position = intent.getIntExtra("position", 0);
         utxos = new ArrayList<>();
 
         tvName.setText(wallet.getName());
         tvAddress.setText(wallet.getAddress());
+        if (position > 0) {
+            imgIcon.setImageResource(ICONS[(position - 1) % ICONS.length]);
+        }
     }
 
     @OnClick(R.id.btn_receive)

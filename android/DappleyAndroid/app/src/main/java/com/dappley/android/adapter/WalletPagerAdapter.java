@@ -77,7 +77,7 @@ public class WalletPagerAdapter extends PagerAdapter {
                 viewHolder.tvValue.setText(wallet.getBalance().toString());
             }
         }
-        viewHolder.iconWallet.setImageResource(ICONS[position % 4]);
+        viewHolder.iconWallet.setImageResource(ICONS[(position + ICONS.length - 1) % ICONS.length]);
 
         view.setTag(viewHolder);
 

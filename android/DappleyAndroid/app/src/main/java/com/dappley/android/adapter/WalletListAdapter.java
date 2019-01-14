@@ -102,7 +102,7 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
             viewHolder.tvValue.setText(wallet.getBalance().toString());
         }
         if (position > 0) {
-            viewHolder.iconWallet.setImageResource(ICONS[(position - 1) % 4]);
+            viewHolder.iconWallet.setImageResource(ICONS[(position - 1) % ICONS.length]);
         }
     }
 

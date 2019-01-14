@@ -193,6 +193,7 @@ public class WalletFragment extends Fragment {
             wallet = wallets.get(position);
             Intent intent = new Intent(getActivity(), WalletDetailActivity.class);
             intent.putExtra("wallet", wallet);
+            intent.putExtra("position", position);
             startActivity(intent);
         }
 

@@ -24,10 +24,11 @@ import com.dappley.android.R;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
+import com.dappley.google.step.GoogleStep;
+import com.dappley.java.core.po.Wallet;
 import com.today.step.lib.ISportStepInterface;
 import com.today.step.lib.TodayStepManager;
 import com.today.step.lib.TodayStepService;
@@ -55,6 +56,7 @@ public class StepFragment extends Fragment {
     ISportStepInterface iSportStepInterface;
     ScheduledExecutorService schedule;
     ScheduledFuture future;
+    GoogleStep googleStep;
 
     @BindView(R.id.swipe_fresh)
     SwipeRefreshLayout refreshLayout;
@@ -72,6 +74,8 @@ public class StepFragment extends Fragment {
     int restStep;
     String today;
 
+    boolean isGoogleSupported;
+
     public StepFragment() {
     }
 
@@ -80,6 +84,15 @@ public class StepFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         TodayStepManager.init(getActivity().getApplication());
+
+        googleStep = new GoogleStep(getActivity());
+
+        boolean isSupported = googleStep.isSupported();
+        if (isSupported) {
+            isGoogleSupported = true;
+        } else {
+            googleStep.requestPermissions(getActivity());
+        }
     }
 
     @Override
@@ -146,6 +159,10 @@ public class StepFragment extends Fragment {
     public void onDetach() {
         getActivity().unbindService(stepServiceConnection);
         super.onDetach();
+    }
+
+    public void setGoogleSupported() {
+        isGoogleSupported = true;
     }
 
     public void onAddressSelected(final Wallet wallet) {
@@ -265,6 +282,9 @@ public class StepFragment extends Fragment {
 
     private int getNewStep() {
         int newStep = 0;
+        if (isGoogleSupported) {
+            return googleStep.getStep();
+        }
         if (iSportStepInterface != null) {
             try {
                 newStep = iSportStepInterface.getCurrentTimeSportStep();
@@ -324,7 +344,7 @@ public class StepFragment extends Fragment {
         }).start();
     }
 
-    public int getTodayConvertedSteps(String today) {
+    private int getTodayConvertedSteps(String today) {
         try {
             List<Integer> steps = StorageUtil.getSteps(getActivity(), today);
             if (steps == null || steps.size() == 0) {

@@ -29,6 +29,7 @@ import com.dappley.android.adapter.MainFragmentAdapter;
 import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
+import com.dappley.google.step.GoogleStep;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.Constant;
 
@@ -244,6 +245,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 walletFragment.loadData();
+            } else if (requestCode == GoogleStep.GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
+                StepFragment stepFragment = getStepFragment();
+                if (stepFragment == null) {
+                    return;
+                }
+                stepFragment.setGoogleSupported();
             }
         }
     }

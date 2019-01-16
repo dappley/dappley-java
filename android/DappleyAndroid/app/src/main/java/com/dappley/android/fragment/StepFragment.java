@@ -87,11 +87,19 @@ public class StepFragment extends Fragment {
 
         googleStep = new GoogleStep(getActivity());
 
-        boolean isSupported = googleStep.isSupported();
-        if (isSupported) {
+        refreshGoogleApi();
+    }
+
+    private void refreshGoogleApi() {
+        int googleState = googleStep.isSupported();
+        if (googleState == GoogleStep.STATE_SUCCESS) {
             isGoogleSupported = true;
-        } else {
-            googleStep.requestPermissions(getActivity());
+        } else if (googleState == GoogleStep.STATE_PLAY_UNAVAIABLE) {
+            isGoogleSupported = false;
+        } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
+
+        } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {
+            googleStep.requestPermissions();
         }
     }
 
@@ -159,6 +167,10 @@ public class StepFragment extends Fragment {
     public void onDetach() {
         getActivity().unbindService(stepServiceConnection);
         super.onDetach();
+    }
+
+    public void setGoogleLogined() {
+        refreshGoogleApi();
     }
 
     public void setGoogleSupported() {

@@ -1,9 +1,15 @@
 package com.dappley.google.step;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.FitnessOptions;
 import com.google.android.gms.fitness.HistoryClient;
@@ -26,8 +32,15 @@ import java.util.concurrent.TimeUnit;
  * Google step api.
  */
 public class GoogleStep {
-    private static final String TAG = "FitApi";
-    public static final int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 8001;
+    private static final String TAG = "GoogleStep";
+
+    public static final int REQ_GOOGLE_FIT_PERMISSIONS = 8001;
+    public static final int REQ_GOOGLE_SIGN_IN = 8002;
+
+    public static final int STATE_SUCCESS = 0;
+    public static final int STATE_PLAY_UNAVAIABLE = -1;
+    public static final int STATE_NEED_LOGIN = -2;
+    public static final int STATE_NEED_PERMISSION = -3;
 
     private Activity activity;
     private HistoryClient client;
@@ -50,21 +63,42 @@ public class GoogleStep {
      * Check is google fitness service supported.
      * @return boolean true/false
      */
-    public boolean isSupported() {
-        if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(activity), fitnessOptions)) {
-            return false;
+    public int isSupported() {
+        int googlePlayAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity);
+        if (googlePlayAvailable != ConnectionResult.SUCCESS) {
+            return STATE_PLAY_UNAVAIABLE;
+        }
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
+        if (account == null) {
+            startSignInIntent();
+            return STATE_NEED_LOGIN;
+        }
+        if (!GoogleSignIn.hasPermissions(account, fitnessOptions)) {
+            return STATE_NEED_PERMISSION;
         } else {
-            return true;
+            return STATE_SUCCESS;
         }
     }
 
     /**
-     * Request user's permission of google service
-     * @param activity
+     * Show sign in dialog.
      */
-    public void requestPermissions(Activity activity) {
-        GoogleSignIn.requestPermissions(activity, GOOGLE_FIT_PERMISSIONS_REQUEST_CODE, GoogleSignIn.getLastSignedInAccount(activity),
-                fitnessOptions);
+    private void startSignInIntent() {
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(activity,
+                GoogleSignInOptions.DEFAULT_SIGN_IN);
+        Intent intent = signInClient.getSignInIntent();
+        activity.startActivityForResult(intent, REQ_GOOGLE_SIGN_IN);
+    }
+
+    /**
+     * Request user's permission of google service
+     */
+    public void requestPermissions() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
+        if (account == null) {
+            return;
+        }
+        GoogleSignIn.requestPermissions(activity, REQ_GOOGLE_FIT_PERMISSIONS, account, fitnessOptions);
     }
 
     /**

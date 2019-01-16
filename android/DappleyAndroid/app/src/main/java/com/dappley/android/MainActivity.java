@@ -245,12 +245,18 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 walletFragment.loadData();
-            } else if (requestCode == GoogleStep.GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
+            } else if (requestCode == GoogleStep.REQ_GOOGLE_FIT_PERMISSIONS) {
                 StepFragment stepFragment = getStepFragment();
                 if (stepFragment == null) {
                     return;
                 }
                 stepFragment.setGoogleSupported();
+            }else if(requestCode == GoogleStep.REQ_GOOGLE_SIGN_IN){
+                StepFragment stepFragment = getStepFragment();
+                if (stepFragment == null) {
+                    return;
+                }
+                stepFragment.setGoogleLogined();
             }
         }
     }

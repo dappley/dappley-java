@@ -273,15 +273,19 @@ public class WalletFragment extends Fragment {
     class DataThread extends Thread {
         @Override
         public void run() {
+            Message message = new Message();
             try {
                 if (wallets == null || wallets.size() == 0) {
-                    handler.sendEmptyMessage(Constant.MSG_HOME_LIST_BREAK);
+                    message.what = Constant.MSG_HOME_LIST_BREAK;
+                    handler.sendMessage(message);
                     return;
                 }
                 wallets = Dappley.getWalletBalances(wallets);
-                handler.sendEmptyMessage(Constant.MSG_HOME_LIST);
+                message.what = Constant.MSG_HOME_LIST;
+                handler.sendMessage(message);
             } catch (Exception e) {
-                handler.sendEmptyMessage(Constant.MSG_HOME_LIST_ERROR);
+                message.what = Constant.MSG_HOME_LIST_ERROR;
+                handler.sendMessage(message);
                 Log.e(TAG, "run: ", e);
             }
             Log.d(TAG, "DataThread run once");

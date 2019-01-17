@@ -83,7 +83,7 @@
 
                     <TextView
                         android:id="@+id/txt_step_rest"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
@@ -136,7 +136,7 @@
                         android:gravity="center_vertical">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:gravity="center_horizontal"
@@ -169,8 +169,9 @@
 
                             <TextView
                                 android:id="@+id/txt_step_all"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@color/purple_money"
                                 android:textSize="44sp" />
@@ -193,7 +194,7 @@
 
                         <LinearLayout
                             android:id="@+id/linear_converted"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:gravity="center_horizontal"
@@ -226,11 +227,9 @@
 
                             <TextView
                                 android:id="@+id/txt_step_converted"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="?selectableItemBackground"
-                                android:paddingLeft="@dimen/margin_8"
-                                android:paddingRight="@dimen/margin_8"
+                                android:gravity="center"
                                 android:text="-"
                                 android:textColor="@color/purple_money"
                                 android:textSize="44sp" />

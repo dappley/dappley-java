@@ -16,6 +16,7 @@
             android:layout_height="0dip"
             android:background="@drawable/me_top_bg"
             android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHeight_percent="0.4">
 
             <android.support.design.widget.CollapsingToolbarLayout

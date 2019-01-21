@@ -9,9 +9,9 @@ public class Constant {
     public static final int REQ_ACT_CONVERT_SELECT = 30002;
     public static final int REQ_ACT_MODIFY_PASSWORD = 30003;
 
-    public static final int MSG_HOME_LIST = 20001;
-    public static final int MSG_HOME_LIST_ERROR = 20004;
-    public static final int MSG_HOME_LIST_BREAK = 20014;
+    public static final int MSG_HOME_BALANCE = 20001;
+    public static final int MSG_HOME_BALANCE_ERROR = 20004;
+    public static final int MSG_HOME_BALANCE_BREAK = 20014;
     public static final int MSG_WALLET_DETAIL = 20002;
     public static final int MSG_WALLET_DETAIL_ERROR = 20011;
     public static final int MSG_WALLET_DETAIL_REFRESH = 20013;

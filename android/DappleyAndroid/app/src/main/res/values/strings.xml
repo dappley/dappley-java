@@ -25,6 +25,10 @@
     <string name="layout_transfer_amount_tip">transfer amount</string>
     <string name="layout_transfer">transfer</string>
     <string name="layout_receive">receive</string>
+    <string name="layout_balance">balance</string>
+    <string name="layout_scan">scan</string>
+    <string name="layout_copy">copy</string>
+    <string name="layout_delete_wallet">delete</string>
     <string name="layout_wallet_name">name</string>
     <string name="layout_wallet_name_tip">wallet name</string>
     <string name="layout_create_wallet">create wallet</string>

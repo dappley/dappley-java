@@ -25,6 +25,10 @@
     <string name="layout_transfer_amount_tip">请输入转账金额</string>
     <string name="layout_transfer">转账</string>
     <string name="layout_receive">收钱</string>
+    <string name="layout_balance">余额</string>
+    <string name="layout_scan">扫一扫</string>
+    <string name="layout_copy">复制</string>
+    <string name="layout_delete_wallet">删除</string>
     <string name="layout_wallet_name">钱包名</string>
     <string name="layout_wallet_name_tip">请输入钱包名称</string>
     <string name="layout_create_wallet">创建钱包</string>

@@ -9,7 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,17 +24,19 @@ import com.dappley.android.R;
 import com.dappley.android.TransferActivity;
 import com.dappley.android.WalletAddActivity;
 import com.dappley.android.WalletDetailActivity;
-import com.dappley.android.adapter.WalletListAdapter;
+import com.dappley.android.WalletReceiveCodeActivity;
+import com.dappley.android.adapter.WalletHomePagerAdapter;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
-import com.dappley.android.widget.EmptyView;
 import com.dappley.android.window.WalletMenuWindow;
+import com.dappley.java.core.po.Wallet;
+import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -44,7 +47,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import deadline.swiperecyclerview.SwipeRecyclerView;
 
 public class WalletFragment extends Fragment {
     private static final String TAG = "WalletFragment";
@@ -54,15 +56,17 @@ public class WalletFragment extends Fragment {
     ScheduledExecutorService schedule;
     ScheduledFuture future;
 
-    @BindView(R.id.swipe_fresh)
-    SwipeRecyclerView swipeRecyclerView;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.cycle_viewpager)
+    HorizontalInfiniteCycleViewPager cycleViewPager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     WalletMenuWindow menuWindow;
-    WalletListAdapter adapter;
+    WalletHomePagerAdapter pagerAdapter;
     List<Wallet> wallets;
-    Wallet wallet;
+    int currentIndex = 0;
 
     public WalletFragment() {
     }
@@ -77,6 +81,8 @@ public class WalletFragment extends Fragment {
         initView();
 
         loadData();
+
+        loadBalance();
 
         return view;
     }
@@ -101,27 +107,34 @@ public class WalletFragment extends Fragment {
             layoutParams.topMargin = CommonUtil.getStatusBarHeight(getActivity());
             toolbar.setLayoutParams(layoutParams);
         }
-
-        adapter = new WalletListAdapter(getActivity());
-        adapter.addOnItemClickListener(itemClickListener);
-        swipeRecyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        swipeRecyclerView.getRecyclerView().setLayoutManager(layoutManager);
-
-        swipeRecyclerView.getSwipeRefreshLayout().setColorSchemeResources(R.color.colorPrimary);
-        swipeRecyclerView.setOnLoadListener(new SwipeRecyclerView.OnLoadListener() {
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadData();
+
+                loadBalance();
+            }
+        });
+        pagerAdapter = new WalletHomePagerAdapter(getActivity(), cycleViewPager);
+        cycleViewPager.setAdapter(pagerAdapter);
+        cycleViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
             }
 
             @Override
-            public void onLoadMore() {
+            public void onPageSelected(int position) {
+                currentIndex = position;
+                refreshLayout.setRefreshing(true);
+                loadBalance();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
 
             }
         });
-        swipeRecyclerView.setLoadMoreEnable(false);
-        swipeRecyclerView.setEmptyView(EmptyView.get(getActivity()));
     }
 
     @OnClick(R.id.btn_qrcode)
@@ -132,6 +145,75 @@ public class WalletFragment extends Fragment {
     @OnClick(R.id.btn_add)
     void addWallet() {
         startActivity(new Intent(getActivity(), WalletAddActivity.class));
+    }
+
+    @OnClick(R.id.linear_receive)
+    void receive() {
+        Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
+        Intent intent = new Intent(getActivity(), WalletReceiveCodeActivity.class);
+        intent.putExtra("wallet", wallet);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.linear_transfer)
+    void transfer() {
+        Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
+        Intent intent = new Intent(getActivity(), TransferActivity.class);
+        intent.putExtra("wallet", wallet);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.linear_balance)
+    void balance() {
+        Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
+        Intent intent = new Intent(getActivity(), WalletDetailActivity.class);
+        intent.putExtra("wallet", wallet);
+        intent.putExtra("position", currentIndex);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.linear_scan)
+    void scan() {
+        startQrCode();
+    }
+
+    @OnClick(R.id.linear_copy)
+    void copy() {
+        Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
+        ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("data", wallet.getAddress());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(getActivity(), R.string.note_wallet_copied, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.linear_delete)
+    void delete() {
+        Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
+        deleteWallet(wallet.getAddress());
+    }
+
+    private Wallet getCurrentWallet() {
+        if (wallets == null || wallets.size() == 0) {
+            Toast.makeText(getActivity(), R.string.note_no_valid_wallet, Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        Wallet wallet = wallets.get(currentIndex);
+        return wallet;
     }
 
     public void loadData() {
@@ -152,11 +234,10 @@ public class WalletFragment extends Fragment {
             Log.e(TAG, "readData: ", e);
             Toast.makeText(getActivity(), R.string.note_read_failed, Toast.LENGTH_SHORT).show();
         }
-        adapter.setList(wallets);
-
-        this.wallets = wallets;
-
-        loadBalance();
+        if (!CommonUtil.walletsEquals(this.wallets, wallets)) {
+            pagerAdapter.setList(wallets);
+            this.wallets = wallets;
+        }
     }
 
     private void loadBalance() {
@@ -183,46 +264,6 @@ public class WalletFragment extends Fragment {
         Intent intent = new Intent(getActivity(), CaptureActivity.class);
         getActivity().startActivityForResult(intent, Constant.REQ_ACT_QR_CODE);
     }
-
-    private WalletListAdapter.OnItemClickListener itemClickListener = new WalletListAdapter.OnItemClickListener() {
-        @Override
-        public void onClick(View view, int position) {
-            if (position >= wallets.size()) {
-                return;
-            }
-            wallet = wallets.get(position);
-            Intent intent = new Intent(getActivity(), WalletDetailActivity.class);
-            intent.putExtra("wallet", wallet);
-            intent.putExtra("position", position);
-            startActivity(intent);
-        }
-
-        @Override
-        public void onLongClick(View view, int position) {
-            if (position >= wallets.size()) {
-                return;
-            }
-            wallet = wallets.get(position);
-            View rootView = ((ViewGroup) (getActivity().getWindow().getDecorView().findViewById(android.R.id.content))).getChildAt(0);
-            if (menuWindow == null) {
-                menuWindow = new WalletMenuWindow(getActivity(), new WalletMenuWindow.OnWindowClickListener() {
-                    @Override
-                    public void onCopyClick() {
-                        ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData clipData = ClipData.newPlainText("data", wallet.getAddress());
-                        clipboardManager.setPrimaryClip(clipData);
-                        Toast.makeText(getActivity(), R.string.note_wallet_copied, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onDelClick() {
-                        deleteWallet(wallet.getAddress());
-                    }
-                });
-            }
-            menuWindow.showPopupWindow(rootView);
-        }
-    };
 
     public void onScanResult(Intent data) {
         Bundle bundle = data.getExtras();
@@ -258,14 +299,14 @@ public class WalletFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what == Constant.MSG_HOME_LIST) {
-                adapter.setList(wallets);
-                swipeRecyclerView.complete();
-            } else if (msg.what == Constant.MSG_HOME_LIST_ERROR) {
+            if (msg.what == Constant.MSG_HOME_BALANCE) {
+                pagerAdapter.updateCurrent(msg.arg1, (BigInteger) msg.obj);
+                refreshLayout.setRefreshing(false);
+            } else if (msg.what == Constant.MSG_HOME_BALANCE_ERROR) {
                 Toast.makeText(getActivity(), R.string.note_node_error, Toast.LENGTH_SHORT).show();
-                swipeRecyclerView.complete();
-            } else if (msg.what == Constant.MSG_HOME_LIST_BREAK) {
-                swipeRecyclerView.complete();
+                refreshLayout.setRefreshing(false);
+            } else if (msg.what == Constant.MSG_HOME_BALANCE_BREAK) {
+                refreshLayout.setRefreshing(false);
             }
         }
     };
@@ -276,15 +317,19 @@ public class WalletFragment extends Fragment {
             Message message = new Message();
             try {
                 if (wallets == null || wallets.size() == 0) {
-                    message.what = Constant.MSG_HOME_LIST_BREAK;
+                    message.what = Constant.MSG_HOME_BALANCE_BREAK;
                     handler.sendMessage(message);
                     return;
                 }
-                wallets = Dappley.getWalletBalances(wallets);
-                message.what = Constant.MSG_HOME_LIST;
+                int position = currentIndex;
+                Wallet wallet = wallets.get(position);
+                BigInteger balance = Dappley.getWalletBalance(wallet.getAddress());
+                message.arg1 = position;
+                message.obj = balance;
+                message.what = Constant.MSG_HOME_BALANCE;
                 handler.sendMessage(message);
             } catch (Exception e) {
-                message.what = Constant.MSG_HOME_LIST_ERROR;
+                message.what = Constant.MSG_HOME_BALANCE_ERROR;
                 handler.sendMessage(message);
                 Log.e(TAG, "run: ", e);
             }

@@ -33,7 +33,6 @@ public class WalletHomePagerAdapter extends PagerAdapter {
     public void setList(List<Wallet> wallets) {
         this.wallets.clear();
         this.wallets.addAll(wallets);
-        notifyDataSetChanged();
     }
 
     public void updateCurrent(int currentPage, BigInteger balance) {

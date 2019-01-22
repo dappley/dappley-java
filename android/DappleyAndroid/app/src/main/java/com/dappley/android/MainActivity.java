@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         WalletFragment walletFragment = getWalletFragment();
         if (walletFragment != null) {
             walletFragment.loadData();
+            walletFragment.loadBalance();
         }
         MeFragment meFragment = getMeFragment();
         if (meFragment != null) {

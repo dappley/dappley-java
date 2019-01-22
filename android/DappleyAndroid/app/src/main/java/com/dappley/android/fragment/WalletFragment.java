@@ -26,6 +26,7 @@ import com.dappley.android.WalletAddActivity;
 import com.dappley.android.WalletDetailActivity;
 import com.dappley.android.WalletReceiveCodeActivity;
 import com.dappley.android.adapter.WalletHomePagerAdapter;
+import com.dappley.android.dialog.ConfirmDialog;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
@@ -33,6 +34,7 @@ import com.dappley.android.util.StorageUtil;
 import com.dappley.android.window.WalletMenuWindow;
 import com.dappley.java.core.po.Wallet;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
+import com.gigamole.infinitecycleviewpager.OnInfiniteCyclePageTransformListener;
 import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
@@ -67,6 +69,7 @@ public class WalletFragment extends Fragment {
     WalletHomePagerAdapter pagerAdapter;
     List<Wallet> wallets;
     int currentIndex = 0;
+    boolean isActivityActive = false;
 
     public WalletFragment() {
     }
@@ -92,6 +95,8 @@ public class WalletFragment extends Fragment {
         super.onStart();
 
         startSchedule();
+
+        isActivityActive = true;
     }
 
     @Override
@@ -99,6 +104,8 @@ public class WalletFragment extends Fragment {
         super.onStop();
 
         stopSchedule();
+
+        isActivityActive = false;
     }
 
     private void initView() {
@@ -120,19 +127,17 @@ public class WalletFragment extends Fragment {
         cycleViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-                currentIndex = position;
+                currentIndex = cycleViewPager.getRealItem();
                 refreshLayout.setRefreshing(true);
                 loadBalance();
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
             }
         });
     }
@@ -200,11 +205,19 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.linear_delete)
     void delete() {
-        Wallet wallet = getCurrentWallet();
+        final Wallet wallet = getCurrentWallet();
         if (wallet == null) {
             return;
         }
-        deleteWallet(wallet.getAddress());
+        ConfirmDialog confirmDialog = new ConfirmDialog(getActivity(), new ConfirmDialog.OnClickListener() {
+            @Override
+            public void onConfirm() {
+                deleteWallet(wallet.getAddress());
+            }
+        });
+        confirmDialog.setTitle(R.string.note_confirm_title);
+        confirmDialog.setContent(R.string.note_confirm_delete_wallet);
+        confirmDialog.show();
     }
 
     private Wallet getCurrentWallet() {
@@ -235,12 +248,19 @@ public class WalletFragment extends Fragment {
             Toast.makeText(getActivity(), R.string.note_read_failed, Toast.LENGTH_SHORT).show();
         }
         if (!CommonUtil.walletsEquals(this.wallets, wallets)) {
+            stopSchedule();
             pagerAdapter.setList(wallets);
             this.wallets = wallets;
+
+            cycleViewPager.setAdapter(pagerAdapter);
+            currentIndex = 0;
+            if (isActivityActive) {
+                startSchedule();
+            }
         }
     }
 
-    private void loadBalance() {
+    public void loadBalance() {
         new DataThread().start();
     }
 
@@ -248,12 +268,14 @@ public class WalletFragment extends Fragment {
         if (CommonUtil.isNull(address)) {
             return;
         }
+
         StorageUtil.deleteAddress(getActivity(), address);
 
         Dappley.removeAddress(address);
 
         MainActivity mainActivity = (MainActivity) getActivity();
         mainActivity.loadChangedData();
+
     }
 
     public void startQrCode() {
@@ -300,7 +322,8 @@ public class WalletFragment extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_HOME_BALANCE) {
-                pagerAdapter.updateCurrent(msg.arg1, (BigInteger) msg.obj);
+                int position = msg.arg1;
+                pagerAdapter.updateCurrent(position, (BigInteger) msg.obj);
                 refreshLayout.setRefreshing(false);
             } else if (msg.what == Constant.MSG_HOME_BALANCE_ERROR) {
                 Toast.makeText(getActivity(), R.string.note_node_error, Toast.LENGTH_SHORT).show();
@@ -322,6 +345,9 @@ public class WalletFragment extends Fragment {
                     return;
                 }
                 int position = currentIndex;
+                if (position >= wallets.size()) {
+                    return;
+                }
                 Wallet wallet = wallets.get(position);
                 BigInteger balance = Dappley.getWalletBalance(wallet.getAddress());
                 message.arg1 = position;

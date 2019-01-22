@@ -105,6 +105,8 @@
     <string name="note_modify_password_failed">modify password failed</string>
     <string name="note_remote_contract_empty">remote contract address is empty</string>
     <string name="note_remote_contract_invalid">remote contract address is invalid</string>
+    <string name="note_confirm_title">Note</string>
+    <string name="note_confirm_delete_wallet">Sure to delete current wallet?</string>
 
     <string name="net_not_connected">network not connected</string>
     <string name="net_server_connected_error">server connect error, please try later</string>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,11 @@ import com.dappley.java.core.po.Wallet;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,24 +28,29 @@ public class WalletHomePagerAdapter extends PagerAdapter {
     private Context context;
     private List<Wallet> wallets;
     private ViewPager viewPager;
+    private Map<Integer, Set<View>> viewsMap;
 
     public WalletHomePagerAdapter(Context context, ViewPager viewPager) {
         this.context = context;
         this.wallets = new ArrayList<>();
         this.viewPager = viewPager;
+        this.viewsMap = new HashMap<>();
     }
 
     public void setList(List<Wallet> wallets) {
         this.wallets.clear();
         this.wallets.addAll(wallets);
+        this.viewsMap.clear();
     }
 
     public void updateCurrent(int currentPage, BigInteger balance) {
-        TextView tvBalance = viewPager.findViewWithTag("balance" + currentPage);
-        if (tvBalance == null || balance == null) {
+        Set<View> views = viewsMap.get(currentPage);
+        if (views == null) {
             return;
         }
-        tvBalance.setText(balance.toString());
+        for (View view : views) {
+            ((TextView) view).setText(balance.toString());
+        }
     }
 
     @Override
@@ -74,6 +84,12 @@ public class WalletHomePagerAdapter extends PagerAdapter {
                 viewHolder.tvValue.setText(wallet.getBalance().toString());
             }
         }
+        Set<View> valueViews = viewsMap.get(position);
+        if (valueViews == null) {
+            valueViews = new HashSet<>();
+        }
+        valueViews.add(viewHolder.tvValue);
+        viewsMap.put(position, valueViews);
 
         container.addView(view);
         return view;
@@ -81,6 +97,12 @@ public class WalletHomePagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        View view = (View) object;
+        TextView tvValue = view.findViewById(R.id.txt_value);
+        Set<View> valueViews = viewsMap.get(position);
+        if (valueViews != null && tvValue != null) {
+            valueViews.remove(tvValue);
+        }
         container.removeView((View) object);
     }
 

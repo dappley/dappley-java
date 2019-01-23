@@ -54,7 +54,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:layout_weight="4"
                             app:icvp_center_page_scale_offset="30dp"
                             app:icvp_interpolator="@android:anim/accelerate_decelerate_interpolator"
                             app:icvp_max_page_scale="0.8"
@@ -62,6 +61,29 @@
                             app:icvp_min_page_scale="0.55"
                             app:icvp_min_page_scale_offset="@dimen/margin_20"
                             app:icvp_scroll_duration="250" />
+
+                        <LinearLayout
+                            android:id="@+id/linear_add_wallet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:layout_width="90dip"
+                                android:layout_height="90dip"
+                                android:src="@drawable/empty" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_8"
+                                android:text="@string/layout_click_add_wallet"
+                                android:textColor="@color/purple_txt" />
+                        </LinearLayout>
+
                     </RelativeLayout>
                 </android.support.design.widget.CollapsingToolbarLayout>
             </android.support.design.widget.AppBarLayout>

@@ -14,9 +14,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.MainActivity;
@@ -64,6 +67,8 @@ public class WalletFragment extends Fragment {
     HorizontalInfiniteCycleViewPager cycleViewPager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.linear_add_wallet)
+    LinearLayout linearAddWallet;
 
     WalletMenuWindow menuWindow;
     WalletHomePagerAdapter pagerAdapter;
@@ -124,6 +129,17 @@ public class WalletFragment extends Fragment {
         });
         pagerAdapter = new WalletHomePagerAdapter(getActivity(), cycleViewPager);
         cycleViewPager.setAdapter(pagerAdapter);
+        cycleViewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    refreshLayout.setEnabled(false);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    refreshLayout.setEnabled(true);
+                }
+                return false;
+            }
+        });
         cycleViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -147,7 +163,7 @@ public class WalletFragment extends Fragment {
         startQrCode();
     }
 
-    @OnClick(R.id.btn_add)
+    @OnClick({R.id.btn_add, R.id.linear_add_wallet})
     void addWallet() {
         startActivity(new Intent(getActivity(), WalletAddActivity.class));
     }
@@ -249,13 +265,20 @@ public class WalletFragment extends Fragment {
         }
         if (!CommonUtil.walletsEquals(this.wallets, wallets)) {
             stopSchedule();
-            pagerAdapter.setList(wallets);
-            this.wallets = wallets;
+            if (wallets.size() == 0) {
+                linearAddWallet.setVisibility(View.VISIBLE);
+                cycleViewPager.setVisibility(View.GONE);
+            } else {
+                linearAddWallet.setVisibility(View.GONE);
+                cycleViewPager.setVisibility(View.VISIBLE);
+                pagerAdapter.setList(wallets);
+                this.wallets = wallets;
 
-            cycleViewPager.setAdapter(pagerAdapter);
-            currentIndex = 0;
-            if (isActivityActive) {
-                startSchedule();
+                cycleViewPager.setAdapter(pagerAdapter);
+                currentIndex = 0;
+                if (isActivityActive) {
+                    startSchedule();
+                }
             }
         }
     }
@@ -275,7 +298,6 @@ public class WalletFragment extends Fragment {
 
         MainActivity mainActivity = (MainActivity) getActivity();
         mainActivity.loadChangedData();
-
     }
 
     public void startQrCode() {
@@ -301,10 +323,10 @@ public class WalletFragment extends Fragment {
     private void startSchedule() {
         stopSchedule();
 
-        if (schedule == null) {
-            schedule = Executors.newScheduledThreadPool(1);
-        }
-        future = schedule.scheduleAtFixedRate(new DataThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
+//        if (schedule == null) {
+//            schedule = Executors.newScheduledThreadPool(1);
+//        }
+//        future = schedule.scheduleAtFixedRate(new DataThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
 
         Log.d(TAG, "startSchedule: walletFrag data sync started.");
     }
@@ -340,6 +362,7 @@ public class WalletFragment extends Fragment {
             Message message = new Message();
             try {
                 if (wallets == null || wallets.size() == 0) {
+                    Thread.sleep(10);
                     message.what = Constant.MSG_HOME_BALANCE_BREAK;
                     handler.sendMessage(message);
                     return;
@@ -350,6 +373,7 @@ public class WalletFragment extends Fragment {
                 }
                 Wallet wallet = wallets.get(position);
                 BigInteger balance = Dappley.getWalletBalance(wallet.getAddress());
+                Log.e(TAG, "run: " + (balance == null));
                 message.arg1 = position;
                 message.obj = balance;
                 message.what = Constant.MSG_HOME_BALANCE;

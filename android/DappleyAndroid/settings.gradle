@@ -1,1 +1,1 @@
-include ':app', ':sdk', ':zxing', ':todaystepcounterlib', ':googlestep'
+include ':app', ':sdk', ':zxing', ':todaystepcounterlib', ':googlestep', ':infinitecycleviewpager'

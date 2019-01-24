@@ -33,6 +33,11 @@ public class LocalDataProvider implements DataProvider {
     }
 
     @Override
+    public void release() {
+        MMKV.onExit();
+    }
+
+    @Override
     public List<Utxo> getUtxos(String address) {
         UtxoDb utxoDb = new UtxoDb(context);
         UtxoIndexDb utxoIndexDb = new UtxoIndexDb(context);

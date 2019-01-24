@@ -24,4 +24,13 @@ public class TransactionSender {
         int errorCode = protocalProvider.sendTransaction(tx);
         return errorCode;
     }
+
+    /**
+     * Release rpc connections.
+     */
+    public void release() {
+        if (protocalProvider != null) {
+            protocalProvider.close();
+        }
+    }
 }

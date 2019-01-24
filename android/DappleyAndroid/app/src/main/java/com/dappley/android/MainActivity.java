@@ -29,6 +29,7 @@ import com.dappley.android.adapter.MainFragmentAdapter;
 import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
+import com.dappley.android.sdk.Dappley;
 import com.dappley.google.step.GoogleStep;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.Constant;
@@ -172,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
+
+        Dappley.release();
     }
 
     @Override
@@ -213,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                     if (walletFragment == null) {
                         return;
                     }
-                    walletFragment.startQrCode();
+                    walletFragment.startQrCode(null);
                 } else {
                     Toast.makeText(MainActivity.this, R.string.note_permittion_camera, Toast.LENGTH_LONG).show();
                 }
@@ -252,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 stepFragment.setGoogleSupported();
-            }else if(requestCode == GoogleStep.REQ_GOOGLE_SIGN_IN){
+            } else if (requestCode == GoogleStep.REQ_GOOGLE_SIGN_IN) {
                 StepFragment stepFragment = getStepFragment();
                 if (stepFragment == null) {
                     return;

@@ -142,7 +142,10 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
                 mProgress.dismiss();
                 if (result != null) {
                     Intent resultIntent = new Intent();
-                    Bundle bundle = new Bundle();
+                    Bundle bundle = getIntent().getExtras();
+                    if (bundle == null) {
+                        bundle = new Bundle();
+                    }
                     bundle.putString(Constant.INTENT_EXTRA_KEY_QR_SCAN, result.getText());
 
                     resultIntent.putExtras(bundle);
@@ -245,7 +248,10 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
             Toast.makeText(CaptureActivity.this, R.string.note_scan_failed, Toast.LENGTH_SHORT).show();
         } else {
             Intent resultIntent = new Intent();
-            Bundle bundle = new Bundle();
+            Bundle bundle = getIntent().getExtras();
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
             bundle.putString(Constant.INTENT_EXTRA_KEY_QR_SCAN, resultString);
             resultIntent.putExtras(bundle);
             this.setResult(RESULT_OK, resultIntent);

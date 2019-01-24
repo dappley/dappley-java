@@ -113,6 +113,12 @@ public class WalletFragment extends Fragment {
         isActivityActive = false;
     }
 
+    @Override
+    public void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
+        super.onDestroy();
+    }
+
     private void initView() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
@@ -160,7 +166,7 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.btn_qrcode)
     void qrCode() {
-        startQrCode();
+        startQrCode(null);
     }
 
     @OnClick({R.id.btn_add, R.id.linear_add_wallet})
@@ -204,7 +210,8 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.linear_scan)
     void scan() {
-        startQrCode();
+        Wallet wallet = getCurrentWallet();
+        startQrCode(wallet);
     }
 
     @OnClick(R.id.linear_copy)
@@ -300,22 +307,27 @@ public class WalletFragment extends Fragment {
         mainActivity.loadChangedData();
     }
 
-    public void startQrCode() {
+    public void startQrCode(Wallet wallet) {
         MainActivity mainActivity = (MainActivity) getActivity();
         if (!mainActivity.checkCameraPermission()) {
             return;
         }
         Intent intent = new Intent(getActivity(), CaptureActivity.class);
+        if (wallet != null) {
+            intent.putExtra("wallet", wallet);
+        }
         getActivity().startActivityForResult(intent, Constant.REQ_ACT_QR_CODE);
     }
 
     public void onScanResult(Intent data) {
         Bundle bundle = data.getExtras();
         String scanResult = bundle.getString(com.google.zxing.util.Constant.INTENT_EXTRA_KEY_QR_SCAN);
+        Wallet wallet = (Wallet) bundle.getSerializable("wallet");
 
         if (scanResult != null && scanResult.length() > 0) {
             Intent intent = new Intent(getActivity(), TransferActivity.class);
             intent.putExtra("toAddress", scanResult);
+            intent.putExtra("wallet", wallet);
             startActivity(intent);
         }
     }
@@ -373,7 +385,6 @@ public class WalletFragment extends Fragment {
                 }
                 Wallet wallet = wallets.get(position);
                 BigInteger balance = Dappley.getWalletBalance(wallet.getAddress());
-                Log.e(TAG, "run: " + (balance == null));
                 message.arg1 = position;
                 message.obj = balance;
                 message.what = Constant.MSG_HOME_BALANCE;

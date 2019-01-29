@@ -75,6 +75,7 @@ public class StepFragment extends Fragment {
     String today;
 
     boolean isGoogleSupported;
+    boolean isStepLibUsed;
 
     public StepFragment() {
     }
@@ -91,16 +92,7 @@ public class StepFragment extends Fragment {
     }
 
     private void refreshGoogleApi() {
-        int googleState = googleStep.isSupported();
-        if (googleState == GoogleStep.STATE_SUCCESS) {
-            isGoogleSupported = true;
-        } else if (googleState == GoogleStep.STATE_PLAY_UNAVAIABLE) {
-            isGoogleSupported = false;
-        } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
-
-        } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {
-            googleStep.requestPermissions();
-        }
+        new GoogleThread().start();
     }
 
     @Override
@@ -109,24 +101,35 @@ public class StepFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_step, container, false);
         ButterKnife.bind(this, view);
 
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int newStep = getNewStep();
+
+                        Message message = new Message();
+                        message.arg1 = newStep;
+                        message.what = Constant.MSG_STEP_REFRESH;
+                        boolean isSuccess = handler.sendMessage(message);
+                        Log.e(TAG, "run: ------------" + isSuccess);
+                    }
+                }).start();
+            }
+        });
+
+        return view;
+    }
+
+    private void registerStepLib() {
         Intent intent = new Intent(getActivity(), TodayStepService.class);
         getActivity().startService(intent);
 
         getActivity().bindService(intent, stepServiceConnection, Context.BIND_AUTO_CREATE);
 
-        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                int newStep = getNewStep();
-
-                updateAll(newStep);
-                startUpdateRestAnimator(newStep);
-                refreshLayout.setRefreshing(false);
-            }
-        });
-
-        return view;
+        isStepLibUsed = true;
     }
 
     private void readTodayConverted() {
@@ -165,12 +168,21 @@ public class StepFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        getActivity().unbindService(stepServiceConnection);
+        if (isStepLibUsed) {
+            getActivity().unbindService(stepServiceConnection);
+        }
         super.onDetach();
+    }
+
+    @Override
+    public void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
+        super.onDestroy();
     }
 
     public void setGoogleLogined() {
         refreshGoogleApi();
+        LoadingDialog.close();
     }
 
     public void setGoogleSupported() {
@@ -258,6 +270,9 @@ public class StepFragment extends Fragment {
         public void onServiceConnected(ComponentName name, IBinder service) {
             iSportStepInterface = ISportStepInterface.Stub.asInterface(service);
 
+            if (isGoogleSupported) {
+                return;
+            }
             int newStep = getNewStep();
             // initialize restStep
             restStep = newStep - convertedStep;
@@ -266,6 +281,8 @@ public class StepFragment extends Fragment {
             }
             updateAll(newStep);
             startUpdateRestAnimator(newStep);
+
+            startSchedule();
         }
 
         @Override
@@ -279,7 +296,7 @@ public class StepFragment extends Fragment {
         if (schedule == null) {
             schedule = Executors.newScheduledThreadPool(1);
         }
-        future = schedule.scheduleAtFixedRate(new StepThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
+        future = schedule.scheduleWithFixedDelay(new StepThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
 
         Log.d(TAG, "startSchedule: step view updater started.");
     }
@@ -290,6 +307,12 @@ public class StepFragment extends Fragment {
 
             Log.d(TAG, "stopSchedule: step view updater stopped.");
         }
+    }
+
+    private void afterRefresh(int newStep) {
+        updateAll(newStep);
+        startUpdateRestAnimator(newStep);
+        refreshLayout.setRefreshing(false);
     }
 
     private int getNewStep() {
@@ -378,6 +401,7 @@ public class StepFragment extends Fragment {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            Log.e(TAG, "handleMessage: " + msg.what);
             super.handleMessage(msg);
 
             if (msg.what == Constant.MSG_STEP_UPDATE && tvStepAll != null) {
@@ -392,7 +416,13 @@ public class StepFragment extends Fragment {
                 } else {
                     tvStepAll.setText("" + stepAll);
                 }
-
+            } else if (msg.what == Constant.MSG_STEP_REFRESH) {
+                afterRefresh(msg.arg1);
+            } else if (msg.what == Constant.MSG_GOOGLE_LOGIN) {
+                LoadingDialog.show(getActivity());
+                googleStep.startSignInIntent();
+            } else if (msg.what == Constant.MSG_GOOGLE_PERMISSION) {
+                googleStep.requestPermissions();
             }
 
         }
@@ -405,6 +435,27 @@ public class StepFragment extends Fragment {
             updateAll(newStep);
             startUpdateRestAnimator(newStep);
             Log.d(TAG, "StepThread run once: " + newStep);
+        }
+    }
+
+    class GoogleThread extends Thread {
+        @Override
+        public void run() {
+            int googleState = googleStep.isSupported();
+            if (googleState == GoogleStep.STATE_SUCCESS) {
+                isGoogleSupported = true;
+            } else if (googleState == GoogleStep.STATE_PLAY_UNAVAIABLE) {
+                isGoogleSupported = false;
+                registerStepLib();
+            } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
+                Message message = new Message();
+                message.what = Constant.MSG_GOOGLE_LOGIN;
+                handler.sendMessageDelayed(message, 10000);
+            } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {
+                Message message = new Message();
+                message.what = Constant.MSG_GOOGLE_PERMISSION;
+                handler.sendMessageDelayed(message, 5000);
+            }
         }
     }
 }

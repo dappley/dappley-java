@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:background="@drawable/step_top_bg"
-            app:layout_constraintHeight_percent="0.61" />
+            app:layout_constraintHeight_percent="0.61"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

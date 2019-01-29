@@ -70,7 +70,6 @@ public class GoogleStep {
         }
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
         if (account == null) {
-            startSignInIntent();
             return STATE_NEED_LOGIN;
         }
         if (!GoogleSignIn.hasPermissions(account, fitnessOptions)) {
@@ -83,7 +82,7 @@ public class GoogleStep {
     /**
      * Show sign in dialog.
      */
-    private void startSignInIntent() {
+    public void startSignInIntent() {
         GoogleSignInClient signInClient = GoogleSignIn.getClient(activity,
                 GoogleSignInOptions.DEFAULT_SIGN_IN);
         Intent intent = signInClient.getSignInIntent();

@@ -229,6 +229,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GoogleStep.REQ_GOOGLE_SIGN_IN) {
+            StepFragment stepFragment = getStepFragment();
+            if (stepFragment == null) {
+                return;
+            }
+            stepFragment.setGoogleLogined();
+            return;
+        }
         if (resultCode == RESULT_OK) {
             if (requestCode == Constant.REQ_ACT_QR_CODE) {
                 WalletFragment walletFragment = getWalletFragment();
@@ -255,12 +263,6 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 stepFragment.setGoogleSupported();
-            } else if (requestCode == GoogleStep.REQ_GOOGLE_SIGN_IN) {
-                StepFragment stepFragment = getStepFragment();
-                if (stepFragment == null) {
-                    return;
-                }
-                stepFragment.setGoogleLogined();
             }
         }
     }

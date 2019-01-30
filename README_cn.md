@@ -87,6 +87,7 @@ Wallet wallet = Dappley.createWallet();
 * [MMKV](https://github.com/Tencent/MMKV)
 * [web3j](https://github.com/web3j/web3j)
 * [TodayStepCounter](https://github.com/jiahongfei/TodayStepCounter)
+* [Google Fit](https://www.google.com/fit)
 
 ## 开源协议
 dappley-java项目遵从开源协议[LGPL-3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html).

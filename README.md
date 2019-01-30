@@ -96,6 +96,7 @@ Go and see [FAQ](https://github.com/dappley/dappley-java/wiki/FAQ)
 * [MMKV](https://github.com/Tencent/MMKV)
 * [web3j](https://github.com/web3j/web3j)
 * [TodayStepCounter](https://github.com/jiahongfei/TodayStepCounter)
+* [Google Fit](https://www.google.com/fit)
 
 ## License
 The dappley-java project is licensed under the [GNU Lesser General Public License Version 3.0 (“LGPL v3”)](https://www.gnu.org/licenses/lgpl-3.0.en.html).

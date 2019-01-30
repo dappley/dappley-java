@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class LocalDataProvider implements DataProvider {
     @Override
+    public void release() {
+
+    }
+
+    @Override
     public List<Utxo> getUtxos(String address) {
         return null;
     }

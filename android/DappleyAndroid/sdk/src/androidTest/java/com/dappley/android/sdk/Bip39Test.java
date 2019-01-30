@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.dappley.java.core.crypto.Bip39;
 import com.dappley.java.core.util.HexUtil;
+import com.dappley.java.core.util.MnemonicLanguage;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,6 +21,10 @@ public class Bip39Test {
     @Test
     public void generate() {
         String mnemonic = Bip39.generateMnemonic();
+        Log.d(TAG, "generate: " + mnemonic);
+        mnemonic = Bip39.generateMnemonic(MnemonicLanguage.ZH_CN);
+        Log.d(TAG, "generate: " + mnemonic);
+        mnemonic = Bip39.generateMnemonic(MnemonicLanguage.ZH_TW);
         Log.d(TAG, "generate: " + mnemonic);
         String[] array = mnemonic.split("\\s+");
 
@@ -39,6 +44,14 @@ public class Bip39Test {
     public void validateMnemonic() {
         String mnemonic = "infant crowd you noodle crazy fancy ankle beauty host fatigue behind extend";
         boolean isValid = Bip39.validateMnemonic(mnemonic);
+        Log.d(TAG, "validateMnemonic: " + isValid);
+
+        mnemonic = "剂 束 彼 硝 酵 内 埃 胎 闭 简 称 互";
+        isValid = Bip39.validateMnemonic(mnemonic, MnemonicLanguage.ZH_CN);
+        Log.d(TAG, "validateMnemonic: " + isValid);
+
+        mnemonic = "擊 積 碼 檢 特 拒 陶 角 爾 床 繼 那";
+        isValid = Bip39.validateMnemonic(mnemonic, MnemonicLanguage.ZH_TW);
         Log.d(TAG, "validateMnemonic: " + isValid);
 
         Assert.assertEquals(true, isValid);

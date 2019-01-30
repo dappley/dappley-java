@@ -4,6 +4,7 @@ import com.dappley.java.core.crypto.Bip39;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
+import com.dappley.java.core.util.MnemonicLanguage;
 
 import java.math.BigInteger;
 
@@ -14,6 +15,10 @@ public class Bip39Test {
     @Test
     public void generate() {
         String mnemonic = Bip39.generateMnemonic();
+        log.debug("generate: " + mnemonic);
+        mnemonic = Bip39.generateMnemonic(MnemonicLanguage.ZH_CN);
+        log.debug("generate: " + mnemonic);
+        mnemonic = Bip39.generateMnemonic(MnemonicLanguage.ZH_TW);
         log.debug("generate: " + mnemonic);
         String[] array = mnemonic.split("\\s+");
 

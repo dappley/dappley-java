@@ -3,6 +3,7 @@ package com.dappley.java.core.chain;
 import com.dappley.java.core.crypto.AesCipher;
 import com.dappley.java.core.crypto.Bip39;
 import com.dappley.java.core.po.Wallet;
+import com.dappley.java.core.util.MnemonicLanguage;
 
 import java.math.BigInteger;
 
@@ -12,7 +13,7 @@ import java.math.BigInteger;
 public class WalletManager {
 
     /**
-     * Create a new wallet address.
+     * Create a new wallet address with English.
      * @return Wallet
      */
     public static Wallet createWallet() {
@@ -22,12 +23,34 @@ public class WalletManager {
     }
 
     /**
-     * Import wallet info by mnemonic words
+     * Create a new wallet address with specified language.
+     * @param mnemonicLanguage mnemonic language type
+     * @return Wallet
+     */
+    public static Wallet createWallet(MnemonicLanguage mnemonicLanguage) {
+        String mnemonic = Bip39.generateMnemonic(mnemonicLanguage);
+        Wallet wallet = new Wallet(mnemonic, mnemonicLanguage);
+        return wallet;
+    }
+
+    /**
+     * Import wallet info by mnemonic words with English language type
      * @param mnemonic
      * @return Wallet
      */
     public static Wallet importWalletFromMnemonic(String mnemonic) {
         Wallet wallet = new Wallet(mnemonic);
+        return wallet;
+    }
+
+    /**
+     * Import wallet info by mnemonic words with specified language type
+     * @param mnemonic
+     * @param mnemonicLanguage mnemonic language type
+     * @return Wallet
+     */
+    public static Wallet importWalletFromMnemonic(String mnemonic, MnemonicLanguage mnemonicLanguage) {
+        Wallet wallet = new Wallet(mnemonic, mnemonicLanguage);
         return wallet;
     }
 

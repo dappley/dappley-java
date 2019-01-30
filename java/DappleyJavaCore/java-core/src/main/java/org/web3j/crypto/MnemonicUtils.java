@@ -1,5 +1,6 @@
 package org.web3j.crypto;
 
+import com.dappley.java.core.util.MnemonicLanguage;
 import org.spongycastle.crypto.digests.SHA512Digest;
 import org.spongycastle.crypto.generators.PKCS5S2ParametersGenerator;
 import org.spongycastle.crypto.params.KeyParameter;
@@ -9,9 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.web3j.crypto.Hash.sha256;
 
@@ -25,7 +24,7 @@ public class MnemonicUtils {
     private static final Charset UTF_8 = Charset.forName("UTF-8");
     private static final int SEED_ITERATIONS = 2048;
     private static final int SEED_KEY_SIZE = 512;
-    private static List<String> WORD_LIST = null;
+    private static Map<String, List<String>> WORD_MAP = null;
 
     /**
      * The mnemonic must encode entropy in a multiple of 32 bits. With more entropy security is
@@ -38,14 +37,20 @@ public class MnemonicUtils {
      * the end of the initial entropy. Next, these concatenated bits are split into groups of
      * 11 bits, each encoding a number from 0-2047, serving as an index into a wordlist. Finally,
      * we convert these numbers into words and use the joined words as a mnemonic sentence.
-     * @param initialEntropy The initial entropy to generate mnemonic from
+     * @param initialEntropy   The initial entropy to generate mnemonic from
+     * @param mnemonicLanguage mnemonic words language type
      * @return The generated mnemonic
      * @throws IllegalArgumentException If the given entropy is invalid
      * @throws IllegalStateException    If the word list has not been loaded
      */
-    public static String generateMnemonic(byte[] initialEntropy) {
-        if (WORD_LIST == null) {
-            WORD_LIST = populateWordList();
+    public static String generateMnemonic(byte[] initialEntropy, MnemonicLanguage mnemonicLanguage) {
+        if (WORD_MAP == null) {
+            WORD_MAP = new HashMap<>(MnemonicLanguage.values().length);
+        }
+        List<String> wordList = WORD_MAP.get(mnemonicLanguage.name());
+        if (wordList == null) {
+            wordList = populateWordList(mnemonicLanguage);
+            WORD_MAP.put(mnemonicLanguage.name(), wordList);
         }
         validateEntropy(initialEntropy);
 
@@ -59,7 +64,7 @@ public class MnemonicUtils {
         StringBuilder mnemonicBuilder = new StringBuilder();
         for (int i = 0; i < iterations; i++) {
             int index = toInt(nextElevenBits(bits, i));
-            mnemonicBuilder.append(WORD_LIST.get(index));
+            mnemonicBuilder.append(wordList.get(index));
 
             boolean notLastIteration = i < iterations - 1;
             if (notLastIteration) {
@@ -72,19 +77,25 @@ public class MnemonicUtils {
 
     /**
      * Create entropy from the mnemonic.
-     * @param mnemonic The input mnemonic which should be 128-160 bits in length containing
-     *                 only valid words
+     * @param mnemonic         The input mnemonic which should be 128-160 bits in length containing
+     *                         only valid words
+     * @param mnemonicLanguage mnemonic words language type
      * @return Byte array representation of the entropy
      */
-    public static byte[] generateEntropy(String mnemonic) {
-        if (WORD_LIST == null) {
-            WORD_LIST = populateWordList();
+    public static byte[] generateEntropy(String mnemonic, MnemonicLanguage mnemonicLanguage) {
+        if (WORD_MAP == null) {
+            WORD_MAP = new HashMap<>(MnemonicLanguage.values().length);
+        }
+        List<String> wordList = WORD_MAP.get(mnemonicLanguage.name());
+        if (wordList == null) {
+            wordList = populateWordList(mnemonicLanguage);
+            WORD_MAP.put(mnemonicLanguage.name(), wordList);
         }
         if (isMnemonicEmpty(mnemonic)) {
             throw new IllegalArgumentException("Mnemonic is empty");
         }
 
-        String bits = mnemonicToBits(mnemonic);
+        String bits = mnemonicToBits(mnemonic, wordList);
 
         // split the binary string into ENT/CS.
         int totalLength = bits.length();
@@ -128,9 +139,9 @@ public class MnemonicUtils {
         return ((KeyParameter) gen.generateDerivedParameters(SEED_KEY_SIZE)).getKey();
     }
 
-    public static boolean validateMnemonic(String mnemonic) {
+    public static boolean validateMnemonic(String mnemonic, MnemonicLanguage mnemonicLanguage) {
         try {
-            generateEntropy(mnemonic);
+            generateEntropy(mnemonic, mnemonicLanguage);
             return true;
         } catch (Exception ex) {
             return false;
@@ -195,12 +206,12 @@ public class MnemonicUtils {
         return value;
     }
 
-    private static String mnemonicToBits(String mnemonic) {
+    private static String mnemonicToBits(String mnemonic, List<String> wordList) {
         String[] words = mnemonic.split(" ");
 
         StringBuilder bits = new StringBuilder();
         for (String word : words) {
-            int index = WORD_LIST.indexOf(word);
+            int index = wordList.indexOf(word);
             if (index == -1) {
                 throw new IllegalArgumentException(String.format(
                         "Mnemonic word '%s' should be in the word list", word));
@@ -247,9 +258,9 @@ public class MnemonicUtils {
         return (byte) (bytes[0] & mask);
     }
 
-    private static List<String> populateWordList() {
+    private static List<String> populateWordList(MnemonicLanguage mnemonicLanguage) {
         InputStream inputStream = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("en-mnemonic-word-list.txt");
+                .getResourceAsStream(mnemonicLanguage.getFileName());
         try {
             return readAllLines(inputStream);
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package com.dappley.java.test;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.java.core.util.HashUtil;
+import com.dappley.java.core.util.MnemonicLanguage;
 import com.dappley.java.sdk.Dappley;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -30,6 +31,10 @@ public class DappleyTest {
     @Test
     public void testCreateWallet() {
         Wallet wallet = Dappley.createWallet();
+        log.info("wallet: " + wallet.toString());
+        wallet = Dappley.createWallet(MnemonicLanguage.ZH_CN);
+        log.info("wallet: " + wallet.toString());
+        wallet = Dappley.createWallet(MnemonicLanguage.ZH_TW);
         log.info("wallet: " + wallet.toString());
         Assert.assertNotNull(wallet);
     }

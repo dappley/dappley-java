@@ -1,6 +1,7 @@
 package com.dappley.java.core.crypto;
 
 import org.web3j.crypto.ECKeyPair;
+import com.dappley.java.core.util.MnemonicLanguage;
 import org.web3j.crypto.MnemonicUtils;
 
 import java.math.BigInteger;
@@ -17,10 +18,19 @@ public class Bip39 {
      * @return String mnemonic words
      */
     public static String generateMnemonic() {
+        return generateMnemonic(MnemonicLanguage.EN);
+    }
+
+    /**
+     * Generate a string of mnemonic words randomly.
+     * @param mnemonicLanguage language type
+     * @return String mnemonic words
+     */
+    public static String generateMnemonic(MnemonicLanguage mnemonicLanguage) {
         byte[] initialEntropy = new byte[16];
         secureRandom.nextBytes(initialEntropy);
 
-        String mnemonic = MnemonicUtils.generateMnemonic(initialEntropy);
+        String mnemonic = MnemonicUtils.generateMnemonic(initialEntropy, mnemonicLanguage);
         return mnemonic;
     }
 
@@ -41,6 +51,16 @@ public class Bip39 {
      * @return boolean is legal
      */
     public static boolean validateMnemonic(String mnemonic) {
-        return MnemonicUtils.validateMnemonic(mnemonic);
+        return MnemonicUtils.validateMnemonic(mnemonic, MnemonicLanguage.EN);
+    }
+
+    /**
+     * Valid a mnemonic string is legal
+     * @param mnemonic         words
+     * @param mnemonicLanguage language type
+     * @return boolean is legal
+     */
+    public static boolean validateMnemonic(String mnemonic, MnemonicLanguage mnemonicLanguage) {
+        return MnemonicUtils.validateMnemonic(mnemonic, mnemonicLanguage);
     }
 }

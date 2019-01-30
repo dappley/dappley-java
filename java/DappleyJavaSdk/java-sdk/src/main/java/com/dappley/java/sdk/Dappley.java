@@ -9,6 +9,7 @@ import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.MnemonicLanguage;
 import com.dappley.java.core.util.ObjectUtils;
 import com.dappley.java.sdk.chain.UtxoManager;
 import com.dappley.java.sdk.config.Configuration;
@@ -55,7 +56,7 @@ public class Dappley {
     }
 
     /**
-     * Create a new wallet address.
+     * Create a new wallet address by mnemonic with English language.
      * <p>Contains mnemonic and private key in wallet.</p>
      * @return Wallet
      */
@@ -65,13 +66,36 @@ public class Dappley {
     }
 
     /**
-     * Import wallet info from mnemonic words.
+     * Create a new wallet address by mnemonic with specified language.
+     * <p>Contains mnemonic and private key in wallet.</p>
+     * @param mnemonicLanguage mnemonic language type
+     * @return Wallet
+     */
+    public static Wallet createWallet(MnemonicLanguage mnemonicLanguage) {
+        Wallet wallet = WalletManager.createWallet(mnemonicLanguage);
+        return wallet;
+    }
+
+    /**
+     * Import wallet info from mnemonic words with English language type.
      * <p>Mnemonic are made up of 12 english words within blank as seperator.</p>
      * @param mnemonic words
      * @return Wallet
      */
     public static Wallet importWalletFromMnemonic(String mnemonic) {
         Wallet wallet = WalletManager.importWalletFromMnemonic(mnemonic);
+        return wallet;
+    }
+
+    /**
+     * Import wallet info from mnemonic words with specified language type.
+     * <p>Mnemonic are made up of 12 english words within blank as seperator.</p>
+     * @param mnemonic         words
+     * @param mnemonicLanguage mnemonic language type
+     * @return Wallet
+     */
+    public static Wallet importWalletFromMnemonic(String mnemonic, MnemonicLanguage mnemonicLanguage) {
+        Wallet wallet = WalletManager.importWalletFromMnemonic(mnemonic, mnemonicLanguage);
         return wallet;
     }
 

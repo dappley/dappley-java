@@ -3,6 +3,7 @@ package com.dappley.java.core.po;
 import com.dappley.java.core.crypto.Bip39;
 import com.dappley.java.core.crypto.KeyPairTool;
 import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.MnemonicLanguage;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -30,7 +31,11 @@ public class Wallet implements Serializable {
     }
 
     public Wallet(String mnemonic) {
-        if (!Bip39.validateMnemonic(mnemonic)) {
+        this(mnemonic, MnemonicLanguage.EN);
+    }
+
+    public Wallet(String mnemonic, MnemonicLanguage mnemonicLanguage) {
+        if (!Bip39.validateMnemonic(mnemonic, mnemonicLanguage)) {
             return;
         }
         this.mnemonic = mnemonic;

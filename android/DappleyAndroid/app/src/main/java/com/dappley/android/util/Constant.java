@@ -43,5 +43,6 @@ public class Constant {
     public static final String STEP_CONTRACT = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
 
     public static final String URL_CONTRACT_BASE = "http://test.dappworks.xyz/";
-    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
+//    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
+    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record2";
 }

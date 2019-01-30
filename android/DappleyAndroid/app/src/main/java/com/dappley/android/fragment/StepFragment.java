@@ -70,6 +70,7 @@ public class StepFragment extends Fragment {
     @BindString(R.string.note_convert_success)
     String successString;
 
+    String contractAddressStep = Constant.ADDRESS_STEP_CONTRACT;
     int todayStep;
     int convertedStep;
     int restStep;
@@ -211,17 +212,19 @@ public class StepFragment extends Fragment {
 
             @Override
             public void onResult(String response) {
-                if (response == null || response.length() == 0) {
+                if (response == null || response.trim().length() == 0 || response.trim().replaceAll("\n", "").length() == 0) {
                     Toast.makeText(getActivity(), R.string.note_remote_contract_empty, Toast.LENGTH_SHORT).show();
                     LoadingDialog.close();
                     return;
                 }
+                response = response.trim().replaceAll("\n", "");
                 boolean isContract = Dappley.validateContractAddress(response);
                 if (!isContract) {
                     Toast.makeText(getActivity(), R.string.note_remote_contract_invalid, Toast.LENGTH_SHORT).show();
                     LoadingDialog.close();
                     return;
                 }
+                contractAddressStep = response;
                 toConvert(wallet);
             }
 
@@ -239,7 +242,7 @@ public class StepFragment extends Fragment {
                 boolean isSuccess = false;
                 try {
                     String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), restStep);
-                    isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), Constant.ADDRESS_STEP_CONTRACT, baseFee, wallet.getPrivateKey(), contract);
+                    isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
                 }

@@ -64,7 +64,16 @@ public class CommonUtil {
         if (wallets1 == wallets2) {
             return true;
         }
-        if (wallets1 == null || wallets2 == null) {
+        if (wallets1 == null) {
+            if (wallets2 == null || wallets2.size() == 0) {
+                return true;
+            }
+            return false;
+        }
+        if (wallets2 == null) {
+            if (wallets1 == null || wallets1.size() == 0) {
+                return true;
+            }
             return false;
         }
         if (wallets1.equals(wallets2)) {

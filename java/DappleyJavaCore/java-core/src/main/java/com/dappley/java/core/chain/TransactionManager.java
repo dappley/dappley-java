@@ -85,7 +85,7 @@ public class TransactionManager {
             txInput.setTxId(utxo.getTxId());
             txInput.setVout(utxo.getVoutIndex());
             // add from publicKey value
-            txInput.setPubKey(pubKey);
+            txInput.setPublicKey(pubKey);
             totalAmount = totalAmount.add(utxo.getAmount());
             transaction.addTxInput(txInput);
         }
@@ -114,7 +114,7 @@ public class TransactionManager {
             txOutput.setContract(contract);
         }
         // set to address's pubKeyHash
-        txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(toAddress));
+        txOutput.setPublicKeyHash(HashUtil.getPublicKeyHash(toAddress));
         txOutput.setValue(ByteUtil.bigInteger2Bytes(amount));
         transaction.addTxOutput(txOutput);
 
@@ -123,7 +123,7 @@ public class TransactionManager {
             txOutput = new TxOutput();
             // set from address's pubKeyHash
             byte[] myPubKeyHash = HashUtil.getUserPubKeyHash(ecKeyPair.getPublicKey());
-            txOutput.setPubKeyHash(myPubKeyHash);
+            txOutput.setPublicKeyHash(myPubKeyHash);
             txOutput.setValue(ByteUtil.bigInteger2Bytes(totalAmount.subtract(amount)));
             transaction.addTxOutput(txOutput);
         }
@@ -209,16 +209,16 @@ public class TransactionManager {
         byte[] oldPubKey = null;
         for (int i = 0; i < txCopyInputs.size(); i++) {
             txCopyInput = txCopyInputs.get(i);
-            oldPubKey = txCopyInput.getPubKey();
+            oldPubKey = txCopyInput.getPublicKey();
             Utxo utxo = utxoMap.get(HexUtil.toHex(txCopyInput.getTxId()) + "-" + txCopyInput.getVout());
             // temporarily add pubKeyHash to pubKey property
-            txCopyInput.setPubKey(utxo.getPublicKeyHash());
+            txCopyInput.setPublicKey(utxo.getPublicKeyHash());
 
             // get deepClone's hash value
             byte[] txCopyHash = transactionCopy.hash();
 
             // recover old pubKey
-            txCopyInput.setPubKey(oldPubKey);
+            txCopyInput.setPublicKey(oldPubKey);
 
             byte[] signature = HashUtil.secp256k1Sign(txCopyHash, privKeyBytes);
 

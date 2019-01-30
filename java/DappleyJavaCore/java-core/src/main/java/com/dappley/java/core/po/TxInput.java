@@ -14,7 +14,7 @@ public class TxInput implements Serializable {
     private byte[] txId;
     private int vout;
     private byte[] signature;
-    private byte[] pubKey;
+    private byte[] publicKey;
 
     public TxInput() {
     }
@@ -35,7 +35,7 @@ public class TxInput implements Serializable {
         this.setTxId(txInput.getTxid() == null ? null : txInput.getTxid().toByteArray());
         this.setVout(txInput.getVout());
         this.setSignature(txInput.getSignature() == null ? null : txInput.getSignature().toByteArray());
-        this.setPubKey(txInput.getPubKey() == null ? null : txInput.getPubKey().toByteArray());
+        this.setPublicKey(txInput.getPublicKey() == null ? null : txInput.getPublicKey().toByteArray());
     }
 
     /**
@@ -51,8 +51,8 @@ public class TxInput implements Serializable {
         if (this.getSignature() != null) {
             builder.setSignature(ByteString.copyFrom(this.getSignature()));
         }
-        if (this.getPubKey() != null) {
-            builder.setPubKey(ByteString.copyFrom(this.getPubKey()));
+        if (this.getPublicKey() != null) {
+            builder.setPublicKey(ByteString.copyFrom(this.getPublicKey()));
         }
         return builder.build();
     }

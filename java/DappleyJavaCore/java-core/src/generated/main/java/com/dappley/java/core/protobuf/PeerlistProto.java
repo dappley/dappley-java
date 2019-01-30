@@ -19,27 +19,27 @@ public final class PeerlistProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
     java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> 
-        getPeerlistList();
+        getPeerListList();
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    com.dappley.java.core.protobuf.PeerlistProto.Peer getPeerlist(int index);
+    com.dappley.java.core.protobuf.PeerlistProto.Peer getPeerList(int index);
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    int getPeerlistCount();
+    int getPeerListCount();
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
     java.util.List<? extends com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder> 
-        getPeerlistOrBuilderList();
+        getPeerListOrBuilderList();
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder getPeerlistOrBuilder(
+    com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder getPeerListOrBuilder(
         int index);
   }
   /**
@@ -55,7 +55,7 @@ public final class PeerlistProto {
       super(builder);
     }
     private Peerlist() {
-      peerlist_ = java.util.Collections.emptyList();
+      peerList_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -84,10 +84,10 @@ public final class PeerlistProto {
               break;
             case 10: {
               if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                peerlist_ = new java.util.ArrayList<com.dappley.java.core.protobuf.PeerlistProto.Peer>();
+                peerList_ = new java.util.ArrayList<com.dappley.java.core.protobuf.PeerlistProto.Peer>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              peerlist_.add(
+              peerList_.add(
                   input.readMessage(com.dappley.java.core.protobuf.PeerlistProto.Peer.parser(), extensionRegistry));
               break;
             }
@@ -107,7 +107,7 @@ public final class PeerlistProto {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          peerlist_ = java.util.Collections.unmodifiableList(peerlist_);
+          peerList_ = java.util.Collections.unmodifiableList(peerList_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -126,39 +126,39 @@ public final class PeerlistProto {
               com.dappley.java.core.protobuf.PeerlistProto.Peerlist.class, com.dappley.java.core.protobuf.PeerlistProto.Peerlist.Builder.class);
     }
 
-    public static final int PEERLIST_FIELD_NUMBER = 1;
-    private java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> peerlist_;
+    public static final int PEER_LIST_FIELD_NUMBER = 1;
+    private java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> peerList_;
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    public java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> getPeerlistList() {
-      return peerlist_;
+    public java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> getPeerListList() {
+      return peerList_;
     }
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
     public java.util.List<? extends com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder> 
-        getPeerlistOrBuilderList() {
-      return peerlist_;
+        getPeerListOrBuilderList() {
+      return peerList_;
     }
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    public int getPeerlistCount() {
-      return peerlist_.size();
+    public int getPeerListCount() {
+      return peerList_.size();
     }
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    public com.dappley.java.core.protobuf.PeerlistProto.Peer getPeerlist(int index) {
-      return peerlist_.get(index);
+    public com.dappley.java.core.protobuf.PeerlistProto.Peer getPeerList(int index) {
+      return peerList_.get(index);
     }
     /**
-     * <code>repeated .networkpb.Peer peerlist = 1;</code>
+     * <code>repeated .networkpb.Peer peer_list = 1;</code>
      */
-    public com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder getPeerlistOrBuilder(
+    public com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder getPeerListOrBuilder(
         int index) {
-      return peerlist_.get(index);
+      return peerList_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -175,8 +175,8 @@ public final class PeerlistProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < peerlist_.size(); i++) {
-        output.writeMessage(1, peerlist_.get(i));
+      for (int i = 0; i < peerList_.size(); i++) {
+        output.writeMessage(1, peerList_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -187,9 +187,9 @@ public final class PeerlistProto {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < peerlist_.size(); i++) {
+      for (int i = 0; i < peerList_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, peerlist_.get(i));
+          .computeMessageSize(1, peerList_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -207,8 +207,8 @@ public final class PeerlistProto {
       com.dappley.java.core.protobuf.PeerlistProto.Peerlist other = (com.dappley.java.core.protobuf.PeerlistProto.Peerlist) obj;
 
       boolean result = true;
-      result = result && getPeerlistList()
-          .equals(other.getPeerlistList());
+      result = result && getPeerListList()
+          .equals(other.getPeerListList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -220,9 +220,9 @@ public final class PeerlistProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getPeerlistCount() > 0) {
-        hash = (37 * hash) + PEERLIST_FIELD_NUMBER;
-        hash = (53 * hash) + getPeerlistList().hashCode();
+      if (getPeerListCount() > 0) {
+        hash = (37 * hash) + PEER_LIST_FIELD_NUMBER;
+        hash = (53 * hash) + getPeerListList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -352,17 +352,17 @@ public final class PeerlistProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getPeerlistFieldBuilder();
+          getPeerListFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (peerlistBuilder_ == null) {
-          peerlist_ = java.util.Collections.emptyList();
+        if (peerListBuilder_ == null) {
+          peerList_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          peerlistBuilder_.clear();
+          peerListBuilder_.clear();
         }
         return this;
       }
@@ -391,14 +391,14 @@ public final class PeerlistProto {
       public com.dappley.java.core.protobuf.PeerlistProto.Peerlist buildPartial() {
         com.dappley.java.core.protobuf.PeerlistProto.Peerlist result = new com.dappley.java.core.protobuf.PeerlistProto.Peerlist(this);
         int from_bitField0_ = bitField0_;
-        if (peerlistBuilder_ == null) {
+        if (peerListBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            peerlist_ = java.util.Collections.unmodifiableList(peerlist_);
+            peerList_ = java.util.Collections.unmodifiableList(peerList_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.peerlist_ = peerlist_;
+          result.peerList_ = peerList_;
         } else {
-          result.peerlist_ = peerlistBuilder_.build();
+          result.peerList_ = peerListBuilder_.build();
         }
         onBuilt();
         return result;
@@ -448,29 +448,29 @@ public final class PeerlistProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.PeerlistProto.Peerlist other) {
         if (other == com.dappley.java.core.protobuf.PeerlistProto.Peerlist.getDefaultInstance()) return this;
-        if (peerlistBuilder_ == null) {
-          if (!other.peerlist_.isEmpty()) {
-            if (peerlist_.isEmpty()) {
-              peerlist_ = other.peerlist_;
+        if (peerListBuilder_ == null) {
+          if (!other.peerList_.isEmpty()) {
+            if (peerList_.isEmpty()) {
+              peerList_ = other.peerList_;
               bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensurePeerlistIsMutable();
-              peerlist_.addAll(other.peerlist_);
+              ensurePeerListIsMutable();
+              peerList_.addAll(other.peerList_);
             }
             onChanged();
           }
         } else {
-          if (!other.peerlist_.isEmpty()) {
-            if (peerlistBuilder_.isEmpty()) {
-              peerlistBuilder_.dispose();
-              peerlistBuilder_ = null;
-              peerlist_ = other.peerlist_;
+          if (!other.peerList_.isEmpty()) {
+            if (peerListBuilder_.isEmpty()) {
+              peerListBuilder_.dispose();
+              peerListBuilder_ = null;
+              peerList_ = other.peerList_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              peerlistBuilder_ = 
+              peerListBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getPeerlistFieldBuilder() : null;
+                   getPeerListFieldBuilder() : null;
             } else {
-              peerlistBuilder_.addAllMessages(other.peerlist_);
+              peerListBuilder_.addAllMessages(other.peerList_);
             }
           }
         }
@@ -504,244 +504,244 @@ public final class PeerlistProto {
       }
       private int bitField0_;
 
-      private java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> peerlist_ =
+      private java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> peerList_ =
         java.util.Collections.emptyList();
-      private void ensurePeerlistIsMutable() {
+      private void ensurePeerListIsMutable() {
         if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          peerlist_ = new java.util.ArrayList<com.dappley.java.core.protobuf.PeerlistProto.Peer>(peerlist_);
+          peerList_ = new java.util.ArrayList<com.dappley.java.core.protobuf.PeerlistProto.Peer>(peerList_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.dappley.java.core.protobuf.PeerlistProto.Peer, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder, com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder> peerlistBuilder_;
+          com.dappley.java.core.protobuf.PeerlistProto.Peer, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder, com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder> peerListBuilder_;
 
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> getPeerlistList() {
-        if (peerlistBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(peerlist_);
+      public java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer> getPeerListList() {
+        if (peerListBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(peerList_);
         } else {
-          return peerlistBuilder_.getMessageList();
+          return peerListBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public int getPeerlistCount() {
-        if (peerlistBuilder_ == null) {
-          return peerlist_.size();
+      public int getPeerListCount() {
+        if (peerListBuilder_ == null) {
+          return peerList_.size();
         } else {
-          return peerlistBuilder_.getCount();
+          return peerListBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public com.dappley.java.core.protobuf.PeerlistProto.Peer getPeerlist(int index) {
-        if (peerlistBuilder_ == null) {
-          return peerlist_.get(index);
+      public com.dappley.java.core.protobuf.PeerlistProto.Peer getPeerList(int index) {
+        if (peerListBuilder_ == null) {
+          return peerList_.get(index);
         } else {
-          return peerlistBuilder_.getMessage(index);
+          return peerListBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder setPeerlist(
+      public Builder setPeerList(
           int index, com.dappley.java.core.protobuf.PeerlistProto.Peer value) {
-        if (peerlistBuilder_ == null) {
+        if (peerListBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensurePeerlistIsMutable();
-          peerlist_.set(index, value);
+          ensurePeerListIsMutable();
+          peerList_.set(index, value);
           onChanged();
         } else {
-          peerlistBuilder_.setMessage(index, value);
+          peerListBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder setPeerlist(
+      public Builder setPeerList(
           int index, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder builderForValue) {
-        if (peerlistBuilder_ == null) {
-          ensurePeerlistIsMutable();
-          peerlist_.set(index, builderForValue.build());
+        if (peerListBuilder_ == null) {
+          ensurePeerListIsMutable();
+          peerList_.set(index, builderForValue.build());
           onChanged();
         } else {
-          peerlistBuilder_.setMessage(index, builderForValue.build());
+          peerListBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder addPeerlist(com.dappley.java.core.protobuf.PeerlistProto.Peer value) {
-        if (peerlistBuilder_ == null) {
+      public Builder addPeerList(com.dappley.java.core.protobuf.PeerlistProto.Peer value) {
+        if (peerListBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensurePeerlistIsMutable();
-          peerlist_.add(value);
+          ensurePeerListIsMutable();
+          peerList_.add(value);
           onChanged();
         } else {
-          peerlistBuilder_.addMessage(value);
+          peerListBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder addPeerlist(
+      public Builder addPeerList(
           int index, com.dappley.java.core.protobuf.PeerlistProto.Peer value) {
-        if (peerlistBuilder_ == null) {
+        if (peerListBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensurePeerlistIsMutable();
-          peerlist_.add(index, value);
+          ensurePeerListIsMutable();
+          peerList_.add(index, value);
           onChanged();
         } else {
-          peerlistBuilder_.addMessage(index, value);
+          peerListBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder addPeerlist(
+      public Builder addPeerList(
           com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder builderForValue) {
-        if (peerlistBuilder_ == null) {
-          ensurePeerlistIsMutable();
-          peerlist_.add(builderForValue.build());
+        if (peerListBuilder_ == null) {
+          ensurePeerListIsMutable();
+          peerList_.add(builderForValue.build());
           onChanged();
         } else {
-          peerlistBuilder_.addMessage(builderForValue.build());
+          peerListBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder addPeerlist(
+      public Builder addPeerList(
           int index, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder builderForValue) {
-        if (peerlistBuilder_ == null) {
-          ensurePeerlistIsMutable();
-          peerlist_.add(index, builderForValue.build());
+        if (peerListBuilder_ == null) {
+          ensurePeerListIsMutable();
+          peerList_.add(index, builderForValue.build());
           onChanged();
         } else {
-          peerlistBuilder_.addMessage(index, builderForValue.build());
+          peerListBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder addAllPeerlist(
+      public Builder addAllPeerList(
           java.lang.Iterable<? extends com.dappley.java.core.protobuf.PeerlistProto.Peer> values) {
-        if (peerlistBuilder_ == null) {
-          ensurePeerlistIsMutable();
+        if (peerListBuilder_ == null) {
+          ensurePeerListIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, peerlist_);
+              values, peerList_);
           onChanged();
         } else {
-          peerlistBuilder_.addAllMessages(values);
+          peerListBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder clearPeerlist() {
-        if (peerlistBuilder_ == null) {
-          peerlist_ = java.util.Collections.emptyList();
+      public Builder clearPeerList() {
+        if (peerListBuilder_ == null) {
+          peerList_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          peerlistBuilder_.clear();
+          peerListBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public Builder removePeerlist(int index) {
-        if (peerlistBuilder_ == null) {
-          ensurePeerlistIsMutable();
-          peerlist_.remove(index);
+      public Builder removePeerList(int index) {
+        if (peerListBuilder_ == null) {
+          ensurePeerListIsMutable();
+          peerList_.remove(index);
           onChanged();
         } else {
-          peerlistBuilder_.remove(index);
+          peerListBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder getPeerlistBuilder(
+      public com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder getPeerListBuilder(
           int index) {
-        return getPeerlistFieldBuilder().getBuilder(index);
+        return getPeerListFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder getPeerlistOrBuilder(
+      public com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder getPeerListOrBuilder(
           int index) {
-        if (peerlistBuilder_ == null) {
-          return peerlist_.get(index);  } else {
-          return peerlistBuilder_.getMessageOrBuilder(index);
+        if (peerListBuilder_ == null) {
+          return peerList_.get(index);  } else {
+          return peerListBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
       public java.util.List<? extends com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder> 
-           getPeerlistOrBuilderList() {
-        if (peerlistBuilder_ != null) {
-          return peerlistBuilder_.getMessageOrBuilderList();
+           getPeerListOrBuilderList() {
+        if (peerListBuilder_ != null) {
+          return peerListBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(peerlist_);
+          return java.util.Collections.unmodifiableList(peerList_);
         }
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder addPeerlistBuilder() {
-        return getPeerlistFieldBuilder().addBuilder(
+      public com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder addPeerListBuilder() {
+        return getPeerListFieldBuilder().addBuilder(
             com.dappley.java.core.protobuf.PeerlistProto.Peer.getDefaultInstance());
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
-      public com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder addPeerlistBuilder(
+      public com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder addPeerListBuilder(
           int index) {
-        return getPeerlistFieldBuilder().addBuilder(
+        return getPeerListFieldBuilder().addBuilder(
             index, com.dappley.java.core.protobuf.PeerlistProto.Peer.getDefaultInstance());
       }
       /**
-       * <code>repeated .networkpb.Peer peerlist = 1;</code>
+       * <code>repeated .networkpb.Peer peer_list = 1;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder> 
-           getPeerlistBuilderList() {
-        return getPeerlistFieldBuilder().getBuilderList();
+           getPeerListBuilderList() {
+        return getPeerListFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
           com.dappley.java.core.protobuf.PeerlistProto.Peer, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder, com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder> 
-          getPeerlistFieldBuilder() {
-        if (peerlistBuilder_ == null) {
-          peerlistBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getPeerListFieldBuilder() {
+        if (peerListBuilder_ == null) {
+          peerListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               com.dappley.java.core.protobuf.PeerlistProto.Peer, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder, com.dappley.java.core.protobuf.PeerlistProto.PeerOrBuilder>(
-                  peerlist_,
+                  peerList_,
                   ((bitField0_ & 0x00000001) == 0x00000001),
                   getParentForChildren(),
                   isClean());
-          peerlist_ = null;
+          peerList_ = null;
         }
-        return peerlistBuilder_;
+        return peerListBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -801,24 +801,33 @@ public final class PeerlistProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string peerid = 1;</code>
+     * <code>string id = 1;</code>
      */
-    java.lang.String getPeerid();
+    java.lang.String getId();
     /**
-     * <code>string peerid = 1;</code>
+     * <code>string id = 1;</code>
      */
     com.google.protobuf.ByteString
-        getPeeridBytes();
+        getIdBytes();
 
     /**
-     * <code>string addr = 2;</code>
+     * <code>repeated string address = 2;</code>
      */
-    java.lang.String getAddr();
+    java.util.List<java.lang.String>
+        getAddressList();
     /**
-     * <code>string addr = 2;</code>
+     * <code>repeated string address = 2;</code>
+     */
+    int getAddressCount();
+    /**
+     * <code>repeated string address = 2;</code>
+     */
+    java.lang.String getAddress(int index);
+    /**
+     * <code>repeated string address = 2;</code>
      */
     com.google.protobuf.ByteString
-        getAddrBytes();
+        getAddressBytes(int index);
   }
   /**
    * Protobuf type {@code networkpb.Peer}
@@ -833,8 +842,8 @@ public final class PeerlistProto {
       super(builder);
     }
     private Peer() {
-      peerid_ = "";
-      addr_ = "";
+      id_ = "";
+      address_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
     @java.lang.Override
@@ -864,13 +873,16 @@ public final class PeerlistProto {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              peerid_ = s;
+              id_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
-
-              addr_ = s;
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                address_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              address_.add(s);
               break;
             }
             default: {
@@ -888,6 +900,9 @@ public final class PeerlistProto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          address_ = address_.getUnmodifiableView();
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -905,72 +920,68 @@ public final class PeerlistProto {
               com.dappley.java.core.protobuf.PeerlistProto.Peer.class, com.dappley.java.core.protobuf.PeerlistProto.Peer.Builder.class);
     }
 
-    public static final int PEERID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object peerid_;
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
     /**
-     * <code>string peerid = 1;</code>
+     * <code>string id = 1;</code>
      */
-    public java.lang.String getPeerid() {
-      java.lang.Object ref = peerid_;
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        peerid_ = s;
+        id_ = s;
         return s;
       }
     }
     /**
-     * <code>string peerid = 1;</code>
+     * <code>string id = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getPeeridBytes() {
-      java.lang.Object ref = peerid_;
+        getIdBytes() {
+      java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        peerid_ = b;
+        id_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int ADDR_FIELD_NUMBER = 2;
-    private volatile java.lang.Object addr_;
+    public static final int ADDRESS_FIELD_NUMBER = 2;
+    private com.google.protobuf.LazyStringList address_;
     /**
-     * <code>string addr = 2;</code>
+     * <code>repeated string address = 2;</code>
      */
-    public java.lang.String getAddr() {
-      java.lang.Object ref = addr_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        addr_ = s;
-        return s;
-      }
+    public com.google.protobuf.ProtocolStringList
+        getAddressList() {
+      return address_;
     }
     /**
-     * <code>string addr = 2;</code>
+     * <code>repeated string address = 2;</code>
+     */
+    public int getAddressCount() {
+      return address_.size();
+    }
+    /**
+     * <code>repeated string address = 2;</code>
+     */
+    public java.lang.String getAddress(int index) {
+      return address_.get(index);
+    }
+    /**
+     * <code>repeated string address = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getAddrBytes() {
-      java.lang.Object ref = addr_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        addr_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+        getAddressBytes(int index) {
+      return address_.getByteString(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -987,11 +998,11 @@ public final class PeerlistProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPeeridBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, peerid_);
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
       }
-      if (!getAddrBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, addr_);
+      for (int i = 0; i < address_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, address_.getRaw(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1002,11 +1013,16 @@ public final class PeerlistProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPeeridBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, peerid_);
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
       }
-      if (!getAddrBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, addr_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < address_.size(); i++) {
+          dataSize += computeStringSizeNoTag(address_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getAddressList().size();
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1024,10 +1040,10 @@ public final class PeerlistProto {
       com.dappley.java.core.protobuf.PeerlistProto.Peer other = (com.dappley.java.core.protobuf.PeerlistProto.Peer) obj;
 
       boolean result = true;
-      result = result && getPeerid()
-          .equals(other.getPeerid());
-      result = result && getAddr()
-          .equals(other.getAddr());
+      result = result && getId()
+          .equals(other.getId());
+      result = result && getAddressList()
+          .equals(other.getAddressList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1039,10 +1055,12 @@ public final class PeerlistProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PEERID_FIELD_NUMBER;
-      hash = (53 * hash) + getPeerid().hashCode();
-      hash = (37 * hash) + ADDR_FIELD_NUMBER;
-      hash = (53 * hash) + getAddr().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      if (getAddressCount() > 0) {
+        hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+        hash = (53 * hash) + getAddressList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1176,10 +1194,10 @@ public final class PeerlistProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        peerid_ = "";
+        id_ = "";
 
-        addr_ = "";
-
+        address_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1206,8 +1224,15 @@ public final class PeerlistProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.PeerlistProto.Peer buildPartial() {
         com.dappley.java.core.protobuf.PeerlistProto.Peer result = new com.dappley.java.core.protobuf.PeerlistProto.Peer(this);
-        result.peerid_ = peerid_;
-        result.addr_ = addr_;
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.id_ = id_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          address_ = address_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.address_ = address_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -1256,12 +1281,18 @@ public final class PeerlistProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.PeerlistProto.Peer other) {
         if (other == com.dappley.java.core.protobuf.PeerlistProto.Peer.getDefaultInstance()) return this;
-        if (!other.getPeerid().isEmpty()) {
-          peerid_ = other.peerid_;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
           onChanged();
         }
-        if (!other.getAddr().isEmpty()) {
-          addr_ = other.addr_;
+        if (!other.address_.isEmpty()) {
+          if (address_.isEmpty()) {
+            address_ = other.address_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureAddressIsMutable();
+            address_.addAll(other.address_);
+          }
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -1292,141 +1323,167 @@ public final class PeerlistProto {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object peerid_ = "";
+      private java.lang.Object id_ = "";
       /**
-       * <code>string peerid = 1;</code>
+       * <code>string id = 1;</code>
        */
-      public java.lang.String getPeerid() {
-        java.lang.Object ref = peerid_;
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          peerid_ = s;
+          id_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string peerid = 1;</code>
+       * <code>string id = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getPeeridBytes() {
-        java.lang.Object ref = peerid_;
+          getIdBytes() {
+        java.lang.Object ref = id_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          peerid_ = b;
+          id_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string peerid = 1;</code>
+       * <code>string id = 1;</code>
        */
-      public Builder setPeerid(
+      public Builder setId(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        peerid_ = value;
+        id_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string peerid = 1;</code>
+       * <code>string id = 1;</code>
        */
-      public Builder clearPeerid() {
+      public Builder clearId() {
         
-        peerid_ = getDefaultInstance().getPeerid();
+        id_ = getDefaultInstance().getId();
         onChanged();
         return this;
       }
       /**
-       * <code>string peerid = 1;</code>
+       * <code>string id = 1;</code>
        */
-      public Builder setPeeridBytes(
+      public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        peerid_ = value;
+        id_ = value;
         onChanged();
         return this;
       }
 
-      private java.lang.Object addr_ = "";
-      /**
-       * <code>string addr = 2;</code>
-       */
-      public java.lang.String getAddr() {
-        java.lang.Object ref = addr_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          addr_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      private com.google.protobuf.LazyStringList address_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureAddressIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          address_ = new com.google.protobuf.LazyStringArrayList(address_);
+          bitField0_ |= 0x00000002;
+         }
       }
       /**
-       * <code>string addr = 2;</code>
+       * <code>repeated string address = 2;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getAddressList() {
+        return address_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string address = 2;</code>
+       */
+      public int getAddressCount() {
+        return address_.size();
+      }
+      /**
+       * <code>repeated string address = 2;</code>
+       */
+      public java.lang.String getAddress(int index) {
+        return address_.get(index);
+      }
+      /**
+       * <code>repeated string address = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getAddrBytes() {
-        java.lang.Object ref = addr_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          addr_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+          getAddressBytes(int index) {
+        return address_.getByteString(index);
       }
       /**
-       * <code>string addr = 2;</code>
+       * <code>repeated string address = 2;</code>
        */
-      public Builder setAddr(
+      public Builder setAddress(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAddressIsMutable();
+        address_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string address = 2;</code>
+       */
+      public Builder addAddress(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
-        addr_ = value;
+  ensureAddressIsMutable();
+        address_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>string addr = 2;</code>
+       * <code>repeated string address = 2;</code>
        */
-      public Builder clearAddr() {
-        
-        addr_ = getDefaultInstance().getAddr();
+      public Builder addAllAddress(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureAddressIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, address_);
         onChanged();
         return this;
       }
       /**
-       * <code>string addr = 2;</code>
+       * <code>repeated string address = 2;</code>
        */
-      public Builder setAddrBytes(
+      public Builder clearAddress() {
+        address_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string address = 2;</code>
+       */
+      public Builder addAddressBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
-        addr_ = value;
+        ensureAddressIsMutable();
+        address_.add(value);
         onChanged();
         return this;
       }
@@ -1483,6 +1540,482 @@ public final class PeerlistProto {
 
   }
 
+  public interface GetPeerlistOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:networkpb.GetPeerlist)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 max_number = 1;</code>
+     */
+    int getMaxNumber();
+  }
+  /**
+   * Protobuf type {@code networkpb.GetPeerlist}
+   */
+  public  static final class GetPeerlist extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:networkpb.GetPeerlist)
+      GetPeerlistOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetPeerlist.newBuilder() to construct.
+    private GetPeerlist(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetPeerlist() {
+      maxNumber_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetPeerlist(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              maxNumber_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.PeerlistProto.internal_static_networkpb_GetPeerlist_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.PeerlistProto.internal_static_networkpb_GetPeerlist_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.class, com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.Builder.class);
+    }
+
+    public static final int MAX_NUMBER_FIELD_NUMBER = 1;
+    private int maxNumber_;
+    /**
+     * <code>int32 max_number = 1;</code>
+     */
+    public int getMaxNumber() {
+      return maxNumber_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (maxNumber_ != 0) {
+        output.writeInt32(1, maxNumber_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (maxNumber_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, maxNumber_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist other = (com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist) obj;
+
+      boolean result = true;
+      result = result && (getMaxNumber()
+          == other.getMaxNumber());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MAX_NUMBER_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxNumber();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code networkpb.GetPeerlist}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:networkpb.GetPeerlist)
+        com.dappley.java.core.protobuf.PeerlistProto.GetPeerlistOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.PeerlistProto.internal_static_networkpb_GetPeerlist_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.PeerlistProto.internal_static_networkpb_GetPeerlist_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.class, com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        maxNumber_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.PeerlistProto.internal_static_networkpb_GetPeerlist_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist build() {
+        com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist buildPartial() {
+        com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist result = new com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist(this);
+        result.maxNumber_ = maxNumber_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist) {
+          return mergeFrom((com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist other) {
+        if (other == com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist.getDefaultInstance()) return this;
+        if (other.getMaxNumber() != 0) {
+          setMaxNumber(other.getMaxNumber());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int maxNumber_ ;
+      /**
+       * <code>int32 max_number = 1;</code>
+       */
+      public int getMaxNumber() {
+        return maxNumber_;
+      }
+      /**
+       * <code>int32 max_number = 1;</code>
+       */
+      public Builder setMaxNumber(int value) {
+        
+        maxNumber_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 max_number = 1;</code>
+       */
+      public Builder clearMaxNumber() {
+        
+        maxNumber_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:networkpb.GetPeerlist)
+    }
+
+    // @@protoc_insertion_point(class_scope:networkpb.GetPeerlist)
+    private static final com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist();
+    }
+
+    public static com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetPeerlist>
+        PARSER = new com.google.protobuf.AbstractParser<GetPeerlist>() {
+      @java.lang.Override
+      public GetPeerlist parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetPeerlist(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetPeerlist> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetPeerlist> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.PeerlistProto.GetPeerlist getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_networkpb_Peerlist_descriptor;
   private static final 
@@ -1493,6 +2026,11 @@ public final class PeerlistProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_networkpb_Peer_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_networkpb_GetPeerlist_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_networkpb_GetPeerlist_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1502,11 +2040,12 @@ public final class PeerlistProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016peerlist.proto\022\tnetworkpb\"-\n\010Peerlist\022" +
-      "!\n\010peerlist\030\001 \003(\0132\017.networkpb.Peer\"$\n\004Pe" +
-      "er\022\016\n\006peerid\030\001 \001(\t\022\014\n\004addr\030\002 \001(\tB/\n\036com." +
-      "dappley.java.core.protobufB\rPeerlistProt" +
-      "ob\006proto3"
+      "\n\016peerlist.proto\022\tnetworkpb\".\n\010Peerlist\022" +
+      "\"\n\tpeer_list\030\001 \003(\0132\017.networkpb.Peer\"#\n\004P" +
+      "eer\022\n\n\002id\030\001 \001(\t\022\017\n\007address\030\002 \003(\t\"!\n\013GetP" +
+      "eerlist\022\022\n\nmax_number\030\001 \001(\005B/\n\036com.dappl" +
+      "ey.java.core.protobufB\rPeerlistProtob\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1525,13 +2064,19 @@ public final class PeerlistProto {
     internal_static_networkpb_Peerlist_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_networkpb_Peerlist_descriptor,
-        new java.lang.String[] { "Peerlist", });
+        new java.lang.String[] { "PeerList", });
     internal_static_networkpb_Peer_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_networkpb_Peer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_networkpb_Peer_descriptor,
-        new java.lang.String[] { "Peerid", "Addr", });
+        new java.lang.String[] { "Id", "Address", });
+    internal_static_networkpb_GetPeerlist_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_networkpb_GetPeerlist_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_networkpb_GetPeerlist_descriptor,
+        new java.lang.String[] { "MaxNumber", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

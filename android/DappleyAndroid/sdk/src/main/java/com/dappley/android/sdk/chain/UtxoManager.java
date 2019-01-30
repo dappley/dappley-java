@@ -150,17 +150,17 @@ public class UtxoManager {
         String tempAddress;
         for (int i = 0; i < txOutputs.size(); i++) {
             tempOutput = txOutputs.get(i);
-            if (tempOutput == null || tempOutput.getPubKeyHash() == null) {
+            if (tempOutput == null || tempOutput.getPublicKeyHash() == null) {
                 continue;
             }
-            tempAddress = AddressUtil.getAddressFromPubKeyHash(tempOutput.getPubKeyHash());
+            tempAddress = AddressUtil.getAddressFromPubKeyHash(tempOutput.getPublicKeyHash());
             if (!walletAddress.equals(tempAddress)) {
                 continue;
             }
             // vout point to a user address
             tempUtxo = new Utxo();
             tempUtxo.setTxId(transaction.getId());
-            tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());
+            tempUtxo.setPublicKeyHash(tempOutput.getPublicKeyHash());
             tempUtxo.setAmount(new BigInteger(1, tempOutput.getValue()));
             tempUtxo.setVoutIndex(i);
             // update utxo

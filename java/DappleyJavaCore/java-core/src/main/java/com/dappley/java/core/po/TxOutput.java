@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class TxOutput implements Serializable {
     private byte[] value;
-    private byte[] pubKeyHash;
+    private byte[] publicKeyHash;
     private String contract;
 
     public TxOutput() {
@@ -32,7 +32,7 @@ public class TxOutput implements Serializable {
      */
     public void parseProto(TransactionProto.TXOutput txOutput) {
         this.setValue(txOutput.getValue() == null ? null : txOutput.getValue().toByteArray());
-        this.setPubKeyHash(txOutput.getPubKeyHash() == null ? null : txOutput.getPubKeyHash().toByteArray());
+        this.setPublicKeyHash(txOutput.getPublicKeyHash() == null ? null : txOutput.getPublicKeyHash().toByteArray());
         this.setContract(txOutput.getContract());
     }
 
@@ -45,8 +45,8 @@ public class TxOutput implements Serializable {
         if (this.getValue() != null) {
             builder.setValue(ByteString.copyFrom(this.getValue()));
         }
-        if (this.getPubKeyHash() != null) {
-            builder.setPubKeyHash(ByteString.copyFrom(this.getPubKeyHash()));
+        if (this.getPublicKeyHash() != null) {
+            builder.setPublicKeyHash(ByteString.copyFrom(this.getPublicKeyHash()));
         }
         builder.setContract(this.getContract() == null ? "" : this.getContract());
         return builder.build();

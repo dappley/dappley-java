@@ -19,44 +19,44 @@ public final class BlockProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.corepb.BlockHeader Header = 1;</code>
+     * <code>.corepb.BlockHeader header = 1;</code>
      */
     boolean hasHeader();
     /**
-     * <code>.corepb.BlockHeader Header = 1;</code>
+     * <code>.corepb.BlockHeader header = 1;</code>
      */
     com.dappley.java.core.protobuf.BlockProto.BlockHeader getHeader();
     /**
-     * <code>.corepb.BlockHeader Header = 1;</code>
+     * <code>.corepb.BlockHeader header = 1;</code>
      */
     com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder getHeaderOrBuilder();
 
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> 
         getTransactionsList();
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index);
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     int getTransactionsCount();
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
         getTransactionsOrBuilderList();
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
         int index);
 
     /**
-     * <code>bytes parentHash = 3;</code>
+     * <code>bytes parent_hash = 3;</code>
      */
     com.google.protobuf.ByteString getParentHash();
   }
@@ -167,19 +167,19 @@ public final class BlockProto {
     public static final int HEADER_FIELD_NUMBER = 1;
     private com.dappley.java.core.protobuf.BlockProto.BlockHeader header_;
     /**
-     * <code>.corepb.BlockHeader Header = 1;</code>
+     * <code>.corepb.BlockHeader header = 1;</code>
      */
     public boolean hasHeader() {
       return header_ != null;
     }
     /**
-     * <code>.corepb.BlockHeader Header = 1;</code>
+     * <code>.corepb.BlockHeader header = 1;</code>
      */
     public com.dappley.java.core.protobuf.BlockProto.BlockHeader getHeader() {
       return header_ == null ? com.dappley.java.core.protobuf.BlockProto.BlockHeader.getDefaultInstance() : header_;
     }
     /**
-     * <code>.corepb.BlockHeader Header = 1;</code>
+     * <code>.corepb.BlockHeader header = 1;</code>
      */
     public com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder getHeaderOrBuilder() {
       return getHeader();
@@ -188,42 +188,42 @@ public final class BlockProto {
     public static final int TRANSACTIONS_FIELD_NUMBER = 2;
     private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transactions_;
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
       return transactions_;
     }
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
         getTransactionsOrBuilderList() {
       return transactions_;
     }
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     public int getTransactionsCount() {
       return transactions_.size();
     }
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
       return transactions_.get(index);
     }
     /**
-     * <code>repeated .corepb.Transaction Transactions = 2;</code>
+     * <code>repeated .corepb.Transaction transactions = 2;</code>
      */
     public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
         int index) {
       return transactions_.get(index);
     }
 
-    public static final int PARENTHASH_FIELD_NUMBER = 3;
+    public static final int PARENT_HASH_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString parentHash_;
     /**
-     * <code>bytes parentHash = 3;</code>
+     * <code>bytes parent_hash = 3;</code>
      */
     public com.google.protobuf.ByteString getParentHash() {
       return parentHash_;
@@ -317,7 +317,7 @@ public final class BlockProto {
         hash = (37 * hash) + TRANSACTIONS_FIELD_NUMBER;
         hash = (53 * hash) + getTransactionsList().hashCode();
       }
-      hash = (37 * hash) + PARENTHASH_FIELD_NUMBER;
+      hash = (37 * hash) + PARENT_HASH_FIELD_NUMBER;
       hash = (53 * hash) + getParentHash().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -625,13 +625,13 @@ public final class BlockProto {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.dappley.java.core.protobuf.BlockProto.BlockHeader, com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder, com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder> headerBuilder_;
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public boolean hasHeader() {
         return headerBuilder_ != null || header_ != null;
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public com.dappley.java.core.protobuf.BlockProto.BlockHeader getHeader() {
         if (headerBuilder_ == null) {
@@ -641,7 +641,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public Builder setHeader(com.dappley.java.core.protobuf.BlockProto.BlockHeader value) {
         if (headerBuilder_ == null) {
@@ -657,7 +657,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public Builder setHeader(
           com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
@@ -671,7 +671,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public Builder mergeHeader(com.dappley.java.core.protobuf.BlockProto.BlockHeader value) {
         if (headerBuilder_ == null) {
@@ -689,7 +689,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public Builder clearHeader() {
         if (headerBuilder_ == null) {
@@ -703,7 +703,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder getHeaderBuilder() {
         
@@ -711,7 +711,7 @@ public final class BlockProto {
         return getHeaderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       public com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder getHeaderOrBuilder() {
         if (headerBuilder_ != null) {
@@ -722,7 +722,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>.corepb.BlockHeader Header = 1;</code>
+       * <code>.corepb.BlockHeader header = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.dappley.java.core.protobuf.BlockProto.BlockHeader, com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder, com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder> 
@@ -751,7 +751,7 @@ public final class BlockProto {
           com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionsBuilder_;
 
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
         if (transactionsBuilder_ == null) {
@@ -761,7 +761,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public int getTransactionsCount() {
         if (transactionsBuilder_ == null) {
@@ -771,7 +771,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
         if (transactionsBuilder_ == null) {
@@ -781,7 +781,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder setTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
@@ -798,7 +798,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder setTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
@@ -812,7 +812,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
         if (transactionsBuilder_ == null) {
@@ -828,7 +828,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
@@ -845,7 +845,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(
           com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
@@ -859,7 +859,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
@@ -873,7 +873,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder addAllTransactions(
           java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.Transaction> values) {
@@ -888,7 +888,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder clearTransactions() {
         if (transactionsBuilder_ == null) {
@@ -901,7 +901,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public Builder removeTransactions(int index) {
         if (transactionsBuilder_ == null) {
@@ -914,14 +914,14 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionsBuilder(
           int index) {
         return getTransactionsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
           int index) {
@@ -931,7 +931,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
            getTransactionsOrBuilderList() {
@@ -942,14 +942,14 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder() {
         return getTransactionsFieldBuilder().addBuilder(
             com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder(
           int index) {
@@ -957,7 +957,7 @@ public final class BlockProto {
             index, com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.Transaction Transactions = 2;</code>
+       * <code>repeated .corepb.Transaction transactions = 2;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder> 
            getTransactionsBuilderList() {
@@ -980,13 +980,13 @@ public final class BlockProto {
 
       private com.google.protobuf.ByteString parentHash_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes parentHash = 3;</code>
+       * <code>bytes parent_hash = 3;</code>
        */
       public com.google.protobuf.ByteString getParentHash() {
         return parentHash_;
       }
       /**
-       * <code>bytes parentHash = 3;</code>
+       * <code>bytes parent_hash = 3;</code>
        */
       public Builder setParentHash(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -998,7 +998,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>bytes parentHash = 3;</code>
+       * <code>bytes parent_hash = 3;</code>
        */
       public Builder clearParentHash() {
         
@@ -1064,32 +1064,32 @@ public final class BlockProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bytes Hash = 1;</code>
+     * <code>bytes hash = 1;</code>
      */
     com.google.protobuf.ByteString getHash();
 
     /**
-     * <code>bytes Prevhash = 2;</code>
+     * <code>bytes previous_hash = 2;</code>
      */
-    com.google.protobuf.ByteString getPrevhash();
+    com.google.protobuf.ByteString getPreviousHash();
 
     /**
-     * <code>int64 Nonce = 3;</code>
+     * <code>int64 nonce = 3;</code>
      */
     long getNonce();
 
     /**
-     * <code>int64 Timestamp = 4;</code>
+     * <code>int64 timestamp = 4;</code>
      */
     long getTimestamp();
 
     /**
-     * <code>bytes Sign = 5;</code>
+     * <code>bytes signature = 5;</code>
      */
-    com.google.protobuf.ByteString getSign();
+    com.google.protobuf.ByteString getSignature();
 
     /**
-     * <code>uint64 Height = 6;</code>
+     * <code>uint64 height = 6;</code>
      */
     long getHeight();
   }
@@ -1107,10 +1107,10 @@ public final class BlockProto {
     }
     private BlockHeader() {
       hash_ = com.google.protobuf.ByteString.EMPTY;
-      prevhash_ = com.google.protobuf.ByteString.EMPTY;
+      previousHash_ = com.google.protobuf.ByteString.EMPTY;
       nonce_ = 0L;
       timestamp_ = 0L;
-      sign_ = com.google.protobuf.ByteString.EMPTY;
+      signature_ = com.google.protobuf.ByteString.EMPTY;
       height_ = 0L;
     }
 
@@ -1145,7 +1145,7 @@ public final class BlockProto {
             }
             case 18: {
 
-              prevhash_ = input.readBytes();
+              previousHash_ = input.readBytes();
               break;
             }
             case 24: {
@@ -1160,7 +1160,7 @@ public final class BlockProto {
             }
             case 42: {
 
-              sign_ = input.readBytes();
+              signature_ = input.readBytes();
               break;
             }
             case 48: {
@@ -1203,25 +1203,25 @@ public final class BlockProto {
     public static final int HASH_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString hash_;
     /**
-     * <code>bytes Hash = 1;</code>
+     * <code>bytes hash = 1;</code>
      */
     public com.google.protobuf.ByteString getHash() {
       return hash_;
     }
 
-    public static final int PREVHASH_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString prevhash_;
+    public static final int PREVIOUS_HASH_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString previousHash_;
     /**
-     * <code>bytes Prevhash = 2;</code>
+     * <code>bytes previous_hash = 2;</code>
      */
-    public com.google.protobuf.ByteString getPrevhash() {
-      return prevhash_;
+    public com.google.protobuf.ByteString getPreviousHash() {
+      return previousHash_;
     }
 
     public static final int NONCE_FIELD_NUMBER = 3;
     private long nonce_;
     /**
-     * <code>int64 Nonce = 3;</code>
+     * <code>int64 nonce = 3;</code>
      */
     public long getNonce() {
       return nonce_;
@@ -1230,25 +1230,25 @@ public final class BlockProto {
     public static final int TIMESTAMP_FIELD_NUMBER = 4;
     private long timestamp_;
     /**
-     * <code>int64 Timestamp = 4;</code>
+     * <code>int64 timestamp = 4;</code>
      */
     public long getTimestamp() {
       return timestamp_;
     }
 
-    public static final int SIGN_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString sign_;
+    public static final int SIGNATURE_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString signature_;
     /**
-     * <code>bytes Sign = 5;</code>
+     * <code>bytes signature = 5;</code>
      */
-    public com.google.protobuf.ByteString getSign() {
-      return sign_;
+    public com.google.protobuf.ByteString getSignature() {
+      return signature_;
     }
 
     public static final int HEIGHT_FIELD_NUMBER = 6;
     private long height_;
     /**
-     * <code>uint64 Height = 6;</code>
+     * <code>uint64 height = 6;</code>
      */
     public long getHeight() {
       return height_;
@@ -1271,8 +1271,8 @@ public final class BlockProto {
       if (!hash_.isEmpty()) {
         output.writeBytes(1, hash_);
       }
-      if (!prevhash_.isEmpty()) {
-        output.writeBytes(2, prevhash_);
+      if (!previousHash_.isEmpty()) {
+        output.writeBytes(2, previousHash_);
       }
       if (nonce_ != 0L) {
         output.writeInt64(3, nonce_);
@@ -1280,8 +1280,8 @@ public final class BlockProto {
       if (timestamp_ != 0L) {
         output.writeInt64(4, timestamp_);
       }
-      if (!sign_.isEmpty()) {
-        output.writeBytes(5, sign_);
+      if (!signature_.isEmpty()) {
+        output.writeBytes(5, signature_);
       }
       if (height_ != 0L) {
         output.writeUInt64(6, height_);
@@ -1299,9 +1299,9 @@ public final class BlockProto {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, hash_);
       }
-      if (!prevhash_.isEmpty()) {
+      if (!previousHash_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, prevhash_);
+          .computeBytesSize(2, previousHash_);
       }
       if (nonce_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -1311,9 +1311,9 @@ public final class BlockProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, timestamp_);
       }
-      if (!sign_.isEmpty()) {
+      if (!signature_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, sign_);
+          .computeBytesSize(5, signature_);
       }
       if (height_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -1337,14 +1337,14 @@ public final class BlockProto {
       boolean result = true;
       result = result && getHash()
           .equals(other.getHash());
-      result = result && getPrevhash()
-          .equals(other.getPrevhash());
+      result = result && getPreviousHash()
+          .equals(other.getPreviousHash());
       result = result && (getNonce()
           == other.getNonce());
       result = result && (getTimestamp()
           == other.getTimestamp());
-      result = result && getSign()
-          .equals(other.getSign());
+      result = result && getSignature()
+          .equals(other.getSignature());
       result = result && (getHeight()
           == other.getHeight());
       result = result && unknownFields.equals(other.unknownFields);
@@ -1360,16 +1360,16 @@ public final class BlockProto {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + HASH_FIELD_NUMBER;
       hash = (53 * hash) + getHash().hashCode();
-      hash = (37 * hash) + PREVHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getPrevhash().hashCode();
+      hash = (37 * hash) + PREVIOUS_HASH_FIELD_NUMBER;
+      hash = (53 * hash) + getPreviousHash().hashCode();
       hash = (37 * hash) + NONCE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getNonce());
       hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTimestamp());
-      hash = (37 * hash) + SIGN_FIELD_NUMBER;
-      hash = (53 * hash) + getSign().hashCode();
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
       hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getHeight());
@@ -1508,13 +1508,13 @@ public final class BlockProto {
         super.clear();
         hash_ = com.google.protobuf.ByteString.EMPTY;
 
-        prevhash_ = com.google.protobuf.ByteString.EMPTY;
+        previousHash_ = com.google.protobuf.ByteString.EMPTY;
 
         nonce_ = 0L;
 
         timestamp_ = 0L;
 
-        sign_ = com.google.protobuf.ByteString.EMPTY;
+        signature_ = com.google.protobuf.ByteString.EMPTY;
 
         height_ = 0L;
 
@@ -1545,10 +1545,10 @@ public final class BlockProto {
       public com.dappley.java.core.protobuf.BlockProto.BlockHeader buildPartial() {
         com.dappley.java.core.protobuf.BlockProto.BlockHeader result = new com.dappley.java.core.protobuf.BlockProto.BlockHeader(this);
         result.hash_ = hash_;
-        result.prevhash_ = prevhash_;
+        result.previousHash_ = previousHash_;
         result.nonce_ = nonce_;
         result.timestamp_ = timestamp_;
-        result.sign_ = sign_;
+        result.signature_ = signature_;
         result.height_ = height_;
         onBuilt();
         return result;
@@ -1601,8 +1601,8 @@ public final class BlockProto {
         if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
           setHash(other.getHash());
         }
-        if (other.getPrevhash() != com.google.protobuf.ByteString.EMPTY) {
-          setPrevhash(other.getPrevhash());
+        if (other.getPreviousHash() != com.google.protobuf.ByteString.EMPTY) {
+          setPreviousHash(other.getPreviousHash());
         }
         if (other.getNonce() != 0L) {
           setNonce(other.getNonce());
@@ -1610,8 +1610,8 @@ public final class BlockProto {
         if (other.getTimestamp() != 0L) {
           setTimestamp(other.getTimestamp());
         }
-        if (other.getSign() != com.google.protobuf.ByteString.EMPTY) {
-          setSign(other.getSign());
+        if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
+          setSignature(other.getSignature());
         }
         if (other.getHeight() != 0L) {
           setHeight(other.getHeight());
@@ -1647,13 +1647,13 @@ public final class BlockProto {
 
       private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes Hash = 1;</code>
+       * <code>bytes hash = 1;</code>
        */
       public com.google.protobuf.ByteString getHash() {
         return hash_;
       }
       /**
-       * <code>bytes Hash = 1;</code>
+       * <code>bytes hash = 1;</code>
        */
       public Builder setHash(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1665,7 +1665,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>bytes Hash = 1;</code>
+       * <code>bytes hash = 1;</code>
        */
       public Builder clearHash() {
         
@@ -1674,44 +1674,44 @@ public final class BlockProto {
         return this;
       }
 
-      private com.google.protobuf.ByteString prevhash_ = com.google.protobuf.ByteString.EMPTY;
+      private com.google.protobuf.ByteString previousHash_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes Prevhash = 2;</code>
+       * <code>bytes previous_hash = 2;</code>
        */
-      public com.google.protobuf.ByteString getPrevhash() {
-        return prevhash_;
+      public com.google.protobuf.ByteString getPreviousHash() {
+        return previousHash_;
       }
       /**
-       * <code>bytes Prevhash = 2;</code>
+       * <code>bytes previous_hash = 2;</code>
        */
-      public Builder setPrevhash(com.google.protobuf.ByteString value) {
+      public Builder setPreviousHash(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        prevhash_ = value;
+        previousHash_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes Prevhash = 2;</code>
+       * <code>bytes previous_hash = 2;</code>
        */
-      public Builder clearPrevhash() {
+      public Builder clearPreviousHash() {
         
-        prevhash_ = getDefaultInstance().getPrevhash();
+        previousHash_ = getDefaultInstance().getPreviousHash();
         onChanged();
         return this;
       }
 
       private long nonce_ ;
       /**
-       * <code>int64 Nonce = 3;</code>
+       * <code>int64 nonce = 3;</code>
        */
       public long getNonce() {
         return nonce_;
       }
       /**
-       * <code>int64 Nonce = 3;</code>
+       * <code>int64 nonce = 3;</code>
        */
       public Builder setNonce(long value) {
         
@@ -1720,7 +1720,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>int64 Nonce = 3;</code>
+       * <code>int64 nonce = 3;</code>
        */
       public Builder clearNonce() {
         
@@ -1731,13 +1731,13 @@ public final class BlockProto {
 
       private long timestamp_ ;
       /**
-       * <code>int64 Timestamp = 4;</code>
+       * <code>int64 timestamp = 4;</code>
        */
       public long getTimestamp() {
         return timestamp_;
       }
       /**
-       * <code>int64 Timestamp = 4;</code>
+       * <code>int64 timestamp = 4;</code>
        */
       public Builder setTimestamp(long value) {
         
@@ -1746,7 +1746,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>int64 Timestamp = 4;</code>
+       * <code>int64 timestamp = 4;</code>
        */
       public Builder clearTimestamp() {
         
@@ -1755,44 +1755,44 @@ public final class BlockProto {
         return this;
       }
 
-      private com.google.protobuf.ByteString sign_ = com.google.protobuf.ByteString.EMPTY;
+      private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes Sign = 5;</code>
+       * <code>bytes signature = 5;</code>
        */
-      public com.google.protobuf.ByteString getSign() {
-        return sign_;
+      public com.google.protobuf.ByteString getSignature() {
+        return signature_;
       }
       /**
-       * <code>bytes Sign = 5;</code>
+       * <code>bytes signature = 5;</code>
        */
-      public Builder setSign(com.google.protobuf.ByteString value) {
+      public Builder setSignature(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        sign_ = value;
+        signature_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes Sign = 5;</code>
+       * <code>bytes signature = 5;</code>
        */
-      public Builder clearSign() {
+      public Builder clearSignature() {
         
-        sign_ = getDefaultInstance().getSign();
+        signature_ = getDefaultInstance().getSignature();
         onChanged();
         return this;
       }
 
       private long height_ ;
       /**
-       * <code>uint64 Height = 6;</code>
+       * <code>uint64 height = 6;</code>
        */
       public long getHeight() {
         return height_;
       }
       /**
-       * <code>uint64 Height = 6;</code>
+       * <code>uint64 height = 6;</code>
        */
       public Builder setHeight(long value) {
         
@@ -1801,7 +1801,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>uint64 Height = 6;</code>
+       * <code>uint64 height = 6;</code>
        */
       public Builder clearHeight() {
         
@@ -1882,13 +1882,14 @@ public final class BlockProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013block.proto\022\006corepb\032\021transaction.proto" +
-      "\"k\n\005Block\022#\n\006Header\030\001 \001(\0132\023.corepb.Block" +
-      "Header\022)\n\014Transactions\030\002 \003(\0132\023.corepb.Tr" +
-      "ansaction\022\022\n\nparentHash\030\003 \001(\014\"m\n\013BlockHe" +
-      "ader\022\014\n\004Hash\030\001 \001(\014\022\020\n\010Prevhash\030\002 \001(\014\022\r\n\005" +
-      "Nonce\030\003 \001(\003\022\021\n\tTimestamp\030\004 \001(\003\022\014\n\004Sign\030\005" +
-      " \001(\014\022\016\n\006Height\030\006 \001(\004B,\n\036com.dappley.java" +
-      ".core.protobufB\nBlockProtob\006proto3"
+      "\"l\n\005Block\022#\n\006header\030\001 \001(\0132\023.corepb.Block" +
+      "Header\022)\n\014transactions\030\002 \003(\0132\023.corepb.Tr" +
+      "ansaction\022\023\n\013parent_hash\030\003 \001(\014\"w\n\013BlockH" +
+      "eader\022\014\n\004hash\030\001 \001(\014\022\025\n\rprevious_hash\030\002 \001" +
+      "(\014\022\r\n\005nonce\030\003 \001(\003\022\021\n\ttimestamp\030\004 \001(\003\022\021\n\t" +
+      "signature\030\005 \001(\014\022\016\n\006height\030\006 \001(\004B,\n\036com.d" +
+      "appley.java.core.protobufB\nBlockProtob\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1914,7 +1915,7 @@ public final class BlockProto {
     internal_static_corepb_BlockHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_corepb_BlockHeader_descriptor,
-        new java.lang.String[] { "Hash", "Prevhash", "Nonce", "Timestamp", "Sign", "Height", });
+        new java.lang.String[] { "Hash", "PreviousHash", "Nonce", "Timestamp", "Signature", "Height", });
     com.dappley.java.core.protobuf.TransactionProto.getDescriptor();
   }
 

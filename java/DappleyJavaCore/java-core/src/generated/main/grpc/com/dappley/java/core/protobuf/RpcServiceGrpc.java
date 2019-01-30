@@ -315,36 +315,68 @@ public final class RpcServiceGrpc {
      return getRpcSendBatchTransactionMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest,
-      com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod;
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse> getRpcGetNewTransactionMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcGetNewTransactions",
-      requestType = com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.class,
-      responseType = com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse.class,
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetNewTransaction",
+      requestType = com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest,
-      com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod() {
-    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> getRpcGetNewTransactionsMethod;
-    if ((getRpcGetNewTransactionsMethod = RpcServiceGrpc.getRpcGetNewTransactionsMethod) == null) {
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse> getRpcGetNewTransactionMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse> getRpcGetNewTransactionMethod;
+    if ((getRpcGetNewTransactionMethod = RpcServiceGrpc.getRpcGetNewTransactionMethod) == null) {
       synchronized (RpcServiceGrpc.class) {
-        if ((getRpcGetNewTransactionsMethod = RpcServiceGrpc.getRpcGetNewTransactionsMethod) == null) {
-          RpcServiceGrpc.getRpcGetNewTransactionsMethod = getRpcGetNewTransactionsMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse>newBuilder()
+        if ((getRpcGetNewTransactionMethod = RpcServiceGrpc.getRpcGetNewTransactionMethod) == null) {
+          RpcServiceGrpc.getRpcGetNewTransactionMethod = getRpcGetNewTransactionMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest, com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
-                  "rpcpb.RpcService", "RpcGetNewTransactions"))
+                  "rpcpb.RpcService", "RpcGetNewTransaction"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest.getDefaultInstance()))
+                  com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcGetNewTransactions"))
+                  com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcGetNewTransaction"))
                   .build();
           }
         }
      }
-     return getRpcGetNewTransactionsMethod;
+     return getRpcGetNewTransactionMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SubscribeRequest,
+      com.dappley.java.core.protobuf.RpcProto.SubscribeResponse> getRpcSubscribeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcSubscribe",
+      requestType = com.dappley.java.core.protobuf.RpcProto.SubscribeRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.SubscribeResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SubscribeRequest,
+      com.dappley.java.core.protobuf.RpcProto.SubscribeResponse> getRpcSubscribeMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SubscribeRequest, com.dappley.java.core.protobuf.RpcProto.SubscribeResponse> getRpcSubscribeMethod;
+    if ((getRpcSubscribeMethod = RpcServiceGrpc.getRpcSubscribeMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcSubscribeMethod = RpcServiceGrpc.getRpcSubscribeMethod) == null) {
+          RpcServiceGrpc.getRpcSubscribeMethod = getRpcSubscribeMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.SubscribeRequest, com.dappley.java.core.protobuf.RpcProto.SubscribeResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcSubscribe"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.SubscribeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.SubscribeResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcSubscribe"))
+                  .build();
+          }
+        }
+     }
+     return getRpcSubscribeMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest,
@@ -471,9 +503,16 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public void rpcGetNewTransactions(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcGetNewTransactionsMethod(), responseObserver);
+    public void rpcGetNewTransaction(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetNewTransactionMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rpcSubscribe(com.dappley.java.core.protobuf.RpcProto.SubscribeRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SubscribeResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcSubscribeMethod(), responseObserver);
     }
 
     /**
@@ -549,12 +588,19 @@ public final class RpcServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse>(
                   this, METHODID_RPC_SEND_BATCH_TRANSACTION)))
           .addMethod(
-            getRpcGetNewTransactionsMethod(),
+            getRpcGetNewTransactionMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest,
-                com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse>(
-                  this, METHODID_RPC_GET_NEW_TRANSACTIONS)))
+                com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest,
+                com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse>(
+                  this, METHODID_RPC_GET_NEW_TRANSACTION)))
+          .addMethod(
+            getRpcSubscribeMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.SubscribeRequest,
+                com.dappley.java.core.protobuf.RpcProto.SubscribeResponse>(
+                  this, METHODID_RPC_SUBSCRIBE)))
           .addMethod(
             getRpcGetAllTransactionsFromTxPoolMethod(),
             asyncUnaryCall(
@@ -658,10 +704,18 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public void rpcGetNewTransactions(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> responseObserver) {
+    public void rpcGetNewTransaction(com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse> responseObserver) {
       asyncServerStreamingCall(
-          getChannel().newCall(getRpcGetNewTransactionsMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRpcGetNewTransactionMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rpcSubscribe(com.dappley.java.core.protobuf.RpcProto.SubscribeRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SubscribeResponse> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getRpcSubscribeMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -756,10 +810,18 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public java.util.Iterator<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse> rpcGetNewTransactions(
-        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest request) {
+    public java.util.Iterator<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse> rpcGetNewTransaction(
+        com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest request) {
       return blockingServerStreamingCall(
-          getChannel(), getRpcGetNewTransactionsMethod(), getCallOptions(), request);
+          getChannel(), getRpcGetNewTransactionMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<com.dappley.java.core.protobuf.RpcProto.SubscribeResponse> rpcSubscribe(
+        com.dappley.java.core.protobuf.RpcProto.SubscribeRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getRpcSubscribeMethod(), getCallOptions(), request);
     }
 
     /**
@@ -878,8 +940,9 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 6;
   private static final int METHODID_RPC_SEND_TRANSACTION = 7;
   private static final int METHODID_RPC_SEND_BATCH_TRANSACTION = 8;
-  private static final int METHODID_RPC_GET_NEW_TRANSACTIONS = 9;
-  private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 10;
+  private static final int METHODID_RPC_GET_NEW_TRANSACTION = 9;
+  private static final int METHODID_RPC_SUBSCRIBE = 10;
+  private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 11;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -934,9 +997,13 @@ public final class RpcServiceGrpc {
           serviceImpl.rpcSendBatchTransaction((com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SendBatchTransactionResponse>) responseObserver);
           break;
-        case METHODID_RPC_GET_NEW_TRANSACTIONS:
-          serviceImpl.rpcGetNewTransactions((com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionsResponse>) responseObserver);
+        case METHODID_RPC_GET_NEW_TRANSACTION:
+          serviceImpl.rpcGetNewTransaction((com.dappley.java.core.protobuf.RpcProto.GetNewTransactionRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNewTransactionResponse>) responseObserver);
+          break;
+        case METHODID_RPC_SUBSCRIBE:
+          serviceImpl.rpcSubscribe((com.dappley.java.core.protobuf.RpcProto.SubscribeRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.SubscribeResponse>) responseObserver);
           break;
         case METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL:
           serviceImpl.rpcGetAllTransactionsFromTxPool((com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest) request,
@@ -1012,7 +1079,8 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcGetBlockByHeightMethod())
               .addMethod(getRpcSendTransactionMethod())
               .addMethod(getRpcSendBatchTransactionMethod())
-              .addMethod(getRpcGetNewTransactionsMethod())
+              .addMethod(getRpcGetNewTransactionMethod())
+              .addMethod(getRpcSubscribeMethod())
               .addMethod(getRpcGetAllTransactionsFromTxPoolMethod())
               .build();
         }

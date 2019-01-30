@@ -42,7 +42,7 @@ public class Transaction implements Serializable {
      * @param transaction
      */
     public void parseProto(TransactionProto.Transaction transaction) {
-        this.setId(transaction.getID().toByteArray());
+        this.setId(transaction.getId().toByteArray());
         // add vin list
         List<TransactionProto.TXInput> vinList = transaction.getVinList();
         if (vinList != null) {
@@ -73,7 +73,7 @@ public class Transaction implements Serializable {
     public TransactionProto.Transaction toProto() {
         TransactionProto.Transaction.Builder builder = TransactionProto.Transaction.newBuilder();
         if (this.getId() != null) {
-            builder.setID(ByteString.copyFrom(this.getId()));
+            builder.setId(ByteString.copyFrom(this.getId()));
         }
 
         List<TxInput> txInputs = this.getTxInputs();
@@ -130,7 +130,7 @@ public class Transaction implements Serializable {
             for (TxInput txInput : txInputs) {
                 txNewInput = new TxInput();
                 txNewInput.setTxId(txInput.getTxId());
-                txNewInput.setPubKey(txInput.getPubKey());
+                txNewInput.setPublicKey(txInput.getPublicKey());
                 txNewInput.setSignature(txInput.getSignature());
                 txNewInput.setVout(txInput.getVout());
                 txNewInputs.add(txNewInput);
@@ -143,7 +143,7 @@ public class Transaction implements Serializable {
             List<TxOutput> txNewOutputs = new ArrayList<>();
             for (TxOutput txOutput : txOutputs) {
                 txNewOutput = new TxOutput();
-                txNewOutput.setPubKeyHash(txOutput.getPubKeyHash());
+                txNewOutput.setPublicKeyHash(txOutput.getPublicKeyHash());
                 txNewOutput.setValue(txOutput.getValue());
                 txNewOutput.setContract(txOutput.getContract());
                 txNewOutputs.add(txNewOutput);
@@ -167,7 +167,7 @@ public class Transaction implements Serializable {
         }
         for (TxInput txInput : txInputs) {
             // clear pubKey and signature
-            txInput.setPubKey(null);
+            txInput.setPublicKey(null);
             txInput.setSignature(null);
         }
         return newTransaction;
@@ -209,7 +209,7 @@ public class Transaction implements Serializable {
                 // vout
                 bytesList.add(ByteUtil.int2Bytes(txInput.getVout()));
                 // pubkey
-                bytesList.add(txInput.getPubKey() == null ? null : txInput.getPubKey());
+                bytesList.add(txInput.getPublicKey() == null ? null : txInput.getPublicKey());
                 // signature
                 bytesList.add(txInput.getSignature() == null ? null : txInput.getSignature());
             }
@@ -222,7 +222,7 @@ public class Transaction implements Serializable {
                 // value
                 bytesList.add(txOutput.getValue() == null ? null : txOutput.getValue());
                 // pubKeyHash
-                bytesList.add(txOutput.getPubKeyHash() == null ? null : txOutput.getPubKeyHash());
+                bytesList.add(txOutput.getPublicKeyHash() == null ? null : txOutput.getPublicKeyHash());
                 bytesList.add(txOutput.getContract() == null ? null : ByteUtil.string2Bytes(txOutput.getContract()));
             }
         }

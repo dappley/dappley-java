@@ -138,11 +138,11 @@ public class LocalBlockThread implements Runnable {
         }
         // traverse PREV_COUNT block data
         for (int i = 1; i < PREV_COUNT; i++) {
-            if (block.getHeader().getPrevHash() == null
-                    || ObjectUtils.isEmpty(HexUtil.toHex(block.getHeader().getPrevHash()))) {
+            if (block.getHeader().getPreviousHash() == null
+                    || ObjectUtils.isEmpty(HexUtil.toHex(block.getHeader().getPreviousHash()))) {
                 break;
             }
-            block = blockDb.get(block.getHeader().getPrevHash());
+            block = blockDb.get(block.getHeader().getPreviousHash());
             if (block == null) {
                 break;
             }
@@ -173,7 +173,7 @@ public class LocalBlockThread implements Runnable {
         Log.i(TAG, "saveSynchronizedBlocks count " + blocks.size());
 
         // handler fork, remove invalid blocks
-        String newParentHash = HexUtil.toHex(blocks.get(0).getHeader().getPrevHash());
+        String newParentHash = HexUtil.toHex(blocks.get(0).getHeader().getPreviousHash());
         if (genesisHash.equals(newParentHash)) {
             // whole chain has been replaced
             clearChain();
@@ -187,7 +187,7 @@ public class LocalBlockThread implements Runnable {
         for (Block block : blocks) {
             currentHash = HexUtil.toHex(block.getHeader().getHash());
             blockDb.save(block);
-            blockIndexDb.save(HexUtil.toHex(block.getHeader().getPrevHash()), currentHash);
+            blockIndexDb.save(HexUtil.toHex(block.getHeader().getPreviousHash()), currentHash);
             transactionDb.save(currentHash, block.getTransactions());
 
             // save new utxo data
@@ -277,17 +277,17 @@ public class LocalBlockThread implements Runnable {
         String tempAddress;
         for (int i = 0; i < txOutputs.size(); i++) {
             tempOutput = txOutputs.get(i);
-            if (tempOutput == null || tempOutput.getPubKeyHash() == null) {
+            if (tempOutput == null || tempOutput.getPublicKeyHash() == null) {
                 continue;
             }
-            tempAddress = AddressUtil.getAddressFromPubKeyHash(tempOutput.getPubKeyHash());
+            tempAddress = AddressUtil.getAddressFromPubKeyHash(tempOutput.getPublicKeyHash());
             if (!addressSet.contains(tempAddress)) {
                 continue;
             }
             // vout point to a user address
             tempUtxo = new Utxo();
             tempUtxo.setTxId(transaction.getId());
-            tempUtxo.setPublicKeyHash(tempOutput.getPubKeyHash());
+            tempUtxo.setPublicKeyHash(tempOutput.getPublicKeyHash());
             tempUtxo.setAmount(new BigInteger(1, tempOutput.getValue()));
             tempUtxo.setVoutIndex(i);
             // update utxo

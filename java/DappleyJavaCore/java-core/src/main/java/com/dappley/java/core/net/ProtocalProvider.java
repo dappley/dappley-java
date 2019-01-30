@@ -27,7 +27,7 @@ public interface ProtocalProvider {
 
     String getVersion();
 
-    String getBalance(String address);
+    long getBalance(String address);
 
     BlockChainInfo getBlockchainInfo();
 
@@ -39,6 +39,6 @@ public interface ProtocalProvider {
 
     BlockProto.Block getBlockByHeight(long height);
 
-    int sendTransaction(TransactionProto.Transaction transaction);
+    void sendTransaction(TransactionProto.Transaction transaction);
 
 }

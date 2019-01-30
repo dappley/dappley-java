@@ -78,7 +78,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
     }
 
     @Override
-    public String getBalance(String address) {
+    public long getBalance(String address) {
         Asserts.clientInit(channel);
         Asserts.channelOpen(channel);
 
@@ -86,9 +86,8 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .setAddress(address)
                 .build();
         RpcProto.GetBalanceResponse response = getRpcServiceBlockingStub().rpcGetBalance(request);
-        String message = response.getMessage();
         log.debug("getBalance: " + response.getAmount());
-        return message;
+        return response.getAmount();
     }
 
     @Override
@@ -115,7 +114,6 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .build();
         RpcProto.GetUTXOResponse response = getRpcServiceBlockingStub().rpcGetUTXO(request);
         List<RpcProto.UTXO> utxos = response.getUtxosList();
-        log.debug("getUtxo errorCode: " + response.getErrorCode());
         return utxos;
     }
 
@@ -141,7 +139,6 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .build();
         RpcProto.GetBlockByHashResponse response = getRpcServiceBlockingStub().rpcGetBlockByHash(request);
         BlockProto.Block block = response.getBlock();
-        log.debug("getBlockByHash errorCode: " + response.getErrorCode());
         return block;
     }
 
@@ -154,20 +151,16 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .build();
         RpcProto.GetBlockByHeightResponse response = getRpcServiceBlockingStub().rpcGetBlockByHeight(request);
         BlockProto.Block block = response.getBlock();
-        log.debug("getBlockByHeight errorCode: " + response.getErrorCode());
         return block;
     }
 
     @Override
-    public int sendTransaction(TransactionProto.Transaction transaction) {
+    public void sendTransaction(TransactionProto.Transaction transaction) {
         Asserts.clientInit(channel);
         Asserts.channelOpen(channel);
         RpcProto.SendTransactionRequest request = RpcProto.SendTransactionRequest.newBuilder()
                 .setTransaction(transaction)
                 .build();
-        RpcProto.SendTransactionResponse response = getRpcServiceBlockingStub().rpcSendTransaction(request);
-        int errorCode = response.getErrorCode();
-        log.debug("sendTransaction errorCode: " + errorCode);
-        return errorCode;
+        getRpcServiceBlockingStub().rpcSendTransaction(request);
     }
 }

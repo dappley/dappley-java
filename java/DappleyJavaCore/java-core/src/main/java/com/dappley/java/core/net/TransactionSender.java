@@ -16,13 +16,12 @@ public class TransactionSender {
 
     /**
      * Send transaction info
+     * <p>Throws exception if transaction failed</p>
      * @param transaction
-     * @return int errorCode
      */
-    public int sendTransaction(Transaction transaction) {
+    public void sendTransaction(Transaction transaction) {
         TransactionProto.Transaction tx = transaction.toProto();
-        int errorCode = protocalProvider.sendTransaction(tx);
-        return errorCode;
+        protocalProvider.sendTransaction(tx);
     }
 
     /**

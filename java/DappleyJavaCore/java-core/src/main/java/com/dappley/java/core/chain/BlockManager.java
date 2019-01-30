@@ -33,7 +33,7 @@ public class BlockManager {
         txInput.setVout(-1);
         txInput.setSignature(ByteUtil.EMPTY_BYTE);
         try {
-            txInput.setPubKey(GENESIS_COIN_BASE_DATA.getBytes(Constant.CHARSET_UTF_8));
+            txInput.setPublicKey(GENESIS_COIN_BASE_DATA.getBytes(Constant.CHARSET_UTF_8));
         } catch (UnsupportedEncodingException e) {
             log.error("newGenesisBlock: ", e);
         }
@@ -41,7 +41,7 @@ public class BlockManager {
         // set output
         TxOutput txOutput = new TxOutput();
         txOutput.setValue(new BigInteger(SUBSIDY).toByteArray());
-        txOutput.setPubKeyHash(HashUtil.getPublicKeyHash(GENESIS_ADDRESS));
+        txOutput.setPublicKeyHash(HashUtil.getPublicKeyHash(GENESIS_ADDRESS));
 
         Transaction transaction = new Transaction();
         transaction.addTxInput(txInput);
@@ -55,7 +55,7 @@ public class BlockManager {
 
         // initialize block header info
         BlockHeader blockHeader = new BlockHeader();
-        blockHeader.setPrevHash(ByteUtil.EMPTY_BYTE);
+        blockHeader.setPreviousHash(ByteUtil.EMPTY_BYTE);
         blockHeader.setNonce(0);
         //July 23,2018 17:42 PST
         blockHeader.setTimestamp(1532392928);
@@ -86,7 +86,7 @@ public class BlockManager {
      * @return byte[] hash value
      */
     public static byte[] calculateHashWithoutNonce(BlockHeader blockHeader, List<Transaction> transactions) {
-        byte[] prevHash = blockHeader.getPrevHash();
+        byte[] prevHash = blockHeader.getPreviousHash();
         byte[] txHash = TransactionManager.hashTransactions(transactions);
         byte[] timeHash = ByteUtil.long2Bytes(blockHeader.getTimestamp());
         // concat prevHash/txHash/timeHash

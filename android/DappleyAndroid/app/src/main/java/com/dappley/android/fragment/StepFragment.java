@@ -34,6 +34,7 @@ import com.today.step.lib.TodayStepManager;
 import com.today.step.lib.TodayStepService;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -77,12 +78,16 @@ public class StepFragment extends Fragment {
     boolean isGoogleSupported;
     boolean isStepLibUsed;
 
+    StepHandler handler;
+
     public StepFragment() {
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        handler = new StepHandler(this);
 
         TodayStepManager.init(getActivity().getApplication());
 
@@ -110,9 +115,8 @@ public class StepFragment extends Fragment {
                     public void run() {
                         int newStep = getNewStep();
 
-                        Message message = new Message();
+                        Message message = handler.obtainMessage(Constant.MSG_STEP_REFRESH);
                         message.arg1 = newStep;
-                        message.what = Constant.MSG_STEP_REFRESH;
                         boolean isSuccess = handler.sendMessage(message);
                         Log.e(TAG, "run: ------------" + isSuccess);
                     }
@@ -239,9 +243,8 @@ public class StepFragment extends Fragment {
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
                 }
-                Message msg = new Message();
+                Message msg = handler.obtainMessage(Constant.MSG_CONVERT_FINISH);
                 msg.obj = isSuccess;
-                msg.what = Constant.MSG_CONVERT_FINISH;
                 handler.sendMessage(msg);
             }
         }).start();
@@ -334,8 +337,7 @@ public class StepFragment extends Fragment {
         if (newStep <= 0) {
             todayStep = 0;
         }
-        Message msg = new Message();
-        msg.what = Constant.MSG_STEP_ALL;
+        Message msg = handler.obtainMessage(Constant.MSG_STEP_ALL);
         msg.arg1 = todayStep;
         handler.sendMessage(msg);
     }
@@ -359,8 +361,7 @@ public class StepFragment extends Fragment {
                 }
                 restStep += diff;
                 while (true) {
-                    Message msg = new Message();
-                    msg.what = Constant.MSG_STEP_UPDATE;
+                    Message msg = handler.obtainMessage(Constant.MSG_STEP_UPDATE);
                     if (i > restStep) {
                         i = restStep;
                     }
@@ -398,36 +399,6 @@ public class StepFragment extends Fragment {
         return 0;
     }
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            Log.e(TAG, "handleMessage: " + msg.what);
-            super.handleMessage(msg);
-
-            if (msg.what == Constant.MSG_STEP_UPDATE && tvStepAll != null) {
-                tvStepRest.setText("" + msg.arg1);
-            } else if (msg.what == Constant.MSG_CONVERT_FINISH) {
-                boolean isSuccess = (boolean) msg.obj;
-                onConvertFinish(isSuccess);
-            } else if (msg.what == Constant.MSG_STEP_ALL) {
-                int stepAll = msg.arg1;
-                if (stepAll < 0) {
-                    tvStepAll.setText("-");
-                } else {
-                    tvStepAll.setText("" + stepAll);
-                }
-            } else if (msg.what == Constant.MSG_STEP_REFRESH) {
-                afterRefresh(msg.arg1);
-            } else if (msg.what == Constant.MSG_GOOGLE_LOGIN) {
-                LoadingDialog.show(getActivity());
-                googleStep.startSignInIntent();
-            } else if (msg.what == Constant.MSG_GOOGLE_PERMISSION) {
-                googleStep.requestPermissions();
-            }
-
-        }
-    };
-
     class StepThread extends Thread {
         @Override
         public void run() {
@@ -448,13 +419,50 @@ public class StepFragment extends Fragment {
                 isGoogleSupported = false;
                 registerStepLib();
             } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
-                Message message = new Message();
-                message.what = Constant.MSG_GOOGLE_LOGIN;
+                Message message = handler.obtainMessage(Constant.MSG_GOOGLE_LOGIN);
                 handler.sendMessageDelayed(message, 10000);
             } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {
-                Message message = new Message();
-                message.what = Constant.MSG_GOOGLE_PERMISSION;
+                Message message = handler.obtainMessage(Constant.MSG_GOOGLE_PERMISSION);
                 handler.sendMessageDelayed(message, 5000);
+            }
+        }
+    }
+
+    static class StepHandler extends Handler {
+        WeakReference<StepFragment> weakReference;
+
+        public StepHandler(StepFragment stepFragment) {
+            weakReference = new WeakReference<>(stepFragment);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            Log.e(TAG, "StepHandler-handleMessage: " + msg.what);
+            super.handleMessage(msg);
+
+            StepFragment stepFragment = weakReference.get();
+            if (stepFragment == null) {
+                return;
+            }
+            if (msg.what == Constant.MSG_STEP_UPDATE && stepFragment.tvStepAll != null) {
+                stepFragment.tvStepRest.setText("" + msg.arg1);
+            } else if (msg.what == Constant.MSG_CONVERT_FINISH) {
+                boolean isSuccess = (boolean) msg.obj;
+                stepFragment.onConvertFinish(isSuccess);
+            } else if (msg.what == Constant.MSG_STEP_ALL) {
+                int stepAll = msg.arg1;
+                if (stepAll < 0) {
+                    stepFragment.tvStepAll.setText("-");
+                } else {
+                    stepFragment.tvStepAll.setText("" + stepAll);
+                }
+            } else if (msg.what == Constant.MSG_STEP_REFRESH) {
+                stepFragment.afterRefresh(msg.arg1);
+            } else if (msg.what == Constant.MSG_GOOGLE_LOGIN) {
+                LoadingDialog.show(stepFragment.getActivity());
+                stepFragment.googleStep.startSignInIntent();
+            } else if (msg.what == Constant.MSG_GOOGLE_PERMISSION) {
+                stepFragment.googleStep.requestPermissions();
             }
         }
     }

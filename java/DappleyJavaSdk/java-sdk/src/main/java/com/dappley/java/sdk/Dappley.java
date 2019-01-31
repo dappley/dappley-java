@@ -295,12 +295,13 @@ public class Dappley {
             return false;
         }
         Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, contract);
-        int errorCode = transactionSender.sendTransaction(transaction);
-        if (errorCode == 0) {
-            // success
+        try {
+            transactionSender.sendTransaction(transaction);
             return true;
+        } catch (Exception e) {
+            log.error("sendTransaction: ", e);
+            return false;
         }
-        return false;
     }
 
     /**

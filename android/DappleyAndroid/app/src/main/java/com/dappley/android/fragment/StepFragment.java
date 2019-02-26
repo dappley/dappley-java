@@ -78,6 +78,7 @@ public class StepFragment extends Fragment {
 
     boolean isGoogleSupported;
     boolean isStepLibUsed;
+    int unLoginCounter;
 
     StepHandler handler;
 
@@ -186,6 +187,10 @@ public class StepFragment extends Fragment {
     }
 
     public void setGoogleLogined() {
+        if (unLoginCounter > 1) {
+            // Return if user doesn't login his google account
+            return;
+        }
         refreshGoogleApi();
         LoadingDialog.close();
     }
@@ -422,6 +427,10 @@ public class StepFragment extends Fragment {
                 isGoogleSupported = false;
                 registerStepLib();
             } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
+                if (unLoginCounter > 0) {
+                    return;
+                }
+                unLoginCounter++;
                 Message message = handler.obtainMessage(Constant.MSG_GOOGLE_LOGIN);
                 handler.sendMessageDelayed(message, 10000);
             } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {

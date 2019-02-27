@@ -29,10 +29,9 @@ import com.dappley.android.adapter.MainFragmentAdapter;
 import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
-import com.dappley.android.sdk.Dappley;
+import com.dappley.android.util.Constant;
 import com.dappley.google.step.GoogleStep;
 import com.dappley.java.core.po.Wallet;
-import com.dappley.android.util.Constant;
 
 import java.util.List;
 
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
-        // 初始化页卡
         initPager();
 
         setTabs(tabLayout, getLayoutInflater(), TAB_TITLES, TAB_IMGS);
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < tabImgs.length; i++) {
             TabLayout.Tab tab = tabLayout.newTab();
             View view = inflater.inflate(R.layout.item_main_menu, null);
-            // 使用自定义视图，目的是为了便于修改，也可使用自带的视图
             tab.setCustomView(view);
 
             TextView tvTitle = (TextView) view.findViewById(R.id.txt_tab);
@@ -95,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MainFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
-        // 关联切换
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -103,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 if (tab.getPosition() == viewPager.getCurrentItem()) {
                     return;
                 }
-                // 取消平滑切换
                 viewPager.setCurrentItem(tab.getPosition(), false);
             }
 
@@ -176,8 +171,6 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
-
-        Dappley.release();
     }
 
     @Override

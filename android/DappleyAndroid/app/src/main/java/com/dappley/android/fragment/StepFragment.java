@@ -26,6 +26,7 @@ import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.google.step.GoogleStep;
 import com.dappley.java.core.po.Wallet;
@@ -95,7 +96,15 @@ public class StepFragment extends Fragment {
 
         googleStep = new GoogleStep(getActivity());
 
-        refreshGoogleApi();
+        boolean isNativeStep = PreferenceUtil.getBoolean(getContext(), Constant.PREF_NATIVE_STEP);
+        if (isNativeStep) {
+            // use native step counter
+            isGoogleSupported = false;
+            registerStepLib();
+        } else {
+            // try to user google-fit's data
+            refreshGoogleApi();
+        }
     }
 
     private void refreshGoogleApi() {
@@ -135,6 +144,7 @@ public class StepFragment extends Fragment {
         getActivity().bindService(intent, stepServiceConnection, Context.BIND_AUTO_CREATE);
 
         isStepLibUsed = true;
+        PreferenceUtil.setBoolean(getContext(), Constant.PREF_NATIVE_STEP, true);
     }
 
     private void readTodayConverted() {
@@ -429,14 +439,16 @@ public class StepFragment extends Fragment {
                 registerStepLib();
             } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
                 if (unLoginCounter > 0) {
+                    // if user rejects google login request, user native step counter
+                    registerStepLib();
                     return;
                 }
                 unLoginCounter++;
                 Message message = handler.obtainMessage(Constant.MSG_GOOGLE_LOGIN);
-                handler.sendMessageDelayed(message, 10000);
+                handler.sendMessageDelayed(message, 1000);
             } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {
                 Message message = handler.obtainMessage(Constant.MSG_GOOGLE_PERMISSION);
-                handler.sendMessageDelayed(message, 5000);
+                handler.sendMessageDelayed(message, 1000);
             }
         }
     }

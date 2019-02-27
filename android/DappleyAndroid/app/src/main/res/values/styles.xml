@@ -14,6 +14,14 @@
     <style name="ImageTop" parent="AppTheme">
         <item name="colorPrimaryDark">@android:color/transparent</item>
     </style>
+    <!-- welcome page -->
+    <style name="WelcomeTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/welcome_bg</item>
+    </style>
+    <!-- main page -->
+    <style name="MainTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/deep_bg</item>
+    </style>
 
     <style name="AnimationPopBottom" parent="@android:style/Animation.InputMethod">
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>

@@ -100,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == viewPager.getCurrentItem()) {
+                    return;
+                }
                 // 取消平滑切换
                 viewPager.setCurrentItem(tab.getPosition(), false);
             }

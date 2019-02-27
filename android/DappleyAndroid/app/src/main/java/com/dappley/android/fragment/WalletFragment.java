@@ -384,8 +384,7 @@ public class WalletFragment extends Fragment {
                 Message message = handler.obtainMessage(Constant.MSG_HOME_BALANCE);
                 message.arg1 = position;
                 message.obj = balance;
-                boolean isSuccess = handler.sendMessage(message);
-                Log.e(TAG, "MSG_HOME_BALANCE: " + isSuccess);
+                handler.sendMessage(message);
             } catch (Exception e) {
                 Message message = handler.obtainMessage(Constant.MSG_HOME_BALANCE_ERROR);
                 handler.sendMessage(message);
@@ -404,7 +403,6 @@ public class WalletFragment extends Fragment {
 
         @Override
         public void handleMessage(Message msg) {
-            Log.e(TAG, "WalletHandler-handleMessage: " + msg.what);
             super.handleMessage(msg);
 
             WalletFragment walletFragment = weakReference.get();

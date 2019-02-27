@@ -119,8 +119,7 @@ public class StepFragment extends Fragment {
 
                         Message message = handler.obtainMessage(Constant.MSG_STEP_REFRESH);
                         message.arg1 = newStep;
-                        boolean isSuccess = handler.sendMessage(message);
-                        Log.e(TAG, "run: ------------" + isSuccess);
+                        handler.sendMessage(message);
                     }
                 }).start();
             }
@@ -307,7 +306,7 @@ public class StepFragment extends Fragment {
         if (schedule == null) {
             schedule = Executors.newScheduledThreadPool(1);
         }
-        future = schedule.scheduleWithFixedDelay(new StepThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
+        future = schedule.scheduleWithFixedDelay(new StepRunnable(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
 
         Log.d(TAG, "startSchedule: step view updater started.");
     }
@@ -352,7 +351,9 @@ public class StepFragment extends Fragment {
 
     private void startUpdateRestAnimator(final int newStep) {
         if (newStep <= 0) {
-            tvStepRest.setText("0");
+            Message msg = handler.obtainMessage(Constant.MSG_STEP_UPDATE);
+            msg.arg1 = 0;
+            handler.sendMessage(msg);
             return;
         }
         new Thread(new Runnable() {
@@ -407,7 +408,7 @@ public class StepFragment extends Fragment {
         return 0;
     }
 
-    class StepThread extends Thread {
+    class StepRunnable implements Runnable {
         @Override
         public void run() {
             int newStep = getNewStep();
@@ -449,7 +450,6 @@ public class StepFragment extends Fragment {
 
         @Override
         public void handleMessage(Message msg) {
-            Log.e(TAG, "StepHandler-handleMessage: " + msg.what);
             super.handleMessage(msg);
 
             StepFragment stepFragment = weakReference.get();

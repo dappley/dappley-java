@@ -111,6 +111,7 @@
     <string name="note_confirm_title">Note</string>
     <string name="note_confirm_delete_wallet">Sure to delete current wallet?</string>
     <string name="note_google_fit_failed">Google Fit authentication failed</string>
+    <string name="note_google_fit_unavaiable">Google Fit unavailable</string>
 
     <string name="net_not_connected">network not connected</string>
     <string name="net_server_connected_error">server connect error, please try later</string>

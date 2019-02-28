@@ -111,6 +111,7 @@
     <string name="note_confirm_title">提示</string>
     <string name="note_confirm_delete_wallet">确认删除当前钱包?</string>
     <string name="note_google_fit_failed">Google Fit 授权失败</string>
+    <string name="note_google_fit_unavaiable">Google Fit 不可用</string>
 
     <string name="net_not_connected">发送请求失败，请检查网络连接</string>
     <string name="net_server_connected_error">连接服务器失败，请稍后重试</string>

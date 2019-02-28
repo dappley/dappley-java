@@ -28,6 +28,7 @@ public class Constant {
     public static final int MSG_GOOGLE_LOGIN = 20016;
     public static final int MSG_GOOGLE_PERMISSION = 20017;
     public static final int MSG_GOOGLE_FAILED = 20019;
+    public static final int MSG_GOOGLE_UNAVAIABLE = 20020;
 
     public static final int REQ_WALLET_IMPORT = 2;
 

@@ -138,7 +138,7 @@ public class MeFragment extends Fragment {
             if (googleState == GoogleStep.STATE_SUCCESS) {
                 updateStepState(false);
             } else if (googleState == GoogleStep.STATE_PLAY_UNAVAIABLE) {
-                Message msg = handler.obtainMessage(Constant.MSG_GOOGLE_FAILED);
+                Message msg = handler.obtainMessage(Constant.MSG_GOOGLE_UNAVAIABLE);
                 handler.sendMessage(msg);
                 updateStepState(true);
             } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
@@ -181,6 +181,8 @@ public class MeFragment extends Fragment {
                 meFragment.googleStep.requestPermissions();
             } else if (msg.what == Constant.MSG_GOOGLE_FAILED) {
                 Toast.makeText(meFragment.getActivity(), R.string.note_google_fit_failed, Toast.LENGTH_SHORT).show();
+            } else if (msg.what == Constant.MSG_GOOGLE_UNAVAIABLE) {
+                Toast.makeText(meFragment.getActivity(), R.string.note_google_fit_unavaiable, Toast.LENGTH_SHORT).show();
             }
         }
     }

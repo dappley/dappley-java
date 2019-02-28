@@ -27,6 +27,7 @@ public class Constant {
     public static final int MSG_STEP_REFRESH = 20018;
     public static final int MSG_GOOGLE_LOGIN = 20016;
     public static final int MSG_GOOGLE_PERMISSION = 20017;
+    public static final int MSG_GOOGLE_FAILED = 20019;
 
     public static final int REQ_WALLET_IMPORT = 2;
 
@@ -34,6 +35,9 @@ public class Constant {
 
     public static final String PREF_CONVERTED_DAY = "converted-day";
     public static final String PREF_NATIVE_STEP = "isNativeStep";
+
+    public static final int TYPE_APP_COUNTER = 1;
+    public static final int TYPE_GOOGLE_COUNTER = 2;
 
     public static final int QR_WIDTH = 200;
     public static final int QR_HEIGHT = 200;

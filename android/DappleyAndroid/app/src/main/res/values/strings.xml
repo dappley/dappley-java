@@ -55,6 +55,7 @@
     <string name="layout_btn_convert">Convert</string>
     <string name="layout_input_wallet_password">Input wallet password</string>
     <string name="layout_menu_wallet_password">Modify Wallet Password</string>
+    <string name="layout_step_counter">Step Counter</string>
     <string name="layout_wallet_sege">wallet(s)</string>
     <string name="layout_wallet_old_password">old password</string>
     <string name="layout_wallet_old_password_tip">wallet old password</string>
@@ -65,6 +66,7 @@
     <string name="layout_btn_modify_password">Modify Password</string>
     <string name="layout_copy_receive_address">Copy Receive Address</string>
     <string name="layout_click_add_wallet">Click here to add a wallet</string>
+    <string name="layout_select_step_counter">Select Step Counter</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>
@@ -108,6 +110,7 @@
     <string name="note_remote_contract_invalid">remote contract address is invalid</string>
     <string name="note_confirm_title">Note</string>
     <string name="note_confirm_delete_wallet">Sure to delete current wallet?</string>
+    <string name="note_google_fit_failed">Google Fit authentication failed</string>
 
     <string name="net_not_connected">network not connected</string>
     <string name="net_server_connected_error">server connect error, please try later</string>

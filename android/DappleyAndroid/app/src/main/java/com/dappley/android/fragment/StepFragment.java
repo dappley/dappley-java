@@ -94,21 +94,7 @@ public class StepFragment extends Fragment {
 
         TodayStepManager.init(getActivity().getApplication());
 
-        googleStep = new GoogleStep(getActivity());
-
-        boolean isNativeStep = PreferenceUtil.getBoolean(getContext(), Constant.PREF_NATIVE_STEP);
-        if (isNativeStep) {
-            // use native step counter
-            isGoogleSupported = false;
-            registerStepLib();
-        } else {
-            // try to user google-fit's data
-            refreshGoogleApi();
-        }
-    }
-
-    private void refreshGoogleApi() {
-        new GoogleThread().start();
+        loadStepCounter();
     }
 
     @Override
@@ -144,7 +130,6 @@ public class StepFragment extends Fragment {
         getActivity().bindService(intent, stepServiceConnection, Context.BIND_AUTO_CREATE);
 
         isStepLibUsed = true;
-        PreferenceUtil.setBoolean(getContext(), Constant.PREF_NATIVE_STEP, true);
     }
 
     private void readTodayConverted() {
@@ -195,17 +180,22 @@ public class StepFragment extends Fragment {
         super.onDestroy();
     }
 
-    public void setGoogleLogined() {
-        if (unLoginCounter > 1) {
-            // Return if user doesn't login his google account
-            return;
+    public void loadStepCounter() {
+        boolean isNativeStep = PreferenceUtil.getBoolean(getContext(), Constant.PREF_NATIVE_STEP, true);
+        if (isNativeStep) {
+            // use native step counter
+            isGoogleSupported = false;
+            registerStepLib();
+        } else {
+            // try to user google-fit's data
+            if (googleStep == null) {
+                googleStep = new GoogleStep(getActivity());
+            }
+            isGoogleSupported = true;
+            if (isStepLibUsed) {
+                getActivity().unbindService(stepServiceConnection);
+            }
         }
-        refreshGoogleApi();
-        LoadingDialog.close();
-    }
-
-    public void setGoogleSupported() {
-        isGoogleSupported = true;
     }
 
     public void onAddressSelected(final Wallet wallet) {
@@ -428,31 +418,6 @@ public class StepFragment extends Fragment {
         }
     }
 
-    class GoogleThread extends Thread {
-        @Override
-        public void run() {
-            int googleState = googleStep.isSupported();
-            if (googleState == GoogleStep.STATE_SUCCESS) {
-                isGoogleSupported = true;
-            } else if (googleState == GoogleStep.STATE_PLAY_UNAVAIABLE) {
-                isGoogleSupported = false;
-                registerStepLib();
-            } else if (googleState == GoogleStep.STATE_NEED_LOGIN) {
-                if (unLoginCounter > 0) {
-                    // if user rejects google login request, user native step counter
-                    registerStepLib();
-                    return;
-                }
-                unLoginCounter++;
-                Message message = handler.obtainMessage(Constant.MSG_GOOGLE_LOGIN);
-                handler.sendMessageDelayed(message, 1000);
-            } else if (googleState == GoogleStep.STATE_NEED_PERMISSION) {
-                Message message = handler.obtainMessage(Constant.MSG_GOOGLE_PERMISSION);
-                handler.sendMessageDelayed(message, 1000);
-            }
-        }
-    }
-
     static class StepHandler extends Handler {
         WeakReference<StepFragment> weakReference;
 
@@ -482,11 +447,6 @@ public class StepFragment extends Fragment {
                 }
             } else if (msg.what == Constant.MSG_STEP_REFRESH) {
                 stepFragment.afterRefresh(msg.arg1);
-            } else if (msg.what == Constant.MSG_GOOGLE_LOGIN) {
-                LoadingDialog.show(stepFragment.getActivity());
-                stepFragment.googleStep.startSignInIntent();
-            } else if (msg.what == Constant.MSG_GOOGLE_PERMISSION) {
-                stepFragment.googleStep.requestPermissions();
             }
         }
     }

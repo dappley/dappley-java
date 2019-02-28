@@ -158,6 +158,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void loadNewStepCounter() {
+        StepFragment stepFragment = getStepFragment();
+        if (stepFragment != null) {
+            stepFragment.loadStepCounter();
+        }
+    }
+
     public BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -226,11 +233,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GoogleStep.REQ_GOOGLE_SIGN_IN) {
-            StepFragment stepFragment = getStepFragment();
-            if (stepFragment == null) {
+            MeFragment meFragment = getMeFragment();
+            if (meFragment == null) {
                 return;
             }
-            stepFragment.setGoogleLogined();
+            meFragment.setGoogleLogined();
             return;
         }
         if (resultCode == RESULT_OK) {
@@ -254,11 +261,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 walletFragment.loadData();
             } else if (requestCode == GoogleStep.REQ_GOOGLE_FIT_PERMISSIONS) {
-                StepFragment stepFragment = getStepFragment();
-                if (stepFragment == null) {
+                MeFragment meFragment = getMeFragment();
+                if (meFragment == null) {
                     return;
                 }
-                stepFragment.setGoogleSupported();
+                meFragment.setGoogleSupported();
             }
         }
     }

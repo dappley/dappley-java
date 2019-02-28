@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="DW"
             android:textColor="@color/white"
-            android:textSize="42sp" />
+            android:textSize="26sp" />
 
         <TextView
             android:id="@+id/txt_value"

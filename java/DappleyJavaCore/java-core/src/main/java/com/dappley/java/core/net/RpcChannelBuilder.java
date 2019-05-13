@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RpcChannelBuilder {
     private ManagedChannelBuilder channelBuilder;
+    private static int MAX_CHANNEL_BYTES = 50 * 1024 * 1024;
 
     /**
      * Create a new channel
@@ -20,6 +21,7 @@ public class RpcChannelBuilder {
     public RpcChannelBuilder newChannel(String name, int port) {
         channelBuilder = ManagedChannelBuilder.forAddress(name, port)
                 .idleTimeout(15, TimeUnit.SECONDS)
+                .maxInboundMessageSize(MAX_CHANNEL_BYTES)
                 .usePlaintext();
         return this;
     }

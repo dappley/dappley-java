@@ -36,6 +36,7 @@ import com.today.step.lib.TodayStepService;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -245,7 +246,9 @@ public class StepFragment extends Fragment {
             public void run() {
                 boolean isSuccess = false;
                 try {
-                    String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), restStep);
+                    // 1 step convert to 10E+9 coin
+                    BigDecimal convertValue = new BigDecimal(String.valueOf(restStep)).multiply(com.dappley.java.core.util.Constant.COIN_DW);
+                    String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), convertValue.toPlainString());
                     isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);

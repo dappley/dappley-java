@@ -21,8 +21,8 @@
     <string name="layout_receive_address_tip">请输入收款钱包地址</string>
     <string name="layout_wallet_password">钱包密码</string>
     <string name="layout_wallet_password_tip">请输入钱包密码</string>
-    <string name="layout_transfer_amount">转账金额</string>
-    <string name="layout_transfer_amount_tip">请输入转账金额</string>
+    <string name="layout_transfer_amount">转账数量</string>
+    <string name="layout_transfer_amount_tip">请输入转账数量</string>
     <string name="layout_transfer">转账</string>
     <string name="layout_receive">收币</string>
     <string name="layout_balance">余额</string>
@@ -75,8 +75,8 @@
     <string name="note_receiver_illegal">收款地址格式错误</string>
     <string name="note_no_password">请输入钱包密码</string>
     <string name="note_error_password">钱包密码错误</string>
-    <string name="note_no_amount">请输入转账金额</string>
-    <string name="note_error_amount">请输入合法的转账金额</string>
+    <string name="note_no_amount">请输入转账数量</string>
+    <string name="note_error_amount">请输入合法的转账数量</string>
     <string name="note_transfer_success">转账成功</string>
     <string name="note_transfer_failed">转账失败，请检查输入的项目</string>
     <string name="note_permittion_read">数据读取失败，请打开本应用读写数据权限</string>

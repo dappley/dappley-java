@@ -3,6 +3,7 @@ package com.dappley.java.core.po;
 import com.dappley.java.core.crypto.Bip39;
 import com.dappley.java.core.crypto.KeyPairTool;
 import com.dappley.java.core.util.AddressUtil;
+import com.dappley.java.core.util.CoinUtil;
 import com.dappley.java.core.util.MnemonicLanguage;
 import lombok.Data;
 
@@ -48,5 +49,13 @@ public class Wallet implements Serializable {
         this.privateKey = privateKey;
         this.publicKey = KeyPairTool.getPublicKeyFromPrivate(privateKey);
         this.address = AddressUtil.getUserAddress(this.publicKey);
+    }
+
+    /**
+     * Returns formatted balance in DW unit mode
+     * @return
+     */
+    public String getBalanceDW() {
+        return CoinUtil.getDw(this.balance);
     }
 }

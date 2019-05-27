@@ -90,7 +90,7 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
             viewHolder.tvAddress.setText(wallet.getAddress());
         }
         if (wallet.getBalance() != null) {
-            viewHolder.tvValue.setText(wallet.getBalance().toString());
+            viewHolder.tvValue.setText(wallet.getBalanceDW());
         }
         if (position == selectedIndex) {
             viewHolder.chbWallet.setChecked(true);

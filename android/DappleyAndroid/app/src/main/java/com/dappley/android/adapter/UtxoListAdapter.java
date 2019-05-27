@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.dappley.android.R;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.java.core.po.Utxo;
+import com.dappley.java.core.util.CoinUtil;
 import com.dappley.java.core.util.HexUtil;
 
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class UtxoListAdapter extends RecyclerView.Adapter<UtxoListAdapter.ViewHo
             viewHolder.tvAddress.setText("to: " + Dappley.publicKeyToAddress(utxo.getPublicKeyHash()));
         }
         if (utxo.getAmount() != null) {
-            viewHolder.tvValue.setText(utxo.getAmount().toString());
+            viewHolder.tvValue.setText(CoinUtil.getDw(utxo.getAmount()));
         }
     }
 

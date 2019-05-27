@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.dappley.android.R;
 import com.dappley.java.core.po.Wallet;
+import com.dappley.java.core.util.CoinUtil;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class WalletHomePagerAdapter extends PagerAdapter {
             return;
         }
         for (View view : views) {
-            ((TextView) view).setText(balance.toString());
+            ((TextView) view).setText(CoinUtil.getDw(balance));
         }
     }
 
@@ -81,7 +82,7 @@ public class WalletHomePagerAdapter extends PagerAdapter {
                 viewHolder.tvAddress.setText(wallet.getAddress());
             }
             if (wallet.getBalance() != null) {
-                viewHolder.tvValue.setText(wallet.getBalance().toString());
+                viewHolder.tvValue.setText(wallet.getBalanceDW());
             }
         }
         Set<View> valueViews = viewsMap.get(position);

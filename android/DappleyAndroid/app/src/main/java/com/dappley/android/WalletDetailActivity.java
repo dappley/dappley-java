@@ -23,6 +23,7 @@ import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.Constant;
 import com.dappley.android.widget.EmptyView;
+import com.dappley.java.core.util.CoinUtil;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -268,7 +269,7 @@ public class WalletDetailActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_WALLET_DETAIL) {
-                tvValue.setText(balance.toString());
+                tvValue.setText(CoinUtil.getDw(balance));
                 adapter.setList(utxos);
 
                 refreshLayout.setRefreshing(false);
@@ -278,7 +279,7 @@ public class WalletDetailActivity extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
                 swipeRecyclerView.complete();
             } else if (msg.what == Constant.MSG_WALLET_DETAIL_REFRESH) {
-                tvValue.setText(balance.toString());
+                tvValue.setText(CoinUtil.getDw(balance));
             }
         }
     };

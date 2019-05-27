@@ -30,6 +30,7 @@ import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,7 +138,8 @@ public class TransferActivity extends AppCompatActivity {
         if (checkNull()) {
             return;
         }
-        final BigInteger amount = new BigInteger(etValue.getText().toString().trim());
+        BigDecimal inputValue = new BigDecimal(etValue.getText().toString().trim());
+        final BigInteger amount = inputValue.multiply(com.dappley.java.core.util.Constant.COIN_DW).toBigInteger();
         if (balance == null || amount.compareTo(balance) > 0) {
             Toast.makeText(this, R.string.note_balance_not_enought, Toast.LENGTH_SHORT).show();
             return;
@@ -247,12 +249,13 @@ public class TransferActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_no_amount, Toast.LENGTH_SHORT).show();
             return true;
         }
-        BigInteger value = null;
+        BigDecimal value = null;
         try {
-            value = new BigInteger(etValue.getText().toString().trim());
+            value = new BigDecimal(etValue.getText().toString().trim());
+            value = value.stripTrailingZeros();
         } catch (Exception e) {
         }
-        if (value == null || value.compareTo(BigInteger.ZERO) <= 0) {
+        if (value == null || value.compareTo(BigDecimal.ZERO) <= 0 || value.scale() > com.dappley.java.core.util.Constant.COIN_SCALE) {
             Toast.makeText(this, R.string.note_error_amount, Toast.LENGTH_SHORT).show();
             return true;
         }

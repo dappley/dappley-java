@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -97,11 +96,11 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
         } else {
             viewHolder.chbWallet.setChecked(false);
         }
-        if (wallet.getBalance() == null || wallet.getBalance().compareTo(baseValue) < 0) {
-            viewHolder.itemView.setClickable(false);
-        } else {
-            viewHolder.itemView.setClickable(true);
-        }
+//        if (wallet.getBalance() == null || wallet.getBalance().compareTo(baseValue) < 0) {
+//            viewHolder.itemView.setClickable(false);
+//        } else {
+//            viewHolder.itemView.setClickable(true);
+//        }
     }
 
     @Override

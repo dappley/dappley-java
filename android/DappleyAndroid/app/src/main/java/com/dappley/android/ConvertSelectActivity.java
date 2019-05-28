@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -22,11 +21,11 @@ import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
-import com.dappley.android.widget.DividerListItemDecoration;
 import com.dappley.android.widget.EmptyView;
+import com.dappley.java.core.po.Wallet;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -232,6 +231,11 @@ public class ConvertSelectActivity extends AppCompatActivity {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_WALLET_SELECT_LIST) {
                 adapter.setList(wallets);
+                int defaultIndex = PreferenceUtil.getInt(ConvertSelectActivity.this, Constant.PREF_CURRENT_WALLET, 0);
+                if (defaultIndex < 0 || defaultIndex > wallets.size() - 1) {
+                    defaultIndex = 0;
+                }
+                adapter.setSelectedIndex(defaultIndex);
                 LoadingDialog.close();
             } else if (msg.what == Constant.MSG_WALLET_SELECT_ERROR) {
                 Toast.makeText(ConvertSelectActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();

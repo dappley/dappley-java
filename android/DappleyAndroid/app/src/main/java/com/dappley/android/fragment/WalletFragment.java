@@ -34,6 +34,7 @@ import com.dappley.android.dialog.ConfirmDialog;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.window.WalletMenuWindow;
 import com.dappley.java.core.po.Wallet;
@@ -169,6 +170,8 @@ public class WalletFragment extends Fragment {
                 currentIndex = cycleViewPager.getRealItem();
                 refreshLayout.setRefreshing(true);
                 loadBalance();
+
+                PreferenceUtil.setInt(getActivity(), Constant.PREF_CURRENT_WALLET, currentIndex);
             }
 
             @Override
@@ -288,6 +291,7 @@ public class WalletFragment extends Fragment {
             if (wallets.size() == 0) {
                 linearAddWallet.setVisibility(View.VISIBLE);
                 cycleViewPager.setVisibility(View.GONE);
+                PreferenceUtil.setInt(getActivity(), Constant.PREF_CURRENT_WALLET, 0);
             } else {
                 linearAddWallet.setVisibility(View.GONE);
                 cycleViewPager.setVisibility(View.VISIBLE);
@@ -296,6 +300,7 @@ public class WalletFragment extends Fragment {
 
                 cycleViewPager.setAdapter(pagerAdapter);
                 currentIndex = 0;
+                PreferenceUtil.setInt(getActivity(), Constant.PREF_CURRENT_WALLET, currentIndex);
                 if (isActivityActive) {
                     startSchedule();
                 }

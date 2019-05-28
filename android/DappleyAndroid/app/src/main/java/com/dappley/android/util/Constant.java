@@ -36,6 +36,7 @@ public class Constant {
 
     public static final String PREF_CONVERTED_DAY = "converted-day";
     public static final String PREF_NATIVE_STEP = "isNativeStep";
+    public static final String PREF_CURRENT_WALLET = "currentWalletIndex";
 
     public static final int TYPE_APP_COUNTER = 1;
     public static final int TYPE_GOOGLE_COUNTER = 2;
@@ -49,6 +50,6 @@ public class Constant {
     public static final String STEP_CONTRACT = "{\"function\":\"record\",\"args\":[\"%s\",\"%s\"]}";
 
     public static final String URL_CONTRACT_BASE = "http://test.dappworks.xyz/";
-//    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
+    //    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
     public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record2";
 }

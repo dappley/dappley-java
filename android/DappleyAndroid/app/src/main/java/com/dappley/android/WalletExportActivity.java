@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.listener.BtnBackListener;
-import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
+import com.dappley.java.core.po.Wallet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

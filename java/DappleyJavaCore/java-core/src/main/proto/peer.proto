@@ -1,0 +1,10 @@
+syntax = "proto3";
+package networkpb;
+
+option java_package = "com.dappley.java.core.protobuf";
+option java_outer_classname = "PeerProto";
+
+message PeerInfo {
+    string id = 1;
+    repeated string address = 2;
+}

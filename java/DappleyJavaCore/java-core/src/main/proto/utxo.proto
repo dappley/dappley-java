@@ -1,0 +1,18 @@
+syntax = "proto3";
+package corepb;
+
+option java_package = "com.dappley.java.core.protobuf";
+option java_outer_classname = "UtxoProto";
+
+message Utxo {
+    bytes   amount = 1;
+    bytes   public_key_hash = 2;
+    bytes   txid = 3;
+    uint32  tx_index = 4;
+    uint32  utxoType = 5;
+    string  contract = 6;
+}
+
+message UtxoList {
+    repeated Utxo utxos = 1;
+}

@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.MainActivity;
@@ -17,17 +16,12 @@ import com.dappley.android.ModifyPasswordActivity;
 import com.dappley.android.R;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.dialog.SelectStepCounterDialog;
+import com.dappley.android.util.Constant;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.google.step.GoogleStep;
-import com.dappley.java.core.po.Wallet;
-import com.dappley.android.util.Constant;
-import com.dappley.android.util.StorageUtil;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

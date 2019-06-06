@@ -11,9 +11,9 @@ import android.widget.Toast;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.StorageUtil;
+import com.dappley.java.core.po.Wallet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

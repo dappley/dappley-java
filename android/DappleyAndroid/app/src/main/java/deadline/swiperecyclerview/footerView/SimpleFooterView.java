@@ -15,7 +15,7 @@ import com.dappley.android.R;
  * @author deadline
  * @time 2016/10/22
  */
-public class SimpleFooterView extends BaseFooterView{
+public class SimpleFooterView extends BaseFooterView {
 
     private TextView mText;
 
@@ -40,14 +40,13 @@ public class SimpleFooterView extends BaseFooterView{
     }
 
 
-
     @Override
     public void onLoadingMore() {
         progressBar.setVisibility(VISIBLE);
         mText.setVisibility(GONE);
     }
 
-    public void showText(){
+    public void showText() {
         progressBar.setVisibility(GONE);
         mText.setVisibility(VISIBLE);
     }

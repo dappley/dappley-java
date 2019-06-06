@@ -1092,6 +1092,16 @@ public final class BlockProto {
      * <code>uint64 height = 6;</code>
      */
     long getHeight();
+
+    /**
+     * <code>string producer = 7;</code>
+     */
+    java.lang.String getProducer();
+    /**
+     * <code>string producer = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getProducerBytes();
   }
   /**
    * Protobuf type {@code corepb.BlockHeader}
@@ -1112,6 +1122,7 @@ public final class BlockProto {
       timestamp_ = 0L;
       signature_ = com.google.protobuf.ByteString.EMPTY;
       height_ = 0L;
+      producer_ = "";
     }
 
     @java.lang.Override
@@ -1166,6 +1177,12 @@ public final class BlockProto {
             case 48: {
 
               height_ = input.readUInt64();
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              producer_ = s;
               break;
             }
             default: {
@@ -1254,6 +1271,40 @@ public final class BlockProto {
       return height_;
     }
 
+    public static final int PRODUCER_FIELD_NUMBER = 7;
+    private volatile java.lang.Object producer_;
+    /**
+     * <code>string producer = 7;</code>
+     */
+    public java.lang.String getProducer() {
+      java.lang.Object ref = producer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        producer_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string producer = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProducerBytes() {
+      java.lang.Object ref = producer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        producer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1285,6 +1336,9 @@ public final class BlockProto {
       }
       if (height_ != 0L) {
         output.writeUInt64(6, height_);
+      }
+      if (!getProducerBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, producer_);
       }
       unknownFields.writeTo(output);
     }
@@ -1319,6 +1373,9 @@ public final class BlockProto {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(6, height_);
       }
+      if (!getProducerBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, producer_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1347,6 +1404,8 @@ public final class BlockProto {
           .equals(other.getSignature());
       result = result && (getHeight()
           == other.getHeight());
+      result = result && getProducer()
+          .equals(other.getProducer());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1373,6 +1432,8 @@ public final class BlockProto {
       hash = (37 * hash) + HEIGHT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getHeight());
+      hash = (37 * hash) + PRODUCER_FIELD_NUMBER;
+      hash = (53 * hash) + getProducer().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1518,6 +1579,8 @@ public final class BlockProto {
 
         height_ = 0L;
 
+        producer_ = "";
+
         return this;
       }
 
@@ -1550,6 +1613,7 @@ public final class BlockProto {
         result.timestamp_ = timestamp_;
         result.signature_ = signature_;
         result.height_ = height_;
+        result.producer_ = producer_;
         onBuilt();
         return result;
       }
@@ -1615,6 +1679,10 @@ public final class BlockProto {
         }
         if (other.getHeight() != 0L) {
           setHeight(other.getHeight());
+        }
+        if (!other.getProducer().isEmpty()) {
+          producer_ = other.producer_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1809,6 +1877,75 @@ public final class BlockProto {
         onChanged();
         return this;
       }
+
+      private java.lang.Object producer_ = "";
+      /**
+       * <code>string producer = 7;</code>
+       */
+      public java.lang.String getProducer() {
+        java.lang.Object ref = producer_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          producer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string producer = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProducerBytes() {
+        java.lang.Object ref = producer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          producer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string producer = 7;</code>
+       */
+      public Builder setProducer(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        producer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string producer = 7;</code>
+       */
+      public Builder clearProducer() {
+        
+        producer_ = getDefaultInstance().getProducer();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string producer = 7;</code>
+       */
+      public Builder setProducerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        producer_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1884,12 +2021,12 @@ public final class BlockProto {
       "\n\013block.proto\022\006corepb\032\021transaction.proto" +
       "\"l\n\005Block\022#\n\006header\030\001 \001(\0132\023.corepb.Block" +
       "Header\022)\n\014transactions\030\002 \003(\0132\023.corepb.Tr" +
-      "ansaction\022\023\n\013parent_hash\030\003 \001(\014\"w\n\013BlockH" +
-      "eader\022\014\n\004hash\030\001 \001(\014\022\025\n\rprevious_hash\030\002 \001" +
-      "(\014\022\r\n\005nonce\030\003 \001(\003\022\021\n\ttimestamp\030\004 \001(\003\022\021\n\t" +
-      "signature\030\005 \001(\014\022\016\n\006height\030\006 \001(\004B,\n\036com.d" +
-      "appley.java.core.protobufB\nBlockProtob\006p" +
-      "roto3"
+      "ansaction\022\023\n\013parent_hash\030\003 \001(\014\"\211\001\n\013Block" +
+      "Header\022\014\n\004hash\030\001 \001(\014\022\025\n\rprevious_hash\030\002 " +
+      "\001(\014\022\r\n\005nonce\030\003 \001(\003\022\021\n\ttimestamp\030\004 \001(\003\022\021\n" +
+      "\tsignature\030\005 \001(\014\022\016\n\006height\030\006 \001(\004\022\020\n\010prod" +
+      "ucer\030\007 \001(\tB,\n\036com.dappley.java.core.prot" +
+      "obufB\nBlockProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1915,7 +2052,7 @@ public final class BlockProto {
     internal_static_corepb_BlockHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_corepb_BlockHeader_descriptor,
-        new java.lang.String[] { "Hash", "PreviousHash", "Nonce", "Timestamp", "Signature", "Height", });
+        new java.lang.String[] { "Hash", "PreviousHash", "Nonce", "Timestamp", "Signature", "Height", "Producer", });
     com.dappley.java.core.protobuf.TransactionProto.getDescriptor();
   }
 

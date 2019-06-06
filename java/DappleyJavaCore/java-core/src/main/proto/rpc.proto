@@ -1,8 +1,9 @@
 syntax = "proto3";
 package rpcpb;
-import "peerlist.proto";
+import "peer.proto";
 import "block.proto";
 import "transaction.proto";
+import "utxo.proto";
 
 option java_package = "com.dappley.java.core.protobuf";
 option java_outer_classname = "RpcProto";
@@ -21,6 +22,7 @@ service RpcService {
     rpc RpcGetNewTransaction(GetNewTransactionRequest) returns (stream GetNewTransactionResponse) {}
     rpc RpcSubscribe(SubscribeRequest) returns (stream SubscribeResponse) {}
     rpc RpcGetAllTransactionsFromTxPool(GetAllTransactionsRequest) returns (GetAllTransactionsResponse) {}
+    rpc RpcGetLastIrreversibleBlock(GetLastIrreversibleBlockRequest) returns (GetLastIrreversibleBlockResponse) {}
 }
 
 service AdminService{
@@ -105,6 +107,8 @@ message SubscribeRequest{
     repeated string topics = 1;
 }
 
+message GetLastIrreversibleBlockRequest {}
+
 // Responses
 
 message AddProducerResponse {}
@@ -123,7 +127,7 @@ message SendResponse {
 }
 
 message GetPeerInfoResponse {
-    networkpb.Peerlist peer_list = 1;
+    repeated networkpb.PeerInfo peer_list = 1;
 }
 
 message GetBlockchainInfoResponse {
@@ -141,16 +145,8 @@ message GetVersionResponse {
 }
 
 message GetUTXOResponse {
-    repeated UTXO utxos = 1;
+    repeated corepb.Utxo utxos = 1;
     repeated corepb.BlockHeader block_headers = 2; //The latest block headers
-}
-
-// TODO: Refactor to corepb.UTXO
-message UTXO {
-    bytes   amount = 1;
-    bytes   public_key_hash = 2;
-    bytes   txid = 3;
-    uint32  tx_index = 4;
 }
 
 message GetBlocksResponse {
@@ -187,4 +183,8 @@ message GetAllTransactionsRequest{}
 
 message GetAllTransactionsResponse{
     repeated corepb.Transaction transactions = 1;
+}
+
+message GetLastIrreversibleBlockResponse {
+    corepb.Block block = 1;
 }

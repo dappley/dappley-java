@@ -2,8 +2,8 @@ package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
 import com.dappley.java.core.protobuf.BlockProto;
-import com.dappley.java.core.protobuf.RpcProto;
 import com.dappley.java.core.protobuf.TransactionProto;
+import com.dappley.java.core.protobuf.UtxoProto;
 import com.google.protobuf.ByteString;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public interface ProtocalProvider {
 
     BlockChainInfo getBlockchainInfo();
 
-    List<RpcProto.UTXO> getUtxo(String address);
+    List<UtxoProto.Utxo> getUtxo(String address);
 
     List<BlockProto.Block> getBlocks(List<ByteString> startHashs, int count);
 

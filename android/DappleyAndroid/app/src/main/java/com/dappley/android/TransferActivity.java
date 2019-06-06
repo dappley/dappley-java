@@ -23,11 +23,11 @@ import com.dappley.android.adapter.WalletPagerAdapter;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
-import com.dappley.android.widget.AutoHeightViewPager;
-import com.dappley.java.core.po.Wallet;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
+import com.dappley.android.widget.AutoHeightViewPager;
+import com.dappley.java.core.po.Wallet;
 
 import java.io.IOException;
 import java.math.BigDecimal;

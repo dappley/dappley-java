@@ -1,6 +1,7 @@
 package com.dappley.java.core.po;
 
 import com.dappley.java.core.protobuf.RpcProto;
+import com.dappley.java.core.protobuf.UtxoProto;
 import com.dappley.java.core.util.ByteUtil;
 import com.dappley.java.core.util.SerializeUtil;
 import com.google.protobuf.ByteString;
@@ -25,7 +26,7 @@ public class Utxo {
      * Constructor with RpcProto.UTXO
      * @param utxo
      */
-    public Utxo(RpcProto.UTXO utxo) {
+    public Utxo(UtxoProto.Utxo utxo) {
         this.parseProto(utxo);
     }
 
@@ -39,10 +40,10 @@ public class Utxo {
     }
 
     /**
-     * Parse RpcProto.UTXO to this object.
-     * @param utxo RpcProto.UTXO
+     * Parse UtxoProto.Utxo to this object.
+     * @param utxo UtxoProto.Utxo
      */
-    public void parseProto(RpcProto.UTXO utxo) {
+    public void parseProto(UtxoProto.Utxo utxo) {
         if (utxo.getAmount() != null && utxo.getAmount().size() > 0) {
             this.setAmount(new BigInteger(1, utxo.getAmount().toByteArray()));
         } else {
@@ -54,11 +55,11 @@ public class Utxo {
     }
 
     /**
-     * Convert to RpcProto.UTXO
-     * @return RpcProto.UTXO
+     * Convert to UtxoProto.Utxo
+     * @return UtxoProto.Utxo
      */
-    public RpcProto.UTXO toProto() {
-        RpcProto.UTXO.Builder builder = RpcProto.UTXO.newBuilder();
+    public UtxoProto.Utxo toProto() {
+        UtxoProto.Utxo.Builder builder = UtxoProto.Utxo.newBuilder();
         builder.setAmount(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getAmount())));
         builder.setPublicKeyHash(ByteString.copyFrom(this.getTxId()));
         builder.setTxid(ByteString.copyFrom(this.getTxId()));

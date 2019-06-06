@@ -100,6 +100,10 @@ public class ConvertSelectActivity extends AppCompatActivity {
         if (baseValue == null) {
             baseValue = BigInteger.ZERO;
         }
+        selectedIndex = PreferenceUtil.getInt(ConvertSelectActivity.this, Constant.PREF_CURRENT_WALLET, 0);
+        if (selectedIndex < 0) {
+            selectedIndex = 0;
+        }
     }
 
     @OnClick(R.id.btn_confirm)
@@ -156,6 +160,10 @@ public class ConvertSelectActivity extends AppCompatActivity {
         adapter.setList(wallets);
 
         this.wallets = wallets;
+
+        if (wallets.size() > 0 && selectedIndex > wallets.size() - 1) {
+            selectedIndex = 0;
+        }
 
         swipeRecyclerView.setRefreshing(false);
 
@@ -231,11 +239,7 @@ public class ConvertSelectActivity extends AppCompatActivity {
             super.handleMessage(msg);
             if (msg.what == Constant.MSG_WALLET_SELECT_LIST) {
                 adapter.setList(wallets);
-                int defaultIndex = PreferenceUtil.getInt(ConvertSelectActivity.this, Constant.PREF_CURRENT_WALLET, 0);
-                if (defaultIndex < 0 || defaultIndex > wallets.size() - 1) {
-                    defaultIndex = 0;
-                }
-                adapter.setSelectedIndex(defaultIndex);
+                adapter.setSelectedIndex(selectedIndex);
                 LoadingDialog.close();
             } else if (msg.what == Constant.MSG_WALLET_SELECT_ERROR) {
                 Toast.makeText(ConvertSelectActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();

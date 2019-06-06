@@ -1,10 +1,7 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
-import com.dappley.java.core.protobuf.BlockProto;
-import com.dappley.java.core.protobuf.RpcProto;
-import com.dappley.java.core.protobuf.RpcServiceGrpc;
-import com.dappley.java.core.protobuf.TransactionProto;
+import com.dappley.java.core.protobuf.*;
 import com.dappley.java.core.util.Asserts;
 import com.google.protobuf.ByteString;
 import io.grpc.ConnectivityState;
@@ -106,14 +103,14 @@ public class RpcProtocalProvider implements ProtocalProvider {
     }
 
     @Override
-    public List<RpcProto.UTXO> getUtxo(String address) {
+    public List<UtxoProto.Utxo> getUtxo(String address) {
         Asserts.clientInit(channel);
         Asserts.channelOpen(channel);
         RpcProto.GetUTXORequest request = RpcProto.GetUTXORequest.newBuilder()
                 .setAddress(address)
                 .build();
         RpcProto.GetUTXOResponse response = getRpcServiceBlockingStub().rpcGetUTXO(request);
-        List<RpcProto.UTXO> utxos = response.getUtxosList();
+        List<UtxoProto.Utxo> utxos = response.getUtxosList();
         return utxos;
     }
 

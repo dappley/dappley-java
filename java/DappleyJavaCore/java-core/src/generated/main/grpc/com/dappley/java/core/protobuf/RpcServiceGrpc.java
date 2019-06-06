@@ -411,6 +411,38 @@ public final class RpcServiceGrpc {
      return getRpcGetAllTransactionsFromTxPoolMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse> getRpcGetLastIrreversibleBlockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetLastIrreversibleBlock",
+      requestType = com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse> getRpcGetLastIrreversibleBlockMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest, com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse> getRpcGetLastIrreversibleBlockMethod;
+    if ((getRpcGetLastIrreversibleBlockMethod = RpcServiceGrpc.getRpcGetLastIrreversibleBlockMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcGetLastIrreversibleBlockMethod = RpcServiceGrpc.getRpcGetLastIrreversibleBlockMethod) == null) {
+          RpcServiceGrpc.getRpcGetLastIrreversibleBlockMethod = getRpcGetLastIrreversibleBlockMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest, com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcGetLastIrreversibleBlock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcGetLastIrreversibleBlock"))
+                  .build();
+          }
+        }
+     }
+     return getRpcGetLastIrreversibleBlockMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -522,6 +554,13 @@ public final class RpcServiceGrpc {
       asyncUnimplementedUnaryCall(getRpcGetAllTransactionsFromTxPoolMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void rpcGetLastIrreversibleBlock(com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetLastIrreversibleBlockMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -608,6 +647,13 @@ public final class RpcServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest,
                 com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse>(
                   this, METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL)))
+          .addMethod(
+            getRpcGetLastIrreversibleBlockMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest,
+                com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse>(
+                  this, METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK)))
           .build();
     }
   }
@@ -725,6 +771,14 @@ public final class RpcServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRpcGetAllTransactionsFromTxPoolMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void rpcGetLastIrreversibleBlock(com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcGetLastIrreversibleBlockMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -830,6 +884,13 @@ public final class RpcServiceGrpc {
       return blockingUnaryCall(
           getChannel(), getRpcGetAllTransactionsFromTxPoolMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse rpcGetLastIrreversibleBlock(com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcGetLastIrreversibleBlockMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -929,6 +990,14 @@ public final class RpcServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRpcGetAllTransactionsFromTxPoolMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse> rpcGetLastIrreversibleBlock(
+        com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcGetLastIrreversibleBlockMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RPC_GET_VERSION = 0;
@@ -943,6 +1012,7 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_NEW_TRANSACTION = 9;
   private static final int METHODID_RPC_SUBSCRIBE = 10;
   private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 11;
+  private static final int METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1008,6 +1078,10 @@ public final class RpcServiceGrpc {
         case METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL:
           serviceImpl.rpcGetAllTransactionsFromTxPool((com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetAllTransactionsResponse>) responseObserver);
+          break;
+        case METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK:
+          serviceImpl.rpcGetLastIrreversibleBlock((com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -1082,6 +1156,7 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcGetNewTransactionMethod())
               .addMethod(getRpcSubscribeMethod())
               .addMethod(getRpcGetAllTransactionsFromTxPoolMethod())
+              .addMethod(getRpcGetLastIrreversibleBlockMethod())
               .build();
         }
       }

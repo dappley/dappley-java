@@ -3,7 +3,7 @@ package com.dappley.java.core.net;
 import com.dappley.java.core.po.Block;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.protobuf.BlockProto;
-import com.dappley.java.core.protobuf.RpcProto;
+import com.dappley.java.core.protobuf.UtxoProto;
 import com.dappley.java.core.util.HexUtil;
 import com.dappley.java.core.util.ObjectUtils;
 import com.google.protobuf.ByteString;
@@ -37,14 +37,14 @@ public class RemoteDataProvider implements DataProvider {
     @Override
     public List<Utxo> getUtxos(String address) {
         try {
-            List<RpcProto.UTXO> utxoList = protocalProvider.getUtxo(address);
+            List<UtxoProto.Utxo> utxoList = protocalProvider.getUtxo(address);
             if (utxoList == null) {
                 return null;
             }
             // format data
             List<Utxo> utxos = new ArrayList<>(utxoList.size());
             Utxo utxo;
-            for (RpcProto.UTXO u : utxoList) {
+            for (UtxoProto.Utxo u : utxoList) {
                 utxo = new Utxo(u);
                 utxos.add(utxo);
             }
@@ -104,11 +104,11 @@ public class RemoteDataProvider implements DataProvider {
             return balance;
         }
         // compute from getUtxo method
-        List<RpcProto.UTXO> utxos = protocalProvider.getUtxo(address);
+        List<UtxoProto.Utxo> utxos = protocalProvider.getUtxo(address);
         if (ObjectUtils.isEmpty(utxos)) {
             return balance;
         }
-        for (RpcProto.UTXO utxo : utxos) {
+        for (UtxoProto.Utxo utxo : utxos) {
             if (utxo == null || utxo.getAmount() == null || utxo.getAmount().size() == 0) {
                 continue;
             }

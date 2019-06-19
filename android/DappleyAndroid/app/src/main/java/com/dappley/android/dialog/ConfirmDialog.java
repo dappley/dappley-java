@@ -86,4 +86,12 @@ public class ConfirmDialog {
     public interface OnClickListener {
         public void onConfirm();
     }
+
+    public void setConfirmText(int resId) {
+        btnConfirm.setText(resId);
+    }
+
+    public void setCancelText(int resId) {
+        btnCancel.setText(resId);
+    }
 }

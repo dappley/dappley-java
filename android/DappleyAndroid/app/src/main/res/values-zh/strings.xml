@@ -67,6 +67,8 @@
     <string name="layout_copy_receive_address">复制收款地址</string>
     <string name="layout_click_add_wallet">点此处添加钱包</string>
     <string name="layout_select_step_counter">选择计步方式</string>
+    <string name="layout_yes">是</string>
+    <string name="layout_no">否</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>
@@ -112,6 +114,9 @@
     <string name="note_confirm_delete_wallet">确认删除当前钱包?</string>
     <string name="note_google_fit_failed">Google Fit 授权失败</string>
     <string name="note_google_fit_unavaiable">Google Fit 不可用</string>
+    <string name="note_receive_coin_failed">领取奖励失败</string>
+    <string name="note_receive_coin_success">领取奖励成功</string>
+    <string name="note_receive_coin_content">当前新创建的钱包可以领取一次代币奖励，是否领取？</string>
 
     <string name="net_not_connected">发送请求失败，请检查网络连接</string>
     <string name="net_server_connected_error">连接服务器失败，请稍后重试</string>

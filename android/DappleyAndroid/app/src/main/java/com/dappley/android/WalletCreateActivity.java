@@ -12,6 +12,7 @@ import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
+import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.java.core.po.Wallet;
 
@@ -61,6 +62,7 @@ public class WalletCreateActivity extends AppCompatActivity {
         Intent intent = new Intent(this, WalletMnemonicActivity.class);
         intent.putExtra("wallet", wallet);
         intent.putExtra("password", etPassword.getText().toString());
+        intent.putExtra("type", Constant.REQ_WALLET_CREATE);
         startActivity(intent);
         finish();
     }

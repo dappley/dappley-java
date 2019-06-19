@@ -31,6 +31,8 @@ import com.dappley.android.WalletDetailActivity;
 import com.dappley.android.WalletReceiveCodeActivity;
 import com.dappley.android.adapter.WalletHomePagerAdapter;
 import com.dappley.android.dialog.ConfirmDialog;
+import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
@@ -40,6 +42,9 @@ import com.dappley.android.window.WalletMenuWindow;
 import com.dappley.java.core.po.Wallet;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.google.zxing.activity.CaptureActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -272,6 +277,8 @@ public class WalletFragment extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity.checkReadPermission()) {
             readData();
+        } else {
+            return;
         }
     }
 
@@ -322,7 +329,56 @@ public class WalletFragment extends Fragment {
         Dappley.removeAddress(address);
 
         MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.loadChangedData();
+        mainActivity.loadChangedData(Constant.REQ_WALLET_DELETE, null);
+    }
+
+    public void receiveReward(final String address) {
+        ConfirmDialog confirmDialog = new ConfirmDialog(getActivity(), new ConfirmDialog.OnClickListener() {
+            @Override
+            public void onConfirm() {
+                LoadingDialog.show(getActivity());
+                requestReward(address);
+            }
+        });
+        confirmDialog.setTitle(R.string.note_confirm_title);
+        confirmDialog.setContent(R.string.note_receive_coin_content);
+        confirmDialog.setConfirmText(R.string.layout_yes);
+        confirmDialog.setCancelText(R.string.layout_no);
+        confirmDialog.show();
+    }
+
+    private void requestReward(String address) {
+        String url = String.format(Constant.URL_NEW_WALLET_REWARD, address);
+        RetrofitRequest.sendGetRequest(url, new RetrofitRequest.ResultHandler(getActivity()) {
+            @Override
+            public void onBeforeResult() {
+            }
+
+            @Override
+            public void onResult(String response) {
+                if (response == null || response.trim().length() == 0) {
+                    Toast.makeText(getActivity(), R.string.note_receive_coin_failed, Toast.LENGTH_SHORT).show();
+                    LoadingDialog.close();
+                    return;
+                }
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getInt("code") != 0) {
+                        Toast.makeText(getActivity(), R.string.note_receive_coin_failed, Toast.LENGTH_SHORT).show();
+                        LoadingDialog.close();
+                        return;
+                    }
+                    Toast.makeText(getActivity(), R.string.note_receive_coin_success, Toast.LENGTH_SHORT).show();
+                    LoadingDialog.close();
+                } catch (JSONException e) {
+                }
+            }
+
+            @Override
+            public void onAfterFailure() {
+                LoadingDialog.close();
+            }
+        });
     }
 
     public void startQrCode(Wallet wallet) {

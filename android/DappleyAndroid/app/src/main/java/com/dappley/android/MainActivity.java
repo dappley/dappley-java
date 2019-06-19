@@ -146,11 +146,14 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(receiver, filter);
     }
 
-    public void loadChangedData() {
+    public void loadChangedData(int type, String address) {
         WalletFragment walletFragment = getWalletFragment();
         if (walletFragment != null) {
             walletFragment.loadData();
             walletFragment.loadBalance();
+            if (type == Constant.REQ_WALLET_CREATE && address != null && address.length() > 0) {
+                walletFragment.receiveReward(address);
+            }
         }
         MeFragment meFragment = getMeFragment();
         if (meFragment != null) {
@@ -169,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (Constant.BROAD_WALLET_LIST_UPDATE.equals(intent.getAction())) {
-                loadChangedData();
+                int type = intent.getIntExtra("type", Constant.REQ_WALLET_CREATE);
+                String address = intent.getStringExtra("address");
+                loadChangedData(type, address);
             }
         }
     };

@@ -67,6 +67,8 @@
     <string name="layout_copy_receive_address">Copy Receive Address</string>
     <string name="layout_click_add_wallet">Click here to add a wallet</string>
     <string name="layout_select_step_counter">Select Step Counter</string>
+    <string name="layout_yes">Yes</string>
+    <string name="layout_no">No</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>
@@ -112,6 +114,9 @@
     <string name="note_confirm_delete_wallet">Sure to delete current wallet?</string>
     <string name="note_google_fit_failed">Google Fit authentication failed</string>
     <string name="note_google_fit_unavaiable">Google Fit unavailable</string>
+    <string name="note_receive_coin_failed">Receive initial coin failed</string>
+    <string name="note_receive_coin_success">Receive initial coin success</string>
+    <string name="note_receive_coin_content">Each new created wallet has a chance to receive a initial coin reward. Do you want to receive it?</string>
 
     <string name="net_not_connected">network not connected</string>
     <string name="net_server_connected_error">server connect error, please try later</string>

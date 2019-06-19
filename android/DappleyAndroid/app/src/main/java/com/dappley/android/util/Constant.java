@@ -30,7 +30,9 @@ public class Constant {
     public static final int MSG_GOOGLE_FAILED = 20019;
     public static final int MSG_GOOGLE_UNAVAIABLE = 20020;
 
+    public static final int REQ_WALLET_CREATE = 1;
     public static final int REQ_WALLET_IMPORT = 2;
+    public static final int REQ_WALLET_DELETE = 3;
 
     public static final String BROAD_WALLET_LIST_UPDATE = "30001";
 
@@ -52,4 +54,5 @@ public class Constant {
     public static final String URL_CONTRACT_BASE = "http://test.dappworks.xyz/";
     //    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
     public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record2";
+    public static final String URL_NEW_WALLET_REWARD = "http://api.dappworks.xyz/getReward?wallet=%s";
 }

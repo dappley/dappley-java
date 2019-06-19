@@ -73,7 +73,7 @@ public class WalletMnemonicActivity extends AppCompatActivity {
         Intent intent = getIntent();
         wallet = (Wallet) intent.getSerializableExtra("wallet");
         password = intent.getStringExtra("password");
-        type = intent.getIntExtra("type", 1);
+        type = intent.getIntExtra("type", Constant.REQ_WALLET_CREATE);
         if (type == Constant.REQ_WALLET_IMPORT) {
             tvTitle.setText(R.string.title_import_wallet);
         }
@@ -127,6 +127,8 @@ public class WalletMnemonicActivity extends AppCompatActivity {
             Dappley.addAddress(wallet.getAddress());
 
             Intent intent = new Intent(Constant.BROAD_WALLET_LIST_UPDATE);
+            intent.putExtra("type", type);
+            intent.putExtra("address", wallet.getAddress());
             sendBroadcast(intent);
             finish();
         } catch (IOException e) {

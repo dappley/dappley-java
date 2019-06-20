@@ -142,6 +142,42 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:background="@color/main_menu_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linear_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_menu_height"
+                    android:background="?selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/margin_15"
+                    android:paddingRight="@dimen/margin_15">
+
+                    <ImageView
+                        android:layout_width="@dimen/item_menu_left_icon"
+                        android:layout_height="@dimen/item_menu_left_icon"
+                        android:src="@drawable/menu_version" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_8"
+                        android:layout_weight="1"
+                        android:text="@string/layout_version"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/item_menu_right_icon"
+                        android:layout_height="@dimen/item_menu_right_icon"
+                        android:src="@drawable/menu_arrow_right" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 

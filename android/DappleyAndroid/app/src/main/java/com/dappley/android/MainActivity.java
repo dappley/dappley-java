@@ -29,10 +29,14 @@ import com.dappley.android.adapter.MainFragmentAdapter;
 import com.dappley.android.fragment.MeFragment;
 import com.dappley.android.fragment.StepFragment;
 import com.dappley.android.fragment.WalletFragment;
+import com.dappley.android.update.UpdateManager;
+import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.PreferenceUtil;
 import com.dappley.google.step.GoogleStep;
 import com.dappley.java.core.po.Wallet;
 
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -72,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         setTabs(tabLayout, getLayoutInflater(), TAB_TITLES, TAB_IMGS);
 
         registerBroadcast();
+
+        checkUpdate();
     }
 
     private void setTabs(TabLayout tabLayout, LayoutInflater inflater, int[] tabTitlees, int[] tabImgs) {
@@ -113,6 +119,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.setOffscreenPageLimit(TAB_TITLES.length);
+    }
+
+    private void checkUpdate() {
+        Calendar calendar = Calendar.getInstance();
+        String today = CommonUtil.formatDate(calendar.getTime(), "yyyy-MM-dd");
+        String checkDay = PreferenceUtil.get(this, Constant.PREF_CHECKDAY);
+        if (!checkDay.equals(today)) {
+            new UpdateManager(MainActivity.this, UpdateManager.CHECK_AUTO).checkUpdate();
+        }
+        PreferenceUtil.set(this, Constant.PREF_CHECKDAY, today);
     }
 
     public boolean checkReadPermission() {

@@ -16,6 +16,7 @@ import com.dappley.android.ModifyPasswordActivity;
 import com.dappley.android.R;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.dialog.SelectStepCounterDialog;
+import com.dappley.android.update.UpdateManager;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.google.step.GoogleStep;
@@ -88,6 +89,11 @@ public class MeFragment extends Fragment {
         dialog.setType(isNativeStep ? Constant.TYPE_APP_COUNTER : Constant.TYPE_GOOGLE_COUNTER);
         dialog.show();
         unLoginCounter = 0;
+    }
+
+    @OnClick(R.id.linear_version)
+    void version() {
+        new UpdateManager(getActivity(), UpdateManager.CHECK_USER).checkUpdate();
     }
 
     private void onCounterSelected(int type) {

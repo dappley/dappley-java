@@ -56,6 +56,7 @@
     <string name="layout_input_wallet_password">Input wallet password</string>
     <string name="layout_menu_wallet_password">Modify Wallet Password</string>
     <string name="layout_step_counter">Step Counter</string>
+    <string name="layout_version">APP Update</string>
     <string name="layout_wallet_sege">wallet(s)</string>
     <string name="layout_wallet_old_password">old password</string>
     <string name="layout_wallet_old_password_tip">wallet old password</string>
@@ -69,6 +70,12 @@
     <string name="layout_select_step_counter">Select Step Counter</string>
     <string name="layout_yes">Yes</string>
     <string name="layout_no">No</string>
+    <string name="layout_downloading">Downloading</string>
+    <string name="layout_version_checking">Checking new version...</string>
+    <string name="layout_version_new">New version was found, update now？</string>
+    <string name="layout_version_error">Check version error</string>
+    <string name="layout_download_error">Download error</string>
+    <string name="layout_version_no_new">No new version</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>

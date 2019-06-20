@@ -21,6 +21,8 @@ public class StorageUtil {
     private static final String FILE_WALLET = "wallet";
     private static final String FOLDER_STEP = "step";
 
+    private static final String PATH_APP_DOWNLOAD = "download";
+
     public static void saveWallet(Context context, Wallet wallet) throws IOException {
         List<Wallet> wallets = getWallets(context);
         if (wallets == null) {
@@ -177,5 +179,14 @@ public class StorageUtil {
         }
         steps.add(step);
         saveSteps(context, date, steps);
+    }
+
+    public static String getDownloadPath(Context context) {
+        File folder = context.getExternalFilesDir(null);
+        File downloadFolder = new File(folder, PATH_APP_DOWNLOAD);
+        if (!downloadFolder.exists()) {
+            downloadFolder.mkdir();
+        }
+        return downloadFolder.getAbsolutePath();
     }
 }

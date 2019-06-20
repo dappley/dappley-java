@@ -56,6 +56,7 @@
     <string name="layout_input_wallet_password">请输入钱包密码</string>
     <string name="layout_menu_wallet_password">修改钱包密码</string>
     <string name="layout_step_counter">计步方式</string>
+    <string name="layout_version">版本更新</string>
     <string name="layout_wallet_sege">个钱包</string>
     <string name="layout_wallet_old_password">旧密码</string>
     <string name="layout_wallet_old_password_tip">请输入钱包旧密码</string>
@@ -69,6 +70,12 @@
     <string name="layout_select_step_counter">选择计步方式</string>
     <string name="layout_yes">是</string>
     <string name="layout_no">否</string>
+    <string name="layout_downloading">下载中</string>
+    <string name="layout_version_checking">检测中，请稍后...</string>
+    <string name="layout_version_new">检测到新版本，是否立即更新？</string>
+    <string name="layout_version_error">检测版本过程出错</string>
+    <string name="layout_download_error">下载出错，请检查网络连接</string>
+    <string name="layout_version_no_new">未检测到新版本</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>

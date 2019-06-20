@@ -39,6 +39,7 @@ public class Constant {
     public static final String PREF_CONVERTED_DAY = "converted-day";
     public static final String PREF_NATIVE_STEP = "isNativeStep";
     public static final String PREF_CURRENT_WALLET = "currentWalletIndex";
+    public static final String PREF_CHECKDAY = "checkDay";
 
     public static final int TYPE_APP_COUNTER = 1;
     public static final int TYPE_GOOGLE_COUNTER = 2;
@@ -55,4 +56,6 @@ public class Constant {
     //    public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record";
     public static final String URL_CONTRACT_ADDRESS = URL_CONTRACT_BASE + "contract_addr/record2";
     public static final String URL_NEW_WALLET_REWARD = "http://api.dappworks.xyz/getReward?wallet=%s";
+    public static final String URL_APP_VERSION = URL_CONTRACT_BASE + "apks/version";
+    public static final String URL_APP_DOWNLOAD = URL_CONTRACT_BASE + "apks/%s";
 }

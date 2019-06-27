@@ -49,7 +49,7 @@ public class WalletHomePagerAdapter extends PagerAdapter {
             return;
         }
         for (View view : views) {
-            ((TextView) view).setText(CoinUtil.getDw(balance));
+            ((TextView) view).setText(CoinUtil.getDwWith2Points(balance));
         }
     }
 
@@ -81,7 +81,7 @@ public class WalletHomePagerAdapter extends PagerAdapter {
                 viewHolder.tvAddress.setText(wallet.getAddress());
             }
             if (wallet.getBalance() != null) {
-                viewHolder.tvValue.setText(wallet.getBalanceDW());
+                viewHolder.tvValue.setText(CoinUtil.getDwWith2Points(wallet.getBalance()));
             }
         }
         Set<View> valueViews = viewsMap.get(position);

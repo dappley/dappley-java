@@ -13,6 +13,16 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // If app is running in background, send it to foreground
+        if (!this.isTaskRoot()) {
+            Intent intent = getIntent();
+            if (intent != null) {
+                String action = intent.getAction();
+                if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN.equals(action)) {
+                    finish();
+                }
+            }
+        }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

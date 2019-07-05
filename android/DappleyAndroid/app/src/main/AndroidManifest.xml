@@ -20,7 +20,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".WelcomeActivity"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/WelcomeTheme">
             <intent-filter>
@@ -31,7 +30,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/MainTheme" />
         <activity

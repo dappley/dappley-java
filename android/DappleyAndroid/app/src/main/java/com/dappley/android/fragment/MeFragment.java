@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.MainActivity;
@@ -19,15 +20,21 @@ import com.dappley.android.dialog.SelectStepCounterDialog;
 import com.dappley.android.update.UpdateManager;
 import com.dappley.android.util.Constant;
 import com.dappley.android.util.PreferenceUtil;
+import com.dappley.android.util.VersionUtil;
 import com.dappley.google.step.GoogleStep;
 
 import java.lang.ref.WeakReference;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MeFragment extends Fragment {
     private static final String TAG = "MeFragment";
+
+    @BindView(R.id.txt_version)
+    TextView tvVersion;
+
     GoogleStep googleStep;
     int unLoginCounter;
 
@@ -47,6 +54,9 @@ public class MeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
         ButterKnife.bind(this, view);
+
+        initView();
+
         return view;
     }
 
@@ -70,6 +80,10 @@ public class MeFragment extends Fragment {
 //            tvWalletNum.setText("0");
 //        }
 //    }
+
+    private void initView() {
+        tvVersion.setText("v" + VersionUtil.getVerionName(getActivity()));
+    }
 
     @OnClick(R.id.linear_modify_password)
     void modifyPassword() {

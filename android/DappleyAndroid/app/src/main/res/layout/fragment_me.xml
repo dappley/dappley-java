@@ -172,6 +172,16 @@
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
+                    <TextView
+                        android:id="@+id/txt_version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/margin_8"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
                     <ImageView
                         android:layout_width="@dimen/item_menu_right_icon"
                         android:layout_height="@dimen/item_menu_right_icon"

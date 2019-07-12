@@ -4,6 +4,7 @@ import "peer.proto";
 import "block.proto";
 import "transaction.proto";
 import "utxo.proto";
+import "datastore.proto";
 
 option java_package = "com.dappley.java.core.protobuf";
 option java_outer_classname = "RpcProto";
@@ -23,6 +24,8 @@ service RpcService {
     rpc RpcSubscribe(SubscribeRequest) returns (stream SubscribeResponse) {}
     rpc RpcGetAllTransactionsFromTxPool(GetAllTransactionsRequest) returns (GetAllTransactionsResponse) {}
     rpc RpcGetLastIrreversibleBlock(GetLastIrreversibleBlockRequest) returns (GetLastIrreversibleBlockResponse) {}
+    rpc RpcEstimateGas(EstimateGasRequest) returns (EstimateGasResponse) {}
+    rpc RpcGasPrice(GasPriceRequest) returns (GasPriceResponse) {}
 }
 
 service AdminService{
@@ -32,6 +35,10 @@ service AdminService{
     rpc RpcSendFromMiner (SendFromMinerRequest) returns (SendFromMinerResponse) {}
     rpc RpcAddProducer (AddProducerRequest) returns (AddProducerResponse) {}
     rpc RpcUnlockWallet (UnlockWalletRequest) returns (UnlockWalletResponse) {}
+}
+
+service MetricService {
+    rpc RpcGetStats(MetricsServiceRequest) returns (GetStatsResponse) {}
 }
 
 // Requests
@@ -62,6 +69,8 @@ message SendRequest {
     string wallet_path = 4;
     bytes tip = 5;
     string data = 6;
+    bytes gas_limit = 7;
+    bytes gas_price = 8;
 }
 
 message GetPeerInfoRequest {}
@@ -107,8 +116,16 @@ message SubscribeRequest{
     repeated string topics = 1;
 }
 
+message MetricsServiceRequest {}
+
 message GetLastIrreversibleBlockRequest {}
 
+message EstimateGasRequest {
+    corepb.Transaction transaction = 1;
+}
+
+message GasPriceRequest {
+}
 // Responses
 
 message AddProducerResponse {}
@@ -185,6 +202,18 @@ message GetAllTransactionsResponse{
     repeated corepb.Transaction transactions = 1;
 }
 
+message GetStatsResponse {
+    metricspb.Metrics stats = 1;
+}
+
 message GetLastIrreversibleBlockResponse {
     corepb.Block block = 1;
+}
+
+message EstimateGasResponse {
+    uint64 gas = 1;
+}
+
+message GasPriceResponse {
+    uint64 gas_price = 1;
 }

@@ -9,6 +9,8 @@ message Transaction{
     repeated TXInput vin = 2;
     repeated TXOutput vout = 3;
     bytes tip = 4;
+    bytes gas_limit = 5;
+    bytes gas_price = 6;
 }
 
 message TXInput{

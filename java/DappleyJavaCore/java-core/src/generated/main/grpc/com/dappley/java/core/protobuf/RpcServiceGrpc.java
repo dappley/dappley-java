@@ -443,6 +443,70 @@ public final class RpcServiceGrpc {
      return getRpcGetLastIrreversibleBlockMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest,
+      com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse> getRpcEstimateGasMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcEstimateGas",
+      requestType = com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest,
+      com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse> getRpcEstimateGasMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest, com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse> getRpcEstimateGasMethod;
+    if ((getRpcEstimateGasMethod = RpcServiceGrpc.getRpcEstimateGasMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcEstimateGasMethod = RpcServiceGrpc.getRpcEstimateGasMethod) == null) {
+          RpcServiceGrpc.getRpcEstimateGasMethod = getRpcEstimateGasMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest, com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcEstimateGas"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcEstimateGas"))
+                  .build();
+          }
+        }
+     }
+     return getRpcEstimateGasMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GasPriceRequest,
+      com.dappley.java.core.protobuf.RpcProto.GasPriceResponse> getRpcGasPriceMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGasPrice",
+      requestType = com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GasPriceRequest,
+      com.dappley.java.core.protobuf.RpcProto.GasPriceResponse> getRpcGasPriceMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GasPriceRequest, com.dappley.java.core.protobuf.RpcProto.GasPriceResponse> getRpcGasPriceMethod;
+    if ((getRpcGasPriceMethod = RpcServiceGrpc.getRpcGasPriceMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcGasPriceMethod = RpcServiceGrpc.getRpcGasPriceMethod) == null) {
+          RpcServiceGrpc.getRpcGasPriceMethod = getRpcGasPriceMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.GasPriceRequest, com.dappley.java.core.protobuf.RpcProto.GasPriceResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcGasPrice"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcGasPrice"))
+                  .build();
+          }
+        }
+     }
+     return getRpcGasPriceMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -561,6 +625,20 @@ public final class RpcServiceGrpc {
       asyncUnimplementedUnaryCall(getRpcGetLastIrreversibleBlockMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void rpcEstimateGas(com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcEstimateGasMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rpcGasPrice(com.dappley.java.core.protobuf.RpcProto.GasPriceRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GasPriceResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGasPriceMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -654,6 +732,20 @@ public final class RpcServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest,
                 com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse>(
                   this, METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK)))
+          .addMethod(
+            getRpcEstimateGasMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest,
+                com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse>(
+                  this, METHODID_RPC_ESTIMATE_GAS)))
+          .addMethod(
+            getRpcGasPriceMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.GasPriceRequest,
+                com.dappley.java.core.protobuf.RpcProto.GasPriceResponse>(
+                  this, METHODID_RPC_GAS_PRICE)))
           .build();
     }
   }
@@ -779,6 +871,22 @@ public final class RpcServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRpcGetLastIrreversibleBlockMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void rpcEstimateGas(com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcEstimateGasMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rpcGasPrice(com.dappley.java.core.protobuf.RpcProto.GasPriceRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GasPriceResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcGasPriceMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -891,6 +999,20 @@ public final class RpcServiceGrpc {
       return blockingUnaryCall(
           getChannel(), getRpcGetLastIrreversibleBlockMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse rpcEstimateGas(com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcEstimateGasMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.GasPriceResponse rpcGasPrice(com.dappley.java.core.protobuf.RpcProto.GasPriceRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcGasPriceMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -998,6 +1120,22 @@ public final class RpcServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRpcGetLastIrreversibleBlockMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse> rpcEstimateGas(
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcEstimateGasMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GasPriceResponse> rpcGasPrice(
+        com.dappley.java.core.protobuf.RpcProto.GasPriceRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcGasPriceMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RPC_GET_VERSION = 0;
@@ -1013,6 +1151,8 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_SUBSCRIBE = 10;
   private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 11;
   private static final int METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK = 12;
+  private static final int METHODID_RPC_ESTIMATE_GAS = 13;
+  private static final int METHODID_RPC_GAS_PRICE = 14;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1082,6 +1222,14 @@ public final class RpcServiceGrpc {
         case METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK:
           serviceImpl.rpcGetLastIrreversibleBlock((com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockResponse>) responseObserver);
+          break;
+        case METHODID_RPC_ESTIMATE_GAS:
+          serviceImpl.rpcEstimateGas((com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse>) responseObserver);
+          break;
+        case METHODID_RPC_GAS_PRICE:
+          serviceImpl.rpcGasPrice((com.dappley.java.core.protobuf.RpcProto.GasPriceRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GasPriceResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -1157,6 +1305,8 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcSubscribeMethod())
               .addMethod(getRpcGetAllTransactionsFromTxPoolMethod())
               .addMethod(getRpcGetLastIrreversibleBlockMethod())
+              .addMethod(getRpcEstimateGasMethod())
+              .addMethod(getRpcGasPriceMethod())
               .build();
         }
       }

@@ -211,9 +211,9 @@ message GetLastIrreversibleBlockResponse {
 }
 
 message EstimateGasResponse {
-    uint64 gas = 1;
+    bytes gas_count = 1;
 }
 
 message GasPriceResponse {
-    uint64 gas_price = 1;
+    bytes gas_price = 1;
 }

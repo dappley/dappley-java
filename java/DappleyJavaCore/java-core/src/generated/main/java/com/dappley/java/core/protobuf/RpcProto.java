@@ -25858,9 +25858,9 @@ public final class RpcProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 gas = 1;</code>
+     * <code>bytes gas_count = 1;</code>
      */
-    long getGas();
+    com.google.protobuf.ByteString getGasCount();
   }
   /**
    * Protobuf type {@code rpcpb.EstimateGasResponse}
@@ -25875,7 +25875,7 @@ public final class RpcProto {
       super(builder);
     }
     private EstimateGasResponse() {
-      gas_ = 0L;
+      gasCount_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -25902,9 +25902,9 @@ public final class RpcProto {
             case 0:
               done = true;
               break;
-            case 8: {
+            case 10: {
 
-              gas_ = input.readUInt64();
+              gasCount_ = input.readBytes();
               break;
             }
             default: {
@@ -25939,13 +25939,13 @@ public final class RpcProto {
               com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.class, com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.Builder.class);
     }
 
-    public static final int GAS_FIELD_NUMBER = 1;
-    private long gas_;
+    public static final int GAS_COUNT_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString gasCount_;
     /**
-     * <code>uint64 gas = 1;</code>
+     * <code>bytes gas_count = 1;</code>
      */
-    public long getGas() {
-      return gas_;
+    public com.google.protobuf.ByteString getGasCount() {
+      return gasCount_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -25962,8 +25962,8 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (gas_ != 0L) {
-        output.writeUInt64(1, gas_);
+      if (!gasCount_.isEmpty()) {
+        output.writeBytes(1, gasCount_);
       }
       unknownFields.writeTo(output);
     }
@@ -25974,9 +25974,9 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (gas_ != 0L) {
+      if (!gasCount_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, gas_);
+          .computeBytesSize(1, gasCount_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -25994,8 +25994,8 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse other = (com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse) obj;
 
       boolean result = true;
-      result = result && (getGas()
-          == other.getGas());
+      result = result && getGasCount()
+          .equals(other.getGasCount());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -26007,9 +26007,8 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + GAS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getGas());
+      hash = (37 * hash) + GAS_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getGasCount().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -26143,7 +26142,7 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        gas_ = 0L;
+        gasCount_ = com.google.protobuf.ByteString.EMPTY;
 
         return this;
       }
@@ -26171,7 +26170,7 @@ public final class RpcProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse result = new com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse(this);
-        result.gas_ = gas_;
+        result.gasCount_ = gasCount_;
         onBuilt();
         return result;
       }
@@ -26220,8 +26219,8 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.getDefaultInstance()) return this;
-        if (other.getGas() != 0L) {
-          setGas(other.getGas());
+        if (other.getGasCount() != com.google.protobuf.ByteString.EMPTY) {
+          setGasCount(other.getGasCount());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -26252,28 +26251,31 @@ public final class RpcProto {
         return this;
       }
 
-      private long gas_ ;
+      private com.google.protobuf.ByteString gasCount_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>uint64 gas = 1;</code>
+       * <code>bytes gas_count = 1;</code>
        */
-      public long getGas() {
-        return gas_;
+      public com.google.protobuf.ByteString getGasCount() {
+        return gasCount_;
       }
       /**
-       * <code>uint64 gas = 1;</code>
+       * <code>bytes gas_count = 1;</code>
        */
-      public Builder setGas(long value) {
-        
-        gas_ = value;
+      public Builder setGasCount(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasCount_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 gas = 1;</code>
+       * <code>bytes gas_count = 1;</code>
        */
-      public Builder clearGas() {
+      public Builder clearGasCount() {
         
-        gas_ = 0L;
+        gasCount_ = getDefaultInstance().getGasCount();
         onChanged();
         return this;
       }
@@ -26335,9 +26337,9 @@ public final class RpcProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 gas_price = 1;</code>
+     * <code>bytes gas_price = 1;</code>
      */
-    long getGasPrice();
+    com.google.protobuf.ByteString getGasPrice();
   }
   /**
    * Protobuf type {@code rpcpb.GasPriceResponse}
@@ -26352,7 +26354,7 @@ public final class RpcProto {
       super(builder);
     }
     private GasPriceResponse() {
-      gasPrice_ = 0L;
+      gasPrice_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -26379,9 +26381,9 @@ public final class RpcProto {
             case 0:
               done = true;
               break;
-            case 8: {
+            case 10: {
 
-              gasPrice_ = input.readUInt64();
+              gasPrice_ = input.readBytes();
               break;
             }
             default: {
@@ -26417,11 +26419,11 @@ public final class RpcProto {
     }
 
     public static final int GAS_PRICE_FIELD_NUMBER = 1;
-    private long gasPrice_;
+    private com.google.protobuf.ByteString gasPrice_;
     /**
-     * <code>uint64 gas_price = 1;</code>
+     * <code>bytes gas_price = 1;</code>
      */
-    public long getGasPrice() {
+    public com.google.protobuf.ByteString getGasPrice() {
       return gasPrice_;
     }
 
@@ -26439,8 +26441,8 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (gasPrice_ != 0L) {
-        output.writeUInt64(1, gasPrice_);
+      if (!gasPrice_.isEmpty()) {
+        output.writeBytes(1, gasPrice_);
       }
       unknownFields.writeTo(output);
     }
@@ -26451,9 +26453,9 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
-      if (gasPrice_ != 0L) {
+      if (!gasPrice_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, gasPrice_);
+          .computeBytesSize(1, gasPrice_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -26471,8 +26473,8 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.GasPriceResponse other = (com.dappley.java.core.protobuf.RpcProto.GasPriceResponse) obj;
 
       boolean result = true;
-      result = result && (getGasPrice()
-          == other.getGasPrice());
+      result = result && getGasPrice()
+          .equals(other.getGasPrice());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -26485,8 +26487,7 @@ public final class RpcProto {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + GAS_PRICE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getGasPrice());
+      hash = (53 * hash) + getGasPrice().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -26620,7 +26621,7 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        gasPrice_ = 0L;
+        gasPrice_ = com.google.protobuf.ByteString.EMPTY;
 
         return this;
       }
@@ -26697,7 +26698,7 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GasPriceResponse other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.getDefaultInstance()) return this;
-        if (other.getGasPrice() != 0L) {
+        if (other.getGasPrice() != com.google.protobuf.ByteString.EMPTY) {
           setGasPrice(other.getGasPrice());
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -26729,28 +26730,31 @@ public final class RpcProto {
         return this;
       }
 
-      private long gasPrice_ ;
+      private com.google.protobuf.ByteString gasPrice_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>uint64 gas_price = 1;</code>
+       * <code>bytes gas_price = 1;</code>
        */
-      public long getGasPrice() {
+      public com.google.protobuf.ByteString getGasPrice() {
         return gasPrice_;
       }
       /**
-       * <code>uint64 gas_price = 1;</code>
+       * <code>bytes gas_price = 1;</code>
        */
-      public Builder setGasPrice(long value) {
-        
+      public Builder setGasPrice(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         gasPrice_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 gas_price = 1;</code>
+       * <code>bytes gas_price = 1;</code>
        */
       public Builder clearGasPrice() {
         
-        gasPrice_ = 0L;
+        gasPrice_ = getDefaultInstance().getGasPrice();
         onChanged();
         return this;
       }
@@ -27102,55 +27106,55 @@ public final class RpcProto {
       "ion\"5\n\020GetStatsResponse\022!\n\005stats\030\001 \001(\0132\022" +
       ".metricspb.Metrics\"@\n GetLastIrreversibl" +
       "eBlockResponse\022\034\n\005block\030\001 \001(\0132\r.corepb.B" +
-      "lock\"\"\n\023EstimateGasResponse\022\013\n\003gas\030\001 \001(\004" +
-      "\"%\n\020GasPriceResponse\022\021\n\tgas_price\030\001 \001(\0042" +
-      "\367\t\n\nRpcService\022F\n\rRpcGetVersion\022\030.rpcpb." +
-      "GetVersionRequest\032\031.rpcpb.GetVersionResp" +
-      "onse\"\000\022F\n\rRpcGetBalance\022\030.rpcpb.GetBalan" +
-      "ceRequest\032\031.rpcpb.GetBalanceResponse\"\000\022[" +
-      "\n\024RpcGetBlockchainInfo\022\037.rpcpb.GetBlockc" +
-      "hainInfoRequest\032 .rpcpb.GetBlockchainInf" +
-      "oResponse\"\000\022=\n\nRpcGetUTXO\022\025.rpcpb.GetUTX" +
-      "ORequest\032\026.rpcpb.GetUTXOResponse\"\000\022C\n\014Rp" +
-      "cGetBlocks\022\027.rpcpb.GetBlocksRequest\032\030.rp" +
-      "cpb.GetBlocksResponse\"\000\022R\n\021RpcGetBlockBy" +
-      "Hash\022\034.rpcpb.GetBlockByHashRequest\032\035.rpc" +
-      "pb.GetBlockByHashResponse\"\000\022X\n\023RpcGetBlo" +
-      "ckByHeight\022\036.rpcpb.GetBlockByHeightReque" +
-      "st\032\037.rpcpb.GetBlockByHeightResponse\"\000\022U\n" +
-      "\022RpcSendTransaction\022\035.rpcpb.SendTransact" +
-      "ionRequest\032\036.rpcpb.SendTransactionRespon" +
-      "se\"\000\022d\n\027RpcSendBatchTransaction\022\".rpcpb." +
-      "SendBatchTransactionRequest\032#.rpcpb.Send" +
-      "BatchTransactionResponse\"\000\022]\n\024RpcGetNewT" +
-      "ransaction\022\037.rpcpb.GetNewTransactionRequ" +
-      "est\032 .rpcpb.GetNewTransactionResponse\"\0000" +
-      "\001\022E\n\014RpcSubscribe\022\027.rpcpb.SubscribeReque" +
-      "st\032\030.rpcpb.SubscribeResponse\"\0000\001\022h\n\037RpcG" +
-      "etAllTransactionsFromTxPool\022 .rpcpb.GetA" +
-      "llTransactionsRequest\032!.rpcpb.GetAllTran" +
-      "sactionsResponse\"\000\022p\n\033RpcGetLastIrrevers" +
-      "ibleBlock\022&.rpcpb.GetLastIrreversibleBlo" +
-      "ckRequest\032\'.rpcpb.GetLastIrreversibleBlo" +
-      "ckResponse\"\000\022I\n\016RpcEstimateGas\022\031.rpcpb.E" +
-      "stimateGasRequest\032\032.rpcpb.EstimateGasRes" +
-      "ponse\"\000\022@\n\013RpcGasPrice\022\026.rpcpb.GasPriceR" +
-      "equest\032\027.rpcpb.GasPriceResponse\"\0002\270\003\n\014Ad" +
-      "minService\022=\n\nRpcAddPeer\022\025.rpcpb.AddPeer" +
-      "Request\032\026.rpcpb.AddPeerResponse\"\000\0224\n\007Rpc" +
-      "Send\022\022.rpcpb.SendRequest\032\023.rpcpb.SendRes" +
-      "ponse\"\000\022I\n\016RpcGetPeerInfo\022\031.rpcpb.GetPee" +
-      "rInfoRequest\032\032.rpcpb.GetPeerInfoResponse" +
-      "\"\000\022O\n\020RpcSendFromMiner\022\033.rpcpb.SendFromM" +
-      "inerRequest\032\034.rpcpb.SendFromMinerRespons" +
-      "e\"\000\022I\n\016RpcAddProducer\022\031.rpcpb.AddProduce" +
-      "rRequest\032\032.rpcpb.AddProducerResponse\"\000\022L" +
-      "\n\017RpcUnlockWallet\022\032.rpcpb.UnlockWalletRe" +
-      "quest\032\033.rpcpb.UnlockWalletResponse\"\0002W\n\r" +
-      "MetricService\022F\n\013RpcGetStats\022\034.rpcpb.Met" +
-      "ricsServiceRequest\032\027.rpcpb.GetStatsRespo" +
-      "nse\"\000B*\n\036com.dappley.java.core.protobufB" +
-      "\010RpcProtob\006proto3"
+      "lock\"(\n\023EstimateGasResponse\022\021\n\tgas_count" +
+      "\030\001 \001(\014\"%\n\020GasPriceResponse\022\021\n\tgas_price\030" +
+      "\001 \001(\0142\367\t\n\nRpcService\022F\n\rRpcGetVersion\022\030." +
+      "rpcpb.GetVersionRequest\032\031.rpcpb.GetVersi" +
+      "onResponse\"\000\022F\n\rRpcGetBalance\022\030.rpcpb.Ge" +
+      "tBalanceRequest\032\031.rpcpb.GetBalanceRespon" +
+      "se\"\000\022[\n\024RpcGetBlockchainInfo\022\037.rpcpb.Get" +
+      "BlockchainInfoRequest\032 .rpcpb.GetBlockch" +
+      "ainInfoResponse\"\000\022=\n\nRpcGetUTXO\022\025.rpcpb." +
+      "GetUTXORequest\032\026.rpcpb.GetUTXOResponse\"\000" +
+      "\022C\n\014RpcGetBlocks\022\027.rpcpb.GetBlocksReques" +
+      "t\032\030.rpcpb.GetBlocksResponse\"\000\022R\n\021RpcGetB" +
+      "lockByHash\022\034.rpcpb.GetBlockByHashRequest" +
+      "\032\035.rpcpb.GetBlockByHashResponse\"\000\022X\n\023Rpc" +
+      "GetBlockByHeight\022\036.rpcpb.GetBlockByHeigh" +
+      "tRequest\032\037.rpcpb.GetBlockByHeightRespons" +
+      "e\"\000\022U\n\022RpcSendTransaction\022\035.rpcpb.SendTr" +
+      "ansactionRequest\032\036.rpcpb.SendTransaction" +
+      "Response\"\000\022d\n\027RpcSendBatchTransaction\022\"." +
+      "rpcpb.SendBatchTransactionRequest\032#.rpcp" +
+      "b.SendBatchTransactionResponse\"\000\022]\n\024RpcG" +
+      "etNewTransaction\022\037.rpcpb.GetNewTransacti" +
+      "onRequest\032 .rpcpb.GetNewTransactionRespo" +
+      "nse\"\0000\001\022E\n\014RpcSubscribe\022\027.rpcpb.Subscrib" +
+      "eRequest\032\030.rpcpb.SubscribeResponse\"\0000\001\022h" +
+      "\n\037RpcGetAllTransactionsFromTxPool\022 .rpcp" +
+      "b.GetAllTransactionsRequest\032!.rpcpb.GetA" +
+      "llTransactionsResponse\"\000\022p\n\033RpcGetLastIr" +
+      "reversibleBlock\022&.rpcpb.GetLastIrreversi" +
+      "bleBlockRequest\032\'.rpcpb.GetLastIrreversi" +
+      "bleBlockResponse\"\000\022I\n\016RpcEstimateGas\022\031.r" +
+      "pcpb.EstimateGasRequest\032\032.rpcpb.Estimate" +
+      "GasResponse\"\000\022@\n\013RpcGasPrice\022\026.rpcpb.Gas" +
+      "PriceRequest\032\027.rpcpb.GasPriceResponse\"\0002" +
+      "\270\003\n\014AdminService\022=\n\nRpcAddPeer\022\025.rpcpb.A" +
+      "ddPeerRequest\032\026.rpcpb.AddPeerResponse\"\000\022" +
+      "4\n\007RpcSend\022\022.rpcpb.SendRequest\032\023.rpcpb.S" +
+      "endResponse\"\000\022I\n\016RpcGetPeerInfo\022\031.rpcpb." +
+      "GetPeerInfoRequest\032\032.rpcpb.GetPeerInfoRe" +
+      "sponse\"\000\022O\n\020RpcSendFromMiner\022\033.rpcpb.Sen" +
+      "dFromMinerRequest\032\034.rpcpb.SendFromMinerR" +
+      "esponse\"\000\022I\n\016RpcAddProducer\022\031.rpcpb.AddP" +
+      "roducerRequest\032\032.rpcpb.AddProducerRespon" +
+      "se\"\000\022L\n\017RpcUnlockWallet\022\032.rpcpb.UnlockWa" +
+      "lletRequest\032\033.rpcpb.UnlockWalletResponse" +
+      "\"\0002W\n\rMetricService\022F\n\013RpcGetStats\022\034.rpc" +
+      "pb.MetricsServiceRequest\032\027.rpcpb.GetStat" +
+      "sResponse\"\000B*\n\036com.dappley.java.core.pro" +
+      "tobufB\010RpcProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -27438,7 +27442,7 @@ public final class RpcProto {
     internal_static_rpcpb_EstimateGasResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_EstimateGasResponse_descriptor,
-        new java.lang.String[] { "Gas", });
+        new java.lang.String[] { "GasCount", });
     internal_static_rpcpb_GasPriceResponse_descriptor =
       getDescriptor().getMessageTypes().get(45);
     internal_static_rpcpb_GasPriceResponse_fieldAccessorTable = new

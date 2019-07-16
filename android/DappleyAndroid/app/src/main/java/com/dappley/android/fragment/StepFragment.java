@@ -73,6 +73,7 @@ public class StepFragment extends Fragment {
     String successString;
 
     String contractAddressStep = Constant.ADDRESS_STEP_CONTRACT;
+    String contract;
     int todayStep;
     int convertedStep;
     int restStep;
@@ -230,7 +231,12 @@ public class StepFragment extends Fragment {
                     return;
                 }
                 contractAddressStep = response;
-                toConvert(wallet);
+
+                // step convert to 10E+9 coin
+                BigDecimal convertValue = new BigDecimal(String.valueOf(restStep)).multiply(com.dappley.java.core.util.Constant.COIN_DW);
+                contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), convertValue.toPlainString());
+
+                requestGasCountAndPrice(wallet);
             }
 
             @Override
@@ -240,16 +246,32 @@ public class StepFragment extends Fragment {
         });
     }
 
-    private void toConvert(final Wallet wallet) {
+    private void requestGasCountAndPrice(final Wallet wallet) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    BigInteger gasLimit = Dappley.estimateGas(wallet.getAddress(), wallet.getPrivateKey(), contractAddressStep, contract);
+                    BigInteger gasPrice = Dappley.getGasPrice();
+                    toConvert(wallet, gasLimit, gasPrice);
+                } catch (Exception e) {
+                    Message msg = handler.obtainMessage(Constant.MSG_CONVERT_FINISH);
+                    msg.obj = false;
+                    handler.sendMessage(msg);
+                    Log.e(TAG, "requestGasCountAndPrice: ", e);
+                }
+            }
+        }).start();
+    }
+
+    private void toConvert(final Wallet wallet, final BigInteger gasLimit, final BigInteger gasPrice) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 boolean isSuccess = false;
                 try {
-                    // 1 step convert to 10E+9 coin
-                    BigDecimal convertValue = new BigDecimal(String.valueOf(restStep)).multiply(com.dappley.java.core.util.Constant.COIN_DW);
-                    String contract = String.format(Constant.STEP_CONTRACT, wallet.getAddress(), convertValue.toPlainString());
-                    isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), contract);
+                    BigInteger tip = BigInteger.ZERO;
+                    isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), tip, gasLimit, gasPrice, contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
                 }

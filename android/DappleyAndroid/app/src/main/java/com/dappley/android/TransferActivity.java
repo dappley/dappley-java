@@ -152,7 +152,8 @@ public class TransferActivity extends AppCompatActivity {
                 String toAddress = etToAddress.getText().toString().trim();
                 boolean isSuccess = false;
                 try {
-                    isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey());
+                    BigInteger tip = BigInteger.ZERO;
+                    isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
                 } catch (Exception e) {
                     Log.e(TAG, "transfer: ", e);
                 }

@@ -28,12 +28,15 @@ public class TransactionManager {
      * @param toAddress  account address to be transfered
      * @param amount     alue to be transfered
      * @param privateKey
+     * @param tip        transaction tip
+     * @param gasLimit   max gas consumption
+     * @param gasPrice   gas price
      * @param contract   contract content
      * @return Transaction a new transaction object
      */
-    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, BigInteger privateKey, String contract) {
+    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
         ECKeyPair keyPair = ECKeyPair.create(privateKey);
-        return newTransaction(utxos, toAddress, amount, keyPair, contract);
+        return newTransaction(utxos, toAddress, amount, keyPair, tip, gasLimit, gasPrice, contract);
     }
 
     /**
@@ -42,19 +45,28 @@ public class TransactionManager {
      * @param toAddress account address to be transfered
      * @param amount    value to be transfered
      * @param ecKeyPair user's keypair
+     * @param tip       transaction tip
+     * @param gasLimit  max gas consumption
+     * @param gasPrice  gas price
      * @param contract  contract content
      * @return Transaction a new transaction object
      */
-    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair, String contract) {
+    public static Transaction newTransaction(List<Utxo> utxos, String toAddress, BigInteger amount, ECKeyPair ecKeyPair, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
         Transaction transaction = new Transaction();
         // add vin list and return the total amount of vin values
         BigInteger totalAmount = buildVin(transaction, utxos, ecKeyPair);
 
+        BigInteger change = calculateChange(totalAmount, amount, tip, gasLimit, gasPrice);
+
         // add vout list. If there is change is this transaction, vout list wound have two elements, or have just one to coin receiver.
-        buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair, contract);
+        buildVout(transaction, toAddress, amount, change, ecKeyPair, contract);
 
         // add default tip value
         transaction.setTip(TIP_DEFAULT);
+
+        // gas limit and price
+        transaction.setGasLimit(gasLimit);
+        transaction.setGasPrice(gasPrice);
 
         // generate Id
         transaction.createId();
@@ -97,12 +109,12 @@ public class TransactionManager {
      * @param transaction
      * @param toAddress   To User address
      * @param amount      transfer account
-     * @param totalAmount utxo's all vout values
+     * @param change      total change, give back to from address
      * @param contract    contract content
      * @param ecKeyPair   user's keypair
      */
-    private static void buildVout(Transaction transaction, String toAddress, BigInteger amount, BigInteger totalAmount, ECKeyPair ecKeyPair, String contract) {
-        if (totalAmount.compareTo(amount) < 0) {
+    private static void buildVout(Transaction transaction, String toAddress, BigInteger amount, BigInteger change, ECKeyPair ecKeyPair, String contract) {
+        if (change != null && change.compareTo(BigInteger.ZERO) < 0) {
             return;
         }
         TxOutput txOutput = new TxOutput();
@@ -112,21 +124,52 @@ public class TransactionManager {
             }
             // set contract output
             txOutput.setContract(contract);
+            txOutput.setPublicKeyHash(HashUtil.getPublicKeyHash(toAddress));
+            txOutput.setValue(ByteUtil.bigInteger2Bytes(BigInteger.ZERO));
+            transaction.addTxOutput(txOutput);
         }
-        // set to address's pubKeyHash
+        // send to toAddress
+        txOutput = new TxOutput();
         txOutput.setPublicKeyHash(HashUtil.getPublicKeyHash(toAddress));
         txOutput.setValue(ByteUtil.bigInteger2Bytes(amount));
         transaction.addTxOutput(txOutput);
 
-        // if totalAmout is greater than amount, we need to add change value after.
-        if (totalAmount.compareTo(amount) > 0) {
+        // if change is greater than 0, we need to give change to from address
+        if (change != null && change.compareTo(BigInteger.ZERO) > 0) {
             txOutput = new TxOutput();
             // set from address's pubKeyHash
             byte[] myPubKeyHash = HashUtil.getUserPubKeyHash(ecKeyPair.getPublicKey());
             txOutput.setPublicKeyHash(myPubKeyHash);
-            txOutput.setValue(ByteUtil.bigInteger2Bytes(totalAmount.subtract(amount)));
+            txOutput.setValue(ByteUtil.bigInteger2Bytes(change));
             transaction.addTxOutput(txOutput);
         }
+    }
+
+    /**
+     * Returns balance change of total transaction consumption
+     * @param total    total balance of certain utxos
+     * @param amount   transfer amount
+     * @param tip      transaction tip
+     * @param gasLimit contract tx gas limit
+     * @param gasPrice contract tx gas price
+     * @return BigInteger changed amount
+     */
+    private static BigInteger calculateChange(BigInteger total, BigInteger amount, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice) {
+        BigInteger change = total.subtract(amount);
+        if (change.compareTo(BigInteger.ZERO) < 0) {
+            return null;
+        }
+        change = change.subtract(tip);
+        if (change.compareTo(BigInteger.ZERO) < 0) {
+            return null;
+        }
+        if (gasLimit != null && gasPrice != null) {
+            change = change.subtract(gasLimit.multiply(gasPrice));
+            if (change.compareTo(BigInteger.ZERO) < 0) {
+                return null;
+            }
+        }
+        return change;
     }
 
     /**

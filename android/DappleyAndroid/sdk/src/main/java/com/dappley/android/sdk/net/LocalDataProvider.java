@@ -8,6 +8,7 @@ import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.java.core.net.DataProvider;
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.UtxoIndex;
 import com.dappley.java.core.util.ObjectUtils;
@@ -89,5 +90,15 @@ public class LocalDataProvider implements DataProvider {
             balance = balance.add(utxo.getAmount());
         }
         return balance;
+    }
+
+    @Override
+    public BigInteger estimateGas(Transaction transaction) {
+        return null;
+    }
+
+    @Override
+    public BigInteger getGasPrice() {
+        return null;
     }
 }

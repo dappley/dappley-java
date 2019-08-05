@@ -16,6 +16,7 @@
     <string name="title_me">Me</string>
     <string name="title_select_address">Select Address</string>
     <string name="title_modify_password">Modify Wallet Password</string>
+    <string name="title_authority">Authority Setting</string>
 
     <string name="layout_receive_address">receiver</string>
     <string name="layout_receive_address_tip">receiver address</string>
@@ -57,6 +58,7 @@
     <string name="layout_menu_wallet_password">Modify Wallet Password</string>
     <string name="layout_step_counter">Step Counter</string>
     <string name="layout_version">APP Update</string>
+    <string name="layout_authority">Authority</string>
     <string name="layout_wallet_sege">wallet(s)</string>
     <string name="layout_wallet_old_password">old password</string>
     <string name="layout_wallet_old_password_tip">wallet old password</string>
@@ -133,4 +135,25 @@
 
     <string name="error_app">unknown error, program will exit</string>
 
+    <string name="mobile_huawei"></string>
+    <string name="mobile_xiaomi"></string>
+    <string name="mobile_samsung"></string>
+    <string name="mobile_lenovo"></string>
+    <string name="mobile_zte"></string>
+    <string name="mobile_oppo"></string>
+    <string name="mobile_vivo"></string>
+    <string name="mobile_meizu"></string>
+    <string name="mobile_leshi"></string>
+    <string name="mobile_jinli"></string>
+
+    <string name="mobile_note_huawei"></string>
+    <string name="mobile_note_xiaomi"></string>
+    <string name="mobile_note_samsung"></string>
+    <string name="mobile_note_lenovo"></string>
+    <string name="mobile_note_zte"></string>
+    <string name="mobile_note_oppo"></string>
+    <string name="mobile_note_vivo"></string>
+    <string name="mobile_note_meizu"></string>
+    <string name="mobile_note_leshi"></string>
+    <string name="mobile_note_jinli"></string>
 </resources>

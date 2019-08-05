@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dappley.android.AuthorityActivity;
 import com.dappley.android.MainActivity;
 import com.dappley.android.ModifyPasswordActivity;
 import com.dappley.android.R;
@@ -24,6 +26,7 @@ import com.dappley.android.util.VersionUtil;
 import com.dappley.google.step.GoogleStep;
 
 import java.lang.ref.WeakReference;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +37,8 @@ public class MeFragment extends Fragment {
 
     @BindView(R.id.txt_version)
     TextView tvVersion;
+    @BindView(R.id.linear_authority_line)
+    LinearLayout linearAuthorityLine;
 
     GoogleStep googleStep;
     int unLoginCounter;
@@ -83,6 +88,9 @@ public class MeFragment extends Fragment {
 
     private void initView() {
         tvVersion.setText("v" + VersionUtil.getVerionName(getActivity()));
+
+        Locale locale = getResources().getConfiguration().locale;
+        onLanguageChanged(locale);
     }
 
     @OnClick(R.id.linear_modify_password)
@@ -108,6 +116,21 @@ public class MeFragment extends Fragment {
     @OnClick(R.id.linear_version)
     void version() {
         new UpdateManager(getActivity(), UpdateManager.CHECK_USER).checkUpdate();
+    }
+
+    @OnClick(R.id.linear_authority)
+    void authority() {
+        Intent intent = new Intent(getActivity(), AuthorityActivity.class);
+        getActivity().startActivity(intent);
+    }
+
+    public void onLanguageChanged(Locale locale) {
+        if (Locale.CHINESE.getLanguage().equals(locale.getLanguage())) {
+            // Only Chinese supported
+            linearAuthorityLine.setVisibility(View.VISIBLE);
+        } else {
+            linearAuthorityLine.setVisibility(View.GONE);
+        }
     }
 
     private void onCounterSelected(int type) {

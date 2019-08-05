@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/deep_bg"
+    android:orientation="vertical"
+    tools:context=".WalletCreateActivity">
+
+    <include layout="@layout/toolbar_title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@color/main_menu_bg"
+        android:orientation="vertical"
+        android:paddingTop="6dip"
+        android:paddingBottom="6dip">
+
+        <com.dappley.android.widget.FlowRadioGroup
+            android:id="@+id/rg_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_huawei"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_huawei" />
+
+            <RadioButton
+                android:id="@+id/rb_xiaomi"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_xiaomi" />
+
+            <RadioButton
+                android:id="@+id/rb_samsung"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_samsung" />
+
+            <RadioButton
+                android:id="@+id/rb_lenovo"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_lenovo" />
+
+            <RadioButton
+                android:id="@+id/rb_oppo"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_oppo" />
+
+            <RadioButton
+                android:id="@+id/rb_vivo"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_vivo" />
+
+            <RadioButton
+                android:id="@+id/rb_zte"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_zte" />
+
+            <RadioButton
+                android:id="@+id/rb_meizu"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_meizu" />
+
+            <RadioButton
+                android:id="@+id/rb_leshi"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_leshi" />
+
+            <RadioButton
+                android:id="@+id/rb_jinli"
+                style="@style/mobile_rb"
+                android:text="@string/mobile_jinli" />
+        </com.dappley.android.widget.FlowRadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="10dip"
+        android:layout_weight="1"
+        android:lineSpacingMultiplier="1.3"
+        android:padding="20dip"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>

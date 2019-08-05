@@ -16,6 +16,7 @@
     <string name="title_me">我的</string>
     <string name="title_select_address">选择钱包地址</string>
     <string name="title_modify_password">修改钱包密码</string>
+    <string name="title_authority">权限设置</string>
 
     <string name="layout_receive_address">收款地址</string>
     <string name="layout_receive_address_tip">请输入收款钱包地址</string>
@@ -57,6 +58,7 @@
     <string name="layout_menu_wallet_password">修改钱包密码</string>
     <string name="layout_step_counter">计步方式</string>
     <string name="layout_version">版本更新</string>
+    <string name="layout_authority">权限设置</string>
     <string name="layout_wallet_sege">个钱包</string>
     <string name="layout_wallet_old_password">旧密码</string>
     <string name="layout_wallet_old_password_tip">请输入钱包旧密码</string>
@@ -133,4 +135,33 @@
 
     <string name="error_app">未知异常，程序即将退出</string>
 
+    <string name="mobile_huawei">华为</string>
+    <string name="mobile_xiaomi">小米</string>
+    <string name="mobile_samsung">三星</string>
+    <string name="mobile_lenovo">联想</string>
+    <string name="mobile_zte">中兴</string>
+    <string name="mobile_oppo">OPPO</string>
+    <string name="mobile_vivo">VIVO</string>
+    <string name="mobile_meizu">魅族</string>
+    <string name="mobile_leshi">乐视</string>
+    <string name="mobile_jinli">金立</string>
+
+    <string name="mobile_note_huawei">1、设置->高级设置->电池管理->省电模式->采用性能模式；\n2、设置->高级设置->电池管理->锁屏清理->不允许%s；
+        \n3、设置->高级设置->电池管理->后台高耗电应用->耗电详情->唤醒系统、自启动、后台运行开关都打开；\n4、设置->高级设置->电池管理->受保护应用->保护%s。</string>
+    <string name="mobile_note_xiaomi">1、安全中心->授权管理->自启动管理->%s(开)->允许系统唤醒(开)；\n2、安全中心->授权管理->应用权限管理->%s->权限全开；
+        \n3、设置->电量与性能->神隐模式->关闭；\n4、设置->电量与性能->省电优化->应用智能省电->%s(无限制)</string>
+    <string name="mobile_note_samsung">1、设置->电池->未监视的应用程序->添加%s；\n2、设置->应用程序管理->管理自动运行->%s(开)；
+        \n3、设置->内存->把%s加入必备应用程序，按下手机菜单键，下拉%s锁定。</string>
+    <string name="mobile_note_lenovo">1、乐安全->手机加速->右上角菜单->保护名单，将%s添加至名单中；\n2、乐安全->手机加速->自启管理->添加%s。</string>
+    <string name="mobile_note_zte">1、掌心管家->手机加速->设置->受保护应用->添加%s；\n2、掌心管家->自启动管理->添加需要后台运行的软件->%s；
+        \n3、按下手机菜单键，下拉锁定%s。</string>
+    <string name="mobile_note_oppo">1、手机管家->权限隐私->自启动管理%s(开)；\n2、手机管家->权限隐私->%s->我信任该应用；\n3、设置->电池->关闭低电量模式；
+        \n4、设置->电池->其他->%s->关闭后台冻结、自动优化等；\n5、按下手机菜单键，下拉锁定%s。</string>
+    <string name="mobile_note_vivo">1、i管家->应用管理->权限管理->自启动->%s(开)；\n2、i管家->应用管理->权限管理->后台弹出界面->%s(开)；
+        \n3、i管家->电池管理->后台高耗电->%s(开)；\n4、i管家->电池管理->勾选正常模式。</string>
+    <string name="mobile_note_meizu">1、手机管家->省电模式(开)，待机耗电管理->%s(开)。</string>
+    <string name="mobile_note_leshi">1、手机管家->省电管理->高级省电->应用保护->%s自动清理(关)；\n2、手机管家->自启动管理->%s自动启动(开)；
+        \n3、按下手机菜单键，下拉锁定%s。</string>
+    <string name="mobile_note_jinli">1、系统管家->应用管家->应用自启->%s自启(开)；\2、系统管家->绿色后台->进程白名单->添加应用到白名单，勾选%s；
+        \n3、设置->应用->配置应用->应用权限->%s->全部允许；\n4、按下手机菜单键，下拉锁定%s。</string>
 </resources>

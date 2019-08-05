@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ import com.dappley.android.util.Constant;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.AutoHeightViewPager;
 import com.dappley.java.core.po.Wallet;
+import com.google.zxing.activity.CaptureActivity;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -165,6 +167,11 @@ public class TransferActivity extends AppCompatActivity {
                 handler.sendMessage(msg);
             }
         }).start();
+    }
+
+    @OnClick(R.id.btn_qrcode)
+    void qrCode() {
+        startQrCode();
     }
 
     @OnClick(R.id.btn_select_receiver)
@@ -312,6 +319,35 @@ public class TransferActivity extends AppCompatActivity {
         }
     }
 
+    private boolean checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
+                    .CAMERA)) {
+                Toast.makeText(this, R.string.note_permittion_camera, Toast.LENGTH_SHORT).show();
+            }
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
+            return false;
+        }
+        return true;
+    }
+
+    private void startQrCode() {
+        if (!checkCameraPermission()) {
+            return;
+        }
+        Intent intent = new Intent(this, CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_ACT_QR_CODE);
+    }
+
+    public void onScanResult(Intent data) {
+        Bundle bundle = data.getExtras();
+        String scanResult = bundle.getString(com.google.zxing.util.Constant.INTENT_EXTRA_KEY_QR_SCAN);
+
+        if (scanResult != null && scanResult.length() > 0) {
+            etToAddress.setText(scanResult);
+        }
+    }
+
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
@@ -365,6 +401,13 @@ public class TransferActivity extends AppCompatActivity {
                     Toast.makeText(this, R.string.note_permittion_read, Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case Constant.REQ_PERM_CAMERA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startQrCode();
+                } else {
+                    Toast.makeText(TransferActivity.this, R.string.note_permittion_camera, Toast.LENGTH_LONG).show();
+                }
+                break;
         }
     }
 
@@ -379,6 +422,9 @@ public class TransferActivity extends AppCompatActivity {
                         return;
                     }
                     etToAddress.setText(address);
+                    break;
+                case Constant.REQ_ACT_QR_CODE:
+                    onScanResult(data);
                     break;
                 default:
                     break;

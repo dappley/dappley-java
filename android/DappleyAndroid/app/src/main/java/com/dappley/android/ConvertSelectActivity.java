@@ -150,12 +150,12 @@ public class ConvertSelectActivity extends AppCompatActivity {
         List<Wallet> wallets = null;
         try {
             wallets = StorageUtil.getWallets(this);
-            if (wallets == null) {
-                wallets = new ArrayList<>(1);
-            }
         } catch (IOException e) {
             Toast.makeText(this, R.string.note_read_failed, Toast.LENGTH_SHORT).show();
             Log.e(TAG, "readData: ", e);
+        }
+        if (wallets == null) {
+            wallets = new ArrayList<>(1);
         }
         adapter.setList(wallets);
 

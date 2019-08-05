@@ -17,6 +17,7 @@
     <string name="title_select_address">Select Address</string>
     <string name="title_modify_password">Modify Wallet Password</string>
     <string name="title_authority">Authority Setting</string>
+    <string name="title_receiver_select">Select Receiver Address</string>
 
     <string name="layout_receive_address">receiver</string>
     <string name="layout_receive_address_tip">receiver address</string>

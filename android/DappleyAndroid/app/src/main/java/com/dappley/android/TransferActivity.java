@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.adapter.WalletPagerAdapter;
+import com.dappley.android.bean.Receiver;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
@@ -33,6 +35,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -164,6 +167,12 @@ public class TransferActivity extends AppCompatActivity {
         }).start();
     }
 
+    @OnClick(R.id.btn_select_receiver)
+    void selectReceiver() {
+        Intent intent = new Intent(TransferActivity.this, ReceiverSelectActivity.class);
+        startActivityForResult(intent, Constant.REQ_ACT_RECEVIER_SELECT);
+    }
+
     private void loadData() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -289,6 +298,13 @@ public class TransferActivity extends AppCompatActivity {
     private void onTransferFinish(boolean isSuccess) {
         LoadingDialog.close();
         if (isSuccess) {
+            // record receiver name
+            Receiver receiver = new Receiver(etToAddress.getText().toString(), new Date());
+            try {
+                StorageUtil.saveReceiver(this, receiver);
+            } catch (IOException e) {
+                Log.e(TAG, "onTransferFinish: ", e);
+            }
             Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
             finish();
         } else {
@@ -352,4 +368,21 @@ public class TransferActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case Constant.REQ_ACT_RECEVIER_SELECT:
+                    String address = data.getStringExtra("address");
+                    if (address == null) {
+                        return;
+                    }
+                    etToAddress.setText(address);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

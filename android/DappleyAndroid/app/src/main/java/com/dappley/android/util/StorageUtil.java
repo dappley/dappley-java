@@ -2,6 +2,7 @@ package com.dappley.android.util;
 
 import android.content.Context;
 
+import com.dappley.android.bean.Receiver;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.java.core.po.Wallet;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,6 +20,7 @@ import java.util.List;
 public class StorageUtil {
 
     private static final String FILE_WALLET = "wallet";
+    private static final String FILE_RECEIVER = "receiver";
     private static final String FOLDER_STEP = "step";
 
     private static final String PATH_APP_DOWNLOAD = "download";
@@ -188,5 +190,40 @@ public class StorageUtil {
             downloadFolder.mkdir();
         }
         return downloadFolder.getAbsolutePath();
+    }
+
+    public static void saveReceiver(Context context, Receiver receiver) throws IOException {
+        List<Receiver> receivers = getReceivers(context);
+        if (receivers == null) {
+            receivers = new ArrayList<>();
+        }
+        if (receivers.contains(receiver)) {
+            receivers.remove(receiver);
+        }
+        receivers.add(receiver);
+        saveReceivers(context, receivers);
+    }
+
+    public static void saveReceivers(Context context, List<Receiver> receivers) throws IOException {
+        File folder = context.getExternalFilesDir(null);
+        File file = new File(folder, FILE_RECEIVER);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.writeValue(file, receivers);
+    }
+
+    public static List<Receiver> getReceivers(Context context) throws IOException {
+        File folder = context.getExternalFilesDir(null);
+        File file = new File(folder, FILE_RECEIVER);
+        if (!file.exists()) {
+            return null;
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES, true);
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, Receiver.class);
+        List<Receiver> receivers = objectMapper.readValue(file, javaType);
+        return receivers;
     }
 }

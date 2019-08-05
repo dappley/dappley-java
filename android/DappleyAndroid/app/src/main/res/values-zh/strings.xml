@@ -17,6 +17,7 @@
     <string name="title_select_address">选择钱包地址</string>
     <string name="title_modify_password">修改钱包密码</string>
     <string name="title_authority">权限设置</string>
+    <string name="title_receiver_select">选择收币地址</string>
 
     <string name="layout_receive_address">收币地址</string>
     <string name="layout_receive_address_tip">请输入收币钱包地址</string>

@@ -8,6 +8,7 @@ public class Constant {
     public static final int REQ_ACT_TRANSFER = 30001;
     public static final int REQ_ACT_CONVERT_SELECT = 30002;
     public static final int REQ_ACT_MODIFY_PASSWORD = 30003;
+    public static final int REQ_ACT_RECEVIER_SELECT = 30004;
 
     public static final int MSG_HOME_BALANCE = 20001;
     public static final int MSG_HOME_BALANCE_ERROR = 20004;

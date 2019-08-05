@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
@@ -69,6 +70,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".AuthorityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReceiverSelectActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".sdk.service.LocalBlockService" />

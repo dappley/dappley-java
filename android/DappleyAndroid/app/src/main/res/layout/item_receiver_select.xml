@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dip"
+    android:layout_marginBottom="2dip"
+    android:background="@color/main_menu_bg"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/margin_8"
+        android:paddingTop="10dip"
+        android:paddingRight="@dimen/margin_8"
+        android:paddingBottom="10dip">
+
+        <TextView
+            android:id="@+id/txt_address_letter"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@drawable/bg_receiver_address"
+            android:gravity="center"
+            android:text="A"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dip"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_address_short"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="short_name"
+                android:textColor="@color/purple_title"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:text="name"
+                android:textColor="@color/purple_txt"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

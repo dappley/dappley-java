@@ -11,15 +11,15 @@
     <string name="title_wallet">钱包</string>
     <string name="title_import_wallet">导入钱包</string>
     <string name="title_export_wallet">导出钱包</string>
-    <string name="title_receive">收款</string>
+    <string name="title_receive">收币</string>
     <string name="title_step">步数</string>
     <string name="title_me">我的</string>
     <string name="title_select_address">选择钱包地址</string>
     <string name="title_modify_password">修改钱包密码</string>
     <string name="title_authority">权限设置</string>
 
-    <string name="layout_receive_address">收款地址</string>
-    <string name="layout_receive_address_tip">请输入收款钱包地址</string>
+    <string name="layout_receive_address">收币地址</string>
+    <string name="layout_receive_address_tip">请输入收币钱包地址</string>
     <string name="layout_wallet_password">钱包密码</string>
     <string name="layout_wallet_password_tip">请输入钱包密码</string>
     <string name="layout_transfer_amount">转账数量</string>
@@ -67,7 +67,7 @@
     <string name="layout_wallet_confirm_password">确认密码</string>
     <string name="layout_wallet_confirm_password_tip">请输入确认密码</string>
     <string name="layout_btn_modify_password">修改密码</string>
-    <string name="layout_copy_receive_address">复制收款地址</string>
+    <string name="layout_copy_receive_address">复制收币地址</string>
     <string name="layout_click_add_wallet">点此处添加钱包</string>
     <string name="layout_select_step_counter">选择计步方式</string>
     <string name="layout_yes">是</string>
@@ -82,8 +82,8 @@
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>
     <string name="note_balance_not_enought">钱包余额不足</string>
-    <string name="note_no_receiver">请输入收款地址</string>
-    <string name="note_receiver_illegal">收款地址格式错误</string>
+    <string name="note_no_receiver">请输入收币地址</string>
+    <string name="note_receiver_illegal">收币地址格式错误</string>
     <string name="note_no_password">请输入钱包密码</string>
     <string name="note_error_password">钱包密码错误</string>
     <string name="note_no_amount">请输入转账数量</string>

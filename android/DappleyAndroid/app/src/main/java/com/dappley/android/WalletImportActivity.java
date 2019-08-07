@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,6 +18,7 @@ import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.java.core.po.Wallet;
 
@@ -157,5 +159,11 @@ public class WalletImportActivity extends AppCompatActivity {
 //            }
         }
         return false;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        EventUtil.handleSoftInput(ev, this);
+        return super.dispatchTouchEvent(ev);
     }
 }

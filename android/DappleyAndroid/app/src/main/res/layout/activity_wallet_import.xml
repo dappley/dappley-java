@@ -9,190 +9,203 @@
 
     <include layout="@layout/toolbar_title_back" />
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
-        android:background="@color/main_menu_bg"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_20"
-        android:paddingTop="@dimen/margin_15"
-        android:paddingRight="@dimen/margin_20"
-        android:paddingBottom="@dimen/margin_15">
+        android:layout_height="0dip"
+        android:layout_weight="1">
 
-        <TextView
-            android:layout_width="92dip"
-            android:layout_height="wrap_content"
-            android:text="@string/layout_wallet_name"
-            android:textColor="@color/purple_title" />
-
-        <EditText
-            android:id="@+id/et_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
-            android:background="@null"
-            android:hint="@string/layout_wallet_name_tip"
-            android:maxLines="2"
-            android:textColor="@color/purple_txt"
-            android:textColorHint="@color/purple_hint" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0.5dip"
-        android:background="@color/main_menu_bg"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_20"
-        android:paddingTop="@dimen/margin_15"
-        android:paddingRight="@dimen/margin_20"
-        android:paddingBottom="@dimen/margin_15">
-
-        <TextView
-            android:layout_width="92dip"
-            android:layout_height="wrap_content"
-            android:text="@string/layout_wallet_password"
-            android:textColor="@color/purple_title" />
-
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
-            android:background="@null"
-            android:hint="@string/layout_wallet_password_tip"
-            android:inputType="textPassword"
-            android:lines="1"
-            android:textColor="@color/purple_txt"
-            android:textColorHint="@color/purple_hint" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
-        android:background="@color/main_menu_bg"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_20"
-        android:paddingTop="@dimen/margin_15"
-        android:paddingRight="@dimen/margin_20"
-        android:paddingBottom="@dimen/margin_15">
-
-        <TextView
-            android:layout_width="92dip"
-            android:layout_height="wrap_content"
-            android:text="@string/layout_import_type"
-            android:textColor="@color/purple_title" />
-
-        <RadioGroup
-            android:id="@+id/rg_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rb_mnemoic"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:button="@null"
-                android:checked="true"
-                android:drawableLeft="@drawable/chb_mnemonic_selector"
-                android:drawablePadding="4dip"
-                android:text="@string/layout_import_type_mnemonic"
-                android:textColor="@drawable/txt_mnemonic_chb_selector"
-                android:textSize="16sp" />
+                android:layout_marginTop="@dimen/margin_8"
+                android:background="@color/main_menu_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_20"
+                android:paddingBottom="@dimen/margin_15">
 
-            <RadioButton
-                android:id="@+id/rb_private_key"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="92dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/layout_wallet_name"
+                    android:textColor="@color/purple_title" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@null"
+                    android:hint="@string/layout_wallet_name_tip"
+                    android:maxLines="2"
+                    android:textColor="@color/purple_txt"
+                    android:textColorHint="@color/purple_hint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="0.5dip"
+                android:background="@color/main_menu_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_20"
+                android:paddingBottom="@dimen/margin_15">
+
+                <TextView
+                    android:layout_width="92dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/layout_wallet_password"
+                    android:textColor="@color/purple_title" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@null"
+                    android:hint="@string/layout_wallet_password_tip"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:textColor="@color/purple_txt"
+                    android:textColorHint="@color/purple_hint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:background="@color/main_menu_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_20"
+                android:paddingBottom="@dimen/margin_15">
+
+                <TextView
+                    android:layout_width="92dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/layout_import_type"
+                    android:textColor="@color/purple_title" />
+
+                <RadioGroup
+                    android:id="@+id/rg_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_mnemoic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableLeft="@drawable/chb_mnemonic_selector"
+                        android:drawablePadding="4dip"
+                        android:text="@string/layout_import_type_mnemonic"
+                        android:textColor="@drawable/txt_mnemonic_chb_selector"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_private_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/chb_mnemonic_selector"
+                        android:drawablePadding="3dip"
+                        android:text="@string/layout_import_type_private_key"
+                        android:textColor="@drawable/txt_mnemonic_chb_selector"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_mnemonic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0.5dip"
+                android:background="@color/main_menu_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_20"
+                android:paddingBottom="@dimen/margin_15">
+
+                <TextView
+                    android:layout_width="92dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/layout_import_mnemonic"
+                    android:textColor="@color/purple_title" />
+
+                <EditText
+                    android:id="@+id/et_mnemonic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="@string/layout_import_mnemonic_tip"
+                    android:maxLines="5"
+                    android:minLines="2"
+                    android:textColor="@color/purple_txt"
+                    android:textColorHint="@color/purple_hint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_private_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_menu_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_20"
+                android:paddingBottom="@dimen/margin_15"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="92dip"
+                    android:layout_height="wrap_content"
+                    android:text="@string/layout_import_private_key"
+                    android:textColor="@color/purple_title" />
+
+                <EditText
+                    android:id="@+id/et_private_key"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="@string/layout_import_private_key_tip"
+                    android:maxLines="5"
+                    android:minLines="2"
+                    android:textColor="@color/purple_txt"
+                    android:textColorHint="@color/purple_hint" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_import"
+                style="?borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="46dip"
                 android:layout_marginLeft="@dimen/margin_15"
-                android:button="@null"
-                android:drawableLeft="@drawable/chb_mnemonic_selector"
-                android:drawablePadding="3dip"
-                android:text="@string/layout_import_type_private_key"
-                android:textColor="@drawable/txt_mnemonic_chb_selector"
-                android:textSize="16sp" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_mnemonic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0.5dip"
-        android:background="@color/main_menu_bg"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_20"
-        android:paddingTop="@dimen/margin_15"
-        android:paddingRight="@dimen/margin_20"
-        android:paddingBottom="@dimen/margin_15">
-
-        <TextView
-            android:layout_width="92dip"
-            android:layout_height="wrap_content"
-            android:text="@string/layout_import_mnemonic"
-            android:textColor="@color/purple_title" />
-
-        <EditText
-            android:id="@+id/et_mnemonic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
-            android:background="@null"
-            android:gravity="top"
-            android:hint="@string/layout_import_mnemonic_tip"
-            android:maxLines="5"
-            android:minLines="2"
-            android:textColor="@color/purple_txt"
-            android:textColorHint="@color/purple_hint" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_private_key"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/main_menu_bg"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/margin_20"
-        android:paddingTop="@dimen/margin_15"
-        android:paddingRight="@dimen/margin_20"
-        android:paddingBottom="@dimen/margin_15"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="92dip"
-            android:layout_height="wrap_content"
-            android:text="@string/layout_import_private_key"
-            android:textColor="@color/purple_title" />
-
-        <EditText
-            android:id="@+id/et_private_key"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_8"
-            android:background="@null"
-            android:gravity="top"
-            android:hint="@string/layout_import_private_key_tip"
-            android:maxLines="5"
-            android:minLines="2"
-            android:textColor="@color/purple_txt"
-            android:textColorHint="@color/purple_hint" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_import"
-        style="?borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="46dip"
-        android:layout_marginLeft="@dimen/margin_15"
-        android:layout_marginTop="30dip"
-        android:layout_marginRight="@dimen/margin_15"
-        android:background="@drawable/btn_blue_selector"
-        android:text="@string/layout_import_wallet"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+                android:layout_marginTop="30dip"
+                android:layout_marginRight="@dimen/margin_15"
+                android:background="@drawable/btn_blue_selector"
+                android:text="@string/layout_import_wallet"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

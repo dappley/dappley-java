@@ -28,6 +28,7 @@ import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.AutoHeightViewPager;
 import com.dappley.java.core.po.Wallet;
@@ -389,6 +390,12 @@ public class TransferActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        EventUtil.handleSoftInput(ev, this);
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

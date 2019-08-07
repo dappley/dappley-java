@@ -2,6 +2,7 @@ package com.dappley.android;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.util.CommonUtil;
+import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 
 import butterknife.BindView;
@@ -89,4 +91,9 @@ public class ModifyPasswordActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        EventUtil.handleSoftInput(ev, this);
+        return super.dispatchTouchEvent(ev);
+    }
 }

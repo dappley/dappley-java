@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import com.dappley.java.core.po.Wallet;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,7 @@ import butterknife.OnClick;
 
 public class TransferActivity extends AppCompatActivity {
     private static final String TAG = "TransferActivity";
+    private static final int SEEK_BAR_OFFSET = 1;
 
     @BindView(R.id.btn_back)
     ImageButton btnBack;
@@ -59,6 +62,12 @@ public class TransferActivity extends AppCompatActivity {
     EditText etPassword;
     @BindView(R.id.et_value)
     EditText etValue;
+
+    @BindView(R.id.txt_tip_value)
+    TextView tvTipValue;
+    @BindView(R.id.bar_tip)
+    SeekBar barTip;
+
 
     WalletPagerAdapter walletPagerAdapter;
     List<Wallet> wallets;
@@ -84,6 +93,8 @@ public class TransferActivity extends AppCompatActivity {
     private void initView() {
         tvTitle.setText(R.string.title_transfer);
         btnBack.setOnClickListener(new BtnBackListener(this));
+
+        barTip.setOnSeekBarChangeListener(tipChangeListener);
 
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -152,7 +163,7 @@ public class TransferActivity extends AppCompatActivity {
                 String toAddress = etToAddress.getText().toString().trim();
                 boolean isSuccess = false;
                 try {
-                    BigInteger tip = BigInteger.ZERO;
+                    BigInteger tip = new BigInteger(String.valueOf(barTip.getProgress() + SEEK_BAR_OFFSET));
                     isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
                 } catch (Exception e) {
                     Log.e(TAG, "transfer: ", e);
@@ -296,6 +307,25 @@ public class TransferActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_transfer_failed, Toast.LENGTH_SHORT).show();
         }
     }
+
+    private SeekBar.OnSeekBarChangeListener tipChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            BigDecimal dwValue = new BigDecimal(progress + SEEK_BAR_OFFSET).divide(com.dappley.java.core.util.Constant.COIN_DW,
+                    com.dappley.java.core.util.Constant.COIN_SCALE, RoundingMode.UP);
+            tvTipValue.setText(dwValue.toPlainString());
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
 
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override

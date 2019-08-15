@@ -36,6 +36,7 @@ import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.window.WalletMenuWindow;
@@ -187,16 +188,25 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.btn_qrcode)
     void qrCode() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         startQrCode(null);
     }
 
     @OnClick({R.id.btn_add, R.id.linear_add_wallet})
     void addWallet() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         startActivity(new Intent(getActivity(), WalletAddActivity.class));
     }
 
     @OnClick(R.id.linear_receive)
     void receive() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Wallet wallet = getCurrentWallet();
         if (wallet == null) {
             return;
@@ -208,6 +218,9 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.linear_transfer)
     void transfer() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Wallet wallet = getCurrentWallet();
         if (wallet == null) {
             return;
@@ -219,6 +232,9 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.linear_balance)
     void balance() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Wallet wallet = getCurrentWallet();
         if (wallet == null) {
             return;
@@ -231,12 +247,18 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.linear_scan)
     void scan() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Wallet wallet = getCurrentWallet();
         startQrCode(wallet);
     }
 
     @OnClick(R.id.linear_copy)
     void copy() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Wallet wallet = getCurrentWallet();
         if (wallet == null) {
             return;
@@ -249,6 +271,9 @@ public class WalletFragment extends Fragment {
 
     @OnClick(R.id.linear_delete)
     void delete() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         final Wallet wallet = getCurrentWallet();
         if (wallet == null) {
             return;
@@ -299,6 +324,8 @@ public class WalletFragment extends Fragment {
                 linearAddWallet.setVisibility(View.VISIBLE);
                 cycleViewPager.setVisibility(View.GONE);
                 PreferenceUtil.setInt(getActivity(), Constant.PREF_CURRENT_WALLET, 0);
+                this.wallets = wallets;
+                currentIndex = 0;
             } else {
                 linearAddWallet.setVisibility(View.GONE);
                 cycleViewPager.setVisibility(View.VISIBLE);

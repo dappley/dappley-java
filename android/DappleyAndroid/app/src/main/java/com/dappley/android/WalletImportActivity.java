@@ -18,6 +18,7 @@ import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.java.core.po.Wallet;
@@ -82,6 +83,9 @@ public class WalletImportActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_import)
     void importWallet() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (checkNull()) {
             return;
         }

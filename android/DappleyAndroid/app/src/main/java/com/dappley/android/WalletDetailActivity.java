@@ -19,6 +19,7 @@ import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.widget.EmptyView;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
@@ -138,6 +139,9 @@ public class WalletDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_receive)
     void receive() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Intent intent = new Intent(this, WalletReceiveCodeActivity.class);
         intent.putExtra("wallet", wallet);
         startActivity(intent);
@@ -145,6 +149,9 @@ public class WalletDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_export)
     void export() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (walletPasswordDialog == null) {
             walletPasswordDialog = new WalletPasswordDialog(this, new WalletPasswordDialog.OnClickListener() {
                 @Override
@@ -158,6 +165,9 @@ public class WalletDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_transfer)
     void transfer() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Intent intent = new Intent(this, TransferActivity.class);
         intent.putExtra("wallet", wallet);
         startActivity(intent);

@@ -22,6 +22,7 @@ import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.EmptyView;
@@ -108,6 +109,9 @@ public class ConvertSelectActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_confirm)
     void confirm() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (wallets == null || wallets.size() == 0) {
             Toast.makeText(this, R.string.note_no_valid_wallet, Toast.LENGTH_SHORT).show();
             return;

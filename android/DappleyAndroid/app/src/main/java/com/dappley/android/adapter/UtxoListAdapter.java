@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.dappley.android.R;
 import com.dappley.android.sdk.Dappley;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.util.CoinUtil;
 import com.dappley.java.core.util.HexUtil;
@@ -52,6 +53,9 @@ public class UtxoListAdapter extends RecyclerView.Adapter<UtxoListAdapter.ViewHo
             viewItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (DuplicateUtil.dupClickCheck()) {
+                        return;
+                    }
                     onItemClickListener.onClick(v, (int) v.getTag());
                 }
             });

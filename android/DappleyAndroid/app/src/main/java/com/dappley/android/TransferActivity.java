@@ -28,6 +28,7 @@ import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.AutoHeightViewPager;
@@ -137,6 +138,9 @@ public class TransferActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_transfer)
     void transfer() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (wallet == null) {
             Toast.makeText(this, R.string.note_no_valid_wallet, Toast.LENGTH_SHORT).show();
             return;
@@ -172,11 +176,17 @@ public class TransferActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_qrcode)
     void qrCode() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         startQrCode();
     }
 
     @OnClick(R.id.btn_select_receiver)
     void selectReceiver() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Intent intent = new Intent(TransferActivity.this, ReceiverSelectActivity.class);
         startActivityForResult(intent, Constant.REQ_ACT_RECEVIER_SELECT);
     }

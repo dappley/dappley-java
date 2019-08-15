@@ -19,6 +19,7 @@ import com.dappley.android.adapter.WalletReceivePagerAdapter;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.java.core.po.Wallet;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
@@ -130,6 +131,9 @@ public class WalletReceiveCodeActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_copy)
     void copy() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         int current = cycleViewPager.getRealItem();
         if (current < 0 || current >= wallets.size()) {
             return;

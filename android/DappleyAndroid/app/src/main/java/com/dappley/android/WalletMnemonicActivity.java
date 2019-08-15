@@ -19,6 +19,7 @@ import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.java.core.po.Wallet;
 
@@ -91,6 +92,9 @@ public class WalletMnemonicActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_save)
     void saveToLocal() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission

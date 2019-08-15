@@ -26,6 +26,7 @@ import com.dappley.android.network.RetrofitRequest;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.google.step.GoogleStep;
@@ -142,6 +143,9 @@ public class StepFragment extends Fragment {
 
     @OnClick(R.id.btn_convert)
     void convertCoin() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (todayStep <= 0 || todayStep <= convertedStep) {
             Toast.makeText(getActivity(), R.string.note_no_step, Toast.LENGTH_SHORT).show();
             return;

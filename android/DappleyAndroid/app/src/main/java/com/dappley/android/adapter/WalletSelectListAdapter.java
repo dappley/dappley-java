@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.dappley.android.R;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.java.core.po.Wallet;
 
 import java.math.BigInteger;
@@ -65,6 +66,9 @@ public class WalletSelectListAdapter extends RecyclerView.Adapter<WalletSelectLi
             viewItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (DuplicateUtil.dupClickCheck()) {
+                        return;
+                    }
                     onItemClickListener.onClick(v, (int) v.getTag());
                 }
             });

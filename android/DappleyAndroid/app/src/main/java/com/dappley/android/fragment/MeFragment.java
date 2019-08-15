@@ -21,6 +21,7 @@ import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.dialog.SelectStepCounterDialog;
 import com.dappley.android.update.UpdateManager;
 import com.dappley.android.util.Constant;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.VersionUtil;
 import com.dappley.google.step.GoogleStep;
@@ -95,12 +96,18 @@ public class MeFragment extends Fragment {
 
     @OnClick(R.id.linear_modify_password)
     void modifyPassword() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Intent intent = new Intent(getActivity(), ModifyPasswordActivity.class);
         getActivity().startActivityForResult(intent, Constant.REQ_ACT_MODIFY_PASSWORD);
     }
 
     @OnClick(R.id.linear_step_counter)
     void stepCounter() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         boolean isNativeStep = PreferenceUtil.getBoolean(getContext(), Constant.PREF_NATIVE_STEP, true);
         SelectStepCounterDialog dialog = new SelectStepCounterDialog(getActivity(), new SelectStepCounterDialog.OnClickListener() {
             @Override
@@ -115,11 +122,17 @@ public class MeFragment extends Fragment {
 
     @OnClick(R.id.linear_version)
     void version() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         new UpdateManager(getActivity(), UpdateManager.CHECK_USER).checkUpdate();
     }
 
     @OnClick(R.id.linear_authority)
     void authority() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         Intent intent = new Intent(getActivity(), AuthorityActivity.class);
         getActivity().startActivity(intent);
     }

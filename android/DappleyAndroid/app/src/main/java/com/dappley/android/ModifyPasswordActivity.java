@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.dappley.android.dialog.LoadingDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.util.CommonUtil;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 
@@ -46,6 +47,9 @@ public class ModifyPasswordActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_modify)
     void modify() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         if (checkNull()) {
             return;
         }

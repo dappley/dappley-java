@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.dappley.android.listener.BtnBackListener;
+import com.dappley.android.util.DuplicateUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,12 +36,18 @@ public class WalletAddActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_create)
     void createWallet() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         startActivity(new Intent(this, WalletCreateActivity.class));
         finish();
     }
 
     @OnClick(R.id.btn_import)
     void importWallet() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         startActivity(new Intent(this, WalletImportActivity.class));
         finish();
     }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.util.CommonUtil;
+import com.dappley.android.util.DuplicateUtil;
 import com.dappley.java.core.po.Wallet;
 
 import butterknife.BindView;
@@ -73,17 +74,26 @@ public class WalletExportActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_copy_address)
     void copyAddress() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         copy2Clipboard(wallet.getAddress());
         Toast.makeText(this, R.string.note_wallet_copied, Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btn_copy_private_key)
     void copyPrivateKey() {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         copy2Clipboard(wallet.getPrivateKey().toString(16));
         Toast.makeText(this, R.string.note_wallet_private_key_copied, Toast.LENGTH_SHORT).show();
     }
 
     private void copy2Clipboard(String string) {
+        if (DuplicateUtil.dupClickCheck()) {
+            return;
+        }
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("data", string);
         clipboardManager.setPrimaryClip(clipData);

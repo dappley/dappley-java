@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.dappley.android.R;
 import com.dappley.android.bean.Receiver;
+import com.dappley.android.util.DuplicateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,9 @@ public class ReceiverSelectListAdapter extends RecyclerView.Adapter<ReceiverSele
             viewItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (DuplicateUtil.dupClickCheck()) {
+                        return;
+                    }
                     onItemClickListener.onClick(v, (int) v.getTag());
                 }
             });

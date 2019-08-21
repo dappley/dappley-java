@@ -2745,6 +2745,16 @@ public final class RpcProto {
      */
     com.google.protobuf.ByteString
         getDataBytes();
+
+    /**
+     * <code>bytes gas_limit = 7;</code>
+     */
+    com.google.protobuf.ByteString getGasLimit();
+
+    /**
+     * <code>bytes gas_price = 8;</code>
+     */
+    com.google.protobuf.ByteString getGasPrice();
   }
   /**
    * Protobuf type {@code rpcpb.SendRequest}
@@ -2765,6 +2775,8 @@ public final class RpcProto {
       walletPath_ = "";
       tip_ = com.google.protobuf.ByteString.EMPTY;
       data_ = "";
+      gasLimit_ = com.google.protobuf.ByteString.EMPTY;
+      gasPrice_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -2823,6 +2835,16 @@ public final class RpcProto {
               java.lang.String s = input.readStringRequireUtf8();
 
               data_ = s;
+              break;
+            }
+            case 58: {
+
+              gasLimit_ = input.readBytes();
+              break;
+            }
+            case 66: {
+
+              gasPrice_ = input.readBytes();
               break;
             }
             default: {
@@ -3011,6 +3033,24 @@ public final class RpcProto {
       }
     }
 
+    public static final int GAS_LIMIT_FIELD_NUMBER = 7;
+    private com.google.protobuf.ByteString gasLimit_;
+    /**
+     * <code>bytes gas_limit = 7;</code>
+     */
+    public com.google.protobuf.ByteString getGasLimit() {
+      return gasLimit_;
+    }
+
+    public static final int GAS_PRICE_FIELD_NUMBER = 8;
+    private com.google.protobuf.ByteString gasPrice_;
+    /**
+     * <code>bytes gas_price = 8;</code>
+     */
+    public com.google.protobuf.ByteString getGasPrice() {
+      return gasPrice_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3043,6 +3083,12 @@ public final class RpcProto {
       if (!getDataBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, data_);
       }
+      if (!gasLimit_.isEmpty()) {
+        output.writeBytes(7, gasLimit_);
+      }
+      if (!gasPrice_.isEmpty()) {
+        output.writeBytes(8, gasPrice_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -3072,6 +3118,14 @@ public final class RpcProto {
       if (!getDataBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, data_);
       }
+      if (!gasLimit_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, gasLimit_);
+      }
+      if (!gasPrice_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, gasPrice_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -3100,6 +3154,10 @@ public final class RpcProto {
           .equals(other.getTip());
       result = result && getData()
           .equals(other.getData());
+      result = result && getGasLimit()
+          .equals(other.getGasLimit());
+      result = result && getGasPrice()
+          .equals(other.getGasPrice());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -3123,6 +3181,10 @@ public final class RpcProto {
       hash = (53 * hash) + getTip().hashCode();
       hash = (37 * hash) + DATA_FIELD_NUMBER;
       hash = (53 * hash) + getData().hashCode();
+      hash = (37 * hash) + GAS_LIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getGasLimit().hashCode();
+      hash = (37 * hash) + GAS_PRICE_FIELD_NUMBER;
+      hash = (53 * hash) + getGasPrice().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3268,6 +3330,10 @@ public final class RpcProto {
 
         data_ = "";
 
+        gasLimit_ = com.google.protobuf.ByteString.EMPTY;
+
+        gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -3300,6 +3366,8 @@ public final class RpcProto {
         result.walletPath_ = walletPath_;
         result.tip_ = tip_;
         result.data_ = data_;
+        result.gasLimit_ = gasLimit_;
+        result.gasPrice_ = gasPrice_;
         onBuilt();
         return result;
       }
@@ -3369,6 +3437,12 @@ public final class RpcProto {
         if (!other.getData().isEmpty()) {
           data_ = other.data_;
           onChanged();
+        }
+        if (other.getGasLimit() != com.google.protobuf.ByteString.EMPTY) {
+          setGasLimit(other.getGasLimit());
+        }
+        if (other.getGasPrice() != com.google.protobuf.ByteString.EMPTY) {
+          setGasPrice(other.getGasPrice());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3729,6 +3803,64 @@ public final class RpcProto {
   checkByteStringIsUtf8(value);
         
         data_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString gasLimit_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes gas_limit = 7;</code>
+       */
+      public com.google.protobuf.ByteString getGasLimit() {
+        return gasLimit_;
+      }
+      /**
+       * <code>bytes gas_limit = 7;</code>
+       */
+      public Builder setGasLimit(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasLimit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes gas_limit = 7;</code>
+       */
+      public Builder clearGasLimit() {
+        
+        gasLimit_ = getDefaultInstance().getGasLimit();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes gas_price = 8;</code>
+       */
+      public com.google.protobuf.ByteString getGasPrice() {
+        return gasPrice_;
+      }
+      /**
+       * <code>bytes gas_price = 8;</code>
+       */
+      public Builder setGasPrice(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasPrice_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes gas_price = 8;</code>
+       */
+      public Builder clearGasPrice() {
+        
+        gasPrice_ = getDefaultInstance().getGasPrice();
         onChanged();
         return this;
       }
@@ -10363,6 +10495,418 @@ public final class RpcProto {
 
   }
 
+  public interface MetricsServiceRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.MetricsServiceRequest)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code rpcpb.MetricsServiceRequest}
+   */
+  public  static final class MetricsServiceRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.MetricsServiceRequest)
+      MetricsServiceRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use MetricsServiceRequest.newBuilder() to construct.
+    private MetricsServiceRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private MetricsServiceRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private MetricsServiceRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_MetricsServiceRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_MetricsServiceRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.class, com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest other = (com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.MetricsServiceRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.MetricsServiceRequest)
+        com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_MetricsServiceRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_MetricsServiceRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.class, com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_MetricsServiceRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest result = new com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.MetricsServiceRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.MetricsServiceRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<MetricsServiceRequest>
+        PARSER = new com.google.protobuf.AbstractParser<MetricsServiceRequest>() {
+      @java.lang.Override
+      public MetricsServiceRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new MetricsServiceRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<MetricsServiceRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MetricsServiceRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface GetLastIrreversibleBlockRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.GetLastIrreversibleBlockRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -10770,6 +11314,1025 @@ public final class RpcProto {
 
     @java.lang.Override
     public com.dappley.java.core.protobuf.RpcProto.GetLastIrreversibleBlockRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface EstimateGasRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.EstimateGasRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    boolean hasTransaction();
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction();
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder();
+  }
+  /**
+   * Protobuf type {@code rpcpb.EstimateGasRequest}
+   */
+  public  static final class EstimateGasRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.EstimateGasRequest)
+      EstimateGasRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use EstimateGasRequest.newBuilder() to construct.
+    private EstimateGasRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private EstimateGasRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private EstimateGasRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder subBuilder = null;
+              if (transaction_ != null) {
+                subBuilder = transaction_.toBuilder();
+              }
+              transaction_ = input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(transaction_);
+                transaction_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.class, com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.Builder.class);
+    }
+
+    public static final int TRANSACTION_FIELD_NUMBER = 1;
+    private com.dappley.java.core.protobuf.TransactionProto.Transaction transaction_;
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    public boolean hasTransaction() {
+      return transaction_ != null;
+    }
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction() {
+      return transaction_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+    }
+    /**
+     * <code>.corepb.Transaction transaction = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder() {
+      return getTransaction();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (transaction_ != null) {
+        output.writeMessage(1, getTransaction());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (transaction_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getTransaction());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest other = (com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest) obj;
+
+      boolean result = true;
+      result = result && (hasTransaction() == other.hasTransaction());
+      if (hasTransaction()) {
+        result = result && getTransaction()
+            .equals(other.getTransaction());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasTransaction()) {
+        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
+        hash = (53 * hash) + getTransaction().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.EstimateGasRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.EstimateGasRequest)
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.class, com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest result = new com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest(this);
+        if (transactionBuilder_ == null) {
+          result.transaction_ = transaction_;
+        } else {
+          result.transaction_ = transactionBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest.getDefaultInstance()) return this;
+        if (other.hasTransaction()) {
+          mergeTransaction(other.getTransaction());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.dappley.java.core.protobuf.TransactionProto.Transaction transaction_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionBuilder_;
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public boolean hasTransaction() {
+        return transactionBuilder_ != null || transaction_ != null;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransaction() {
+        if (transactionBuilder_ == null) {
+          return transaction_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+        } else {
+          return transactionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          transaction_ = value;
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder setTransaction(
+          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          transaction_ = builderForValue.build();
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder mergeTransaction(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (transaction_ != null) {
+            transaction_ =
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+          } else {
+            transaction_ = value;
+          }
+          onChanged();
+        } else {
+          transactionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public Builder clearTransaction() {
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+          onChanged();
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionBuilder() {
+        
+        onChanged();
+        return getTransactionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionOrBuilder() {
+        if (transactionBuilder_ != null) {
+          return transactionBuilder_.getMessageOrBuilder();
+        } else {
+          return transaction_ == null ?
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : transaction_;
+        }
+      }
+      /**
+       * <code>.corepb.Transaction transaction = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+          getTransactionFieldBuilder() {
+        if (transactionBuilder_ == null) {
+          transactionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
+                  getTransaction(),
+                  getParentForChildren(),
+                  isClean());
+          transaction_ = null;
+        }
+        return transactionBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.EstimateGasRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.EstimateGasRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<EstimateGasRequest>
+        PARSER = new com.google.protobuf.AbstractParser<EstimateGasRequest>() {
+      @java.lang.Override
+      public EstimateGasRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new EstimateGasRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<EstimateGasRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<EstimateGasRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.EstimateGasRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GasPriceRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GasPriceRequest)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code rpcpb.GasPriceRequest}
+   */
+  public  static final class GasPriceRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GasPriceRequest)
+      GasPriceRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GasPriceRequest.newBuilder() to construct.
+    private GasPriceRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GasPriceRequest() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GasPriceRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.class, com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GasPriceRequest)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GasPriceRequest other = (com.dappley.java.core.protobuf.RpcProto.GasPriceRequest) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GasPriceRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GasPriceRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GasPriceRequest)
+        com.dappley.java.core.protobuf.RpcProto.GasPriceRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.class, com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GasPriceRequest getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GasPriceRequest build() {
+        com.dappley.java.core.protobuf.RpcProto.GasPriceRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GasPriceRequest buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GasPriceRequest result = new com.dappley.java.core.protobuf.RpcProto.GasPriceRequest(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GasPriceRequest) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GasPriceRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GasPriceRequest other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GasPriceRequest.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GasPriceRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GasPriceRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GasPriceRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GasPriceRequest)
+    private static final com.dappley.java.core.protobuf.RpcProto.GasPriceRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GasPriceRequest();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GasPriceRequest>
+        PARSER = new com.google.protobuf.AbstractParser<GasPriceRequest>() {
+      @java.lang.Override
+      public GasPriceRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GasPriceRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GasPriceRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GasPriceRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GasPriceRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -23076,6 +24639,613 @@ public final class RpcProto {
 
   }
 
+  public interface GetStatsResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GetStatsResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.metricspb.Metrics stats = 1;</code>
+     */
+    boolean hasStats();
+    /**
+     * <code>.metricspb.Metrics stats = 1;</code>
+     */
+    com.dappley.java.core.protobuf.DataStoreProto.Metrics getStats();
+    /**
+     * <code>.metricspb.Metrics stats = 1;</code>
+     */
+    com.dappley.java.core.protobuf.DataStoreProto.MetricsOrBuilder getStatsOrBuilder();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GetStatsResponse}
+   */
+  public  static final class GetStatsResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GetStatsResponse)
+      GetStatsResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetStatsResponse.newBuilder() to construct.
+    private GetStatsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetStatsResponse() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetStatsResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.dappley.java.core.protobuf.DataStoreProto.Metrics.Builder subBuilder = null;
+              if (stats_ != null) {
+                subBuilder = stats_.toBuilder();
+              }
+              stats_ = input.readMessage(com.dappley.java.core.protobuf.DataStoreProto.Metrics.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(stats_);
+                stats_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetStatsResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetStatsResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.class, com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.Builder.class);
+    }
+
+    public static final int STATS_FIELD_NUMBER = 1;
+    private com.dappley.java.core.protobuf.DataStoreProto.Metrics stats_;
+    /**
+     * <code>.metricspb.Metrics stats = 1;</code>
+     */
+    public boolean hasStats() {
+      return stats_ != null;
+    }
+    /**
+     * <code>.metricspb.Metrics stats = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.DataStoreProto.Metrics getStats() {
+      return stats_ == null ? com.dappley.java.core.protobuf.DataStoreProto.Metrics.getDefaultInstance() : stats_;
+    }
+    /**
+     * <code>.metricspb.Metrics stats = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.DataStoreProto.MetricsOrBuilder getStatsOrBuilder() {
+      return getStats();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (stats_ != null) {
+        output.writeMessage(1, getStats());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (stats_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getStats());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GetStatsResponse)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GetStatsResponse other = (com.dappley.java.core.protobuf.RpcProto.GetStatsResponse) obj;
+
+      boolean result = true;
+      result = result && (hasStats() == other.hasStats());
+      if (hasStats()) {
+        result = result && getStats()
+            .equals(other.getStats());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasStats()) {
+        hash = (37 * hash) + STATS_FIELD_NUMBER;
+        hash = (53 * hash) + getStats().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GetStatsResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GetStatsResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GetStatsResponse)
+        com.dappley.java.core.protobuf.RpcProto.GetStatsResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetStatsResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetStatsResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.class, com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (statsBuilder_ == null) {
+          stats_ = null;
+        } else {
+          stats_ = null;
+          statsBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GetStatsResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetStatsResponse getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetStatsResponse build() {
+        com.dappley.java.core.protobuf.RpcProto.GetStatsResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GetStatsResponse buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GetStatsResponse result = new com.dappley.java.core.protobuf.RpcProto.GetStatsResponse(this);
+        if (statsBuilder_ == null) {
+          result.stats_ = stats_;
+        } else {
+          result.stats_ = statsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GetStatsResponse) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GetStatsResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GetStatsResponse other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GetStatsResponse.getDefaultInstance()) return this;
+        if (other.hasStats()) {
+          mergeStats(other.getStats());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GetStatsResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GetStatsResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.dappley.java.core.protobuf.DataStoreProto.Metrics stats_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.DataStoreProto.Metrics, com.dappley.java.core.protobuf.DataStoreProto.Metrics.Builder, com.dappley.java.core.protobuf.DataStoreProto.MetricsOrBuilder> statsBuilder_;
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public boolean hasStats() {
+        return statsBuilder_ != null || stats_ != null;
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.DataStoreProto.Metrics getStats() {
+        if (statsBuilder_ == null) {
+          return stats_ == null ? com.dappley.java.core.protobuf.DataStoreProto.Metrics.getDefaultInstance() : stats_;
+        } else {
+          return statsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public Builder setStats(com.dappley.java.core.protobuf.DataStoreProto.Metrics value) {
+        if (statsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          stats_ = value;
+          onChanged();
+        } else {
+          statsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public Builder setStats(
+          com.dappley.java.core.protobuf.DataStoreProto.Metrics.Builder builderForValue) {
+        if (statsBuilder_ == null) {
+          stats_ = builderForValue.build();
+          onChanged();
+        } else {
+          statsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public Builder mergeStats(com.dappley.java.core.protobuf.DataStoreProto.Metrics value) {
+        if (statsBuilder_ == null) {
+          if (stats_ != null) {
+            stats_ =
+              com.dappley.java.core.protobuf.DataStoreProto.Metrics.newBuilder(stats_).mergeFrom(value).buildPartial();
+          } else {
+            stats_ = value;
+          }
+          onChanged();
+        } else {
+          statsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public Builder clearStats() {
+        if (statsBuilder_ == null) {
+          stats_ = null;
+          onChanged();
+        } else {
+          stats_ = null;
+          statsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.DataStoreProto.Metrics.Builder getStatsBuilder() {
+        
+        onChanged();
+        return getStatsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.DataStoreProto.MetricsOrBuilder getStatsOrBuilder() {
+        if (statsBuilder_ != null) {
+          return statsBuilder_.getMessageOrBuilder();
+        } else {
+          return stats_ == null ?
+              com.dappley.java.core.protobuf.DataStoreProto.Metrics.getDefaultInstance() : stats_;
+        }
+      }
+      /**
+       * <code>.metricspb.Metrics stats = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.DataStoreProto.Metrics, com.dappley.java.core.protobuf.DataStoreProto.Metrics.Builder, com.dappley.java.core.protobuf.DataStoreProto.MetricsOrBuilder> 
+          getStatsFieldBuilder() {
+        if (statsBuilder_ == null) {
+          statsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.dappley.java.core.protobuf.DataStoreProto.Metrics, com.dappley.java.core.protobuf.DataStoreProto.Metrics.Builder, com.dappley.java.core.protobuf.DataStoreProto.MetricsOrBuilder>(
+                  getStats(),
+                  getParentForChildren(),
+                  isClean());
+          stats_ = null;
+        }
+        return statsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GetStatsResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GetStatsResponse)
+    private static final com.dappley.java.core.protobuf.RpcProto.GetStatsResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GetStatsResponse();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GetStatsResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetStatsResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GetStatsResponse>() {
+      @java.lang.Override
+      public GetStatsResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetStatsResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetStatsResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetStatsResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GetStatsResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface GetLastIrreversibleBlockResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.GetLastIrreversibleBlockResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -23683,6 +25853,964 @@ public final class RpcProto {
 
   }
 
+  public interface EstimateGasResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.EstimateGasResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes gas_count = 1;</code>
+     */
+    com.google.protobuf.ByteString getGasCount();
+  }
+  /**
+   * Protobuf type {@code rpcpb.EstimateGasResponse}
+   */
+  public  static final class EstimateGasResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.EstimateGasResponse)
+      EstimateGasResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use EstimateGasResponse.newBuilder() to construct.
+    private EstimateGasResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private EstimateGasResponse() {
+      gasCount_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private EstimateGasResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              gasCount_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.class, com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.Builder.class);
+    }
+
+    public static final int GAS_COUNT_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString gasCount_;
+    /**
+     * <code>bytes gas_count = 1;</code>
+     */
+    public com.google.protobuf.ByteString getGasCount() {
+      return gasCount_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!gasCount_.isEmpty()) {
+        output.writeBytes(1, gasCount_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!gasCount_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, gasCount_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse other = (com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse) obj;
+
+      boolean result = true;
+      result = result && getGasCount()
+          .equals(other.getGasCount());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + GAS_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getGasCount().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.EstimateGasResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.EstimateGasResponse)
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.class, com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        gasCount_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_EstimateGasResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse build() {
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse result = new com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse(this);
+        result.gasCount_ = gasCount_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse.getDefaultInstance()) return this;
+        if (other.getGasCount() != com.google.protobuf.ByteString.EMPTY) {
+          setGasCount(other.getGasCount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString gasCount_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes gas_count = 1;</code>
+       */
+      public com.google.protobuf.ByteString getGasCount() {
+        return gasCount_;
+      }
+      /**
+       * <code>bytes gas_count = 1;</code>
+       */
+      public Builder setGasCount(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes gas_count = 1;</code>
+       */
+      public Builder clearGasCount() {
+        
+        gasCount_ = getDefaultInstance().getGasCount();
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.EstimateGasResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.EstimateGasResponse)
+    private static final com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<EstimateGasResponse>
+        PARSER = new com.google.protobuf.AbstractParser<EstimateGasResponse>() {
+      @java.lang.Override
+      public EstimateGasResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new EstimateGasResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<EstimateGasResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<EstimateGasResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.EstimateGasResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GasPriceResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:rpcpb.GasPriceResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes gas_price = 1;</code>
+     */
+    com.google.protobuf.ByteString getGasPrice();
+  }
+  /**
+   * Protobuf type {@code rpcpb.GasPriceResponse}
+   */
+  public  static final class GasPriceResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:rpcpb.GasPriceResponse)
+      GasPriceResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GasPriceResponse.newBuilder() to construct.
+    private GasPriceResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GasPriceResponse() {
+      gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GasPriceResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+
+              gasPrice_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.class, com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.Builder.class);
+    }
+
+    public static final int GAS_PRICE_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString gasPrice_;
+    /**
+     * <code>bytes gas_price = 1;</code>
+     */
+    public com.google.protobuf.ByteString getGasPrice() {
+      return gasPrice_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!gasPrice_.isEmpty()) {
+        output.writeBytes(1, gasPrice_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!gasPrice_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, gasPrice_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.RpcProto.GasPriceResponse)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.RpcProto.GasPriceResponse other = (com.dappley.java.core.protobuf.RpcProto.GasPriceResponse) obj;
+
+      boolean result = true;
+      result = result && getGasPrice()
+          .equals(other.getGasPrice());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + GAS_PRICE_FIELD_NUMBER;
+      hash = (53 * hash) + getGasPrice().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.RpcProto.GasPriceResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code rpcpb.GasPriceResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:rpcpb.GasPriceResponse)
+        com.dappley.java.core.protobuf.RpcProto.GasPriceResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.class, com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.RpcProto.internal_static_rpcpb_GasPriceResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GasPriceResponse getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GasPriceResponse build() {
+        com.dappley.java.core.protobuf.RpcProto.GasPriceResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.RpcProto.GasPriceResponse buildPartial() {
+        com.dappley.java.core.protobuf.RpcProto.GasPriceResponse result = new com.dappley.java.core.protobuf.RpcProto.GasPriceResponse(this);
+        result.gasPrice_ = gasPrice_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.RpcProto.GasPriceResponse) {
+          return mergeFrom((com.dappley.java.core.protobuf.RpcProto.GasPriceResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.GasPriceResponse other) {
+        if (other == com.dappley.java.core.protobuf.RpcProto.GasPriceResponse.getDefaultInstance()) return this;
+        if (other.getGasPrice() != com.google.protobuf.ByteString.EMPTY) {
+          setGasPrice(other.getGasPrice());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.RpcProto.GasPriceResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.RpcProto.GasPriceResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes gas_price = 1;</code>
+       */
+      public com.google.protobuf.ByteString getGasPrice() {
+        return gasPrice_;
+      }
+      /**
+       * <code>bytes gas_price = 1;</code>
+       */
+      public Builder setGasPrice(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasPrice_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes gas_price = 1;</code>
+       */
+      public Builder clearGasPrice() {
+        
+        gasPrice_ = getDefaultInstance().getGasPrice();
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:rpcpb.GasPriceResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:rpcpb.GasPriceResponse)
+    private static final com.dappley.java.core.protobuf.RpcProto.GasPriceResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.RpcProto.GasPriceResponse();
+    }
+
+    public static com.dappley.java.core.protobuf.RpcProto.GasPriceResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GasPriceResponse>
+        PARSER = new com.google.protobuf.AbstractParser<GasPriceResponse>() {
+      @java.lang.Override
+      public GasPriceResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GasPriceResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GasPriceResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GasPriceResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.RpcProto.GasPriceResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_CreateWalletRequest_descriptor;
   private static final 
@@ -23774,10 +26902,25 @@ public final class RpcProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_SubscribeRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_MetricsServiceRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_MetricsServiceRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetLastIrreversibleBlockRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetLastIrreversibleBlockRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_EstimateGasRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_EstimateGasRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GasPriceRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GasPriceRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_AddProducerResponse_descriptor;
   private static final 
@@ -23879,10 +27022,25 @@ public final class RpcProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetAllTransactionsResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GetStatsResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GetStatsResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_rpcpb_GetLastIrreversibleBlockResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_rpcpb_GetLastIrreversibleBlockResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_EstimateGasResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_EstimateGasResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_rpcpb_GasPriceResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_rpcpb_GasPriceResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -23893,97 +27051,110 @@ public final class RpcProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\trpc.proto\022\005rpcpb\032\npeer.proto\032\013block.pr" +
-      "oto\032\021transaction.proto\032\nutxo.proto\")\n\023Cr" +
-      "eateWalletRequest\022\022\n\npassphrase\030\001 \001(\t\"\025\n" +
-      "\023UnlockWalletRequest\"%\n\022AddProducerReque" +
-      "st\022\017\n\007address\030\001 \001(\t\"$\n\021GetBalanceRequest" +
-      "\022\017\n\007address\030\001 \001(\t\"2\n\024SendFromMinerReques" +
-      "t\022\n\n\002to\030\001 \001(\t\022\016\n\006amount\030\002 \001(\014\"g\n\013SendReq" +
-      "uest\022\014\n\004from\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\016\n\006amount" +
-      "\030\003 \001(\014\022\023\n\013wallet_path\030\004 \001(\t\022\013\n\003tip\030\005 \001(\014" +
-      "\022\014\n\004data\030\006 \001(\t\"\024\n\022GetPeerInfoRequest\"\032\n\030" +
-      "GetBlockchainInfoRequest\"&\n\016AddPeerReque" +
-      "st\022\024\n\014full_address\030\001 \001(\t\"*\n\021GetVersionRe" +
-      "quest\022\025\n\rproto_version\030\001 \001(\t\"!\n\016GetUTXOR" +
-      "equest\022\017\n\007address\030\001 \001(\t\"A\n\020GetBlocksRequ" +
-      "est\022\032\n\022start_block_hashes\030\001 \003(\014\022\021\n\tmax_c" +
-      "ount\030\002 \001(\005\"%\n\025GetBlockByHashRequest\022\014\n\004h" +
-      "ash\030\001 \001(\014\")\n\027GetBlockByHeightRequest\022\016\n\006" +
-      "height\030\001 \001(\004\"B\n\026SendTransactionRequest\022(" +
-      "\n\013transaction\030\001 \001(\0132\023.corepb.Transaction" +
-      "\"H\n\033SendBatchTransactionRequest\022)\n\014trans" +
-      "actions\030\001 \003(\0132\023.corepb.Transaction\"\032\n\030Ge" +
-      "tNewTransactionRequest\"\"\n\020SubscribeReque" +
-      "st\022\016\n\006topics\030\001 \003(\t\"!\n\037GetLastIrreversibl" +
-      "eBlockRequest\"\025\n\023AddProducerResponse\"\026\n\024" +
-      "UnlockWalletResponse\"$\n\022GetBalanceRespon" +
-      "se\022\016\n\006amount\030\001 \001(\003\"\027\n\025SendFromMinerRespo" +
-      "nse\"6\n\014SendResponse\022\030\n\020contract_address\030" +
-      "\001 \001(\t\022\014\n\004txid\030\002 \001(\t\"=\n\023GetPeerInfoRespon" +
-      "se\022&\n\tpeer_list\030\001 \003(\0132\023.networkpb.PeerIn" +
-      "fo\"p\n\031GetBlockchainInfoResponse\022\027\n\017tail_" +
-      "block_hash\030\001 \001(\014\022\024\n\014block_height\030\002 \001(\004\022\021" +
-      "\n\tproducers\030\003 \003(\t\022\021\n\ttimestamp\030\004 \001(\003\"\021\n\017" +
-      "AddPeerResponse\"C\n\022GetVersionResponse\022\025\n" +
-      "\rproto_version\030\001 \001(\t\022\026\n\016server_version\030\002" +
-      " \001(\t\"Z\n\017GetUTXOResponse\022\033\n\005utxos\030\001 \003(\0132\014" +
-      ".corepb.Utxo\022*\n\rblock_headers\030\002 \003(\0132\023.co" +
-      "repb.BlockHeader\"2\n\021GetBlocksResponse\022\035\n" +
-      "\006blocks\030\001 \003(\0132\r.corepb.Block\"6\n\026GetBlock" +
-      "ByHashResponse\022\034\n\005block\030\001 \001(\0132\r.corepb.B" +
-      "lock\"8\n\030GetBlockByHeightResponse\022\034\n\005bloc" +
-      "k\030\001 \001(\0132\r.corepb.Block\"\031\n\027SendTransactio" +
-      "nResponse\"\036\n\034SendBatchTransactionRespons" +
-      "e\"D\n\025SendTransactionStatus\022\014\n\004txid\030\001 \001(\014" +
-      "\022\014\n\004code\030\002 \001(\r\022\017\n\007message\030\003 \001(\t\"E\n\031GetNe" +
-      "wTransactionResponse\022(\n\013transaction\030\001 \001(" +
-      "\0132\023.corepb.Transaction\"!\n\021SubscribeRespo" +
-      "nse\022\014\n\004data\030\001 \001(\t\"\033\n\031GetAllTransactionsR" +
-      "equest\"G\n\032GetAllTransactionsResponse\022)\n\014" +
-      "transactions\030\001 \003(\0132\023.corepb.Transaction\"" +
-      "@\n GetLastIrreversibleBlockResponse\022\034\n\005b" +
-      "lock\030\001 \001(\0132\r.corepb.Block2\352\010\n\nRpcService" +
-      "\022F\n\rRpcGetVersion\022\030.rpcpb.GetVersionRequ" +
-      "est\032\031.rpcpb.GetVersionResponse\"\000\022F\n\rRpcG" +
-      "etBalance\022\030.rpcpb.GetBalanceRequest\032\031.rp" +
-      "cpb.GetBalanceResponse\"\000\022[\n\024RpcGetBlockc" +
-      "hainInfo\022\037.rpcpb.GetBlockchainInfoReques" +
-      "t\032 .rpcpb.GetBlockchainInfoResponse\"\000\022=\n" +
-      "\nRpcGetUTXO\022\025.rpcpb.GetUTXORequest\032\026.rpc" +
-      "pb.GetUTXOResponse\"\000\022C\n\014RpcGetBlocks\022\027.r" +
-      "pcpb.GetBlocksRequest\032\030.rpcpb.GetBlocksR" +
-      "esponse\"\000\022R\n\021RpcGetBlockByHash\022\034.rpcpb.G" +
-      "etBlockByHashRequest\032\035.rpcpb.GetBlockByH" +
-      "ashResponse\"\000\022X\n\023RpcGetBlockByHeight\022\036.r" +
-      "pcpb.GetBlockByHeightRequest\032\037.rpcpb.Get" +
-      "BlockByHeightResponse\"\000\022U\n\022RpcSendTransa" +
-      "ction\022\035.rpcpb.SendTransactionRequest\032\036.r" +
-      "pcpb.SendTransactionResponse\"\000\022d\n\027RpcSen" +
-      "dBatchTransaction\022\".rpcpb.SendBatchTrans" +
-      "actionRequest\032#.rpcpb.SendBatchTransacti" +
-      "onResponse\"\000\022]\n\024RpcGetNewTransaction\022\037.r" +
-      "pcpb.GetNewTransactionRequest\032 .rpcpb.Ge" +
-      "tNewTransactionResponse\"\0000\001\022E\n\014RpcSubscr" +
-      "ibe\022\027.rpcpb.SubscribeRequest\032\030.rpcpb.Sub" +
-      "scribeResponse\"\0000\001\022h\n\037RpcGetAllTransacti" +
-      "onsFromTxPool\022 .rpcpb.GetAllTransactions" +
-      "Request\032!.rpcpb.GetAllTransactionsRespon" +
-      "se\"\000\022p\n\033RpcGetLastIrreversibleBlock\022&.rp" +
-      "cpb.GetLastIrreversibleBlockRequest\032\'.rp" +
-      "cpb.GetLastIrreversibleBlockResponse\"\0002\270" +
-      "\003\n\014AdminService\022=\n\nRpcAddPeer\022\025.rpcpb.Ad" +
-      "dPeerRequest\032\026.rpcpb.AddPeerResponse\"\000\0224" +
-      "\n\007RpcSend\022\022.rpcpb.SendRequest\032\023.rpcpb.Se" +
-      "ndResponse\"\000\022I\n\016RpcGetPeerInfo\022\031.rpcpb.G" +
-      "etPeerInfoRequest\032\032.rpcpb.GetPeerInfoRes" +
-      "ponse\"\000\022O\n\020RpcSendFromMiner\022\033.rpcpb.Send" +
-      "FromMinerRequest\032\034.rpcpb.SendFromMinerRe" +
-      "sponse\"\000\022I\n\016RpcAddProducer\022\031.rpcpb.AddPr" +
-      "oducerRequest\032\032.rpcpb.AddProducerRespons" +
-      "e\"\000\022L\n\017RpcUnlockWallet\022\032.rpcpb.UnlockWal" +
-      "letRequest\032\033.rpcpb.UnlockWalletResponse\"" +
-      "\000B*\n\036com.dappley.java.core.protobufB\010Rpc" +
-      "Protob\006proto3"
+      "oto\032\021transaction.proto\032\nutxo.proto\032\017data" +
+      "store.proto\")\n\023CreateWalletRequest\022\022\n\npa" +
+      "ssphrase\030\001 \001(\t\"\025\n\023UnlockWalletRequest\"%\n" +
+      "\022AddProducerRequest\022\017\n\007address\030\001 \001(\t\"$\n\021" +
+      "GetBalanceRequest\022\017\n\007address\030\001 \001(\t\"2\n\024Se" +
+      "ndFromMinerRequest\022\n\n\002to\030\001 \001(\t\022\016\n\006amount" +
+      "\030\002 \001(\014\"\215\001\n\013SendRequest\022\014\n\004from\030\001 \001(\t\022\n\n\002" +
+      "to\030\002 \001(\t\022\016\n\006amount\030\003 \001(\014\022\023\n\013wallet_path\030" +
+      "\004 \001(\t\022\013\n\003tip\030\005 \001(\014\022\014\n\004data\030\006 \001(\t\022\021\n\tgas_" +
+      "limit\030\007 \001(\014\022\021\n\tgas_price\030\010 \001(\014\"\024\n\022GetPee" +
+      "rInfoRequest\"\032\n\030GetBlockchainInfoRequest" +
+      "\"&\n\016AddPeerRequest\022\024\n\014full_address\030\001 \001(\t" +
+      "\"*\n\021GetVersionRequest\022\025\n\rproto_version\030\001" +
+      " \001(\t\"!\n\016GetUTXORequest\022\017\n\007address\030\001 \001(\t\"" +
+      "A\n\020GetBlocksRequest\022\032\n\022start_block_hashe" +
+      "s\030\001 \003(\014\022\021\n\tmax_count\030\002 \001(\005\"%\n\025GetBlockBy" +
+      "HashRequest\022\014\n\004hash\030\001 \001(\014\")\n\027GetBlockByH" +
+      "eightRequest\022\016\n\006height\030\001 \001(\004\"B\n\026SendTran" +
+      "sactionRequest\022(\n\013transaction\030\001 \001(\0132\023.co" +
+      "repb.Transaction\"H\n\033SendBatchTransaction" +
+      "Request\022)\n\014transactions\030\001 \003(\0132\023.corepb.T" +
+      "ransaction\"\032\n\030GetNewTransactionRequest\"\"" +
+      "\n\020SubscribeRequest\022\016\n\006topics\030\001 \003(\t\"\027\n\025Me" +
+      "tricsServiceRequest\"!\n\037GetLastIrreversib" +
+      "leBlockRequest\">\n\022EstimateGasRequest\022(\n\013" +
+      "transaction\030\001 \001(\0132\023.corepb.Transaction\"\021" +
+      "\n\017GasPriceRequest\"\025\n\023AddProducerResponse" +
+      "\"\026\n\024UnlockWalletResponse\"$\n\022GetBalanceRe" +
+      "sponse\022\016\n\006amount\030\001 \001(\003\"\027\n\025SendFromMinerR" +
+      "esponse\"6\n\014SendResponse\022\030\n\020contract_addr" +
+      "ess\030\001 \001(\t\022\014\n\004txid\030\002 \001(\t\"=\n\023GetPeerInfoRe" +
+      "sponse\022&\n\tpeer_list\030\001 \003(\0132\023.networkpb.Pe" +
+      "erInfo\"p\n\031GetBlockchainInfoResponse\022\027\n\017t" +
+      "ail_block_hash\030\001 \001(\014\022\024\n\014block_height\030\002 \001" +
+      "(\004\022\021\n\tproducers\030\003 \003(\t\022\021\n\ttimestamp\030\004 \001(\003" +
+      "\"\021\n\017AddPeerResponse\"C\n\022GetVersionRespons" +
+      "e\022\025\n\rproto_version\030\001 \001(\t\022\026\n\016server_versi" +
+      "on\030\002 \001(\t\"Z\n\017GetUTXOResponse\022\033\n\005utxos\030\001 \003" +
+      "(\0132\014.corepb.Utxo\022*\n\rblock_headers\030\002 \003(\0132" +
+      "\023.corepb.BlockHeader\"2\n\021GetBlocksRespons" +
+      "e\022\035\n\006blocks\030\001 \003(\0132\r.corepb.Block\"6\n\026GetB" +
+      "lockByHashResponse\022\034\n\005block\030\001 \001(\0132\r.core" +
+      "pb.Block\"8\n\030GetBlockByHeightResponse\022\034\n\005" +
+      "block\030\001 \001(\0132\r.corepb.Block\"\031\n\027SendTransa" +
+      "ctionResponse\"\036\n\034SendBatchTransactionRes" +
+      "ponse\"D\n\025SendTransactionStatus\022\014\n\004txid\030\001" +
+      " \001(\014\022\014\n\004code\030\002 \001(\r\022\017\n\007message\030\003 \001(\t\"E\n\031G" +
+      "etNewTransactionResponse\022(\n\013transaction\030" +
+      "\001 \001(\0132\023.corepb.Transaction\"!\n\021SubscribeR" +
+      "esponse\022\014\n\004data\030\001 \001(\t\"\033\n\031GetAllTransacti" +
+      "onsRequest\"G\n\032GetAllTransactionsResponse" +
+      "\022)\n\014transactions\030\001 \003(\0132\023.corepb.Transact" +
+      "ion\"5\n\020GetStatsResponse\022!\n\005stats\030\001 \001(\0132\022" +
+      ".metricspb.Metrics\"@\n GetLastIrreversibl" +
+      "eBlockResponse\022\034\n\005block\030\001 \001(\0132\r.corepb.B" +
+      "lock\"(\n\023EstimateGasResponse\022\021\n\tgas_count" +
+      "\030\001 \001(\014\"%\n\020GasPriceResponse\022\021\n\tgas_price\030" +
+      "\001 \001(\0142\367\t\n\nRpcService\022F\n\rRpcGetVersion\022\030." +
+      "rpcpb.GetVersionRequest\032\031.rpcpb.GetVersi" +
+      "onResponse\"\000\022F\n\rRpcGetBalance\022\030.rpcpb.Ge" +
+      "tBalanceRequest\032\031.rpcpb.GetBalanceRespon" +
+      "se\"\000\022[\n\024RpcGetBlockchainInfo\022\037.rpcpb.Get" +
+      "BlockchainInfoRequest\032 .rpcpb.GetBlockch" +
+      "ainInfoResponse\"\000\022=\n\nRpcGetUTXO\022\025.rpcpb." +
+      "GetUTXORequest\032\026.rpcpb.GetUTXOResponse\"\000" +
+      "\022C\n\014RpcGetBlocks\022\027.rpcpb.GetBlocksReques" +
+      "t\032\030.rpcpb.GetBlocksResponse\"\000\022R\n\021RpcGetB" +
+      "lockByHash\022\034.rpcpb.GetBlockByHashRequest" +
+      "\032\035.rpcpb.GetBlockByHashResponse\"\000\022X\n\023Rpc" +
+      "GetBlockByHeight\022\036.rpcpb.GetBlockByHeigh" +
+      "tRequest\032\037.rpcpb.GetBlockByHeightRespons" +
+      "e\"\000\022U\n\022RpcSendTransaction\022\035.rpcpb.SendTr" +
+      "ansactionRequest\032\036.rpcpb.SendTransaction" +
+      "Response\"\000\022d\n\027RpcSendBatchTransaction\022\"." +
+      "rpcpb.SendBatchTransactionRequest\032#.rpcp" +
+      "b.SendBatchTransactionResponse\"\000\022]\n\024RpcG" +
+      "etNewTransaction\022\037.rpcpb.GetNewTransacti" +
+      "onRequest\032 .rpcpb.GetNewTransactionRespo" +
+      "nse\"\0000\001\022E\n\014RpcSubscribe\022\027.rpcpb.Subscrib" +
+      "eRequest\032\030.rpcpb.SubscribeResponse\"\0000\001\022h" +
+      "\n\037RpcGetAllTransactionsFromTxPool\022 .rpcp" +
+      "b.GetAllTransactionsRequest\032!.rpcpb.GetA" +
+      "llTransactionsResponse\"\000\022p\n\033RpcGetLastIr" +
+      "reversibleBlock\022&.rpcpb.GetLastIrreversi" +
+      "bleBlockRequest\032\'.rpcpb.GetLastIrreversi" +
+      "bleBlockResponse\"\000\022I\n\016RpcEstimateGas\022\031.r" +
+      "pcpb.EstimateGasRequest\032\032.rpcpb.Estimate" +
+      "GasResponse\"\000\022@\n\013RpcGasPrice\022\026.rpcpb.Gas" +
+      "PriceRequest\032\027.rpcpb.GasPriceResponse\"\0002" +
+      "\270\003\n\014AdminService\022=\n\nRpcAddPeer\022\025.rpcpb.A" +
+      "ddPeerRequest\032\026.rpcpb.AddPeerResponse\"\000\022" +
+      "4\n\007RpcSend\022\022.rpcpb.SendRequest\032\023.rpcpb.S" +
+      "endResponse\"\000\022I\n\016RpcGetPeerInfo\022\031.rpcpb." +
+      "GetPeerInfoRequest\032\032.rpcpb.GetPeerInfoRe" +
+      "sponse\"\000\022O\n\020RpcSendFromMiner\022\033.rpcpb.Sen" +
+      "dFromMinerRequest\032\034.rpcpb.SendFromMinerR" +
+      "esponse\"\000\022I\n\016RpcAddProducer\022\031.rpcpb.AddP" +
+      "roducerRequest\032\032.rpcpb.AddProducerRespon" +
+      "se\"\000\022L\n\017RpcUnlockWallet\022\032.rpcpb.UnlockWa" +
+      "lletRequest\032\033.rpcpb.UnlockWalletResponse" +
+      "\"\0002W\n\rMetricService\022F\n\013RpcGetStats\022\034.rpc" +
+      "pb.MetricsServiceRequest\032\027.rpcpb.GetStat" +
+      "sResponse\"\000B*\n\036com.dappley.java.core.pro" +
+      "tobufB\010RpcProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -24000,6 +27171,7 @@ public final class RpcProto {
           com.dappley.java.core.protobuf.BlockProto.getDescriptor(),
           com.dappley.java.core.protobuf.TransactionProto.getDescriptor(),
           com.dappley.java.core.protobuf.UtxoProto.getDescriptor(),
+          com.dappley.java.core.protobuf.DataStoreProto.getDescriptor(),
         }, assigner);
     internal_static_rpcpb_CreateWalletRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -24036,7 +27208,7 @@ public final class RpcProto {
     internal_static_rpcpb_SendRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendRequest_descriptor,
-        new java.lang.String[] { "From", "To", "Amount", "WalletPath", "Tip", "Data", });
+        new java.lang.String[] { "From", "To", "Amount", "WalletPath", "Tip", "Data", "GasLimit", "GasPrice", });
     internal_static_rpcpb_GetPeerInfoRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_rpcpb_GetPeerInfoRequest_fieldAccessorTable = new
@@ -24109,142 +27281,179 @@ public final class RpcProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SubscribeRequest_descriptor,
         new java.lang.String[] { "Topics", });
-    internal_static_rpcpb_GetLastIrreversibleBlockRequest_descriptor =
+    internal_static_rpcpb_MetricsServiceRequest_descriptor =
       getDescriptor().getMessageTypes().get(18);
+    internal_static_rpcpb_MetricsServiceRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_MetricsServiceRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_rpcpb_GetLastIrreversibleBlockRequest_descriptor =
+      getDescriptor().getMessageTypes().get(19);
     internal_static_rpcpb_GetLastIrreversibleBlockRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetLastIrreversibleBlockRequest_descriptor,
         new java.lang.String[] { });
+    internal_static_rpcpb_EstimateGasRequest_descriptor =
+      getDescriptor().getMessageTypes().get(20);
+    internal_static_rpcpb_EstimateGasRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_EstimateGasRequest_descriptor,
+        new java.lang.String[] { "Transaction", });
+    internal_static_rpcpb_GasPriceRequest_descriptor =
+      getDescriptor().getMessageTypes().get(21);
+    internal_static_rpcpb_GasPriceRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GasPriceRequest_descriptor,
+        new java.lang.String[] { });
     internal_static_rpcpb_AddProducerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_rpcpb_AddProducerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_AddProducerResponse_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_UnlockWalletResponse_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_rpcpb_UnlockWalletResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_UnlockWalletResponse_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_GetBalanceResponse_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_rpcpb_GetBalanceResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBalanceResponse_descriptor,
         new java.lang.String[] { "Amount", });
     internal_static_rpcpb_SendFromMinerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_rpcpb_SendFromMinerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendFromMinerResponse_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_SendResponse_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_rpcpb_SendResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendResponse_descriptor,
         new java.lang.String[] { "ContractAddress", "Txid", });
     internal_static_rpcpb_GetPeerInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_rpcpb_GetPeerInfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetPeerInfoResponse_descriptor,
         new java.lang.String[] { "PeerList", });
     internal_static_rpcpb_GetBlockchainInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_rpcpb_GetBlockchainInfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockchainInfoResponse_descriptor,
         new java.lang.String[] { "TailBlockHash", "BlockHeight", "Producers", "Timestamp", });
     internal_static_rpcpb_AddPeerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_rpcpb_AddPeerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_AddPeerResponse_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_GetVersionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_rpcpb_GetVersionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetVersionResponse_descriptor,
         new java.lang.String[] { "ProtoVersion", "ServerVersion", });
     internal_static_rpcpb_GetUTXOResponse_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_rpcpb_GetUTXOResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetUTXOResponse_descriptor,
         new java.lang.String[] { "Utxos", "BlockHeaders", });
     internal_static_rpcpb_GetBlocksResponse_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_rpcpb_GetBlocksResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlocksResponse_descriptor,
         new java.lang.String[] { "Blocks", });
     internal_static_rpcpb_GetBlockByHashResponse_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_rpcpb_GetBlockByHashResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockByHashResponse_descriptor,
         new java.lang.String[] { "Block", });
     internal_static_rpcpb_GetBlockByHeightResponse_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_rpcpb_GetBlockByHeightResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetBlockByHeightResponse_descriptor,
         new java.lang.String[] { "Block", });
     internal_static_rpcpb_SendTransactionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(35);
     internal_static_rpcpb_SendTransactionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendTransactionResponse_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_SendBatchTransactionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(36);
     internal_static_rpcpb_SendBatchTransactionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendBatchTransactionResponse_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_SendTransactionStatus_descriptor =
-      getDescriptor().getMessageTypes().get(34);
+      getDescriptor().getMessageTypes().get(37);
     internal_static_rpcpb_SendTransactionStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendTransactionStatus_descriptor,
         new java.lang.String[] { "Txid", "Code", "Message", });
     internal_static_rpcpb_GetNewTransactionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(35);
+      getDescriptor().getMessageTypes().get(38);
     internal_static_rpcpb_GetNewTransactionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetNewTransactionResponse_descriptor,
         new java.lang.String[] { "Transaction", });
     internal_static_rpcpb_SubscribeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(36);
+      getDescriptor().getMessageTypes().get(39);
     internal_static_rpcpb_SubscribeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SubscribeResponse_descriptor,
         new java.lang.String[] { "Data", });
     internal_static_rpcpb_GetAllTransactionsRequest_descriptor =
-      getDescriptor().getMessageTypes().get(37);
+      getDescriptor().getMessageTypes().get(40);
     internal_static_rpcpb_GetAllTransactionsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetAllTransactionsRequest_descriptor,
         new java.lang.String[] { });
     internal_static_rpcpb_GetAllTransactionsResponse_descriptor =
-      getDescriptor().getMessageTypes().get(38);
+      getDescriptor().getMessageTypes().get(41);
     internal_static_rpcpb_GetAllTransactionsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetAllTransactionsResponse_descriptor,
         new java.lang.String[] { "Transactions", });
+    internal_static_rpcpb_GetStatsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(42);
+    internal_static_rpcpb_GetStatsResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GetStatsResponse_descriptor,
+        new java.lang.String[] { "Stats", });
     internal_static_rpcpb_GetLastIrreversibleBlockResponse_descriptor =
-      getDescriptor().getMessageTypes().get(39);
+      getDescriptor().getMessageTypes().get(43);
     internal_static_rpcpb_GetLastIrreversibleBlockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_GetLastIrreversibleBlockResponse_descriptor,
         new java.lang.String[] { "Block", });
+    internal_static_rpcpb_EstimateGasResponse_descriptor =
+      getDescriptor().getMessageTypes().get(44);
+    internal_static_rpcpb_EstimateGasResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_EstimateGasResponse_descriptor,
+        new java.lang.String[] { "GasCount", });
+    internal_static_rpcpb_GasPriceResponse_descriptor =
+      getDescriptor().getMessageTypes().get(45);
+    internal_static_rpcpb_GasPriceResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_rpcpb_GasPriceResponse_descriptor,
+        new java.lang.String[] { "GasPrice", });
     com.dappley.java.core.protobuf.PeerProto.getDescriptor();
     com.dappley.java.core.protobuf.BlockProto.getDescriptor();
     com.dappley.java.core.protobuf.TransactionProto.getDescriptor();
     com.dappley.java.core.protobuf.UtxoProto.getDescriptor();
+    com.dappley.java.core.protobuf.DataStoreProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

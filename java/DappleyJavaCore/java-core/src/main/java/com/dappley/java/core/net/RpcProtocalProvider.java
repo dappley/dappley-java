@@ -8,6 +8,7 @@ import io.grpc.ConnectivityState;
 import io.grpc.ManagedChannel;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -159,5 +160,28 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .setTransaction(transaction)
                 .build();
         getRpcServiceBlockingStub().rpcSendTransaction(request);
+    }
+
+    @Override
+    public ByteString estimateGas(TransactionProto.Transaction transaction) {
+        Asserts.clientInit(channel);
+        Asserts.channelOpen(channel);
+        RpcProto.EstimateGasRequest request = RpcProto.EstimateGasRequest.newBuilder()
+                .setTransaction(transaction)
+                .build();
+        RpcProto.EstimateGasResponse response = getRpcServiceBlockingStub().rpcEstimateGas(request);
+        ByteString gasCount = response.getGasCount();
+        return gasCount;
+    }
+
+    @Override
+    public ByteString getGasPrice() {
+        Asserts.clientInit(channel);
+        Asserts.channelOpen(channel);
+        RpcProto.GasPriceRequest request = RpcProto.GasPriceRequest.newBuilder()
+                .build();
+        RpcProto.GasPriceResponse response = getRpcServiceBlockingStub().rpcGasPrice(request);
+        ByteString gasPrice = response.getGasPrice();
+        return gasPrice;
     }
 }

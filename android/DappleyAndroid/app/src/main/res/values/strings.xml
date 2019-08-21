@@ -79,6 +79,7 @@
     <string name="layout_version_error">Check version error</string>
     <string name="layout_download_error">Download error</string>
     <string name="layout_version_no_new">No new version</string>
+    <string name="layout_miner_tip">miner tip</string>
 
     <string name="note_not_valid_wallet">The code is not a valid wallet address</string>
     <string name="note_no_valid_wallet">no valid wallet</string>

@@ -79,6 +79,7 @@
     <string name="layout_version_error">检测版本过程出错</string>
     <string name="layout_download_error">下载出错，请检查网络连接</string>
     <string name="layout_version_no_new">未检测到新版本</string>
+    <string name="layout_miner_tip">矿工交易费</string>
 
     <string name="note_not_valid_wallet">非法的钱包地址</string>
     <string name="note_no_valid_wallet">没有可用的钱包</string>

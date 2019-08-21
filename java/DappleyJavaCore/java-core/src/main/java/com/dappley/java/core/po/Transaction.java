@@ -25,6 +25,8 @@ public class Transaction implements Serializable {
     private List<TxInput> txInputs;
     private List<TxOutput> txOutputs;
     private BigInteger tip;
+    private BigInteger gasLimit;
+    private BigInteger gasPrice;
 
     public Transaction() {
     }
@@ -64,6 +66,12 @@ public class Transaction implements Serializable {
         if (transaction.getTip() != null && transaction.getTip().size() > 0) {
             this.setTip(new BigInteger(1, transaction.getTip().toByteArray()));
         }
+        if (transaction.getGasLimit() != null && transaction.getGasLimit().size() > 0) {
+            this.setGasLimit(new BigInteger(1, transaction.getGasLimit().toByteArray()));
+        }
+        if (transaction.getGasPrice() != null && transaction.getGasPrice().size() > 0) {
+            this.setGasPrice(new BigInteger(1, transaction.getGasPrice().toByteArray()));
+        }
     }
 
     /**
@@ -89,7 +97,15 @@ public class Transaction implements Serializable {
                 builder.addVout(txOutput.toProto());
             }
         }
-        builder.setTip(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getTip())));
+        if (this.getTip() != null) {
+            builder.setTip(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getTip())));
+        }
+        if (this.getGasLimit() != null) {
+            builder.setGasLimit(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getGasLimit())));
+        }
+        if (this.getGasPrice() != null) {
+            builder.setGasPrice(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getGasPrice())));
+        }
         return builder.build();
     }
 
@@ -152,6 +168,8 @@ public class Transaction implements Serializable {
         }
 
         transaction.setTip(this.tip);
+        transaction.setGasLimit(this.gasLimit);
+        transaction.setGasPrice(this.gasPrice);
         return transaction;
     }
 
@@ -229,6 +247,13 @@ public class Transaction implements Serializable {
         // add tip
         if (this.getTip() != null) {
             bytesList.add(ByteUtil.bigInteger2Bytes(this.getTip()));
+        }
+
+        if (this.getGasLimit() != null) {
+            bytesList.add(ByteUtil.bigInteger2Bytes(this.getGasLimit()));
+        }
+        if (this.getGasPrice() != null) {
+            bytesList.add(ByteUtil.bigInteger2Bytes(this.getGasPrice()));
         }
 
         return ByteUtil.joinBytes(bytesList);

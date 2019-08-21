@@ -1,6 +1,7 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 
 import java.math.BigInteger;
@@ -47,4 +48,17 @@ public interface DataProvider {
      * @return BigInteger wallet balance
      */
     BigInteger getBalance(String address);
+
+    /**
+     * Returns the gas consumption of current contract.
+     * @param transaction
+     * @return long gas consumption
+     */
+    BigInteger estimateGas(Transaction transaction);
+
+    /**
+     * Returns current gas price
+     * @return long gas price
+     */
+    BigInteger getGasPrice();
 }

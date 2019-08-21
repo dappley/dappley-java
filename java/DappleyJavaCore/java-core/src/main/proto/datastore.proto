@@ -1,0 +1,46 @@
+syntax = "proto3";
+package metricspb;
+import "peer.proto";
+
+option java_package = "com.dappley.java.core.protobuf";
+option java_outer_classname = "DataStoreProto";
+
+message Stat {
+    int64 timestamp = 1;
+    oneof value {
+        int64 transaction_pool_size = 2;
+        metricspb.MemoryStats memory_stats = 3;
+        double cpu_percentage = 4;
+        metricspb.ForkStats fork_stats = 5;
+        metricspb.BlockStats block_stats = 6;
+    }
+}
+
+message MemoryStats {
+    uint64 heap_in_use = 1;
+    uint64 heap_sys = 2;
+}
+
+message ForkStats {
+    int64 num_forks = 1;
+    int64 longest_fork = 2;
+}
+
+message BlockStats {
+    uint64 num_transactions = 1;
+    uint64 height = 2;
+}
+
+message Metric {
+    repeated Stat stats = 1;
+}
+
+message DataStore {
+    map<string, Metric> metrics = 1;
+}
+
+message Metrics {
+    metricspb.DataStore data_store = 1;
+    repeated networkpb.PeerInfo peers = 2;
+    repeated metricspb.BlockStats block_stats = 3;
+}

@@ -1,8 +1,10 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.protobuf.BlockProto;
+import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.protobuf.UtxoProto;
 import com.dappley.java.core.util.HexUtil;
 import com.dappley.java.core.util.ObjectUtils;
@@ -115,6 +117,30 @@ public class RemoteDataProvider implements DataProvider {
             balance = balance.add(new BigInteger(1, utxo.getAmount().toByteArray()));
         }
         return balance;
+    }
+
+    @Override
+    public BigInteger estimateGas(Transaction transaction) {
+        if (transaction == null) {
+            return BigInteger.ZERO;
+        }
+        TransactionProto.Transaction tx = transaction.toProto();
+        ByteString count = protocalProvider.estimateGas(tx);
+        BigInteger gasCount = BigInteger.ZERO;
+        if (count != null && count.size() > 0) {
+            gasCount = new BigInteger(1, count.toByteArray());
+        }
+        return gasCount;
+    }
+
+    @Override
+    public BigInteger getGasPrice() {
+        ByteString price = protocalProvider.getGasPrice();
+        BigInteger gasPrice = BigInteger.ZERO;
+        if (price != null && price.size() > 0) {
+            gasPrice = new BigInteger(1, price.toByteArray());
+        }
+        return gasPrice;
     }
 
     /**

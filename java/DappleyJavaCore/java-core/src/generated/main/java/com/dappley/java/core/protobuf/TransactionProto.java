@@ -75,6 +75,16 @@ public final class TransactionProto {
      * <code>bytes tip = 4;</code>
      */
     com.google.protobuf.ByteString getTip();
+
+    /**
+     * <code>bytes gas_limit = 5;</code>
+     */
+    com.google.protobuf.ByteString getGasLimit();
+
+    /**
+     * <code>bytes gas_price = 6;</code>
+     */
+    com.google.protobuf.ByteString getGasPrice();
   }
   /**
    * Protobuf type {@code corepb.Transaction}
@@ -93,6 +103,8 @@ public final class TransactionProto {
       vin_ = java.util.Collections.emptyList();
       vout_ = java.util.Collections.emptyList();
       tip_ = com.google.protobuf.ByteString.EMPTY;
+      gasLimit_ = com.google.protobuf.ByteString.EMPTY;
+      gasPrice_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -145,6 +157,16 @@ public final class TransactionProto {
             case 34: {
 
               tip_ = input.readBytes();
+              break;
+            }
+            case 42: {
+
+              gasLimit_ = input.readBytes();
+              break;
+            }
+            case 50: {
+
+              gasPrice_ = input.readBytes();
               break;
             }
             default: {
@@ -274,6 +296,24 @@ public final class TransactionProto {
       return tip_;
     }
 
+    public static final int GAS_LIMIT_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString gasLimit_;
+    /**
+     * <code>bytes gas_limit = 5;</code>
+     */
+    public com.google.protobuf.ByteString getGasLimit() {
+      return gasLimit_;
+    }
+
+    public static final int GAS_PRICE_FIELD_NUMBER = 6;
+    private com.google.protobuf.ByteString gasPrice_;
+    /**
+     * <code>bytes gas_price = 6;</code>
+     */
+    public com.google.protobuf.ByteString getGasPrice() {
+      return gasPrice_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -300,6 +340,12 @@ public final class TransactionProto {
       if (!tip_.isEmpty()) {
         output.writeBytes(4, tip_);
       }
+      if (!gasLimit_.isEmpty()) {
+        output.writeBytes(5, gasLimit_);
+      }
+      if (!gasPrice_.isEmpty()) {
+        output.writeBytes(6, gasPrice_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -325,6 +371,14 @@ public final class TransactionProto {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, tip_);
       }
+      if (!gasLimit_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, gasLimit_);
+      }
+      if (!gasPrice_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, gasPrice_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -349,6 +403,10 @@ public final class TransactionProto {
           .equals(other.getVoutList());
       result = result && getTip()
           .equals(other.getTip());
+      result = result && getGasLimit()
+          .equals(other.getGasLimit());
+      result = result && getGasPrice()
+          .equals(other.getGasPrice());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -372,6 +430,10 @@ public final class TransactionProto {
       }
       hash = (37 * hash) + TIP_FIELD_NUMBER;
       hash = (53 * hash) + getTip().hashCode();
+      hash = (37 * hash) + GAS_LIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getGasLimit().hashCode();
+      hash = (37 * hash) + GAS_PRICE_FIELD_NUMBER;
+      hash = (53 * hash) + getGasPrice().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -523,6 +585,10 @@ public final class TransactionProto {
         }
         tip_ = com.google.protobuf.ByteString.EMPTY;
 
+        gasLimit_ = com.google.protobuf.ByteString.EMPTY;
+
+        gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -571,6 +637,8 @@ public final class TransactionProto {
           result.vout_ = voutBuilder_.build();
         }
         result.tip_ = tip_;
+        result.gasLimit_ = gasLimit_;
+        result.gasPrice_ = gasPrice_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -677,6 +745,12 @@ public final class TransactionProto {
         }
         if (other.getTip() != com.google.protobuf.ByteString.EMPTY) {
           setTip(other.getTip());
+        }
+        if (other.getGasLimit() != com.google.protobuf.ByteString.EMPTY) {
+          setGasLimit(other.getGasLimit());
+        }
+        if (other.getGasPrice() != com.google.protobuf.ByteString.EMPTY) {
+          setGasPrice(other.getGasPrice());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1242,6 +1316,64 @@ public final class TransactionProto {
       public Builder clearTip() {
         
         tip_ = getDefaultInstance().getTip();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString gasLimit_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes gas_limit = 5;</code>
+       */
+      public com.google.protobuf.ByteString getGasLimit() {
+        return gasLimit_;
+      }
+      /**
+       * <code>bytes gas_limit = 5;</code>
+       */
+      public Builder setGasLimit(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasLimit_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes gas_limit = 5;</code>
+       */
+      public Builder clearGasLimit() {
+        
+        gasLimit_ = getDefaultInstance().getGasLimit();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes gas_price = 6;</code>
+       */
+      public com.google.protobuf.ByteString getGasPrice() {
+        return gasPrice_;
+      }
+      /**
+       * <code>bytes gas_price = 6;</code>
+       */
+      public Builder setGasPrice(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        gasPrice_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes gas_price = 6;</code>
+       */
+      public Builder clearGasPrice() {
+        
+        gasPrice_ = getDefaultInstance().getGasPrice();
         onChanged();
         return this;
       }
@@ -2678,15 +2810,16 @@ public final class TransactionProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021transaction.proto\022\006corepb\"d\n\013Transacti" +
-      "on\022\n\n\002id\030\001 \001(\014\022\034\n\003vin\030\002 \003(\0132\017.corepb.TXI" +
-      "nput\022\036\n\004vout\030\003 \003(\0132\020.corepb.TXOutput\022\013\n\003" +
-      "tip\030\004 \001(\014\"L\n\007TXInput\022\014\n\004txid\030\001 \001(\014\022\014\n\004vo" +
-      "ut\030\002 \001(\005\022\021\n\tsignature\030\003 \001(\014\022\022\n\npublic_ke" +
-      "y\030\004 \001(\014\"D\n\010TXOutput\022\r\n\005value\030\001 \001(\014\022\027\n\017pu" +
-      "blic_key_hash\030\002 \001(\014\022\020\n\010contract\030\003 \001(\tB2\n" +
-      "\036com.dappley.java.core.protobufB\020Transac" +
-      "tionProtob\006proto3"
+      "\n\021transaction.proto\022\006corepb\"\212\001\n\013Transact" +
+      "ion\022\n\n\002id\030\001 \001(\014\022\034\n\003vin\030\002 \003(\0132\017.corepb.TX" +
+      "Input\022\036\n\004vout\030\003 \003(\0132\020.corepb.TXOutput\022\013\n" +
+      "\003tip\030\004 \001(\014\022\021\n\tgas_limit\030\005 \001(\014\022\021\n\tgas_pri" +
+      "ce\030\006 \001(\014\"L\n\007TXInput\022\014\n\004txid\030\001 \001(\014\022\014\n\004vou" +
+      "t\030\002 \001(\005\022\021\n\tsignature\030\003 \001(\014\022\022\n\npublic_key" +
+      "\030\004 \001(\014\"D\n\010TXOutput\022\r\n\005value\030\001 \001(\014\022\027\n\017pub" +
+      "lic_key_hash\030\002 \001(\014\022\020\n\010contract\030\003 \001(\tB2\n\036" +
+      "com.dappley.java.core.protobufB\020Transact" +
+      "ionProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2705,7 +2838,7 @@ public final class TransactionProto {
     internal_static_corepb_Transaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_corepb_Transaction_descriptor,
-        new java.lang.String[] { "Id", "Vin", "Vout", "Tip", });
+        new java.lang.String[] { "Id", "Vin", "Vout", "Tip", "GasLimit", "GasPrice", });
     internal_static_corepb_TXInput_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_corepb_TXInput_fieldAccessorTable = new

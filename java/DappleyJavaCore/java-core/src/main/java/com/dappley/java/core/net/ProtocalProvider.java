@@ -6,6 +6,7 @@ import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.protobuf.UtxoProto;
 import com.google.protobuf.ByteString;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -41,4 +42,7 @@ public interface ProtocalProvider {
 
     void sendTransaction(TransactionProto.Transaction transaction);
 
+    ByteString estimateGas(TransactionProto.Transaction transaction);
+
+    ByteString getGasPrice();
 }

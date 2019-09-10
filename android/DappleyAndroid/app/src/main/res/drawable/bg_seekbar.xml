@@ -6,7 +6,6 @@
         android:gravity="center_vertical|fill_horizontal">
         <shape android:shape="rectangle">
             <corners android:radius="5dip" />
-            <size android:height="2dip" />
             <solid android:color="@color/purple_hint" />
         </shape>
     </item>
@@ -17,7 +16,6 @@
         <clip>
             <shape android:shape="rectangle">
                 <corners android:radius="5dip" />
-                <size android:height="2dip" />
                 <solid android:color="@color/blue_btn_pressed" />
             </shape>
         </clip>
@@ -29,7 +27,6 @@
         <clip>
             <shape android:shape="rectangle">
                 <corners android:radius="5dip" />
-                <size android:height="2dip" />
                 <solid android:color="@color/blue_btn_default" />
             </shape>
         </clip>

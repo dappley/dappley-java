@@ -148,8 +148,9 @@ public class DappleyTest {
         String from = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         String to = "dW9JqNxJ4T39MmTPx5imuS1LopsGzrXj9X";
         BigInteger amount = new BigInteger("1");
+        BigInteger tip = new BigInteger("0");
         BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
-        boolean isSuccess = Dappley.sendTransaction(from, to, amount, privateKey);
+        boolean isSuccess = Dappley.sendTransaction(from, to, amount, privateKey, tip);
         log.info("sendTransaction isSuccess:" + isSuccess);
         Assert.assertTrue(true);
     }
@@ -160,10 +161,13 @@ public class DappleyTest {
         String from = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         String toContract = "cXuhH7BZKHuMAGtLkqyzGZWSBBSWqm19KY";
         BigInteger amount = new BigInteger("1");
+        BigInteger tip = new BigInteger("0");
+        BigInteger gasLimit = new BigInteger("30000");
+        BigInteger gasPrice = new BigInteger("1");
         BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
         String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
         contract = String.format(contract, from, 10);
-        boolean isSuccess = Dappley.sendTransactionWithContract(from, toContract, amount, privateKey, contract);
+        boolean isSuccess = Dappley.sendTransactionWithContract(from, toContract, amount, privateKey, tip, gasLimit, gasPrice, contract);
         log.info("sendTransactionWithContract isSuccess:" + isSuccess);
         Assert.assertTrue(true);
     }

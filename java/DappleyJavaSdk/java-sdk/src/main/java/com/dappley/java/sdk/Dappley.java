@@ -56,6 +56,18 @@ public class Dappley {
     }
 
     /**
+     * Release resources or connections.
+     */
+    public static void release() {
+        if (dataProvider != null) {
+            dataProvider.release();
+        }
+        if (transactionSender != null) {
+            transactionSender.release();
+        }
+    }
+
+    /**
      * Create a new wallet address by mnemonic with English language.
      * <p>Contains mnemonic and private key in wallet.</p>
      * @return Wallet
@@ -237,9 +249,10 @@ public class Dappley {
      * @param toAddress   to user's address
      * @param amount      transferred amount
      * @param privateKey  from user's privateKey
+     *                    * @param tip transaction tip
      * @return boolean is transaction committed successful
      */
-    public static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey) {
+    public static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip) {
         Asserts.init(dataProvider);
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
@@ -247,7 +260,7 @@ public class Dappley {
         if (!AddressUtil.validateUserAddress(toAddress)) {
             throw new IllegalArgumentException("toAddress is illegal !");
         }
-        return sendTransaction(fromAddress, toAddress, amount, privateKey, null);
+        return sendTransaction(fromAddress, toAddress, amount, privateKey, tip, BigInteger.ZERO, BigInteger.ZERO, null);
     }
 
     /**
@@ -256,10 +269,13 @@ public class Dappley {
      * @param contractAddress contract's address
      * @param fee             contract transaction fee
      * @param privateKey      from user's privateKey
+     * @param tip             transaction tip
+     * @param gasLimit        max gas consumption
+     * @param gasPrice        gas price
      * @param contract        contract content
      * @return boolean is transaction committed successful
      */
-    public static boolean sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger fee, BigInteger privateKey, String contract) {
+    public static boolean sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger fee, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
         Asserts.init(dataProvider);
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
@@ -270,7 +286,7 @@ public class Dappley {
         if (contract == null) {
             throw new NullPointerException("contract cannot be null !");
         }
-        return sendTransaction(fromAddress, contractAddress, fee, privateKey, contract);
+        return sendTransaction(fromAddress, contractAddress, fee, privateKey, tip, gasLimit, gasPrice, contract);
     }
 
     /**
@@ -279,10 +295,13 @@ public class Dappley {
      * @param toAddress   to address
      * @param amount      transferred amount
      * @param privateKey  from user's privateKey
+     * @param tip         transaction tip
+     * @param gasLimit    max gas consumption
+     * @param gasPrice    gas price
      * @param contract    contract content
      * @return boolean is transaction committed successful
      */
-    private static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, String contract) {
+    private static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
         if (ObjectUtils.isEmpty(fromAddress) || ObjectUtils.isEmpty(toAddress)) {
             return false;
         }
@@ -290,11 +309,12 @@ public class Dappley {
         if (ObjectUtils.isEmpty(allUtxo)) {
             return false;
         }
-        List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, amount);
+        BigInteger totalCost = getTotalUtxoCost(amount, tip, gasLimit, gasPrice);
+        List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, totalCost);
         if (ObjectUtils.isEmpty(utxos)) {
             return false;
         }
-        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, contract);
+        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
         try {
             transactionSender.sendTransaction(transaction);
             return true;
@@ -305,6 +325,28 @@ public class Dappley {
     }
 
     /**
+     * Returns total cost of utxo in current tx
+     * @param amount   transfer amout
+     * @param tip      transaction tip
+     * @param gasLimit contract execution gas limit
+     * @param gasPrice contract execution gas price
+     * @return BigInterger total cost of utxo values
+     */
+    private static BigInteger getTotalUtxoCost(BigInteger amount, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice) {
+        if (amount == null) {
+            return BigInteger.ZERO;
+        }
+        BigInteger total = amount;
+        if (tip != null) {
+            total = total.add(tip);
+        }
+        if (gasLimit != null && gasPrice != null) {
+            total = total.add(gasLimit.multiply(gasPrice));
+        }
+        return total;
+    }
+
+    /**
      * Create a new contract address
      * @return String contract address
      */
@@ -312,6 +354,48 @@ public class Dappley {
         return AddressUtil.createContractAddress();
     }
 
+    /**
+     * Return estimated gas count
+     * @param fromAddress     from address
+     * @param privateKey      from address's private key
+     * @param contractAddress contract address
+     * @param contract        contract content
+     * @return BigInteger gas count
+     */
+    public static BigInteger estimateGas(String fromAddress, BigInteger privateKey, String contractAddress, String contract) {
+        Asserts.init(dataProvider);
+        if (!AddressUtil.validateUserAddress(fromAddress)) {
+            throw new IllegalArgumentException("fromAddress is illegal !");
+        }
+        if (!AddressUtil.validateContractAddress(contractAddress)) {
+            throw new IllegalArgumentException("contractAddress is illegal !");
+        }
+        if (contract == null) {
+            throw new NullPointerException("contract cannot be null !");
+        }
+        List<Utxo> allUtxo = dataProvider.getUtxos(fromAddress);
+        if (ObjectUtils.isEmpty(allUtxo)) {
+            return BigInteger.ZERO;
+        }
+        BigInteger amount = BigInteger.ONE;
+        BigInteger tip = BigInteger.ZERO;
+        BigInteger gasLimit = BigInteger.ZERO;
+        BigInteger gasPrice = BigInteger.ZERO;
+        List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, amount);
+        if (ObjectUtils.isEmpty(utxos)) {
+            return BigInteger.ZERO;
+        }
+        Transaction transaction = TransactionManager.newTransaction(utxos, contractAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
+        return dataProvider.estimateGas(transaction);
+    }
+
+    /**
+     * Returns current gas price
+     * @return BigInteger gas price
+     */
+    public static BigInteger getGasPrice() {
+        return dataProvider.getGasPrice();
+    }
 
     /**
      * Data storage mode

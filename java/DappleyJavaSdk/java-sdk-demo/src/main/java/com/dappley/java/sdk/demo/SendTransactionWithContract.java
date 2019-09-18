@@ -16,10 +16,13 @@ public class SendTransactionWithContract {
         String from = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         String toContract = "cXuhH7BZKHuMAGtLkqyzGZWSBBSWqm19KY";
         BigInteger fee = new BigInteger("1");
+        BigInteger tip = new BigInteger("1");
+        BigInteger gasLimit = new BigInteger("30000");
+        BigInteger gasPrice = new BigInteger("1");
         BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
         String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
         contract = String.format(contract, from, 1);
-        boolean isSuccess = Dappley.sendTransactionWithContract(from, toContract, fee, privateKey, contract);
+        boolean isSuccess = Dappley.sendTransactionWithContract(from, toContract, fee, privateKey, tip, gasLimit, gasPrice, contract);
         log.info("sendTransactionWithContract isSuccess:" + isSuccess);
     }
 }

@@ -10,6 +10,6 @@ public class ConfigurationTest {
     @Test
     public void testReadConfig() {
         String serverIp = Configuration.getInstance().getServerIp();
-        assertEquals("config read failure.", serverIp, "192.168.1.31");
+        assertEquals("config read failure.", serverIp, "192.168.1.61");
     }
 }

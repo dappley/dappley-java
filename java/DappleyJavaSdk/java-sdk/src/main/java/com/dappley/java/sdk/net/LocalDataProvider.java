@@ -2,6 +2,7 @@ package com.dappley.java.sdk.net;
 
 import com.dappley.java.core.net.DataProvider;
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 
 import java.math.BigInteger;
@@ -34,6 +35,16 @@ public class LocalDataProvider implements DataProvider {
 
     @Override
     public BigInteger getBalance(String address) {
+        return null;
+    }
+
+    @Override
+    public BigInteger estimateGas(Transaction transaction) {
+        return null;
+    }
+
+    @Override
+    public BigInteger getGasPrice() {
         return null;
     }
 }

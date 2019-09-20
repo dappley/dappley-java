@@ -91,9 +91,6 @@ public class WalletExportActivity extends AppCompatActivity {
     }
 
     private void copy2Clipboard(String string) {
-        if (DuplicateUtil.dupClickCheck()) {
-            return;
-        }
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("data", string);
         clipboardManager.setPrimaryClip(clipData);

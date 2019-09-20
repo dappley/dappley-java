@@ -1,10 +1,10 @@
 package com.dappley.android.dialog;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,11 +28,10 @@ public class WalletPasswordDialog {
 
         initView(layout);
 
-        dialog = new Dialog(context, android.R.style.Theme_Material_Dialog_Alert);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.show();
-        dialog.getWindow().setContentView(layout);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(layout);
+        builder.setCancelable(false);
+        dialog = builder.create();
     }
 
     private void initView(View layout) {

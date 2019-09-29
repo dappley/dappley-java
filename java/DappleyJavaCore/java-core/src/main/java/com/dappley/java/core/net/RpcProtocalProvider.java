@@ -1,6 +1,7 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
+import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.protobuf.*;
 import com.dappley.java.core.util.Asserts;
 import com.google.protobuf.ByteString;
@@ -8,7 +9,6 @@ import io.grpc.ConnectivityState;
 import io.grpc.ManagedChannel;
 import lombok.extern.slf4j.Slf4j;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -183,5 +183,21 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GasPriceResponse response = getRpcServiceBlockingStub().rpcGasPrice(request);
         ByteString gasPrice = response.getGasPrice();
         return gasPrice;
+    }
+
+    @Override
+    public ContractQueryResult contractQuery(String contractAddress, String key, String value) {
+        Asserts.clientInit(channel);
+        Asserts.channelOpen(channel);
+        RpcProto.ContractQueryRequest request = RpcProto.ContractQueryRequest.newBuilder()
+                .setContractAddr(contractAddress)
+                .setKey(key)
+                .setValue(value)
+                .build();
+        RpcProto.ContractQueryResponse response = getRpcServiceBlockingStub().rpcContractQuery(request);
+        ContractQueryResult result = new ContractQueryResult();
+        result.setResultKey(response.getKey());
+        result.setResultValue(response.getValue());
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 
@@ -61,4 +62,15 @@ public interface DataProvider {
      * @return long gas price
      */
     BigInteger getGasPrice();
+
+    /**
+     * Returns data storage query result from blockchain
+     * <p>If key is not null, it will return the value of key in storage if there exists.</p>
+     * <p>If key is null and value is not null, it still return relevant key and value in storage if there exists.</p>
+     * @param contractAddress contract address
+     * @param key             storage key
+     * @param value           storage value
+     * @return ContractQueryResult
+     */
+    ContractQueryResult contractQuery(String contractAddress, String key, String value);
 }

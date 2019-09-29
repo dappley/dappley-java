@@ -1,12 +1,12 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
+import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.protobuf.BlockProto;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.protobuf.UtxoProto;
 import com.google.protobuf.ByteString;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -45,4 +45,6 @@ public interface ProtocalProvider {
     ByteString estimateGas(TransactionProto.Transaction transaction);
 
     ByteString getGasPrice();
+
+    ContractQueryResult contractQuery(String contractAddress, String key, String value);
 }

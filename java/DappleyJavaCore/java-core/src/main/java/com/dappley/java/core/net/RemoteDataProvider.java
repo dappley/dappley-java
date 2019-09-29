@@ -1,6 +1,7 @@
 package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.protobuf.BlockProto;
@@ -141,6 +142,12 @@ public class RemoteDataProvider implements DataProvider {
             gasPrice = new BigInteger(1, price.toByteArray());
         }
         return gasPrice;
+    }
+
+    @Override
+    public ContractQueryResult contractQuery(String contractAddress, String key, String value) {
+        ContractQueryResult result = protocalProvider.contractQuery(contractAddress, key, value);
+        return result;
     }
 
     /**

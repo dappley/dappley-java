@@ -1,5 +1,5 @@
 syntax = "proto3";
-package corepb;
+package blockpb;
 import "transaction.proto";
 
 option java_package = "com.dappley.java.core.protobuf";
@@ -7,7 +7,7 @@ option java_outer_classname = "BlockProto";
 
 message Block{
     BlockHeader header = 1;
-    repeated Transaction transactions = 2;
+    repeated transactionpb.Transaction transactions = 2;
     bytes parent_hash = 3;
 }
 

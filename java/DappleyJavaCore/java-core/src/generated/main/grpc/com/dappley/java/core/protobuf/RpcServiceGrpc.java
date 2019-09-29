@@ -507,6 +507,38 @@ public final class RpcServiceGrpc {
      return getRpcGasPriceMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest,
+      com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse> getRpcContractQueryMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcContractQuery",
+      requestType = com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest,
+      com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse> getRpcContractQueryMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest, com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse> getRpcContractQueryMethod;
+    if ((getRpcContractQueryMethod = RpcServiceGrpc.getRpcContractQueryMethod) == null) {
+      synchronized (RpcServiceGrpc.class) {
+        if ((getRpcContractQueryMethod = RpcServiceGrpc.getRpcContractQueryMethod) == null) {
+          RpcServiceGrpc.getRpcContractQueryMethod = getRpcContractQueryMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest, com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.RpcService", "RpcContractQuery"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new RpcServiceMethodDescriptorSupplier("RpcContractQuery"))
+                  .build();
+          }
+        }
+     }
+     return getRpcContractQueryMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -639,6 +671,13 @@ public final class RpcServiceGrpc {
       asyncUnimplementedUnaryCall(getRpcGasPriceMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void rpcContractQuery(com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcContractQueryMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -746,6 +785,13 @@ public final class RpcServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.GasPriceRequest,
                 com.dappley.java.core.protobuf.RpcProto.GasPriceResponse>(
                   this, METHODID_RPC_GAS_PRICE)))
+          .addMethod(
+            getRpcContractQueryMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest,
+                com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse>(
+                  this, METHODID_RPC_CONTRACT_QUERY)))
           .build();
     }
   }
@@ -887,6 +933,14 @@ public final class RpcServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRpcGasPriceMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void rpcContractQuery(com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcContractQueryMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -1013,6 +1067,13 @@ public final class RpcServiceGrpc {
       return blockingUnaryCall(
           getChannel(), getRpcGasPriceMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse rpcContractQuery(com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcContractQueryMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -1136,6 +1197,14 @@ public final class RpcServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRpcGasPriceMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse> rpcContractQuery(
+        com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcContractQueryMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RPC_GET_VERSION = 0;
@@ -1153,6 +1222,7 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK = 12;
   private static final int METHODID_RPC_ESTIMATE_GAS = 13;
   private static final int METHODID_RPC_GAS_PRICE = 14;
+  private static final int METHODID_RPC_CONTRACT_QUERY = 15;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1231,6 +1301,10 @@ public final class RpcServiceGrpc {
           serviceImpl.rpcGasPrice((com.dappley.java.core.protobuf.RpcProto.GasPriceRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GasPriceResponse>) responseObserver);
           break;
+        case METHODID_RPC_CONTRACT_QUERY:
+          serviceImpl.rpcContractQuery((com.dappley.java.core.protobuf.RpcProto.ContractQueryRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.ContractQueryResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -1307,6 +1381,7 @@ public final class RpcServiceGrpc {
               .addMethod(getRpcGetLastIrreversibleBlockMethod())
               .addMethod(getRpcEstimateGasMethod())
               .addMethod(getRpcGasPriceMethod())
+              .addMethod(getRpcContractQueryMethod())
               .build();
         }
       }

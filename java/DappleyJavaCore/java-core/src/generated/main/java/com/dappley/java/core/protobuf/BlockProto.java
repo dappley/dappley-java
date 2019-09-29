@@ -15,42 +15,42 @@ public final class BlockProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface BlockOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.Block)
+      // @@protoc_insertion_point(interface_extends:blockpb.Block)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.corepb.BlockHeader header = 1;</code>
+     * <code>.blockpb.BlockHeader header = 1;</code>
      */
     boolean hasHeader();
     /**
-     * <code>.corepb.BlockHeader header = 1;</code>
+     * <code>.blockpb.BlockHeader header = 1;</code>
      */
     com.dappley.java.core.protobuf.BlockProto.BlockHeader getHeader();
     /**
-     * <code>.corepb.BlockHeader header = 1;</code>
+     * <code>.blockpb.BlockHeader header = 1;</code>
      */
     com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder getHeaderOrBuilder();
 
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> 
         getTransactionsList();
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index);
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     int getTransactionsCount();
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
         getTransactionsOrBuilderList();
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
         int index);
@@ -61,11 +61,11 @@ public final class BlockProto {
     com.google.protobuf.ByteString getParentHash();
   }
   /**
-   * Protobuf type {@code corepb.Block}
+   * Protobuf type {@code blockpb.Block}
    */
   public  static final class Block extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.Block)
+      // @@protoc_insertion_point(message_implements:blockpb.Block)
       BlockOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use Block.newBuilder() to construct.
@@ -152,13 +152,13 @@ public final class BlockProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_Block_descriptor;
+      return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_Block_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_Block_fieldAccessorTable
+      return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_Block_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.dappley.java.core.protobuf.BlockProto.Block.class, com.dappley.java.core.protobuf.BlockProto.Block.Builder.class);
     }
@@ -167,19 +167,19 @@ public final class BlockProto {
     public static final int HEADER_FIELD_NUMBER = 1;
     private com.dappley.java.core.protobuf.BlockProto.BlockHeader header_;
     /**
-     * <code>.corepb.BlockHeader header = 1;</code>
+     * <code>.blockpb.BlockHeader header = 1;</code>
      */
     public boolean hasHeader() {
       return header_ != null;
     }
     /**
-     * <code>.corepb.BlockHeader header = 1;</code>
+     * <code>.blockpb.BlockHeader header = 1;</code>
      */
     public com.dappley.java.core.protobuf.BlockProto.BlockHeader getHeader() {
       return header_ == null ? com.dappley.java.core.protobuf.BlockProto.BlockHeader.getDefaultInstance() : header_;
     }
     /**
-     * <code>.corepb.BlockHeader header = 1;</code>
+     * <code>.blockpb.BlockHeader header = 1;</code>
      */
     public com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder getHeaderOrBuilder() {
       return getHeader();
@@ -188,32 +188,32 @@ public final class BlockProto {
     public static final int TRANSACTIONS_FIELD_NUMBER = 2;
     private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transactions_;
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
       return transactions_;
     }
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
         getTransactionsOrBuilderList() {
       return transactions_;
     }
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     public int getTransactionsCount() {
       return transactions_.size();
     }
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
       return transactions_.get(index);
     }
     /**
-     * <code>repeated .corepb.Transaction transactions = 2;</code>
+     * <code>repeated .transactionpb.Transaction transactions = 2;</code>
      */
     public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
         int index) {
@@ -415,21 +415,21 @@ public final class BlockProto {
       return builder;
     }
     /**
-     * Protobuf type {@code corepb.Block}
+     * Protobuf type {@code blockpb.Block}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.Block)
+        // @@protoc_insertion_point(builder_implements:blockpb.Block)
         com.dappley.java.core.protobuf.BlockProto.BlockOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_Block_descriptor;
+        return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_Block_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_Block_fieldAccessorTable
+        return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_Block_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.dappley.java.core.protobuf.BlockProto.Block.class, com.dappley.java.core.protobuf.BlockProto.Block.Builder.class);
       }
@@ -473,7 +473,7 @@ public final class BlockProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_Block_descriptor;
+        return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_Block_descriptor;
       }
 
       @java.lang.Override
@@ -625,13 +625,13 @@ public final class BlockProto {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.dappley.java.core.protobuf.BlockProto.BlockHeader, com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder, com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder> headerBuilder_;
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public boolean hasHeader() {
         return headerBuilder_ != null || header_ != null;
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public com.dappley.java.core.protobuf.BlockProto.BlockHeader getHeader() {
         if (headerBuilder_ == null) {
@@ -641,7 +641,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public Builder setHeader(com.dappley.java.core.protobuf.BlockProto.BlockHeader value) {
         if (headerBuilder_ == null) {
@@ -657,7 +657,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public Builder setHeader(
           com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder builderForValue) {
@@ -671,7 +671,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public Builder mergeHeader(com.dappley.java.core.protobuf.BlockProto.BlockHeader value) {
         if (headerBuilder_ == null) {
@@ -689,7 +689,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public Builder clearHeader() {
         if (headerBuilder_ == null) {
@@ -703,7 +703,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder getHeaderBuilder() {
         
@@ -711,7 +711,7 @@ public final class BlockProto {
         return getHeaderFieldBuilder().getBuilder();
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       public com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder getHeaderOrBuilder() {
         if (headerBuilder_ != null) {
@@ -722,7 +722,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>.corepb.BlockHeader header = 1;</code>
+       * <code>.blockpb.BlockHeader header = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.dappley.java.core.protobuf.BlockProto.BlockHeader, com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder, com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder> 
@@ -751,7 +751,7 @@ public final class BlockProto {
           com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionsBuilder_;
 
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
         if (transactionsBuilder_ == null) {
@@ -761,7 +761,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public int getTransactionsCount() {
         if (transactionsBuilder_ == null) {
@@ -771,7 +771,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
         if (transactionsBuilder_ == null) {
@@ -781,7 +781,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder setTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
@@ -798,7 +798,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder setTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
@@ -812,7 +812,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
         if (transactionsBuilder_ == null) {
@@ -828,7 +828,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
@@ -845,7 +845,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(
           com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
@@ -859,7 +859,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder addTransactions(
           int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
@@ -873,7 +873,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder addAllTransactions(
           java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.Transaction> values) {
@@ -888,7 +888,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder clearTransactions() {
         if (transactionsBuilder_ == null) {
@@ -901,7 +901,7 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public Builder removeTransactions(int index) {
         if (transactionsBuilder_ == null) {
@@ -914,14 +914,14 @@ public final class BlockProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionsBuilder(
           int index) {
         return getTransactionsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
           int index) {
@@ -931,7 +931,7 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
            getTransactionsOrBuilderList() {
@@ -942,14 +942,14 @@ public final class BlockProto {
         }
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder() {
         return getTransactionsFieldBuilder().addBuilder(
             com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder(
           int index) {
@@ -957,7 +957,7 @@ public final class BlockProto {
             index, com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.Transaction transactions = 2;</code>
+       * <code>repeated .transactionpb.Transaction transactions = 2;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder> 
            getTransactionsBuilderList() {
@@ -1019,10 +1019,10 @@ public final class BlockProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:corepb.Block)
+      // @@protoc_insertion_point(builder_scope:blockpb.Block)
     }
 
-    // @@protoc_insertion_point(class_scope:corepb.Block)
+    // @@protoc_insertion_point(class_scope:blockpb.Block)
     private static final com.dappley.java.core.protobuf.BlockProto.Block DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.BlockProto.Block();
@@ -1060,7 +1060,7 @@ public final class BlockProto {
   }
 
   public interface BlockHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.BlockHeader)
+      // @@protoc_insertion_point(interface_extends:blockpb.BlockHeader)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1104,11 +1104,11 @@ public final class BlockProto {
         getProducerBytes();
   }
   /**
-   * Protobuf type {@code corepb.BlockHeader}
+   * Protobuf type {@code blockpb.BlockHeader}
    */
   public  static final class BlockHeader extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.BlockHeader)
+      // @@protoc_insertion_point(message_implements:blockpb.BlockHeader)
       BlockHeaderOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use BlockHeader.newBuilder() to construct.
@@ -1206,13 +1206,13 @@ public final class BlockProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_BlockHeader_descriptor;
+      return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_BlockHeader_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_BlockHeader_fieldAccessorTable
+      return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_BlockHeader_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.dappley.java.core.protobuf.BlockProto.BlockHeader.class, com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder.class);
     }
@@ -1530,21 +1530,21 @@ public final class BlockProto {
       return builder;
     }
     /**
-     * Protobuf type {@code corepb.BlockHeader}
+     * Protobuf type {@code blockpb.BlockHeader}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.BlockHeader)
+        // @@protoc_insertion_point(builder_implements:blockpb.BlockHeader)
         com.dappley.java.core.protobuf.BlockProto.BlockHeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_BlockHeader_descriptor;
+        return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_BlockHeader_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_BlockHeader_fieldAccessorTable
+        return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_BlockHeader_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.dappley.java.core.protobuf.BlockProto.BlockHeader.class, com.dappley.java.core.protobuf.BlockProto.BlockHeader.Builder.class);
       }
@@ -1587,7 +1587,7 @@ public final class BlockProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.BlockProto.internal_static_corepb_BlockHeader_descriptor;
+        return com.dappley.java.core.protobuf.BlockProto.internal_static_blockpb_BlockHeader_descriptor;
       }
 
       @java.lang.Override
@@ -1959,10 +1959,10 @@ public final class BlockProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:corepb.BlockHeader)
+      // @@protoc_insertion_point(builder_scope:blockpb.BlockHeader)
     }
 
-    // @@protoc_insertion_point(class_scope:corepb.BlockHeader)
+    // @@protoc_insertion_point(class_scope:blockpb.BlockHeader)
     private static final com.dappley.java.core.protobuf.BlockProto.BlockHeader DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.BlockProto.BlockHeader();
@@ -2000,15 +2000,15 @@ public final class BlockProto {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_Block_descriptor;
+    internal_static_blockpb_Block_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_Block_fieldAccessorTable;
+      internal_static_blockpb_Block_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_BlockHeader_descriptor;
+    internal_static_blockpb_BlockHeader_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_BlockHeader_fieldAccessorTable;
+      internal_static_blockpb_BlockHeader_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2018,15 +2018,15 @@ public final class BlockProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013block.proto\022\006corepb\032\021transaction.proto" +
-      "\"l\n\005Block\022#\n\006header\030\001 \001(\0132\023.corepb.Block" +
-      "Header\022)\n\014transactions\030\002 \003(\0132\023.corepb.Tr" +
-      "ansaction\022\023\n\013parent_hash\030\003 \001(\014\"\211\001\n\013Block" +
-      "Header\022\014\n\004hash\030\001 \001(\014\022\025\n\rprevious_hash\030\002 " +
-      "\001(\014\022\r\n\005nonce\030\003 \001(\003\022\021\n\ttimestamp\030\004 \001(\003\022\021\n" +
-      "\tsignature\030\005 \001(\014\022\016\n\006height\030\006 \001(\004\022\020\n\010prod" +
-      "ucer\030\007 \001(\tB,\n\036com.dappley.java.core.prot" +
-      "obufB\nBlockProtob\006proto3"
+      "\n\013block.proto\022\007blockpb\032\021transaction.prot" +
+      "o\"t\n\005Block\022$\n\006header\030\001 \001(\0132\024.blockpb.Blo" +
+      "ckHeader\0220\n\014transactions\030\002 \003(\0132\032.transac" +
+      "tionpb.Transaction\022\023\n\013parent_hash\030\003 \001(\014\"" +
+      "\211\001\n\013BlockHeader\022\014\n\004hash\030\001 \001(\014\022\025\n\rpreviou" +
+      "s_hash\030\002 \001(\014\022\r\n\005nonce\030\003 \001(\003\022\021\n\ttimestamp" +
+      "\030\004 \001(\003\022\021\n\tsignature\030\005 \001(\014\022\016\n\006height\030\006 \001(" +
+      "\004\022\020\n\010producer\030\007 \001(\tB,\n\036com.dappley.java." +
+      "core.protobufB\nBlockProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2041,17 +2041,17 @@ public final class BlockProto {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.dappley.java.core.protobuf.TransactionProto.getDescriptor(),
         }, assigner);
-    internal_static_corepb_Block_descriptor =
+    internal_static_blockpb_Block_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_corepb_Block_fieldAccessorTable = new
+    internal_static_blockpb_Block_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_Block_descriptor,
+        internal_static_blockpb_Block_descriptor,
         new java.lang.String[] { "Header", "Transactions", "ParentHash", });
-    internal_static_corepb_BlockHeader_descriptor =
+    internal_static_blockpb_BlockHeader_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_corepb_BlockHeader_fieldAccessorTable = new
+    internal_static_blockpb_BlockHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_BlockHeader_descriptor,
+        internal_static_blockpb_BlockHeader_descriptor,
         new java.lang.String[] { "Hash", "PreviousHash", "Nonce", "Timestamp", "Signature", "Height", "Producer", });
     com.dappley.java.core.protobuf.TransactionProto.getDescriptor();
   }

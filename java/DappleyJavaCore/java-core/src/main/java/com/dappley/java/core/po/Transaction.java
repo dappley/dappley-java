@@ -1,6 +1,7 @@
 package com.dappley.java.core.po;
 
 import com.dappley.java.core.crypto.ShaDigest;
+import com.dappley.java.core.protobuf.TransactionBaseProto;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.ByteUtil;
 import com.dappley.java.core.util.HexUtil;
@@ -46,19 +47,19 @@ public class Transaction implements Serializable {
     public void parseProto(TransactionProto.Transaction transaction) {
         this.setId(transaction.getId().toByteArray());
         // add vin list
-        List<TransactionProto.TXInput> vinList = transaction.getVinList();
+        List<TransactionBaseProto.TXInput> vinList = transaction.getVinList();
         if (vinList != null) {
             List<TxInput> txInputs = new ArrayList<>(vinList.size());
-            for (TransactionProto.TXInput vin : vinList) {
+            for (TransactionBaseProto.TXInput vin : vinList) {
                 txInputs.add(new TxInput(vin));
             }
             this.setTxInputs(txInputs);
         }
         // add vout list
-        List<TransactionProto.TXOutput> voutList = transaction.getVoutList();
+        List<TransactionBaseProto.TXOutput> voutList = transaction.getVoutList();
         if (voutList != null) {
             List<TxOutput> txOutputs = new ArrayList<>(voutList.size());
-            for (TransactionProto.TXOutput vout : voutList) {
+            for (TransactionBaseProto.TXOutput vout : voutList) {
                 txOutputs.add(new TxOutput(vout));
             }
             this.setTxOutputs(txOutputs);

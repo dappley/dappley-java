@@ -59,6 +59,70 @@ public final class MetricServiceGrpc {
      return getRpcGetStatsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> getRpcGetNodeConfigMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcGetNodeConfig",
+      requestType = com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> getRpcGetNodeConfigMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest, com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> getRpcGetNodeConfigMethod;
+    if ((getRpcGetNodeConfigMethod = MetricServiceGrpc.getRpcGetNodeConfigMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getRpcGetNodeConfigMethod = MetricServiceGrpc.getRpcGetNodeConfigMethod) == null) {
+          MetricServiceGrpc.getRpcGetNodeConfigMethod = getRpcGetNodeConfigMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest, com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.MetricService", "RpcGetNodeConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("RpcGetNodeConfig"))
+                  .build();
+          }
+        }
+     }
+     return getRpcGetNodeConfigMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> getRpcSetNodeConfigMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RpcSetNodeConfig",
+      requestType = com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest,
+      com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> getRpcSetNodeConfigMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest, com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> getRpcSetNodeConfigMethod;
+    if ((getRpcSetNodeConfigMethod = MetricServiceGrpc.getRpcSetNodeConfigMethod) == null) {
+      synchronized (MetricServiceGrpc.class) {
+        if ((getRpcSetNodeConfigMethod = MetricServiceGrpc.getRpcSetNodeConfigMethod) == null) {
+          MetricServiceGrpc.getRpcSetNodeConfigMethod = getRpcSetNodeConfigMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest, com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "rpcpb.MetricService", "RpcSetNodeConfig"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new MetricServiceMethodDescriptorSupplier("RpcSetNodeConfig"))
+                  .build();
+          }
+        }
+     }
+     return getRpcSetNodeConfigMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +157,20 @@ public final class MetricServiceGrpc {
       asyncUnimplementedUnaryCall(getRpcGetStatsMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void rpcGetNodeConfig(com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcGetNodeConfigMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void rpcSetNodeConfig(com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcSetNodeConfigMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +180,20 @@ public final class MetricServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest,
                 com.dappley.java.core.protobuf.RpcProto.GetStatsResponse>(
                   this, METHODID_RPC_GET_STATS)))
+          .addMethod(
+            getRpcGetNodeConfigMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest,
+                com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse>(
+                  this, METHODID_RPC_GET_NODE_CONFIG)))
+          .addMethod(
+            getRpcSetNodeConfigMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest,
+                com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse>(
+                  this, METHODID_RPC_SET_NODE_CONFIG)))
           .build();
     }
   }
@@ -131,6 +223,22 @@ public final class MetricServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRpcGetStatsMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void rpcGetNodeConfig(com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcGetNodeConfigMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void rpcSetNodeConfig(com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRpcSetNodeConfigMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +264,20 @@ public final class MetricServiceGrpc {
     public com.dappley.java.core.protobuf.RpcProto.GetStatsResponse rpcGetStats(com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest request) {
       return blockingUnaryCall(
           getChannel(), getRpcGetStatsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse rpcGetNodeConfig(com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcGetNodeConfigMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse rpcSetNodeConfig(com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRpcSetNodeConfigMethod(), getCallOptions(), request);
     }
   }
 
@@ -184,9 +306,27 @@ public final class MetricServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRpcGetStatsMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> rpcGetNodeConfig(
+        com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcGetNodeConfigMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse> rpcSetNodeConfig(
+        com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRpcSetNodeConfigMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RPC_GET_STATS = 0;
+  private static final int METHODID_RPC_GET_NODE_CONFIG = 1;
+  private static final int METHODID_RPC_SET_NODE_CONFIG = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -208,6 +348,14 @@ public final class MetricServiceGrpc {
         case METHODID_RPC_GET_STATS:
           serviceImpl.rpcGetStats((com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetStatsResponse>) responseObserver);
+          break;
+        case METHODID_RPC_GET_NODE_CONFIG:
+          serviceImpl.rpcGetNodeConfig((com.dappley.java.core.protobuf.RpcProto.MetricsServiceRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse>) responseObserver);
+          break;
+        case METHODID_RPC_SET_NODE_CONFIG:
+          serviceImpl.rpcSetNodeConfig((com.dappley.java.core.protobuf.RpcProto.SetNodeConfigRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetNodeConfigResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +419,8 @@ public final class MetricServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new MetricServiceFileDescriptorSupplier())
               .addMethod(getRpcGetStatsMethod())
+              .addMethod(getRpcGetNodeConfigMethod())
+              .addMethod(getRpcSetNodeConfigMethod())
               .build();
         }
       }

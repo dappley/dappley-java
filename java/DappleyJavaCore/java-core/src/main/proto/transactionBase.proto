@@ -1,0 +1,18 @@
+syntax = "proto3";
+package transactionbasepb;
+
+option java_package = "com.dappley.java.core.protobuf";
+option java_outer_classname = "TransactionBaseProto";
+
+message TXInput{
+    bytes txid = 1;
+    int32 vout = 2;
+    bytes signature = 3;
+    bytes public_key = 4;
+}
+
+message TXOutput{
+    bytes   value = 1;
+    bytes   public_key_hash = 2;
+    string  contract = 3;
+}

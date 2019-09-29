@@ -14,8 +14,790 @@ public final class TransactionProto {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface TransactionsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:transactionpb.Transactions)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> 
+        getTransactionsList();
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index);
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    int getTransactionsCount();
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+        getTransactionsOrBuilderList();
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code transactionpb.Transactions}
+   */
+  public  static final class Transactions extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:transactionpb.Transactions)
+      TransactionsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Transactions.newBuilder() to construct.
+    private Transactions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Transactions() {
+      transactions_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Transactions(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                transactions_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.Transaction>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              transactions_.add(
+                  input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          transactions_ = java.util.Collections.unmodifiableList(transactions_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transactions_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transactions_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.TransactionProto.Transactions.class, com.dappley.java.core.protobuf.TransactionProto.Transactions.Builder.class);
+    }
+
+    public static final int TRANSACTIONS_FIELD_NUMBER = 1;
+    private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transactions_;
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
+      return transactions_;
+    }
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+        getTransactionsOrBuilderList() {
+      return transactions_;
+    }
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    public int getTransactionsCount() {
+      return transactions_.size();
+    }
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
+      return transactions_.get(index);
+    }
+    /**
+     * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
+        int index) {
+      return transactions_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < transactions_.size(); i++) {
+        output.writeMessage(1, transactions_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < transactions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, transactions_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.TransactionProto.Transactions)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.TransactionProto.Transactions other = (com.dappley.java.core.protobuf.TransactionProto.Transactions) obj;
+
+      boolean result = true;
+      result = result && getTransactionsList()
+          .equals(other.getTransactionsList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getTransactionsCount() > 0) {
+        hash = (37 * hash) + TRANSACTIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getTransactionsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.TransactionProto.Transactions prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code transactionpb.Transactions}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:transactionpb.Transactions)
+        com.dappley.java.core.protobuf.TransactionProto.TransactionsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transactions_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transactions_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.TransactionProto.Transactions.class, com.dappley.java.core.protobuf.TransactionProto.Transactions.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.TransactionProto.Transactions.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getTransactionsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (transactionsBuilder_ == null) {
+          transactions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          transactionsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transactions_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.TransactionProto.Transactions getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.TransactionProto.Transactions.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.TransactionProto.Transactions build() {
+        com.dappley.java.core.protobuf.TransactionProto.Transactions result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.TransactionProto.Transactions buildPartial() {
+        com.dappley.java.core.protobuf.TransactionProto.Transactions result = new com.dappley.java.core.protobuf.TransactionProto.Transactions(this);
+        int from_bitField0_ = bitField0_;
+        if (transactionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            transactions_ = java.util.Collections.unmodifiableList(transactions_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.transactions_ = transactions_;
+        } else {
+          result.transactions_ = transactionsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.TransactionProto.Transactions) {
+          return mergeFrom((com.dappley.java.core.protobuf.TransactionProto.Transactions)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.TransactionProto.Transactions other) {
+        if (other == com.dappley.java.core.protobuf.TransactionProto.Transactions.getDefaultInstance()) return this;
+        if (transactionsBuilder_ == null) {
+          if (!other.transactions_.isEmpty()) {
+            if (transactions_.isEmpty()) {
+              transactions_ = other.transactions_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureTransactionsIsMutable();
+              transactions_.addAll(other.transactions_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.transactions_.isEmpty()) {
+            if (transactionsBuilder_.isEmpty()) {
+              transactionsBuilder_.dispose();
+              transactionsBuilder_ = null;
+              transactions_ = other.transactions_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              transactionsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getTransactionsFieldBuilder() : null;
+            } else {
+              transactionsBuilder_.addAllMessages(other.transactions_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.TransactionProto.Transactions parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.TransactionProto.Transactions) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> transactions_ =
+        java.util.Collections.emptyList();
+      private void ensureTransactionsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          transactions_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.Transaction>(transactions_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> transactionsBuilder_;
+
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction> getTransactionsList() {
+        if (transactionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(transactions_);
+        } else {
+          return transactionsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public int getTransactionsCount() {
+        if (transactionsBuilder_ == null) {
+          return transactions_.size();
+        } else {
+          return transactionsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getTransactions(int index) {
+        if (transactionsBuilder_ == null) {
+          return transactions_.get(index);
+        } else {
+          return transactionsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder setTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionsIsMutable();
+          transactions_.set(index, value);
+          onChanged();
+        } else {
+          transactionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder setTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          transactionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder addTransactions(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionsIsMutable();
+          transactions_.add(value);
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder addTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (transactionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTransactionsIsMutable();
+          transactions_.add(index, value);
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder addTransactions(
+          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.add(builderForValue.build());
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder addTransactions(
+          int index, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          transactionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder addAllTransactions(
+          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.Transaction> values) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, transactions_);
+          onChanged();
+        } else {
+          transactionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder clearTransactions() {
+        if (transactionsBuilder_ == null) {
+          transactions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          transactionsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public Builder removeTransactions(int index) {
+        if (transactionsBuilder_ == null) {
+          ensureTransactionsIsMutable();
+          transactions_.remove(index);
+          onChanged();
+        } else {
+          transactionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getTransactionsBuilder(
+          int index) {
+        return getTransactionsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getTransactionsOrBuilder(
+          int index) {
+        if (transactionsBuilder_ == null) {
+          return transactions_.get(index);  } else {
+          return transactionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+           getTransactionsOrBuilderList() {
+        if (transactionsBuilder_ != null) {
+          return transactionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(transactions_);
+        }
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder() {
+        return getTransactionsFieldBuilder().addBuilder(
+            com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder addTransactionsBuilder(
+          int index) {
+        return getTransactionsFieldBuilder().addBuilder(
+            index, com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .transactionpb.Transaction transactions = 1;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder> 
+           getTransactionsBuilderList() {
+        return getTransactionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+          getTransactionsFieldBuilder() {
+        if (transactionsBuilder_ == null) {
+          transactionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
+                  transactions_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          transactions_ = null;
+        }
+        return transactionsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:transactionpb.Transactions)
+    }
+
+    // @@protoc_insertion_point(class_scope:transactionpb.Transactions)
+    private static final com.dappley.java.core.protobuf.TransactionProto.Transactions DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.TransactionProto.Transactions();
+    }
+
+    public static com.dappley.java.core.protobuf.TransactionProto.Transactions getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Transactions>
+        PARSER = new com.google.protobuf.AbstractParser<Transactions>() {
+      @java.lang.Override
+      public Transactions parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Transactions(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Transactions> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Transactions> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.TransactionProto.Transactions getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface TransactionOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.Transaction)
+      // @@protoc_insertion_point(interface_extends:transactionpb.Transaction)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -24,51 +806,51 @@ public final class TransactionProto {
     com.google.protobuf.ByteString getId();
 
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXInput> 
+    java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput> 
         getVinList();
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    com.dappley.java.core.protobuf.TransactionProto.TXInput getVin(int index);
+    com.dappley.java.core.protobuf.TransactionBaseProto.TXInput getVin(int index);
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
     int getVinCount();
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder> 
+    java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder> 
         getVinOrBuilderList();
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder getVinOrBuilder(
+    com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder getVinOrBuilder(
         int index);
 
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXOutput> 
+    java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> 
         getVoutList();
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    com.dappley.java.core.protobuf.TransactionProto.TXOutput getVout(int index);
+    com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput getVout(int index);
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
     int getVoutCount();
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder> 
+    java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
         getVoutOrBuilderList();
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder getVoutOrBuilder(
+    com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder getVoutOrBuilder(
         int index);
 
     /**
@@ -87,11 +869,11 @@ public final class TransactionProto {
     com.google.protobuf.ByteString getGasPrice();
   }
   /**
-   * Protobuf type {@code corepb.Transaction}
+   * Protobuf type {@code transactionpb.Transaction}
    */
   public  static final class Transaction extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.Transaction)
+      // @@protoc_insertion_point(message_implements:transactionpb.Transaction)
       TransactionOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use Transaction.newBuilder() to construct.
@@ -138,20 +920,20 @@ public final class TransactionProto {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                vin_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.TXInput>();
+                vin_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput>();
                 mutable_bitField0_ |= 0x00000002;
               }
               vin_.add(
-                  input.readMessage(com.dappley.java.core.protobuf.TransactionProto.TXInput.parser(), extensionRegistry));
+                  input.readMessage(com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.parser(), extensionRegistry));
               break;
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                vout_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.TXOutput>();
+                vout_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput>();
                 mutable_bitField0_ |= 0x00000004;
               }
               vout_.add(
-                  input.readMessage(com.dappley.java.core.protobuf.TransactionProto.TXOutput.parser(), extensionRegistry));
+                  input.readMessage(com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.parser(), extensionRegistry));
               break;
             }
             case 34: {
@@ -196,13 +978,13 @@ public final class TransactionProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_Transaction_descriptor;
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transaction_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_Transaction_fieldAccessorTable
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transaction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.dappley.java.core.protobuf.TransactionProto.Transaction.class, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder.class);
     }
@@ -218,71 +1000,71 @@ public final class TransactionProto {
     }
 
     public static final int VIN_FIELD_NUMBER = 2;
-    private java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXInput> vin_;
+    private java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput> vin_;
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    public java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXInput> getVinList() {
+    public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput> getVinList() {
       return vin_;
     }
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder> 
+    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder> 
         getVinOrBuilderList() {
       return vin_;
     }
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
     public int getVinCount() {
       return vin_.size();
     }
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    public com.dappley.java.core.protobuf.TransactionProto.TXInput getVin(int index) {
+    public com.dappley.java.core.protobuf.TransactionBaseProto.TXInput getVin(int index) {
       return vin_.get(index);
     }
     /**
-     * <code>repeated .corepb.TXInput vin = 2;</code>
+     * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
      */
-    public com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder getVinOrBuilder(
+    public com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder getVinOrBuilder(
         int index) {
       return vin_.get(index);
     }
 
     public static final int VOUT_FIELD_NUMBER = 3;
-    private java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXOutput> vout_;
+    private java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> vout_;
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    public java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXOutput> getVoutList() {
+    public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> getVoutList() {
       return vout_;
     }
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder> 
+    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
         getVoutOrBuilderList() {
       return vout_;
     }
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
     public int getVoutCount() {
       return vout_.size();
     }
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    public com.dappley.java.core.protobuf.TransactionProto.TXOutput getVout(int index) {
+    public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput getVout(int index) {
       return vout_.get(index);
     }
     /**
-     * <code>repeated .corepb.TXOutput vout = 3;</code>
+     * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
      */
-    public com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder getVoutOrBuilder(
+    public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder getVoutOrBuilder(
         int index) {
       return vout_.get(index);
     }
@@ -530,21 +1312,21 @@ public final class TransactionProto {
       return builder;
     }
     /**
-     * Protobuf type {@code corepb.Transaction}
+     * Protobuf type {@code transactionpb.Transaction}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.Transaction)
+        // @@protoc_insertion_point(builder_implements:transactionpb.Transaction)
         com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_Transaction_descriptor;
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transaction_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_Transaction_fieldAccessorTable
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transaction_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.dappley.java.core.protobuf.TransactionProto.Transaction.class, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder.class);
       }
@@ -595,7 +1377,7 @@ public final class TransactionProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_Transaction_descriptor;
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_Transaction_descriptor;
       }
 
       @java.lang.Override
@@ -811,22 +1593,22 @@ public final class TransactionProto {
         return this;
       }
 
-      private java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXInput> vin_ =
+      private java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput> vin_ =
         java.util.Collections.emptyList();
       private void ensureVinIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          vin_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.TXInput>(vin_);
+          vin_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput>(vin_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.dappley.java.core.protobuf.TransactionProto.TXInput, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder, com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder> vinBuilder_;
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXInput, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder> vinBuilder_;
 
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXInput> getVinList() {
+      public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput> getVinList() {
         if (vinBuilder_ == null) {
           return java.util.Collections.unmodifiableList(vin_);
         } else {
@@ -834,7 +1616,7 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public int getVinCount() {
         if (vinBuilder_ == null) {
@@ -844,9 +1626,9 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput getVin(int index) {
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXInput getVin(int index) {
         if (vinBuilder_ == null) {
           return vin_.get(index);
         } else {
@@ -854,10 +1636,10 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder setVin(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXInput value) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput value) {
         if (vinBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -871,10 +1653,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder setVin(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder builderForValue) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder builderForValue) {
         if (vinBuilder_ == null) {
           ensureVinIsMutable();
           vin_.set(index, builderForValue.build());
@@ -885,9 +1667,9 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public Builder addVin(com.dappley.java.core.protobuf.TransactionProto.TXInput value) {
+      public Builder addVin(com.dappley.java.core.protobuf.TransactionBaseProto.TXInput value) {
         if (vinBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -901,10 +1683,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder addVin(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXInput value) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput value) {
         if (vinBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -918,10 +1700,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder addVin(
-          com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder builderForValue) {
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder builderForValue) {
         if (vinBuilder_ == null) {
           ensureVinIsMutable();
           vin_.add(builderForValue.build());
@@ -932,10 +1714,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder addVin(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder builderForValue) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder builderForValue) {
         if (vinBuilder_ == null) {
           ensureVinIsMutable();
           vin_.add(index, builderForValue.build());
@@ -946,10 +1728,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder addAllVin(
-          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.TXInput> values) {
+          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXInput> values) {
         if (vinBuilder_ == null) {
           ensureVinIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -961,7 +1743,7 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder clearVin() {
         if (vinBuilder_ == null) {
@@ -974,7 +1756,7 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
       public Builder removeVin(int index) {
         if (vinBuilder_ == null) {
@@ -987,16 +1769,16 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder getVinBuilder(
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder getVinBuilder(
           int index) {
         return getVinFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder getVinOrBuilder(
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder getVinOrBuilder(
           int index) {
         if (vinBuilder_ == null) {
           return vin_.get(index);  } else {
@@ -1004,9 +1786,9 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder> 
+      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder> 
            getVinOrBuilderList() {
         if (vinBuilder_ != null) {
           return vinBuilder_.getMessageOrBuilderList();
@@ -1015,33 +1797,33 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder addVinBuilder() {
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder addVinBuilder() {
         return getVinFieldBuilder().addBuilder(
-            com.dappley.java.core.protobuf.TransactionProto.TXInput.getDefaultInstance());
+            com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder addVinBuilder(
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder addVinBuilder(
           int index) {
         return getVinFieldBuilder().addBuilder(
-            index, com.dappley.java.core.protobuf.TransactionProto.TXInput.getDefaultInstance());
+            index, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.TXInput vin = 2;</code>
+       * <code>repeated .transactionbasepb.TXInput vin = 2;</code>
        */
-      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder> 
+      public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder> 
            getVinBuilderList() {
         return getVinFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.dappley.java.core.protobuf.TransactionProto.TXInput, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder, com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder> 
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXInput, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder> 
           getVinFieldBuilder() {
         if (vinBuilder_ == null) {
           vinBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.dappley.java.core.protobuf.TransactionProto.TXInput, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder, com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder>(
+              com.dappley.java.core.protobuf.TransactionBaseProto.TXInput, com.dappley.java.core.protobuf.TransactionBaseProto.TXInput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXInputOrBuilder>(
                   vin_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
@@ -1051,22 +1833,22 @@ public final class TransactionProto {
         return vinBuilder_;
       }
 
-      private java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXOutput> vout_ =
+      private java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> vout_ =
         java.util.Collections.emptyList();
       private void ensureVoutIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          vout_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionProto.TXOutput>(vout_);
+          vout_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput>(vout_);
           bitField0_ |= 0x00000004;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.dappley.java.core.protobuf.TransactionProto.TXOutput, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder> voutBuilder_;
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> voutBuilder_;
 
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXOutput> getVoutList() {
+      public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> getVoutList() {
         if (voutBuilder_ == null) {
           return java.util.Collections.unmodifiableList(vout_);
         } else {
@@ -1074,7 +1856,7 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public int getVoutCount() {
         if (voutBuilder_ == null) {
@@ -1084,9 +1866,9 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput getVout(int index) {
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput getVout(int index) {
         if (voutBuilder_ == null) {
           return vout_.get(index);
         } else {
@@ -1094,10 +1876,10 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder setVout(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXOutput value) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput value) {
         if (voutBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1111,10 +1893,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder setVout(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder builderForValue) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder builderForValue) {
         if (voutBuilder_ == null) {
           ensureVoutIsMutable();
           vout_.set(index, builderForValue.build());
@@ -1125,9 +1907,9 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public Builder addVout(com.dappley.java.core.protobuf.TransactionProto.TXOutput value) {
+      public Builder addVout(com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput value) {
         if (voutBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1141,10 +1923,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder addVout(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXOutput value) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput value) {
         if (voutBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1158,10 +1940,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder addVout(
-          com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder builderForValue) {
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder builderForValue) {
         if (voutBuilder_ == null) {
           ensureVoutIsMutable();
           vout_.add(builderForValue.build());
@@ -1172,10 +1954,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder addVout(
-          int index, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder builderForValue) {
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder builderForValue) {
         if (voutBuilder_ == null) {
           ensureVoutIsMutable();
           vout_.add(index, builderForValue.build());
@@ -1186,10 +1968,10 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder addAllVout(
-          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionProto.TXOutput> values) {
+          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> values) {
         if (voutBuilder_ == null) {
           ensureVoutIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1201,7 +1983,7 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder clearVout() {
         if (voutBuilder_ == null) {
@@ -1214,7 +1996,7 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
       public Builder removeVout(int index) {
         if (voutBuilder_ == null) {
@@ -1227,16 +2009,16 @@ public final class TransactionProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder getVoutBuilder(
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder getVoutBuilder(
           int index) {
         return getVoutFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder getVoutOrBuilder(
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder getVoutOrBuilder(
           int index) {
         if (voutBuilder_ == null) {
           return vout_.get(index);  } else {
@@ -1244,9 +2026,9 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder> 
+      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
            getVoutOrBuilderList() {
         if (voutBuilder_ != null) {
           return voutBuilder_.getMessageOrBuilderList();
@@ -1255,33 +2037,33 @@ public final class TransactionProto {
         }
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder addVoutBuilder() {
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder addVoutBuilder() {
         return getVoutFieldBuilder().addBuilder(
-            com.dappley.java.core.protobuf.TransactionProto.TXOutput.getDefaultInstance());
+            com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder addVoutBuilder(
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder addVoutBuilder(
           int index) {
         return getVoutFieldBuilder().addBuilder(
-            index, com.dappley.java.core.protobuf.TransactionProto.TXOutput.getDefaultInstance());
+            index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.TXOutput vout = 3;</code>
+       * <code>repeated .transactionbasepb.TXOutput vout = 3;</code>
        */
-      public java.util.List<com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder> 
+      public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder> 
            getVoutBuilderList() {
         return getVoutFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.dappley.java.core.protobuf.TransactionProto.TXOutput, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder> 
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
           getVoutFieldBuilder() {
         if (voutBuilder_ == null) {
           voutBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.dappley.java.core.protobuf.TransactionProto.TXOutput, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder>(
+              com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder>(
                   vout_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
@@ -1390,10 +2172,10 @@ public final class TransactionProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:corepb.Transaction)
+      // @@protoc_insertion_point(builder_scope:transactionpb.Transaction)
     }
 
-    // @@protoc_insertion_point(class_scope:corepb.Transaction)
+    // @@protoc_insertion_point(class_scope:transactionpb.Transaction)
     private static final com.dappley.java.core.protobuf.TransactionProto.Transaction DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.TransactionProto.Transaction();
@@ -1430,47 +2212,76 @@ public final class TransactionProto {
 
   }
 
-  public interface TXInputOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.TXInput)
+  public interface TransactionNodeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:transactionpb.TransactionNode)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bytes txid = 1;</code>
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
      */
-    com.google.protobuf.ByteString getTxid();
+    int getChildrenCount();
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+    boolean containsChildren(
+        java.lang.String key);
+    /**
+     * Use {@link #getChildrenMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+    getChildren();
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+    java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+    getChildrenMap();
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getChildrenOrDefault(
+        java.lang.String key,
+        com.dappley.java.core.protobuf.TransactionProto.Transaction defaultValue);
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getChildrenOrThrow(
+        java.lang.String key);
 
     /**
-     * <code>int32 vout = 2;</code>
+     * <code>.transactionpb.Transaction value = 2;</code>
      */
-    int getVout();
+    boolean hasValue();
+    /**
+     * <code>.transactionpb.Transaction value = 2;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.Transaction getValue();
+    /**
+     * <code>.transactionpb.Transaction value = 2;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getValueOrBuilder();
 
     /**
-     * <code>bytes signature = 3;</code>
+     * <code>int64 size = 3;</code>
      */
-    com.google.protobuf.ByteString getSignature();
-
-    /**
-     * <code>bytes public_key = 4;</code>
-     */
-    com.google.protobuf.ByteString getPublicKey();
+    long getSize();
   }
   /**
-   * Protobuf type {@code corepb.TXInput}
+   * Protobuf type {@code transactionpb.TransactionNode}
    */
-  public  static final class TXInput extends
+  public  static final class TransactionNode extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.TXInput)
-      TXInputOrBuilder {
+      // @@protoc_insertion_point(message_implements:transactionpb.TransactionNode)
+      TransactionNodeOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use TXInput.newBuilder() to construct.
-    private TXInput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use TransactionNode.newBuilder() to construct.
+    private TransactionNode(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private TXInput() {
-      txid_ = com.google.protobuf.ByteString.EMPTY;
-      vout_ = 0;
-      signature_ = com.google.protobuf.ByteString.EMPTY;
-      publicKey_ = com.google.protobuf.ByteString.EMPTY;
+    private TransactionNode() {
+      size_ = 0L;
     }
 
     @java.lang.Override
@@ -1478,7 +2289,7 @@ public final class TransactionProto {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private TXInput(
+    private TransactionNode(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1498,692 +2309,34 @@ public final class TransactionProto {
               done = true;
               break;
             case 10: {
-
-              txid_ = input.readBytes();
-              break;
-            }
-            case 16: {
-
-              vout_ = input.readInt32();
-              break;
-            }
-            case 26: {
-
-              signature_ = input.readBytes();
-              break;
-            }
-            case 34: {
-
-              publicKey_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                children_ = com.google.protobuf.MapField.newMapField(
+                    ChildrenDefaultEntryHolder.defaultEntry);
+                mutable_bitField0_ |= 0x00000001;
               }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXInput_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXInput_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.TransactionProto.TXInput.class, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder.class);
-    }
-
-    public static final int TXID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString txid_;
-    /**
-     * <code>bytes txid = 1;</code>
-     */
-    public com.google.protobuf.ByteString getTxid() {
-      return txid_;
-    }
-
-    public static final int VOUT_FIELD_NUMBER = 2;
-    private int vout_;
-    /**
-     * <code>int32 vout = 2;</code>
-     */
-    public int getVout() {
-      return vout_;
-    }
-
-    public static final int SIGNATURE_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString signature_;
-    /**
-     * <code>bytes signature = 3;</code>
-     */
-    public com.google.protobuf.ByteString getSignature() {
-      return signature_;
-    }
-
-    public static final int PUBLIC_KEY_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString publicKey_;
-    /**
-     * <code>bytes public_key = 4;</code>
-     */
-    public com.google.protobuf.ByteString getPublicKey() {
-      return publicKey_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!txid_.isEmpty()) {
-        output.writeBytes(1, txid_);
-      }
-      if (vout_ != 0) {
-        output.writeInt32(2, vout_);
-      }
-      if (!signature_.isEmpty()) {
-        output.writeBytes(3, signature_);
-      }
-      if (!publicKey_.isEmpty()) {
-        output.writeBytes(4, publicKey_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!txid_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, txid_);
-      }
-      if (vout_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, vout_);
-      }
-      if (!signature_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, signature_);
-      }
-      if (!publicKey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, publicKey_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.dappley.java.core.protobuf.TransactionProto.TXInput)) {
-        return super.equals(obj);
-      }
-      com.dappley.java.core.protobuf.TransactionProto.TXInput other = (com.dappley.java.core.protobuf.TransactionProto.TXInput) obj;
-
-      boolean result = true;
-      result = result && getTxid()
-          .equals(other.getTxid());
-      result = result && (getVout()
-          == other.getVout());
-      result = result && getSignature()
-          .equals(other.getSignature());
-      result = result && getPublicKey()
-          .equals(other.getPublicKey());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TXID_FIELD_NUMBER;
-      hash = (53 * hash) + getTxid().hashCode();
-      hash = (37 * hash) + VOUT_FIELD_NUMBER;
-      hash = (53 * hash) + getVout();
-      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
-      hash = (53 * hash) + getSignature().hashCode();
-      hash = (37 * hash) + PUBLIC_KEY_FIELD_NUMBER;
-      hash = (53 * hash) + getPublicKey().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.TransactionProto.TXInput prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code corepb.TXInput}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.TXInput)
-        com.dappley.java.core.protobuf.TransactionProto.TXInputOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXInput_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXInput_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.TransactionProto.TXInput.class, com.dappley.java.core.protobuf.TransactionProto.TXInput.Builder.class);
-      }
-
-      // Construct using com.dappley.java.core.protobuf.TransactionProto.TXInput.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        txid_ = com.google.protobuf.ByteString.EMPTY;
-
-        vout_ = 0;
-
-        signature_ = com.google.protobuf.ByteString.EMPTY;
-
-        publicKey_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXInput_descriptor;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.TransactionProto.TXInput.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput build() {
-        com.dappley.java.core.protobuf.TransactionProto.TXInput result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.dappley.java.core.protobuf.TransactionProto.TXInput buildPartial() {
-        com.dappley.java.core.protobuf.TransactionProto.TXInput result = new com.dappley.java.core.protobuf.TransactionProto.TXInput(this);
-        result.txid_ = txid_;
-        result.vout_ = vout_;
-        result.signature_ = signature_;
-        result.publicKey_ = publicKey_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.TransactionProto.TXInput) {
-          return mergeFrom((com.dappley.java.core.protobuf.TransactionProto.TXInput)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.dappley.java.core.protobuf.TransactionProto.TXInput other) {
-        if (other == com.dappley.java.core.protobuf.TransactionProto.TXInput.getDefaultInstance()) return this;
-        if (other.getTxid() != com.google.protobuf.ByteString.EMPTY) {
-          setTxid(other.getTxid());
-        }
-        if (other.getVout() != 0) {
-          setVout(other.getVout());
-        }
-        if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
-          setSignature(other.getSignature());
-        }
-        if (other.getPublicKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPublicKey(other.getPublicKey());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.dappley.java.core.protobuf.TransactionProto.TXInput parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.TransactionProto.TXInput) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString txid_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes txid = 1;</code>
-       */
-      public com.google.protobuf.ByteString getTxid() {
-        return txid_;
-      }
-      /**
-       * <code>bytes txid = 1;</code>
-       */
-      public Builder setTxid(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        txid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes txid = 1;</code>
-       */
-      public Builder clearTxid() {
-        
-        txid_ = getDefaultInstance().getTxid();
-        onChanged();
-        return this;
-      }
-
-      private int vout_ ;
-      /**
-       * <code>int32 vout = 2;</code>
-       */
-      public int getVout() {
-        return vout_;
-      }
-      /**
-       * <code>int32 vout = 2;</code>
-       */
-      public Builder setVout(int value) {
-        
-        vout_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 vout = 2;</code>
-       */
-      public Builder clearVout() {
-        
-        vout_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes signature = 3;</code>
-       */
-      public com.google.protobuf.ByteString getSignature() {
-        return signature_;
-      }
-      /**
-       * <code>bytes signature = 3;</code>
-       */
-      public Builder setSignature(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        signature_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes signature = 3;</code>
-       */
-      public Builder clearSignature() {
-        
-        signature_ = getDefaultInstance().getSignature();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes public_key = 4;</code>
-       */
-      public com.google.protobuf.ByteString getPublicKey() {
-        return publicKey_;
-      }
-      /**
-       * <code>bytes public_key = 4;</code>
-       */
-      public Builder setPublicKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        publicKey_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes public_key = 4;</code>
-       */
-      public Builder clearPublicKey() {
-        
-        publicKey_ = getDefaultInstance().getPublicKey();
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:corepb.TXInput)
-    }
-
-    // @@protoc_insertion_point(class_scope:corepb.TXInput)
-    private static final com.dappley.java.core.protobuf.TransactionProto.TXInput DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.TransactionProto.TXInput();
-    }
-
-    public static com.dappley.java.core.protobuf.TransactionProto.TXInput getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<TXInput>
-        PARSER = new com.google.protobuf.AbstractParser<TXInput>() {
-      @java.lang.Override
-      public TXInput parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TXInput(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<TXInput> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TXInput> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.dappley.java.core.protobuf.TransactionProto.TXInput getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface TXOutputOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.TXOutput)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bytes value = 1;</code>
-     */
-    com.google.protobuf.ByteString getValue();
-
-    /**
-     * <code>bytes public_key_hash = 2;</code>
-     */
-    com.google.protobuf.ByteString getPublicKeyHash();
-
-    /**
-     * <code>string contract = 3;</code>
-     */
-    java.lang.String getContract();
-    /**
-     * <code>string contract = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getContractBytes();
-  }
-  /**
-   * Protobuf type {@code corepb.TXOutput}
-   */
-  public  static final class TXOutput extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.TXOutput)
-      TXOutputOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use TXOutput.newBuilder() to construct.
-    private TXOutput(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private TXOutput() {
-      value_ = com.google.protobuf.ByteString.EMPTY;
-      publicKeyHash_ = com.google.protobuf.ByteString.EMPTY;
-      contract_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private TXOutput(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              value_ = input.readBytes();
+              com.google.protobuf.MapEntry<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+              children__ = input.readMessage(
+                  ChildrenDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              children_.getMutableMap().put(
+                  children__.getKey(), children__.getValue());
               break;
             }
             case 18: {
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder subBuilder = null;
+              if (value_ != null) {
+                subBuilder = value_.toBuilder();
+              }
+              value_ = input.readMessage(com.dappley.java.core.protobuf.TransactionProto.Transaction.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(value_);
+                value_ = subBuilder.buildPartial();
+              }
 
-              publicKeyHash_ = input.readBytes();
               break;
             }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 24: {
 
-              contract_ = s;
+              size_ = input.readInt64();
               break;
             }
             default: {
@@ -2207,67 +2360,134 @@ public final class TransactionProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXOutput_descriptor;
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionNode_descriptor;
     }
 
+    @SuppressWarnings({"rawtypes"})
+    @java.lang.Override
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 1:
+          return internalGetChildren();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXOutput_fieldAccessorTable
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionNode_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.dappley.java.core.protobuf.TransactionProto.TXOutput.class, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder.class);
+              com.dappley.java.core.protobuf.TransactionProto.TransactionNode.class, com.dappley.java.core.protobuf.TransactionProto.TransactionNode.Builder.class);
     }
 
-    public static final int VALUE_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString value_;
-    /**
-     * <code>bytes value = 1;</code>
-     */
-    public com.google.protobuf.ByteString getValue() {
-      return value_;
+    private int bitField0_;
+    public static final int CHILDREN_FIELD_NUMBER = 1;
+    private static final class ChildrenDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>newDefaultInstance(
+                  com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionNode_ChildrenEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance());
     }
-
-    public static final int PUBLIC_KEY_HASH_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString publicKeyHash_;
-    /**
-     * <code>bytes public_key_hash = 2;</code>
-     */
-    public com.google.protobuf.ByteString getPublicKeyHash() {
-      return publicKeyHash_;
-    }
-
-    public static final int CONTRACT_FIELD_NUMBER = 3;
-    private volatile java.lang.Object contract_;
-    /**
-     * <code>string contract = 3;</code>
-     */
-    public java.lang.String getContract() {
-      java.lang.Object ref = contract_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        contract_ = s;
-        return s;
+    private com.google.protobuf.MapField<
+        java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> children_;
+    private com.google.protobuf.MapField<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+    internalGetChildren() {
+      if (children_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            ChildrenDefaultEntryHolder.defaultEntry);
       }
+      return children_;
+    }
+
+    public int getChildrenCount() {
+      return internalGetChildren().getMap().size();
     }
     /**
-     * <code>string contract = 3;</code>
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getContractBytes() {
-      java.lang.Object ref = contract_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        contract_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+
+    public boolean containsChildren(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetChildren().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getChildrenMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> getChildren() {
+      return getChildrenMap();
+    }
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+
+    public java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> getChildrenMap() {
+      return internalGetChildren().getMap();
+    }
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getChildrenOrDefault(
+        java.lang.String key,
+        com.dappley.java.core.protobuf.TransactionProto.Transaction defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> map =
+          internalGetChildren().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+     */
+
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getChildrenOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> map =
+          internalGetChildren().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
       }
+      return map.get(key);
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private com.dappley.java.core.protobuf.TransactionProto.Transaction value_;
+    /**
+     * <code>.transactionpb.Transaction value = 2;</code>
+     */
+    public boolean hasValue() {
+      return value_ != null;
+    }
+    /**
+     * <code>.transactionpb.Transaction value = 2;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.Transaction getValue() {
+      return value_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : value_;
+    }
+    /**
+     * <code>.transactionpb.Transaction value = 2;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getValueOrBuilder() {
+      return getValue();
+    }
+
+    public static final int SIZE_FIELD_NUMBER = 3;
+    private long size_;
+    /**
+     * <code>int64 size = 3;</code>
+     */
+    public long getSize() {
+      return size_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2284,14 +2504,17 @@ public final class TransactionProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!value_.isEmpty()) {
-        output.writeBytes(1, value_);
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetChildren(),
+          ChildrenDefaultEntryHolder.defaultEntry,
+          1);
+      if (value_ != null) {
+        output.writeMessage(2, getValue());
       }
-      if (!publicKeyHash_.isEmpty()) {
-        output.writeBytes(2, publicKeyHash_);
-      }
-      if (!getContractBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, contract_);
+      if (size_ != 0L) {
+        output.writeInt64(3, size_);
       }
       unknownFields.writeTo(output);
     }
@@ -2302,16 +2525,23 @@ public final class TransactionProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!value_.isEmpty()) {
+      for (java.util.Map.Entry<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> entry
+           : internalGetChildren().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+        children__ = ChildrenDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, value_);
+            .computeMessageSize(1, children__);
       }
-      if (!publicKeyHash_.isEmpty()) {
+      if (value_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, publicKeyHash_);
+          .computeMessageSize(2, getValue());
       }
-      if (!getContractBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, contract_);
+      if (size_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, size_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2323,18 +2553,21 @@ public final class TransactionProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.dappley.java.core.protobuf.TransactionProto.TXOutput)) {
+      if (!(obj instanceof com.dappley.java.core.protobuf.TransactionProto.TransactionNode)) {
         return super.equals(obj);
       }
-      com.dappley.java.core.protobuf.TransactionProto.TXOutput other = (com.dappley.java.core.protobuf.TransactionProto.TXOutput) obj;
+      com.dappley.java.core.protobuf.TransactionProto.TransactionNode other = (com.dappley.java.core.protobuf.TransactionProto.TransactionNode) obj;
 
       boolean result = true;
-      result = result && getValue()
-          .equals(other.getValue());
-      result = result && getPublicKeyHash()
-          .equals(other.getPublicKeyHash());
-      result = result && getContract()
-          .equals(other.getContract());
+      result = result && internalGetChildren().equals(
+          other.internalGetChildren());
+      result = result && (hasValue() == other.hasValue());
+      if (hasValue()) {
+        result = result && getValue()
+            .equals(other.getValue());
+      }
+      result = result && (getSize()
+          == other.getSize());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -2346,80 +2579,85 @@ public final class TransactionProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValue().hashCode();
-      hash = (37 * hash) + PUBLIC_KEY_HASH_FIELD_NUMBER;
-      hash = (53 * hash) + getPublicKeyHash().hashCode();
-      hash = (37 * hash) + CONTRACT_FIELD_NUMBER;
-      hash = (53 * hash) + getContract().hashCode();
+      if (!internalGetChildren().getMap().isEmpty()) {
+        hash = (37 * hash) + CHILDREN_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetChildren().hashCode();
+      }
+      if (hasValue()) {
+        hash = (37 * hash) + VALUE_FIELD_NUMBER;
+        hash = (53 * hash) + getValue().hashCode();
+      }
+      hash = (37 * hash) + SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSize());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(byte[] data)
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(java.io.InputStream input)
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseDelimitedFrom(java.io.InputStream input)
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseDelimitedFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput parseFrom(
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2432,7 +2670,7 @@ public final class TransactionProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.dappley.java.core.protobuf.TransactionProto.TXOutput prototype) {
+    public static Builder newBuilder(com.dappley.java.core.protobuf.TransactionProto.TransactionNode prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2448,26 +2686,48 @@ public final class TransactionProto {
       return builder;
     }
     /**
-     * Protobuf type {@code corepb.TXOutput}
+     * Protobuf type {@code transactionpb.TransactionNode}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.TXOutput)
-        com.dappley.java.core.protobuf.TransactionProto.TXOutputOrBuilder {
+        // @@protoc_insertion_point(builder_implements:transactionpb.TransactionNode)
+        com.dappley.java.core.protobuf.TransactionProto.TransactionNodeOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXOutput_descriptor;
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionNode_descriptor;
       }
 
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetChildren();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 1:
+            return internalGetMutableChildren();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXOutput_fieldAccessorTable
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionNode_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.dappley.java.core.protobuf.TransactionProto.TXOutput.class, com.dappley.java.core.protobuf.TransactionProto.TXOutput.Builder.class);
+                com.dappley.java.core.protobuf.TransactionProto.TransactionNode.class, com.dappley.java.core.protobuf.TransactionProto.TransactionNode.Builder.class);
       }
 
-      // Construct using com.dappley.java.core.protobuf.TransactionProto.TXOutput.newBuilder()
+      // Construct using com.dappley.java.core.protobuf.TransactionProto.TransactionNode.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2485,11 +2745,14 @@ public final class TransactionProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        value_ = com.google.protobuf.ByteString.EMPTY;
-
-        publicKeyHash_ = com.google.protobuf.ByteString.EMPTY;
-
-        contract_ = "";
+        internalGetMutableChildren().clear();
+        if (valueBuilder_ == null) {
+          value_ = null;
+        } else {
+          value_ = null;
+          valueBuilder_ = null;
+        }
+        size_ = 0L;
 
         return this;
       }
@@ -2497,17 +2760,17 @@ public final class TransactionProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.TransactionProto.internal_static_corepb_TXOutput_descriptor;
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionNode_descriptor;
       }
 
       @java.lang.Override
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput getDefaultInstanceForType() {
-        return com.dappley.java.core.protobuf.TransactionProto.TXOutput.getDefaultInstance();
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionNode getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.TransactionProto.TransactionNode.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput build() {
-        com.dappley.java.core.protobuf.TransactionProto.TXOutput result = buildPartial();
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionNode build() {
+        com.dappley.java.core.protobuf.TransactionProto.TransactionNode result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2515,11 +2778,19 @@ public final class TransactionProto {
       }
 
       @java.lang.Override
-      public com.dappley.java.core.protobuf.TransactionProto.TXOutput buildPartial() {
-        com.dappley.java.core.protobuf.TransactionProto.TXOutput result = new com.dappley.java.core.protobuf.TransactionProto.TXOutput(this);
-        result.value_ = value_;
-        result.publicKeyHash_ = publicKeyHash_;
-        result.contract_ = contract_;
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionNode buildPartial() {
+        com.dappley.java.core.protobuf.TransactionProto.TransactionNode result = new com.dappley.java.core.protobuf.TransactionProto.TransactionNode(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.children_ = internalGetChildren();
+        result.children_.makeImmutable();
+        if (valueBuilder_ == null) {
+          result.value_ = value_;
+        } else {
+          result.value_ = valueBuilder_.build();
+        }
+        result.size_ = size_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -2558,25 +2829,23 @@ public final class TransactionProto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.dappley.java.core.protobuf.TransactionProto.TXOutput) {
-          return mergeFrom((com.dappley.java.core.protobuf.TransactionProto.TXOutput)other);
+        if (other instanceof com.dappley.java.core.protobuf.TransactionProto.TransactionNode) {
+          return mergeFrom((com.dappley.java.core.protobuf.TransactionProto.TransactionNode)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.dappley.java.core.protobuf.TransactionProto.TXOutput other) {
-        if (other == com.dappley.java.core.protobuf.TransactionProto.TXOutput.getDefaultInstance()) return this;
-        if (other.getValue() != com.google.protobuf.ByteString.EMPTY) {
-          setValue(other.getValue());
+      public Builder mergeFrom(com.dappley.java.core.protobuf.TransactionProto.TransactionNode other) {
+        if (other == com.dappley.java.core.protobuf.TransactionProto.TransactionNode.getDefaultInstance()) return this;
+        internalGetMutableChildren().mergeFrom(
+            other.internalGetChildren());
+        if (other.hasValue()) {
+          mergeValue(other.getValue());
         }
-        if (other.getPublicKeyHash() != com.google.protobuf.ByteString.EMPTY) {
-          setPublicKeyHash(other.getPublicKeyHash());
-        }
-        if (!other.getContract().isEmpty()) {
-          contract_ = other.contract_;
-          onChanged();
+        if (other.getSize() != 0L) {
+          setSize(other.getSize());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2593,11 +2862,11 @@ public final class TransactionProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.dappley.java.core.protobuf.TransactionProto.TXOutput parsedMessage = null;
+        com.dappley.java.core.protobuf.TransactionProto.TransactionNode parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.dappley.java.core.protobuf.TransactionProto.TXOutput) e.getUnfinishedMessage();
+          parsedMessage = (com.dappley.java.core.protobuf.TransactionProto.TransactionNode) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2606,130 +2875,270 @@ public final class TransactionProto {
         }
         return this;
       }
+      private int bitField0_;
 
-      private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes value = 1;</code>
-       */
-      public com.google.protobuf.ByteString getValue() {
-        return value_;
+      private com.google.protobuf.MapField<
+          java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> children_;
+      private com.google.protobuf.MapField<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+      internalGetChildren() {
+        if (children_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              ChildrenDefaultEntryHolder.defaultEntry);
+        }
+        return children_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+      internalGetMutableChildren() {
+        onChanged();;
+        if (children_ == null) {
+          children_ = com.google.protobuf.MapField.newMapField(
+              ChildrenDefaultEntryHolder.defaultEntry);
+        }
+        if (!children_.isMutable()) {
+          children_ = children_.copy();
+        }
+        return children_;
+      }
+
+      public int getChildrenCount() {
+        return internalGetChildren().getMap().size();
       }
       /**
-       * <code>bytes value = 1;</code>
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
        */
-      public Builder setValue(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        value_ = value;
-        onChanged();
+
+      public boolean containsChildren(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetChildren().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getChildrenMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> getChildren() {
+        return getChildrenMap();
+      }
+      /**
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+       */
+
+      public java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> getChildrenMap() {
+        return internalGetChildren().getMap();
+      }
+      /**
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+       */
+
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getChildrenOrDefault(
+          java.lang.String key,
+          com.dappley.java.core.protobuf.TransactionProto.Transaction defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> map =
+            internalGetChildren().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+       */
+
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getChildrenOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> map =
+            internalGetChildren().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearChildren() {
+        internalGetMutableChildren().getMutableMap()
+            .clear();
         return this;
       }
       /**
-       * <code>bytes value = 1;</code>
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+       */
+
+      public Builder removeChildren(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableChildren().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction>
+      getMutableChildren() {
+        return internalGetMutableChildren().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+       */
+      public Builder putChildren(
+          java.lang.String key,
+          com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableChildren().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, .transactionpb.Transaction&gt; children = 1;</code>
+       */
+
+      public Builder putAllChildren(
+          java.util.Map<java.lang.String, com.dappley.java.core.protobuf.TransactionProto.Transaction> values) {
+        internalGetMutableChildren().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+
+      private com.dappley.java.core.protobuf.TransactionProto.Transaction value_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> valueBuilder_;
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public boolean hasValue() {
+        return valueBuilder_ != null || value_ != null;
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction getValue() {
+        if (valueBuilder_ == null) {
+          return value_ == null ? com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : value_;
+        } else {
+          return valueBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public Builder setValue(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (valueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          value_ = value;
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public Builder setValue(
+          com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder builderForValue) {
+        if (valueBuilder_ == null) {
+          value_ = builderForValue.build();
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public Builder mergeValue(com.dappley.java.core.protobuf.TransactionProto.Transaction value) {
+        if (valueBuilder_ == null) {
+          if (value_ != null) {
+            value_ =
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.newBuilder(value_).mergeFrom(value).buildPartial();
+          } else {
+            value_ = value;
+          }
+          onChanged();
+        } else {
+          valueBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
        */
       public Builder clearValue() {
-        
-        value_ = getDefaultInstance().getValue();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString publicKeyHash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes public_key_hash = 2;</code>
-       */
-      public com.google.protobuf.ByteString getPublicKeyHash() {
-        return publicKeyHash_;
-      }
-      /**
-       * <code>bytes public_key_hash = 2;</code>
-       */
-      public Builder setPublicKeyHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        publicKeyHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes public_key_hash = 2;</code>
-       */
-      public Builder clearPublicKeyHash() {
-        
-        publicKeyHash_ = getDefaultInstance().getPublicKeyHash();
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object contract_ = "";
-      /**
-       * <code>string contract = 3;</code>
-       */
-      public java.lang.String getContract() {
-        java.lang.Object ref = contract_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          contract_ = s;
-          return s;
+        if (valueBuilder_ == null) {
+          value_ = null;
+          onChanged();
         } else {
-          return (java.lang.String) ref;
+          value_ = null;
+          valueBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder getValueBuilder() {
+        
+        onChanged();
+        return getValueFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.transactionpb.Transaction value = 2;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder getValueOrBuilder() {
+        if (valueBuilder_ != null) {
+          return valueBuilder_.getMessageOrBuilder();
+        } else {
+          return value_ == null ?
+              com.dappley.java.core.protobuf.TransactionProto.Transaction.getDefaultInstance() : value_;
         }
       }
       /**
-       * <code>string contract = 3;</code>
+       * <code>.transactionpb.Transaction value = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getContractBytes() {
-        java.lang.Object ref = contract_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          contract_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder> 
+          getValueFieldBuilder() {
+        if (valueBuilder_ == null) {
+          valueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionProto.Transaction, com.dappley.java.core.protobuf.TransactionProto.Transaction.Builder, com.dappley.java.core.protobuf.TransactionProto.TransactionOrBuilder>(
+                  getValue(),
+                  getParentForChildren(),
+                  isClean());
+          value_ = null;
         }
+        return valueBuilder_;
+      }
+
+      private long size_ ;
+      /**
+       * <code>int64 size = 3;</code>
+       */
+      public long getSize() {
+        return size_;
       }
       /**
-       * <code>string contract = 3;</code>
+       * <code>int64 size = 3;</code>
        */
-      public Builder setContract(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        contract_ = value;
+      public Builder setSize(long value) {
+        
+        size_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string contract = 3;</code>
+       * <code>int64 size = 3;</code>
        */
-      public Builder clearContract() {
+      public Builder clearSize() {
         
-        contract_ = getDefaultInstance().getContract();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string contract = 3;</code>
-       */
-      public Builder setContractBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        contract_ = value;
+        size_ = 0L;
         onChanged();
         return this;
       }
@@ -2746,61 +3155,853 @@ public final class TransactionProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:corepb.TXOutput)
+      // @@protoc_insertion_point(builder_scope:transactionpb.TransactionNode)
     }
 
-    // @@protoc_insertion_point(class_scope:corepb.TXOutput)
-    private static final com.dappley.java.core.protobuf.TransactionProto.TXOutput DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:transactionpb.TransactionNode)
+    private static final com.dappley.java.core.protobuf.TransactionProto.TransactionNode DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.TransactionProto.TXOutput();
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.TransactionProto.TransactionNode();
     }
 
-    public static com.dappley.java.core.protobuf.TransactionProto.TXOutput getDefaultInstance() {
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionNode getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<TXOutput>
-        PARSER = new com.google.protobuf.AbstractParser<TXOutput>() {
+    private static final com.google.protobuf.Parser<TransactionNode>
+        PARSER = new com.google.protobuf.AbstractParser<TransactionNode>() {
       @java.lang.Override
-      public TXOutput parsePartialFrom(
+      public TransactionNode parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TXOutput(input, extensionRegistry);
+        return new TransactionNode(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<TXOutput> parser() {
+    public static com.google.protobuf.Parser<TransactionNode> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TXOutput> getParserForType() {
+    public com.google.protobuf.Parser<TransactionNode> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.dappley.java.core.protobuf.TransactionProto.TXOutput getDefaultInstanceForType() {
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionNode getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TransactionJournalOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:transactionpb.TransactionJournal)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> 
+        getVoutList();
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput getVout(int index);
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    int getVoutCount();
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
+        getVoutOrBuilderList();
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder getVoutOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code transactionpb.TransactionJournal}
+   */
+  public  static final class TransactionJournal extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:transactionpb.TransactionJournal)
+      TransactionJournalOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TransactionJournal.newBuilder() to construct.
+    private TransactionJournal(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TransactionJournal() {
+      vout_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TransactionJournal(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                vout_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              vout_.add(
+                  input.readMessage(com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          vout_ = java.util.Collections.unmodifiableList(vout_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionJournal_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionJournal_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.class, com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.Builder.class);
+    }
+
+    public static final int VOUT_FIELD_NUMBER = 1;
+    private java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> vout_;
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> getVoutList() {
+      return vout_;
+    }
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    public java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
+        getVoutOrBuilderList() {
+      return vout_;
+    }
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    public int getVoutCount() {
+      return vout_.size();
+    }
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput getVout(int index) {
+      return vout_.get(index);
+    }
+    /**
+     * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+     */
+    public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder getVoutOrBuilder(
+        int index) {
+      return vout_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < vout_.size(); i++) {
+        output.writeMessage(1, vout_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < vout_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, vout_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.dappley.java.core.protobuf.TransactionProto.TransactionJournal)) {
+        return super.equals(obj);
+      }
+      com.dappley.java.core.protobuf.TransactionProto.TransactionJournal other = (com.dappley.java.core.protobuf.TransactionProto.TransactionJournal) obj;
+
+      boolean result = true;
+      result = result && getVoutList()
+          .equals(other.getVoutList());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getVoutCount() > 0) {
+        hash = (37 * hash) + VOUT_FIELD_NUMBER;
+        hash = (53 * hash) + getVoutList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.dappley.java.core.protobuf.TransactionProto.TransactionJournal prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code transactionpb.TransactionJournal}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:transactionpb.TransactionJournal)
+        com.dappley.java.core.protobuf.TransactionProto.TransactionJournalOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionJournal_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionJournal_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.class, com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.Builder.class);
+      }
+
+      // Construct using com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getVoutFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (voutBuilder_ == null) {
+          vout_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          voutBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.dappley.java.core.protobuf.TransactionProto.internal_static_transactionpb_TransactionJournal_descriptor;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionJournal getDefaultInstanceForType() {
+        return com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionJournal build() {
+        com.dappley.java.core.protobuf.TransactionProto.TransactionJournal result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.dappley.java.core.protobuf.TransactionProto.TransactionJournal buildPartial() {
+        com.dappley.java.core.protobuf.TransactionProto.TransactionJournal result = new com.dappley.java.core.protobuf.TransactionProto.TransactionJournal(this);
+        int from_bitField0_ = bitField0_;
+        if (voutBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            vout_ = java.util.Collections.unmodifiableList(vout_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.vout_ = vout_;
+        } else {
+          result.vout_ = voutBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.dappley.java.core.protobuf.TransactionProto.TransactionJournal) {
+          return mergeFrom((com.dappley.java.core.protobuf.TransactionProto.TransactionJournal)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.dappley.java.core.protobuf.TransactionProto.TransactionJournal other) {
+        if (other == com.dappley.java.core.protobuf.TransactionProto.TransactionJournal.getDefaultInstance()) return this;
+        if (voutBuilder_ == null) {
+          if (!other.vout_.isEmpty()) {
+            if (vout_.isEmpty()) {
+              vout_ = other.vout_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureVoutIsMutable();
+              vout_.addAll(other.vout_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.vout_.isEmpty()) {
+            if (voutBuilder_.isEmpty()) {
+              voutBuilder_.dispose();
+              voutBuilder_ = null;
+              vout_ = other.vout_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              voutBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getVoutFieldBuilder() : null;
+            } else {
+              voutBuilder_.addAllMessages(other.vout_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.dappley.java.core.protobuf.TransactionProto.TransactionJournal parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.dappley.java.core.protobuf.TransactionProto.TransactionJournal) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> vout_ =
+        java.util.Collections.emptyList();
+      private void ensureVoutIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          vout_ = new java.util.ArrayList<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput>(vout_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> voutBuilder_;
+
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> getVoutList() {
+        if (voutBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(vout_);
+        } else {
+          return voutBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public int getVoutCount() {
+        if (voutBuilder_ == null) {
+          return vout_.size();
+        } else {
+          return voutBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput getVout(int index) {
+        if (voutBuilder_ == null) {
+          return vout_.get(index);
+        } else {
+          return voutBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder setVout(
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput value) {
+        if (voutBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureVoutIsMutable();
+          vout_.set(index, value);
+          onChanged();
+        } else {
+          voutBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder setVout(
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder builderForValue) {
+        if (voutBuilder_ == null) {
+          ensureVoutIsMutable();
+          vout_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          voutBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder addVout(com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput value) {
+        if (voutBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureVoutIsMutable();
+          vout_.add(value);
+          onChanged();
+        } else {
+          voutBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder addVout(
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput value) {
+        if (voutBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureVoutIsMutable();
+          vout_.add(index, value);
+          onChanged();
+        } else {
+          voutBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder addVout(
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder builderForValue) {
+        if (voutBuilder_ == null) {
+          ensureVoutIsMutable();
+          vout_.add(builderForValue.build());
+          onChanged();
+        } else {
+          voutBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder addVout(
+          int index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder builderForValue) {
+        if (voutBuilder_ == null) {
+          ensureVoutIsMutable();
+          vout_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          voutBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder addAllVout(
+          java.lang.Iterable<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput> values) {
+        if (voutBuilder_ == null) {
+          ensureVoutIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, vout_);
+          onChanged();
+        } else {
+          voutBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder clearVout() {
+        if (voutBuilder_ == null) {
+          vout_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          voutBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public Builder removeVout(int index) {
+        if (voutBuilder_ == null) {
+          ensureVoutIsMutable();
+          vout_.remove(index);
+          onChanged();
+        } else {
+          voutBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder getVoutBuilder(
+          int index) {
+        return getVoutFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder getVoutOrBuilder(
+          int index) {
+        if (voutBuilder_ == null) {
+          return vout_.get(index);  } else {
+          return voutBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public java.util.List<? extends com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
+           getVoutOrBuilderList() {
+        if (voutBuilder_ != null) {
+          return voutBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(vout_);
+        }
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder addVoutBuilder() {
+        return getVoutFieldBuilder().addBuilder(
+            com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder addVoutBuilder(
+          int index) {
+        return getVoutFieldBuilder().addBuilder(
+            index, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .transactionbasepb.TXOutput vout = 1;</code>
+       */
+      public java.util.List<com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder> 
+           getVoutBuilderList() {
+        return getVoutFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder> 
+          getVoutFieldBuilder() {
+        if (voutBuilder_ == null) {
+          voutBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutput.Builder, com.dappley.java.core.protobuf.TransactionBaseProto.TXOutputOrBuilder>(
+                  vout_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          vout_ = null;
+        }
+        return voutBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:transactionpb.TransactionJournal)
+    }
+
+    // @@protoc_insertion_point(class_scope:transactionpb.TransactionJournal)
+    private static final com.dappley.java.core.protobuf.TransactionProto.TransactionJournal DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.TransactionProto.TransactionJournal();
+    }
+
+    public static com.dappley.java.core.protobuf.TransactionProto.TransactionJournal getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TransactionJournal>
+        PARSER = new com.google.protobuf.AbstractParser<TransactionJournal>() {
+      @java.lang.Override
+      public TransactionJournal parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TransactionJournal(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TransactionJournal> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TransactionJournal> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.dappley.java.core.protobuf.TransactionProto.TransactionJournal getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_Transaction_descriptor;
+    internal_static_transactionpb_Transactions_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_Transaction_fieldAccessorTable;
+      internal_static_transactionpb_Transactions_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_TXInput_descriptor;
+    internal_static_transactionpb_Transaction_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_TXInput_fieldAccessorTable;
+      internal_static_transactionpb_Transaction_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_TXOutput_descriptor;
+    internal_static_transactionpb_TransactionNode_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_TXOutput_fieldAccessorTable;
+      internal_static_transactionpb_TransactionNode_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_transactionpb_TransactionNode_ChildrenEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_transactionpb_TransactionNode_ChildrenEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_transactionpb_TransactionJournal_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_transactionpb_TransactionJournal_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2810,16 +4011,22 @@ public final class TransactionProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021transaction.proto\022\006corepb\"\212\001\n\013Transact" +
-      "ion\022\n\n\002id\030\001 \001(\014\022\034\n\003vin\030\002 \003(\0132\017.corepb.TX" +
-      "Input\022\036\n\004vout\030\003 \003(\0132\020.corepb.TXOutput\022\013\n" +
-      "\003tip\030\004 \001(\014\022\021\n\tgas_limit\030\005 \001(\014\022\021\n\tgas_pri" +
-      "ce\030\006 \001(\014\"L\n\007TXInput\022\014\n\004txid\030\001 \001(\014\022\014\n\004vou" +
-      "t\030\002 \001(\005\022\021\n\tsignature\030\003 \001(\014\022\022\n\npublic_key" +
-      "\030\004 \001(\014\"D\n\010TXOutput\022\r\n\005value\030\001 \001(\014\022\027\n\017pub" +
-      "lic_key_hash\030\002 \001(\014\022\020\n\010contract\030\003 \001(\tB2\n\036" +
-      "com.dappley.java.core.protobufB\020Transact" +
-      "ionProtob\006proto3"
+      "\n\021transaction.proto\022\rtransactionpb\032\025tran" +
+      "sactionBase.proto\"@\n\014Transactions\0220\n\014tra" +
+      "nsactions\030\001 \003(\0132\032.transactionpb.Transact" +
+      "ion\"\240\001\n\013Transaction\022\n\n\002id\030\001 \001(\014\022\'\n\003vin\030\002" +
+      " \003(\0132\032.transactionbasepb.TXInput\022)\n\004vout" +
+      "\030\003 \003(\0132\033.transactionbasepb.TXOutput\022\013\n\003t" +
+      "ip\030\004 \001(\014\022\021\n\tgas_limit\030\005 \001(\014\022\021\n\tgas_price" +
+      "\030\006 \001(\014\"\327\001\n\017TransactionNode\022>\n\010children\030\001" +
+      " \003(\0132,.transactionpb.TransactionNode.Chi" +
+      "ldrenEntry\022)\n\005value\030\002 \001(\0132\032.transactionp" +
+      "b.Transaction\022\014\n\004size\030\003 \001(\003\032K\n\rChildrenE" +
+      "ntry\022\013\n\003key\030\001 \001(\t\022)\n\005value\030\002 \001(\0132\032.trans" +
+      "actionpb.Transaction:\0028\001\"?\n\022TransactionJ" +
+      "ournal\022)\n\004vout\030\001 \003(\0132\033.transactionbasepb" +
+      ".TXOutputB2\n\036com.dappley.java.core.proto" +
+      "bufB\020TransactionProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2832,25 +4039,39 @@ public final class TransactionProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.dappley.java.core.protobuf.TransactionBaseProto.getDescriptor(),
         }, assigner);
-    internal_static_corepb_Transaction_descriptor =
+    internal_static_transactionpb_Transactions_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_corepb_Transaction_fieldAccessorTable = new
+    internal_static_transactionpb_Transactions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_Transaction_descriptor,
-        new java.lang.String[] { "Id", "Vin", "Vout", "Tip", "GasLimit", "GasPrice", });
-    internal_static_corepb_TXInput_descriptor =
+        internal_static_transactionpb_Transactions_descriptor,
+        new java.lang.String[] { "Transactions", });
+    internal_static_transactionpb_Transaction_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_corepb_TXInput_fieldAccessorTable = new
+    internal_static_transactionpb_Transaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_TXInput_descriptor,
-        new java.lang.String[] { "Txid", "Vout", "Signature", "PublicKey", });
-    internal_static_corepb_TXOutput_descriptor =
+        internal_static_transactionpb_Transaction_descriptor,
+        new java.lang.String[] { "Id", "Vin", "Vout", "Tip", "GasLimit", "GasPrice", });
+    internal_static_transactionpb_TransactionNode_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_corepb_TXOutput_fieldAccessorTable = new
+    internal_static_transactionpb_TransactionNode_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_TXOutput_descriptor,
-        new java.lang.String[] { "Value", "PublicKeyHash", "Contract", });
+        internal_static_transactionpb_TransactionNode_descriptor,
+        new java.lang.String[] { "Children", "Value", "Size", });
+    internal_static_transactionpb_TransactionNode_ChildrenEntry_descriptor =
+      internal_static_transactionpb_TransactionNode_descriptor.getNestedTypes().get(0);
+    internal_static_transactionpb_TransactionNode_ChildrenEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_transactionpb_TransactionNode_ChildrenEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_transactionpb_TransactionJournal_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_transactionpb_TransactionJournal_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_transactionpb_TransactionJournal_descriptor,
+        new java.lang.String[] { "Vout", });
+    com.dappley.java.core.protobuf.TransactionBaseProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

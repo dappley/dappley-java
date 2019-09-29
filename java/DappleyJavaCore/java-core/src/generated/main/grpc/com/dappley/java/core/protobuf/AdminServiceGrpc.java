@@ -187,36 +187,36 @@ public final class AdminServiceGrpc {
      return getRpcAddProducerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest,
-      com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse> getRpcUnlockWalletMethod;
+  private static volatile io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest,
+      com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse> getRpcUnlockAccountMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RpcUnlockWallet",
-      requestType = com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest.class,
-      responseType = com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.class,
+      fullMethodName = SERVICE_NAME + '/' + "RpcUnlockAccount",
+      requestType = com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest.class,
+      responseType = com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest,
-      com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse> getRpcUnlockWalletMethod() {
-    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest, com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse> getRpcUnlockWalletMethod;
-    if ((getRpcUnlockWalletMethod = AdminServiceGrpc.getRpcUnlockWalletMethod) == null) {
+  public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest,
+      com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse> getRpcUnlockAccountMethod() {
+    io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest, com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse> getRpcUnlockAccountMethod;
+    if ((getRpcUnlockAccountMethod = AdminServiceGrpc.getRpcUnlockAccountMethod) == null) {
       synchronized (AdminServiceGrpc.class) {
-        if ((getRpcUnlockWalletMethod = AdminServiceGrpc.getRpcUnlockWalletMethod) == null) {
-          AdminServiceGrpc.getRpcUnlockWalletMethod = getRpcUnlockWalletMethod = 
-              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest, com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse>newBuilder()
+        if ((getRpcUnlockAccountMethod = AdminServiceGrpc.getRpcUnlockAccountMethod) == null) {
+          AdminServiceGrpc.getRpcUnlockAccountMethod = getRpcUnlockAccountMethod = 
+              io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest, com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "rpcpb.AdminService", "RpcUnlockWallet"))
+                  "rpcpb.AdminService", "RpcUnlockAccount"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest.getDefaultInstance()))
+                  com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new AdminServiceMethodDescriptorSupplier("RpcUnlockWallet"))
+                  com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new AdminServiceMethodDescriptorSupplier("RpcUnlockAccount"))
                   .build();
           }
         }
      }
-     return getRpcUnlockWalletMethod;
+     return getRpcUnlockAccountMethod;
   }
 
   /**
@@ -283,9 +283,9 @@ public final class AdminServiceGrpc {
 
     /**
      */
-    public void rpcUnlockWallet(com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcUnlockWalletMethod(), responseObserver);
+    public void rpcUnlockAccount(com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getRpcUnlockAccountMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -326,12 +326,12 @@ public final class AdminServiceGrpc {
                 com.dappley.java.core.protobuf.RpcProto.AddProducerResponse>(
                   this, METHODID_RPC_ADD_PRODUCER)))
           .addMethod(
-            getRpcUnlockWalletMethod(),
+            getRpcUnlockAccountMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest,
-                com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse>(
-                  this, METHODID_RPC_UNLOCK_WALLET)))
+                com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest,
+                com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse>(
+                  this, METHODID_RPC_UNLOCK_ACCOUNT)))
           .build();
     }
   }
@@ -396,10 +396,10 @@ public final class AdminServiceGrpc {
 
     /**
      */
-    public void rpcUnlockWallet(com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest request,
-        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse> responseObserver) {
+    public void rpcUnlockAccount(com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest request,
+        io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getRpcUnlockWalletMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRpcUnlockAccountMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -458,9 +458,9 @@ public final class AdminServiceGrpc {
 
     /**
      */
-    public com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse rpcUnlockWallet(com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest request) {
+    public com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse rpcUnlockAccount(com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest request) {
       return blockingUnaryCall(
-          getChannel(), getRpcUnlockWalletMethod(), getCallOptions(), request);
+          getChannel(), getRpcUnlockAccountMethod(), getCallOptions(), request);
     }
   }
 
@@ -524,10 +524,10 @@ public final class AdminServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse> rpcUnlockWallet(
-        com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse> rpcUnlockAccount(
+        com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getRpcUnlockWalletMethod(), getCallOptions()), request);
+          getChannel().newCall(getRpcUnlockAccountMethod(), getCallOptions()), request);
     }
   }
 
@@ -536,7 +536,7 @@ public final class AdminServiceGrpc {
   private static final int METHODID_RPC_GET_PEER_INFO = 2;
   private static final int METHODID_RPC_SEND_FROM_MINER = 3;
   private static final int METHODID_RPC_ADD_PRODUCER = 4;
-  private static final int METHODID_RPC_UNLOCK_WALLET = 5;
+  private static final int METHODID_RPC_UNLOCK_ACCOUNT = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -575,9 +575,9 @@ public final class AdminServiceGrpc {
           serviceImpl.rpcAddProducer((com.dappley.java.core.protobuf.RpcProto.AddProducerRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.AddProducerResponse>) responseObserver);
           break;
-        case METHODID_RPC_UNLOCK_WALLET:
-          serviceImpl.rpcUnlockWallet((com.dappley.java.core.protobuf.RpcProto.UnlockWalletRequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.UnlockWalletResponse>) responseObserver);
+        case METHODID_RPC_UNLOCK_ACCOUNT:
+          serviceImpl.rpcUnlockAccount((com.dappley.java.core.protobuf.RpcProto.UnlockAccountRequest) request,
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.UnlockAccountResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -645,7 +645,7 @@ public final class AdminServiceGrpc {
               .addMethod(getRpcGetPeerInfoMethod())
               .addMethod(getRpcSendFromMinerMethod())
               .addMethod(getRpcAddProducerMethod())
-              .addMethod(getRpcUnlockWalletMethod())
+              .addMethod(getRpcUnlockAccountMethod())
               .build();
         }
       }

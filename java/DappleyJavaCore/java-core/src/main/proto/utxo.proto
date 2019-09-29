@@ -1,5 +1,5 @@
 syntax = "proto3";
-package corepb;
+package utxopb;
 
 option java_package = "com.dappley.java.core.protobuf";
 option java_outer_classname = "UtxoProto";

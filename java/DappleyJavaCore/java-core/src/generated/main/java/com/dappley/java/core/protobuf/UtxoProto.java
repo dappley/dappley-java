@@ -15,7 +15,7 @@ public final class UtxoProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface UtxoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.Utxo)
+      // @@protoc_insertion_point(interface_extends:utxopb.Utxo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -54,11 +54,11 @@ public final class UtxoProto {
         getContractBytes();
   }
   /**
-   * Protobuf type {@code corepb.Utxo}
+   * Protobuf type {@code utxopb.Utxo}
    */
   public  static final class Utxo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.Utxo)
+      // @@protoc_insertion_point(message_implements:utxopb.Utxo)
       UtxoOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use Utxo.newBuilder() to construct.
@@ -150,13 +150,13 @@ public final class UtxoProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_Utxo_descriptor;
+      return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_Utxo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_Utxo_fieldAccessorTable
+      return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_Utxo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.dappley.java.core.protobuf.UtxoProto.Utxo.class, com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder.class);
     }
@@ -451,21 +451,21 @@ public final class UtxoProto {
       return builder;
     }
     /**
-     * Protobuf type {@code corepb.Utxo}
+     * Protobuf type {@code utxopb.Utxo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.Utxo)
+        // @@protoc_insertion_point(builder_implements:utxopb.Utxo)
         com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_Utxo_descriptor;
+        return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_Utxo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_Utxo_fieldAccessorTable
+        return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_Utxo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.dappley.java.core.protobuf.UtxoProto.Utxo.class, com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder.class);
       }
@@ -506,7 +506,7 @@ public final class UtxoProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_Utxo_descriptor;
+        return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_Utxo_descriptor;
       }
 
       @java.lang.Override
@@ -848,10 +848,10 @@ public final class UtxoProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:corepb.Utxo)
+      // @@protoc_insertion_point(builder_scope:utxopb.Utxo)
     }
 
-    // @@protoc_insertion_point(class_scope:corepb.Utxo)
+    // @@protoc_insertion_point(class_scope:utxopb.Utxo)
     private static final com.dappley.java.core.protobuf.UtxoProto.Utxo DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.UtxoProto.Utxo();
@@ -889,39 +889,39 @@ public final class UtxoProto {
   }
 
   public interface UtxoListOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:corepb.UtxoList)
+      // @@protoc_insertion_point(interface_extends:utxopb.UtxoList)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     java.util.List<com.dappley.java.core.protobuf.UtxoProto.Utxo> 
         getUtxosList();
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     com.dappley.java.core.protobuf.UtxoProto.Utxo getUtxos(int index);
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     int getUtxosCount();
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     java.util.List<? extends com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder> 
         getUtxosOrBuilderList();
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder getUtxosOrBuilder(
         int index);
   }
   /**
-   * Protobuf type {@code corepb.UtxoList}
+   * Protobuf type {@code utxopb.UtxoList}
    */
   public  static final class UtxoList extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:corepb.UtxoList)
+      // @@protoc_insertion_point(message_implements:utxopb.UtxoList)
       UtxoListOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use UtxoList.newBuilder() to construct.
@@ -989,13 +989,13 @@ public final class UtxoProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_UtxoList_descriptor;
+      return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_UtxoList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_UtxoList_fieldAccessorTable
+      return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_UtxoList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.dappley.java.core.protobuf.UtxoProto.UtxoList.class, com.dappley.java.core.protobuf.UtxoProto.UtxoList.Builder.class);
     }
@@ -1003,32 +1003,32 @@ public final class UtxoProto {
     public static final int UTXOS_FIELD_NUMBER = 1;
     private java.util.List<com.dappley.java.core.protobuf.UtxoProto.Utxo> utxos_;
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     public java.util.List<com.dappley.java.core.protobuf.UtxoProto.Utxo> getUtxosList() {
       return utxos_;
     }
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     public java.util.List<? extends com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder> 
         getUtxosOrBuilderList() {
       return utxos_;
     }
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     public int getUtxosCount() {
       return utxos_.size();
     }
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     public com.dappley.java.core.protobuf.UtxoProto.Utxo getUtxos(int index) {
       return utxos_.get(index);
     }
     /**
-     * <code>repeated .corepb.Utxo utxos = 1;</code>
+     * <code>repeated .utxopb.Utxo utxos = 1;</code>
      */
     public com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder getUtxosOrBuilder(
         int index) {
@@ -1194,21 +1194,21 @@ public final class UtxoProto {
       return builder;
     }
     /**
-     * Protobuf type {@code corepb.UtxoList}
+     * Protobuf type {@code utxopb.UtxoList}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:corepb.UtxoList)
+        // @@protoc_insertion_point(builder_implements:utxopb.UtxoList)
         com.dappley.java.core.protobuf.UtxoProto.UtxoListOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_UtxoList_descriptor;
+        return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_UtxoList_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_UtxoList_fieldAccessorTable
+        return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_UtxoList_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.dappley.java.core.protobuf.UtxoProto.UtxoList.class, com.dappley.java.core.protobuf.UtxoProto.UtxoList.Builder.class);
       }
@@ -1244,7 +1244,7 @@ public final class UtxoProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.dappley.java.core.protobuf.UtxoProto.internal_static_corepb_UtxoList_descriptor;
+        return com.dappley.java.core.protobuf.UtxoProto.internal_static_utxopb_UtxoList_descriptor;
       }
 
       @java.lang.Override
@@ -1391,7 +1391,7 @@ public final class UtxoProto {
           com.dappley.java.core.protobuf.UtxoProto.Utxo, com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder, com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder> utxosBuilder_;
 
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.UtxoProto.Utxo> getUtxosList() {
         if (utxosBuilder_ == null) {
@@ -1401,7 +1401,7 @@ public final class UtxoProto {
         }
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public int getUtxosCount() {
         if (utxosBuilder_ == null) {
@@ -1411,7 +1411,7 @@ public final class UtxoProto {
         }
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public com.dappley.java.core.protobuf.UtxoProto.Utxo getUtxos(int index) {
         if (utxosBuilder_ == null) {
@@ -1421,7 +1421,7 @@ public final class UtxoProto {
         }
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder setUtxos(
           int index, com.dappley.java.core.protobuf.UtxoProto.Utxo value) {
@@ -1438,7 +1438,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder setUtxos(
           int index, com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder builderForValue) {
@@ -1452,7 +1452,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder addUtxos(com.dappley.java.core.protobuf.UtxoProto.Utxo value) {
         if (utxosBuilder_ == null) {
@@ -1468,7 +1468,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder addUtxos(
           int index, com.dappley.java.core.protobuf.UtxoProto.Utxo value) {
@@ -1485,7 +1485,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder addUtxos(
           com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder builderForValue) {
@@ -1499,7 +1499,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder addUtxos(
           int index, com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder builderForValue) {
@@ -1513,7 +1513,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder addAllUtxos(
           java.lang.Iterable<? extends com.dappley.java.core.protobuf.UtxoProto.Utxo> values) {
@@ -1528,7 +1528,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder clearUtxos() {
         if (utxosBuilder_ == null) {
@@ -1541,7 +1541,7 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public Builder removeUtxos(int index) {
         if (utxosBuilder_ == null) {
@@ -1554,14 +1554,14 @@ public final class UtxoProto {
         return this;
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder getUtxosBuilder(
           int index) {
         return getUtxosFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder getUtxosOrBuilder(
           int index) {
@@ -1571,7 +1571,7 @@ public final class UtxoProto {
         }
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public java.util.List<? extends com.dappley.java.core.protobuf.UtxoProto.UtxoOrBuilder> 
            getUtxosOrBuilderList() {
@@ -1582,14 +1582,14 @@ public final class UtxoProto {
         }
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder addUtxosBuilder() {
         return getUtxosFieldBuilder().addBuilder(
             com.dappley.java.core.protobuf.UtxoProto.Utxo.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder addUtxosBuilder(
           int index) {
@@ -1597,7 +1597,7 @@ public final class UtxoProto {
             index, com.dappley.java.core.protobuf.UtxoProto.Utxo.getDefaultInstance());
       }
       /**
-       * <code>repeated .corepb.Utxo utxos = 1;</code>
+       * <code>repeated .utxopb.Utxo utxos = 1;</code>
        */
       public java.util.List<com.dappley.java.core.protobuf.UtxoProto.Utxo.Builder> 
            getUtxosBuilderList() {
@@ -1630,10 +1630,10 @@ public final class UtxoProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:corepb.UtxoList)
+      // @@protoc_insertion_point(builder_scope:utxopb.UtxoList)
     }
 
-    // @@protoc_insertion_point(class_scope:corepb.UtxoList)
+    // @@protoc_insertion_point(class_scope:utxopb.UtxoList)
     private static final com.dappley.java.core.protobuf.UtxoProto.UtxoList DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.dappley.java.core.protobuf.UtxoProto.UtxoList();
@@ -1671,15 +1671,15 @@ public final class UtxoProto {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_Utxo_descriptor;
+    internal_static_utxopb_Utxo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_Utxo_fieldAccessorTable;
+      internal_static_utxopb_Utxo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_corepb_UtxoList_descriptor;
+    internal_static_utxopb_UtxoList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_corepb_UtxoList_fieldAccessorTable;
+      internal_static_utxopb_UtxoList_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1689,11 +1689,11 @@ public final class UtxoProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nutxo.proto\022\006corepb\"s\n\004Utxo\022\016\n\006amount\030\001" +
+      "\n\nutxo.proto\022\006utxopb\"s\n\004Utxo\022\016\n\006amount\030\001" +
       " \001(\014\022\027\n\017public_key_hash\030\002 \001(\014\022\014\n\004txid\030\003 " +
       "\001(\014\022\020\n\010tx_index\030\004 \001(\r\022\020\n\010utxoType\030\005 \001(\r\022" +
       "\020\n\010contract\030\006 \001(\t\"\'\n\010UtxoList\022\033\n\005utxos\030\001" +
-      " \003(\0132\014.corepb.UtxoB+\n\036com.dappley.java.c" +
+      " \003(\0132\014.utxopb.UtxoB+\n\036com.dappley.java.c" +
       "ore.protobufB\tUtxoProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
@@ -1708,17 +1708,17 @@ public final class UtxoProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_corepb_Utxo_descriptor =
+    internal_static_utxopb_Utxo_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_corepb_Utxo_fieldAccessorTable = new
+    internal_static_utxopb_Utxo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_Utxo_descriptor,
+        internal_static_utxopb_Utxo_descriptor,
         new java.lang.String[] { "Amount", "PublicKeyHash", "Txid", "TxIndex", "UtxoType", "Contract", });
-    internal_static_corepb_UtxoList_descriptor =
+    internal_static_utxopb_UtxoList_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_corepb_UtxoList_fieldAccessorTable = new
+    internal_static_utxopb_UtxoList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_corepb_UtxoList_descriptor,
+        internal_static_utxopb_UtxoList_descriptor,
         new java.lang.String[] { "Utxos", });
   }
 

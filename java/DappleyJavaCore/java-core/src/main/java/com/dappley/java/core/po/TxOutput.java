@@ -1,5 +1,6 @@
 package com.dappley.java.core.po;
 
+import com.dappley.java.core.protobuf.TransactionBaseProto;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.google.protobuf.ByteString;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class TxOutput implements Serializable {
      * Constructor with TransactionProto.TXOutput
      * @param txOutput
      */
-    public TxOutput(TransactionProto.TXOutput txOutput) {
+    public TxOutput(TransactionBaseProto.TXOutput txOutput) {
         this.parseProto(txOutput);
     }
 
@@ -30,7 +31,7 @@ public class TxOutput implements Serializable {
      * Parse TransactionProto.TXOutput to this object.
      * @param txOutput
      */
-    public void parseProto(TransactionProto.TXOutput txOutput) {
+    public void parseProto(TransactionBaseProto.TXOutput txOutput) {
         this.setValue(txOutput.getValue() == null ? null : txOutput.getValue().toByteArray());
         this.setPublicKeyHash(txOutput.getPublicKeyHash() == null ? null : txOutput.getPublicKeyHash().toByteArray());
         this.setContract(txOutput.getContract());
@@ -40,8 +41,8 @@ public class TxOutput implements Serializable {
      * Convert to TransactionProto.TXOutput
      * @return TransactionProto.TXOutput
      */
-    public TransactionProto.TXOutput toProto() {
-        TransactionProto.TXOutput.Builder builder = TransactionProto.TXOutput.newBuilder();
+    public TransactionBaseProto.TXOutput toProto() {
+        TransactionBaseProto.TXOutput.Builder builder = TransactionBaseProto.TXOutput.newBuilder();
         if (this.getValue() != null) {
             builder.setValue(ByteString.copyFrom(this.getValue()));
         }

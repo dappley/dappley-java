@@ -1,6 +1,6 @@
 package com.dappley.java.core.po;
 
-import com.dappley.java.core.protobuf.TransactionProto;
+import com.dappley.java.core.protobuf.TransactionBaseProto;
 import com.google.protobuf.ByteString;
 import lombok.Data;
 
@@ -23,7 +23,7 @@ public class TxInput implements Serializable {
      * Constructor with TransactionProto.TXInput
      * @param txInput
      */
-    public TxInput(TransactionProto.TXInput txInput) {
+    public TxInput(TransactionBaseProto.TXInput txInput) {
         this.parseProto(txInput);
     }
 
@@ -31,7 +31,7 @@ public class TxInput implements Serializable {
      * Parse TransactionProto.TXInput to this object.
      * @param txInput
      */
-    public void parseProto(TransactionProto.TXInput txInput) {
+    public void parseProto(TransactionBaseProto.TXInput txInput) {
         this.setTxId(txInput.getTxid() == null ? null : txInput.getTxid().toByteArray());
         this.setVout(txInput.getVout());
         this.setSignature(txInput.getSignature() == null ? null : txInput.getSignature().toByteArray());
@@ -42,8 +42,8 @@ public class TxInput implements Serializable {
      * Convert to TransactionProto.TXInput
      * @return TransactionProto.TXInput
      */
-    public TransactionProto.TXInput toProto() {
-        TransactionProto.TXInput.Builder builder = TransactionProto.TXInput.newBuilder();
+    public TransactionBaseProto.TXInput toProto() {
+        TransactionBaseProto.TXInput.Builder builder = TransactionBaseProto.TXInput.newBuilder();
         if (this.getTxId() != null) {
             builder.setTxid(ByteString.copyFrom(this.getTxId()));
         }

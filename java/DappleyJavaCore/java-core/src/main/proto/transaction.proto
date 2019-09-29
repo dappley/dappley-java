@@ -1,27 +1,30 @@
 syntax = "proto3";
-package corepb;
+package transactionpb;
+
+import "transactionBase.proto";
 
 option java_package = "com.dappley.java.core.protobuf";
 option java_outer_classname = "TransactionProto";
 
+message Transactions{
+    repeated Transaction transactions = 1;
+}
+
 message Transaction{
     bytes id = 1;
-    repeated TXInput vin = 2;
-    repeated TXOutput vout = 3;
+    repeated transactionbasepb.TXInput vin = 2;
+    repeated transactionbasepb.TXOutput vout = 3;
     bytes tip = 4;
     bytes gas_limit = 5;
     bytes gas_price = 6;
 }
 
-message TXInput{
-    bytes txid = 1;
-    int32 vout = 2;
-    bytes signature = 3;
-    bytes public_key = 4;
+message TransactionNode{
+    map<string, Transaction> children = 1;
+    transactionpb.Transaction value = 2;
+    int64   size = 3;
 }
 
-message TXOutput{
-    bytes   value = 1;
-    bytes   public_key_hash = 2;
-    string  contract = 3;
+message TransactionJournal {
+    repeated transactionbasepb.TXOutput vout = 1;
 }

@@ -194,7 +194,7 @@ public class Dappley {
      * @param pubKeyHash publicKey hash
      * @return String wallet address
      */
-    public static String publicKeyToAddress(byte[] pubKeyHash) {
+    public static String publicKeyHashToAddress(byte[] pubKeyHash) {
         return AddressUtil.getAddressFromPubKeyHash(pubKeyHash);
     }
 

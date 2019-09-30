@@ -114,7 +114,7 @@ public class DappleyTest {
     public void testPublicKeyToAddress() {
         String address = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         byte[] hash = HashUtil.getPublicKeyHash(address);
-        String addr = Dappley.publicKeyToAddress(hash);
+        String addr = Dappley.publicKeyHashToAddress(hash);
         log.info("addr:" + addr);
         Assert.assertEquals("convert failed", address, addr);
     }

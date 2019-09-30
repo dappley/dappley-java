@@ -2,12 +2,8 @@ package com.dappley.java.sdk;
 
 import com.dappley.java.core.chain.TransactionManager;
 import com.dappley.java.core.chain.WalletManager;
-import com.dappley.java.core.net.DataProvider;
-import com.dappley.java.core.net.RemoteDataProvider;
-import com.dappley.java.core.net.TransactionSender;
-import com.dappley.java.core.po.Transaction;
-import com.dappley.java.core.po.Utxo;
-import com.dappley.java.core.po.Wallet;
+import com.dappley.java.core.net.*;
+import com.dappley.java.core.po.*;
 import com.dappley.java.core.util.AddressUtil;
 import com.dappley.java.core.util.MnemonicLanguage;
 import com.dappley.java.core.util.ObjectUtils;
@@ -46,10 +42,15 @@ public class Dappley {
             throw new IllegalArgumentException("only remote online mode is supported now.");
         }
         try {
+            ProtocalProvider protocalProvider = null;
             if (dataMode == DataMode.REMOTE_ONLINE) {
-                dataProvider = new RemoteDataProvider(RemoteDataProvider.RemoteProtocalType.RPC, serverIp, serverPort);
+                ProtocalProviderBuilder providerBuilder = new ProtocalProviderBuilder();
+                providerBuilder.setType(RemoteDataProvider.RemoteProtocalType.RPC)
+                        .setRpcServerIp(serverIp).setRpcServerPort(serverPort);
+                protocalProvider = providerBuilder.build();
+                dataProvider = new RemoteDataProvider(protocalProvider);
             }
-            transactionSender = new TransactionSender(serverIp, serverPort);
+            transactionSender = new TransactionSender(protocalProvider);
         } catch (Exception e) {
             log.error("init: ", e);
         }
@@ -250,9 +251,9 @@ public class Dappley {
      * @param amount      transferred amount
      * @param privateKey  from user's privateKey
      *                    * @param tip transaction tip
-     * @return boolean is transaction committed successful
+     * @return SendTxResult transaction committed result
      */
-    public static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip) {
+    public static SendTxResult sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip) {
         Asserts.init(dataProvider);
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
@@ -273,9 +274,9 @@ public class Dappley {
      * @param gasLimit        max gas consumption
      * @param gasPrice        gas price
      * @param contract        contract content
-     * @return boolean is transaction committed successful
+     * @return SendTxResult  transaction committed result
      */
-    public static boolean sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger fee, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
+    public static SendTxResult sendTransactionWithContract(String fromAddress, String contractAddress, BigInteger fee, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
         Asserts.init(dataProvider);
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
@@ -299,28 +300,28 @@ public class Dappley {
      * @param gasLimit    max gas consumption
      * @param gasPrice    gas price
      * @param contract    contract content
-     * @return boolean is transaction committed successful
+     * @return SendTxResult transaction committed result
      */
-    private static boolean sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
+    private static SendTxResult sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
         if (ObjectUtils.isEmpty(fromAddress) || ObjectUtils.isEmpty(toAddress)) {
-            return false;
+            return null;
         }
         List<Utxo> allUtxo = dataProvider.getUtxos(fromAddress);
         if (ObjectUtils.isEmpty(allUtxo)) {
-            return false;
+            return null;
         }
         BigInteger totalCost = getTotalUtxoCost(amount, tip, gasLimit, gasPrice);
         List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, totalCost);
         if (ObjectUtils.isEmpty(utxos)) {
-            return false;
+            return null;
         }
         Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
         try {
-            transactionSender.sendTransaction(transaction);
-            return true;
+            SendTxResult sendTxResult = transactionSender.sendTransaction(transaction);
+            return sendTxResult;
         } catch (Exception e) {
             log.error("sendTransaction: ", e);
-            return false;
+            return null;
         }
     }
 
@@ -395,6 +396,27 @@ public class Dappley {
      */
     public static BigInteger getGasPrice() {
         return dataProvider.getGasPrice();
+    }
+
+    /**
+     * Returns data storage query result from blockchain
+     * <p>If key is not null, it will return the value of key in storage if there exists.</p>
+     * <p>If key is null and value is not null, it still return relevant key and value in storage if there exists.</p>
+     * @param contractAddress contract address
+     * @param key             storage key
+     * @param value           storage value
+     * @return ContractQueryResult result
+     */
+    public static ContractQueryResult contractQuery(String contractAddress, String key, String value) {
+        Asserts.init(dataProvider);
+        if (!AddressUtil.validateContractAddress(contractAddress)) {
+            throw new IllegalArgumentException("contractAddress is illegal !");
+        }
+        if ((key == null || key.length() == 0) && (value == null || value.length() == 0)) {
+            throw new NullPointerException("key and value cannot be null at the same time !");
+        }
+        ContractQueryResult contractQueryResult = dataProvider.contractQuery(contractAddress, key, value);
+        return contractQueryResult;
     }
 
     /**

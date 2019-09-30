@@ -13,6 +13,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.dappley:java-sdk:0.7-alpha'
+    implementation 'com.dappley:java-sdk:0.10-alpha'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

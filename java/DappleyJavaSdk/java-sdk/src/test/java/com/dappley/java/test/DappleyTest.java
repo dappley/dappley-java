@@ -1,5 +1,7 @@
 package com.dappley.java.test;
 
+import com.dappley.java.core.po.ContractQueryResult;
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
 import com.dappley.java.core.util.HashUtil;
@@ -150,8 +152,12 @@ public class DappleyTest {
         BigInteger amount = new BigInteger("1");
         BigInteger tip = new BigInteger("0");
         BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
-        boolean isSuccess = Dappley.sendTransaction(from, to, amount, privateKey, tip);
-        log.info("sendTransaction isSuccess:" + isSuccess);
+        SendTxResult sendTxResult = Dappley.sendTransaction(from, to, amount, privateKey, tip);
+        if (sendTxResult != null) {
+            log.info("sendTransaction isSuccess: " + sendTxResult.isSuccess());
+        } else {
+            log.info("sendTransaction failed");
+        }
         Assert.assertTrue(true);
     }
 
@@ -167,8 +173,13 @@ public class DappleyTest {
         BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
         String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"%d\"]}";
         contract = String.format(contract, from, 10);
-        boolean isSuccess = Dappley.sendTransactionWithContract(from, toContract, amount, privateKey, tip, gasLimit, gasPrice, contract);
-        log.info("sendTransactionWithContract isSuccess:" + isSuccess);
+        SendTxResult sendTxResult = Dappley.sendTransactionWithContract(from, toContract, amount, privateKey, tip, gasLimit, gasPrice, contract);
+        if (sendTxResult != null) {
+            log.info("sendTransactionWithContract isSuccess: " + sendTxResult.isSuccess());
+            log.info("sendTransactionWithContract contractAddress: " + sendTxResult.getGeneratedContractAddress());
+        } else {
+            log.info("sendTransactionWithContract failed");
+        }
         Assert.assertTrue(true);
     }
 
@@ -177,5 +188,49 @@ public class DappleyTest {
         String address = Dappley.createContractAddress();
         log.info("address:" + address);
         Assert.assertTrue(address.length() > 0);
+    }
+
+    @Test
+    public void testEstimateGas() {
+        Dappley.init(Dappley.DataMode.REMOTE_ONLINE);
+        String from = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
+        String toContract = "cWU5kmWy6iXVPkgvpegdLzS9ahinouUnue";
+        BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
+        String contract = "{\"function\":\"put_sign\",\"args\":[\"key\",\"value\"]}";
+        contract = String.format(contract, from, 10);
+        BigInteger gasLimit = Dappley.estimateGas(from, privateKey, toContract, contract);
+        if (gasLimit != null) {
+            log.info("testEstimateGas gasLimit: " + gasLimit.toString());
+        } else {
+            log.info("testEstimateGas failed");
+        }
+        Assert.assertTrue(gasLimit.compareTo(BigInteger.ZERO) > 0);
+    }
+
+    @Test
+    public void testGetGasPrice() {
+        Dappley.init(Dappley.DataMode.REMOTE_ONLINE);
+        BigInteger gasPrice = Dappley.getGasPrice();
+        if (gasPrice != null) {
+            log.info("testGetGasPrice gasPrice: " + gasPrice.toString());
+        } else {
+            log.info("testGetGasPrice failed");
+        }
+        Assert.assertTrue(gasPrice.compareTo(BigInteger.ZERO) > 0);
+    }
+
+    @Test
+    public void testContractQuery() {
+        Dappley.init(Dappley.DataMode.REMOTE_ONLINE);
+        String contractAddress = "cWU5kmWy6iXVPkgvpegdLzS9ahinouUnue";
+        String key = "file-name";
+        String value = "SHA-1-sign";
+        ContractQueryResult contractQueryResult = Dappley.contractQuery(contractAddress, key, null);
+        log.info("testContractQuery1: resultKey: " + contractQueryResult.getResultKey() + ",resultValue:" + contractQueryResult.getResultValue());
+        contractQueryResult = Dappley.contractQuery(contractAddress, null, value);
+        log.info("testContractQuery2: resultKey: " + contractQueryResult.getResultKey() + ",resultValue:" + contractQueryResult.getResultValue());
+        contractQueryResult = Dappley.contractQuery(contractAddress, key, value);
+        log.info("testContractQuery3: resultKey: " + contractQueryResult.getResultKey() + ",resultValue:" + contractQueryResult.getResultValue());
+        Assert.assertTrue(value.equals(contractQueryResult.getResultValue()));
     }
 }

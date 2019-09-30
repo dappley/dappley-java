@@ -21,13 +21,8 @@ import java.util.List;
 public class RemoteDataProvider implements DataProvider {
     private ProtocalProvider protocalProvider;
 
-    public RemoteDataProvider(RemoteProtocalType type, String serverIp, int serverPort) {
-        if (type == RemoteProtocalType.RPC) {
-            protocalProvider = new RpcProtocalProvider();
-        } else {
-            throw new IllegalArgumentException("only rpc protocal is supported now.");
-        }
-        protocalProvider.init(serverIp, serverPort);
+    public RemoteDataProvider(ProtocalProvider protocalProvider) {
+        this.protocalProvider = protocalProvider;
     }
 
     @Override

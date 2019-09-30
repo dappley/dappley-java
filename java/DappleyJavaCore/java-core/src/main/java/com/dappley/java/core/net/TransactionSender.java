@@ -10,9 +10,8 @@ import com.dappley.java.core.protobuf.TransactionProto;
 public class TransactionSender {
     private ProtocalProvider protocalProvider;
 
-    public TransactionSender(String serverIp, int serverPort) {
-        this.protocalProvider = new RpcProtocalProvider();
-        this.protocalProvider.init(serverIp, serverPort);
+    public TransactionSender(ProtocalProvider protocalProvider) {
+        this.protocalProvider = protocalProvider;
     }
 
     /**

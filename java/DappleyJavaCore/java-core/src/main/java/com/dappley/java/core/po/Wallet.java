@@ -53,7 +53,7 @@ public class Wallet implements Serializable {
 
     /**
      * Returns formatted balance in DW unit mode
-     * @return
+     * @return String
      */
     public String getBalanceDW() {
         return CoinUtil.getDw(this.balance);

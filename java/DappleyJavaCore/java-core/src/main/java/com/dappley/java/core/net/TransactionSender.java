@@ -1,5 +1,6 @@
 package com.dappley.java.core.net;
 
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.protobuf.TransactionProto;
 
@@ -19,9 +20,9 @@ public class TransactionSender {
      * <p>Throws exception if transaction failed</p>
      * @param transaction
      */
-    public void sendTransaction(Transaction transaction) {
+    public SendTxResult sendTransaction(Transaction transaction) {
         TransactionProto.Transaction tx = transaction.toProto();
-        protocalProvider.sendTransaction(tx);
+        return protocalProvider.sendTransaction(tx);
     }
 
     /**

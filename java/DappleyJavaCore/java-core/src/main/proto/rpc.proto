@@ -188,7 +188,9 @@ message GetBlockByHeightResponse {
     blockpb.Block block = 1;
 }
 
-message SendTransactionResponse {}
+message SendTransactionResponse {
+    string generated_contract_address = 1;
+}
 
 message SendBatchTransactionResponse {}
 

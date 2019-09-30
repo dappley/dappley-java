@@ -2,6 +2,7 @@ package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
 import com.dappley.java.core.po.ContractQueryResult;
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.protobuf.*;
 import com.dappley.java.core.util.Asserts;
 import com.google.protobuf.ByteString;
@@ -153,13 +154,22 @@ public class RpcProtocalProvider implements ProtocalProvider {
     }
 
     @Override
-    public void sendTransaction(TransactionProto.Transaction transaction) {
+    public SendTxResult sendTransaction(TransactionProto.Transaction transaction) {
         Asserts.clientInit(channel);
         Asserts.channelOpen(channel);
         RpcProto.SendTransactionRequest request = RpcProto.SendTransactionRequest.newBuilder()
                 .setTransaction(transaction)
                 .build();
-        getRpcServiceBlockingStub().rpcSendTransaction(request);
+        SendTxResult sendTxResult = new SendTxResult();
+        sendTxResult.setSuccess(false);
+        try {
+            RpcProto.SendTransactionResponse response = getRpcServiceBlockingStub().rpcSendTransaction(request);
+            sendTxResult.setSuccess(true);
+            sendTxResult.setGeneratedContractAddress(response.getGeneratedContractAddress());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return sendTxResult;
     }
 
     @Override
@@ -189,11 +199,15 @@ public class RpcProtocalProvider implements ProtocalProvider {
     public ContractQueryResult contractQuery(String contractAddress, String key, String value) {
         Asserts.clientInit(channel);
         Asserts.channelOpen(channel);
-        RpcProto.ContractQueryRequest request = RpcProto.ContractQueryRequest.newBuilder()
-                .setContractAddr(contractAddress)
-                .setKey(key)
-                .setValue(value)
-                .build();
+        RpcProto.ContractQueryRequest.Builder builder = RpcProto.ContractQueryRequest.newBuilder();
+        builder.setContractAddr(contractAddress);
+        if (key != null) {
+            builder.setKey(key);
+        }
+        if (value != null) {
+            builder.setValue(value);
+        }
+        RpcProto.ContractQueryRequest request = builder.build();
         RpcProto.ContractQueryResponse response = getRpcServiceBlockingStub().rpcContractQuery(request);
         ContractQueryResult result = new ContractQueryResult();
         result.setResultKey(response.getKey());

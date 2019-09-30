@@ -2,6 +2,7 @@ package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
 import com.dappley.java.core.po.ContractQueryResult;
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.protobuf.BlockProto;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.protobuf.UtxoProto;
@@ -40,7 +41,7 @@ public interface ProtocalProvider {
 
     BlockProto.Block getBlockByHeight(long height);
 
-    void sendTransaction(TransactionProto.Transaction transaction);
+    SendTxResult sendTransaction(TransactionProto.Transaction transaction);
 
     ByteString estimateGas(TransactionProto.Transaction transaction);
 

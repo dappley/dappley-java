@@ -21572,6 +21572,16 @@ public final class RpcProto {
   public interface SendTransactionResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:rpcpb.SendTransactionResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string generated_contract_address = 1;</code>
+     */
+    java.lang.String getGeneratedContractAddress();
+    /**
+     * <code>string generated_contract_address = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getGeneratedContractAddressBytes();
   }
   /**
    * Protobuf type {@code rpcpb.SendTransactionResponse}
@@ -21586,6 +21596,7 @@ public final class RpcProto {
       super(builder);
     }
     private SendTransactionResponse() {
+      generatedContractAddress_ = "";
     }
 
     @java.lang.Override
@@ -21601,6 +21612,7 @@ public final class RpcProto {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -21611,6 +21623,12 @@ public final class RpcProto {
             case 0:
               done = true;
               break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              generatedContractAddress_ = s;
+              break;
+            }
             default: {
               if (!parseUnknownFieldProto3(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -21643,6 +21661,40 @@ public final class RpcProto {
               com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse.class, com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse.Builder.class);
     }
 
+    public static final int GENERATED_CONTRACT_ADDRESS_FIELD_NUMBER = 1;
+    private volatile java.lang.Object generatedContractAddress_;
+    /**
+     * <code>string generated_contract_address = 1;</code>
+     */
+    public java.lang.String getGeneratedContractAddress() {
+      java.lang.Object ref = generatedContractAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        generatedContractAddress_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string generated_contract_address = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGeneratedContractAddressBytes() {
+      java.lang.Object ref = generatedContractAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        generatedContractAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -21657,6 +21709,9 @@ public final class RpcProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getGeneratedContractAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, generatedContractAddress_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -21666,6 +21721,9 @@ public final class RpcProto {
       if (size != -1) return size;
 
       size = 0;
+      if (!getGeneratedContractAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, generatedContractAddress_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -21682,6 +21740,8 @@ public final class RpcProto {
       com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse other = (com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse) obj;
 
       boolean result = true;
+      result = result && getGeneratedContractAddress()
+          .equals(other.getGeneratedContractAddress());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -21693,6 +21753,8 @@ public final class RpcProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + GENERATED_CONTRACT_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getGeneratedContractAddress().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -21826,6 +21888,8 @@ public final class RpcProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        generatedContractAddress_ = "";
+
         return this;
       }
 
@@ -21852,6 +21916,7 @@ public final class RpcProto {
       @java.lang.Override
       public com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse buildPartial() {
         com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse result = new com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse(this);
+        result.generatedContractAddress_ = generatedContractAddress_;
         onBuilt();
         return result;
       }
@@ -21900,6 +21965,10 @@ public final class RpcProto {
 
       public Builder mergeFrom(com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse other) {
         if (other == com.dappley.java.core.protobuf.RpcProto.SendTransactionResponse.getDefaultInstance()) return this;
+        if (!other.getGeneratedContractAddress().isEmpty()) {
+          generatedContractAddress_ = other.generatedContractAddress_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -21926,6 +21995,75 @@ public final class RpcProto {
             mergeFrom(parsedMessage);
           }
         }
+        return this;
+      }
+
+      private java.lang.Object generatedContractAddress_ = "";
+      /**
+       * <code>string generated_contract_address = 1;</code>
+       */
+      public java.lang.String getGeneratedContractAddress() {
+        java.lang.Object ref = generatedContractAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          generatedContractAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string generated_contract_address = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getGeneratedContractAddressBytes() {
+        java.lang.Object ref = generatedContractAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          generatedContractAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string generated_contract_address = 1;</code>
+       */
+      public Builder setGeneratedContractAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        generatedContractAddress_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string generated_contract_address = 1;</code>
+       */
+      public Builder clearGeneratedContractAddress() {
+        
+        generatedContractAddress_ = getDefaultInstance().getGeneratedContractAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string generated_contract_address = 1;</code>
+       */
+      public Builder setGeneratedContractAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        generatedContractAddress_ = value;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -31250,89 +31388,90 @@ public final class RpcProto {
       ".blockpb.Block\"7\n\026GetBlockByHashResponse" +
       "\022\035\n\005block\030\001 \001(\0132\016.blockpb.Block\"9\n\030GetBl" +
       "ockByHeightResponse\022\035\n\005block\030\001 \001(\0132\016.blo" +
-      "ckpb.Block\"\031\n\027SendTransactionResponse\"\036\n" +
-      "\034SendBatchTransactionResponse\"D\n\025SendTra" +
-      "nsactionStatus\022\014\n\004txid\030\001 \001(\014\022\014\n\004code\030\002 \001" +
-      "(\r\022\017\n\007message\030\003 \001(\t\"L\n\031GetNewTransaction" +
-      "Response\022/\n\013transaction\030\001 \001(\0132\032.transact" +
-      "ionpb.Transaction\"!\n\021SubscribeResponse\022\014" +
-      "\n\004data\030\001 \001(\t\"\033\n\031GetAllTransactionsReques" +
-      "t\"N\n\032GetAllTransactionsResponse\0220\n\014trans" +
-      "actions\030\001 \003(\0132\032.transactionpb.Transactio" +
-      "n\"A\n GetLastIrreversibleBlockResponse\022\035\n" +
-      "\005block\030\001 \001(\0132\016.blockpb.Block\"5\n\020GetStats" +
-      "Response\022!\n\005stats\030\001 \001(\0132\022.metricspb.Metr" +
-      "ics\"\353\001\n\025GetNodeConfigResponse\022\025\n\rtx_pool" +
-      "_limit\030\001 \001(\r\022\026\n\016blk_size_limit\030\002 \001(\r\022\032\n\022" +
-      "max_connection_out\030\003 \001(\r\022\031\n\021max_connecti" +
-      "on_in\030\004 \001(\r\022\030\n\020producer_address\030\005 \001(\t\022\021\n" +
-      "\tproducers\030\006 \003(\t\022\025\n\rmax_producers\030\007 \001(\r\022" +
-      "\026\n\016ipfs_addresses\030\t \003(\t\022\020\n\010rpc_port\030\n \001(" +
-      "\r\"\341\002\n\024SetNodeConfigRequest\022?\n\017updated_co" +
-      "nfigs\030\001 \003(\0162&.rpcpb.SetNodeConfigRequest" +
-      ".ConfigType\022\025\n\rtx_pool_limit\030\002 \001(\r\022\026\n\016bl" +
-      "k_size_limit\030\003 \001(\r\022\032\n\022max_connection_out" +
-      "\030\004 \001(\r\022\031\n\021max_connection_in\030\005 \001(\r\022\025\n\rmax" +
-      "_producers\030\006 \001(\r\022\021\n\tproducers\030\007 \003(\t\"x\n\nC" +
-      "onfigType\022\021\n\rTX_POOL_LIMIT\020\000\022\022\n\016BLK_SIZE" +
-      "_LIMIT\020\001\022\020\n\014MAX_CONN_OUT\020\002\022\017\n\013MAX_CONN_I" +
-      "N\020\003\022\021\n\rMAX_PRODUCERS\020\004\022\r\n\tPRODUCERS\020\005\"(\n" +
-      "\023EstimateGasResponse\022\021\n\tgas_count\030\001 \001(\014\"" +
-      "%\n\020GasPriceResponse\022\021\n\tgas_price\030\001 \001(\014\"3" +
-      "\n\025ContractQueryResponse\022\013\n\003key\030\001 \001(\t\022\r\n\005" +
-      "value\030\002 \001(\t2\310\n\n\nRpcService\022F\n\rRpcGetVers" +
-      "ion\022\030.rpcpb.GetVersionRequest\032\031.rpcpb.Ge" +
-      "tVersionResponse\"\000\022F\n\rRpcGetBalance\022\030.rp" +
-      "cpb.GetBalanceRequest\032\031.rpcpb.GetBalance" +
-      "Response\"\000\022[\n\024RpcGetBlockchainInfo\022\037.rpc" +
-      "pb.GetBlockchainInfoRequest\032 .rpcpb.GetB" +
-      "lockchainInfoResponse\"\000\022=\n\nRpcGetUTXO\022\025." +
-      "rpcpb.GetUTXORequest\032\026.rpcpb.GetUTXOResp" +
-      "onse\"\000\022C\n\014RpcGetBlocks\022\027.rpcpb.GetBlocks" +
-      "Request\032\030.rpcpb.GetBlocksResponse\"\000\022R\n\021R" +
-      "pcGetBlockByHash\022\034.rpcpb.GetBlockByHashR" +
-      "equest\032\035.rpcpb.GetBlockByHashResponse\"\000\022" +
-      "X\n\023RpcGetBlockByHeight\022\036.rpcpb.GetBlockB" +
-      "yHeightRequest\032\037.rpcpb.GetBlockByHeightR" +
-      "esponse\"\000\022U\n\022RpcSendTransaction\022\035.rpcpb." +
-      "SendTransactionRequest\032\036.rpcpb.SendTrans" +
-      "actionResponse\"\000\022d\n\027RpcSendBatchTransact" +
-      "ion\022\".rpcpb.SendBatchTransactionRequest\032" +
-      "#.rpcpb.SendBatchTransactionResponse\"\000\022]" +
-      "\n\024RpcGetNewTransaction\022\037.rpcpb.GetNewTra" +
-      "nsactionRequest\032 .rpcpb.GetNewTransactio" +
-      "nResponse\"\0000\001\022E\n\014RpcSubscribe\022\027.rpcpb.Su" +
-      "bscribeRequest\032\030.rpcpb.SubscribeResponse" +
-      "\"\0000\001\022h\n\037RpcGetAllTransactionsFromTxPool\022" +
-      " .rpcpb.GetAllTransactionsRequest\032!.rpcp" +
-      "b.GetAllTransactionsResponse\"\000\022p\n\033RpcGet" +
-      "LastIrreversibleBlock\022&.rpcpb.GetLastIrr" +
-      "eversibleBlockRequest\032\'.rpcpb.GetLastIrr" +
-      "eversibleBlockResponse\"\000\022I\n\016RpcEstimateG" +
-      "as\022\031.rpcpb.EstimateGasRequest\032\032.rpcpb.Es" +
-      "timateGasResponse\"\000\022@\n\013RpcGasPrice\022\026.rpc" +
-      "pb.GasPriceRequest\032\027.rpcpb.GasPriceRespo" +
-      "nse\"\000\022O\n\020RpcContractQuery\022\033.rpcpb.Contra" +
-      "ctQueryRequest\032\034.rpcpb.ContractQueryResp" +
-      "onse\"\0002\273\003\n\014AdminService\022=\n\nRpcAddPeer\022\025." +
-      "rpcpb.AddPeerRequest\032\026.rpcpb.AddPeerResp" +
-      "onse\"\000\0224\n\007RpcSend\022\022.rpcpb.SendRequest\032\023." +
-      "rpcpb.SendResponse\"\000\022I\n\016RpcGetPeerInfo\022\031" +
-      ".rpcpb.GetPeerInfoRequest\032\032.rpcpb.GetPee" +
-      "rInfoResponse\"\000\022O\n\020RpcSendFromMiner\022\033.rp" +
-      "cpb.SendFromMinerRequest\032\034.rpcpb.SendFro" +
-      "mMinerResponse\"\000\022I\n\016RpcAddProducer\022\031.rpc" +
-      "pb.AddProducerRequest\032\032.rpcpb.AddProduce" +
-      "rResponse\"\000\022O\n\020RpcUnlockAccount\022\033.rpcpb." +
-      "UnlockAccountRequest\032\034.rpcpb.UnlockAccou" +
-      "ntResponse\"\0002\372\001\n\rMetricService\022F\n\013RpcGet" +
-      "Stats\022\034.rpcpb.MetricsServiceRequest\032\027.rp" +
-      "cpb.GetStatsResponse\"\000\022P\n\020RpcGetNodeConf" +
-      "ig\022\034.rpcpb.MetricsServiceRequest\032\034.rpcpb" +
-      ".GetNodeConfigResponse\"\000\022O\n\020RpcSetNodeCo" +
-      "nfig\022\033.rpcpb.SetNodeConfigRequest\032\034.rpcp" +
-      "b.GetNodeConfigResponse\"\000B*\n\036com.dappley" +
-      ".java.core.protobufB\010RpcProtob\006proto3"
+      "ckpb.Block\"=\n\027SendTransactionResponse\022\"\n" +
+      "\032generated_contract_address\030\001 \001(\t\"\036\n\034Sen" +
+      "dBatchTransactionResponse\"D\n\025SendTransac" +
+      "tionStatus\022\014\n\004txid\030\001 \001(\014\022\014\n\004code\030\002 \001(\r\022\017" +
+      "\n\007message\030\003 \001(\t\"L\n\031GetNewTransactionResp" +
+      "onse\022/\n\013transaction\030\001 \001(\0132\032.transactionp" +
+      "b.Transaction\"!\n\021SubscribeResponse\022\014\n\004da" +
+      "ta\030\001 \001(\t\"\033\n\031GetAllTransactionsRequest\"N\n" +
+      "\032GetAllTransactionsResponse\0220\n\014transacti" +
+      "ons\030\001 \003(\0132\032.transactionpb.Transaction\"A\n" +
+      " GetLastIrreversibleBlockResponse\022\035\n\005blo" +
+      "ck\030\001 \001(\0132\016.blockpb.Block\"5\n\020GetStatsResp" +
+      "onse\022!\n\005stats\030\001 \001(\0132\022.metricspb.Metrics\"" +
+      "\353\001\n\025GetNodeConfigResponse\022\025\n\rtx_pool_lim" +
+      "it\030\001 \001(\r\022\026\n\016blk_size_limit\030\002 \001(\r\022\032\n\022max_" +
+      "connection_out\030\003 \001(\r\022\031\n\021max_connection_i" +
+      "n\030\004 \001(\r\022\030\n\020producer_address\030\005 \001(\t\022\021\n\tpro" +
+      "ducers\030\006 \003(\t\022\025\n\rmax_producers\030\007 \001(\r\022\026\n\016i" +
+      "pfs_addresses\030\t \003(\t\022\020\n\010rpc_port\030\n \001(\r\"\341\002" +
+      "\n\024SetNodeConfigRequest\022?\n\017updated_config" +
+      "s\030\001 \003(\0162&.rpcpb.SetNodeConfigRequest.Con" +
+      "figType\022\025\n\rtx_pool_limit\030\002 \001(\r\022\026\n\016blk_si" +
+      "ze_limit\030\003 \001(\r\022\032\n\022max_connection_out\030\004 \001" +
+      "(\r\022\031\n\021max_connection_in\030\005 \001(\r\022\025\n\rmax_pro" +
+      "ducers\030\006 \001(\r\022\021\n\tproducers\030\007 \003(\t\"x\n\nConfi" +
+      "gType\022\021\n\rTX_POOL_LIMIT\020\000\022\022\n\016BLK_SIZE_LIM" +
+      "IT\020\001\022\020\n\014MAX_CONN_OUT\020\002\022\017\n\013MAX_CONN_IN\020\003\022" +
+      "\021\n\rMAX_PRODUCERS\020\004\022\r\n\tPRODUCERS\020\005\"(\n\023Est" +
+      "imateGasResponse\022\021\n\tgas_count\030\001 \001(\014\"%\n\020G" +
+      "asPriceResponse\022\021\n\tgas_price\030\001 \001(\014\"3\n\025Co" +
+      "ntractQueryResponse\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
+      "e\030\002 \001(\t2\310\n\n\nRpcService\022F\n\rRpcGetVersion\022" +
+      "\030.rpcpb.GetVersionRequest\032\031.rpcpb.GetVer" +
+      "sionResponse\"\000\022F\n\rRpcGetBalance\022\030.rpcpb." +
+      "GetBalanceRequest\032\031.rpcpb.GetBalanceResp" +
+      "onse\"\000\022[\n\024RpcGetBlockchainInfo\022\037.rpcpb.G" +
+      "etBlockchainInfoRequest\032 .rpcpb.GetBlock" +
+      "chainInfoResponse\"\000\022=\n\nRpcGetUTXO\022\025.rpcp" +
+      "b.GetUTXORequest\032\026.rpcpb.GetUTXOResponse" +
+      "\"\000\022C\n\014RpcGetBlocks\022\027.rpcpb.GetBlocksRequ" +
+      "est\032\030.rpcpb.GetBlocksResponse\"\000\022R\n\021RpcGe" +
+      "tBlockByHash\022\034.rpcpb.GetBlockByHashReque" +
+      "st\032\035.rpcpb.GetBlockByHashResponse\"\000\022X\n\023R" +
+      "pcGetBlockByHeight\022\036.rpcpb.GetBlockByHei" +
+      "ghtRequest\032\037.rpcpb.GetBlockByHeightRespo" +
+      "nse\"\000\022U\n\022RpcSendTransaction\022\035.rpcpb.Send" +
+      "TransactionRequest\032\036.rpcpb.SendTransacti" +
+      "onResponse\"\000\022d\n\027RpcSendBatchTransaction\022" +
+      "\".rpcpb.SendBatchTransactionRequest\032#.rp" +
+      "cpb.SendBatchTransactionResponse\"\000\022]\n\024Rp" +
+      "cGetNewTransaction\022\037.rpcpb.GetNewTransac" +
+      "tionRequest\032 .rpcpb.GetNewTransactionRes" +
+      "ponse\"\0000\001\022E\n\014RpcSubscribe\022\027.rpcpb.Subscr" +
+      "ibeRequest\032\030.rpcpb.SubscribeResponse\"\0000\001" +
+      "\022h\n\037RpcGetAllTransactionsFromTxPool\022 .rp" +
+      "cpb.GetAllTransactionsRequest\032!.rpcpb.Ge" +
+      "tAllTransactionsResponse\"\000\022p\n\033RpcGetLast" +
+      "IrreversibleBlock\022&.rpcpb.GetLastIrrever" +
+      "sibleBlockRequest\032\'.rpcpb.GetLastIrrever" +
+      "sibleBlockResponse\"\000\022I\n\016RpcEstimateGas\022\031" +
+      ".rpcpb.EstimateGasRequest\032\032.rpcpb.Estima" +
+      "teGasResponse\"\000\022@\n\013RpcGasPrice\022\026.rpcpb.G" +
+      "asPriceRequest\032\027.rpcpb.GasPriceResponse\"" +
+      "\000\022O\n\020RpcContractQuery\022\033.rpcpb.ContractQu" +
+      "eryRequest\032\034.rpcpb.ContractQueryResponse" +
+      "\"\0002\273\003\n\014AdminService\022=\n\nRpcAddPeer\022\025.rpcp" +
+      "b.AddPeerRequest\032\026.rpcpb.AddPeerResponse" +
+      "\"\000\0224\n\007RpcSend\022\022.rpcpb.SendRequest\032\023.rpcp" +
+      "b.SendResponse\"\000\022I\n\016RpcGetPeerInfo\022\031.rpc" +
+      "pb.GetPeerInfoRequest\032\032.rpcpb.GetPeerInf" +
+      "oResponse\"\000\022O\n\020RpcSendFromMiner\022\033.rpcpb." +
+      "SendFromMinerRequest\032\034.rpcpb.SendFromMin" +
+      "erResponse\"\000\022I\n\016RpcAddProducer\022\031.rpcpb.A" +
+      "ddProducerRequest\032\032.rpcpb.AddProducerRes" +
+      "ponse\"\000\022O\n\020RpcUnlockAccount\022\033.rpcpb.Unlo" +
+      "ckAccountRequest\032\034.rpcpb.UnlockAccountRe" +
+      "sponse\"\0002\372\001\n\rMetricService\022F\n\013RpcGetStat" +
+      "s\022\034.rpcpb.MetricsServiceRequest\032\027.rpcpb." +
+      "GetStatsResponse\"\000\022P\n\020RpcGetNodeConfig\022\034" +
+      ".rpcpb.MetricsServiceRequest\032\034.rpcpb.Get" +
+      "NodeConfigResponse\"\000\022O\n\020RpcSetNodeConfig" +
+      "\022\033.rpcpb.SetNodeConfigRequest\032\034.rpcpb.Ge" +
+      "tNodeConfigResponse\"\000B*\n\036com.dappley.jav" +
+      "a.core.protobufB\010RpcProtob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -31572,7 +31711,7 @@ public final class RpcProto {
     internal_static_rpcpb_SendTransactionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_rpcpb_SendTransactionResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "GeneratedContractAddress", });
     internal_static_rpcpb_SendBatchTransactionResponse_descriptor =
       getDescriptor().getMessageTypes().get(37);
     internal_static_rpcpb_SendBatchTransactionResponse_fieldAccessorTable = new

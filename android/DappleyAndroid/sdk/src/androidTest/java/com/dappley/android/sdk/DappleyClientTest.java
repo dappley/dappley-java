@@ -6,9 +6,9 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.dappley.android.sdk.db.BlockChainDb;
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
-import com.dappley.java.core.util.AddressUtil;
 import com.dappley.java.core.util.HashUtil;
 
 import org.junit.Assert;
@@ -183,11 +183,12 @@ public class DappleyClientTest {
         String fromAddress = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         String toAddress = "dUUJ826xi12tCq4D465xyAFn9kKs7VVsgp";
         BigInteger amount = new BigInteger("1");
+        BigInteger tip = new BigInteger("1");
         String privateKey = "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a";
 
-        boolean isSuccess = Dappley.sendTransaction(fromAddress, toAddress, amount, new BigInteger(privateKey, 16));
+        SendTxResult sendTxResult = Dappley.sendTransaction(fromAddress, toAddress, amount, new BigInteger(privateKey, 16), tip);
 
-        Assert.assertTrue(isSuccess);
+        Assert.assertTrue(sendTxResult.isSuccess());
     }
 
     @Test
@@ -197,13 +198,17 @@ public class DappleyClientTest {
 
         String fromAddress = "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa";
         BigInteger amount = new BigInteger("1");
+        BigInteger tip = new BigInteger("1");
+        BigInteger gasLimit = new BigInteger("30000");
+        BigInteger gasPrice = new BigInteger("1");
         String privateKey = "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a";
 
         String contractAddress = Dappley.createContractAddress();
         String contract = "{\"function\":\"record\",\"args\":[\"%s\",\"4\"]}";
         contract = String.format(contract, contractAddress);
-        boolean isSuccess = Dappley.sendTransactionWithContract(fromAddress, contractAddress, amount, new BigInteger(privateKey, 16), contract);
+        SendTxResult sendTxResult = Dappley.sendTransactionWithContract(fromAddress, contractAddress, amount, new BigInteger(privateKey, 16),
+                tip, gasLimit, gasPrice, contract);
 
-        Assert.assertTrue(isSuccess);
+        Assert.assertTrue(sendTxResult.isSuccess());
     }
 }

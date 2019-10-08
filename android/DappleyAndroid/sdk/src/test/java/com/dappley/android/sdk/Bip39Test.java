@@ -11,9 +11,9 @@ public class Bip39Test {
 
     @Test
     public void testPrivateKey() {
-        String mnemonic = "";
+        String mnemonic = "figure light wasp oil buzz method comic jewel mammal vendor ceiling adapt";
         BigInteger privateKey = Bip39.getPrivateKey(mnemonic);
         Assert.assertEquals("privateKey not right", privateKey
-                , new BigInteger("6424137665956762791404338473136100785971241617189692246493279763101725491440"));
+                , new BigInteger("55824259074851176801993342453568773913117587252134704596750674165627066608413"));
     }
 }

@@ -6,8 +6,11 @@ apply plugin: 'com.jfrog.bintray'
 
 def RELEASE_GROUP_ID = "com.dappley"
 def RELEASE_ARTIFACT_ID = "android-sdk"
-def RELEASE_VERSION = "0.2-alpha"
+def RELEASE_VERSION = "0.3-alpha"
 def SITE_URL = "https://github.com/dappley/dappley-java"
+
+project.version = RELEASE_VERSION
+project.group=RELEASE_GROUP_ID
 
 buildscript {
     repositories {
@@ -45,13 +48,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    api 'com.dappley:java-core:0.42-alpha'
+    api 'com.dappley:java-core:0.47-alpha'
     api 'javax.annotation:javax.annotation-api:1.3.2'
     implementation 'com.tencent:mmkv:1.0.11'
     testImplementation 'junit:junit:4.12'
@@ -103,6 +110,7 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 task javadoc(type: Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
     failOnError false
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))

@@ -33,6 +33,7 @@ import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.EventUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.android.widget.AutoHeightViewPager;
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.po.Wallet;
 import com.google.zxing.activity.CaptureActivity;
 
@@ -174,7 +175,10 @@ public class TransferActivity extends AppCompatActivity {
                 boolean isSuccess = false;
                 try {
                     BigInteger tip = new BigInteger(String.valueOf(barTip.getProgress() + SEEK_BAR_OFFSET));
-                    isSuccess = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
+                    SendTxResult sendTxResult = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
+                    if (sendTxResult != null) {
+                        isSuccess = sendTxResult.isSuccess();
+                    }
                 } catch (Exception e) {
                     Log.e(TAG, "transfer: ", e);
                 }

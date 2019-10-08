@@ -8,6 +8,7 @@ import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.java.core.net.DataProvider;
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.UtxoIndex;
@@ -99,6 +100,11 @@ public class LocalDataProvider implements DataProvider {
 
     @Override
     public BigInteger getGasPrice() {
+        return null;
+    }
+
+    @Override
+    public ContractQueryResult contractQuery(String contractAddress, String key, String value) {
         return null;
     }
 }

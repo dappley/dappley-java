@@ -30,6 +30,7 @@ import com.dappley.android.util.DuplicateUtil;
 import com.dappley.android.util.PreferenceUtil;
 import com.dappley.android.util.StorageUtil;
 import com.dappley.google.step.GoogleStep;
+import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.po.Wallet;
 import com.today.step.lib.ISportStepInterface;
 import com.today.step.lib.TodayStepManager;
@@ -275,7 +276,10 @@ public class StepFragment extends Fragment {
                 boolean isSuccess = false;
                 try {
                     BigInteger tip = BigInteger.ZERO;
-                    isSuccess = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), tip, gasLimit, gasPrice, contract);
+                    SendTxResult sendTxResult = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), tip, gasLimit, gasPrice, contract);
+                    if (sendTxResult != null) {
+                        isSuccess = sendTxResult.isSuccess();
+                    }
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
                 }

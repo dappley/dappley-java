@@ -12,6 +12,8 @@ import com.dappley.android.sdk.db.TransactionDb;
 import com.dappley.android.sdk.db.UtxoDb;
 import com.dappley.android.sdk.db.UtxoIndexDb;
 import com.dappley.java.core.net.DataProvider;
+import com.dappley.java.core.net.ProtocalProvider;
+import com.dappley.java.core.net.ProtocalProviderBuilder;
 import com.dappley.java.core.net.RemoteDataProvider;
 import com.dappley.java.core.po.Block;
 import com.dappley.java.core.po.Transaction;
@@ -62,7 +64,11 @@ public class LocalBlockThread implements Runnable {
         transactionDb = new TransactionDb(context);
         utxoDb = new UtxoDb(context);
         utxoIndexDb = new UtxoIndexDb(context);
-        dataProvider = new RemoteDataProvider(RemoteDataProvider.RemoteProtocalType.RPC, serverIp, serverPort);
+        ProtocalProviderBuilder providerBuilder = new ProtocalProviderBuilder();
+        providerBuilder.setType(RemoteDataProvider.RemoteProtocalType.RPC)
+                .setRpcServerIp(serverIp).setRpcServerPort(serverPort);
+        ProtocalProvider protocalProvider = providerBuilder.build();
+        dataProvider = new RemoteDataProvider(protocalProvider);
 
         genesisHash = BlockChainManager.getGenesisHash(context);
 

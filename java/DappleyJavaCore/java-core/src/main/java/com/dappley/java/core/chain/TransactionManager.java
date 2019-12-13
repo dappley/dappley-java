@@ -17,10 +17,6 @@ import java.util.Map;
  * Utils to handle transaction datas.
  */
 public class TransactionManager {
-    /**
-     * default tip of each transaction
-     */
-    private static final BigInteger TIP_DEFAULT = BigInteger.ZERO;
 
     /**
      * Create a new transaction
@@ -62,7 +58,7 @@ public class TransactionManager {
         buildVout(transaction, toAddress, amount, change, ecKeyPair, contract);
 
         // add default tip value
-        transaction.setTip(TIP_DEFAULT);
+        transaction.setTip(tip);
 
         // gas limit and price
         transaction.setGasLimit(gasLimit);

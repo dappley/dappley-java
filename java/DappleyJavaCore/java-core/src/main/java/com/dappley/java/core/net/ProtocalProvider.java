@@ -22,11 +22,6 @@ public interface ProtocalProvider {
      */
     void init(String serverIp, int serverPort);
 
-    /**
-     * Close connections and free memories
-     */
-    void close();
-
     String getVersion();
 
     long getBalance(String address);

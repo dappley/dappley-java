@@ -57,18 +57,6 @@ public class Dappley {
     }
 
     /**
-     * Release resources or connections.
-     */
-    public static void release() {
-        if (dataProvider != null) {
-            dataProvider.release();
-        }
-        if (transactionSender != null) {
-            transactionSender.release();
-        }
-    }
-
-    /**
      * Create a new wallet address by mnemonic with English language.
      * <p>Contains mnemonic and private key in wallet.</p>
      * @return Wallet

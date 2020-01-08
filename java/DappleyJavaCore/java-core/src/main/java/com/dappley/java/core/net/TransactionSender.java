@@ -24,12 +24,4 @@ public class TransactionSender {
         return protocalProvider.sendTransaction(tx);
     }
 
-    /**
-     * Release rpc connections.
-     */
-    public void release() {
-        if (protocalProvider != null) {
-            protocalProvider.close();
-        }
-    }
 }

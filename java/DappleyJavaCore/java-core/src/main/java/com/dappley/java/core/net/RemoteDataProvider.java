@@ -26,13 +26,6 @@ public class RemoteDataProvider implements DataProvider {
     }
 
     @Override
-    public void release() {
-        if (protocalProvider != null) {
-            protocalProvider.close();
-        }
-    }
-
-    @Override
     public List<Utxo> getUtxos(String address) {
         try {
             List<UtxoProto.Utxo> utxoList = protocalProvider.getUtxo(address);

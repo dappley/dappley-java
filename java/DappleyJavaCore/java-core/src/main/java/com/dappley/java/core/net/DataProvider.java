@@ -15,11 +15,6 @@ import java.util.List;
 public interface DataProvider {
 
     /**
-     * Release resources or connections.
-     */
-    void release();
-
-    /**
      * Returns all unspent balance list.(utxo list)
      * @param address wallet address
      * @return List<Utxo>

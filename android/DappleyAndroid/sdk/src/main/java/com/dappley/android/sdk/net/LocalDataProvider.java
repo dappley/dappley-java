@@ -34,7 +34,6 @@ public class LocalDataProvider implements DataProvider {
         BlockChainManager.initGenesisBlock(context);
     }
 
-    @Override
     public void release() {
         MMKV.onExit();
     }

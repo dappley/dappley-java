@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.dialog.NoticeDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
@@ -66,8 +67,14 @@ public class WalletMnemonicActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText(R.string.title_create_wallet);
+        tvTitle.setText(R.string.title_mnemonic_wallet);
         btnBack.setOnClickListener(new BtnBackListener(this));
+
+        NoticeDialog dialog = new NoticeDialog(this);
+        dialog.setTitle(R.string.note_warning_title);
+        dialog.setContent(R.string.note_warning_mnemonic);
+        dialog.setConfirmText(R.string.layout_ok);
+        dialog.show();
     }
 
     private void initData() {

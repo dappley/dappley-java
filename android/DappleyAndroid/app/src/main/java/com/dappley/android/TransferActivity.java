@@ -163,7 +163,7 @@ public class TransferActivity extends AppCompatActivity {
         BigDecimal inputValue = new BigDecimal(etValue.getText().toString().trim());
         final BigInteger amount = inputValue.multiply(com.dappley.java.core.util.Constant.COIN_DW).toBigInteger();
         if (balance == null || amount.compareTo(balance) > 0) {
-            Toast.makeText(this, R.string.note_balance_not_enought, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_balance_not_enough, Toast.LENGTH_SHORT).show();
             return;
         }
         LoadingDialog.show(this);

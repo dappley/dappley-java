@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,19 +38,8 @@ public class WalletImportActivity extends AppCompatActivity {
     EditText etName;
     @BindView(R.id.et_password)
     EditText etPassword;
-    @BindView(R.id.et_mnemonic)
-    EditText etMnemonic;
-    @BindView(R.id.et_private_key)
-    EditText etPrivateKey;
-
-    @BindView(R.id.linear_mnemonic)
-    LinearLayout linearMnemonic;
-    @BindView(R.id.linear_private_key)
-    LinearLayout linearPrivateKey;
-    @BindView(R.id.rb_mnemoic)
-    RadioButton rbMnemonic;
-    @BindView(R.id.rb_private_key)
-    RadioButton rbPrivateKey;
+    @BindView(R.id.et_pv_mnemonic)
+    EditText etPvMnemonic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +56,6 @@ public class WalletImportActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new BtnBackListener(this));
     }
 
-    @OnClick({R.id.rb_mnemoic, R.id.rb_private_key})
-    void typeClicked(View view) {
-        if (view.getId() == R.id.rb_mnemoic) {
-            linearMnemonic.setVisibility(View.VISIBLE);
-            linearPrivateKey.setVisibility(View.GONE);
-        } else {
-            linearPrivateKey.setVisibility(View.VISIBLE);
-            linearMnemonic.setVisibility(View.GONE);
-        }
-    }
-
     @OnClick(R.id.btn_import)
     void importWallet() {
         if (DuplicateUtil.dupClickCheck()) {
@@ -92,10 +67,10 @@ public class WalletImportActivity extends AppCompatActivity {
         LoadingDialog.show(this);
         Wallet wallet = null;
         try {
-            if (rbMnemonic.isChecked()) {
-                wallet = Dappley.importWalletFromMnemonic(etMnemonic.getText().toString());
+            if (isRightMnemonics(etPvMnemonic.getText().toString())) {
+                wallet = Dappley.importWalletFromMnemonic(etPvMnemonic.getText().toString());
             } else {
-                wallet = Dappley.importWalletFromPrivateKey(etPrivateKey.getText().toString());
+                wallet = Dappley.importWalletFromPrivateKey(etPvMnemonic.getText().toString());
             }
         } catch (Exception e) {
             Log.e(TAG, "importWallet: ", e);
@@ -125,14 +100,9 @@ public class WalletImportActivity extends AppCompatActivity {
             etPassword.requestFocus();
             return true;
         }
-        if (rbMnemonic.isChecked() && CommonUtil.isNull(etMnemonic)) {
-            Toast.makeText(this, R.string.note_no_mnemonic, Toast.LENGTH_SHORT).show();
-            etMnemonic.requestFocus();
-            return true;
-        }
-        if (rbPrivateKey.isChecked() && CommonUtil.isNull(etPrivateKey)) {
-            Toast.makeText(this, R.string.note_no_private_key, Toast.LENGTH_SHORT).show();
-            etPrivateKey.requestFocus();
+        if (CommonUtil.isNull(etPvMnemonic)) {
+            Toast.makeText(this, R.string.note_no_pv_mnemonic, Toast.LENGTH_SHORT).show();
+            etPvMnemonic.requestFocus();
             return true;
         }
         boolean isPassCorrect = StorageUtil.checkPassword(this, etPassword.getText().toString());
@@ -141,28 +111,41 @@ public class WalletImportActivity extends AppCompatActivity {
             etPassword.requestFocus();
             return true;
         }
-        if (rbMnemonic.isChecked() && etMnemonic.getText().toString().split("\\s+").length != 12) {
-            Toast.makeText(this, R.string.note_error_mnemonic, Toast.LENGTH_SHORT).show();
-            etMnemonic.requestFocus();
-            return true;
+        if (isRightPrivateKey(etPvMnemonic.getText().toString())) {
+            return false;
         }
-        if (rbPrivateKey.isChecked()) {
-            BigInteger bigInteger;
-            try {
-                bigInteger = new BigInteger(etPrivateKey.getText().toString(), 16);
-            } catch (Exception e) {
-                Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
-                etPrivateKey.requestFocus();
-                return true;
-            }
-//            int byte32 = 32 * 8;
-//            if (bigInteger.toString(2).length() != byte32 && bigInteger.toString(2).length() != byte32 - 1) {
-//                Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
-//                etPrivateKey.requestFocus();
-//                return true;
-//            }
+        if (isRightMnemonics(etPvMnemonic.getText().toString())) {
+            return false;
         }
-        return false;
+        Toast.makeText(this, R.string.note_error_pv_mnemonic, Toast.LENGTH_SHORT).show();
+        etPvMnemonic.requestFocus();
+        return true;
+    }
+
+    private boolean isRightPrivateKey(String text) {
+        if (text == null || text.length() == 0) {
+            return false;
+        }
+        BigInteger bigInteger;
+        try {
+            bigInteger = new BigInteger(etPvMnemonic.getText().toString(), 16);
+        } catch (Exception e) {
+            return false;
+        }
+//        int byte32 = 32 * 8;
+//        if (bigInteger.toString(2).length() != byte32 && bigInteger.toString(2).length() != byte32 - 1) {
+//            Toast.makeText(this, R.string.note_error_private_key, Toast.LENGTH_SHORT).show();
+//            etPrivateKey.requestFocus();
+//            return false;
+//        }
+        return true;
+    }
+
+    private boolean isRightMnemonics(String text) {
+        if (text == null || text.length() == 0) {
+            return false;
+        }
+        return text.split("\\s+").length == 12;
     }
 
     @Override

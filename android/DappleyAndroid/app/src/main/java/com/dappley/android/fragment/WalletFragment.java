@@ -191,6 +191,10 @@ public class WalletFragment extends Fragment {
         if (DuplicateUtil.dupClickCheck()) {
             return;
         }
+        Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
         startQrCode(null);
     }
 
@@ -251,6 +255,9 @@ public class WalletFragment extends Fragment {
             return;
         }
         Wallet wallet = getCurrentWallet();
+        if (wallet == null) {
+            return;
+        }
         startQrCode(wallet);
     }
 

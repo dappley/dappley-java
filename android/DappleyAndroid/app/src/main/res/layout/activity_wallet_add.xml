@@ -43,7 +43,7 @@
                 android:text="@string/layout_create_wallet"
                 android:textAllCaps="false"
                 android:textColor="@drawable/txt_btn_white_selector"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/btn_import"
@@ -55,7 +55,7 @@
                 android:text="@string/layout_import_wallet"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>

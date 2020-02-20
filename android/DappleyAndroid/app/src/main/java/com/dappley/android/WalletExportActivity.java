@@ -35,6 +35,8 @@ public class WalletExportActivity extends AppCompatActivity {
     TextView tvPrivateKey;
     @BindView(R.id.tv_mnemonic)
     TextView tvMnemonic;
+    @BindView(R.id.linear_private_key)
+    LinearLayout linearPrivateKey;
     @BindView(R.id.linear_mnemonic)
     LinearLayout linearMnemonic;
 
@@ -66,8 +68,10 @@ public class WalletExportActivity extends AppCompatActivity {
         tvPrivateKey.setText(wallet.getPrivateKey().toString(16));
         if (wallet.getMnemonic() == null || wallet.getMnemonic().length() == 0) {
             linearMnemonic.setVisibility(View.GONE);
+            linearPrivateKey.setVisibility(View.VISIBLE);
         } else {
             linearMnemonic.setVisibility(View.VISIBLE);
+            linearPrivateKey.setVisibility(View.GONE);
             tvMnemonic.setText(CommonUtil.getNotNullString(wallet.getMnemonic()));
         }
     }

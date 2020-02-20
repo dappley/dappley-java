@@ -89,7 +89,7 @@ public class WalletDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tvTitle.setText(R.string.title_wallet);
+        tvTitle.setText(R.string.title_wallet_detail);
         btnBack.setOnClickListener(new BtnBackListener(this));
 
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);

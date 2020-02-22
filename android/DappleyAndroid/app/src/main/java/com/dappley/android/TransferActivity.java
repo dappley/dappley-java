@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.dappley.android.adapter.WalletPagerAdapter;
 import com.dappley.android.bean.Receiver;
 import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
@@ -66,8 +67,6 @@ public class TransferActivity extends AppCompatActivity {
 
     @BindView(R.id.et_to_address)
     EditText etToAddress;
-    @BindView(R.id.et_password)
-    EditText etPassword;
     @BindView(R.id.et_value)
     EditText etValue;
 
@@ -76,7 +75,7 @@ public class TransferActivity extends AppCompatActivity {
     @BindView(R.id.bar_tip)
     SeekBar barTip;
 
-
+    WalletPasswordDialog walletPasswordDialog;
     WalletPagerAdapter walletPagerAdapter;
     List<Wallet> wallets;
     Wallet wallet;
@@ -160,34 +159,15 @@ public class TransferActivity extends AppCompatActivity {
         if (checkNull()) {
             return;
         }
-        BigDecimal inputValue = new BigDecimal(etValue.getText().toString().trim());
-        final BigInteger amount = inputValue.multiply(com.dappley.java.core.util.Constant.COIN_DW).toBigInteger();
-        if (balance == null || amount.compareTo(balance) > 0) {
-            Toast.makeText(this, R.string.note_balance_not_enough, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        LoadingDialog.show(this);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String toAddress = etToAddress.getText().toString().trim();
-                boolean isSuccess = false;
-                try {
-                    BigInteger tip = new BigInteger(String.valueOf(barTip.getProgress() + SEEK_BAR_OFFSET));
-                    SendTxResult sendTxResult = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
-                    if (sendTxResult != null) {
-                        isSuccess = sendTxResult.isSuccess();
-                    }
-                } catch (Exception e) {
-                    Log.e(TAG, "transfer: ", e);
+        if (walletPasswordDialog == null) {
+            walletPasswordDialog = new WalletPasswordDialog(this, new WalletPasswordDialog.OnClickListener() {
+                @Override
+                public void onConfirm(String password) {
+                    onPasswordInput(password);
                 }
-                Message msg = new Message();
-                msg.obj = isSuccess;
-                msg.what = Constant.MSG_TRANSFER_FINISH;
-                handler.sendMessage(msg);
-            }
-        }).start();
+            });
+        }
+        walletPasswordDialog.show();
     }
 
     @OnClick(R.id.btn_qrcode)
@@ -310,23 +290,56 @@ public class TransferActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.note_receiver_illegal, Toast.LENGTH_SHORT).show();
             return true;
         }
-        if (CommonUtil.isNull(etPassword)) {
+        return false;
+    }
+
+    private void onPasswordInput(String password) {
+        if (password.length() == 0) {
             Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
-            return true;
+            return;
         }
         try {
-            Wallet wallet = Dappley.decryptWallet(this.wallet, etPassword.getText().toString());
-            if (wallet == null || wallet.getPrivateKey() == null) {
+            Wallet walletTemp = Dappley.decryptWallet(this.wallet, password);
+            if (walletTemp == null || walletTemp.getPrivateKey() == null) {
                 Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-                return true;
+                return;
             }
-            this.wallet = wallet;
+            this.wallet = walletTemp;
+            walletPasswordDialog.close();
+
+            BigDecimal inputValue = new BigDecimal(etValue.getText().toString().trim());
+            final BigInteger amount = inputValue.multiply(com.dappley.java.core.util.Constant.COIN_DW).toBigInteger();
+            if (balance == null || amount.compareTo(balance) > 0) {
+                Toast.makeText(this, R.string.note_balance_not_enough, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            LoadingDialog.show(this);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String toAddress = etToAddress.getText().toString().trim();
+                    boolean isSuccess = false;
+                    try {
+                        BigInteger tip = new BigInteger(String.valueOf(barTip.getProgress() + SEEK_BAR_OFFSET));
+                        SendTxResult sendTxResult = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
+                        if (sendTxResult != null) {
+                            isSuccess = sendTxResult.isSuccess();
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "transfer: ", e);
+                    }
+                    Message msg = new Message();
+                    msg.obj = isSuccess;
+                    msg.what = Constant.MSG_TRANSFER_FINISH;
+                    handler.sendMessage(msg);
+                }
+            }).start();
         } catch (Exception e) {
-            Log.i(TAG, "checkNull: ", e);
+            Log.e(TAG, "onPasswordInput: ", e);
             Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-            return true;
+            return;
         }
-        return false;
     }
 
     private void onTransferFinish(boolean isSuccess) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dappley.android.dialog.LoadingDialog;
+import com.dappley.android.dialog.WalletPasswordDialog;
 import com.dappley.android.listener.BtnBackListener;
 import com.dappley.android.sdk.Dappley;
 import com.dappley.android.util.CommonUtil;
@@ -36,10 +37,10 @@ public class WalletImportActivity extends AppCompatActivity {
 
     @BindView(R.id.et_name)
     EditText etName;
-    @BindView(R.id.et_password)
-    EditText etPassword;
     @BindView(R.id.et_pv_mnemonic)
     EditText etPvMnemonic;
+
+    WalletPasswordDialog walletPasswordDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,29 +65,15 @@ public class WalletImportActivity extends AppCompatActivity {
         if (checkNull()) {
             return;
         }
-        LoadingDialog.show(this);
-        Wallet wallet = null;
-        try {
-            if (isRightMnemonics(etPvMnemonic.getText().toString())) {
-                wallet = Dappley.importWalletFromMnemonic(etPvMnemonic.getText().toString());
-            } else {
-                wallet = Dappley.importWalletFromPrivateKey(etPvMnemonic.getText().toString());
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "importWallet: ", e);
+        if (walletPasswordDialog == null) {
+            walletPasswordDialog = new WalletPasswordDialog(this, new WalletPasswordDialog.OnClickListener() {
+                @Override
+                public void onConfirm(String password) {
+                    onPasswordInput(password);
+                }
+            });
         }
-        LoadingDialog.close();
-        if (wallet == null || wallet.getPrivateKey() == null) {
-            Toast.makeText(this, R.string.note_error_import_wallet, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        wallet.setName(etName.getText().toString());
-        Intent intent = new Intent(this, WalletMnemonicActivity.class);
-        intent.putExtra("wallet", wallet);
-        intent.putExtra("password", etPassword.getText().toString());
-        intent.putExtra("type", Constant.REQ_WALLET_IMPORT);
-        startActivity(intent);
-        finish();
+        walletPasswordDialog.show();
     }
 
     private boolean checkNull() {
@@ -95,20 +82,9 @@ public class WalletImportActivity extends AppCompatActivity {
             etName.requestFocus();
             return true;
         }
-        if (CommonUtil.isNull(etPassword)) {
-            Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
-            etPassword.requestFocus();
-            return true;
-        }
         if (CommonUtil.isNull(etPvMnemonic)) {
             Toast.makeText(this, R.string.note_no_pv_mnemonic, Toast.LENGTH_SHORT).show();
             etPvMnemonic.requestFocus();
-            return true;
-        }
-        boolean isPassCorrect = StorageUtil.checkPassword(this, etPassword.getText().toString());
-        if (!isPassCorrect) {
-            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
-            etPassword.requestFocus();
             return true;
         }
         if (isRightPrivateKey(etPvMnemonic.getText().toString())) {
@@ -120,6 +96,49 @@ public class WalletImportActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.note_error_pv_mnemonic, Toast.LENGTH_SHORT).show();
         etPvMnemonic.requestFocus();
         return true;
+    }
+
+    private void onPasswordInput(String password) {
+        if (password.length() == 0) {
+            Toast.makeText(this, R.string.note_no_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            boolean isPassCorrect = StorageUtil.checkPassword(this, password);
+            if (!isPassCorrect) {
+                Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            walletPasswordDialog.close();
+            LoadingDialog.show(this);
+            Wallet wallet = null;
+            try {
+                if (isRightMnemonics(etPvMnemonic.getText().toString())) {
+                    wallet = Dappley.importWalletFromMnemonic(etPvMnemonic.getText().toString());
+                } else {
+                    wallet = Dappley.importWalletFromPrivateKey(etPvMnemonic.getText().toString());
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "importWallet: ", e);
+            }
+            LoadingDialog.close();
+            if (wallet == null || wallet.getPrivateKey() == null) {
+                Toast.makeText(this, R.string.note_error_import_wallet, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            wallet.setName(etName.getText().toString());
+            Intent intent = new Intent(this, WalletMnemonicActivity.class);
+            intent.putExtra("wallet", wallet);
+            intent.putExtra("password", password);
+            intent.putExtra("type", Constant.REQ_WALLET_IMPORT);
+            startActivity(intent);
+            finish();
+        } catch (Exception e) {
+            Log.e(TAG, "onPasswordInput: ", e);
+            Toast.makeText(this, R.string.note_error_password, Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     private boolean isRightPrivateKey(String text) {

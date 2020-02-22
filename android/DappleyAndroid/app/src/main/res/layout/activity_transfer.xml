@@ -64,7 +64,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:background="@color/main_menu_bg"
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/margin_20"
@@ -106,36 +106,6 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/receiver_select" />
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dip"
-                    android:background="@color/main_menu_bg"
-                    android:orientation="vertical"
-                    android:paddingLeft="@dimen/margin_20"
-                    android:paddingTop="@dimen/margin_15"
-                    android:paddingRight="@dimen/margin_20"
-                    android:paddingBottom="@dimen/margin_15">
-
-                    <TextView
-                        android:layout_width="70dip"
-                        android:layout_height="wrap_content"
-                        android:text="@string/layout_wallet_password"
-                        android:textColor="@color/purple_title" />
-
-                    <EditText
-                        android:id="@+id/et_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_8"
-                        android:background="@null"
-                        android:hint="@string/layout_wallet_password_tip"
-                        android:inputType="textPassword"
-                        android:lines="1"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/purple_hint" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -13,7 +13,6 @@
     <string name="title_export_wallet">导出钱包</string>
     <string name="title_mnemonic_wallet">保存钱包</string>
     <string name="title_receive">收币</string>
-    <string name="title_step">步数</string>
     <string name="title_me">我的</string>
     <string name="title_select_address">选择钱包地址</string>
     <string name="title_modify_password">修改钱包密码</string>
@@ -22,7 +21,6 @@
 
     <string name="layout_receive_address">收币地址</string>
     <string name="layout_receive_address_tip">请输入收币钱包地址</string>
-    <string name="layout_wallet_password">钱包密码</string>
     <string name="layout_wallet_password_tip">请输入钱包密码</string>
     <string name="layout_transfer_amount">转账数量</string>
     <string name="layout_transfer_amount_tip">请输入转账数量</string>
@@ -36,15 +34,10 @@
     <string name="layout_wallet_name_tip">请输入钱包名称</string>
     <string name="layout_create_wallet">创建钱包</string>
     <string name="layout_balance_records">未花费交易输出</string>
-    <string name="layout_import_type">导入方式</string>
-    <string name="layout_import_type_mnemonic">助记词</string>
-    <string name="layout_import_type_private_key">私钥</string>
     <string name="layout_import_mnemonic_privatekey">私钥/助记词</string>
     <string name="layout_import_mnemonic_privatekey_tip">请输入私钥或助记词</string>
     <string name="layout_import_mnemonic">助记词</string>
-    <string name="layout_import_mnemonic_tip">请输入助记词</string>
     <string name="layout_import_private_key">私钥</string>
-    <string name="layout_import_private_key_tip">请输入私钥</string>
     <string name="layout_import_wallet">导入钱包</string>
     <string name="layout_import_btn">导入</string>
     <string name="layout_wallet_address">钱包地址</string>
@@ -55,17 +48,14 @@
     <string name="layout_ok">好的</string>
     <string name="layout_copy_address">复制钱包地址</string>
     <string name="layout_step_today">今日累计步数</string>
-    <string name="layout_convert_coin">兑换代币</string>
     <string name="layout_step_converted">今日已兑换步数</string>
     <string name="layout_step_rest">可兑换步数</string>
-    <string name="layout_coin_exchanged">已兑换代币</string>
     <string name="layout_btn_convert">立即兑换</string>
     <string name="layout_input_wallet_password">请输入钱包密码</string>
     <string name="layout_menu_wallet_password">修改钱包密码</string>
     <string name="layout_step_counter">计步方式</string>
     <string name="layout_version">版本更新</string>
     <string name="layout_authority">权限设置</string>
-    <string name="layout_wallet_sege">个钱包</string>
     <string name="layout_wallet_old_password">旧密码</string>
     <string name="layout_wallet_old_password_tip">请输入钱包旧密码</string>
     <string name="layout_wallet_new_password">新密码</string>
@@ -81,7 +71,6 @@
     <string name="layout_downloading">下载中</string>
     <string name="layout_version_checking">检测中，请稍后...</string>
     <string name="layout_version_new">检测到新版本，是否立即更新？</string>
-    <string name="layout_version_error">检测版本过程出错</string>
     <string name="layout_download_error">下载出错，请检查网络连接</string>
     <string name="layout_version_no_new">未检测到新版本</string>
     <string name="layout_miner_tip">矿工交易费</string>
@@ -101,11 +90,8 @@
     <string name="note_read_failed">数据读写错误</string>
     <string name="note_create_wallet_failed">创建钱包失败，请稍后重试</string>
     <string name="note_no_wallet_name">请输入钱包名称</string>
-    <string name="note_no_pasword">请输入钱包密码</string>
     <string name="note_no_pv_mnemonic">请输入私钥或助记词</string>
     <string name="note_error_pv_mnemonic">请输入正确的私钥或助记词</string>
-    <string name="note_no_private_key">请输入私钥</string>
-    <string name="note_error_private_key">请输入正确的私钥</string>
     <string name="note_error_import_wallet">导入钱包失败，请检查私钥或助记词是否正确</string>
     <string name="note_wallet_exists">钱包地址已经存在</string>
     <string name="note_wallet_copied">钱包地址已拷贝</string>
@@ -139,7 +125,6 @@
     <string name="net_not_connected">发送请求失败，请检查网络连接</string>
     <string name="net_server_connected_error">连接服务器失败，请稍后重试</string>
     <string name="net_server_error">服务器处理请求失败，请稍后重试</string>
-    <string name="net_server_param_error">应用数据出错，请刷新重试</string>
     <string name="net_unknown_error">未知错误，请稍后重试</string>
 
     <string name="error_app">未知异常，程序即将退出</string>

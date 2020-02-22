@@ -13,7 +13,6 @@
     <string name="title_export_wallet">Export Wallet</string>
     <string name="title_mnemonic_wallet">Save New Wallet</string>
     <string name="title_receive">Receive</string>
-    <string name="title_step">Step</string>
     <string name="title_me">Profile</string>
     <string name="title_select_address">Select Wallet</string>
     <string name="title_modify_password">Change Password</string>
@@ -22,7 +21,6 @@
 
     <string name="layout_receive_address">Receiver</string>
     <string name="layout_receive_address_tip">Receiver address</string>
-    <string name="layout_wallet_password">Password</string>
     <string name="layout_wallet_password_tip">Wallet password</string>
     <string name="layout_transfer_amount">Amount</string>
     <string name="layout_transfer_amount_tip">Send amount</string>
@@ -36,15 +34,10 @@
     <string name="layout_wallet_name_tip">Wallet name</string>
     <string name="layout_create_wallet">New Wallet</string>
     <string name="layout_balance_records">Unspent Transactions</string>
-    <string name="layout_import_type">From</string>
-    <string name="layout_import_type_mnemonic">Mnemonics</string>
-    <string name="layout_import_type_private_key">Private key</string>
     <string name="layout_import_mnemonic_privatekey">Private key/Mnemonics</string>
     <string name="layout_import_mnemonic_privatekey_tip">Type private key or mnemonics</string>
     <string name="layout_import_mnemonic">Mnemonics</string>
-    <string name="layout_import_mnemonic_tip">Input mnemonics</string>
     <string name="layout_import_private_key">Private Key</string>
-    <string name="layout_import_private_key_tip">Input private key</string>
     <string name="layout_import_wallet">Import Wallet</string>
     <string name="layout_import_btn">Import</string>
     <string name="layout_wallet_address">Address</string>
@@ -55,17 +48,14 @@
     <string name="layout_ok">OK</string>
     <string name="layout_copy_address">Copy address</string>
     <string name="layout_step_today">Total Steps</string>
-    <string name="layout_convert_coin">Convert Coin</string>
     <string name="layout_step_converted">Redeemed</string>
     <string name="layout_step_rest">Available</string>
-    <string name="layout_coin_exchanged">Coin Exchanged</string>
     <string name="layout_btn_convert">Redeem</string>
     <string name="layout_input_wallet_password">Input wallet password</string>
     <string name="layout_menu_wallet_password">Change Password</string>
     <string name="layout_step_counter">Step Counter</string>
     <string name="layout_version">APP Update</string>
     <string name="layout_authority">Authority</string>
-    <string name="layout_wallet_sege">wallet(s)</string>
     <string name="layout_wallet_old_password">Old password</string>
     <string name="layout_wallet_old_password_tip">Old wallet password</string>
     <string name="layout_wallet_new_password">New password</string>
@@ -81,7 +71,6 @@
     <string name="layout_downloading">Downloading</string>
     <string name="layout_version_checking">Checking new version...</string>
     <string name="layout_version_new">New version was found, update now？</string>
-    <string name="layout_version_error">Check version error</string>
     <string name="layout_download_error">Download error</string>
     <string name="layout_version_no_new">No new version</string>
     <string name="layout_miner_tip">Miner Tip</string>
@@ -101,11 +90,8 @@
     <string name="note_read_failed">Read/Write data failed</string>
     <string name="note_create_wallet_failed">Create wallet failed, please try later</string>
     <string name="note_no_wallet_name">Please type a wallet name</string>
-    <string name="note_no_pasword">Please type a password</string>
     <string name="note_no_pv_mnemonic">Please type private key or mnemonics</string>
     <string name="note_error_pv_mnemonic">Please type right private key or mnemonics</string>
-    <string name="note_no_private_key">Please type your private key</string>
-    <string name="note_error_private_key">Private key is error</string>
     <string name="note_error_import_wallet">Import wallet failed, please check you private key or mnemonic</string>
     <string name="note_wallet_exists">Wallet address already exists</string>
     <string name="note_wallet_copied">Wallet address is copied</string>
@@ -139,7 +125,6 @@
     <string name="net_not_connected">Network not connected</string>
     <string name="net_server_connected_error">Server connect error, please try later</string>
     <string name="net_server_error">Server internal error, please try later</string>
-    <string name="net_server_param_error">Request param error, please try later</string>
     <string name="net_unknown_error">Unknown error, please try later</string>
 
     <string name="error_app">Unknown error, program will exit</string>

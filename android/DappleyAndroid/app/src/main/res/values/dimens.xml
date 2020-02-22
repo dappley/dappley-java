@@ -4,12 +4,8 @@
     <dimen name="margin_20">20dip</dimen>
     <dimen name="margin_30">30dip</dimen>
 
-    <dimen name="me_top_height">200dip</dimen>
     <dimen name="item_menu_height">50dip</dimen>
     <dimen name="item_menu_left_icon">20dip</dimen>
     <dimen name="item_menu_right_icon">20dip</dimen>
-
-    <dimen name="wallet_head_margin">260dip</dimen>
-    <dimen name="wallet_list_margin">-194dip</dimen>
 
 </resources>

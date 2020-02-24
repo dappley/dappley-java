@@ -114,7 +114,7 @@
     <string name="note_remote_contract_invalid">远程合约地址无效</string>
     <string name="note_confirm_title">提示</string>
     <string name="note_confirm_delete_wallet">确认删除当前钱包?</string>
-    <string name="note_warning_title">警告</string>
+    <string name="note_warning_title">提醒</string>
     <string name="note_warning_mnemonic">请手动抄写本页面的助记词或私钥，在钱包丢失或更换设备时，助记词或私钥将是恢复钱包数据的唯一途径！</string>
     <string name="note_google_fit_failed">Google Fit 授权失败</string>
     <string name="note_google_fit_unavaiable">Google Fit 不可用</string>

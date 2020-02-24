@@ -29,8 +29,8 @@
                     android:id="@+id/view_pager"
                     android:layout_width="match_parent"
                     android:layout_height="150dip"
-                    android:layout_marginTop="@dimen/margin_15"
-                    android:layout_marginBottom="@dimen/margin_15" />
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

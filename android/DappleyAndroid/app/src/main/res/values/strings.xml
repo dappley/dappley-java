@@ -85,7 +85,9 @@
     <string name="note_no_amount">Please type your send amount</string>
     <string name="note_error_amount">Please type a correct send amount</string>
     <string name="note_transfer_success">Send success</string>
-    <string name="note_transfer_failed">Send failed, please check your inputs</string>
+    <string name="note_transfer_failed_param">Send failed, please check your inputs</string>
+    <string name="note_transfer_failed_balance">Send failed, balance is not enough</string>
+    <string name="note_transfer_failed_exception">Send failed, please try later</string>
     <string name="note_permittion_read">Please allow read/write storage authority</string>
     <string name="note_read_failed">Read/Write data failed</string>
     <string name="note_create_wallet_failed">Create wallet failed, please try later</string>

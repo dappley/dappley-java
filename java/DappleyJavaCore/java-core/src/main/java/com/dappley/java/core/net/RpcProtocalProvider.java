@@ -151,14 +151,15 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .setTransaction(transaction)
                 .build();
         SendTxResult sendTxResult = new SendTxResult();
-        sendTxResult.setSuccess(false);
         try {
             RpcProto.SendTransactionResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcSendTransaction(request);
             shutdownChannel(channel);
 
-            sendTxResult.setSuccess(true);
+            sendTxResult.setCode(SendTxResult.CODE_SUCCESS);
             sendTxResult.setGeneratedContractAddress(response.getGeneratedContractAddress());
         } catch (Exception e) {
+            sendTxResult.setCode(SendTxResult.CODE_ERROR_EXCEPTION);
+            sendTxResult.setMsg(e.getMessage());
             log.error(e.getMessage());
         }
         return sendTxResult;

@@ -273,26 +273,23 @@ public class StepFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean isSuccess = false;
+                SendTxResult sendTxResult = null;
                 try {
                     BigInteger tip = BigInteger.ZERO;
-                    SendTxResult sendTxResult = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), tip, gasLimit, gasPrice, contract);
-                    if (sendTxResult != null) {
-                        isSuccess = sendTxResult.isSuccess();
-                    }
+                    sendTxResult = Dappley.sendTransactionWithContract(wallet.getAddress(), contractAddressStep, baseFee, wallet.getPrivateKey(), tip, gasLimit, gasPrice, contract);
                 } catch (Exception e) {
                     Log.e(TAG, "sendTransactionWithContract: ", e);
                 }
                 Message msg = handler.obtainMessage(Constant.MSG_CONVERT_FINISH);
-                msg.obj = isSuccess;
+                msg.obj = sendTxResult;
                 handler.sendMessage(msg);
             }
         }).start();
     }
 
-    private void onConvertFinish(boolean isSuccess) {
+    private void onConvertFinish(SendTxResult sendTxResult) {
         LoadingDialog.close();
-        if (isSuccess) {
+        if (sendTxResult != null && sendTxResult.getCode() == SendTxResult.CODE_SUCCESS) {
             String note = String.format(successString, restStep);
             Toast.makeText(getActivity(), note, Toast.LENGTH_SHORT).show();
 
@@ -469,8 +466,8 @@ public class StepFragment extends Fragment {
             if (msg.what == Constant.MSG_STEP_UPDATE && stepFragment.tvStepAll != null) {
                 stepFragment.tvStepRest.setText("" + msg.arg1);
             } else if (msg.what == Constant.MSG_CONVERT_FINISH) {
-                boolean isSuccess = (boolean) msg.obj;
-                stepFragment.onConvertFinish(isSuccess);
+                SendTxResult sendTxResult = (SendTxResult) msg.obj;
+                stepFragment.onConvertFinish(sendTxResult);
             } else if (msg.what == Constant.MSG_STEP_ALL) {
                 int stepAll = msg.arg1;
                 if (stepAll < 0) {

@@ -36,7 +36,8 @@ public class UtxoManager {
             }
         }
         if (accumulated.compareTo(amount) < 0) {
-            throw new IllegalArgumentException("there is no enough vout");
+            // vout is no enough
+            return null;
         }
         return spendables;
     }

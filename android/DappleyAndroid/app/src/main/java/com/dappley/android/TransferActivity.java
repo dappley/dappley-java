@@ -319,18 +319,15 @@ public class TransferActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     String toAddress = etToAddress.getText().toString().trim();
-                    boolean isSuccess = false;
+                    SendTxResult sendTxResult = null;
                     try {
                         BigInteger tip = new BigInteger(String.valueOf(barTip.getProgress() + SEEK_BAR_OFFSET));
-                        SendTxResult sendTxResult = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
-                        if (sendTxResult != null) {
-                            isSuccess = sendTxResult.isSuccess();
-                        }
+                        sendTxResult = Dappley.sendTransaction(wallet.getAddress(), toAddress, amount, wallet.getPrivateKey(), tip);
                     } catch (Exception e) {
                         Log.e(TAG, "transfer: ", e);
                     }
                     Message msg = new Message();
-                    msg.obj = isSuccess;
+                    msg.obj = sendTxResult;
                     msg.what = Constant.MSG_TRANSFER_FINISH;
                     handler.sendMessage(msg);
                 }
@@ -342,9 +339,13 @@ public class TransferActivity extends AppCompatActivity {
         }
     }
 
-    private void onTransferFinish(boolean isSuccess) {
+    private void onTransferFinish(SendTxResult sendTxResult) {
         LoadingDialog.close();
-        if (isSuccess) {
+        if (sendTxResult == null || sendTxResult.getCode() == SendTxResult.CODE_ERROR_EXCEPTION) {
+            Toast.makeText(this, R.string.note_transfer_failed_exception, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (sendTxResult.getCode() == SendTxResult.CODE_SUCCESS) {
             // record receiver name
             Receiver receiver = new Receiver(etToAddress.getText().toString(), new Date());
             try {
@@ -354,8 +355,10 @@ public class TransferActivity extends AppCompatActivity {
             }
             Toast.makeText(this, R.string.note_transfer_success, Toast.LENGTH_SHORT).show();
             finish();
-        } else {
-            Toast.makeText(this, R.string.note_transfer_failed, Toast.LENGTH_SHORT).show();
+        } else if (sendTxResult.getCode() == SendTxResult.CODE_ERROR_PARAM) {
+            Toast.makeText(this, R.string.note_transfer_failed_param, Toast.LENGTH_SHORT).show();
+        } else if (sendTxResult.getCode() == SendTxResult.CODE_ERROR_BALANCE) {
+            Toast.makeText(this, R.string.note_transfer_failed_balance, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -443,8 +446,8 @@ public class TransferActivity extends AppCompatActivity {
                 Toast.makeText(TransferActivity.this, R.string.note_node_error, Toast.LENGTH_SHORT).show();
                 refreshLayout.setRefreshing(false);
             } else if (msg.what == Constant.MSG_TRANSFER_FINISH) {
-                boolean isSuccess = (boolean) msg.obj;
-                onTransferFinish(isSuccess);
+                SendTxResult sendTxResult = (SendTxResult) msg.obj;
+                onTransferFinish(sendTxResult);
             }
         }
     };

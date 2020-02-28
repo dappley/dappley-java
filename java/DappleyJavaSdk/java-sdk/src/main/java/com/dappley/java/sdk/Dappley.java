@@ -291,26 +291,31 @@ public class Dappley {
      * @return SendTxResult transaction committed result
      */
     private static SendTxResult sendTransaction(String fromAddress, String toAddress, BigInteger amount, BigInteger privateKey, BigInteger tip, BigInteger gasLimit, BigInteger gasPrice, String contract) {
+        SendTxResult sendTxResult = new SendTxResult();
+        sendTxResult.setSuccess(false);
         if (ObjectUtils.isEmpty(fromAddress) || ObjectUtils.isEmpty(toAddress)) {
-            return null;
+            sendTxResult.setMsg("Param error: fromAddress or toAddress is empty!");
+            return sendTxResult;
         }
         List<Utxo> allUtxo = dataProvider.getUtxos(fromAddress);
         if (ObjectUtils.isEmpty(allUtxo)) {
-            return null;
+            sendTxResult.setMsg("FromAddress has no balance!");
+            return sendTxResult;
         }
         BigInteger totalCost = getTotalUtxoCost(amount, tip, gasLimit, gasPrice);
         List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, totalCost);
         if (ObjectUtils.isEmpty(utxos)) {
-            return null;
+            sendTxResult.setMsg("Balance of fromAddress is not enough!");
+            return sendTxResult;
         }
         Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
         try {
-            SendTxResult sendTxResult = transactionSender.sendTransaction(transaction);
-            return sendTxResult;
+            sendTxResult = transactionSender.sendTransaction(transaction);
         } catch (Exception e) {
+            sendTxResult.setMsg(e.getMessage());
             log.error("sendTransaction: ", e);
-            return null;
         }
+        return sendTxResult;
     }
 
     /**

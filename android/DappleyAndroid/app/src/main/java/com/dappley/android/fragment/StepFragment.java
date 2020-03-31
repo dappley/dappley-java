@@ -260,8 +260,9 @@ public class StepFragment extends Fragment {
                     BigInteger gasPrice = Dappley.getGasPrice();
                     toConvert(wallet, gasLimit, gasPrice);
                 } catch (Exception e) {
+                    SendTxResult sendTxResult = new SendTxResult();
                     Message msg = handler.obtainMessage(Constant.MSG_CONVERT_FINISH);
-                    msg.obj = false;
+                    msg.obj = sendTxResult;
                     handler.sendMessage(msg);
                     Log.e(TAG, "requestGasCountAndPrice: ", e);
                 }

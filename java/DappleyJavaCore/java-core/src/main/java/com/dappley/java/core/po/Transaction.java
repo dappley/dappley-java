@@ -4,7 +4,6 @@ import com.dappley.java.core.crypto.ShaDigest;
 import com.dappley.java.core.protobuf.TransactionBaseProto;
 import com.dappley.java.core.protobuf.TransactionProto;
 import com.dappley.java.core.util.ByteUtil;
-import com.dappley.java.core.util.HexUtil;
 import com.dappley.java.core.util.ObjectUtils;
 import com.google.protobuf.ByteString;
 import lombok.Data;
@@ -22,12 +21,21 @@ import java.util.List;
 @Data
 @Slf4j
 public class Transaction implements Serializable {
+    public static final int TxTypeDefault = 0;
+    public static final int TxTypeNormal = 1;
+    public static final int TxTypeContract = 2;
+    public static final int TxTypeCoinbase = 3;
+    public static final int TxTypeGasReward = 4;
+    public static final int TxTypeGasChange = 5;
+    public static final int TxTypeReward = 6;
+
     private byte[] id;
     private List<TxInput> txInputs;
     private List<TxOutput> txOutputs;
     private BigInteger tip;
     private BigInteger gasLimit;
     private BigInteger gasPrice;
+    private int type;
 
     public Transaction() {
     }
@@ -73,6 +81,7 @@ public class Transaction implements Serializable {
         if (transaction.getGasPrice() != null && transaction.getGasPrice().size() > 0) {
             this.setGasPrice(new BigInteger(1, transaction.getGasPrice().toByteArray()));
         }
+        this.setType(transaction.getType());
     }
 
     /**
@@ -107,6 +116,7 @@ public class Transaction implements Serializable {
         if (this.getGasPrice() != null) {
             builder.setGasPrice(ByteString.copyFrom(ByteUtil.bigInteger2Bytes(this.getGasPrice())));
         }
+        builder.setType(this.getType());
         return builder.build();
     }
 
@@ -171,6 +181,7 @@ public class Transaction implements Serializable {
         transaction.setTip(this.tip);
         transaction.setGasLimit(this.gasLimit);
         transaction.setGasPrice(this.gasPrice);
+        transaction.setType(this.type);
         return transaction;
     }
 
@@ -256,7 +267,9 @@ public class Transaction implements Serializable {
         if (this.getGasPrice() != null) {
             bytesList.add(ByteUtil.bigInteger2Bytes(this.getGasPrice()));
         }
-
+        if (this.getType() > TxTypeDefault) {
+            bytesList.add(ByteUtil.int2Bytes(this.getType()));
+        }
         return ByteUtil.joinBytes(bytesList);
     }
 
@@ -274,6 +287,9 @@ public class Transaction implements Serializable {
      * @return boolean true/false
      */
     public boolean isCoinbase() {
+        if (this.getType() == TxTypeCoinbase) {
+            return true;
+        }
         // len(tx.Vin) == 1 && len(tx.Vin[0].Txid) == 0 && tx.Vin[0].Vout == -1 && len(tx.Vout) == 1
         if (this.getTxInputs() == null || this.getTxInputs().size() != 1) {
             return false;

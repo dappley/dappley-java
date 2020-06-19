@@ -21,7 +21,7 @@ public class SendTransaction {
         BigInteger privateKey = new BigInteger("300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a", 16);
         SendTxResult sendTxResult = Dappley.sendTransaction(from, to, amount, privateKey, tip);
         if (sendTxResult != null) {
-            log.info("sendTransaction isSuccess:" + sendTxResult.isSuccess());
+            log.info("sendTransaction isSuccess:" + (sendTxResult.getCode() == SendTxResult.CODE_SUCCESS));
         } else {
             log.info("sendTransaction failed");
         }

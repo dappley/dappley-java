@@ -25,7 +25,7 @@ public class SendTransactionWithContract {
         contract = String.format(contract, from, 1);
         SendTxResult sendTxResult = Dappley.sendTransactionWithContract(from, toContract, fee, privateKey, tip, gasLimit, gasPrice, contract);
         if (sendTxResult != null) {
-            log.info("sendTransactionWithContract isSuccess:" + sendTxResult.isSuccess());
+            log.info("sendTransactionWithContract isSuccess:" + (sendTxResult.getCode() == SendTxResult.CODE_SUCCESS));
             log.info("sendTransactionWithContract contractAddress:" + sendTxResult.getGeneratedContractAddress());
         } else {
             log.info("sendTransactionWithContract failed");

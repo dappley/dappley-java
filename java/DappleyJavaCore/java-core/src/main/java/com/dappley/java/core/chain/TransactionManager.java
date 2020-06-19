@@ -64,6 +64,12 @@ public class TransactionManager {
         transaction.setGasLimit(gasLimit);
         transaction.setGasPrice(gasPrice);
 
+        if (contract != null && contract.length() > 0) {
+            transaction.setType(Transaction.TxTypeContract);
+        } else {
+            transaction.setType(Transaction.TxTypeNormal);
+        }
+
         // generate Id
         transaction.createId();
 

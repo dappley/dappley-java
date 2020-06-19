@@ -867,6 +867,11 @@ public final class TransactionProto {
      * <code>bytes gas_price = 6;</code>
      */
     com.google.protobuf.ByteString getGasPrice();
+
+    /**
+     * <code>int32 type = 7;</code>
+     */
+    int getType();
   }
   /**
    * Protobuf type {@code transactionpb.Transaction}
@@ -887,6 +892,7 @@ public final class TransactionProto {
       tip_ = com.google.protobuf.ByteString.EMPTY;
       gasLimit_ = com.google.protobuf.ByteString.EMPTY;
       gasPrice_ = com.google.protobuf.ByteString.EMPTY;
+      type_ = 0;
     }
 
     @java.lang.Override
@@ -949,6 +955,11 @@ public final class TransactionProto {
             case 50: {
 
               gasPrice_ = input.readBytes();
+              break;
+            }
+            case 56: {
+
+              type_ = input.readInt32();
               break;
             }
             default: {
@@ -1096,6 +1107,15 @@ public final class TransactionProto {
       return gasPrice_;
     }
 
+    public static final int TYPE_FIELD_NUMBER = 7;
+    private int type_;
+    /**
+     * <code>int32 type = 7;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1127,6 +1147,9 @@ public final class TransactionProto {
       }
       if (!gasPrice_.isEmpty()) {
         output.writeBytes(6, gasPrice_);
+      }
+      if (type_ != 0) {
+        output.writeInt32(7, type_);
       }
       unknownFields.writeTo(output);
     }
@@ -1161,6 +1184,10 @@ public final class TransactionProto {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(6, gasPrice_);
       }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, type_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -1189,6 +1216,8 @@ public final class TransactionProto {
           .equals(other.getGasLimit());
       result = result && getGasPrice()
           .equals(other.getGasPrice());
+      result = result && (getType()
+          == other.getType());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1216,6 +1245,8 @@ public final class TransactionProto {
       hash = (53 * hash) + getGasLimit().hashCode();
       hash = (37 * hash) + GAS_PRICE_FIELD_NUMBER;
       hash = (53 * hash) + getGasPrice().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1371,6 +1402,8 @@ public final class TransactionProto {
 
         gasPrice_ = com.google.protobuf.ByteString.EMPTY;
 
+        type_ = 0;
+
         return this;
       }
 
@@ -1421,6 +1454,7 @@ public final class TransactionProto {
         result.tip_ = tip_;
         result.gasLimit_ = gasLimit_;
         result.gasPrice_ = gasPrice_;
+        result.type_ = type_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1533,6 +1567,9 @@ public final class TransactionProto {
         }
         if (other.getGasPrice() != com.google.protobuf.ByteString.EMPTY) {
           setGasPrice(other.getGasPrice());
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2156,6 +2193,32 @@ public final class TransactionProto {
       public Builder clearGasPrice() {
         
         gasPrice_ = getDefaultInstance().getGasPrice();
+        onChanged();
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <code>int32 type = 7;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <code>int32 type = 7;</code>
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 type = 7;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
         onChanged();
         return this;
       }
@@ -4014,19 +4077,20 @@ public final class TransactionProto {
       "\n\021transaction.proto\022\rtransactionpb\032\025tran" +
       "sactionBase.proto\"@\n\014Transactions\0220\n\014tra" +
       "nsactions\030\001 \003(\0132\032.transactionpb.Transact" +
-      "ion\"\240\001\n\013Transaction\022\n\n\002id\030\001 \001(\014\022\'\n\003vin\030\002" +
+      "ion\"\256\001\n\013Transaction\022\n\n\002id\030\001 \001(\014\022\'\n\003vin\030\002" +
       " \003(\0132\032.transactionbasepb.TXInput\022)\n\004vout" +
       "\030\003 \003(\0132\033.transactionbasepb.TXOutput\022\013\n\003t" +
       "ip\030\004 \001(\014\022\021\n\tgas_limit\030\005 \001(\014\022\021\n\tgas_price" +
-      "\030\006 \001(\014\"\327\001\n\017TransactionNode\022>\n\010children\030\001" +
-      " \003(\0132,.transactionpb.TransactionNode.Chi" +
-      "ldrenEntry\022)\n\005value\030\002 \001(\0132\032.transactionp" +
-      "b.Transaction\022\014\n\004size\030\003 \001(\003\032K\n\rChildrenE" +
-      "ntry\022\013\n\003key\030\001 \001(\t\022)\n\005value\030\002 \001(\0132\032.trans" +
-      "actionpb.Transaction:\0028\001\"?\n\022TransactionJ" +
-      "ournal\022)\n\004vout\030\001 \003(\0132\033.transactionbasepb" +
-      ".TXOutputB2\n\036com.dappley.java.core.proto" +
-      "bufB\020TransactionProtob\006proto3"
+      "\030\006 \001(\014\022\014\n\004type\030\007 \001(\005\"\327\001\n\017TransactionNode" +
+      "\022>\n\010children\030\001 \003(\0132,.transactionpb.Trans" +
+      "actionNode.ChildrenEntry\022)\n\005value\030\002 \001(\0132" +
+      "\032.transactionpb.Transaction\022\014\n\004size\030\003 \001(" +
+      "\003\032K\n\rChildrenEntry\022\013\n\003key\030\001 \001(\t\022)\n\005value" +
+      "\030\002 \001(\0132\032.transactionpb.Transaction:\0028\001\"?" +
+      "\n\022TransactionJournal\022)\n\004vout\030\001 \003(\0132\033.tra" +
+      "nsactionbasepb.TXOutputB2\n\036com.dappley.j" +
+      "ava.core.protobufB\020TransactionProtob\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4052,7 +4116,7 @@ public final class TransactionProto {
     internal_static_transactionpb_Transaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_transactionpb_Transaction_descriptor,
-        new java.lang.String[] { "Id", "Vin", "Vout", "Tip", "GasLimit", "GasPrice", });
+        new java.lang.String[] { "Id", "Vin", "Vout", "Tip", "GasLimit", "GasPrice", "Type", });
     internal_static_transactionpb_TransactionNode_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_transactionpb_TransactionNode_fieldAccessorTable = new

@@ -17,6 +17,7 @@ message Transaction{
     bytes tip = 4;
     bytes gas_limit = 5;
     bytes gas_price = 6;
+    int32 type = 7;
 }
 
 message TransactionNode{

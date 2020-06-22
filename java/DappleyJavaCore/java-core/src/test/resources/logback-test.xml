@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <contextName>dappley-java-core</contextName>
     <timestamp key="TIMESTAMP" datePattern="yyyy-MM-dd" />
 
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">

@@ -38,6 +38,16 @@ public class Dappley {
     public static void init(DataMode dataMode) {
         String serverIp = Configuration.getInstance().getServerIp();
         int serverPort = Configuration.getInstance().getServerPort();
+        init(dataMode, serverIp, serverPort);
+    }
+
+    /**
+     * Initialize client with params
+     * @param dataMode
+     * @param serverIp   rpc server ip
+     * @param serverPort rpc server channel port
+     */
+    public static void init(DataMode dataMode, String serverIp, int serverPort) {
         if (dataMode == DataMode.LOCAL_STORAGE) {
             throw new IllegalArgumentException("only remote online mode is supported now.");
         }

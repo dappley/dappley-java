@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
-    <contextName>dappley-java-core</contextName>
     <timestamp key="TIMESTAMP" datePattern="yyyy-MM-dd" />
-    <property name="LOGPATH" value="/dappley-java-core/logs" />
+    <property name="LOGPATH" value="./dappley-java-logs" />
     <!-- 输出到控制台 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">

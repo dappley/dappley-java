@@ -7,7 +7,7 @@ plugins {
 
 def RELEASE_GROUP_ID = "com.dappley"
 def RELEASE_ARTIFACT_ID = "java-sdk"
-def RELEASE_VERSION = "3.0.4"
+def RELEASE_VERSION = "3.1.0"
 def RELEASE_NAME = "dappley-java-sdk"
 def SITE_URL = "https://github.com/dappley/dappley-java"
 
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.dappley:java-core:3.0.4'
+    compile 'com.dappley:java-core:3.1.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 

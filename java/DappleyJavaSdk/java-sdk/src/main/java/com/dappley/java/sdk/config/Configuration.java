@@ -1,11 +1,13 @@
 package com.dappley.java.sdk.config;
 
+import com.dappley.java.core.po.ServerNode;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
+import java.io.InputStreamReader;
 
 /**
  * SDK configuration values
@@ -14,13 +16,9 @@ import java.util.Properties;
 public class Configuration {
     private static Configuration configuration;
     /**
-     * IP of remote RPC server
+     * Server host info of remote RPC server
      */
-    private String serverIp;
-    /**
-     * Port of RPC service
-     */
-    private int serverPort;
+    private ServerNode[] serverNodes;
 
     /**
      * Returns the instance of Configuration class
@@ -38,24 +36,46 @@ public class Configuration {
      * Read node.properties once
      */
     private void init() {
+        String nodeConfig = readNodeConfig();
+        ServerNode[] serverNodes = new Gson().fromJson(nodeConfig, ServerNode[].class);
+        this.serverNodes = serverNodes;
+    }
+
+    /**
+     * Read node config file content
+     * @return
+     */
+    private String readNodeConfig() {
         InputStream in = null;
+        InputStreamReader inputReader = null;
+        BufferedReader bufReader = null;
         try {
-            Properties prop = new Properties();
-            in = Configuration.class.getResourceAsStream("/node.properties");
-            prop.load(in);
-            serverIp = prop.getProperty("serverIp", "");
-            String port = prop.getProperty("serverPort", "");
-            if (port != null && port.length() > 0) {
-                serverPort = Integer.parseInt(port);
-            } else {
-                serverPort = 135;
+            in = Configuration.class.getResourceAsStream("/server.conf");
+            inputReader = new InputStreamReader(in);
+            bufReader = new BufferedReader(inputReader);
+            String line = null;
+            StringBuffer sb = new StringBuffer();
+            while ((line = bufReader.readLine()) != null) {
+                sb.append(line);
             }
-            log.info("init: serverIp:" + serverIp + ", serverPort:" + serverPort);
-        } catch (FileNotFoundException e) {
-            log.error("init: ", e);
+            return sb.toString();
         } catch (IOException e) {
-            log.error("init: ", e);
+            log.error("readNodeConfig: ", e);
         } finally {
+            if (bufReader != null) {
+                try {
+                    bufReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (inputReader != null) {
+                try {
+                    inputReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             if (in != null) {
                 try {
                     in.close();
@@ -64,13 +84,10 @@ public class Configuration {
                 }
             }
         }
+        return "";
     }
 
-    public String getServerIp() {
-        return serverIp;
-    }
-
-    public int getServerPort() {
-        return serverPort;
+    public ServerNode[] getServerNodes() {
+        return serverNodes;
     }
 }

@@ -1,5 +1,6 @@
 package com.dappley.java.test;
 
+import com.dappley.java.core.po.ServerNode;
 import com.dappley.java.sdk.config.Configuration;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ public class ConfigurationTest {
 
     @Test
     public void testReadConfig() {
-        String serverIp = Configuration.getInstance().getServerIp();
-        assertEquals("config read failure.", serverIp, "192.168.1.61");
+        ServerNode[] serverNodes = Configuration.getInstance().getServerNodes();
+        assertEquals("config read failure.", 2, serverNodes.length);
     }
 }

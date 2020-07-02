@@ -36,18 +36,16 @@ public class Dappley {
      * @param dataMode choose a data reader mode
      */
     public static void init(DataMode dataMode) {
-        String serverIp = Configuration.getInstance().getServerIp();
-        int serverPort = Configuration.getInstance().getServerPort();
-        init(dataMode, serverIp, serverPort);
+        ServerNode[] serverNodes = Configuration.getInstance().getServerNodes();
+        init(dataMode, serverNodes);
     }
 
     /**
      * Initialize client with params
      * @param dataMode
-     * @param serverIp   rpc server ip
-     * @param serverPort rpc server channel port
+     * @param serverNodes rpc server nodes
      */
-    public static void init(DataMode dataMode, String serverIp, int serverPort) {
+    public static void init(DataMode dataMode, ServerNode[] serverNodes) {
         if (dataMode == DataMode.LOCAL_STORAGE) {
             throw new IllegalArgumentException("only remote online mode is supported now.");
         }
@@ -56,7 +54,7 @@ public class Dappley {
             if (dataMode == DataMode.REMOTE_ONLINE) {
                 ProtocalProviderBuilder providerBuilder = new ProtocalProviderBuilder();
                 providerBuilder.setType(RemoteDataProvider.RemoteProtocalType.RPC)
-                        .setRpcServerIp(serverIp).setRpcServerPort(serverPort);
+                        .setServerNodes(serverNodes);
                 protocalProvider = providerBuilder.build();
                 dataProvider = new RemoteDataProvider(protocalProvider);
             }

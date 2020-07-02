@@ -3,6 +3,7 @@ package com.dappley.java.core.net;
 import com.dappley.java.core.po.BlockChainInfo;
 import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.po.SendTxResult;
+import com.dappley.java.core.po.ServerNode;
 import com.dappley.java.core.protobuf.*;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
@@ -17,20 +18,18 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RpcProtocalProvider implements ProtocalProvider {
 
-    private String serverIp;
-    private int serverPort;
+    private ServerNode[] serverNodes;
 
     @Override
-    public void init(String serverIp, int serverPort) {
-        this.serverIp = serverIp;
-        this.serverPort = serverPort;
+    public void init(ServerNode[] serverNodes) {
+        this.serverNodes = serverNodes;
     }
 
     /**
      * Initialize rpc channel
      */
     private ManagedChannel openChannel() {
-        RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverIp, serverPort);
+        RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverNodes);
         ManagedChannel channel = channelBuilder.build();
         return channel;
     }

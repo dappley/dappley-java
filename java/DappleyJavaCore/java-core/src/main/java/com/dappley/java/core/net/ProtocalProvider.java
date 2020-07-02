@@ -2,6 +2,7 @@ package com.dappley.java.core.net;
 
 import com.dappley.java.core.po.BlockChainInfo;
 import com.dappley.java.core.po.ContractQueryResult;
+import com.dappley.java.core.po.ServerNode;
 import com.dappley.java.core.po.SendTxResult;
 import com.dappley.java.core.protobuf.BlockProto;
 import com.dappley.java.core.protobuf.TransactionProto;
@@ -17,10 +18,9 @@ public interface ProtocalProvider {
 
     /**
      * Initialize provider
-     * @param serverIp
-     * @param serverPort
+     * @param serverNodes
      */
-    void init(String serverIp, int serverPort);
+    void init(ServerNode[] serverNodes);
 
     String getVersion();
 

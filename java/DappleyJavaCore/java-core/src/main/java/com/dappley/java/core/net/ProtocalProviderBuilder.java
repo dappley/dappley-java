@@ -1,12 +1,13 @@
 package com.dappley.java.core.net;
 
+import com.dappley.java.core.po.ServerNode;
+
 /**
  * Builder of protocal provider
  */
 public class ProtocalProviderBuilder {
     private RemoteDataProvider.RemoteProtocalType type;
-    private String rpcServerIp;
-    private int rpcServerPort;
+    private ServerNode[] serverNodes;
 
     /**
      * Register of RemoteProtocalType. RemoteProtocalType.RPC is supported now.
@@ -19,22 +20,12 @@ public class ProtocalProviderBuilder {
     }
 
     /**
-     * Set rpc server ip
-     * @param rpcServerIp
+     * Set rpc server nodes
+     * @param serverNodes
      * @return ProtocalProviderBuilder
      */
-    public ProtocalProviderBuilder setRpcServerIp(String rpcServerIp) {
-        this.rpcServerIp = rpcServerIp;
-        return this;
-    }
-
-    /**
-     * Set rpc server port
-     * @param rpcServerPort
-     * @return ProtocalProviderBuilder
-     */
-    public ProtocalProviderBuilder setRpcServerPort(int rpcServerPort) {
-        this.rpcServerPort = rpcServerPort;
+    public ProtocalProviderBuilder setServerNodes(ServerNode[] serverNodes) {
+        this.serverNodes = serverNodes;
         return this;
     }
 
@@ -46,7 +37,7 @@ public class ProtocalProviderBuilder {
         ProtocalProvider protocalProvider;
         if (type == RemoteDataProvider.RemoteProtocalType.RPC) {
             protocalProvider = new RpcProtocalProvider();
-            protocalProvider.init(rpcServerIp, rpcServerPort);
+            protocalProvider.init(serverNodes);
         } else {
             throw new IllegalArgumentException("only rpc protocal is supported now.");
         }

@@ -19,6 +19,7 @@ import com.dappley.java.core.net.RemoteDataProvider;
 import com.dappley.java.core.net.TransactionSender;
 import com.dappley.java.core.po.ContractQueryResult;
 import com.dappley.java.core.po.SendTxResult;
+import com.dappley.java.core.po.ServerNode;
 import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.Utxo;
 import com.dappley.java.core.po.Wallet;
@@ -52,8 +53,7 @@ public class Dappley {
      */
     public static void init(Context context, DataMode dataMode) {
         Dappley.context = context;
-        String serverIp = Configuration.getInstance(context).getServerIp();
-        int serverPort = Configuration.getInstance(context).getServerPort();
+        ServerNode[] serverNodes = Configuration.getInstance(context).getServerNodes();
         try {
             ProtocalProvider protocalProvider = null;
             if (dataMode == DataMode.LOCAL_STORAGE) {
@@ -65,7 +65,7 @@ public class Dappley {
             } else if (dataMode == DataMode.REMOTE_ONLINE) {
                 ProtocalProviderBuilder providerBuilder = new ProtocalProviderBuilder();
                 providerBuilder.setType(RemoteDataProvider.RemoteProtocalType.RPC)
-                        .setRpcServerIp(serverIp).setRpcServerPort(serverPort);
+                        .setServerNodes(serverNodes);
                 protocalProvider = providerBuilder.build();
                 dataProvider = new RemoteDataProvider(protocalProvider);
             }

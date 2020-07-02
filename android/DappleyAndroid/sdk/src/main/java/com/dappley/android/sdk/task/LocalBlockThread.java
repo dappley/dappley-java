@@ -16,6 +16,7 @@ import com.dappley.java.core.net.ProtocalProvider;
 import com.dappley.java.core.net.ProtocalProviderBuilder;
 import com.dappley.java.core.net.RemoteDataProvider;
 import com.dappley.java.core.po.Block;
+import com.dappley.java.core.po.ServerNode;
 import com.dappley.java.core.po.Transaction;
 import com.dappley.java.core.po.TxInput;
 import com.dappley.java.core.po.TxOutput;
@@ -55,8 +56,7 @@ public class LocalBlockThread implements Runnable {
 
     public LocalBlockThread(Context context) {
         this.context = context;
-        String serverIp = Configuration.getInstance(context).getServerIp();
-        int serverPort = Configuration.getInstance(context).getServerPort();
+        ServerNode[] serverNodes = Configuration.getInstance(context).getServerNodes();
 
         blockDb = new BlockDb(context);
         blockIndexDb = new BlockIndexDb(context);
@@ -66,7 +66,7 @@ public class LocalBlockThread implements Runnable {
         utxoIndexDb = new UtxoIndexDb(context);
         ProtocalProviderBuilder providerBuilder = new ProtocalProviderBuilder();
         providerBuilder.setType(RemoteDataProvider.RemoteProtocalType.RPC)
-                .setRpcServerIp(serverIp).setRpcServerPort(serverPort);
+                .setServerNodes(serverNodes);
         ProtocalProvider protocalProvider = providerBuilder.build();
         dataProvider = new RemoteDataProvider(protocalProvider);
 

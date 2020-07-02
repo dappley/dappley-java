@@ -40,7 +40,6 @@ public class Configuration {
      * @param context
      */
     private void init(Context context) {
-        InputStream in = null;
         String nodeConfig = readNodeConfig(context);
         ServerNode[] serverNodes = new Gson().fromJson(nodeConfig, ServerNode[].class);
         this.serverNodes = serverNodes;

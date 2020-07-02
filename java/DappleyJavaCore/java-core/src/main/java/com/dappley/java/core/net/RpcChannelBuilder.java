@@ -32,7 +32,6 @@ public class RpcChannelBuilder {
         channelBuilder = ManagedChannelBuilder.forTarget("service")
                 .nameResolverFactory(nameResolverFactory)
                 .defaultLoadBalancingPolicy("pick_first")
-                .idleTimeout(15, TimeUnit.SECONDS)
                 .maxInboundMessageSize(MAX_CHANNEL_BYTES)
                 .usePlaintext();
         return this;

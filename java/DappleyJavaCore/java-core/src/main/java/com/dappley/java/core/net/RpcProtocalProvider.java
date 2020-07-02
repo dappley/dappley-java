@@ -17,12 +17,23 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class RpcProtocalProvider implements ProtocalProvider {
-
+    /**
+     * timeout seconds of each RPC request
+     */
+    private int timeout = 15;
     private ServerNode[] serverNodes;
 
     @Override
     public void init(ServerNode[] serverNodes) {
         this.serverNodes = serverNodes;
+    }
+
+    /**
+     * Set RPC request timeout
+     * @param timeout value in seconds
+     */
+    public void setRequestTimeoutSeconds(int timeout) {
+        this.timeout = timeout;
     }
 
     /**
@@ -41,11 +52,20 @@ public class RpcProtocalProvider implements ProtocalProvider {
     private void shutdownChannel(ManagedChannel channel) {
         try {
             if (channel != null) {
-                channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+                channel.shutdown().awaitTermination(this.timeout, TimeUnit.SECONDS);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Returns new blocking stub with timeout value
+     * @param channel
+     * @return
+     */
+    private RpcServiceGrpc.RpcServiceBlockingStub getBlockingStub(ManagedChannel channel) {
+        return RpcServiceGrpc.newBlockingStub(channel).withDeadlineAfter(5, TimeUnit.SECONDS);
     }
 
     @Override
@@ -53,7 +73,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         ManagedChannel channel = openChannel();
         RpcProto.GetVersionRequest request = RpcProto.GetVersionRequest.newBuilder()
                 .build();
-        RpcProto.GetVersionResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetVersion(request);
+        RpcProto.GetVersionResponse response = getBlockingStub(channel).rpcGetVersion(request);
         shutdownChannel(channel);
 
         String message = "[protocal version:" + response.getProtoVersion() + "] [server version: " + response.getServerVersion() + "]";
@@ -67,7 +87,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetBalanceRequest request = RpcProto.GetBalanceRequest.newBuilder()
                 .setAddress(address)
                 .build();
-        RpcProto.GetBalanceResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetBalance(request);
+        RpcProto.GetBalanceResponse response = getBlockingStub(channel).rpcGetBalance(request);
         shutdownChannel(channel);
 
         log.debug("getBalance: " + response.getAmount());
@@ -79,7 +99,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         ManagedChannel channel = openChannel();
         RpcProto.GetBlockchainInfoRequest request = RpcProto.GetBlockchainInfoRequest.newBuilder()
                 .build();
-        RpcProto.GetBlockchainInfoResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetBlockchainInfo(request);
+        RpcProto.GetBlockchainInfoResponse response = getBlockingStub(channel).rpcGetBlockchainInfo(request);
         shutdownChannel(channel);
 
         BlockChainInfo blockChainInfo = new BlockChainInfo();
@@ -96,7 +116,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetUTXORequest request = RpcProto.GetUTXORequest.newBuilder()
                 .setAddress(address)
                 .build();
-        RpcProto.GetUTXOResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetUTXO(request);
+        RpcProto.GetUTXOResponse response = getBlockingStub(channel).rpcGetUTXO(request);
         shutdownChannel(channel);
 
         List<UtxoProto.Utxo> utxos = response.getUtxosList();
@@ -110,7 +130,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .addAllStartBlockHashes(startHashs)
                 .setMaxCount(count)
                 .build();
-        RpcProto.GetBlocksResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetBlocks(request);
+        RpcProto.GetBlocksResponse response = getBlockingStub(channel).rpcGetBlocks(request);
         shutdownChannel(channel);
 
         log.debug("getBlocks blockCount" + response.getBlocksCount());
@@ -123,7 +143,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetBlockByHashRequest request = RpcProto.GetBlockByHashRequest.newBuilder()
                 .setHash(byteHash)
                 .build();
-        RpcProto.GetBlockByHashResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetBlockByHash(request);
+        RpcProto.GetBlockByHashResponse response = getBlockingStub(channel).rpcGetBlockByHash(request);
         shutdownChannel(channel);
 
         BlockProto.Block block = response.getBlock();
@@ -136,7 +156,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetBlockByHeightRequest request = RpcProto.GetBlockByHeightRequest.newBuilder()
                 .setHeight(height)
                 .build();
-        RpcProto.GetBlockByHeightResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGetBlockByHeight(request);
+        RpcProto.GetBlockByHeightResponse response = getBlockingStub(channel).rpcGetBlockByHeight(request);
         shutdownChannel(channel);
 
         BlockProto.Block block = response.getBlock();
@@ -151,7 +171,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .build();
         SendTxResult sendTxResult = new SendTxResult();
         try {
-            RpcProto.SendTransactionResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcSendTransaction(request);
+            RpcProto.SendTransactionResponse response = getBlockingStub(channel).rpcSendTransaction(request);
             shutdownChannel(channel);
 
             sendTxResult.setCode(SendTxResult.CODE_SUCCESS);
@@ -170,7 +190,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.EstimateGasRequest request = RpcProto.EstimateGasRequest.newBuilder()
                 .setTransaction(transaction)
                 .build();
-        RpcProto.EstimateGasResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcEstimateGas(request);
+        RpcProto.EstimateGasResponse response = getBlockingStub(channel).rpcEstimateGas(request);
         shutdownChannel(channel);
 
         ByteString gasCount = response.getGasCount();
@@ -182,7 +202,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
         ManagedChannel channel = openChannel();
         RpcProto.GasPriceRequest request = RpcProto.GasPriceRequest.newBuilder()
                 .build();
-        RpcProto.GasPriceResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcGasPrice(request);
+        RpcProto.GasPriceResponse response = getBlockingStub(channel).rpcGasPrice(request);
         shutdownChannel(channel);
         ByteString gasPrice = response.getGasPrice();
         return gasPrice;
@@ -200,7 +220,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
             builder.setValue(value);
         }
         RpcProto.ContractQueryRequest request = builder.build();
-        RpcProto.ContractQueryResponse response = RpcServiceGrpc.newBlockingStub(channel).rpcContractQuery(request);
+        RpcProto.ContractQueryResponse response = getBlockingStub(channel).rpcContractQuery(request);
         shutdownChannel(channel);
 
         ContractQueryResult result = new ContractQueryResult();

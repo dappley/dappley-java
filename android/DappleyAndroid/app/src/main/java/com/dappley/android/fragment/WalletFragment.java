@@ -150,7 +150,7 @@ public class WalletFragment extends Fragment {
             public void onRefresh() {
                 loadData();
 
-                loadBalance();
+                loadBalance(false);
             }
         });
         pagerAdapter = new WalletHomePagerAdapter(getActivity(), cycleViewPager);
@@ -175,7 +175,7 @@ public class WalletFragment extends Fragment {
             public void onPageSelected(int position) {
                 currentIndex = cycleViewPager.getRealItem();
                 refreshLayout.setRefreshing(true);
-                loadBalance();
+                loadBalance(false);
 
                 PreferenceUtil.setInt(getActivity(), Constant.PREF_CURRENT_WALLET, currentIndex);
             }
@@ -349,8 +349,8 @@ public class WalletFragment extends Fragment {
         }
     }
 
-    public void loadBalance() {
-        new DataThread().start();
+    public void loadBalance(boolean isAutoUpdate) {
+        new DataThread(isAutoUpdate).start();
     }
 
     private void deleteWallet(String address) {
@@ -446,7 +446,7 @@ public class WalletFragment extends Fragment {
         if (schedule == null) {
             schedule = Executors.newScheduledThreadPool(1);
         }
-        future = schedule.scheduleAtFixedRate(new DataThread(), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
+        future = schedule.scheduleAtFixedRate(new DataThread(true), TASK_INIT_DELAY, TASK_PERIOD, TimeUnit.SECONDS);
 
         Log.d(TAG, "startSchedule: walletFrag data sync started.");
     }
@@ -460,6 +460,12 @@ public class WalletFragment extends Fragment {
     }
 
     class DataThread extends Thread {
+        private boolean isAutoUpdate;
+
+        public DataThread(boolean isAutoUpdate) {
+            this.isAutoUpdate = isAutoUpdate;
+        }
+
         @Override
         public void run() {
 
@@ -481,8 +487,11 @@ public class WalletFragment extends Fragment {
                 message.obj = balance;
                 handler.sendMessage(message);
             } catch (Exception e) {
-                Message message = handler.obtainMessage(Constant.MSG_HOME_BALANCE_ERROR);
-                handler.sendMessage(message);
+                if (!isAutoUpdate) {
+                    // Send notice feedback to user
+                    Message message = handler.obtainMessage(Constant.MSG_HOME_BALANCE_ERROR);
+                    handler.sendMessage(message);
+                }
                 Log.e(TAG, "run: ", e);
             }
             Log.d(TAG, "DataThread run once");

@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         WalletFragment walletFragment = getWalletFragment();
         if (walletFragment != null) {
             walletFragment.loadData();
-            walletFragment.loadBalance();
+            walletFragment.loadBalance(true);
             if (type == Constant.REQ_WALLET_CREATE && address != null && address.length() > 0) {
                 walletFragment.receiveReward(address);
             }

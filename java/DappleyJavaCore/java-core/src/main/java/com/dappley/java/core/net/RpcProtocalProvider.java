@@ -33,6 +33,9 @@ public class RpcProtocalProvider implements ProtocalProvider {
      * @param timeout value in seconds
      */
     public void setRequestTimeoutSeconds(int timeout) {
+        if (timeout <= 0) {
+            return;
+        }
         this.timeout = timeout;
     }
 
@@ -65,7 +68,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
      * @return
      */
     private RpcServiceGrpc.RpcServiceBlockingStub getBlockingStub(ManagedChannel channel) {
-        return RpcServiceGrpc.newBlockingStub(channel).withDeadlineAfter(5, TimeUnit.SECONDS);
+        return RpcServiceGrpc.newBlockingStub(channel).withDeadlineAfter(this.timeout, TimeUnit.SECONDS);
     }
 
     @Override

@@ -76,6 +76,10 @@ artifacts {
     archives sourcesJar
 }
 
+jar {
+    exclude "**/server.conf"
+}
+
 bintray {
     user = readPropertyFromLocalProperties("bintray.user")
     key = readPropertyFromLocalProperties("bintray.apikey")

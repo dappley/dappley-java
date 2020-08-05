@@ -8,7 +8,7 @@ plugins {
 
 def RELEASE_GROUP_ID = "com.dappley"
 def RELEASE_ARTIFACT_ID = "java-core"
-def RELEASE_VERSION = "3.1.1"
+def RELEASE_VERSION = "3.1.2"
 def SITE_URL = "https://github.com/dappley/dappley-java"
 
 group RELEASE_GROUP_ID
@@ -122,6 +122,10 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+
+jar {
+    exclude "**/logback.xml"
 }
 
 bintray {

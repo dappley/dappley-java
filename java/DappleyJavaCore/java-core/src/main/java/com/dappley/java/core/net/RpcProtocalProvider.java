@@ -7,8 +7,10 @@ import com.dappley.java.core.po.ServerNode;
 import com.dappley.java.core.protobuf.*;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
+import io.grpc.StatusRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,8 @@ public class RpcProtocalProvider implements ProtocalProvider {
      */
     private int timeout = 15;
     private ServerNode[] serverNodes;
+    private ServerNode serverNodeCache;
+    private int ConnectNodeModel;
 
     @Override
     public void init(ServerNode[] serverNodes) {
@@ -43,7 +47,40 @@ public class RpcProtocalProvider implements ProtocalProvider {
      * Initialize rpc channel
      */
     private ManagedChannel openChannel() {
-        RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverNodes);
+        if (serverNodes.length == 0){
+            return null;
+        }
+        ServerNode[] serverNodesInput = new ServerNode[1];
+        serverNodesInput[0] = new ServerNode();
+        switch (ConnectNodeModel){
+            case 1://改变之前的连接
+                if(serverNodeCache == null){
+                    serverNodesInput[0] = serverNodes[0];
+                    serverNodeCache =  serverNodesInput[0];
+                }else {
+                    for(int i=0;i< serverNodes.length;i++){
+                        if (serverNodeCache == serverNodes[i]){
+                            if (i+1 == serverNodes.length){
+                                serverNodesInput[0] = serverNodes[0];
+                            }else {
+                                serverNodesInput[0] = serverNodes[(i+1)];
+                            }
+                            serverNodeCache = serverNodesInput[0];
+                            break;
+                        }
+                    }
+                }
+                break;
+            default:
+                if(serverNodeCache == null){
+                    serverNodesInput[0] = serverNodes[0];
+                    serverNodeCache = serverNodesInput[0];
+                }else {
+                    serverNodesInput[0] = serverNodeCache;
+                }
+        }
+        log.debug("openChannel host:",serverNodeCache.getHost());
+        RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverNodesInput);
         ManagedChannel channel = channelBuilder.build();
         return channel;
     }
@@ -76,11 +113,23 @@ public class RpcProtocalProvider implements ProtocalProvider {
         ManagedChannel channel = openChannel();
         RpcProto.GetVersionRequest request = RpcProto.GetVersionRequest.newBuilder()
                 .build();
-        RpcProto.GetVersionResponse response = getBlockingStub(channel).rpcGetVersion(request);
         shutdownChannel(channel);
+        String message = null;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GetVersionResponse response = getBlockingStub(channel).rpcGetVersion(request);
+                message = "[protocal version:" + response.getProtoVersion() + "] [server version: " + response.getServerVersion() + "]";
+                log.debug("getVersion: " + message);
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
 
-        String message = "[protocal version:" + response.getProtoVersion() + "] [server version: " + response.getServerVersion() + "]";
-        log.debug("getVersion: " + message);
         return message;
     }
 
@@ -90,11 +139,22 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetBalanceRequest request = RpcProto.GetBalanceRequest.newBuilder()
                 .setAddress(address)
                 .build();
-        RpcProto.GetBalanceResponse response = getBlockingStub(channel).rpcGetBalance(request);
-        shutdownChannel(channel);
+        long amount =0;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GetBalanceResponse response = getBlockingStub(channel).rpcGetBalance(request);
+                amount =response.getAmount();
+                shutdownChannel(channel);
+            }catch(StatusRuntimeException e){
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
 
-        log.debug("getBalance: " + response.getAmount());
-        return response.getAmount();
+        log.debug("getBalance: " ,amount);
+        return amount;
     }
 
     @Override
@@ -102,14 +162,24 @@ public class RpcProtocalProvider implements ProtocalProvider {
         ManagedChannel channel = openChannel();
         RpcProto.GetBlockchainInfoRequest request = RpcProto.GetBlockchainInfoRequest.newBuilder()
                 .build();
-        RpcProto.GetBlockchainInfoResponse response = getBlockingStub(channel).rpcGetBlockchainInfo(request);
-        shutdownChannel(channel);
-
         BlockChainInfo blockChainInfo = new BlockChainInfo();
-        blockChainInfo.setTailBlockHash(response.getTailBlockHash());
-        blockChainInfo.setBlockHeight(response.getBlockHeight());
-        blockChainInfo.setProducers(response.getProducersList());
-        log.debug("getBlockchainInfo: " + response.toString());
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GetBlockchainInfoResponse response = getBlockingStub(channel).rpcGetBlockchainInfo(request);
+                blockChainInfo.setTailBlockHash(response.getTailBlockHash());
+                blockChainInfo.setBlockHeight(response.getBlockHeight());
+                blockChainInfo.setProducers(response.getProducersList());
+                log.debug("getBlockchainInfo:" + response.toString());
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
+
         return blockChainInfo;
     }
 
@@ -133,11 +203,23 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .addAllStartBlockHashes(startHashs)
                 .setMaxCount(count)
                 .build();
-        RpcProto.GetBlocksResponse response = getBlockingStub(channel).rpcGetBlocks(request);
-        shutdownChannel(channel);
+        List<BlockProto.Block> block = null;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GetBlocksResponse response = getBlockingStub(channel).rpcGetBlocks(request);
+                block = response.getBlocksList();
+                log.debug("getBlocks blockCount" + response.getBlocksCount());
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
 
-        log.debug("getBlocks blockCount" + response.getBlocksCount());
-        return response.getBlocksList();
+        return block;
     }
 
     @Override
@@ -146,10 +228,21 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetBlockByHashRequest request = RpcProto.GetBlockByHashRequest.newBuilder()
                 .setHash(byteHash)
                 .build();
-        RpcProto.GetBlockByHashResponse response = getBlockingStub(channel).rpcGetBlockByHash(request);
-        shutdownChannel(channel);
+        BlockProto.Block block = null;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GetBlockByHashResponse response = getBlockingStub(channel).rpcGetBlockByHash(request);
+                block = response.getBlock();
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
 
-        BlockProto.Block block = response.getBlock();
         return block;
     }
 
@@ -159,10 +252,21 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.GetBlockByHeightRequest request = RpcProto.GetBlockByHeightRequest.newBuilder()
                 .setHeight(height)
                 .build();
-        RpcProto.GetBlockByHeightResponse response = getBlockingStub(channel).rpcGetBlockByHeight(request);
-        shutdownChannel(channel);
+        BlockProto.Block block = null;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GetBlockByHeightResponse response = getBlockingStub(channel).rpcGetBlockByHeight(request);
+                block = response.getBlock();
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
 
-        BlockProto.Block block = response.getBlock();
         return block;
     }
 
@@ -173,17 +277,24 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 .setTransaction(transaction)
                 .build();
         SendTxResult sendTxResult = new SendTxResult();
-        try {
-            RpcProto.SendTransactionResponse response = getBlockingStub(channel).rpcSendTransaction(request);
-            shutdownChannel(channel);
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.SendTransactionResponse response = getBlockingStub(channel).rpcSendTransaction(request);
+                shutdownChannel(channel);
 
-            sendTxResult.setCode(SendTxResult.CODE_SUCCESS);
-            sendTxResult.setGeneratedContractAddress(response.getGeneratedContractAddress());
-        } catch (Exception e) {
-            sendTxResult.setCode(SendTxResult.CODE_ERROR_EXCEPTION);
-            sendTxResult.setMsg(e.getMessage());
-            log.error(e.getMessage());
+                sendTxResult.setCode(SendTxResult.CODE_SUCCESS);
+                sendTxResult.setGeneratedContractAddress(response.getGeneratedContractAddress());
+                break;
+            } catch (Exception e) {
+                sendTxResult.setCode(SendTxResult.CODE_ERROR_EXCEPTION);
+                sendTxResult.setMsg(e.getMessage());
+                log.error(e.getMessage());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
         }
+
         return sendTxResult;
     }
 
@@ -193,21 +304,44 @@ public class RpcProtocalProvider implements ProtocalProvider {
         RpcProto.EstimateGasRequest request = RpcProto.EstimateGasRequest.newBuilder()
                 .setTransaction(transaction)
                 .build();
-        RpcProto.EstimateGasResponse response = getBlockingStub(channel).rpcEstimateGas(request);
-        shutdownChannel(channel);
-
-        ByteString gasCount = response.getGasCount();
+        ByteString gasCount = null;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.EstimateGasResponse response = getBlockingStub(channel).rpcEstimateGas(request);
+                gasCount = response.getGasCount();
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
         return gasCount;
     }
 
     @Override
     public ByteString getGasPrice() {
+        log.info("start......");
         ManagedChannel channel = openChannel();
         RpcProto.GasPriceRequest request = RpcProto.GasPriceRequest.newBuilder()
                 .build();
-        RpcProto.GasPriceResponse response = getBlockingStub(channel).rpcGasPrice(request);
-        shutdownChannel(channel);
-        ByteString gasPrice = response.getGasPrice();
+        ByteString gasPrice = null;
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.GasPriceResponse response = getBlockingStub(channel).rpcGasPrice(request);
+                gasPrice= response.getGasPrice();
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
+        log.info("end......");
         return gasPrice;
     }
 
@@ -223,12 +357,22 @@ public class RpcProtocalProvider implements ProtocalProvider {
             builder.setValue(value);
         }
         RpcProto.ContractQueryRequest request = builder.build();
-        RpcProto.ContractQueryResponse response = getBlockingStub(channel).rpcContractQuery(request);
-        shutdownChannel(channel);
-
         ContractQueryResult result = new ContractQueryResult();
-        result.setResultKey(response.getKey());
-        result.setResultValue(response.getValue());
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.ContractQueryResponse response = getBlockingStub(channel).rpcContractQuery(request);
+                shutdownChannel(channel);
+                result.setResultKey(response.getKey());
+                result.setResultValue(response.getValue());
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
+
         return result;
     }
 }

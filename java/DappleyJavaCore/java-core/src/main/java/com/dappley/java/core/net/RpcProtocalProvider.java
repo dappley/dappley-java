@@ -8,10 +8,13 @@ import com.dappley.java.core.protobuf.*;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
+import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -79,7 +82,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                     serverNodesInput[0] = serverNodeCache;
                 }
         }
-        log.debug("openChannel host:",serverNodeCache.getHost());
+        log.debug("openChannel host:"+serverNodeCache.getHost());
         RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverNodesInput);
         ManagedChannel channel = channelBuilder.build();
         return channel;
@@ -185,14 +188,59 @@ public class RpcProtocalProvider implements ProtocalProvider {
 
     @Override
     public List<UtxoProto.Utxo> getUtxo(String address) {
+        final RpcProto.GetUTXOResponse responseinit;
+        List<UtxoProto.Utxo> utxos = new LinkedList<>();
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        StreamObserver<RpcProto.GetUTXOResponse> responseObserver = new StreamObserver<RpcProto.GetUTXOResponse>() {
+            private int cnt = 0;
+            public void onNext(RpcProto.GetUTXOResponse response) {
+                utxos.addAll(response.getUtxosList());
+                log.info("getUtxo call back time:{}",++cnt);
+            }
+
+            public void onError(Throwable throwable) {
+                log.warn("getUtxo call back error:{}",throwable.getMessage());
+                countDownLatch.countDown();
+            }
+
+            public void onCompleted() {
+                log.info("getUtxo call back complete");
+                countDownLatch.countDown();
+            }
+
+        };
         ManagedChannel channel = openChannel();
         RpcProto.GetUTXORequest request = RpcProto.GetUTXORequest.newBuilder()
                 .setAddress(address)
                 .build();
-        RpcProto.GetUTXOResponse response = getBlockingStub(channel).rpcGetUTXO(request);
-        shutdownChannel(channel);
-
-        List<UtxoProto.Utxo> utxos = response.getUtxosList();
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcServiceGrpc.RpcServiceStub rpcServiceStub = RpcServiceGrpc.newStub(channel);
+                StreamObserver<RpcProto.GetUTXORequest> requestObserver = rpcServiceStub.rpcGetUTXO(responseObserver);
+                for (int i=0;i<10;i++){
+                    requestObserver.onNext(request);
+                    //判断调用结束状态。如果整个调用已经结束，继续发送数据不会报错，但是会被舍弃
+                    if(countDownLatch.getCount() == 0){
+                        return null;
+                    }
+                }
+                requestObserver.onCompleted();
+                try {
+                    if(!countDownLatch.await(timeout, TimeUnit.MINUTES)){
+                        log.warn("The getUtxo call did not complete within the specified time");
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                shutdownChannel(channel);
+                break;
+            } catch (StatusRuntimeException e) {
+                log.error("WARNING, RPC failed: Status=" + e.getStatus());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+            }
+        }
         return utxos;
     }
 

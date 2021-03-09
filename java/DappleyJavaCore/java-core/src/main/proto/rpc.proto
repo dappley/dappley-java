@@ -14,7 +14,7 @@ service RpcService {
     rpc RpcGetVersion (GetVersionRequest) returns (GetVersionResponse) {}
     rpc RpcGetBalance (GetBalanceRequest) returns (GetBalanceResponse) {}
     rpc RpcGetBlockchainInfo (GetBlockchainInfoRequest) returns (GetBlockchainInfoResponse) {}
-    rpc RpcGetUTXO(GetUTXORequest) returns (GetUTXOResponse) {}
+    rpc RpcGetUTXO(stream GetUTXORequest) returns (stream GetUTXOResponse) {}
     rpc RpcGetBlocks(GetBlocksRequest) returns (GetBlocksResponse) {}
     rpc RpcGetBlockByHash(GetBlockByHashRequest) returns (GetBlockByHashResponse) {}
     rpc RpcGetBlockByHeight(GetBlockByHeightRequest) returns (GetBlockByHeightResponse) {}

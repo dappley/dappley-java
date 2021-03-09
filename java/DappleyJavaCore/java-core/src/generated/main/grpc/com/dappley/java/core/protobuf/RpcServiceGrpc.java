@@ -130,7 +130,7 @@ public final class RpcServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "RpcGetUTXO",
       requestType = com.dappley.java.core.protobuf.RpcProto.GetUTXORequest.class,
       responseType = com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
   public static io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetUTXORequest,
       com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse> getRpcGetUTXOMethod() {
     io.grpc.MethodDescriptor<com.dappley.java.core.protobuf.RpcProto.GetUTXORequest, com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse> getRpcGetUTXOMethod;
@@ -139,7 +139,7 @@ public final class RpcServiceGrpc {
         if ((getRpcGetUTXOMethod = RpcServiceGrpc.getRpcGetUTXOMethod) == null) {
           RpcServiceGrpc.getRpcGetUTXOMethod = getRpcGetUTXOMethod = 
               io.grpc.MethodDescriptor.<com.dappley.java.core.protobuf.RpcProto.GetUTXORequest, com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "rpcpb.RpcService", "RpcGetUTXO"))
               .setSampledToLocalTracing(true)
@@ -589,9 +589,9 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public void rpcGetUTXO(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest request,
+    public io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetUTXORequest> rpcGetUTXO(
         io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRpcGetUTXOMethod(), responseObserver);
+      return asyncUnimplementedStreamingCall(getRpcGetUTXOMethod(), responseObserver);
     }
 
     /**
@@ -703,7 +703,7 @@ public final class RpcServiceGrpc {
                   this, METHODID_RPC_GET_BLOCKCHAIN_INFO)))
           .addMethod(
             getRpcGetUTXOMethod(),
-            asyncUnaryCall(
+            asyncBidiStreamingCall(
               new MethodHandlers<
                 com.dappley.java.core.protobuf.RpcProto.GetUTXORequest,
                 com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse>(
@@ -840,10 +840,10 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public void rpcGetUTXO(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest request,
+    public io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetUTXORequest> rpcGetUTXO(
         io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRpcGetUTXOMethod(), getCallOptions()), request, responseObserver);
+      return asyncBidiStreamingCall(
+          getChannel().newCall(getRpcGetUTXOMethod(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -984,13 +984,6 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse rpcGetUTXO(com.dappley.java.core.protobuf.RpcProto.GetUTXORequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRpcGetUTXOMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
     public com.dappley.java.core.protobuf.RpcProto.GetBlocksResponse rpcGetBlocks(com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest request) {
       return blockingUnaryCall(
           getChannel(), getRpcGetBlocksMethod(), getCallOptions(), request);
@@ -1120,14 +1113,6 @@ public final class RpcServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse> rpcGetUTXO(
-        com.dappley.java.core.protobuf.RpcProto.GetUTXORequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRpcGetUTXOMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<com.dappley.java.core.protobuf.RpcProto.GetBlocksResponse> rpcGetBlocks(
         com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest request) {
       return futureUnaryCall(
@@ -1210,19 +1195,19 @@ public final class RpcServiceGrpc {
   private static final int METHODID_RPC_GET_VERSION = 0;
   private static final int METHODID_RPC_GET_BALANCE = 1;
   private static final int METHODID_RPC_GET_BLOCKCHAIN_INFO = 2;
-  private static final int METHODID_RPC_GET_UTXO = 3;
-  private static final int METHODID_RPC_GET_BLOCKS = 4;
-  private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 5;
-  private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 6;
-  private static final int METHODID_RPC_SEND_TRANSACTION = 7;
-  private static final int METHODID_RPC_SEND_BATCH_TRANSACTION = 8;
-  private static final int METHODID_RPC_GET_NEW_TRANSACTION = 9;
-  private static final int METHODID_RPC_SUBSCRIBE = 10;
-  private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 11;
-  private static final int METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK = 12;
-  private static final int METHODID_RPC_ESTIMATE_GAS = 13;
-  private static final int METHODID_RPC_GAS_PRICE = 14;
-  private static final int METHODID_RPC_CONTRACT_QUERY = 15;
+  private static final int METHODID_RPC_GET_BLOCKS = 3;
+  private static final int METHODID_RPC_GET_BLOCK_BY_HASH = 4;
+  private static final int METHODID_RPC_GET_BLOCK_BY_HEIGHT = 5;
+  private static final int METHODID_RPC_SEND_TRANSACTION = 6;
+  private static final int METHODID_RPC_SEND_BATCH_TRANSACTION = 7;
+  private static final int METHODID_RPC_GET_NEW_TRANSACTION = 8;
+  private static final int METHODID_RPC_SUBSCRIBE = 9;
+  private static final int METHODID_RPC_GET_ALL_TRANSACTIONS_FROM_TX_POOL = 10;
+  private static final int METHODID_RPC_GET_LAST_IRREVERSIBLE_BLOCK = 11;
+  private static final int METHODID_RPC_ESTIMATE_GAS = 12;
+  private static final int METHODID_RPC_GAS_PRICE = 13;
+  private static final int METHODID_RPC_CONTRACT_QUERY = 14;
+  private static final int METHODID_RPC_GET_UTXO = 15;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1252,10 +1237,6 @@ public final class RpcServiceGrpc {
         case METHODID_RPC_GET_BLOCKCHAIN_INFO:
           serviceImpl.rpcGetBlockchainInfo((com.dappley.java.core.protobuf.RpcProto.GetBlockchainInfoRequest) request,
               (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetBlockchainInfoResponse>) responseObserver);
-          break;
-        case METHODID_RPC_GET_UTXO:
-          serviceImpl.rpcGetUTXO((com.dappley.java.core.protobuf.RpcProto.GetUTXORequest) request,
-              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse>) responseObserver);
           break;
         case METHODID_RPC_GET_BLOCKS:
           serviceImpl.rpcGetBlocks((com.dappley.java.core.protobuf.RpcProto.GetBlocksRequest) request,
@@ -1315,6 +1296,9 @@ public final class RpcServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_RPC_GET_UTXO:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.rpcGetUTXO(
+              (io.grpc.stub.StreamObserver<com.dappley.java.core.protobuf.RpcProto.GetUTXOResponse>) responseObserver);
         default:
           throw new AssertionError();
       }

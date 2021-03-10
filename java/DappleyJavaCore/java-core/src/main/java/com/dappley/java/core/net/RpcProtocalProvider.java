@@ -82,7 +82,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                     serverNodesInput[0] = serverNodeCache;
                 }
         }
-        log.debug("openChannel host:"+serverNodeCache.getHost());
+        log.info("openChannel host:"+serverNodeCache.getHost());
         RpcChannelBuilder channelBuilder = new RpcChannelBuilder().newChannel(serverNodesInput);
         ManagedChannel channel = channelBuilder.build();
         return channel;
@@ -130,6 +130,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -153,6 +154,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -180,6 +182,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -239,6 +242,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
         return utxos;
@@ -257,13 +261,14 @@ public class RpcProtocalProvider implements ProtocalProvider {
             try {
                 RpcProto.GetBlocksResponse response = getBlockingStub(channel).rpcGetBlocks(request);
                 block = response.getBlocksList();
-                log.debug("getBlocks blockCount" + response.getBlocksCount());
+                log.info("getBlocks blockCount" + response.getBlocksCount());
                 shutdownChannel(channel);
                 break;
             } catch (StatusRuntimeException e) {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -288,6 +293,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -312,6 +318,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -340,6 +347,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error(e.getMessage());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 
@@ -364,6 +372,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
         return gasCount;
@@ -371,7 +380,6 @@ public class RpcProtocalProvider implements ProtocalProvider {
 
     @Override
     public ByteString getGasPrice() {
-        log.info("start......");
         ManagedChannel channel = openChannel();
         RpcProto.GasPriceRequest request = RpcProto.GasPriceRequest.newBuilder()
                 .build();
@@ -387,9 +395,9 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
-        log.info("end......");
         return gasPrice;
     }
 
@@ -418,6 +426,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 log.error("WARNING, RPC failed: Status=" + e.getStatus());
                 ConnectNodeModel = 1;
                 channel = openChannel();
+                ConnectNodeModel = 0;
             }
         }
 

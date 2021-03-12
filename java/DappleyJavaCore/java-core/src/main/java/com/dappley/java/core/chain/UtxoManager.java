@@ -5,6 +5,8 @@ import com.dappley.java.core.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,6 +25,19 @@ public class UtxoManager {
         if (ObjectUtils.isEmpty(utxos)) {
             return null;
         }
+        Collections.sort(utxos, new Comparator<Utxo>() {
+            @Override
+            public int compare(Utxo u1, Utxo u2) {
+            int diff =u1.getAmount().compareTo(u2.getAmount());
+            if (diff > 0) {
+                return 1;
+            }else if (diff < 0) {
+                return -1;
+            }
+            return 0;
+            }
+        });
+
         List<Utxo> spendables = new ArrayList<>();
         BigInteger accumulated = BigInteger.ZERO;
         for (Utxo utxo : utxos) {

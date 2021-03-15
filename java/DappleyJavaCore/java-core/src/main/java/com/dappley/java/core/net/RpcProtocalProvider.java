@@ -191,7 +191,6 @@ public class RpcProtocalProvider implements ProtocalProvider {
 
     @Override
     public List<UtxoProto.Utxo> getUtxo(String address) {
-        final RpcProto.GetUTXOResponse responseinit;
         List<UtxoProto.Utxo> utxos = new LinkedList<>();
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         StreamObserver<RpcProto.GetUTXOResponse> responseObserver = new StreamObserver<RpcProto.GetUTXOResponse>() {
@@ -221,8 +220,16 @@ public class RpcProtocalProvider implements ProtocalProvider {
             try {
                 RpcServiceGrpc.RpcServiceStub rpcServiceStub = RpcServiceGrpc.newStub(channel);
                 StreamObserver<RpcProto.GetUTXORequest> requestObserver = rpcServiceStub.rpcGetUTXO(responseObserver);
-                for (int i=0;i<10;i++){
+                while (true){
+                    if ((utxos.size() % 1000) != 0){
+                        break;
+                    }
                     requestObserver.onNext(request);
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     //判断调用结束状态。如果整个调用已经结束，继续发送数据不会报错，但是会被舍弃
                     if(countDownLatch.getCount() == 0){
                         return null;

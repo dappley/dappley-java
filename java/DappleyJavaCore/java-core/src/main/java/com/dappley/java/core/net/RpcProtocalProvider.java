@@ -232,7 +232,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                     }
                     //判断调用结束状态。如果整个调用已经结束，继续发送数据不会报错，但是会被舍弃
                     if(countDownLatch.getCount() == 0){
-                        return null;
+                        break;
                     }
                 }
                 requestObserver.onCompleted();
@@ -252,6 +252,7 @@ public class RpcProtocalProvider implements ProtocalProvider {
                 ConnectNodeModel = 0;
             }
         }
+        log.info("getUtxo call utxo list exit size:{}",utxos.size());
         return utxos;
     }
 

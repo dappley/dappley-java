@@ -1,5 +1,6 @@
 package com.dappley.java.sdk.chain;
 
+import com.dappley.java.core.po.SuitableUtxos;
 import com.dappley.java.core.po.Utxo;
 
 import java.math.BigInteger;
@@ -17,7 +18,7 @@ public class UtxoManager {
      * @param amount target amount
      * @return List<Utxo> suitable utxo list
      */
-    public static List<Utxo> getSuitableUtxos(List<Utxo> utxos, BigInteger amount) {
+    public static SuitableUtxos getSuitableUtxos(List<Utxo> utxos, BigInteger amount) {
         return com.dappley.java.core.chain.UtxoManager.getSuitableUtxos(utxos, amount);
     }
 

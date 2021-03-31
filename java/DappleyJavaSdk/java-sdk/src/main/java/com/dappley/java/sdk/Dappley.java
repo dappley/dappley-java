@@ -312,13 +312,13 @@ public class Dappley {
             return sendTxResult;
         }
         BigInteger totalCost = getTotalUtxoCost(amount, tip, gasLimit, gasPrice);
-        List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, totalCost);
-        if (ObjectUtils.isEmpty(utxos)) {
+        SuitableUtxos suitableUtxos = UtxoManager.getSuitableUtxos(allUtxo, totalCost);
+        if (ObjectUtils.isEmpty(suitableUtxos.getUtxos())) {
             sendTxResult.setCode(SendTxResult.CODE_ERROR_BALANCE);
-            sendTxResult.setMsg("Balance of fromAddress is not enough!");
+            sendTxResult.setMsg(suitableUtxos.getMsg());
             return sendTxResult;
         }
-        Transaction transaction = TransactionManager.newTransaction(utxos, toAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
+        Transaction transaction = TransactionManager.newTransaction(suitableUtxos.getUtxos(), toAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
         try {
             sendTxResult = transactionSender.sendTransaction(transaction);
         } catch (Exception e) {
@@ -386,11 +386,11 @@ public class Dappley {
         BigInteger tip = BigInteger.ZERO;
         BigInteger gasLimit = BigInteger.ZERO;
         BigInteger gasPrice = BigInteger.ZERO;
-        List<Utxo> utxos = UtxoManager.getSuitableUtxos(allUtxo, amount);
-        if (ObjectUtils.isEmpty(utxos)) {
+        SuitableUtxos suitableUtxos = UtxoManager.getSuitableUtxos(allUtxo, amount);
+        if (ObjectUtils.isEmpty(suitableUtxos.getUtxos())) {
             return BigInteger.ZERO;
         }
-        Transaction transaction = TransactionManager.newTransaction(utxos, contractAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
+        Transaction transaction = TransactionManager.newTransaction(suitableUtxos.getUtxos(), contractAddress, amount, privateKey, tip, gasLimit, gasPrice, contract);
         return dataProvider.estimateGas(transaction);
     }
 

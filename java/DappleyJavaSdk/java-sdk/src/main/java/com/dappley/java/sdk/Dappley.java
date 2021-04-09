@@ -4,13 +4,12 @@ import com.dappley.java.core.chain.TransactionManager;
 import com.dappley.java.core.chain.WalletManager;
 import com.dappley.java.core.net.*;
 import com.dappley.java.core.po.*;
-import com.dappley.java.core.util.AddressUtil;
-import com.dappley.java.core.util.MnemonicLanguage;
-import com.dappley.java.core.util.ObjectUtils;
+import com.dappley.java.core.util.*;
 import com.dappley.java.sdk.chain.UtxoManager;
 import com.dappley.java.sdk.config.Configuration;
 import com.dappley.java.sdk.net.LocalDataProvider;
 import com.dappley.java.sdk.util.Asserts;
+import com.google.protobuf.ByteString;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigInteger;
@@ -29,6 +28,7 @@ import java.util.List;
 @Slf4j
 public class Dappley {
     private static DataProvider dataProvider;
+    private static ProtocalProvider protocalProvider;
     private static TransactionSender transactionSender;
 
     /**
@@ -50,7 +50,7 @@ public class Dappley {
             throw new IllegalArgumentException("only remote online mode is supported now.");
         }
         try {
-            ProtocalProvider protocalProvider = null;
+            //ProtocalProvider protocalProvider = null;
             if (dataMode == DataMode.REMOTE_ONLINE) {
                 ProtocalProviderBuilder providerBuilder = new ProtocalProviderBuilder();
                 providerBuilder.setType(RemoteDataProvider.RemoteProtocalType.RPC)
@@ -241,6 +241,20 @@ public class Dappley {
     }
 
     /**
+     * Send a admin transaction to blockchain online.
+     * @param toAddress   to user's address
+     * @param amount      transferred amount
+     * @return SendTxResult transaction committed result
+     */
+    public static SendTxResult sendMinerTransaction(String toAddress, BigInteger amount) {
+        Asserts.init(dataProvider);
+        if (!AddressUtil.validateUserAddress(toAddress)) {
+            throw new IllegalArgumentException("toAddress is illegal !");
+        }
+        return protocalProvider.sendMinerTransaction(toAddress, ByteString.copyFrom(ByteUtil.bigInteger2Bytes(amount)));
+    }
+
+    /**
      * Send a new transaction to blockchain online.
      * @param fromAddress from user's address
      * @param toAddress   to user's address
@@ -277,12 +291,12 @@ public class Dappley {
         if (!AddressUtil.validateUserAddress(fromAddress)) {
             throw new IllegalArgumentException("fromAddress is illegal !");
         }
-        if (!AddressUtil.validateContractAddress(contractAddress)) {
-            throw new IllegalArgumentException("contractAddress is illegal !");
-        }
-        if (contract == null) {
-            throw new NullPointerException("contract cannot be null !");
-        }
+//        if (!AddressUtil.validateContractAddress(contractAddress)) {
+//            throw new IllegalArgumentException("contractAddress is illegal !");
+//        }
+//        if (contract == null) {
+//            throw new NullPointerException("contract cannot be null !");
+//        }
         return sendTransaction(fromAddress, contractAddress, fee, privateKey, tip, gasLimit, gasPrice, contract);
     }
 

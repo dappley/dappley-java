@@ -11,6 +11,7 @@ import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -100,6 +101,15 @@ public class RpcProtocalProvider implements ProtocalProvider {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Returns new blocking stub with timeout value
+     * @param channel
+     * @return
+     */
+    private AdminServiceGrpc.AdminServiceBlockingStub getAdminBlockingStub(ManagedChannel channel) {
+        return AdminServiceGrpc.newBlockingStub(channel).withDeadlineAfter(this.timeout, TimeUnit.SECONDS);
     }
 
     /**
@@ -331,6 +341,34 @@ public class RpcProtocalProvider implements ProtocalProvider {
         }
 
         return block;
+    }
+
+    @Override
+    public SendTxResult sendMinerTransaction(String toAddress, ByteString amount) {
+        ManagedChannel channel = openChannel();
+        RpcProto.SendFromMinerRequest request = RpcProto.SendFromMinerRequest.newBuilder()
+                .setTo(toAddress)
+                .setAmount(amount)
+                .build();
+        SendTxResult sendTxResult = new SendTxResult();
+        int length = serverNodes.length;
+        while ((length--)>0){
+            try {
+                RpcProto.SendFromMinerResponse response = getAdminBlockingStub(channel).rpcSendFromMiner(request);
+                shutdownChannel(channel);
+                sendTxResult.setCode(SendTxResult.CODE_SUCCESS);
+                //sendTxResult.setGeneratedContractAddress(response.getGeneratedContractAddress());
+                break;
+            } catch (Exception e) {
+                sendTxResult.setCode(SendTxResult.CODE_ERROR_EXCEPTION);
+                sendTxResult.setMsg(e.getMessage());
+                log.error(e.getMessage());
+                ConnectNodeModel = 1;
+                channel = openChannel();
+                ConnectNodeModel = 0;
+            }
+        }
+        return sendTxResult;
     }
 
     @Override

@@ -38,6 +38,8 @@ public interface ProtocalProvider {
 
     SendTxResult sendTransaction(TransactionProto.Transaction transaction);
 
+    SendTxResult sendMinerTransaction(String toAddress, ByteString amount);
+
     ByteString estimateGas(TransactionProto.Transaction transaction);
 
     ByteString getGasPrice();
